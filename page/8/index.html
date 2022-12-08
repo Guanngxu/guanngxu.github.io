@@ -1,0 +1,1679 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1670487696733">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179783473-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-179783473-1');
+    </script>
+    
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1670487696733" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/uDVEq7OW-/">
+                        Scrapy 爬虫框架入门——抓取豆瓣电影 Top250
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-07-27</time>
+                    
+                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
+                            i-tag-other_1">
+            #爬虫
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-other_3">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/uDVEq7OW-/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/uDVEq7OW-.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            最好的学习方式就是输入之后再输出，分享一个自己学习scrapy框架的小案例，方便快速的掌握使用scrapy的基本方法。
+本想从零开始写一个用Scrapy爬取教程，但是官方已经有了样例，一想已经有了，还是不写了，尽量分享在网上不太容易找到的东西。自己近期在封闭培训，更文像蜗牛一样，抱歉。
+Scrapy简介
+Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
+其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。
+
+如果此前对scrapy没有了解，请先查看下面的官方教程链接。
+架构概览：https://docs.pythontab.com/scrapy/scrapy0.24/topics/architecture.html
+Scrapy入门教程：https://docs.pythontab.com/scrapy/scrapy0.24/intro/tutorial.html
+爬虫教程
+首先，我们看一下豆瓣TOP250页面，发现可以从中提取电影名称、排名、评分、评论人数、导演、年份、地区、类型、电影描述。
+
+Item对象是种简单的容器，保存了爬取到得数据。其提供了类似于词典的API以及用于声明可用字段的简单语法。所以可以声明Item为如下形式。
+class DoubanItem(scrapy.Item):
+    # 排名
+    ranking = scrapy.Field()
+    # 电影名称
+    title = scrapy.Field()
+    # 评分
+    score = scrapy.Field()
+    # 评论人数
+    pople_num = scrapy.Field()
+    # 导演
+    director = scrapy.Field()
+    # 年份
+    year = scrapy.Field()
+    # 地区
+    area = scrapy.Field()
+    # 类型
+    clazz = scrapy.Field()
+    # 电影描述
+    decsription = scrapy.Field()
+
+我们抓取到相应的网页后，需要从网页中提取自己需要的信息，可以使用xpath语法，我使用的是BeautifulSoup网页解析器，经过BeautifulSoup解析的网页，可以直接使用选择器筛选需要的信息。有一些说明写到代码注释里面去了，就不再赘述。
+Chrome 也可以直接复制选择器或者XPath，如下图所示。
+
+class douban_spider(Spider):
+
+    count = 1
+
+    # 爬虫启动命令
+    name = &#39;douban&#39;
+
+    # 头部信息，伪装自己不是爬虫程序
+    headers = {
+        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#39;,
+    }
+
+    # 爬虫启动链接
+    def start_requests(self):
+        url = &#39;https://movie.douban.com/top250&#39;
+        yield Request(url, headers=self.headers)
+
+    # 处理爬取的数据
+    def parse(self, response):
+
+        print(&#39;第&#39;, self.count, &#39;页&#39;)
+        self.count += 1
+
+        item = DoubanItem()
+        soup = BeautifulSoup(response.text, &#39;html.parser&#39;)
+
+        # 选出电影列表
+        movies = soup.select(&#39;#content div div.article ol li&#39;)
+
+        for movie in movies:
+            item[&#39;title&#39;] = movie.select(&#39;.title&#39;)[0].text
+            item[&#39;ranking&#39;] = movie.select(&#39;em&#39;)[0].text
+            item[&#39;score&#39;] = movie.select(&#39;.rating_num&#39;)[0].text
+            item[&#39;pople_num&#39;] = movie.select(&#39;.star span&#39;)[3].text
+
+            # 包含导演、年份、地区、类别
+            info = movie.select(&#39;.bd p&#39;)[0].text
+            director = info.strip().split(&#39;\n&#39;)[0].split(&#39;   &#39;)
+            yac = info.strip().split(&#39;\n&#39;)[1].strip().split(&#39; / &#39;)
+
+            item[&#39;director&#39;] = director[0].split(&#39;: &#39;)[1]
+            item[&#39;year&#39;] = yac[0]
+            item[&#39;area&#39;] = yac[1]
+            item[&#39;clazz&#39;] = yac[2]
+
+            # 电影描述有为空的，所以需要判断
+            if len(movie.select(&#39;.inq&#39;)) is not 0:
+                item[&#39;decsription&#39;] = movie.select(&#39;.inq&#39;)[0].text
+            else:
+                item[&#39;decsription&#39;] = &#39;None&#39;
+            yield item
+
+        # 下一页：
+        # 1，可以在页面中找到下一页的地址
+        # 2，自己根据url规律构造地址，这里使用的是第二种方法
+        next_url = soup.select(&#39;.paginator .next a&#39;)[0][&#39;href&#39;]
+        if next_url:
+            next_url = &#39;https://movie.douban.com/top250&#39; + next_url
+            yield Request(next_url, headers=self.headers)
+
+然后在项目文件夹内打开cmd命令，运行scrapy crawl douban -o movies.csv就会发现提取的信息就写入指定文件了，下面是爬取的结果，效果很理想。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/uDVEq7OW-/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/VJe_7M1YY/">
+                        谈一下写作的重要性，每个人都应该养成写作的习惯
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-07-20</time>
+                    
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/VJe_7M1YY/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/VJe_7M1YY.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            关于写作的重要性，你可能在其他地方也见过一些描述，大致的说法都差不多，如果本文某些字句与你已经见过的文章有雷同，那纯属巧合，我仅从个人这几个月的感受出发来说。
+我从三月份开始，在公众号上面发一些文章，其实从这几个月的表现来看，是把公众号当作博客来用了，我的初衷没有想着靠公众号赚钱，所以我的分享很随意，主要是技术、认知、阅读方面的东西。如果不喜欢，主动权在你手里，大可取关；如果喜欢，我的文章能让你少走一些弯路，那么我自己的目的达到了，给不给赞赏无所谓，其实心里还是希望你给的，咱没必要把自己放的太清高。
+今天微信订阅号改版了，新版的订阅号基本形态变成了信息流，关于产品我还不太懂，但是我觉得这次改版对于作者的个人品牌形成不利，没内容的公众号应该会被取关很多粉丝，但是忠实粉丝也更难找到自己喜欢的“博主”了，所以以后，请认准作者。
+很多人也有撰写博客的习惯，我很赞同这个做法，关于写作的好处我觉得有以下几点，只有认真去做了，才能体会到它带给自己的成长。
+第一，写作是整理自己思维的过程，写作能力是一种重要的能力，不一定要多好的文采，但是不是每个人都能把语言组织的有条有理。现在的时代，没有铁饭碗，你需要不停的学习才能立于不败之地，很多人觉得写作是浪费时间，其实不然，写作是对已学知识的整理过程，输出其实是更高层次的输入。拿我之前写的朴素贝叶斯实现拼写检查器来说，其中那个贝叶斯公式推导是我花了很多分钟才想出来的，就好像老师教给学生一碗水，那么老师就必须具备一桶水才行。
+第二，写作是个人品牌的建立过程，可以说微信已经成为了中国互联网的小小代名词，农村大叔大妈手机上面最可能出现的软件就是微信，微信打通中国互联网的最后一环，在这么大的平台上，你分享的内容对别人来说是有帮助的，那么你的个人品牌就已经逐渐在形成了，这是个人影响力的提升。个人品牌在以后一定会很重要，个人品牌在日常生活其实有体现，我相信每个人的微信都会屏蔽几个人的朋友圈信息吧，经常在朋友圈发一些无用信息、垃圾信息，这其实就是个人品牌的损失。
+第三，通过写作你能交到很多朋友，而且通过这种方式所交到的朋友都是优秀的，他们会对你的成长起到促进作用，而你也会因为和他们交流而在不知不觉中得到提升，真正的朋友是相互促进的。我这几个月交到的朋友，刷新了我的认知，偏见来源于无知，在这个过程，我的认知得到了很大的提升，认知这玩意也不太好描述。举个例子，大概在大二的时候，我看到一篇文章说高中物理中所学的电子、质子等概念是错的，将要被新的知识体系取代，那时二话不说就转发朋友圈了，但没过几天就发现这其实是一个虚假信息；前段时间，中兴被美国制裁了，然后就有一些自媒体作者为了吸引流量，乱写一通什么华为宣布将要退出美国市场的消息，我的第一直觉就是这是虚假信息，然后我去验证了自己猜测的正确性，而周围很多人竟无脑式的选择了相信这条消息，还给我分析为什么华为要退出美国市场。这在我看来就是认知水平的一个体现，或者贴切一点叫信息素养（这个词不是我发明的），我现在对于信息的掌握已经明显快于周围的同学了，而且掌握的也比周围同学更加全面。
+最后说一点，没必要为了写作而写作，经常在知识星球看到有人问问题，说自己的写不出东西来，怎么办？这就是自己的输入不够，自己体内没有实质的东西，如何能达到输出呢？更别说高质量的输出了。
+我以后的文章主要是机器学习和提升认知方面的，最近更文有点慢，其一是自己也刚开始接触机器学习不久，要写出一篇比较好的文章，需要几天的输入；其二马上要毕业了，繁忙于各种琐碎的事情无法自拔。
+总的来说，写作利大于弊，如果你有闲心，看一下我几个月前发的文章，再和我现在的文章做个对比，你能看到我的变化，在文章逻辑、排版等等方面都或多或少的有一些提升，所以我建议你如果空闲时间比较多，也可以尝试尝试写作，自己的成长过程会在字里行间被记录下来。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/VJe_7M1YY/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/NrUpfcbXq/">
+                        动态规划算法优化实例——如何求解换钱的方法数
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-07-13</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-other_3">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/NrUpfcbXq/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/NrUpfcbXq.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            这是我的人生处女面遇到的一个面试题，是在去哪儿网二面遇到的，那时非常的紧张，还没有复习，所以第一次面试理所应当的挂了。文章对问题进行逐步的由简到难进行优化，基本上是代码，看懂代码才能理解，也为类似问题提供了基本的解决思路。
+题目描述：
+
+让你把一张整钱找零，即假设你拥有不同且不限量的小额钱币，你需要统计共有多少种方法可以用手中的小额钱币兑等额兑换一张大额钱币。
+即：给定一个元素为正数的集合（元素不重复）代表不同面值的钱币，再给一个整数，代表要找零的钱数，求共有多少种换钱方法？
+
+递归求解
+现在有1、5、10元三种面值的纸币，需要找零100元，那么可以做如下分析：
+用 0 张 5 元换，剩下的用 1、10 元换，最终方法数为 count0；
+用 1 张 5 元换，剩下的用 1、10 元换，最终方法数为 count1；
+......
+用 100 张 5 元换，剩下的用 1、10 元换，最终方法数为 count100；
+
+最终的换钱方法总数就为 count0 + count1 + ...... + count100。
+
+根据上面的分析可以写出下面的递归解决方案：
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }else {
+        return slove(money, 0, target);
+    }
+}
+
+// 用money[index, length-1]换钱，返回总的方法数
+private static int slove(int money[], int index, int target){
+    int res = 0;
+    if(index == money.length){
+        if (target == 0){
+            res = 1;
+        }else {
+            res = 0;
+        }
+    }else {
+        for (int i = 0; money[index] * i &amp;lt;= target; i++) {
+            res += slove(money, index+1, target-money[index]*i);
+        }
+    }
+    return res;
+}
+
+优化递归
+可以看到，上面的程序在运行时存在大量的重复过程，比如下面两种情况，其后所求结果是一样的。
+兑换 100 元，已经使用了 0 张 1 元、1 张 2 元，剩下的用 5 元和 10 元兑换；
+兑换 100 元，已经使用了 2 张 1 元、0 张 2 元，剩下的用 5 元和 10 元兑换；
+
+可以发现，这两种情况后面都是求解同一问题，重复的对同一个问题求解，就造成了时间的浪费，因此我们可以考虑将已经计算过的结果存下来，避免重复的计算，所以有下面的优化方案。
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }else {
+        /**
+         * map[i][j]表示p(i,j)递归回的值
+         * 其中-1表示该递归过程计算过，但是返回值为0
+         * 0表示该递归过程还为计算过
+         */
+
+        int map[][] = new int[money.length+1][target+1];
+        return slove(money, 0, target, map);
+    }
+}
+
+private static int slove(int money[], int index, int target, int map[][]){
+    int res = 0;
+    if(index == money.length){
+        if (target == 0){
+            res = 1;
+        }else {
+            res = 0;
+        }
+    }else {
+        int val = 0;
+        for (int i = 0; money[index] * i &amp;lt;= target; i++) {
+            val = map[index + 1][target - money[index]*i];
+            if (val != 0){
+                if (val == -1){
+                    res += 0;
+                }else {
+                    res += val;
+                }
+            }else {
+                res += slove(money, index+1, target-money[index]*i, map);
+            }
+        }
+    }
+
+    if (res == 0){
+        map[index][target] = -1;
+    }else {
+        map[index][target] = res;
+    }
+    return res;
+}
+
+动态规划
+上面对递归方法的优化已经能看到动态规划的影子了，这是一个二维的动态规划问题，我们定义dp[i][j]的含义为：使用money[0...i]的钱币组成钱数j的方法数。所以可以得出以下面的动态规划解法：
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }
+
+    int dp[][] = new int[money.length][target+1];
+
+    // 第一列表示组成钱数为0的方法数，所以为1
+    for (int i = 0; i &amp;lt; money.length; i++) {
+        dp[i][0] = 1;
+    }
+    // 第一行表示只使用money[0]一种钱币兑换钱数为i的方法数
+    // 所以是money[0]的倍数的位置为1，否则为0
+    for (int i = 1; money[0] * i &amp;lt;= target; i++) {
+        dp[0][money[0] * i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; dp.length; i++) {
+        for (int j = 1; j &amp;lt; dp[0].length; j++) {
+            for (int k = 0; j &amp;gt;= money[i] * k; k++) {
+                // dp[i][j]的值即为，用money[0...i-1]的钱
+                // 组成j减去money[i]的倍数的方法数
+                dp[i][j] += dp[i-1][j-money[i]*k];
+            }
+        }
+    }
+
+    return dp[money.length-1][target];
+}
+
+继续优化
+可以发现上面的动态规划解法有三层循环，因为是二维的动态规划问题，前两层没办法去掉，但是第三层依旧很耗时间，继续优化可以得到下面的结果。
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }
+
+    int dp[][] = new int[money.length][target+1];
+
+    for (int i = 0; i &amp;lt; money.length; i++) {
+        dp[i][0] = 1;
+    }
+    for (int i = 1; money[0] * i &amp;lt;= target; i++) {
+        dp[0][money[0] * i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; money.length; i++) {
+        for (int j = 1; j &amp;lt;= target; j++) {
+            /**
+             * 通过分析可以发现，dp[i][j]的值由两部分组成
+             * 1：用money[0...i-1]的钱组成钱数为j的方法数
+             * 2：用money[0...i]的钱组成钱数为j-money[i]*k（k=1,2,3....）的方法数
+             * 对于第2种情况，实际上累加的值就是dp[i][j-money[i]]
+             * 所以直接使用dp[i][j-money[i]]即可
+             */
+            dp[i][j] = dp[i-1][j];
+            if (j &amp;gt;= money[i]){
+                dp[i][j] += dp[i][j-money[i]];
+            }
+        }
+    }
+
+    return dp[money.length-1][target];
+}
+
+空间压缩
+可以看到每次更新dp[i][j]，dp[i][j]的值只与前一行和当前行前面的元素有关系，而我们只需要最后的一个结果就行了，那么前面存的元素实际上会造成空间的浪费，进一步可以在空间上进行优化。
+我们只需要定义一个一位数组，然后对该数组进行滚动更新就可以了，只要按照合适方向去更新数组，同样能达到上面的效果。
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }
+
+    int dp[] = new int[target+1];
+
+    // 第一行，只用money[0]兑换钱
+    // 所以只能兑换为money[0]的倍数，将这些位置置为1
+    for (int i = 0; money[0]*i &amp;lt;= target; i++) {
+        dp[i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; money.length; i++) {
+        for (int j = 1; j &amp;lt;= target; j++) {
+
+            // 与前一步相比，少了dp[i][j] = dp[i-1][j];
+            // 因为这里在进行dp[j] += dp[j-money[i]];之前
+            // dp[j]的值就已经是dp[i-1][j]了
+            if (j &amp;gt;= money[i]){
+                dp[j] += dp[j-money[i]];
+            }
+        }
+    }
+
+    return dp[target];
+}
+
+到这一步就不再有优化空间了，这个问题很值得记录下来，很多笔试、面试题都可以按这个模子进行套，对于只需要最优解的动态规划问题也可以套用上面的空间压缩思路，多总结、多练习总是没有问题的！这个解题思路第一次看到是左程云在牛客网上讲解的，他也写了一本算法相关的书比较不错，叫做程序员代码面试指南，大四、研三、刚入职的新人建议可以买一本读读，对自己编码技能的提升绝对又很大的帮助。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/NrUpfcbXq/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/udNd3A-Sd/">
+                        年轻不要给自己设限
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-07-02</time>
+                    
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-banana">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/udNd3A-Sd/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/udNd3A-Sd.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            初入象牙塔时乘坐了 60 多个小时的火车，后面基本都选择了飞机作为出行交通工具，毕业时再次选择了火车这一交通工具回家，再看一次从东北到西南的沿途风景，无奈火车居然能晚点两小时，这篇文章是在火车上为打发时间写的，希望对您有所帮助。
+记得大一入学前，买了一本覃彪喜写的《读大学，究竟读什么》，那时候对于里面有一些观点不赞同，觉得大学这么神圣的地方，怎么被作者写成那样，读完一遍只是抱有一种怀疑的态度，四年之后的今天，我觉得这本书值得一看，大部分内容还是有用的，不过有一些内容还是很偏激的，自己过滤掉就好了。
+现在回头看，大学最需要的应该是经历，我也是大三才算明白这个道理吧（这个道理应该不止学生能实用）。我认为本科阶段是容错率最高的阶段，这个时候你干什么都不怕，犯了错也没有什么大碍，最重要的是犯错（不犯错更好）的那个过程。
+年轻人做什么都是学习，不要给自己设限，在一无所有的年龄就应该多经历，因为这时候的容错率很高，试错成本低就要勇于试错。（这句话可能之前的文章说过，大同小异的话你也能在别的好文章里面见到）
+现在的家长，也包括孩子，大多数喜欢拿一些证书、奖杯出来炫耀，而现在大学里面的个性化保研政策看的就是各种奖项。我更看重的是比赛的过程，但是在学校有一个怪现象：我不想办事，只想你给我挂一个名，到出去比赛的时候，看到所报的项目自己不是第一作者，都不愿意去比赛，觉得是在浪费时间。
+我个人在这里面算一股清流了，我很喜欢跟着出去比赛，因为比赛的过程能教会你很多在学校学不到的东西，给不给我奖状无所谓，只要给我报销差旅费就行了，这一点对我这种穷学生来说跟重要，想出去看看世界长长见识，自己又没有钱，学生群体中随随便便就拿出几千块钱的人还是不多，所以这是我找到的最好的长见识的方法了，上大学前连小县城都没出过的我，通过比赛到过佛山、深圳、重庆、日照等地，这对我算是一生的财富。
+写到这里，脑子里面满满的全是回忆，发现想说的太多，全写出来可能会上万字，先不写了，以后分开写个系列的也行，下面说几句干货道理吧，过来人的总结。
+第一，少拿学校的光环往自己身上套，和你没关系，对于我的学校动不动就拿哈军工说事（中国人都喜欢把自己和名家扯上关系，看起来显得有一些历史文化底蕴），完全是不自信的表现。作为唯一一个首批进入211缺不是985的学校，我觉得学校一直在啃老底。类似的文章还有之前写的谈一点关于名校的话题和刘大写的除去大公司的光环，你还剩点啥？
+第二，学校教不了你多少东西，大学阶段和高中阶段最大的区别是，高中有人赶着你学，而且还有人给你指明学习的方向，但是大学没有人告诉你学什么，也没有人赶着你学习，所以培养自学能力和判断选择能力很重要，我个人认为这是大学阶段最应该学习到的东西。
+第三，如果大学只学习了课本中的内容，那还不如不上大学，不得不承认，大学课本内容都属于经典中的经典，但是学校的要求太低，所以要自己去练习，而且很多老师所教授的东西属于过时的知识，有的课就应该逃掉，利用这个时间去做更有用的事情。
+第四，真诚待人，学生阶段所交的朋友没多少功利性，能交几个铁哥们最好。我个人觉得比较实用的一个看人标准，你只需要看某个人对待其他人是什么样，就大概知道他对你会是什么样了；好比谈恋爱，你不要妄想渣男渣女到你这里就不渣了（小概率事件）。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/udNd3A-Sd/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/tZpY6JWhD/">
+                        西凉忆
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-05-22</time>
+                    
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-other_4">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/tZpY6JWhD/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/tZpY6JWhD.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+夜雨滴，淅淅沥沥，伶仃至天明。
+忆往景，伤流景。
+世事沧桑敌不过一句悲凉，浮生蹉跎尽在笔墨中泛黄。
+几多欢喜，几多忧愁，曾经挫败，也曾迷茫。
+再回首时，我将深情拥入梦，拥有瞬间的感动却也足够。
+故事中的悲与合，百般萧瑟，千般落寞。
+
+《浪淘沙》
+帘外月如钩，好梦难留。
+寻思翻悔几时休，无那安排辞去意，相聚分流。
+人世总多秋，恰上心头。
+平生却道愿堪忧，暗忆欢期眠不得，何恨离愁。
+《南乡子．冷风淅》
+冷风淅，疏雨斜，岸花零落杪雀喑。
+轻舟短棹临野渡，归何处？
+隐隐两三烟柳树。
+《忆江南》
+碧云卷 碧云卷，暮日烟霞浓。
+翠楼水阁花树掩，斜晖眽眽又几重。
+望断石桥东。
+《如梦令》
+
+乙未十月初五夜无眠，念往日兮，不觉已而四载有余，徒感悲戚，故作此。
+
+昨夜修竹风露，
+浅睡迷香清雾。
+罗帐月为魂，
+痴念已然终误。
+虚度，虚度。
+回忆落空如墓。
+《钗头凤》
+待六月，激情朗，意气凌冠挥缨枪；
+将袖扫，任逍遥，马踏平川，舒眉一笑，傲傲傲！
+舞三江，梦飞扬，落日无边江不尽；
+趁今朝，更须忙，题名金榜，折桂香飘，妙妙妙！
+
+花翎水裳，丹青风华暗染霜。
+夜未央，几度琉璃徬。
+谁笑我儿女情长，步步断肠。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/tZpY6JWhD/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/FoK6YM8MY/">
+                        大叔激励｜小宫黛雅｜上饶熊孩子｜法国小羊做新生｜体育强健身心｜地震回忆
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-05-12</time>
+                    
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-warning">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/FoK6YM8MY/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/FoK6YM8MY.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            最近机缘巧合和几个中年大叔聊天，从眼神里面能看出来他们是讲的真心话，平时也非常反感长辈们给自己讲的一些大而空的道理，但仔细想想这些话其实并不是完全没用。
+不管对方是世俗眼光中的成功人士还是失败人士，他们都会有自己没有实现的理想愿望，成功人士没有好好陪家人孩子，他们可能喜欢特地找个时间，不管接收方是否感动，但至少他自己已经得到心灵的慰藉了；失败人士没有给到家人足够富裕的生活，这时候他们都很喜欢看努力、奋斗、自强不息......一类词汇堆砌的文章。而老人的精神世界已经不是奋斗了，而是人这一生......，所以如果陪老人说话，你只需要把话题引入到佛身上，然后静静的听就可以了。
+
+忘了啥时候无意中加了一个高中生，目前正在读高二，与大多数人不同的是，她属于双性恋人群，并且更偏爱小姐姐，出口成脏，上课偷偷玩手机，宛然一个大家脑中所构想的问题少年。
+但是几个月前突然变了，一下子变得有礼貌起来了，我问她是因为什么变了，她告诉我是因为我说的一句话：不说脏话是对人起码的尊重。这句话让她想明白了，我在这里偷偷说一句，我也不知道当时说的这句话对不对，其实就是随口一说，让一个小娃娃变好了，那也好。
+在我的循序诱惑下，小姑娘已经不藏手机了，每周日自觉的把手机交上去，每周五手机发下来再玩，所以我和她的聊天记录现在基本上变成了，周日我发一句“加油”，周五下午我会收到一句“突然出现”。
+小姑娘自己是同性恋的事情不敢给爸妈说，我想这是不是因为父母与孩子天然就有一种屏障，以至于无法与他们进行心灵上的沟通，要想能够得到孩子的信任，父母应该多站在孩子角度考虑考虑问题，尽量不要拿「我都是为你好」去搪塞孩子。
+
+最近上饶杀熊孩子案很火，女生父亲杀人当然是不对对，但是对于这种校园霸凌这件事，校方与男生家长都摆出无所谓的态度，才导致悲剧的发生，其实校园霸凌的核心不在熊孩子身上，而是在熊家长身上。
+吴军在其《大学之路》上有写道：“在我的印象中，父母晚上从来不参加应酬，甚至不看什么电视剧，总是非常有规律的学习，我的母亲现在快 80 岁了，依然每天坚持学习，父母们并不知道，他们在对我们兄弟的教育上最成功之处，是以他们的行为潜移默化地影响了我们，让我们渐渐养成了终身学习的习惯”。借句公益广告词——父母是最好的老师。
+
+最近一个很搞笑的新闻，法国一所小学为了拯救学校不被关闭，招了 15 只羊作为新生。简单来说就是，根据法国政策，当学生数量少于 261 时，学校将被迫停办，而法国人在抗议上也很有创意，反正规定上又没有写招生的物种必须是人，正好我们家有许多只适龄绵羊，都送去上学吧！
+牧民说到做到，这周二就和校长及家长达成一致，带领着自己家50只绵羊赶到学校招生办公室报道，招生办的老师热情的接待了羊以及送羊报道的牧羊犬们，在检查了所有绵羊的出生证后，最终有15只年龄在3-6岁之间的适龄绵羊顺利通过合法注册，成为小学的一年级新生，让这所小学不至于被停学。
+
+我们常常把体育锻炼与健身、减肥挂钩，前段时间杭州程序员小伙伴突然精神崩溃，引发了一大波人关注，在校大学生跳楼也是常有的事，但是去细细看一下，是不是很少会看到体育生跳楼。
+大学生跳楼无非是意志力脆弱、心理自我调节能力差等方面影响的，而体育锻炼恰恰会无意中去缩短了这些短板，我主要不是想说体育锻炼有多么多么好，因为这是大家都知道的，而是想说一件事的作用范围可能比你想象的要大的多。
+
+今天是母亲节，无意中突然记起了初中的一篇阅读理解——《那支枯萎的康乃馨》，读者大人可以去搜搜读读，从另一个角度看看母亲节送礼这件事，不知道现在的朋友圈孝子还多不多。
+同样今天是 5.12 汶川地震纪念日，地震发生时我还在读 6 年级，记得整个床都摇的快要倒了，房子上面的瓦片蹭蹭的往下掉，但是学生中间没有一个害怕了，原因只是因为我们并不知道地震这个词。
+去年的 5.28 日，吉林松原发生了一次小的地震，哈尔滨有震感，作为也算经历过地震的人，自然异常的敏感，熟睡中的我一下就惊醒了，立刻意识到地震了，然后在那三四秒的时间里面，时间好像停住了一样，我都数不清那几秒时间脑海里滑过了多少记忆，我体会到了面对死亡的感觉，几秒过后，根据汶川地震的经验，本次只是小地震，所以我又躺下睡觉了，然后室友们都跑出去了。
+
+出来工作也有大半年了，之前以为第一份工作是学习技术的，现在才发现第一份工作首先应该学习的是做事态度，在学校如果某件事不想做或者太困难，那么完全可以选择不做，但是在企业不行，一些恶心的事情必须有人得去做，学生总是缺乏应有的责任感，但责任感是优秀员工的基本条件。
+我之前在公司怼过两次领导，怼完领导之后他反倒对我更好了，给我解决问题的速度超快，现在回想起来可能自己实际上做错了，为啥不能心平气和的去解释，而采取暴力沟通，今后我也要学习怎么做一个圆滑的俗人。
+保持一个虚心的学习态度是异常重要的，认清自己资质平平的现实。一些人在公司认为经理是个傻逼，总监是个马屁精，董事长屁股决定脑袋，那不过是因为你没到那个位置，没办法理解他们考虑问题的角度而已。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/FoK6YM8MY/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/bdeuyZAFy/">
+                        知识图谱如何构建？——经济责任审计知识图谱构建案例实战
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-05-06</time>
+                    
+                        <a href="https://www.guanngxu.com/_9zQ4w6VQ/" class="post-tag i-tag
+                            i-tag-warning">
+            #自然语言处理
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-warning">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/bdeuyZAFy/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/bdeuyZAFy.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考：
+汉语言处理包 HanLP：https://github.com/hankcs/HanLP
+中文文本分类：https://github.com/gaussic/text-classification-cnn-rnn
+农业知识图谱：https://github.com/qq547276542/Agriculture_KnowledgeGraph
+事实三元组抽取：https://github.com/twjiang/fact_triple_extraction
+中文自然语言处理相关资料：https://github.com/mengxiaoxu/Awesome-Chinese-NLP
+开放中文实体关系抽取：http://www.docin.com/p-1715877509.html
+
+自 2012 年 Google 提出“知识图谱”的概念以来，知识图谱就一直是学术研究的重要方向，现在有很多高校、企业都致力于将这项技术应用到医疗、教育、商业等领域，并且已经取得了些许成果。Google 也宣布将以知识图谱为基础，构建下一代智能搜索引擎。
+现在已经可以在谷歌、百度、搜狗等搜索引擎上面看到知识图谱的应用了。比如在 Google 搜索某个关键词时，会在其结果页面的右边显示该关键字的详细信息。在几个常用的搜索引擎中搜索知识时，返回的答案也变得更加精确，比如搜索“汪涵的妻子”，搜索引擎会直接给出答案“杨乐乐”，方便了用户快速精准的获取想要的信息。不过目前的搜索引擎只有少部分搜索问题能达到这种效果。
+关于知识图谱是什么，我想就不用介绍了，这种通过搜索引擎就能轻松得到的结果写在这里有点浪费篇章，并且我对知识图谱的理解也不深，不敢夸夸其谈，只是把自己这一段时间以来的工作做一个总结。
+本文只相当于以经济责任审计这一特定领域构建了一个知识图谱，仅仅是走了一遍流程，当作入门项目，构建过程中参考甚至抄袭了别人的很多方法与代码，末尾都会给出参考的项目等等。
+
+上图是我构建经济责任审计知识图谱的流程，看起来很繁琐，但只要静下心看，个人觉得相对还算清晰，箭头都有指向。下面就一步一步进行说明。
+数据获取
+数据获取主要分为两部分数据，一部分是新闻类数据，我把它用作文本分类模型的训练集；另一部分是实体数据，为了方便，我直接把互动百科抓取的词条文件作为实体，省了属性抽取这一环节。
+因为本文构建的是一个经济责任审计领域的知识图谱，所以作为文本分类模型训练集的数据也应该是经济责任审计领域的。这里主要抓取了审计署、纪检委、新浪网的部分新闻。
+
+像上面的图一样，新闻类网站一般都有搜索框，为了简单，所以我直接用搜索框搜索“经济责任审计”，然后从搜索结果中抓取新闻数据，即认为是经济责任审计相关的文本。抓取新闻类网站使用了 chrome 模拟用户进行访问。最终获得了 3500 多条新闻文本。
+领域词汇判定
+领域词汇判定，本文构建的不是开放领域的知识图谱，所以需要采用一种方法来判定所抓取的内容是否属于经济责任审计领域。领域词汇本文的方法实际上是领域句子判定，直接使用了大神的项目。CNN-RNN中文文本分类，基于tensorflow。也看到有人通过改进逻辑回归算法，在进行领域词汇的判定。
+我判定领域词汇的逻辑是这样的，一个词语即使是人类也不一定能确定它是否属于经济责任审计领域，但是每个词语都会有它的含义解释对不对，一个词语的解释就是一段话。我用网上的新闻训练出一个判断一段话属于哪个领域的模型，然后把词语的解释放到模型了里面去，如果模型给出的结果是属于经济责任审计领域，那则认为这个词语属于经济责任审计领域。
+实体关系抽取
+知识图谱的基本单位为（实体1，关系，实体2）这样的三元组，实体是直接从互动百科获取的词条，关系由两部分组成，一部分来自 wikidata 所提供的关系，这一部分直接从 wikidata 爬取即可得到，另一部分使用的是基于依存句法分析的开放式中文实体关系抽取，已经在前面的文章发过了。
+知识存储
+有了实体和实体关系，那么把这些数据进行筛选，然后入库，通过直观的页面展示，就可以了。这里使用的数据库是 neo4j，它作为图形数据库，用于知识图谱的存储非常方便。知识的展示使用了别人的项目，仅仅是把里面的数据换掉了而已，感谢大神的无私。
+当然你也可以选择使用关系型数据库，因为我做的经济责任审计知识图谱不够深入，所以做到最后展示的时候，发现其实用我比较熟悉的 MySql 更好，相比 NOSql 我更熟悉关系型数据库，而且 MySql 有更大的社区在维护，它的 Bug 少、性能也更好。
+最后放几张效果图
+
+
+下面是以“职业”为关系查询条件所得出的结果。
+
+总结一下
+只是对几个月工作的梳理，大多数核心代码都改自现有的代码，所有的数据都来自于网络，与知识图谱相关的公开技术较少，我也只是尝试着做了一下，虽然很菜，也可以对大致的技术路线、流程有一个简单的了解，主要工作都是自然语言处理的内容。后期可以利用现在的知识图谱构建智能问答系统，实现从 what 到 why 的转换。
+以下内容更新于 2020 年 3 月。
+在毕业前收到了电子工业出版社和另一家出版社的写书邀请，我和电子工业出版社签订了写书合同，从还未毕业开始断断续续写作了一年的时间，因为自己的懒惰，加上内容中涉及到大量爬虫，而且爬目标网站是政府网站（不允许爬），另外 19 年网上时不时曝出某某程序员因爬虫而入狱的故事，出版社和我难免不会恐惧，我也正好找到了不再继续写下去的理由。
+花了点时间把以前的程序，书籍已经写成的内容整理了一下，放在了 economic_audit_knowledge_graph 中，所有资料都在里面，希望能帮助到自然语言入门的小伙伴，我自己已经不做这个领域了！
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/bdeuyZAFy/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/S8r7al_js/">
+                        如何抽取实体关系？——基于依存句法分析的事实三元组抽取
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-04-26</time>
+                    
+                        <a href="https://www.guanngxu.com/_9zQ4w6VQ/" class="post-tag i-tag
+                            i-tag-other_2">
+            #自然语言处理
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
+                            i-tag-other_4">
+            #Java
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
+                            i-tag-warning">
+            #爬虫
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-other_2">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/S8r7al_js/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/S8r7al_js.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考：
+HanLP 自然语言处理
+基于依存分析的开放式中文实体关系抽取方法
+命名实体三元组抽取参考自fact_triple_extraction
+
+这一段时间一直在做知识图谱，卡在实体关系抽取这里几个月了，在 Github 上面看到有人使用卷积神经网络训练模型进行抽取，自己也尝试了一下，但是一直苦于没有像样数据去训练，而标注训练集又太费时间了，我不太愿意干体力活。另外自己也不会什么机器学习、深度学习之类的技术，而且毕业设计都是有时间要求的，所以采用了一个低档次的方法，基于依存句法分析的实体关系抽取，记录一下心得，方便日后忘记可以再找回来。
+论文给出了 8 种中文关系的表达方式，并且最后给出了一个采用正则表达式语法指出表达，核心就是谓语动词表示关系，即关系表述中一定得有动词。
+状语*动词+补语?宾语?
+
+我不太赞同把宾语也当作关系表述的一部分，论文指出“p4生于山西”应该抽出（p4，山西，生于山西），我认为关系不应该表述为“生于山西”，所以我把关系表述改为下面的样子了。
+状语*动词+补语?
+
+这篇文章只是作为一个方法介绍，我自己先看了一遍，能够保证我下次看到这篇文章，可以立马回忆起自己的实现方法，希望你看了也能了解方法，看不懂的话，我表示抱歉，浪费您的时间了，我已经尽可能写到简单了。
+先来看几个简单句子吧：
+主谓宾关系：刘小绪 生于 四川
+// 这个三元组很明显：（刘小绪，生于，四川）
+
+
+动补结构：刘小绪 洗 干净 了 衣服
+// 如果套用主谓宾关系就是：（刘小绪，洗，衣服）
+// 但是这里描述的是一个状态，是刘小绪把衣服洗干净了
+// “干净”是动词“洗”的补语，所以还应该提取出一个如下三元组
+// （刘小绪，洗干净了，衣服）
+
+状动结构：父亲 非常 喜欢 跑步
+// 这句和上面很像，主谓宾关系是：父亲喜欢跑步
+// “非常”用于修饰“喜欢”
+// （父亲，非常喜欢，跑步）
+
+介宾关系：刘小绪 就职 于 学校
+// 如果直接把这个三元组抽取为（刘小绪，就职，学校），很别扭
+// “于”和“学校”是介宾关系，它们的关系应该是：就职于
+// （刘小绪，就职于，学校）
+
+宾语前置：海洋 由 水 组成
+// “海洋”是“组成”的前置宾语
+// “由”是“组成”的状语
+// “水”和“由”是介宾关系
+// 所以上面的句子没有明确的主谓关系，需要我们判断
+// 抽出的三元组应该为：（水，组成，海洋）
+
+HanLP 提供了两种依存句法分析的器，默认采用的是基于神经网络的依存句法分析器。依存句法分析就是将句子分析成一棵依存句法树，描述各个词语之间的依存关系，即指出词语之间在句法上的搭配关系。
+有了上面所说的依存句法树，其实我们只需要进行各种判断就可以了。先做出下面的一点说明，就拿第一个例子来说。
+原文：刘小绪生于四川
+
+# 这是分词结果
+[刘小绪/nr, 生于/v, 四川/ns]
+
+#这是句法分析结果
+刘小绪 --(主谓关系)--&amp;gt; 生于
+生于 --(核心关系)--&amp;gt; ##核心##
+四川 --(动宾关系)--&amp;gt; 生于
+
+为了方便理解，也为了方便程序的编写，我把他们组织成了下面的形式，为每一个词语都建一个依存句法字典。
+刘小绪：{}
+生于：{主谓关系=[刘小绪], 动宾关系=[四川]}
+四川：{}
+
+然后只需要写出类似于下面的程序段就可以抽出关系了。
+// 主谓宾关系：刘小绪生于四川
+// dic是这个词语的依存句法字典
+if (dic.containsKey(&amp;quot;主谓关系&amp;quot;) &amp;amp;&amp;amp; dic.containsKey(&amp;quot;动宾关系&amp;quot;)){
+    
+    // 当前的词语，用上面的例子来说，relation=“生于”
+    String relation = curWord.LEMMA;
+
+
+    // 用循环遍历，是因为关系列表里面不一定只有一个词语
+    for (CoNLLWord entity1:
+            dic.get(&amp;quot;主谓关系&amp;quot;)) {
+
+        for (CoNLLWord entity2:
+                dic.get(&amp;quot;动宾关系&amp;quot;)) {
+
+            System.out.println(entity1.LEMMA + &amp;quot;,&amp;quot; + relation + &amp;quot;,&amp;quot; + entity2.LEMMA);
+        }
+
+    }
+}
+
+对于分词后的每个词语都进行上面程序段的操作。“刘小绪”和“四川”，关系字典都为空。而对于“生于”，关系列表里面既有主谓也有动宾，而自己本身就是动词，主谓宾就出来了。直接从主谓关系中拿出来词语作为 entity1，再拿上自己作为关系，最后拿出动宾关系中的词语作为 entity2。很明确的三元组（刘小绪，生于，四川）就出来了。
+最后给出一个程序运行结果图吧。
+
+我个人觉得效果还行，在简单句子上面表现的差强人意，在长句子上面表现的差劲。注意上文使用的第三方包随着时间的推移肯定会改一些接口，源码链接：entity_relation_extraction
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/S8r7al_js/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/AeVQtjKb0/">
+                        阅读高于自己的作品，远离精神毒品
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-04-19</time>
+                    
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-banana">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/AeVQtjKb0/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/AeVQtjKb0.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            关于阅读与写作的重要性，可能每个人都多少有一些概念，关于写作的重要性可以看我之前系的谈一下写作的重要性。阅读是打开世界的大门，写作可以提升语言组织能力。
+自己就读的专业是计算机科学与技术，生活在山区一直都没有接触过电脑。读大一大二的时候，我非常崇拜那些随随便便就能做一个网站、写一个复杂算法的大神。那时候在觉得只要专业能力足够强，只要技术掌握的足够深入，那就是 NB，所以我在大二之前从来都没有读过一本技术之外的书籍。
+现在回忆起那时候的想法真是太狭隘了，一个人掌握了某项专业技能，我们可以把这个人称之为「手艺人」，大学能教给我们一门手艺（可笑的是很多学生连手艺都没有学到），这门手艺可以帮助我们得以生存或者赚到一些钱，但是生活肯定不仅仅是钱，还有很多比钱更重要的事情。
+白领及以下阶层基本没有自己想去哪里就去哪里的自由，那怎么拓宽自己的视野呢？阅读和交朋友是个很不错的方式，但并不是所有阅读都是有效的，也不是所有朋友都是值得信任的，有的甚至是一种精神毒品。
+阅读需要挑选高于自己的作品，要能仰视它，才能攀登。阅读那些比自己低下的作品只会让自己更 low。现在的生活节奏很快，碎片化阅读成了很多人的阅读方式；有人抨击碎片化阅读，也有人提倡碎片化阅读，每个人有不同的观点，我个人是赞同碎片化阅读的，像得到、喜马拉雅等平台也把一个大的知识点切分的足够小了，一个小的知识点也就 10 来分钟，很适合碎片化的阅读，还不耽误其它事情。
+来自互联网的阅读内容和自己大多是平等的，每个人都在使用微信，但我相信很多人都有屏蔽一些人朋友圈的习惯，因为你会选择跟你脾气相同、你喜欢的、跟你水平接近内容去阅读；现在的 APP 也很多，而且很多首次注册都会让你选择自己感兴趣的内容，所以也就会失去挑战自我的机会。
+阅读是提升认知的重要手段，人与人之间的根本差距在于认知，如果读了一本书之后能让自己的认知得到提升，那么这就没白读；当然，如果读完一本书或是一篇文章之后能让有很大程度的转变，那这种认知的提升我相信是宝贵的财富，而且认识是伴随终身的。能达到这样效果的好文章、好书肯定少之又少，对我个人影响的最大的一本书是《把时间当作朋友》，我很推荐这本书，接触这本书算我认知上的一个转折点。
+也有一些阅读是日积月累对自己产生影响的。我曾经关注了近 150 个公众号，从里面精挑细选了一部分原创公众号留下，涉及技术、新闻、产品、理财等方面。我现在每天的阅读主要就是公众号阅读和付费加入的几个知识星球，以及得到上面的付费知识。
+日积月累，我筛选有效信息的能力也更强了，筛选信息能力在这个信息爆炸的时代是很重要的。
+有一次听到朋友说：“文章太长了，我不想看”。我没说话，只给了一个无奈的眼神，因为他只想要一个结论，因为这可以很轻松的获得一种愉悦感，就像打游戏一样可以快速的获得喜悦，而且对大脑来说，也是最容易接受的，但是慢慢地，大脑就会失去独立思考的能力。
+从产品角度讲，不得不佩服头条对人性的洞察，为了“懂你”，在自己的产品上加入推荐算法，但实际上是让你把时间花在他们产品的身上，把产品做到这种程度，不得不承认是很牛的。最近奈飞出了一步很棒的纪录片，叫做监视资本主义：智能陷阱 The Social Dilemma，片中将科技的负面清楚的呈现给我们，网络科技在某些方面已经逐渐演变为操纵社会的巨兽。
+像抖音、快手、头条、微博这些产品我认为基本都是在浪费用户时间（我还没有用过快手和微博，评价它们有点冒昧了），他们无异于精神毒品，吞噬你的时间。我并不是讨厌这些产品，我自己也喜欢体验新的产品，我只是觉得把宝贵的时间放到更有价值的事情上去，那么就会比周边人更加优秀。
+需要选择的是高于自己内容阅读，而不是把时间都花在那种不需要思考就能得到的愉悦上去；如果把大部分时间都花在轻易就能获得的愉悦感上，那么你应该正在一步步颓废。
+最后推荐自己写的另一篇文章大学生书单推荐
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/AeVQtjKb0/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/X5KvKQqL-/">
+                        正则表达式入门，基础语法详解
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-03-29</time>
+                    
+                        <a href="https://www.guanngxu.com/XcHzo7Nc6/" class="post-tag i-tag
+                            i-tag-success">
+            #正则表达式
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/UGoTtZqQ-y/" class="post-tag i-tag
+                            i-tag-success">
+            #编译原理
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/X5KvKQqL-/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/X5KvKQqL-.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            这两天一直在时不时的和 Neo4j 图数据库打交道。它的查询语句可以使用正则表达式，有一段时间没有自己写过正则表达式了，现在处于能看懂别人写的正则表达式，但是自己写不出来，语法规则都忘了。为了方便接下来的工作，所以特地复习复习正则表达式的语法。
+正则表达式简介
+正则表达式是用来匹配字符串的一系列匹配符，具备简介高效的特点，在很多语言中都有支持（java、python、javascript、php 等等）。在 windows 的 cmd 命令中也同样支持，例如使用命令 dir j*，那么只会罗列出所有以j开头的文件和文件夹。
+正则表达式基本语法
+正则表达式在在不同语言的支持语法略有不同，本文采用js的进行说明。js 中使用正则表达式的方法为str.match(/表达式/)，即需要加两个斜杠。以下所有的代码段第一行为代码，第二行为返回结果，实验是在 chrome 控制台进行的。
+一直认为最好的学习方式就是实际操作，理论谁都能讲一大堆，但是实际做没做出来还真不知道。一个奇葩现象就是教软件工程的老师可能并没有在软件行业待过。
+普通匹配符
+普通匹配符能匹配与之对应的字符，默认区分大小写。
+&amp;quot;Hello Regx&amp;quot;.match(/H/)
+[&amp;quot;H&amp;quot;, index: 0, input: &amp;quot;Hello Regx&amp;quot;, groups: undefined]
+
+正则标记符
+
+i ：不区分大小写
+g ：全局匹配
+m ：多行匹配（暂不管它，我用的少）
+
+参数直接加在最后一个斜杠的后面，比如&amp;quot;Hello Regx&amp;quot;.match(/regx/i)，可以加多个参数。
+&amp;quot;Hello Regx&amp;quot;.match(/regx/i)
+[&amp;quot;Regx&amp;quot;, index: 6, input: &amp;quot;Hello Regx&amp;quot;, groups: undefined]
+
+之前是表达式一旦匹配成功，就不再向字符串后面查找了，加上 g 后，表示进行全局查找。最后返回的是一个数组。
+&amp;quot;Hello Regx&amp;quot;.match(/e/g)
+(2) [&amp;quot;e&amp;quot;, &amp;quot;e&amp;quot;]
+
+多匹配符
+
+\d ：匹配数字，即 0~9
+\w ：匹配数字、字母、下划线
+. ：匹配除换行的所有字符
+
+需要注意的是，上面所有的匹配符都只能匹配一个字符。
+&amp;quot;Hello 2018&amp;quot;.match(/\d/g)
+// 使用\d,匹配字符串中的所有数字
+(4) [&amp;quot;2&amp;quot;, &amp;quot;0&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;8&amp;quot;]
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/\w/g)
+// 使用\w，匹配所有的数字和字母，需要注意没有匹配到空格
+(9) [&amp;quot;H&amp;quot;, &amp;quot;e&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;o&amp;quot;, &amp;quot;2&amp;quot;, &amp;quot;0&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;8&amp;quot;]
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/./g)
+// 使用.，匹配所有字符，包括空格
+(10) [&amp;quot;H&amp;quot;, &amp;quot;e&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;o&amp;quot;, &amp;quot; &amp;quot;, &amp;quot;2&amp;quot;, &amp;quot;0&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;8&amp;quot;]
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/\d\w./g)
+// 分析一下这个为什么匹配到的是201，
+// 首先\d找到第一个数字2，匹配成功，紧接着\w匹配到0，然后.匹配到1
+// 整个正则表达式匹配成功，返回201
+[&amp;quot;201&amp;quot;]
+
+
+&amp;quot;Hello 20\n18&amp;quot;.match(/\d\w./g)
+// 这里匹配不成功，因为.不能匹配换行符，所以返回null
+null
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/\w.\d/g)
+// 首先看这个正则式，\w.\d，它要求最后一个字符是数字
+// \w.能一直匹配到空格，但是因为得满足\d，所以第一个匹配成功的是0 2
+// 因为是全局匹配，所以会接着匹配后面的018，也匹配成功
+(2) [&amp;quot;o 2&amp;quot;, &amp;quot;018&amp;quot;]
+
+自定义匹配符
+比如中国的手机号都是以 1 开头，第二位只能是 3、4、5、7、8，第 3 位只要是数字就行。如何匹配这样的字符串？
+
+[] ：匹配[]中的任意一个字符
+
+&amp;quot;152&amp;quot;.match(/1[34578]\d/)
+// 第二个字符可以选择中括号中的任意一个
+[&amp;quot;152&amp;quot;, index: 0, input: &amp;quot;152&amp;quot;, groups: undefined]
+
+如果在 [] 添加了 ^,代表取反。即 [^] 表示除了中括号中的字符都满足。
+&amp;quot;152&amp;quot;.match(/1[^34578]\d/)
+
+null
+
+
+&amp;quot;1a2&amp;quot;.match(/1[^34578]\d/)
+// 只要不是[]中的字符，都满足，包括回车符
+[&amp;quot;1a2&amp;quot;, index: 0, input: &amp;quot;1a2&amp;quot;, groups: undefined]
+
+修饰匹配次数
+我们的手机号有 11 位，除了前 2 位有要求，其他9位度没有要求，那么是不是正则表达式就应该这样写呢？
+1[^34578]\d\d\d\d\d\d\d\d\d
+
+很明显，这样写太麻烦，肯定有更好的方式，这里就可以修饰一下匹配次数啦。
+
+? ：最多出现 1 次
++ ：至少出现 1 次
+* ：出现任意次数
+{} ：分下面四种情况
+
+{n}代表前面的匹配符出现 n 次
+{n, m}出现次数在 n~m 之间
+{n, }至少出现 n 次
+{, m}最多出现 m 次
+
+
+
+例子很简单，一看就懂，不浪费时间。
+&amp;quot;15284750845&amp;quot;.match(/1[34578]\d{9}/)
+[&amp;quot;15284750845&amp;quot;, index: 0, input: &amp;quot;15284750845&amp;quot;, groups: undefined]
+
+
+&amp;quot;15&amp;quot;.match(/1[34578]\d?/)
+[&amp;quot;15&amp;quot;, index: 0, input: &amp;quot;15&amp;quot;, groups: undefined]
+
+
+&amp;quot;152&amp;quot;.match(/1[34578]\d?/)
+[&amp;quot;152&amp;quot;, index: 0, input: &amp;quot;152&amp;quot;, groups: undefined]
+
+
+&amp;quot;152&amp;quot;.match(/1[34578]\d+/)
+[&amp;quot;152&amp;quot;, index: 0, input: &amp;quot;152&amp;quot;, groups: undefined]
+
+
+&amp;quot;15&amp;quot;.match(/1[34578]\d+/)
+null
+
+完整匹配
+按照上面的写法会出现下面的问题。
+&amp;quot;ya15284750845&amp;quot;.match(/1[34578]\d{9}/)
+// 不是电话号码，也能匹配成功，需要进一步改进
+[&amp;quot;15284750845&amp;quot;, index: 2, input: &amp;quot;ya15284750845&amp;quot;, groups: undefined]
+
+
+^ ：在 [] 中代表取反，但在外面代表从开始匹配
+
+&amp;quot;ya15284750845&amp;quot;.match(/^1[34578]\d{9}/)
+// 现在就能从一开始匹配而且还得符合正则式才算匹配成功
+null
+
+
+// 但是依旧会出现下面的问题
+&amp;quot;1528475084523255&amp;quot;.match(/^1[34578]\d{9}/)
+// 不是电话号码也能匹配成功，还要改进
+[&amp;quot;15284750845&amp;quot;, index: 0, input: &amp;quot;1528475084523255&amp;quot;, groups: undefined]
+
+
+$ ：代表持续匹配到结束
+
+&amp;quot;1528475084523255&amp;quot;.match(/^1[34578]\d{9}$/)
+// 现在就能保证正确了，有^表示从开始匹配；
+// 有$表示持续匹配到结束，即完全匹配
+null
+
+/*
+需要注意的是，一个字符串从开始匹配和从结束匹配都没问题，
+不代表整个字符串就没问题，比如 15284750845-15284750845
+这个字符串从开始和从结束匹配都能成功，但实际上是错的
+*/
+
+特殊符号
+到这里发现正则表达式确实很强大，仅仅几个简单的符号就能匹配字符串，但是如果我们要匹配的字符本身就是前面用到的符号怎么办呢？
+
+匹配像$、^等特殊符号时，需要加转义字符\
+
+&amp;quot;1.&amp;quot;.match(/./)
+//因为.能匹配除换行的所有字符，所以匹配到1
+//但实际上我们想匹配.这个字符
+[&amp;quot;1&amp;quot;, index: 0, input: &amp;quot;1.&amp;quot;, groups: undefined]
+
+
+&amp;quot;1.&amp;quot;.match(/\./)
+// 只需要加一个转义字符就可以了，其他类似
+[&amp;quot;.&amp;quot;, index: 1, input: &amp;quot;1.&amp;quot;, groups: undefined]
+
+条件分支
+比如现在想匹配图片的文件名，包括 jpg、png、jpeg、gif 等等，这是多个选项，所以需要像编程语言一样，应该具备条件分支结构。
+
+| ：条件分支
+() ：有两层含义
+
+括号中的内容成为一个独立的整体
+括号的内容可以进行分组，单独匹配，若不需要此功能，则( ?: )
+
+
+
+&amp;quot;1.jpg&amp;quot;.match(/.+\.jpe?g|gif|png/)
+// 这样就可以满足条件分支了,不过下面又出问题了
+[&amp;quot;1.jpg&amp;quot;, index: 0, input: &amp;quot;1.jpg&amp;quot;, groups: undefined]
+
+
+&amp;quot;1.png&amp;quot;.match(/.+\.jpe?g|gif|png/)
+// 这里没有匹配到.和前面的文件名
+[&amp;quot;png&amp;quot;, index: 2, input: &amp;quot;1.png&amp;quot;, groups: undefined]
+
+
+/*
+其实我们想告诉它的是，.和后面的每一个条件分支的值都是一个独立的整体
+但是它把.+\.jpe?g、gif、png当成了各自独立的整体
+我们并不想让它这样切分，所以我们来告诉它怎么分才是正确的
+*/
+
+
+&amp;quot;1.png&amp;quot;.match(/.+\.(jpe?g|gif|png)/)
+// 现在可以匹配成功了，但是它多匹配了一个
+// 因为括号的内容可以进行分组，单独匹配
+(2) [&amp;quot;1.png&amp;quot;, &amp;quot;png&amp;quot;, index: 0, input: &amp;quot;1.png&amp;quot;, groups: undefined]
+
+
+// 所以最终写法如下
+&amp;quot;1.png&amp;quot;.match(/.+\.(?:jpe?g|gif|png)/)
+[&amp;quot;1.png&amp;quot;, index: 0, input: &amp;quot;1.png&amp;quot;, groups: undefined]
+
+贪婪与懒惰
+// 首先看一个例子
+&amp;quot;aabab&amp;quot;.match(/a.*b/)
+[&amp;quot;aabab&amp;quot;, index: 0, input: &amp;quot;aabab&amp;quot;, groups: undefined]
+
+
+/*
+上面的匹配没有什么问题，但实际上aab也是可以的
+也就是aab也是符合条件的，那又是为什么呢？
+*/
+
+因为在正则表达式中，默认是贪婪模式，尽可能多的匹配，可以在修饰数量的匹配符后面添加 ?，则代表懒惰。
+// like this (^__^)
+&amp;quot;aabab&amp;quot;.match(/a.*?b/)
+[&amp;quot;aab&amp;quot;, index: 0, input: &amp;quot;aabab&amp;quot;, groups: undefined]
+
+到这里应该就差不多了，再深入的，就自我查询知识了。配一张正则表达式速查表。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/X5KvKQqL-/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+    <div class="pagination-container">
+        
+            <a href="https://www.guanngxu.com/page/7/" class="page-btn btn">上一页</a>
+            
+                
+                    <a href="https://www.guanngxu.com/page/9/" class="page-btn btn">下一页</a>
+                    
+    </div>
+    
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1670487696733">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                        <!-- 最新文章 -->
+                        <div class="new_posts_card i-card">
+    <h2 class="new_posts_card-title">
+        最新文章
+    </h2>
+    <div class="new-posts">
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/RYkQYSFKV/">linux-5.10.157 内核源码编译</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/s3CKW7x7C/">预处理器</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/cCUDwnJ69/">C 语言拾遗</a>
+            </h4>
+        
+        
+        
+        
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/ghceoN-RR/">为什么宏定义要使用 do {...} while (0) ?</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/a-74x0moT/">如何获得好运气</a>
+            </h4>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+</div>
+                            <!-- 标签云 -->
+                            <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+                                <!-- 公告栏 -->
+                                
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

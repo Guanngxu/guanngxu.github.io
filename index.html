@@ -1,0 +1,2018 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1670487696733">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179783473-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-179783473-1');
+    </script>
+    
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1670487696733" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/RYkQYSFKV/">
+                        linux-5.10.157 内核源码编译
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2022-12-08</time>
+                    
+                        <a href="https://www.guanngxu.com/vnEfA3xxL/" class="post-tag i-tag
+                            i-tag-warning">
+            #嵌入式
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-primary">
+            #操作系统
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/RYkQYSFKV/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/RYkQYSFKV.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+Linux内核开发_1_编译LInux内核
+编译linux内核报错：flex: not foundscripts
+编译kernel5.14报错fatal error: openssl/opensslv.h
+编译内核错误——*** 没有规则可制作目标“debian/canonical-certs.pem”
+内核错误：BTF: .tmp_vmlinux.btf: pahole (pahole) is not available
+
+# 切换到 root 账户
+sudo su
+
+# 查看操作系统版本
+cat /etc/issue
+
+# 查看 Linux 内核版本
+cat /proc/version
+
+# 进入 root 账户目录
+cd /home/root
+
+# 下载 Linux 内核源码
+wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.157.tar.xz
+# Linux 其它版本源码 https://www.kernel.org/
+
+# xz 解压
+xz -d linux-5.10.157.tar.xz
+
+# tar 解压到 /usr/src/linux-5.10.157 目录下
+tar -xf linux-5.10.157.tar -C /usr/src/.
+
+# 进入源码目录
+cd /usr/src/linux-5.10.157
+
+# 查看源码结构
+tree . -L 2
+
+# 若没有 tree 命令，可以执行下面命令
+# apt-get install tree
+
+# 配置编译选项
+make menuconfig
+
+# 若没有 make，可以执行下面命令
+# apt-get install make
+
+# 若执行 make 后报错找不到 curses.h，可以执行下面命令
+# apt-get install libncurses5-dev
+
+# 若报错找不到 flex not found，可以执行下面两条命令
+# apt-get install flex
+# apt-get install bison
+
+# 再次运行 make menuconfig 弹出图形化配置页面后
+# 若使用默认配置，则直接按两次 Esc 键退出即可
+# 此时会在当前目录下生成 .config 文件
+
+# 编译 Linux 源码
+make bzImage -j4
+
+# 在编译过程中若报错 fatal error: openssl/opensslv.h，可执行下面命令
+# apt-get install libssl-dev
+# 若还出现同样的问题，可参考 https://blog.csdn.net/ComputerInBook/article/details/107380796 源码编译安装 openssl
+
+# 若出现「没有规则可制作目标“debian/canonical-certs.pem”」报错
+# 需要删除 .config 中相应的字段，总共有两处
+# 一处为 CONFIG_SYSTEM_TRUSTED_KEYS=&amp;quot;debian/canonical-certs.pem&amp;quot;
+# 一处为 CONFIG_SYSTEM_REVOCATION_KEYS=&amp;quot;debian/canonical-revoked-certs.pem&amp;quot;
+
+vim .config
+# 删除之后的样子如下（需要保留引号）：
+# 一处为 CONFIG_SYSTEM_TRUSTED_KEYS=&amp;quot;&amp;quot;
+# 一处为 CONFIG_SYSTEM_REVOCATION_KEYS=&amp;quot;&amp;quot;
+
+# 若出现 BTF: .tmp_vmlinux.btf: pahole (pahole) is not available 错误，则执行下面命令
+# apt-get install dwarves
+
+# 若在过程中还出现其它问题，大多是因为缺少相关库导致的，直接用 apt-get install 即可
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/RYkQYSFKV/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/s3CKW7x7C/">
+                        预处理器
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2022-11-06</time>
+                    
+                        <a href="https://www.guanngxu.com/umBdDP7Ll/" class="post-tag i-tag
+                            i-tag-banana">
+            #C
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-info">
+            #操作系统
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/s3CKW7x7C/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/s3CKW7x7C.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            C 语言的编译需要经过很多步骤，其中第一个步骤称为预处理阶段。这个阶段的主要任务包括删除注释、插入被#include指令包含的文件的内容、定义和替换#define指令定义的符号以及确定代码的部分内容是否应该跟绝一些条件编译指令进行编译。
+#define
+#define指令就是为数值命名一个符号。比如#define name stuff指令，有了它之后，每当有符号name出现在这条指令后面时，预处理器就会把它替换成stuff，比如下面几个例子：
+// 为关键字 register 创建了一个简短的别名
+#define reg             register
+// 声明了一个更具描述性的符号用来替代实现无限循环的 for 语句
+#define do_forever      for(;;)
+// 定义了一个简短记法，在 switch 语句中使用，可以自动把一个 break 放在每个 case 之前
+#define CASE            break;case
+
+当然如果定义中的stuff非常长，那么也可以将它分成几行，除了最后一行之外，每行的末尾都需要加一个反斜杠。比如：
+#define log_debug   printf(&amp;quot;File[%s]line[%d]:&amp;quot; \
+                    &amp;quot; x=[%d], y=[%d], z=[%d]&amp;quot;, \
+                    __FILE__, __LINE__, \
+                    x, y, z)
+
+// 那么我们将可以很方便的插入一条调试语句打印
+x *= 2;
+y += x;
+z = x * y;
+log_debug;
+
+很容易就发现上面的log_debug定义无法进行泛化，当然设计者也考虑到了这个问题，所以#define机制包括了一个规定，即允许把参数替换到文本中，这种实现一般称为宏，其声明方式如下：
+define name(parameter-list) stuff
+
+需要注意的是parameter-list是一个由逗号分隔的符号列表，他们可能出现在stuff中。参数列表的左括号必须与name紧邻，如果两者之间有任何空白存在，参数列表就会被解释为stuff的一部分。下面我们看一个具体的列子，以此了解宏定义的机制，并将它逐步优化改进：
+#define SQUARE(x)   x * x
+
+// 使用
+SQUARE(5)
+// 效果：5 * 5
+
+考虑一下下面的代码段：
+a = 5;
+printf(&amp;quot;%d\n&amp;quot;, SQUARE(a + 1));
+
+乍一看觉得这段代码将打印36这个值。但实际它却会打印11，我们仔细观察一下被替换的宏文本，即参数x被文本a + 1替换：
+a = 5;
+printf(&amp;quot;%d\n&amp;quot;, a + 1 * a + 1);
+
+很容易想到对参数 x 加一个括号解决上述问题，即：
+#define SQUARE(x)   (x) * (x)
+
+// 上述打印将会被替换为
+a = 5;
+printf(&amp;quot;%d\n&amp;quot;, (a + 1) * (a + 1));
+
+类似的我们可以再定义一个DOUBLE宏，即：
+#define DOUBLE(x)   (x) + (x)
+
+但是考虑下面的使用方式：
+a = 5;
+printf(&amp;quot;%d\n&amp;quot;, 10 * DOUBLE(5));
+
+看上去它应该打印的结果是100，但事实上它打印的是55，我们再通过宏替换产生的文本观察问题：
+printf(&amp;quot;%d\n&amp;quot;, 10 * (5) + (5));
+
+所以我们需要在整个表达式两边加上一对括号。所有用于对数值表达式进行求值的宏定义都应该使用下面这种方式加上括号，避免在使用宏时，由于参数中的操作符或邻近的操作符之间不可预料的相互作用。
+#define DOUBLE(x)   ((x) + (x))
+
+宏与函数
+宏非常频繁的用于执行简单的计算，比如在两个表达式中寻找其中较大（小）的一个：
+#define MAX(a, b)   ((a) &amp;gt; (b) ? (a) : (b))
+
+那么为什么不使用函数来完成这个任务呢？首先用于调用和从函数返回的代码很可能比实际执行这个小型计算工作的代码更大，所以使用宏比使用函数在程序的规模和速度方面都更胜一筹。
+更为重要的是函数必须声明为一种特定的类型，所以它只能在类型合适的表达式上使用。但是上面的这个宏可以用于整型、长整型、单浮点型、双浮点型以及任何其它可以使用&amp;gt;操作符比较值大小的类型，即宏与类型无关。
+当然宏也有它的不利之处，因为每次在使用宏时，一份宏定义代码的拷贝都将插入到程序中，除非宏的定义非常短，否则使用宏将会大幅增加程序的长度。
+也有一些任务根本无法使用函数实现，比如下面这个宏的第二个参数是一种类型，它无法作为函数参数进行传递。
+#define MALLOC(n, type) ((type *)malloc((n) * sizeof(type)))
+
+当宏参数在宏定义中出现的次数超过一次时，如果这个参数具有副作用，那么当使用这个宏的时候就可能出现危险，导致一些不可预料的后果。比如x++就是一个具有副作用的表达式，它会改变x的值，直接会导致下面的代码段出现不可预知的后果：
+#define MAX(a, b)   ((a) &amp;gt; (b) &amp;gt; (a) : (b))
+
+x = 5;
+y = 8;
+z = MAX(x++, y++);
+// z = ((x++) &amp;gt; (y++) &amp;gt; (x++) : (y++))
+
+
+
+
+属性
+#define 宏
+函数
+
+
+
+
+代码长度
+每次使用时，宏代码都被插入到程序中。除了非常小的宏志伟，程序的长度将大幅度增长
+函数代码只出现于一个地方，每次使用这个函数时，都调用那个地方的同一份代码
+
+
+执行速度
+更快
+存在函数调用/返回的额外开销
+
+
+操作符优先级
+宏参数的求值是在所有周围表达式的上下文环境里，除非它们加上括号，否则邻近操作符的优先级可能回产生不可预料的结果
+函数参数只在函数调用时求值一次，它的结果传递给参数。表达式的求值结果更容易预测
+
+
+参数求值
+参数每次用于宏定义时，它们都将重新求值。由于多次求值，具有副作用的参数可能会产生不可预料的结果
+参数在函数被调用前求值一次。在函数中多次使用参数并不会导致多种求值过程。参数的副作用不会造成任何特殊的问题
+
+
+参数类型
+宏与类型无关。只要对参数的操作是合法的，它可以使用于任何参数类型
+函数的参数是与类型有关的。如果参数的类型不同，就需要使用不同的函数，即使它们执行的任务时相同的
+
+
+
+文件包含
+我们知道#include指令可以使另一个文件的内容被编译，就像它实际出现于#include指令出现的位置一样。这种替换的执行方式很简单：预处理器删除这条指令，并用包含头文件的内容取而代之。这样一个头文件如果被包含到 10 个源文件中，它实际上被编译了 10 次。
+基于这种替换的方式，当出现嵌套#include文件被多次包含时，就会出现问题：
+#include &amp;quot;a.h&amp;quot;
+#include &amp;quot;b.h&amp;quot;
+
+// 如果 a.h 和 b.h 中都包含一个 #include x.h
+// 那么 x.h 在此处就出现了两次
+
+这种多重包含在绝大多数情况下出现于大型程序中，它往往需要很多头文件，所以要发现这种情况并不容易。但是我们可以使用条件编译来解决这个问题：
+#ifndef _HEADER_NAME_H_
+#define _HEADER_NAME_H_
+
+/*
+* All the stuff that you want in the header file
+*/
+
+#endif
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/s3CKW7x7C/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/cCUDwnJ69/">
+                        C 语言拾遗
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2022-10-16</time>
+                    
+                        <a href="https://www.guanngxu.com/vnEfA3xxL/" class="post-tag i-tag
+                            i-tag-banana">
+            #嵌入式
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/umBdDP7Ll/" class="post-tag i-tag
+                            i-tag-banana">
+            #C
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-other_4">
+            #操作系统
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/cCUDwnJ69/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/cCUDwnJ69.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+约定：本文所说的标准均为 ANSI (C89) 标准
+
+三字母词
+标准定义了几个三字母词，三字母词就是三个字符的序列，合起来表示另一个字符。三字母词使得 C 环境可以在某些缺少一些必需字符的字符集上实现，它使用两个问号开头再尾随一个字符，这种形式一般不会出现在其它表达形式中，这样就不容易引起误解了，下面是一些三字母词的对应关系：
+??(   [
+??)   ]
+??!   |
+??&amp;lt;   {
+??&amp;gt;   }
+??&#39;   ^
+??=   #
+??/   \
+??-   ~
+
+所以在一些特殊情况下可能出现下面的情况，希望你不要被意外到。
+printf(&amp;quot;Delete file (are you really sure??): &amp;quot;);
+
+// result is: Delete file (are you really sure]: 
+
+字符
+直接操作字符会降低代码的可移植性，应该尽可能使用库函数完成。比如下面的代码试图测试ch是否为一个大写字符，它在使用ASCII字符集的机器上能够运行，但是在使用EBCDIC字符集的机器上将会失败。
+if( ch &amp;gt;= &#39;A&#39; &amp;amp;&amp;amp; ch &amp;lt;= &#39;Z&#39;)
+
+使用if(isupper(ch))语句则能保证无论在哪种机器上都能正常运行。
+字符串比较
+库函数提供了int strcmp(const char *s1, const char *s2)函数用于比较两个字符串是否相等，需要注意的是在标准中并没有规定用于提示不相等的具体值。它只是说如果第 1 个字符串大于第 2 个字符串就返回一个大于零的值，如果第 1 个字符串小于第 2 个字符串就返回一个小于零的值。一个常见的错误是以为返回值是1和-1，分别代表大于和小于。
+初学者常常会编写下面的表达式。认为如果两个字符串相等，那么它返回的结果将为真。但是这个结果恰好相反，两个字符串相等的情况下返回值是零（假）。
+if(strcmp(a, b))
+
+strlen
+strlen的返回值是一个size_t类型的值，这个类型是在头文件stddef.h中定义的，它是一个无符号整数类型，所以会导致下面表达式的条件永远为真。
+if(strlen(x) - strlen(y) &amp;gt;= 0) {
+    // do something
+}
+
+第二点需要注意的是strlen的返回值没有计算\0的长度，所以下面的代码在一些检查严格或老版本的编译器中会报错，其原因在于少分配了一个存储单位。
+// 假设 str 是一个字符串
+char *cpy = malloc(strlen(str));
+strcpy(cpy, str);
+
+// 正确写法应为
+char *cpy = malloc(strlen(str) + 1);
+strcpy(cpy, str);
+
+赋值截断
+表达式a = x = y + 3;中x和a被赋予相同值的说法是错误的，因为如果x是一个字符型变量，那么y+3的值就会被截去一段，以便容纳于字符型的变量中，那么a所赋的值就是这个被截短后的值。下面也是一个非常常见的错误。
+char ch;
+// do something
+while((ch = getchar()) != EOF) {
+    // do something
+}
+
+EOF所需要的位数比字符型值所能提供的位数要多，这也是getchar返回一个整型值而不是字符值的原因。例子中把getchar的返回值存储于字符型变量会导致被截短，然后再把这个被截短的值提升为整型与EOF进行比较，在某些机器的特定场景下就会导致问题。比如在使用有符号字符集的机器上，如果读取了一个的值为\377的字节，上述循环就将终止，因为这个值截短再提升之后与EOF相等。而当这段代码在使用无符号字符集的机器上运行时，这个循环将永远不会终止。
+指针与数组
+因为数组和指针都具有指针值，都可以进行间接访问和下标操作，所以很多同学都想当然的将它们认为是一样的，为了说明它们是不相等的，我们可以考虑下面的两个声明：
+int a[5];
+int *b;
+
+声明一个数组时，编译器将根据声明所指定的元素数量为数组保留空间，然后再创建数组名，它的值是一个常量，指向这段空间的起始位置。声明一个指针变量时，编译器只为指针本身保留内存空间，它并不为任何整型值分配内存空间。而且，指针变量并未被初始化为任何指向现有的内存空间。所以在上述声明之后，表达式*a是完全合法的，但是表达式*b将访问内存中某个不确定的位置，或者导致程序终止。
+硬件操作
+我们知道其实表示就是内存中一个地址，所以理论上*100 = 25是一种可行的操作，即让内存中位置为100的地方存储25。但实际上这条语句是非法的，因为字面值100的类型是整型，而间接访问操作只能用于指针类型表达式，所以合法的写法必须使用强制转换，即*(int *)100 = 25。
+需要说明的是使用这种技巧的机会是绝无仅有的，只有偶尔需要通过地址访问内存中某个特定的位置才可使用，它并不是访问某个变量，而是访问硬件本身。比如在某些机器上，操作系统需要与输入输出设备控制器通信，启动 I/O 操作并从前面的操作中获得结果，此时这些地址是预先已知的。
++= 与 ?: 操作符
+我们在这里讨论一下+=操作符，它的用法为a += expr，读作把 expr 加到 a，其实际功能相当于表达式a = a + expr的作用，唯一不同的是+=操作符的左操作数a只会求值一次。可能到目前为止没有感觉到设计两种增加一个变量值的方法有什么意义？下面给出代码示例：
+// 形式 1
+a[ 2 * (y - 6*f(x)) ] = a[ 2 * (y - 6*f(x)) ] + 1;
+
+// 形式 2
+a[ 2 * (y - 6*f(x)) ] += 1;
+
+在第一种形式中，用于选择增值位置的表达式必须书写两次，一次在赋值号左边，一次在赋值号右边。由于编译器无法知道函数f是否具有副作用，所以它必须两次计算下标表达式的值，而第二种形式的效率会更高，因为下标表达式的值只会被计算一次。同时第二种形式也减少了代码书写错误的概率。
+同理三目运算符也可以起到类似的效果。
+// 形式 1
+if(a &amp;gt; 5) {
+    b[ 2 * c + d * (e / 5) ] = 3;
+} else {
+    b[ 2 * c + d * (e / 5) ] = -20;
+}
+
+// 形式 2
+b[ 2 * c + d * (e / 5) ] = a &amp;gt; 5 ? 3 : -20;
+
+逗号操作符
+逗号操作符可以将多个表达式分隔开来。这些表达式自左向右逐个进行求值，整个表达式的值就是最后那个表达式的值。例如：
+if(b + 1, c / 2, d &amp;gt; 0) { // do something}
+
+当然，正常人不会编写这样的代码，因为对前两个表达式的求值毫无意义，它们的值只是被简单的丢弃了。但是我们可以看看下面的代码：
+// 形式 1
+a = get_value();
+count_value(a);
+while(a &amp;gt; 0) {
+    // do something
+    a = get_value();
+    count_value(a);
+}
+
+// 形式 2
+while(a = get_value(), count_value(), a &amp;gt; 0) {
+    // do something
+}
+
+指针
+int* a, b, c;
+
+人们会很自然的认为上述语句是把所有三个变量都声明为指向整型的指针，但事实上并非如此，星号实际上只是表达式*a的一部分，只对这个标识符有作用。如果要声明三个指针，那么应该使用下面的形式进行初始化。
+int *a, *b, *c;
+
+在声明指针变量时可以为它指定初始值，比如下面的代码段，它声明了一个指针，并用一个字符串常量对其进行初始化。
+char *msg = &amp;quot;Hello World!&amp;quot;;
+
+需要注意的是，这种类型的声明会让人很容易误解它的意思，看起来初始值似乎是赋给表达式*msg的，但实际上它是赋值给msg本身的，也就是上述声明实际形式如下：
+char *msg;
+msg = &amp;quot;Hello World!&amp;quot;;
+
+指针常量： int *pi中pi是一个普通的指向整型的指针， 而变量int const *pci则是一个指向整型常量的指针，你可以修改指针的值，但是不能修改它所指向的值。相比之下int * const cpi则声明cpi为一个指向整型的常量指针。此时指针是常量，它的值无法修改，但是可以修改它所指向的整型的值。在int const * const cpci中，无论是指针本身还是它所指向的值都是常量，无法修改。
+枚举类型
+枚举（enumerated） 类型就是指它的的值为符号常量而不是字面值的类型，比如下面的语句声明了Jar_Type类型：
+enum Jar_Type {
+    CUP,
+    PINT,
+    QUART,
+    HALF_GALLON,
+    GALLON
+};
+
+需要注意的是，枚举类型实际上是以整型方式存储的，代码段中的符号名实际上都是整型值。在这里CUP的值是0，PINT的值是1，依次类推。
+在适当的时候，可以为这些符号名指定特定的值整型值。并且只对部分符号名进行赋值也是合法的，如果某个符号名没有显示的赋值，那么它的值就比前面一个符号名的值大 1。
+enum Jar_Type {
+    CUP = 8,
+    PINT = 16,
+    QUART = 32,
+    HALF_GALLON = 64,
+    GALLON = 128
+};
+
+
+符号名被当作整型处理，这意味着可以把HALF_GALLON这样的值赋给任何整型变量，但是在编程活动中应该避免这种方式使用枚举，因为这样会削弱它们的含义。
+
+typedef 与 define
+在实际应用过程中应该使用typedef而不是#define来创建新的类型名，因为#define无法正确的处理指针类型，比如下面的代码段正确的声明了a，但是b却被声明为了一个字符。
+#define ptr_to_char char *
+ptr_to_char a, b;
+
+联合（union）
+联合看起来很像结构体，与结构体不同的是联合的所有成员共用同一块内存，所以在同一时刻联合中的有效成员永远只有一个。我们可以看下面一个例子，当一个variable类型的变量被创建时，解释器就创建一个这样的结构并记录变量类型。然后根据变量类型，把变量的值存储在这三个值字段的其中一个。
+struct variable {
+    enum { INT, FLOAT, STRING } type;
+    int int_val;
+    float float_val;
+    char *str_val;
+}
+
+不难发现上述结构的低效之处在于它所使用的内存，每个variable结构存在两个未使用的值字段，造成了内存空间上的不少浪费。使用联合就可以减少这种空间上的浪费，它把这三个值字段的每一个都存储在同一个内存位置。我们知道这三个字段并不会冲突，因为每个变量只可能具有一种类型，所以在具体的某一时刻，联合的这几个字段只有一个被使用。
+struct variable {
+    enum { INT, FLOAT, STRING } type;
+    union {
+        int i;
+        float f;
+        char *s;
+    } val;
+}
+
+现在，对于整型变量，我们只需要将type字段设为INT，并把整型值存储于val.i即可。如果联合中各成员的长度不一样，联合的长度就是它最长成员的长度。
+联合的变量也可以被初始化，但是这个初始值必须是联合第 1 个成员的类型，而且它必须位于一对花括号里面。比如：
+union {
+    int a;
+    float b;
+    chat c[4];
+} x = { 5 };
+
+结构体
+在实际编程活动中，存在链表、二叉树等结点自引用的情况，那么结构体的自引用如何编写呢？
+struct node {
+    int data;
+    struct node next;
+}
+
+上述写法是非法的，因为成员next是一个完整的结构，其内部还将包含自己的成员next，这第 2 个成员又是另一个完整结构，它还将包含自己的成员next，如此重复下去将永无止境。正确的自引用写法如下：
+struct node {
+    int data;
+    struct node *next;
+}
+
+我们需要注意下面的这个陷阱：
+/*
+错误写法：因为类型名 node_t 直到声明末尾才定义
+所以在结构中声明的内部 node_t 尚未定义
+*/
+typedef struct {
+    int data;
+    node_t *next;
+} node_t;
+
+// 正确写法
+typedef struct node_tag {
+    int data;
+    struct node_tag *next;
+} node_t;
+
+编译器在实际分配时会按照结构体成员列表的顺序一个接一个的分配内存，并且只有当存储成员需要满足正确的边界对齐要求时，成员之间可能会出现用于填充的额外内存空间。
+
+```c
+struct align {
+    char a;
+    int b;
+    char c;
+}
+
+如果某个机器的整型值长度为 4 个字节，并且它的起始存储位置必须能够被 4 整除，那么这个结构在内存中的存储将是下面这种形式
+
+
+
+a
+
+
+
+b
+b
+b
+b
+c
+
+
+
+
+
+
+我们可以通过改变成员列表的声明顺序，让那些对边界要求严格的成员首先出现，对边界要求弱的成员最后出现，这样可以减少因为边界对齐而带来的空间损失。
+struct align {
+    int b;
+    char a;
+    char c;
+}
+
+
+
+
+b
+b
+b
+b
+a
+c
+
+
+
+当程序创建几百个甚至几千个结构时，减少内存浪费的要求就比程序的可读性更为急迫。我们可以使用sizeof操作符来得出一个结构的整体长度。如果必须要确定结构某个成员的实际位置，则可以使用offsetof(type, member)宏，例如：
+offset(struct align, b);
+
+一句话
+标识符：标识符就是变量、函数、类型等的名字，标识符的长度没有限制，但是 ANSI 标准允许编译器忽略第 31 个字符以后的字符，并且允许编译器对用于表示外部名字（由链接器操作的名字）的标识符进行限制，只识别前 6 位不区分大小写的字符。
+注释：代码中所有的注释都会被预处理器拿掉，取而代之的是一个空格。因此，注释可以出现在任何空格可以出现的地方。
+类型：C 语言中仅有 4 种基本数据类型，即整型、浮点型、指针和聚合类型（数组、结构等），所有其它的类型都是从这 4 中基本类型的某种组合派生而来。
+类型长度：标准只规定了short int至少是 16 位，long int至少是 32 位，至于缺省的int是多少位则直接由编译器设计者决定。并且标准也没有规定这 2 个值必须不一样。如果某种机器的环境字长是 32 位，而且也没有什么指令能够更有效的处理更短的整型值，那它很可能把这 3 个整型值都设定为 32 位。
+位域：基于 int 位域被当作有符号还是无符号数、位域成员的内存是从左向右还是从右向左分配、运行在 32 位整数的位域声明可能在 16 位机器无法运行等原因，注重可移植性的程序应该避免使用位域。
+结构与指针：什么时候应该向函数传递一个结构而不是一个指向结构的指针呢？很少有这种情况。只有当一个结构特别小（长度和指针相同或更小）时，结构传递方案的效率才不会输给指针传递方案。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/cCUDwnJ69/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/ghceoN-RR/">
+                        为什么宏定义要使用 do {...} while (0) ?
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2022-09-15</time>
+                    
+                        <a href="https://www.guanngxu.com/vnEfA3xxL/" class="post-tag i-tag
+                            i-tag-success">
+            #嵌入式
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/umBdDP7Ll/" class="post-tag i-tag
+                            i-tag-other_1">
+            #C
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/ghceoN-RR/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/ghceoN-RR.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容:
+do {…} while (0) in macros
+do {...} while (0) 在宏定义中的作用
+do{}while(0)只执行一次无意义？你可能真的没理解
+
+近期参与的项目属于嵌入式软件领域，自然而然就得用 C 语言进行开发，开发过程中发现引入的第三方库里面有一些奇奇怪怪的写法，比如大佬们都喜欢使用do {...} while(0)的宏定义，在 Stack Overflow 上也有人提出了这个问题。之前从事 Linux 内核开发的谷歌大佬 Robert Love 给出了如下的解释：
+
+do {…} while(0) is the only construct in C that lets you define macros that always work the same way, so that a semicolon after your macro always has the same effect, regardless of how the macro is used (with particularly emphasis on the issue of nesting the macro in an if without curly-brackets).
+do {...} while(0) 在 C 中是唯一的构造程序，让你定义的宏总是以相同的方式工作，这样不管怎么使用宏（尤其在没有用大括号包围调用宏的语句），宏后面的分号也是相同的效果。
+
+这句话读起来有些拗口，只觉得大佬的表述曲高和寡，翻译翻译就是：使用do {...} while(0)构造后的宏定义不会受到大括号、分号等影响，总能按照我们期望的方式调用运行。下面我们举几个实际的例子来加深理解。
+// 现有如下宏定义
+#define foo(x) bar(x); baz(x)
+
+// 1. 可以这样调用
+foo(wolf);
+
+// 上述调用将会被展开为下列代码，完美没有问题
+bar(wolf); baz(wolf);
+
+
+// 2. 如果我们像下面这样调用呢？
+if (!feral)
+    foo(wolf);
+
+// 上述调用将会被展开为下列代码，很明显这是错误的，并且是很容易犯的错误
+if (!feral)
+    bar(wolf);
+baz(wolf);
+
+为了避免上面例子所出现的问题，我们可以考虑使用{ }直接把整个宏包裹起来，如下所示：
+// 修改宏定义为
+#define foo(x) { bar(x); baz(x) }
+
+// 3. 例 1 调用
+if (!feral)
+    foo(wolf);
+
+// 现在上述调用将展开为下列代码
+if (!feral) {
+    bar(wolf);
+    baz(wolf);
+};
+
+
+// 4. 我们再考虑一下如下调用呢
+if (!feral)
+    foo(wolf);
+else
+    bin(wolf);
+
+// 上述调用将会被展开为下列代码，很明显又出现了语法错误
+if (!feral) {
+    bar(wolf);
+    baz(wolf);
+};
+else
+    bin(wolf);
+
+我们继续考虑比使用{ }直接把整个宏包裹起来更好的方法，即本文标题所说的使用do {...} while (0)，即上述宏将定义为如下形式。
+// 终极版宏定义
+#define foo(x) do { bar(x); baz(x) } while (0)
+
+// 5. 例 4 调用
+if (!feral)
+    foo(wolf);
+else
+    bin(wolf);
+
+// 现在上述调用将展开为下列形式，很完美
+if (!feral)
+    do { bar(wolf); baz(wolf) } while (0);
+else
+    bin(wolf);
+
+do {...} while (0)除了在宏定义中可以发挥完美的作用外，在某些情况下还可以当作goto使用。因为goto不符合软件工程的结构化，并且容易使得代码晦涩难懂，所以很多公司都不倡导使用甚至禁止使用。那么我们可以使用do {...} while (0)来做同样的事情。
+#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+int main()
+{
+   char *str;
+   /* 最初的内存分配 */
+   str = (char *) malloc(15);
+   if(str != NULL)
+     goto loop;
+   printf(&amp;quot;hello world\n&amp;quot;);
+loop:
+   printf(&amp;quot;malloc success\n&amp;quot;);
+   return 0;
+}
+
+上述代码我们可以修改为下列形式，使用do {...} while (0)将函数主体包裹起来，而break语句则替代了goto语句的作用，并且代码的可读性与可维护性都比上述goto方式更好。
+#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+int main()
+{
+  do{
+      char *str;
+      /* 最初的内存分配 */
+      str = (char *) malloc(15);
+      if(str != NULL)
+       break;
+      printf(&amp;quot;hello world\n&amp;quot;);
+  }while(0);
+   printf(&amp;quot;malloc success\n&amp;quot;);
+   return 0;
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/ghceoN-RR/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/a-74x0moT/">
+                        如何获得好运气
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2022-08-25</time>
+                    
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-banana">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/a-74x0moT/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/a-74x0moT.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            一点幼稚的思考
+从我自身浅薄的经历做了一点总结，如果某个公司的员工有超过三分之一都是同一个地方的人，那这个公司大概率是个骗子公司，因为常规渠道他们无法招到员工，只能靠亲戚、同学、同乡一类关系拉拢，如果下限再放低一点就是传销。这类公司开早会常常是这样的——主管在前台扯着嗓门儿大喊：“亲爱的家人们，大家早上好！”下面的员工齐声回答：“好！很好！非常好！”
+之前在财富与幸福指南中有翻译过一点纳瓦尔的语录，今年 4 月份这本书已经出版了，里面有提到把事情做到极致，让机会自动找到你，让运气成为必然。结合自身经历愈发认可其说法，在一次少儿科创比赛活动中遇到一个小领导，他问我现场的学生都是谁教的，我说是某某老师教的，他突然冒出一句：“某某老师教的学生肯定不会差”。这样随口而出的一句话给了我不小的触动，这个某某老师把事情做到极致，名气在他不知道的情况下就打出去了，这就是运气。
+发现那些让人仰慕的大佬都有一个无所畏惧的特质。面对同一项未知的任务，所有人都不知道如何去完成，强者与弱者唯一的区别是敢不敢接这个任务，强者总是毅然扎进去并着手寻找方案，弱者总是以不知道怎么做、没有学过相关知识等理由推脱。长此以往大家就觉得强者什么都会，口口相传自然就带来了运气。
+当下社会快速的生活节奏让人喘不过气来，很多人长期都是两点一线的生活，每天的生活轨迹完全重合没有一点波动。生活需要变量才会精彩，机会往往是跟随变量出现的，保持年轻的折腾，保持一颗好奇心才会有更多的可能。把乔布斯的话搬出来用一下：Stay Hungry，Stay Foolish。
+不一样的生活
+偶然了解到电鸭社区，它所提倡的只工作，不上班理念让我眼前一亮，数字游民这一新的词汇加到我的字典。原来这世界上还有可以不打卡的工作，他们的工作地点居然完全没有限制，在工作的同时还可以开着房车旅行......
+非常希望能体验一下数字游民生活，上帝彷佛能听见我的愿望一样，立马就把一个机会给了我。牛客网需要一些人审核主站题目，后续是出题、审题等等一系列工作，可能因为我交付的题目质量还不错，她们愿意把一些高利润的工作派给我，一个题目从几百到几十价格不等，有俩月拿到的劳务报酬竟超过了本职工资。牛客让我体验了一把远程工作乐趣，以后如果真的创业失败了，就老老实实找个远程工作苟且吧。
+通过Jina全球社区的负责人 Lisa，了解到一个2050团聚活动，这是我第一次接触如此纯粹的社区，把分散在各行业又比较理想主义的人汇集到了一起。目前对这个社区是很有好感的，容我观察两年再细说体会。
+鼓捣独立博客
+我是快毕业时开始接触公众号的，那时候的环境很单纯，很多作者都把公众号当博客用。认识的一个和我同龄的作者，为了能把某个算法讲清楚经常熬夜 P 图。那时候的程序员小灰还叫玻璃猫，刘欣大大的文章标题比现在也要朴素。我自己那段时间写文章尤其认真，因此也认识了许许多多网友，收到了博文视点和另一家出版社的出版邀请。那时大部分人还不懂什么是 IP，流量一词更普遍的含义还是电话卡用的那个上网流量，10 万+偶有出现但频率不高。
+
+刘欣大大的码农翻身依旧朴实，只是文章标题明显有一些刻意了，今年刘欣给一些编程老师免费送去了新书《半小时漫画计算机》
+
+慢慢有人开始专门为了 10万+而写文章，抖音一类短视频应用出现后，整个互联网环境开始变得浮躁，大家为了流量不择手段，一些人为了博取流量而瞎编骇人听闻的事情。比如年初在抖音出现的血奴事件，更为可笑的是一些权威媒体居然转发了这个视频，官方媒体为了流量不查证新闻真实性就转发，那便是没有责任感的媒体。
+媒体常常为了流量而故意删减新闻细节，比如之前文章多从自己身上找问题中所提到的新闻。互联网让大家的情绪得以便利的发泄，常常故事听一半就抑制不住心中正义，评论下面骂两句、转发个朋友圈都是没有成本的事情。台剧我们与恶的距离和电影狩猎对这个话题有比较深刻的探讨，值得花时间看一看。
+百度取消了快照功能，必应中国区没了快照；一打开微信不出现视频号的可能性几乎为零；标题党的文章充满了订阅号；公众号不允许外链和无法修改错误很烦心。于是我鼓捣起了独立博客，在独立博客中可以自由的发布和修改文章。我选择的博客写作工具是Gridea，选它并不是因为它好用，而是因为上面有一款主题我比较喜欢，我自己花了些时间将该主题的 bug 修复了，并且在原基础上增加了几个 sidebar card，大致长下面这个样子，我个人还挺喜欢的。
+
+有意思的事儿
+只能发送 500 英里的邮件。一所大学的邮件只能发送 500 英里（800 公里），这听起来像是一个胡编乱造的故事。原因是因为这所大学的服务器配置错误，他们将连接到远程服务器的超时设为了零延迟。而程序运行时 0 超时是按 3 毫秒计算的，一旦 3 毫秒内没有收到远程服务器的答复，就认为邮件无法发送。光在 3 毫秒时间前进的距离，刚好就是 500 多英里。
+导致电脑宕机的原因竟然是 Janet Jackson 的一首歌。微软资深工程师 Raymond Chen 披露 WinXP 发布早期，一些用户报告电脑系统会意外崩溃。起初他们以为是 Windows 的 bug，但很欣慰的是发现同行也存在这个问题，最终定位到这个问题的根源竟然是 Janet Jackson 1989 年发行的歌曲《Rhythm Nation》。歌曲中一些旋律会和当时一款 5400 转硬盘发生共振，进而导致电脑崩溃。
+“看黄片被罚”的闹剧何时休？这是一篇旧闻，从网站上的时间看是 2012 年 6 月 17 日。讲述的是延安小夫妻在家看黄碟被抓，生活几乎陷绝境的故事。
+推荐一个视频
+这是一个插画师、立体书设计师在一席的演讲，她把自己的生活都做成了好玩儿的立体书，如同演讲主题在生活里东张西望一样，池塘子是一个地地道道的生活观察家，生活中的那些无形爱都被她做成了立体书。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/a-74x0moT/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/atRZtjRTE/">
+                        使用 Git 工具进行项目管理
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2022-06-28</time>
+                    
+                        <a href="https://www.guanngxu.com/wgJXq4UXE/" class="post-tag i-tag
+                            i-tag-other_4">
+            #Git
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/atRZtjRTE/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/atRZtjRTE.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+
+
+Git工作流实践
+
+
+Git 工作流程
+
+
+Git三大特色之WorkFlow(工作流)
+
+
+Git分支管理策略
+
+
+使用 Issue 管理软件项目详解
+
+
+GitLab Issue 创建及使用说明
+
+
+Git 提交规范
+
+Git 是软件开发活动中非常流行的版本控制器类工具。随着项目时间的拉长、项目参与人员的更替、软件不同特性功能的发布，从开发人员角度看会发现工程的提交历史、分支管理等非常混乱，项目管理者会因为需求迭代、bug 修复、版本发布等活动无法与代码提交历史一一对应而头疼，混乱的管理常常导致故障泄漏给客户，所以一套规范的规范的 git 工作流程是非常有必要的。
+Git WorkFlow
+WorkFlow 的字面意思即工作流，比喻像水流那样顺畅、自然的向前流动，不会发生冲击、对撞、甚至漩涡。工作流不涉及任何命令，它就是团体成员需要自遵守的一套规则，完全由开发者自己定义。
+当下比较流行的三种工作流程分别为：Git Flow、GitHub Flow、GitLab Flow。它们有一个共同点：都采用功能驱动开发。其中 Git Flow 出现的最早，GitHub Flow 对其做了一些优化，比较适用于持续的版版发布。GitLab Flow 出现的时间比较晚，所以是综合了前面两个工作流的优点制定的。
+Git Flow
+git-flow 的思路非常简洁，通过 5 种分支来管理整个工程。
+
+
+
+分支
+周期
+说明
+
+
+
+
+master
+长期
+主分支，用于存放对外发布的版本，任何时候在这个分支拿到的，都是稳定的分布版
+
+
+develop
+长期
+开发分支，用于日常开发，存放最新的开发版
+
+
+feature
+短期
+功能分支，它是为了开发某种特定功能，从 develop 分支上面分出来的。开发完成后，要再并入 develop
+
+
+release
+短期
+预发分支，它是指发布正式版本之前（即合并到 master 分支之前），我们可能需要有一个预发布的版本进行测试。预发布分支是从 develop 分支上面分出来的，预发布结束以后，必须合并进 develop 和 master 分支
+
+
+hotfix
+短期
+bug 修补分支，从 master 分支上面分出来的。修补结束以后，再合并进 master 和 develop 分支
+
+
+
+
+Github Flow
+github-flow 可以认为是 git-flow 的一个简化版，它适用于持续部署的工程，直接将最新的功能部署到 master 分支上，不再操作 develop 分支。同时通过 CI&amp;amp;CD 的使用，不再需要额外的 release 和 hotfix 分支。github 还结合了推送请求（pull request）功能，在合并 feature 分支之前通过PR请求其他成员对代码进行检查。
+
+master分支中的任何东西都是可部署的
+要开发新的功能特性，从 master 分支中创建一个描述性命名的分支(比如：new-oauth2-scopes)
+在本地提交到该分支，并定期将您的工作推送到服务器上的同一个命名分支
+当您需要反馈或帮助，或者您认为分支已经准备好合并时，可以提交一个推送请求（PR）
+在其他人审阅并签署了该功能后，可以将其合并到 master 中，合并后原来拉出来的分支会被删除
+一旦它被合并到 master 分支中，就可以并且应该立即部署
+
+
+github-flow 最大的优点就是简单，非常适合需要持续发布的产品。但是它的问题也很明显，因为它假设 master 分支的更新与产品的发布是一致的，即 master 分支的最新代码，默认就是当前的线上代码。
+但实际可能并非如此，代码合入 master 分支并不代表着它立刻就能发布。比如小程序提交审核以后需要等待一段时间才能发布，如果在这期间还有新的代码提交，那么 master 分支就会与刚刚发布的版本不一致。另外还有一种情况就是，有的公司只有指定时间才会发布产品，这会导致线上版本严重落后于 master 分支。
+可以发现针对上述情况，一个 master 分支就不够用了，你可能需要在 master 分支之外新建一个 prodution 分支才能解决问题。
+Gitlab Flow
+因为 gitlab-flow 出现的比较晚，所以它同时具备前面两种工作流的优点，并且又摒弃了它们存在的一些缺点。它的最大原则叫做上游优先（upsteam first），即只存在一个主分支 master，它是所有其他分支的上游。只有上游分支采纳的代码变化，才能应用到其他分支。
+gitlab-flow 分为两种情况，分别适用于持续发布和版本发布项目。对于持续发布项目，它建议在 master 分支以外，再建立不同的环境分支。比如，开发环境的分支是 master，预发环境的分支是 pre-production，生产环境的分支是 production。
+开发分支是预发分支的上游，预发分支又是生产分支的上游。如果产环境出现了 bug，这时就要新建一个功能分支，先把它合并到 master，确认没有问题，再cherry-pick 到 pre-production，这一步也没有问题，才进入 production。
+
+对于版本发布的项目，建议的做法是每一个稳定版本，都要从 master 分支拉出一个分支，比如 2-3-stable、2-4-stable 等等。发现问题，就从对应版本分支创建修复分支，完成之后要先合并到 master 分支，然后才能合并到 release 分支。版本记录可以通过 master 上的 tag 来记录。
+
+Issue 使用
+Git WorkFlow 主要解决了开发人员的问题，但是对项目管理者问题的解决力度不够，比如客户需求的管理、bug 的跟踪等。Github 和 Gitlab 提供的 Issue 功能可以比较好的解决项目的管理问题。
+Issue 中文可以翻译为议题或事务，是指一项待完成的工作，比如一个 bug、一项功能建议、文档缺失报告等。每个 Issue 应该包含该问题的所有信息和历史，使得后来的人只看这个 Issue，就能了解问题的所有方面和过程。
+
+Issue 起源于客服部门。用户打电话反馈问题，客服就创建一个工单，后续的每一个处理步骤、每一次与用户的交流，都需要更新工单，全程记录所有信息。因此，Issue 的原始功能是问题追踪和工单管理，后来不断扩展，逐渐演变成全功能的项目管理工具，还可以用于制定和实施软件的开发计划。
+
+下面以可以免费使用的 Github Issues 来介绍如何使用 Issue。
+创建 Issue
+每个 Github 仓库都有一个 Issue 面板，如下图所示是新建 Issue 的界面。左侧输入 Issue 的标题和内容，支持 markdown 语法。右侧分别对应四个配置项，将在下面一一进行介绍。
+
+Assignees
+Assignee 选择框用于从当前仓库的所有成员之中，指派某个 Issue 的处理人员。
+
+Labels
+可以为每个 Issue 打上标签，这样方便分类查看和管理，并且能比较好的使用看板进行查看。一般来说一个 Issue 至少应该有两种类型的 Label，即 Issue 的类型和 Issue 的状态（根据需要可打第三种用于表示优先级的 Label），其中 Issue 的状态可以用来构建敏捷看板。
+
+Milestone
+Milestone 翻译过来叫里程碑，它的概念和迭代（sprint）或版本（version）差不多。Milestone 是 Issue 的容器，可以很方便的用来规划一个迭代（版本）要做的事情，也能非常方便的统计进度。
+
+Projects
+Projects 是 Github 2020 年 6 月份提供的功能，它就是项目看板的功能，Gitlab 所提供的类似功能为 Issue boards，感兴趣读者可以自行阅读文档了解。
+
+PR&amp;amp;MR
+至此，可以发现我们可以使用 Issue 管理需求、bug，Milestone 又提供了迭代（版本）的计划管理，通过 Projects 可以创建敏捷看板，用于关注整体项目的进度。前文 Git WorkFlow 从开发者角度提供了项目管理的工作流程，可以思考一下还差什么问题没有解决？
+最后剩下的问题是：每一个 Issue 都需要提交代码/文档进行解决，那代码/文档如何与 Issue 进行关联呢？其实无论是 GitHub 还是 GitLab，都可以很方便地在 Issue 上创建分支，在该分支上解决完 Issue 所对应的问题后，提交远程分支即可发起合并请求，在 Github 中称为 Pull request（PR），在 Gitlab 中则叫做 Merge request（MR）。
+Git 提交规范
+上文已经说了我们可以对每个 Issue 创建分支，既然是分支，那超过一个 commit 是再常见不过的事情了。一些开发人员所写的提交说明常常是fixbug或者是update等非常不规范的说明。
+不规范的说明很难让人明白这次代码提交究竟是为了什么。在实际工作中，一份清晰简洁规范的 commit message 能够让后续的代码审查、信息查找、版本回退都更加高效可靠，因为我们还需要对提交说明制定一套规范。
+那么什么样的 commit message 才算是符合规范的说明呢？不同团队可以制定不同的规范，此处推荐使用 Angular Git Commit Guide
+提交格式指定为提交类型(type)、作用域(scope，可选)和主题(subject)，提交类型指定为下面其中一个：
+
+
+
+类型
+说明
+
+
+
+
+build
+对构建系统或者外部依赖项进行了修改
+
+
+ci
+对 CI 配置文件或脚本进行了修改
+
+
+docs
+对文档进行了修改
+
+
+feat
+增加新的特征
+
+
+fix
+修复 bug
+
+
+pref
+提高性能的代码更改
+
+
+refactor
+既不是修复bug也不是添加特征的代码重构
+
+
+style
+不影响代码含义的修改，比如空格、格式化、缺失的分号等
+
+
+test
+增加确实的测试或者矫正已存在的测试
+
+
+
+作用域即表示范围，可以是任何指定提交更改位置的内容。主题则包括了对本次修改的简洁描述，有以下三个准则:
+
+使用命令式，现在时态：“改变”不是“已改变”也不是“改变了”
+不要大写首字母
+不在末尾添加句号
+
+下图是 NocoBase 的 commit message 截图，可供参考
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/atRZtjRTE/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/_4KYecN7b/">
+                        牛客网 NC632 牛牛摆木棒、POJ 1037 美丽的栅栏题解
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2021-09-20</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-other_3">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/_4KYecN7b/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/_4KYecN7b.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容:
+OI题解 - A decorative fence[POJ 1037]
+poj1037（dP+排列计数）
+
+本文首发于牛客网：题解 | #牛牛摆木棒#
+题目
+牛客网 NC632 牛牛摆木棒、POJ1037-A decorative fence（美丽的栅栏）
+描述
+有n个木棒，长度为1到n，给定了一个摆放规则。规则是这样的：对于第 i (2≤i≤n−1)(2 \leq i \leq n-1)(2≤i≤n−1) 个木棒 aia_iai​，(ai&amp;gt;ai−1(a_i &amp;gt; a_{i-1}(ai​&amp;gt;ai−1​ &amp;amp;&amp;amp; ai&amp;gt;ai+1)a_i &amp;gt; a_{i+1})ai​&amp;gt;ai+1​) 或 (ai&amp;lt;ai−1(a_i &amp;lt; a_{i-1}(ai​&amp;lt;ai−1​ &amp;amp;&amp;amp; ai&amp;lt;ai+1)a_i &amp;lt; a_{i+1})ai​&amp;lt;ai+1​)。求满足规则的从小到大的第k个排列是什么呢。
+对于两个排列 s 和 t：如果存在 j 有任意 i&amp;lt;ji&amp;lt;ji&amp;lt;j 使得 si==tis_i == t_isi​==ti​ 且 sj&amp;lt;tjs_j &amp;lt; t_jsj​&amp;lt;tj​，视为排列 s 小于排列 t。
+示例
+输入：3,3
+返回值：[2,3,1]
+说明：第一小的排列为：[ 1 , 3 , 2 ]
+     第二小的排列为：[ 2 , 1 , 3 ]
+     第三小的排列为：[ 2 , 3 , 1 ]
+     第四小的排列为：[ 3 , 1 , 2 ]
+     所以答案为：[ 2 , 3 , 1 ]
+
+备注
+(1≤n≤20,1≤k≤(n−1)!)(1 \leq n \leq 20, 1 \leq k \leq (n-1)!)(1≤n≤20,1≤k≤(n−1)!)
+题意
+该问题让我们求：n 的字典序排列中第 k 个波浪形的排列。什么是波浪形排列呢？即对排列中任意一个数字（除开第一个和最后一个）aia_iai​，只能 aia_iai​ 比 ai−1a_{i-1}ai−1​ 和 ai+1a_{i+1}ai+1​ 都小或者都大。比如 2 1 3和1 3 2是波浪形排列，但1 2 3就不是波浪形排列。
+DFS 枚举
+最容易想到的解决方案是把 n 的所有排列按字典序列出来，然后再逐一检查是否是波浪形排列，直接取出第 k 个波浪形排列即可。
+我们以 3 的全排列为例画出如下树形图，非常容易的就能发现只要对这棵树进行深度优先遍历，就能够按字典序得到所有排列。但并不是所有排列都满足波浪形这个条件，所以我们每得到一个排列都需要检查该排列是否为波浪形，直到检查到第 k 个排列为止，返回该排列即可。
+
+class Solution {
+public:
+
+    // 记录当前已经有多少个波浪形排列
+    long long count = 0;
+    // 记录最后的结果
+    vector&amp;lt;int&amp;gt; res;
+    /**
+     * 
+     * @param n int整型 木棒的个数
+     * @param k long长整型 第k个排列
+     * @return int整型vector
+     */
+    vector&amp;lt;int&amp;gt; stick(int n, long long k) {
+        // 用于标记当前考虑的数字是否已经被选择
+        bool visited[25] = {false};
+        // 用于记录已经选了哪些数
+        vector&amp;lt;int&amp;gt; path;
+        dfs(n, 0, path, visited, k);
+        return res;
+    }
+
+    /**
+     * 
+     * @param n 可选的数字范围
+     * @param deep 递归到第几层了
+     * @param path 已经选的数字
+     * @param visited 记录哪些数已经被选了
+     * @param k 是否已经到第 k 个波浪形排列了
+     */
+    void dfs(int n, int deep, vector&amp;lt;int&amp;gt; path, bool visited[], long long k) {
+        // 递归层数和范围相等，说明所有的数字都考虑完了，因此得到一个排列
+        if(deep == n){
+            // 判断该排列是否为波浪形排列
+            bool flag = true;
+            for(int i = 1; i &amp;lt; n-1; i++){
+                if((path[i] &amp;gt; path[i-1] &amp;amp;&amp;amp; path[i] &amp;lt; path[i+1]) ||
+                   (path[i] &amp;lt; path[i-1] &amp;amp;&amp;amp; path[i] &amp;gt; path[i+1])){
+                    flag = false;
+                    break;
+                }
+            }
+            // 是波浪形排列，则统计一次
+            if(flag) {
+                count++;
+            }
+            // 判断是否已经到第 k 个排列
+            if(count == k) {
+                // 如果返回结果还没有被赋值，则将该排列赋值给 res
+                // 因为我们使用的是递归，所以 count==k 会被满足多次
+                // 只有第一次满足时才是真正的 k 值，所以必须判断 res 是否为空
+                // 如果不判空，则程序记录的不是正确结果
+                if(res.empty()){
+                    res = path;
+                }
+                // 到第 k 个波浪形排列了，递归返回
+                return ;
+            }
+            // 没有可以选择的数字了，回溯
+            return ;
+        }
+        // 还没有得出一个排列，则继续挑选数字组成排列
+        for(int i = 1; i &amp;lt;= n; i++) {
+            // 如果该数字已经被选择了，则终止本次循环
+            if(visited[i]){
+                continue;
+            }
+            // 选中当前数字加入到排列中
+            path.push_back(i);
+            visited[i] = true;
+            // 下一次递归所传的值不变，只有递归层数需要 +1
+            dfs(n, deep+1, path, visited, k);
+            // 回溯，需要撤销前面的操作
+            path.pop_back();
+            visited[i] = false;
+        }
+    }
+};
+
+在 C++ 的 algorithm 库中已经提供了一个全排列方法 next_permutation。按照STL文档的描述，next_permutation 函数将按字母表顺序生成给定序列的下一个较大的序列，直到整个序列为减序为止。因此我们可以偷个懒直接使用现有的函数。
+class Solution {
+public:
+    /**
+     * 
+     * @param n int整型 木棒的个数
+     * @param k long长整型 第k个排列
+     * @return int整型vector
+     */
+    vector&amp;lt;int&amp;gt; stick(int n, long long k) {
+        vector&amp;lt;int&amp;gt; res;
+        // 记录当前已经有多少个波浪形排列
+        long long count = 0;
+        // 构造初始化排列
+        for(int i = 1; i &amp;lt;= n; i++) {
+            res.push_back(i);
+        }
+        do {
+            // 判断当前排列是否为波浪形排列
+            bool flag = true;
+            for(int i = 1; i &amp;lt; n-1; i++) {
+                if((res[i] &amp;gt; res[i-1] &amp;amp;&amp;amp; res[i] &amp;lt; res[i+1]) ||
+                   (res[i] &amp;lt; res[i-1] &amp;amp;&amp;amp; res[i] &amp;gt; res[i+1])){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag) {
+                count++;
+            }
+            if(count == k) {
+                break;
+            }
+        } while (next_permutation(res.begin(), res.end()));
+        return res;
+    }
+};
+
+复杂度分析
+
+我们来看一下这个深度优先遍历的时间复杂度分析，该算法的时间复杂度主要由递归树的结点个数决定。因为程序在叶子结点和非叶子结点的行为时不一样的，所以我们先计算非叶子结点的个数，我们一层一层的去计算它。
+第 1 层因为只有一个空列表，所以我们不考虑它；
+第 2 层表示的意思是从 n 个数中找出 1 个数，即 An1A_n^1An1​；
+第 3 层表示的意思是从 n 个数中找出 2 个数，即 An2A_n^2An2​；
+以此类推，全部非叶子结点的总数为：
+An1+An2+⋯AnnA_n^1 + A_n^2 + \cdots A_n^nAn1​+An2​+⋯Ann​
+=n!(n−1)!+n!(n−2)!+⋯+n!= \frac{n!}{(n-1)!} + \frac{n!}{(n-2)!} + \cdots + n!=(n−1)!n!​+(n−2)!n!​+⋯+n!
+=n!(1(n−1)!+1(n−2)!+⋯+1)= n!\left(\frac{1}{(n-1)!} + \frac{1}{(n-2)!} + \cdots + 1\right)=n!((n−1)!1​+(n−2)!1​+⋯+1)
+≤n!(1+12+14+⋯+12n−1)\leq n!\left(1 + \frac{1}{2} + \frac{1}{4} + \cdots + \frac{1}{2^{n-1}}\right)≤n!(1+21​+41​+⋯+2n−11​)
+=n!×2（1−12n)= n! \times 2（1-\frac{1}{2^{n}})=n!×2（1−2n1​)
+&amp;lt;2n!&amp;lt; 2n!&amp;lt;2n!
+每个非叶子结点都在内部循环了 n 次，所以非叶子结点的时间复杂度为 O(2n×n!)O(2n \times n!)O(2n×n!)，去除系数后得到 O(n×n!)O(n \times n!)O(n×n!) 。
+最后一层叶子结点的个数就是 n!n!n! 个，但是我们对每个叶子结点都做了一次判断，因此叶子结点的时间复杂度依然是 O(n×n!)O(n \times n!)O(n×n!) 。
+该问题的 k 控制了遍历的次数，最好情况即 O(n!)O(n!)O(n!)，最差即 O(n×n!)O(n \times n!)O(n×n!)，平均一下也不过只加了个系数，因此总的时间复杂度为 O(n×n!)O(n \times n!)O(n×n!)。
+递归树的深度为 n，需要 O(n)O(n)O(n) 的空间；程序运行过程中保存了问题的最终答案，需要 O(n)O(n)O(n) 的空间，总共需要 O(2n)O(2n)O(2n) 的空间，因此该算法的空间复杂度为 O(n)O(n)O(n)。
+动态规划
+上述算法在运行过程中会超时，究其原因就是不论测试数据要求我们求第几个波浪形排列，我们都老老实实的从第一个开始数，当数据比较大时就会出现超时的情况。那么有没有办法能够减少一些不必要的过程呢？比如测试数据要求第 100 个波浪形排列，很明显前面 80 个排列肯定不满足情况，我们能否舍弃一部分搜索直接从第 80 个甚至第 90 个开始呢？
+我们先不考虑波浪形排列这个条件，如果是求第 k 个全排列的话是非常容易就能算出来的。还是以1 2 3的全排列为例，假设现在要求第 5 个全排列，可以发现只要第一个数确定了，排列数就由剩下数的排列方案决定，以1打头的排列有两个，以2打头的排列也有两个，而现在要求的是第 5 个排列，所以肯定不是以1或2打头的，这样我们就能直接跳过大部分不合法的排列，节省了时间。
+仔细想想发现理想是比较丰满，上述方法的问题在于无法确定前面跳过的那部分里面究竟有多少个波浪形排列，因此这种直接计算的方法行不通。但是这个思想我们是可以借用一下的，那我们把一部分数据计算出来，尝试一下能不能找到规律。
+当 n 为 1 时，总共有 1 个波浪形排列，1 打头的有 1 个；
+当 n 为 2 时，总共有 2 个波浪形排列，1 打头的有 1 个；
+当 n 为 3 时，总共有 4 个波浪形排列，1 打头的有 1 个；
+当 n 为 4 时，总共有 10 个波浪形排列，1 打头的有 2 个；
+当 n 为 5 时，总共有 32 个波浪形排列，1 打头的有 5 个；
+当 n 为 6 时，总共有 122 个波浪形排列，1 打头的有 16 个；
+列出来了 6 组数据都没有发现规律，这种方式基本得战略性放弃了。我们设置 A[i] 为 i 根木棒所组成的合法方案数，列数据找规律其实就是尝试找到 A[i] 和 A[i-1] 的规律，比如选定了某根木棒 x 作为第 1 根木棒的情况下，则剩下 i-1 根木棒的合法方案数为 A[i-1]。问题在于并不是这 A[i-1] 中每一种方案都能和 x 形成一种新的合法方案。
+我们把第 1 根木棒比第 2 根木棒长的方案称为 W 方案，第 1 根木棒比第 2 根木棒短的方案称为 M 方案。A[i-1] 中方案中只有第 1 根木棒比 x 要长的 W 方案，以及第 1 根木棒比 x 要短的 M 方案，才能进行组合构成 A[i] 中的合法方案。
+因此我们可以设A[i] = 0，先枚举 x，然后针对每一个 x 枚举它后面那根木棒 y，如果y &amp;gt; x（y &amp;lt; x同理）则有：A[i] = A[i] + 以 y 打头的 W 方案数，但是以 y 打头的 W 方案数，又和 y 的长短有关，因此只能继续将描述方式继续细化了。
+设 B[i][k] 是 A[i] 中以第 k 短的木棒打头的方案数，则有：
+A[i]=∑k=1iB[i][k]A[i] = \sum_{k=1}^i B[i][k]A[i]=∑k=1i​B[i][k]
+B[i][k]=∑j=ki−1B[i−1][j](W)+∑n=1k−1B[i−1][n](M)B[i][k] = \sum_{j=k}^{i-1} B[i-1][j](W)+ \sum_{n=1}^{k-1} B[i-1][n](M)B[i][k]=∑j=ki−1​B[i−1][j](W)+∑n=1k−1​B[i−1][n](M)
+公式中（W) 和 (M) 分别表示 W 方案和 M 方案，发现还是无法找出推导关系。设 C[i][k][0] 为 B[i][k] 中的 W 方案数，C[i][k][1] 为 B[i][k] 中的 M 方案数那么则有：
+B[i][k]=C[i][k][0]+C[i][k][1]B[i][k] = C[i][k][0] + C[i][k][1]B[i][k]=C[i][k][0]+C[i][k][1]
+C[i][k][1]=∑j=ki−1C[i−1][j][0]C[i][k][1] = \sum_{j=k}^{i-1} C[i-1][j][0]C[i][k][1]=∑j=ki−1​C[i−1][j][0]
+C[i][k][0]=∑n=1k−1C[i−1][n][1]C[i][k][0] = \sum_{n=1}^{k-1} C[i-1][n][1]C[i][k][0]=∑n=1k−1​C[i−1][n][1]
+至此状态转移方程就出来了，初始条件为：C[1][1][0]=C[1][1][1] = 1，下面就可以开始写代码了。
+class Solution {
+public:
+    /**
+     * 
+     * @param n int整型 木棒的个数
+     * @param k long长整型 第k个排列
+     * @return int整型vector
+     */
+    vector&amp;lt;int&amp;gt; stick(int n, long long s) {
+        long long dp[21][21][2];
+        memset(dp,0,sizeof(dp));
+        dp[1][1][0] = dp[1][1][1] = 1;
+        for (int i = 2; i &amp;lt;= n; i++){
+            // 枚举第一根木棒的长度
+            for (int k = 1; k &amp;lt;= i; k++){
+                // W 方案枚举第二根木棒的长度
+                for (int m = k; m &amp;lt; i; m++){
+                    dp[i][k][0] += dp[i-1][m][1];
+                }
+                // M 方案枚举第二根木棒的长度
+                for (int m = 1; m &amp;lt;= k-1; m++){
+                    dp[i][k][1] += dp[i-1][m][0];
+                }
+            }
+        }
+        // 标记是否已经使用
+        bool visited[21] = {false};
+        // 保存结果的排列
+        int a[21];
+        // 逐一确定第 i 位
+        for(int i = 1; i &amp;lt;= n; i++) {
+            int k = 0;
+            // 假设第 i 放 j
+            for(int j=1;j&amp;lt;=n;j++) {
+                long long tmp = s;
+                // 已经使用过的数不能再使用了
+                if(!visited[j]) {
+                    // j 是没有使用过的木棒中第 k 短的
+                    k++;
+                    if(i == 1) {
+                        // 确定第一根木棒的长度
+                        tmp -= dp[n][k][0] + dp[n][k][1];
+                    } else if(j &amp;lt; a[i-1] &amp;amp;&amp;amp; (i==2 || a[i-2]&amp;lt;a[i-1])) {
+                        // W 类型
+                        tmp -= dp[n-i+1][k][0];
+                    } else if(j &amp;gt; a[i-1] &amp;amp;&amp;amp; (i==2 || a[i-2]&amp;gt;a[i-1])) {
+                        // M 类型
+                        tmp -= dp[n-i+1][k][1];
+                    }
+                    if(tmp &amp;lt;= 0) { 
+                        visited[j]=true;
+                        a[i]=j; // 第 i 位为 j
+                        break;
+                    }
+                }
+                s = tmp;
+            }
+        }
+        // 将结果转换为指定格式
+        vector&amp;lt;int&amp;gt; res;
+        for(int i = 1; i &amp;lt;= n; i++) {
+            res.push_back(a[i]);
+        }
+        return res;
+    }
+};
+
+复杂度分析
+最开始初始化dp数组时用了 O(2n2)O(2n^2)O(2n2) 的时间，随后填写dp数组花的时间为 O(n3)O(n^3)O(n3)，计算最终答案的时间为 O(n2)O(n^2)O(n2)，将结果转为指定格式的时间为 O(n)O(n)O(n)，所以该算法的时间复杂度为 O(n3)O(n^3)O(n3)。
+dp数组占用了 O(2n2)O(2n^2)O(2n2) 的空间，标记数组visited、保存结果的数组a，以及最终转换为指定格式的path向量，各占用了 O(n)O(n)O(n) 的空间，取最大值即该算法的空间复杂度为 O(2n2)O(2n^2)O(2n2)，去掉系数得到最终空间复杂度 O(n2)O(n^2)O(n2)。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/_4KYecN7b/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/5EoDeie7t/">
+                        媒体的谎言｜楼下的小餐馆｜服务质量的思考
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2021-06-27</time>
+                    
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-other_3">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/5EoDeie7t/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/5EoDeie7t.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            上个月很多地方都可以看到一个新闻，90 后安徽女孩 16 岁时到杭州打工，省吃俭用拼命存钱就为了在杭州买房，十年时间存了将近 100 万。但是 2020 年的疫情对她的服装生意影响太大，她先是自己在网上卖淫，后又通过社交软件招募失足妇女卖淫，半年时间获利近 60 万。这个女孩的故事本身是很励志的，但网上的故事版本基本是下图这个样子的，一句话概括就是「女孩卖淫获利 160 万」，简单明了、易传播、方便吃瓜，吃瓜是第一生产力。
+
+相比之下，那些通过掩盖部分事实来教育国人的文章，到显得不那么可恶了一些。比如都说英国人喜欢在地铁看书看报纸，对比我们国人在地铁都是看手机显得没啥素养，但却很少文章提及伦敦地铁修建于 100 年前，由于隧道小致使安装通信设备的难度极大，所以他们的地铁是没有手机上网条件的。全线实现手机上网后，咱再来看看他们看书还是看手机！
+媒体总喜欢发一些坏的东西，毕竟更容易吸引眼球且符合人的本能，人还没死但去世的相关新闻已经出来了，故意掩盖部分事实让大众理解扭曲。考虑到「流量就是金钱」这个前提，有时候也能理解现在媒体的做法。在台湾电视剧《我们与恶的距离》中就有一个片段，主角很清楚一个新闻能带来的收视率，但是自家的记者还没有考究到该新闻的真实性，当其它电视台都在报道这个新闻时，自家电视台应该随大流报道，还是坚守新闻人的底线？
+
+人把自己置身于忙碌当中，有一种麻木的踏实，但丧失了真实，你的青春，也不过只有这些日子。你看到什么，听到什么，做什么，和谁在一起，有一种从心灵深处满溢出来的不懊悔，也不羞耻的平和与喜悦。
+——电影《无问东西》台词
+
+
+用了差不多一年时间观察楼下的几个小餐馆，第一个引起我注意的是一个叫做「小鲜肉烧烤」的店，同期在它的隔壁也是一个烧烤店，在离它不到一百米的地方还有一个烧烤店。那时候正值寒冬，烤串拿出来很容易就变凉，大家都知道烤串凉了就不好吃了，这时小鲜肉烧烤自己买了个大棚子，同时还给每个桌子放了一个保温盘。
+有了大棚子遮风，顾客就不需要忍着寒风吃烤串，而且保温盘让烤串一直都是热的。其它两家则一直是都是让顾客在忍着寒风吃串，我有一次骑行回来因为烤串上的太快了，里面的羊肉串中间那一坨肥肉都凝固成油泥了，骑行腐败的心情大打折扣。
+小鲜肉烧烤专门有个人在外面守着，那眼睛就跟老鹰一样犀利，顾客还没有坐好菜单就送到面前了，另外两家则是师傅专心烤串，进去了是一脸懵逼不知道找谁，点完餐也不知道交给谁。过完年回来，楼下只剩一家烧烤店了。
+紧接着小鲜肉烧烤的隔壁被一对夫妻租了去，他们做的是羊肉米线，想来两口子定是雄心勃勃、信心满满的。前三天用了一点小技巧引流，活动期间可以凭点餐券再免费领一份羊肉米线，出于占便宜和好奇的心理，开业第一天我就去了这家店，看的出来米线是在水里泡的太久了，而且表现非常的不光滑，猜测是为了节省成本用了便宜的原料。
+大概坚持了一周的样子，这家店在饭店就无人问津了，左邻右舍的店铺都忙的不可开交，这家店铺是老公和老婆对坐玩手机，「葛优躺」完美的挂在了脸上，店里显得没有生机更是让人不想踏进去一步。这个商铺过了不到半个月就转手了。
+接盘侠是一个做冒菜的老板，老板开业第一天就大火，服务好、菜品多、吃法新，生意一度优于旁边的烧烤店。大概过了半个月的样子，估计老板觉得店里比较稳了，于是开始把店里的事情逐渐放给员工，好几次我去那家吃都没有看到老板。
+没有老板在自然一些细节把控不好，比如从厨房到餐桌的过道肯定是走最多，而那条过道上的污渍即使你有意无视它，它也能非常容易的钻到你眼睛里；顾客选择的是干拌冒菜，但是却在盘子里看到非常多的汤水；煮菜也看得出来做了流程化处理。
+就这样冒菜店的生意以非常明显的速度在下滑，好在老板意识到问题又回来每天坚守阵地，但总体来说已经比不上刚开店的时候了，现在是和小鲜肉烧烤的人流量基本持平。
+
+会有意识的去观察这些事物，大概和我现在从事的工作有关系。我现在是一名少儿编程老师，大学做家教教学生编程时，觉得只要自己专业技能够硬，学生问问题都能回答出来就可以，喜欢用一些听起来牛逼的专业词汇给学生讲课。现在想想那时候真是傻，那时候觉得人家听不懂叫牛逼，现在明白人家听不懂叫装逼。
+开始主动的去反思自己的问题，讲课的流程、节奏、纪律、有趣等等，并且有意识的提升课堂的仪式感。现在讲课的问题还非常多，但也收获了一些学生和家长的认可。一个孩子我接手了之后得到的奖升了一级，家长一激动给我发了「感谢恩师」，笑死我了😂
+一个学生课上说自己的一个同班同学「还在渣渣学而思学习编程」，虽然孩子只是随口一说，但是这句话让我心中暗喜。除了在外面上课外，我同时还在一些小学上社团课，一个学生想要到外面上课非选我不可，不然就不交钱报名......
+体会到服务业的一些乐趣，也真正认识到了质量的重要性，质量的轻微变动顾客都能感受到。尽力做好自己可以做的事情，但是也要明白事情不是自己能完全掌控的，就像张小龙说的跟漂流瓶扔出去一个瓶子是一个道理，看到以后发生什么不是我们所能够掌控的。
+最后放两个学生的趣味作品吧。
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/5EoDeie7t/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/MFBljEI1_/">
+                        信用卡航司里程和境外返现
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2021-06-05</time>
+                    
+                        <a href="https://www.guanngxu.com/BDX4-XwWJ/" class="post-tag i-tag
+                            i-tag-">
+            #信用卡
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ML7-KNp5c/" class="post-tag i-tag
+                            i-tag-other_4">
+            #赚钱套利
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/MFBljEI1_/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/MFBljEI1_.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            在信用卡基础知识入门中已经提到过银行会和各大公司搞联名卡，其实当你把信用卡了解到一定程度之后就会发现银行、航司、电商、酒店都是相互关联的。信用卡可以匹配像希尔顿、万豪等一些酒店的高级会员，酒店高级会员又可以匹配航司高级会员。
+提到航司这里建议各位小伙伴乘机时都先注册一个会员账户积累里程，很多人可能并没有去关注里程这个东西。以乘坐南航航班从成都到广州为例，用 12000 里程就可以兑换一张机票，相当于就省去了一张机票钱，最近是特殊时期一张机票看起来价格并不贵，要搁平时咋样也是会省 1000 来块钱的。
+
+我之前也不懂航司里程这些东西，看了下航旅纵横发现我在 19 年总共乘坐了 17 次航班，其中有 4 次乘坐的是海南航空的航班，我并没有注册海南航空的会员，导致这几次航班的里程都没了。在 20 年我还使用几千南航里程和几千凤凰知音里程就换了几本书和一袋核桃，现在才知道当时换的是相当不划算的，一半的机票就被自己玩没了。
+大多数人都只是在春节时需要来回飞一趟，靠乘坐航班积累里程的方式是不现实的，更加靠谱的方式就是通过信用卡。国内银行的白金卡基本都可以兑换航司里程（国外我也不懂），而且国内的信用卡非常乱，比如之前我用的招行金卡有 9 万多的额度，浦发给的一张白金卡才 6000 额度（已注销），所以一般额度有几万的都可以尝试去升级成白金卡。
+比如中行和南航推的联名白金卡消费 10 元就可以积累 1 里程，这些消费本身都是平时会产生的，顺道积累一下里程它不香吗？配上撸货（俗称黄牛）那就是非常可观的量级了，稍微勤奋一点应该是一年二三十万里程没有问题。
+信用卡除了积累里程外通常还会有其它的权益，比如搭配一个信用卡接送机的权益把来回机场的车票钱也给省下。比较重要的是信用卡的延误险权益，一种要求用带险种的卡片去购买机票才可赔付，另外一种是不论以什么方式购买机票只要延误就给赔。应该有小伙伴已经在网上看过有人撸了几百万延误险，结果把自己给搞进去了。再次提醒一下撸羊毛可以，但是别心太狠去宰羊。
+曹大也写过一篇关于里程信息差套利的文章，我也是上个月才发现很多平台的积分都是可以互通的，比如平安银行的万里通积分就和各大航司、运营商、零售等挂上了钩，也可以通过这种方式把各种平台的积分都聚合到一起。
+
+信用卡肯定要用起来才会有收益，除了国内日常所产生的消费可以积累一些积分外，还有一个门槛比较高的就是境外消费返现。比如建行出的「MUSE卡鎏金版」境外消费笔笔 1% 返现，精选商户还有 8% 的返现，聪明的小伙伴看到这个应该就能联系到「海外代购」了吧。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/MFBljEI1_/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/q24QUn6OD/">
+                        信用卡基础知识入门
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2021-05-19</time>
+                    
+                        <a href="https://www.guanngxu.com/BDX4-XwWJ/" class="post-tag i-tag
+                            i-tag-primary">
+            #信用卡
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ML7-KNp5c/" class="post-tag i-tag
+                            i-tag-banana">
+            #赚钱套利
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/q24QUn6OD/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/q24QUn6OD.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            相信绝大部分伙伴都使用过「花呗」这个产品吧，当月花下月还很契合现在的提前消费理念。花呗有账单日和还款日之分，需要在每个月的还款日之前将上期的账单还清，否则就会产生逾期记录进而影响自己的征信。当然如果确实没有足够的钱也可以选择账单分期，只不过需要支付一定的分期手续费。花呗的这些机制与信用卡一致，但是相比信用卡花呗就显得很抠门了，抽空对信用卡做了一点研究，就分享到这里一起交流。
+虽然我从毕业开始就一直在用信用卡，但是我也一直没有搞明白信用卡的逻辑。比花呗更长的免息期，送开卡礼、首刷礼，用信用卡消费还给你积分兑换礼品、抵现或话费，偶尔还会给出一些支付立减的优惠（比如我前段时间用支付宝就老是遇到美国运通卡的立减金），银行难道是脑袋发热才这么送钱吗？
+
+用脚趾头想都知道银行的目的肯定是为了赚钱，但是为啥又白白的把各种权益送给你呢，所以我们有必要了解一下银行为什么要发行信用卡？不管是在线上还是线下消费，只要使用了信用卡进行结账，那么商家就需要给出一定的手续费。比如商家支付了 100 元的手续费，银行会拿到 60 元的利润，银联拿到 5 块钱，剩下的交给支付通道公司，同时还会根据「商户编码」给到你一定的积分。所以当你使用信用卡进行消费时，银行就会赚到钱。
+上一段提到了「商户编码」的概念，这个就像我们参加高考时老师给贴的条形码一样，是用来识别商户的。在教育、慈善一类的商户消费，银行是没有钱赚的，所以银行也不会给到你积分，我们可以把这类称之为「无积分商户」。银行就是根据商户编码来识别你刷的商户类型，具体可以查看刷卡之后小票商户编码 8-12 位。
+国内支持的都是银联卡，不过美国运通的业务已经在国内出现，比如我目前正在使用的招行百夫长信用卡，就是一张美国运通卡，它在国内已经支持了线上消费。国外支持银联的不多，所以很多信用卡都会在银联卡之外给配一张外币卡，有人说外币卡会占用自己的授信额度，如果不出国就不要申请你那张附属卡。
+信用卡是分不同等级的，比如普卡、金卡、白金卡、黑金卡。一般金卡及以下都是直接免年费或是可以通过一定的消费免年费的。白金及以上大部分都需要几千的年费，但是提供的相关权益也非常不错，比如航司里程、体检服务、机场贵宾厅、五星级酒店等等，不过白金及以上的下卡难度也大，具体可以看自己的实际情况去申请。
+现在银行都会和各种公司联合发一些联名卡，比如我手里的平安爱奇艺联名卡，每个月只需要有三笔消费超过 188 元，下个月就可以领一张爱奇艺黄金会员月卡。像我这种视频平台会员权益，日常消费所累积的积分，加上银行平时的一些像「5 倍积分」活动，以及利用账单日、还款日这些免息期，就是妥妥的羊毛党味道。
+
+我去年一年的话费都是使用平安的积分充值，相当于白嫖了一年话费。从深圳搬到成都冬天太冷没有被子，又用招行的积分换了被子和一些收纳箱。银行给你这些通道，就是默许你可以撸羊毛，但你千万别贪心把毛拔秃了甚至要宰羊，不然就会很容易把自己给撸进去。
+不要小看撸羊毛这个行业，有的人能撸羊毛年入千万。我认识的人里面也有靠撸羊毛完全能养活自己的，再简单一点也有玩免费机票、酒店的。我觉得这个行业有意思的地方就是你日常生活的每一项都可以撸，电影票、外卖、水电话费、餐饮等等，但是玩信用卡玩着玩着也有一个问题，我现在哪怕在超市买瓶水也会不自觉的计算用哪张卡更划算。
+最后放一张闲鱼的截图做个引子吧，有兴趣的伙伴可以自己去研究，我先暂且写这么多。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/q24QUn6OD/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+    <div class="pagination-container">
+        
+                
+                    <a href="https://www.guanngxu.com/page/2" class="page-btn btn">下一页</a>
+                    
+    </div>
+    
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1670487696733">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                        <!-- 最新文章 -->
+                        <div class="new_posts_card i-card">
+    <h2 class="new_posts_card-title">
+        最新文章
+    </h2>
+    <div class="new-posts">
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/RYkQYSFKV/">linux-5.10.157 内核源码编译</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/s3CKW7x7C/">预处理器</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/cCUDwnJ69/">C 语言拾遗</a>
+            </h4>
+        
+        
+        
+        
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/ghceoN-RR/">为什么宏定义要使用 do {...} while (0) ?</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/a-74x0moT/">如何获得好运气</a>
+            </h4>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+</div>
+                            <!-- 标签云 -->
+                            <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+                                <!-- 公告栏 -->
+                                
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

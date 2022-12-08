@@ -1,0 +1,1091 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    算法 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1670487696733">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179783473-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-179783473-1');
+    </script>
+    
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1670487696733" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        算法</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/_4KYecN7b/">
+                        牛客网 NC632 牛牛摆木棒、POJ 1037 美丽的栅栏题解
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2021-09-20</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-error">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/_4KYecN7b/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/_4KYecN7b.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容:
+OI题解 - A decorative fence[POJ 1037]
+poj1037（dP+排列计数）
+
+本文首发于牛客网：题解 | #牛牛摆木棒#
+题目
+牛客网 NC632 牛牛摆木棒、POJ1037-A decorative fence（美丽的栅栏）
+描述
+有n个木棒，长度为1到n，给定了一个摆放规则。规则是这样的：对于第 i (2≤i≤n−1)(2 \leq i \leq n-1)(2≤i≤n−1) 个木棒 aia_iai​，(ai&amp;gt;ai−1(a_i &amp;gt; a_{i-1}(ai​&amp;gt;ai−1​ &amp;amp;&amp;amp; ai&amp;gt;ai+1)a_i &amp;gt; a_{i+1})ai​&amp;gt;ai+1​) 或 (ai&amp;lt;ai−1(a_i &amp;lt; a_{i-1}(ai​&amp;lt;ai−1​ &amp;amp;&amp;amp; ai&amp;lt;ai+1)a_i &amp;lt; a_{i+1})ai​&amp;lt;ai+1​)。求满足规则的从小到大的第k个排列是什么呢。
+对于两个排列 s 和 t：如果存在 j 有任意 i&amp;lt;ji&amp;lt;ji&amp;lt;j 使得 si==tis_i == t_isi​==ti​ 且 sj&amp;lt;tjs_j &amp;lt; t_jsj​&amp;lt;tj​，视为排列 s 小于排列 t。
+示例
+输入：3,3
+返回值：[2,3,1]
+说明：第一小的排列为：[ 1 , 3 , 2 ]
+     第二小的排列为：[ 2 , 1 , 3 ]
+     第三小的排列为：[ 2 , 3 , 1 ]
+     第四小的排列为：[ 3 , 1 , 2 ]
+     所以答案为：[ 2 , 3 , 1 ]
+
+备注
+(1≤n≤20,1≤k≤(n−1)!)(1 \leq n \leq 20, 1 \leq k \leq (n-1)!)(1≤n≤20,1≤k≤(n−1)!)
+题意
+该问题让我们求：n 的字典序排列中第 k 个波浪形的排列。什么是波浪形排列呢？即对排列中任意一个数字（除开第一个和最后一个）aia_iai​，只能 aia_iai​ 比 ai−1a_{i-1}ai−1​ 和 ai+1a_{i+1}ai+1​ 都小或者都大。比如 2 1 3和1 3 2是波浪形排列，但1 2 3就不是波浪形排列。
+DFS 枚举
+最容易想到的解决方案是把 n 的所有排列按字典序列出来，然后再逐一检查是否是波浪形排列，直接取出第 k 个波浪形排列即可。
+我们以 3 的全排列为例画出如下树形图，非常容易的就能发现只要对这棵树进行深度优先遍历，就能够按字典序得到所有排列。但并不是所有排列都满足波浪形这个条件，所以我们每得到一个排列都需要检查该排列是否为波浪形，直到检查到第 k 个排列为止，返回该排列即可。
+
+class Solution {
+public:
+
+    // 记录当前已经有多少个波浪形排列
+    long long count = 0;
+    // 记录最后的结果
+    vector&amp;lt;int&amp;gt; res;
+    /**
+     * 
+     * @param n int整型 木棒的个数
+     * @param k long长整型 第k个排列
+     * @return int整型vector
+     */
+    vector&amp;lt;int&amp;gt; stick(int n, long long k) {
+        // 用于标记当前考虑的数字是否已经被选择
+        bool visited[25] = {false};
+        // 用于记录已经选了哪些数
+        vector&amp;lt;int&amp;gt; path;
+        dfs(n, 0, path, visited, k);
+        return res;
+    }
+
+    /**
+     * 
+     * @param n 可选的数字范围
+     * @param deep 递归到第几层了
+     * @param path 已经选的数字
+     * @param visited 记录哪些数已经被选了
+     * @param k 是否已经到第 k 个波浪形排列了
+     */
+    void dfs(int n, int deep, vector&amp;lt;int&amp;gt; path, bool visited[], long long k) {
+        // 递归层数和范围相等，说明所有的数字都考虑完了，因此得到一个排列
+        if(deep == n){
+            // 判断该排列是否为波浪形排列
+            bool flag = true;
+            for(int i = 1; i &amp;lt; n-1; i++){
+                if((path[i] &amp;gt; path[i-1] &amp;amp;&amp;amp; path[i] &amp;lt; path[i+1]) ||
+                   (path[i] &amp;lt; path[i-1] &amp;amp;&amp;amp; path[i] &amp;gt; path[i+1])){
+                    flag = false;
+                    break;
+                }
+            }
+            // 是波浪形排列，则统计一次
+            if(flag) {
+                count++;
+            }
+            // 判断是否已经到第 k 个排列
+            if(count == k) {
+                // 如果返回结果还没有被赋值，则将该排列赋值给 res
+                // 因为我们使用的是递归，所以 count==k 会被满足多次
+                // 只有第一次满足时才是真正的 k 值，所以必须判断 res 是否为空
+                // 如果不判空，则程序记录的不是正确结果
+                if(res.empty()){
+                    res = path;
+                }
+                // 到第 k 个波浪形排列了，递归返回
+                return ;
+            }
+            // 没有可以选择的数字了，回溯
+            return ;
+        }
+        // 还没有得出一个排列，则继续挑选数字组成排列
+        for(int i = 1; i &amp;lt;= n; i++) {
+            // 如果该数字已经被选择了，则终止本次循环
+            if(visited[i]){
+                continue;
+            }
+            // 选中当前数字加入到排列中
+            path.push_back(i);
+            visited[i] = true;
+            // 下一次递归所传的值不变，只有递归层数需要 +1
+            dfs(n, deep+1, path, visited, k);
+            // 回溯，需要撤销前面的操作
+            path.pop_back();
+            visited[i] = false;
+        }
+    }
+};
+
+在 C++ 的 algorithm 库中已经提供了一个全排列方法 next_permutation。按照STL文档的描述，next_permutation 函数将按字母表顺序生成给定序列的下一个较大的序列，直到整个序列为减序为止。因此我们可以偷个懒直接使用现有的函数。
+class Solution {
+public:
+    /**
+     * 
+     * @param n int整型 木棒的个数
+     * @param k long长整型 第k个排列
+     * @return int整型vector
+     */
+    vector&amp;lt;int&amp;gt; stick(int n, long long k) {
+        vector&amp;lt;int&amp;gt; res;
+        // 记录当前已经有多少个波浪形排列
+        long long count = 0;
+        // 构造初始化排列
+        for(int i = 1; i &amp;lt;= n; i++) {
+            res.push_back(i);
+        }
+        do {
+            // 判断当前排列是否为波浪形排列
+            bool flag = true;
+            for(int i = 1; i &amp;lt; n-1; i++) {
+                if((res[i] &amp;gt; res[i-1] &amp;amp;&amp;amp; res[i] &amp;lt; res[i+1]) ||
+                   (res[i] &amp;lt; res[i-1] &amp;amp;&amp;amp; res[i] &amp;gt; res[i+1])){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag) {
+                count++;
+            }
+            if(count == k) {
+                break;
+            }
+        } while (next_permutation(res.begin(), res.end()));
+        return res;
+    }
+};
+
+复杂度分析
+
+我们来看一下这个深度优先遍历的时间复杂度分析，该算法的时间复杂度主要由递归树的结点个数决定。因为程序在叶子结点和非叶子结点的行为时不一样的，所以我们先计算非叶子结点的个数，我们一层一层的去计算它。
+第 1 层因为只有一个空列表，所以我们不考虑它；
+第 2 层表示的意思是从 n 个数中找出 1 个数，即 An1A_n^1An1​；
+第 3 层表示的意思是从 n 个数中找出 2 个数，即 An2A_n^2An2​；
+以此类推，全部非叶子结点的总数为：
+An1+An2+⋯AnnA_n^1 + A_n^2 + \cdots A_n^nAn1​+An2​+⋯Ann​
+=n!(n−1)!+n!(n−2)!+⋯+n!= \frac{n!}{(n-1)!} + \frac{n!}{(n-2)!} + \cdots + n!=(n−1)!n!​+(n−2)!n!​+⋯+n!
+=n!(1(n−1)!+1(n−2)!+⋯+1)= n!\left(\frac{1}{(n-1)!} + \frac{1}{(n-2)!} + \cdots + 1\right)=n!((n−1)!1​+(n−2)!1​+⋯+1)
+≤n!(1+12+14+⋯+12n−1)\leq n!\left(1 + \frac{1}{2} + \frac{1}{4} + \cdots + \frac{1}{2^{n-1}}\right)≤n!(1+21​+41​+⋯+2n−11​)
+=n!×2（1−12n)= n! \times 2（1-\frac{1}{2^{n}})=n!×2（1−2n1​)
+&amp;lt;2n!&amp;lt; 2n!&amp;lt;2n!
+每个非叶子结点都在内部循环了 n 次，所以非叶子结点的时间复杂度为 O(2n×n!)O(2n \times n!)O(2n×n!)，去除系数后得到 O(n×n!)O(n \times n!)O(n×n!) 。
+最后一层叶子结点的个数就是 n!n!n! 个，但是我们对每个叶子结点都做了一次判断，因此叶子结点的时间复杂度依然是 O(n×n!)O(n \times n!)O(n×n!) 。
+该问题的 k 控制了遍历的次数，最好情况即 O(n!)O(n!)O(n!)，最差即 O(n×n!)O(n \times n!)O(n×n!)，平均一下也不过只加了个系数，因此总的时间复杂度为 O(n×n!)O(n \times n!)O(n×n!)。
+递归树的深度为 n，需要 O(n)O(n)O(n) 的空间；程序运行过程中保存了问题的最终答案，需要 O(n)O(n)O(n) 的空间，总共需要 O(2n)O(2n)O(2n) 的空间，因此该算法的空间复杂度为 O(n)O(n)O(n)。
+动态规划
+上述算法在运行过程中会超时，究其原因就是不论测试数据要求我们求第几个波浪形排列，我们都老老实实的从第一个开始数，当数据比较大时就会出现超时的情况。那么有没有办法能够减少一些不必要的过程呢？比如测试数据要求第 100 个波浪形排列，很明显前面 80 个排列肯定不满足情况，我们能否舍弃一部分搜索直接从第 80 个甚至第 90 个开始呢？
+我们先不考虑波浪形排列这个条件，如果是求第 k 个全排列的话是非常容易就能算出来的。还是以1 2 3的全排列为例，假设现在要求第 5 个全排列，可以发现只要第一个数确定了，排列数就由剩下数的排列方案决定，以1打头的排列有两个，以2打头的排列也有两个，而现在要求的是第 5 个排列，所以肯定不是以1或2打头的，这样我们就能直接跳过大部分不合法的排列，节省了时间。
+仔细想想发现理想是比较丰满，上述方法的问题在于无法确定前面跳过的那部分里面究竟有多少个波浪形排列，因此这种直接计算的方法行不通。但是这个思想我们是可以借用一下的，那我们把一部分数据计算出来，尝试一下能不能找到规律。
+当 n 为 1 时，总共有 1 个波浪形排列，1 打头的有 1 个；
+当 n 为 2 时，总共有 2 个波浪形排列，1 打头的有 1 个；
+当 n 为 3 时，总共有 4 个波浪形排列，1 打头的有 1 个；
+当 n 为 4 时，总共有 10 个波浪形排列，1 打头的有 2 个；
+当 n 为 5 时，总共有 32 个波浪形排列，1 打头的有 5 个；
+当 n 为 6 时，总共有 122 个波浪形排列，1 打头的有 16 个；
+列出来了 6 组数据都没有发现规律，这种方式基本得战略性放弃了。我们设置 A[i] 为 i 根木棒所组成的合法方案数，列数据找规律其实就是尝试找到 A[i] 和 A[i-1] 的规律，比如选定了某根木棒 x 作为第 1 根木棒的情况下，则剩下 i-1 根木棒的合法方案数为 A[i-1]。问题在于并不是这 A[i-1] 中每一种方案都能和 x 形成一种新的合法方案。
+我们把第 1 根木棒比第 2 根木棒长的方案称为 W 方案，第 1 根木棒比第 2 根木棒短的方案称为 M 方案。A[i-1] 中方案中只有第 1 根木棒比 x 要长的 W 方案，以及第 1 根木棒比 x 要短的 M 方案，才能进行组合构成 A[i] 中的合法方案。
+因此我们可以设A[i] = 0，先枚举 x，然后针对每一个 x 枚举它后面那根木棒 y，如果y &amp;gt; x（y &amp;lt; x同理）则有：A[i] = A[i] + 以 y 打头的 W 方案数，但是以 y 打头的 W 方案数，又和 y 的长短有关，因此只能继续将描述方式继续细化了。
+设 B[i][k] 是 A[i] 中以第 k 短的木棒打头的方案数，则有：
+A[i]=∑k=1iB[i][k]A[i] = \sum_{k=1}^i B[i][k]A[i]=∑k=1i​B[i][k]
+B[i][k]=∑j=ki−1B[i−1][j](W)+∑n=1k−1B[i−1][n](M)B[i][k] = \sum_{j=k}^{i-1} B[i-1][j](W)+ \sum_{n=1}^{k-1} B[i-1][n](M)B[i][k]=∑j=ki−1​B[i−1][j](W)+∑n=1k−1​B[i−1][n](M)
+公式中（W) 和 (M) 分别表示 W 方案和 M 方案，发现还是无法找出推导关系。设 C[i][k][0] 为 B[i][k] 中的 W 方案数，C[i][k][1] 为 B[i][k] 中的 M 方案数那么则有：
+B[i][k]=C[i][k][0]+C[i][k][1]B[i][k] = C[i][k][0] + C[i][k][1]B[i][k]=C[i][k][0]+C[i][k][1]
+C[i][k][1]=∑j=ki−1C[i−1][j][0]C[i][k][1] = \sum_{j=k}^{i-1} C[i-1][j][0]C[i][k][1]=∑j=ki−1​C[i−1][j][0]
+C[i][k][0]=∑n=1k−1C[i−1][n][1]C[i][k][0] = \sum_{n=1}^{k-1} C[i-1][n][1]C[i][k][0]=∑n=1k−1​C[i−1][n][1]
+至此状态转移方程就出来了，初始条件为：C[1][1][0]=C[1][1][1] = 1，下面就可以开始写代码了。
+class Solution {
+public:
+    /**
+     * 
+     * @param n int整型 木棒的个数
+     * @param k long长整型 第k个排列
+     * @return int整型vector
+     */
+    vector&amp;lt;int&amp;gt; stick(int n, long long s) {
+        long long dp[21][21][2];
+        memset(dp,0,sizeof(dp));
+        dp[1][1][0] = dp[1][1][1] = 1;
+        for (int i = 2; i &amp;lt;= n; i++){
+            // 枚举第一根木棒的长度
+            for (int k = 1; k &amp;lt;= i; k++){
+                // W 方案枚举第二根木棒的长度
+                for (int m = k; m &amp;lt; i; m++){
+                    dp[i][k][0] += dp[i-1][m][1];
+                }
+                // M 方案枚举第二根木棒的长度
+                for (int m = 1; m &amp;lt;= k-1; m++){
+                    dp[i][k][1] += dp[i-1][m][0];
+                }
+            }
+        }
+        // 标记是否已经使用
+        bool visited[21] = {false};
+        // 保存结果的排列
+        int a[21];
+        // 逐一确定第 i 位
+        for(int i = 1; i &amp;lt;= n; i++) {
+            int k = 0;
+            // 假设第 i 放 j
+            for(int j=1;j&amp;lt;=n;j++) {
+                long long tmp = s;
+                // 已经使用过的数不能再使用了
+                if(!visited[j]) {
+                    // j 是没有使用过的木棒中第 k 短的
+                    k++;
+                    if(i == 1) {
+                        // 确定第一根木棒的长度
+                        tmp -= dp[n][k][0] + dp[n][k][1];
+                    } else if(j &amp;lt; a[i-1] &amp;amp;&amp;amp; (i==2 || a[i-2]&amp;lt;a[i-1])) {
+                        // W 类型
+                        tmp -= dp[n-i+1][k][0];
+                    } else if(j &amp;gt; a[i-1] &amp;amp;&amp;amp; (i==2 || a[i-2]&amp;gt;a[i-1])) {
+                        // M 类型
+                        tmp -= dp[n-i+1][k][1];
+                    }
+                    if(tmp &amp;lt;= 0) { 
+                        visited[j]=true;
+                        a[i]=j; // 第 i 位为 j
+                        break;
+                    }
+                }
+                s = tmp;
+            }
+        }
+        // 将结果转换为指定格式
+        vector&amp;lt;int&amp;gt; res;
+        for(int i = 1; i &amp;lt;= n; i++) {
+            res.push_back(a[i]);
+        }
+        return res;
+    }
+};
+
+复杂度分析
+最开始初始化dp数组时用了 O(2n2)O(2n^2)O(2n2) 的时间，随后填写dp数组花的时间为 O(n3)O(n^3)O(n3)，计算最终答案的时间为 O(n2)O(n^2)O(n2)，将结果转为指定格式的时间为 O(n)O(n)O(n)，所以该算法的时间复杂度为 O(n3)O(n^3)O(n3)。
+dp数组占用了 O(2n2)O(2n^2)O(2n2) 的空间，标记数组visited、保存结果的数组a，以及最终转换为指定格式的path向量，各占用了 O(n)O(n)O(n) 的空间，取最大值即该算法的空间复杂度为 O(2n2)O(2n^2)O(2n2)，去掉系数得到最终空间复杂度 O(n2)O(n^2)O(n2)。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/_4KYecN7b/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/KRW8MVjMZ/">
+                        如何求两个数的最大公约数
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2021-01-04</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-warning">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/KRW8MVjMZ/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/KRW8MVjMZ.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            求几个整数的最大公约数大致有三种方法，求多个整数的最大公约数可以拆分为求两个整数的最大公约数，所以核心问题还是求两个整数的最大公约数。
+穷举法
+很直观就能想到穷举法，先找出两个数字中比较小的那一个min，然后逐个验证从2 ~ min的数字是否能被两个数整除，如果能同时被两个数字整除那就是公约数，找出其中最大的那个公约数就是所求的结果。
+int gcd(int a, int b){
+    int min = a;
+    if(b &amp;lt; a){
+        min = b;
+    }
+    for(int i = min; i &amp;gt; 2; i--){
+        if(a%i == 0 &amp;amp;&amp;amp; b%i == 0){
+            return i;
+        }
+    }
+    return 1;
+}
+
+辗转相除法
+辗转相除法是欧几里得想出来的，所以也叫做欧几里得算法。它的证明过程依赖于一个定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数，即gcd(a, b) = gcd(b, a mod b)，其中 gcd 表示最大公约数，此处假设 a &amp;gt; b。其证明过程如下所示：
+设 c = gcd(a, b)；
+则存在 m，n，使 a = mc，b = nc；
+令 r = a mod b；
+则存在 k，使 r = a - kb = mc - knc = (m - kn)c；
+所以 gcd(b, a mod b) = gcd(b, r) = gcd(nc, (m-kn)c) = gcd(n, m-kn)c；
+所以 c 为 b 与 a mod b 的公约数；
+
+设 d = gcd(n, m-kn)；
+则存在 x，y，使 n = xd，m-kn = yd；
+所以 m = yd + kn = yd + kxd = (y + kx)d；
+所以 a = mc = (y + kx)dc，b = nc = xdc；
+所以 gcd(a, b) = gcd((y+kx)dc, xdc) = gcd(y+kx, x)dc = dc；
+因为 gcd(a, b) = c，所以 d = 1；
+即 gcd(n, m-kn) = 1，所以  gcd(b, a mod b) = c；
+所以 gcd(a, b) = gcd(b, a mod b)；
+
+证明 gcd(y+kx, x)dc = dc，即 gcd(y+kx, x) = 1：
+前提条件：gcd(x, y) = 1；
+假设 gcd(y+kx, x) != 1，则肯定 gcd(y+kx, x) &amp;gt; 1，设 gcd(y+kx, x) = i；
+则 y+kx = ui，x = vi；
+则 y = ui - kx = ui - kvi = (u-kv)i
+则 gcd(x, y) = gcd(vi, (u-kv)i) = gcd(v, u-kv)i
+因为 gcd(y+kx, x) = i &amp;gt; 1，gcd(v, u-kv) &amp;gt;= 1；
+所以 gcd(x, y) &amp;gt; 1，与前提条件矛盾；
+所以 gcd(y+kx, x) = 1
+
+有了上面的基础之后，我们就可以总结出来一个算法实现的步骤了。设 r = a % b；如果 r 为 0 的话，那么 a 和 b 的最大公约数就是 b，否则就是求 b 和 a%b 的最大公约数。
+// 递归写法
+int gcd(int a, int b){
+    // 用 b 来存储 a%b 的值
+    if(b == 0){ 
+        return a;
+    }
+    return gcd(b, a%b);
+}
+
+// 迭代写法
+int gcd(int a, int b){
+    while(b != 0){
+        int t = b;
+        a = t;
+        b = a % b;
+    }
+    return a;
+}
+
+可以看到在算法实现过程中并没有先找出来最小的数字，这是因为程序会自动将最较大的那个数字放到 a 的位置，比如将gcd(75, 1000)带入我们的递归算法中则会变成gcd(1000, 75)。
+辗转相减法
+辗转相减法也叫更相减损术（尼考曼彻斯法），也是一种简便的求两个数的最大公约数的算法，它的特色是做一系列减法，从而求的最大公约数。比如两个自然数 36 和 27，用大数减去小数得 9 和 27，这时 9 小于 27，需要将两数交换即得 27 和 9，继续相减可得 18 和 9，然后 9 和 9，这时就可以得到两数的最大公约数为 9 了。其证明过程如下所示：
+设 gcd(a, b) = x，a &amp;gt; b；
+则有 a = mx，b = nx，m，n 均为正整数且 m &amp;gt; n；
+c = a - b = mx - nx = (m - n)x；
+因为 a 和 b 均为正整数，所以 c 也能被 x 整除；
+所以 gcd(a, b) = gcd(b, a-b)
+
+具体的算法实现步骤在第一段已经有一个比较清晰的例子了，这里可以直接给出实现代码。
+// 递归写法
+int gcd(int a, int b){
+    if(a == b){
+        return a;
+    }
+    return a &amp;gt; b ? gcd(a-b, b) : gcd(a, b-a);
+}
+
+// 迭代写法
+int gcd(int a, int b){
+    while(a != b){
+        a &amp;gt; b ? a = a - b : b = b - a;
+    }
+    return a;
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/KRW8MVjMZ/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/M_3PVzDfm/">
+                        Bootstrap-table 如何合并相同单元格
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-01-26</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-primary">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
+                            i-tag-other_4">
+            #TypeScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-warning">
+            #JavaScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-other_1">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/M_3PVzDfm/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/M_3PVzDfm.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            Bootstrap-table 官方提供了合并单元格方法 mergeCells，它根据四个参数可以合并任意个单元格，我们要做的只是告诉它怎么合并。
+要合并同一列相同的单元格，无非两种办法，一种是一边遍历一边合并，遍历完了再合并。这里采用第二种办法，这里不需要遍历所有数据，因为用户只能看到当前页的数据，所以只遍历当前页的数据更省时间。
+下面是我实现的获取合并信息算法，最终返回的是一个哈希表，比如下面的这个表格，如果要对「性别」这一列进行合并，很明显前面两个“男”需要合并成一个单元格，再去看下 Bootstrap-table 提供的 API，它需要的是从哪个单元格开始，合并多少个单元格，也就是它需要的是两个数值类型的参数。
+
+
+
+姓名
+性别
+年龄
+
+
+
+
+张三
+男
+23
+
+
+李四
+男
+19
+
+
+王二
+女
+20
+
+
+麻子
+男
+21
+
+
+
+所以我把哈希表设置为，键存的是索引，值存的是从这个索引开始后面连续有多少个和它一样的单元格，那么上述表格性别这一列所得到的合并信息哈希表就为：
+{
+    0: 2,
+    2: 1,
+    3: 1
+}
+
+下面算法很简单，使用两个指针遍历指定的列，如果两个指针所指向的数据相同，那么就将键所对应的值进行加一操作，整个方法只会对该列数据遍历一边，所以时间复杂度为 O(n)。
+let getMergeMap = function (data, index: number) {
+    let preMergeMap = {};
+    // 第 0 项为表头，索引从 2 开始为了防止数组越界
+    for (let i = 2; i &amp;lt; data.length; i++) {
+        let preText = $(data[i-1]).find(&#39;td&#39;)[index].innerText;
+        let curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+        let key = i - 2;
+        preMergeMap[key] = 1;
+        while ((preText == curText) &amp;amp;&amp;amp; (i &amp;lt; data.length-1)) {
+            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
+            i++;
+            preText = $(data[i - 1]).find(&#39;td&#39;)[index].innerText;
+            curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+        }
+        // while循环跳出后，数组最后一项没有判断
+        if (preText == curText) {
+            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
+        }
+    }
+    return preMergeMap;
+}
+
+上述算法得到了单列数据的合并信息，下一步就是按照这个信息进行相同单元格的合并了，因此封装了下面的方法按照指定哈希表进行合并。
+let mergeCells = function (preMergeMap: Object, target, fieldName: string) {
+    for (let prop in preMergeMap) {
+        let count = preMergeMap[prop];
+        target.bootstrapTable(&#39;mergeCells&#39;, { index: parseInt(prop), field: fieldName, rowspan: count });
+    }
+}
+
+到目前为止，我们实现的都只是对单列数据进行合并，要实现对多列数据进行合并，那么只需要对所有列都进行相同的操作即可。
+export let mergeCellsByFields = function (data: Object[], target, fields) {
+    for (let i = 0; i &amp;lt; fields.length; i++) {
+        let field = fields[i];
+        // 保证 field 与 i 是相对应的
+        let preMergeMap = getMergeMap(data, i);
+        let table = target.bootstrapTable();
+        mergeCells(preMergeMap, table, field);
+    }
+}
+
+因为我在程序中做了一点处理，保证了fields中每个值得索引与对应表头的索引是一样的，因此不需要额外传入索引信息。简单来说就是我所实现的表格会根据fields的顺序，实现列之间的动态排序。你需要注意的是这一点很可能和你不一样。
+到现在已经能够合并所有的列了，查看 Bootstrap-table 的配置信息发现，它有个属性是 onPostBody 它会在 table body 加载完成是触发，所以把这个属性配置成我们的合并单元格方法即可。
+// groups 为要合并的哪些列
+onPostBody: function () {
+    mergeCellsByFields($(&#39;#table&#39; + &#39; tr&#39;), $(&#39;#table&#39;), groups);
+}
+
+再说一点不太相关的，我实现的是让用户可以自己选可以合并多少列，即用了一个可多选的下拉列表框供用户选择，根据用户选择的数量去合并，所以传入了一个groups参数。
+最后推荐一个排序插件 thenBy，你可以用它进行多字段排序，比如用在合并相同单元格的场景，在绘制表格前先对数据进行排序，那么最后合并的结果就是把所有相同的数据聚合到一起了，并且还将它们合并到一起了，起到了一个隐形的过滤查询功能。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/M_3PVzDfm/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/esdygML9J/">
+                        为什么计算机处理排序数组比未排序数组快?
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-11-28</time>
+                    
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-info">
+            #操作系统
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-other_1">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/esdygML9J/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/esdygML9J.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            今天在群里看到一个有意思的问题——为什么处理排序数组比处理没有排序的数组要快，这个问题来源于 StackoverFlow，虽然我看到代码略微知道原因，但是模模糊糊不够清晰，搜了很多博客也讲的不够明白，所以就自己来总结了。
+首先来看一下问题，下面是很简单的一段代码，随机生成一些数字，对其中大于 128 的元素求和，记录并打印求和所用时间。
+import java.util.Arrays;
+import java.util.Random;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        // Generate data
+        int arraySize = 32768;
+        int data[] = new int[arraySize];
+
+        Random rnd = new Random(0);
+        for (int c = 0; c &amp;lt; arraySize; ++c)
+            data[c] = rnd.nextInt() % 256;
+
+        // !!! With this, the next loop runs faster
+        Arrays.sort(data);
+
+        // Test
+        long start = System.nanoTime();
+        long sum = 0;
+
+        for (int i = 0; i &amp;lt; 100000; ++i)
+        {
+            // Primary loop
+            for (int c = 0; c &amp;lt; arraySize; ++c)
+            {
+                if (data[c] &amp;gt;= 128)
+                    sum += data[c];
+            }
+        }
+
+        System.out.println((System.nanoTime() - start) / 1000000000.0);
+        System.out.println(&amp;quot;sum = &amp;quot; + sum);
+    }
+}
+
+我的运行结果：分别在对数组排序和不排序的前提下测试，在不排序时所用的时间比先排好序所用时间平均要多 10 ms。这不是巧合，而是必然的结果。
+问题就出在那个if判断上面，在旧文顺序、条件、循环语句的底层解释中其实已经提到了造成这种结果的原因，只是旧文中没有拿出具体的例子来说明。
+为了把这个问题搞明白，需要先对流水线有一定的了解。计算机是指令流驱动的，执行的是一个一个的指令，而执行一条指令，又要经过取指、译码、执行、访存、写回、更新六个阶段（不同的划分方式所包含的阶段不一样）。
+六个阶段使用的硬件基本是不一样的，如果一条指令执行完再去执行另一条指令，那么在这段时间里会有很多硬件处于空闲状态，要使计算机的速度变快，那么就不能让硬件停下来，所以有了流水线技术。
+流水线技术通过将指令重叠来实现几条指令并行处理，下图表示的是三阶段指令时序，即把一个指令分为三个阶段。在第一条指令的 B 阶段，A 阶段相关的硬件是空闲的，于是可以将第二条指令的 A 阶段提前操作。
+
+很明显，这种设计大幅提高了指令运行的效率，聪明的你可能发现问题了，要是不知道下一条指令是什么怎么办，那提前的阶段也就白干了，那样流水线不就失效了？没错，这就是导致开篇问题的原因。
+让流水线出问题的情况有三种：
+
+数据相关，后一条指令需要用到前一条指令的运算结果；
+控制相关，比如无条件跳转，跳转的地址需要在译码阶段才能知道，所以跳转之后已经被取出的指令流水就需要清空；
+结构相关，由于一些指令需要的时钟周期长（比如浮点运算等），长时间占用硬件，导致之后的指令无法进入译码等阶段，即它们在争用同一套硬件。
+
+代码中的if (data[c] &amp;gt;= 128)翻译成机器语言就是跳转指令，处理器事先并不知道要跳转到哪个分支，那难道就等知道了才开始下一条指令的取指工作吗？处理器选择了假装知道会跳转到哪个分支（不是谦虚，是真的假装知道），如果猜中了是运气好，而没有猜中那就浪费一点时间重新来干。
+没有排序的数组，元素是随机排列的，每次data[c] &amp;gt;= 128的结果也是随机的，前面的经验就不可参考，所以下一次执行到这里理论上还是会有 50% 的可能会猜错，猜错了肯定就需要花时间来修改犯下的错误，自然就会浪费更多的时间。
+对于排好序的数组，开始几次也需要靠猜，但是猜着猜着发现有规律啊，每次都是往同一个分支跳转，所以以后基本上每次都能猜中，当遍历到与 128 分界的地方，才会出现猜不中的情况，但是猜几次之后，发现这又有规律啊，每次都是朝着另外一个相同分支走的。
+虽然都会猜错，但是在排好序的情况下猜错的几率远远小于未排序时的几率，最终呈现的结果就是处理排序数组比未排序数组快，其原因就是流水线发生了大量的控制相关现象，下面通俗一点，加深一下理解。
+
+远在他方心仪多年的姑娘突然告诉你，其实她也喜欢你，激动的你三天三夜睡不着觉，决定开车前往她的城市，要和她待在一起，但是要去的路上有很多很多岔路，你只能使用的某某地图导航，作为老司机并且怀着立马要见到爱人心情的你，开车超快，什么样罚单都不在乎了。
+地图定位已经跟不上你的速度了，为了尽快到达，遇到岔路你都是随机选一条路前进，遗憾的是，自己的选择不一定对（我们假设高速可以回退），走错路了就要重新回到分岔点，这就对应着未排序的情况。
+现在岔路是有规律的，告诉你开始一直朝着一边走，到某个地点后会一直朝着另一边走，你只需要花点时间去探索一下开始朝左边还是右边，到了中间哪个地点会改变方向就可以了，相比之下就能节省不少时间了，尽快见到自己的爱人，这对应着排好序的情况。
+
+最后的故事改编自两个人的现实生活，一位是自己最好的朋友之一，谈恋爱开心的睡不着觉；另一位是微信上的一位好友，为了对方从北京裸辞飞到了深圳。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/esdygML9J/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/NrUpfcbXq/">
+                        动态规划算法优化实例——如何求解换钱的方法数
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-07-13</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/NrUpfcbXq/" class="post-feature-image" style="background-image:url(http://img.guanngxu.com/NrUpfcbXq.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            这是我的人生处女面遇到的一个面试题，是在去哪儿网二面遇到的，那时非常的紧张，还没有复习，所以第一次面试理所应当的挂了。文章对问题进行逐步的由简到难进行优化，基本上是代码，看懂代码才能理解，也为类似问题提供了基本的解决思路。
+题目描述：
+
+让你把一张整钱找零，即假设你拥有不同且不限量的小额钱币，你需要统计共有多少种方法可以用手中的小额钱币兑等额兑换一张大额钱币。
+即：给定一个元素为正数的集合（元素不重复）代表不同面值的钱币，再给一个整数，代表要找零的钱数，求共有多少种换钱方法？
+
+递归求解
+现在有1、5、10元三种面值的纸币，需要找零100元，那么可以做如下分析：
+用 0 张 5 元换，剩下的用 1、10 元换，最终方法数为 count0；
+用 1 张 5 元换，剩下的用 1、10 元换，最终方法数为 count1；
+......
+用 100 张 5 元换，剩下的用 1、10 元换，最终方法数为 count100；
+
+最终的换钱方法总数就为 count0 + count1 + ...... + count100。
+
+根据上面的分析可以写出下面的递归解决方案：
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }else {
+        return slove(money, 0, target);
+    }
+}
+
+// 用money[index, length-1]换钱，返回总的方法数
+private static int slove(int money[], int index, int target){
+    int res = 0;
+    if(index == money.length){
+        if (target == 0){
+            res = 1;
+        }else {
+            res = 0;
+        }
+    }else {
+        for (int i = 0; money[index] * i &amp;lt;= target; i++) {
+            res += slove(money, index+1, target-money[index]*i);
+        }
+    }
+    return res;
+}
+
+优化递归
+可以看到，上面的程序在运行时存在大量的重复过程，比如下面两种情况，其后所求结果是一样的。
+兑换 100 元，已经使用了 0 张 1 元、1 张 2 元，剩下的用 5 元和 10 元兑换；
+兑换 100 元，已经使用了 2 张 1 元、0 张 2 元，剩下的用 5 元和 10 元兑换；
+
+可以发现，这两种情况后面都是求解同一问题，重复的对同一个问题求解，就造成了时间的浪费，因此我们可以考虑将已经计算过的结果存下来，避免重复的计算，所以有下面的优化方案。
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }else {
+        /**
+         * map[i][j]表示p(i,j)递归回的值
+         * 其中-1表示该递归过程计算过，但是返回值为0
+         * 0表示该递归过程还为计算过
+         */
+
+        int map[][] = new int[money.length+1][target+1];
+        return slove(money, 0, target, map);
+    }
+}
+
+private static int slove(int money[], int index, int target, int map[][]){
+    int res = 0;
+    if(index == money.length){
+        if (target == 0){
+            res = 1;
+        }else {
+            res = 0;
+        }
+    }else {
+        int val = 0;
+        for (int i = 0; money[index] * i &amp;lt;= target; i++) {
+            val = map[index + 1][target - money[index]*i];
+            if (val != 0){
+                if (val == -1){
+                    res += 0;
+                }else {
+                    res += val;
+                }
+            }else {
+                res += slove(money, index+1, target-money[index]*i, map);
+            }
+        }
+    }
+
+    if (res == 0){
+        map[index][target] = -1;
+    }else {
+        map[index][target] = res;
+    }
+    return res;
+}
+
+动态规划
+上面对递归方法的优化已经能看到动态规划的影子了，这是一个二维的动态规划问题，我们定义dp[i][j]的含义为：使用money[0...i]的钱币组成钱数j的方法数。所以可以得出以下面的动态规划解法：
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }
+
+    int dp[][] = new int[money.length][target+1];
+
+    // 第一列表示组成钱数为0的方法数，所以为1
+    for (int i = 0; i &amp;lt; money.length; i++) {
+        dp[i][0] = 1;
+    }
+    // 第一行表示只使用money[0]一种钱币兑换钱数为i的方法数
+    // 所以是money[0]的倍数的位置为1，否则为0
+    for (int i = 1; money[0] * i &amp;lt;= target; i++) {
+        dp[0][money[0] * i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; dp.length; i++) {
+        for (int j = 1; j &amp;lt; dp[0].length; j++) {
+            for (int k = 0; j &amp;gt;= money[i] * k; k++) {
+                // dp[i][j]的值即为，用money[0...i-1]的钱
+                // 组成j减去money[i]的倍数的方法数
+                dp[i][j] += dp[i-1][j-money[i]*k];
+            }
+        }
+    }
+
+    return dp[money.length-1][target];
+}
+
+继续优化
+可以发现上面的动态规划解法有三层循环，因为是二维的动态规划问题，前两层没办法去掉，但是第三层依旧很耗时间，继续优化可以得到下面的结果。
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }
+
+    int dp[][] = new int[money.length][target+1];
+
+    for (int i = 0; i &amp;lt; money.length; i++) {
+        dp[i][0] = 1;
+    }
+    for (int i = 1; money[0] * i &amp;lt;= target; i++) {
+        dp[0][money[0] * i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; money.length; i++) {
+        for (int j = 1; j &amp;lt;= target; j++) {
+            /**
+             * 通过分析可以发现，dp[i][j]的值由两部分组成
+             * 1：用money[0...i-1]的钱组成钱数为j的方法数
+             * 2：用money[0...i]的钱组成钱数为j-money[i]*k（k=1,2,3....）的方法数
+             * 对于第2种情况，实际上累加的值就是dp[i][j-money[i]]
+             * 所以直接使用dp[i][j-money[i]]即可
+             */
+            dp[i][j] = dp[i-1][j];
+            if (j &amp;gt;= money[i]){
+                dp[i][j] += dp[i][j-money[i]];
+            }
+        }
+    }
+
+    return dp[money.length-1][target];
+}
+
+空间压缩
+可以看到每次更新dp[i][j]，dp[i][j]的值只与前一行和当前行前面的元素有关系，而我们只需要最后的一个结果就行了，那么前面存的元素实际上会造成空间的浪费，进一步可以在空间上进行优化。
+我们只需要定义一个一位数组，然后对该数组进行滚动更新就可以了，只要按照合适方向去更新数组，同样能达到上面的效果。
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }
+
+    int dp[] = new int[target+1];
+
+    // 第一行，只用money[0]兑换钱
+    // 所以只能兑换为money[0]的倍数，将这些位置置为1
+    for (int i = 0; money[0]*i &amp;lt;= target; i++) {
+        dp[i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; money.length; i++) {
+        for (int j = 1; j &amp;lt;= target; j++) {
+
+            // 与前一步相比，少了dp[i][j] = dp[i-1][j];
+            // 因为这里在进行dp[j] += dp[j-money[i]];之前
+            // dp[j]的值就已经是dp[i-1][j]了
+            if (j &amp;gt;= money[i]){
+                dp[j] += dp[j-money[i]];
+            }
+        }
+    }
+
+    return dp[target];
+}
+
+到这一步就不再有优化空间了，这个问题很值得记录下来，很多笔试、面试题都可以按这个模子进行套，对于只需要最优解的动态规划问题也可以套用上面的空间压缩思路，多总结、多练习总是没有问题的！这个解题思路第一次看到是左程云在牛客网上讲解的，他也写了一本算法相关的书比较不错，叫做程序员代码面试指南，大四、研三、刚入职的新人建议可以买一本读读，对自己编码技能的提升绝对又很大的帮助。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/NrUpfcbXq/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1670487696733">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>
