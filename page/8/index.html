@@ -1,0 +1,2034 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1721109094724">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://analytics.eu.umami.is/script.js" data-website-id="d80638ca-7f47-4227-af1c-714b9739ba9d"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1721109094724" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/esdygML9J/">
+                        为什么计算机处理排序数组比未排序数组快?
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-11-28</time>
+                    
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-">
+            #操作系统
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-warning">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/esdygML9J/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/esdygML9J.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            今天在群里看到一个有意思的问题——为什么处理排序数组比处理没有排序的数组要快，这个问题来源于 StackoverFlow，虽然我看到代码略微知道原因，但是模模糊糊不够清晰，搜了很多博客也讲的不够明白，所以就自己来总结了。
+首先来看一下问题，下面是很简单的一段代码，随机生成一些数字，对其中大于 128 的元素求和，记录并打印求和所用时间。
+import java.util.Arrays;
+import java.util.Random;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        // Generate data
+        int arraySize = 32768;
+        int data[] = new int[arraySize];
+
+        Random rnd = new Random(0);
+        for (int c = 0; c &amp;lt; arraySize; ++c)
+            data[c] = rnd.nextInt() % 256;
+
+        // !!! With this, the next loop runs faster
+        Arrays.sort(data);
+
+        // Test
+        long start = System.nanoTime();
+        long sum = 0;
+
+        for (int i = 0; i &amp;lt; 100000; ++i)
+        {
+            // Primary loop
+            for (int c = 0; c &amp;lt; arraySize; ++c)
+            {
+                if (data[c] &amp;gt;= 128)
+                    sum += data[c];
+            }
+        }
+
+        System.out.println((System.nanoTime() - start) / 1000000000.0);
+        System.out.println(&amp;quot;sum = &amp;quot; + sum);
+    }
+}
+
+我的运行结果：分别在对数组排序和不排序的前提下测试，在不排序时所用的时间比先排好序所用时间平均要多 10 ms。这不是巧合，而是必然的结果。
+问题就出在那个if判断上面，在旧文顺序、条件、循环语句的底层解释中其实已经提到了造成这种结果的原因，只是旧文中没有拿出具体的例子来说明。
+为了把这个问题搞明白，需要先对流水线有一定的了解。计算机是指令流驱动的，执行的是一个一个的指令，而执行一条指令，又要经过取指、译码、执行、访存、写回、更新六个阶段（不同的划分方式所包含的阶段不一样）。
+六个阶段使用的硬件基本是不一样的，如果一条指令执行完再去执行另一条指令，那么在这段时间里会有很多硬件处于空闲状态，要使计算机的速度变快，那么就不能让硬件停下来，所以有了流水线技术。
+流水线技术通过将指令重叠来实现几条指令并行处理，下图表示的是三阶段指令时序，即把一个指令分为三个阶段。在第一条指令的 B 阶段，A 阶段相关的硬件是空闲的，于是可以将第二条指令的 A 阶段提前操作。
+
+很明显，这种设计大幅提高了指令运行的效率，聪明的你可能发现问题了，要是不知道下一条指令是什么怎么办，那提前的阶段也就白干了，那样流水线不就失效了？没错，这就是导致开篇问题的原因。
+让流水线出问题的情况有三种：
+
+数据相关，后一条指令需要用到前一条指令的运算结果；
+控制相关，比如无条件跳转，跳转的地址需要在译码阶段才能知道，所以跳转之后已经被取出的指令流水就需要清空；
+结构相关，由于一些指令需要的时钟周期长（比如浮点运算等），长时间占用硬件，导致之后的指令无法进入译码等阶段，即它们在争用同一套硬件。
+
+代码中的if (data[c] &amp;gt;= 128)翻译成机器语言就是跳转指令，处理器事先并不知道要跳转到哪个分支，那难道就等知道了才开始下一条指令的取指工作吗？处理器选择了假装知道会跳转到哪个分支（不是谦虚，是真的假装知道），如果猜中了是运气好，而没有猜中那就浪费一点时间重新来干。
+没有排序的数组，元素是随机排列的，每次data[c] &amp;gt;= 128的结果也是随机的，前面的经验就不可参考，所以下一次执行到这里理论上还是会有 50% 的可能会猜错，猜错了肯定就需要花时间来修改犯下的错误，自然就会浪费更多的时间。
+对于排好序的数组，开始几次也需要靠猜，但是猜着猜着发现有规律啊，每次都是往同一个分支跳转，所以以后基本上每次都能猜中，当遍历到与 128 分界的地方，才会出现猜不中的情况，但是猜几次之后，发现这又有规律啊，每次都是朝着另外一个相同分支走的。
+虽然都会猜错，但是在排好序的情况下猜错的几率远远小于未排序时的几率，最终呈现的结果就是处理排序数组比未排序数组快，其原因就是流水线发生了大量的控制相关现象，下面通俗一点，加深一下理解。
+
+远在他方心仪多年的姑娘突然告诉你，其实她也喜欢你，激动的你三天三夜睡不着觉，决定开车前往她的城市，要和她待在一起，但是要去的路上有很多很多岔路，你只能使用的某某地图导航，作为老司机并且怀着立马要见到爱人心情的你，开车超快，什么样罚单都不在乎了。
+地图定位已经跟不上你的速度了，为了尽快到达，遇到岔路你都是随机选一条路前进，遗憾的是，自己的选择不一定对（我们假设高速可以回退），走错路了就要重新回到分岔点，这就对应着未排序的情况。
+现在岔路是有规律的，告诉你开始一直朝着一边走，到某个地点后会一直朝着另一边走，你只需要花点时间去探索一下开始朝左边还是右边，到了中间哪个地点会改变方向就可以了，相比之下就能节省不少时间了，尽快见到自己的爱人，这对应着排好序的情况。
+
+最后的故事改编自两个人的现实生活，一位是自己最好的朋友之一，谈恋爱开心的睡不着觉；另一位是微信上的一位好友，为了对方从北京裸辞飞到了深圳。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/esdygML9J/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/O-EjxlN4I/">
+                        顺序、条件、循环语句的底层解释（机器语言级解释）
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-11-10</time>
+                    
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-">
+            #操作系统
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/O-EjxlN4I/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/O-EjxlN4I.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            初级程序员讲究的是术，只知道如何用关键字去拼凑出领导想要的功能；高级程序员脸的是道，理解了底层的逻辑，不仅把功能做的漂漂亮亮，心法也更上一层楼。
+顺序结构
+数据传送指令
+我们都清楚，绝大多数编译器都把汇编语言作为中间语言，把汇编语言程序变成可运行的二进制文件早就解决了，所以现在的高级语言基本上只需要把自己翻译成汇编语言就可以了。
+汇编指令总共只有那么多，大多数指令都是对数据进行操作，比如常见的数据传送指令mov。不难理解，被操作数据无非有三种形式，立即数，即用来表示常数值；寄存器，此时的数据即存放在指定寄存器中的内容；内存引用，它会根据计算出来的地址访问某个内存位置。
+需要注意的是，到了汇编层级，就不像高级语言那样随随便便int就能和long类型的数据相加减，他们在底层所占有的字节是不一样的，汇编指令是区分操作数据大小的，比如数据传送指令，就有下面这些品种（x86-64 对数据传送指令加了一条限制：两个操作数不能都指向内存位置）。
+
+压栈与弹栈
+对于栈，我想不必多讲，IT 行业的同学都清楚，它是一种线性数据结构，其中的数据遵循“先进后出”原则，寄存器%rsp保存着栈顶元素的地址，即栈顶指针。一个程序要运行起来，离不开栈这种数据结构。
+栈使用最多的就是弹栈popq和压栈pushq操作。比如将一个四字值压入栈中，栈顶指针首先要减 8（栈向下增长），然后将值写到新的栈顶地址；而弹栈则需要先将栈顶数据读出，然后再将栈指针加 8。所以pushq和popq指令就可以表示为下面的形式。
+// 压栈
+subq $8, %rsp
+movq %rbp, (%rsp)
+
+// 弹栈
+movq (%rsp), %rax
+addq $8, %rsp
+
+其他还有算术、逻辑、加载有效地址、移位等等指令，可以查阅相关文档了解，不作过多介绍，汇编看起来确实枯燥乏味。
+条件结构
+前面讲的都是顺序结构，我们的程序中不可能只有顺序结构，条件结构是必不可缺的元素，那么汇编又是如何实现条件结构的呢？
+首先你需要知道，除了整数寄存器，CPU 还维护着一组条件码寄存器，我们主要是了解如何把高级语言的条件结构转换为汇编语言，不去关注这些条件码寄存器，只需要知道汇编可以通过检测这些寄存器来执行条件分支指令。
+if-else 语句
+下面是 C 语言中的if-else语句的通用形式。
+if(test-expr){
+    then-statement
+}else{
+    else-statement
+}
+
+汇编语言通常会将上面的 C 语言模板转换为下面的控制流形式，只要使用条件跳转和无条件跳转，这种形式的控制流就可以和汇编代码一一对应，我们以 C 语言形式给出。
+    t = test-expr;
+    if(!t){
+        goto false;
+    }
+    then-statement;
+    goto done;
+false:
+    else-statement;
+done:
+
+但是这种条件控制转移形式的代码在现代处理器上可能会很低效。原因是它无法事先确定要跳转到哪个分支，我们的处理器通过流水线来获得高性能，流水线的要求就是事先明确要执行的指令顺序，而这种形式的代码只有当条件分支求值完成后，才能决定走哪一个分支。即使处理器采用了非常精密的分支预测逻辑，但是还是有错误预测的情况，一旦预测错误，那将会浪费 15 ~ 30 个时钟周期，导致性能下降。
+
+在流水线中，把一条指令分为多个阶段，每个阶段只执行所需操作的一小部分，比如取指令、确定指令类型、读数据、运算、写数据以及更新程序计数器。流水线通过重叠连续指令的步骤来获得高性能，比如在取一条指令的同时，执行它前面指令的算术运算。所以如果事先不知道指令执行顺序，那么事先所做的预备工作就白干了。
+
+为了提高性能，可以改写成使用条件数据传送的代码，比如下面的例子。
+v = test-expr ? then-expr : else-expr；
+
+// 使用条件数据传送方法
+v = then-expr;
+ve = else-expr;
+t = test-expr;
+if(!t){
+    v = ve;
+}
+
+这样改写，就能提高程序的性能了，但是并不是所有的条件表达式都可以使用条件传送来编译，一般只有当两个表达式都很容易计算时，编译器才会采用条件数据传送的方式，大部分都还是使用条件控制转移方式编译。
+switch 语句
+switch语句可以根据一个整数索引值进行多重分支，在处理具有多种可能结果的测试时，这种语句特别有用。为了让switch的实现更加高效，使用了一种叫做跳转表的数据结构（Radis 也是用的跳表）。跳转表是一个数组，表项 i 是一个代码段的地址，当开关情况数量比较多的时候，就会使用跳转表。
+我们举个例子，还是采用 C 语言的形式表是控制流，要理解的是执行switch语句的关键步骤就是通过跳转表来访问代码的位置。
+void switch_eg(long x, long n, long *dest){
+    long val = x;
+    switch(n){
+        case 100:
+            val *= 13;
+            break;
+        case 102:
+            val += 10;
+        case 103:
+            val += 11;
+            break;
+        case 104:
+        case 105:
+            val *= val;
+            break;
+        default:
+            val = 0;
+    }
+    *dest = val;
+}
+
+要注意的是，上面的代码中有的分支没有break，这种问题在笔试中会经常遇到，没有break会继续执行下面的语句，即变成了顺序执行。上面的代码会被翻译为下面这种控制流。
+void switch_eg(long x, long n, long *dest){
+        static void *jt[7] = {
+            &amp;amp;&amp;amp;loc_A, &amp;amp;&amp;amp;loc_def, &amp;amp;&amp;amp;loc_B,
+            &amp;amp;&amp;amp;loc_C, &amp;amp;&amp;amp;loc_D, &amp;amp;&amp;amp;loc_def,
+            &amp;amp;&amp;amp;loc_D
+        };
+        unsigned long index = n - 100;
+        long val;
+        if(index &amp;gt; 6){
+            goto loc_def;
+        }
+        goto *jt[index];
+    loc_A:
+        val = x * 13;
+        goto done;
+    loc_B:
+        x = x + 10;
+    loc_C:
+        val = x + 11;
+        goto done;
+    loc_D:
+        val = x * x;
+        goto done;
+    loc_def:
+        val = 0;
+    done:
+        *dest = val;
+}
+
+循环结构
+C 语言中有do-while、while和for三种循环结构，它们的通用形式一般都长下面那样。
+// do-while
+do
+    body-statement
+    while(test-expr);
+    
+// while
+while(test-expr)
+    body-statement
+    
+// for
+for(init-expr; test-expr; update-expr)
+    body-statement
+
+do-while的特点是body-statement一定会执行一次，所以我们可以将do-while翻译成下面的控制流形式，很容易就能联想到它的汇编形式。
+loop:
+    body-statement;
+    t = test-expr;
+    if(t){
+        goto loop;
+    }
+
+while循环我们给出两种形式的控制流，其中一种包含do-while形式，如下所示。
+// 第一种形式
+t = test-expr;
+if(!t){
+    goto done;
+}
+do
+    body-statement;
+    while(test-expr);
+done:
+
+
+// 第二种形式
+    goto test;
+loop:
+    body-statement;
+test:
+    t = test-expr;
+    if(t){
+        goto loop;
+    }
+
+面试的时候，有的面试官会问你for循环的执行顺序，现在深入理解了三种循环的机制，再也不怕面试官啦。for循环可以转换成如下的while形式。
+init-expr;
+while(test-expr){
+    body-statement;
+    update-expr;
+}
+
+有了这种形式的for循环，我们只需要将其中的while部分再翻译一下就好了，前文给出了两种while翻译的方式，而具体采用哪种方式，取决于编译器优化的等级。
+总结
+计算机就是用那么几条简简单单的指令就完成了各种复杂的操作，不得不折服于计算机科学家们的魅力。现在人工智能被炒的很火热，然后人是事件、情感驱动的，而计算机是控制流驱动的，所以从架构上就决定了，冯诺依曼体系计算机实现的都是弱人工智能。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/O-EjxlN4I/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/0-yES6ENP/">
+                        深入理解计算机系统——函数调用与空间分配
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-11-08</time>
+                    
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-info">
+            #操作系统
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/0-yES6ENP/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/0-yES6ENP.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            我们在编程序的时候，都会把某一个特定功能封装在一个函数里面，对外暴露一个接口，而隐藏了函数行为的具体实现，一个大型的复杂系统里面包含了很多这样的小函数，我们称之为过程。
+过程是相对独立的小模块，系统的运行需要这些过程的紧密合作，这种合作就是函数调用。
+在一个函数执行时调用别的函数，比如 P 调用 Q，需要执行一些特定的动作。传递控制，在调用 Q 之前，控制权在 P 的手里，既然要调用 Q，那么就需要把控制权交给 Q；传递数据，就是函数传参；分配与释放内存，在开始时，Q 可能需要位局部变量分配空间，结束时又必须释放这些存储空间。
+大多数语言都使用栈提供的先进后出机制来管理内存，x86-64 可以通过通用寄存器传递最多 6 个整数值（整数或地址），如果超过 6 个，那就需要在栈中分配内存，并且通过栈传递参数时，所有数据的大小都要向 8 的倍数对齐。将控制权从 P 转交给 Q，只需要将 PC（程序计数器）的值置为 Q 代码的起始位置，并记录好 P 执行的位置，方便 Q 执行完了，继续执行 P 剩余的代码。
+在函数的传参、执行中，多多少少都需要空间来保存变量，局部数据能保存在寄存器中就会保存在寄存器中，如果寄存器不够，将会保存在内存中。除了寄存器不够用的情况，还有数组、结构体和地址等局部变量都必须保存在内存中。分配内存很简单，只需要减小栈指针的值就行了，同样释放也只需要增加栈指针。
+在函数执行过程中，处理栈指针%rsp，其它寄存器都被分类为被调用者保存寄存器，即当过程 P 调用过程 Q 时，Q 必须保存这些寄存器的值，保证它们的值在 Q 返回到 P 时与 Q 被调用时是一样的。
+所以递归也就不难理解了，初学算法总觉得递归有点奇妙，怎么自己调用自己，而实际上对于计算机来说，它和调用其它函数没什么区别，在计算机眼里，没有自身与其它函数的区别，所有被调用者都是其它人。
+数组是编程中不可或缺的一种结构，“数组是分配在连续的内存中”这句话已经烂熟于心了，历史上，C 语言只支持大小在编译时就能确定的多维数组，这个多多少少有一些不便利，所以在ISO C99标准中就引入了新的功能，允许数组的维度是表达式。
+int A[expr1][expr2]
+
+因为数组是连续的内存，所以很容易就能访问到指定位置的元素，它通过首地址加上偏移量即可计算出对应元素的地址，这个偏移量一定意义上就是由索引给出。
+比如现在有一个数组A，那么A[i]就等同于表达式* (A + i)，这是一个指针运算。C 语言的一大特性就是指针，既是优点也是难点，单操作符&amp;amp;和*可以产生指针和简介引用指针，也就是，对于一个表示某个对象的表达式expr，&amp;amp;expr给出该对象地址的一个指针，而对于一个表示地址的表达式Aexpr，*Aexpr给出该地址的值。
+即使我们创建嵌套（多维）数组，上面的一般原则也是成立的，比如下面的例子。
+int A[5][3];
+
+// 上面声明等价于下面
+typedef int row3_t[3];
+row3_t A[5];
+
+这个数组在内存的中就是下面那个样子的。
+
+还有一个重要的概念叫做数据对齐，即很多计算机系统要求某种类型的对象的地址必须是某个值 K（一般是2、4 或 8）的倍数，这种限制简化了处理器和内存接口之间的设计，甚至有的系统没有进行数据对齐，程序就无法正常运行。
+比如现在有一个如下的结构体。
+struct S1 {
+    int i;
+    char c;
+    int j;
+}
+
+如果编译器用最小的 9 字节分配，那么将是下面的这个样子。
+
+但是上面这种结构无法满足 i 和 j 的 4 字节对齐要求，所以编译器会在 c 和 j 之间插入 3 个字节的间隙。
+
+在极客时间专栏中有这样一段代码。
+int main(int argc, char *argv[]){
+    int i = 0;
+    int arr[3] = {0};
+    for(; i &amp;lt;= 3; i++){
+        arr[i] = 0;
+        printf(&amp;quot;Hello world!\n&amp;quot;);
+    }
+    return 0;
+}
+
+这段代码神奇的是在某种情况下会一直循环的输出Hello world，并不会结束，在计算机系统漫游（补充）中也提到过。
+造成上面这种结果是因为函数体内的局部变量存在栈中，并且是连续压栈，而 Linux 中栈又是从高向低增长。数组arr中是 3 个元素，加上 i 是 4 个元素，刚好满足 8 字节对齐（编译器 64 位系统下默认会 8 字节对齐），变量i在数组arr之前，即i的地址与arr相邻且比它大。
+代码中很明显访问数组时越界了，当i为 3 时，实际上正好访问到变量i的地址，而循环体中又有一句arr[i] = 0;，即又把i的值设置为了 0，由此就导致了死循环。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/0-yES6ENP/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/K8GZGQszm/">
+                        认知如何提升？我是怎样转变自己思维方式的
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-10-25</time>
+                    
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-error">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/K8GZGQszm/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/K8GZGQszm.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            这仅仅是记录自己的一点经历和感悟，回顾一下自己思维的转变过程而已，如果对于还是学生或是初入职场的你有一点帮助，那也是没白写的。
+相信很多朋友都还记得有段时间因为华为 34 岁以上员工被裁、中兴程序员跳楼等事件的发生，各种蹭热点讨论「中年危机」的文章漫天飞，一时间各种割韭菜教如何利用副业赚钱的课程也层出不穷，那时我正好是大四，忙于找工作。
+很清晰的记得当时一个程序员微信群里面大家各种讨论中年危机，都在给自己制造焦虑，刚好群里有个大神可能出于善意，看大家过于焦虑，就在群里发了几条消息，教大家如何避免中年危机，并且推荐了两本书。
+还是学生的我下意识的就发了一个添加好友请求，虽然内心是非常希望对方能够通过好友请求的，但当时很清楚能和这样的人微信交流是一种奢求，而意外的是他居然同意了我的好友请求，当然限于我个人的水平我们没有什么交流，我的问题过于浅显，会浪费人家时间，当时的想法是看看大神的朋友圈，他平时都接触什么，自己学习一段时间。
+大神推荐的书是李笑来写的《把时间当做朋友》、《财富自由之路》，那时的心态还是宁愿花 300 块钱出去吃一顿饭，也不愿意花几十块钱买一本书，所以我第一时间跑到学校图书馆去查了，但是两本书在学校图书馆都没有，我就给学校图书馆荐购系统提交了这两本书，图书馆效率也挺高，不到一周就把书给买回来了，我立马就借回来阅读。
+书中的内容刷新了我以前狭隘的认知，从偏远农村出来的自己从来没有像书中那样考虑问题，除了对作者的佩服之外，更多的是思考自己这种学生思维局限性太大了，要慢慢的将它摒弃。
+有个定律是你关心什么就会来什么，后面陆续碰到几位像大一样的人士，并加了他们的微信，但是都仅仅是通过他们朋友圈的蛛丝马迹去找知识，通过他们朋友圈的分享内容，我知道了「简七理财」、「码农翻身」、「程序员小灰」（我知道的时候还不叫程序员小灰）公众号，然后知道了《富爸爸穷爸爸》、《小狗钱钱》，通过微信读书，读完了这两本书，逐渐培养了理财理念。
+后来没隔多久，简七出书了，我第一时间就买了她写的《好好赚钱》（同期还有刘大也出了《码农翻身》一书，我也第一时间买了），简七写的内容通俗易懂，很容易理解。
+刘大在群里开了几次公开课，作为计算机专业的我，被刘大对技术的理解之深给折服了，那段时间正是业界浮躁的时候，成千上万人想着人工智能、大数据、区块链，而刘大一直能沉下心来去了解技术的原理，这给了我一个很好的榜样，我也逐渐沉下心来，开始去补最基础的知识，像《深入理解计算机系统》一类书也能尽下心来慢慢去把它啃完了，这种不浮躁的特质对我的技术成长是很有帮助的。
+此后有一天，另一个大神在朋友圈分享了曹大写的《从校园到职场系列文章》，喜欢深入挖掘信息的我，以曹大公众号为源头，又找到了冯大、池大、二爷、刘备教授、大牛猫等人的公众号。
+作为自由的大四学生，因为不用担心第二天起不来，我那段时间经常熬夜阅读他们的文章，在阅读的过程中我也开始思考自己此前哪些想法狭隘，哪些品质又是值得继续保持的。
+也是那时我开始接受知识付费的，那时候已经有小密圈（现在叫知识星球）了，出于对几位大佬的信任，我第一次大胆的花了几百块钱加入了刘大、曹大、冯大、程序员小灰的小密圈，其中的内容比网上蹭热点的文章好不知多少倍，一贯爱捕捉蛛丝马迹的我，又通过评论信息发现了 angela zhu、子柳老师、陈利人老师等，然后去找他们的文章，他们输出的内容要比水军写的文章好太多。
+自己也是从那时候开始坚持写文章记录自己的心得的，通过写文章，也认识了很多优秀的人，比如了不起的杰克、java 小咖秀等公众号的作者，和他们交流的很少，但是却很受用，他们的积极向上也影响着我一直保持着乐观豁达的心态。
+自己写的文章也被几个资深程序员赞同，同时还收到了两个出版社发来的出书邀请，让我体会到了无心插柳柳成荫的收获，选择了和电子工业出版社签了出版合同。
+让我坚持一直写文章的动力不是赚钱，而是我切切实实体会到了它给我个人带来的成长，为了自己日后再看时能立刻就找到清晰的逻辑，我把都尽可能把文章写得有理有据，掌握自己的节奏，尽量提高文章质量。谈一下写作的重要性一文有说写作带来的好处。
+现在已经不把自己当新人了，而且有同龄人甚至比我年龄还大的人向我咨询问题时，我也能给出合理建议，都得到了他们的肯定。最近发现和周围伙伴最明显的一个区别就是，对于同一个新闻，我经常早于他们半天甚至一两天知道，而且掌握的信息比他们还准确，我认为这就是整体认知水平的提升。
+最后想说，执行力与信息素养很重要，执行力强的人会与你拉开越来越大的距离，信息素养也是一个关键品质，现在网络上充斥着大量的虚假信息，如何去分别这些信息的真假，在相同条件下如何获得更多的有效信息，是必备的能力。
+上面提到的各路大神，他们的文章都很值得阅读，做一个终身学习的人，时刻保持学习的态度。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/K8GZGQszm/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/oNwbCz1HH/">
+                        深入理解计算机系统——信息的表示与处理
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-10-19</time>
+                    
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-other_4">
+            #操作系统
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/oNwbCz1HH/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/oNwbCz1HH.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《深入理解计算机系统》（第三版）
+
+字数据大小
+前面已经提到过信息=位+上下文，但是基本上的计算机都没有将位作为最小的可寻址单位，而是将字节作为了最小的可寻址单位，内存就是一个非常大的字节数组，它的的每个字节都由一个唯一的数字来标识（这个数字是不需要存的），所有可能的地址集合就是虚拟地址空间。
+我们常说的 32 位、64 位指的是一台计算机的字长，用于指明指针数据的的标称大小。有的面试官在面试的时候会问这样一个问题：在 C/C++ 中指针的大小是多少？如果你一下就回答出来时多少个字节了，那基本上不必再问了，因为一个指针的大小取决于计算机的字长，所以应该分 32 位机还是 64 位机的情况。
+字长还会决定一个极为重要的系统参数——虚拟地址空间。比如现在有一个 32 位机，每一位可以取值 1 或 总共 32 位，能组合的出局就有 232 个，所以它能访问 232 个地址，其大小也就是 4G，因此你如果给 32 位机装上 8G 的内存条，是起不了多大作用的。
+我们平时所说的 32 位程序和 64 位程序并不是指机器的字长，它们的区别在于程序时如何编译的，而不是其运行的机器类型，高版本都应该做到向后兼容，所以 32 位程序一般都能运行在 64 位机器上，而 64 位程序时不能运行在 32 位机上面的。下面两种伪指令就分别用于编译 32 位程序和 64 位程序。
+gcc -m32 prog.c
+gcc -m64 prog.c
+
+C 语言在 32 位机和 64 位机上所表现的差别在于long数据类型，一般在 32 位机上是 4 个字节，而在 64 位机上是 8 个字节，而作为程序员要力图程序能在不同的机器上进行编译执行，要做到这一点就需要保证程序对不同数据类型的确切大小不敏感。
+
+曾经某运营商的一个基站版本因为数据范围的不同而造成了巨大的损失，在编程环境中使用的是 32 位机，而基站所使用的处理器没有 32 位，最后表现的效果就是大概每隔 40 天，基站就自动复位了。定位到这个问题都花费了巨大的财力和人力资源。
+
+寻址及字节顺序
+上文已经提到，有很多的对象实际上不止占用一个字节，而是占用了多个字节，此时就涉及到如何排列这些字节了，以及如何存储这些字节。以11001100 11001100为例，它占用了两个字节，我们可以选择将这两个字节放在连续的内存中，也可以将两个字节分开放在不连续的内存中；另外我们可以将左边的字节当做起始位置，也可以将右边的字节当做起始位置（更专业的称为大端法和小端法）。
+对于字节的排列，到底是用大端法还是小端法，没有技术上的争论，只有社会政治论题的争论，而且机器它对程序员是完全不可见的。几乎所有的机器都将多字节对象存储为连续的字节序列，所使用字节中最小的地址作为对象的地址。
+那么什么时候需要注意字节的顺序规则呢，那就是编写网络应用程序的时候，试想你传输的数据是用大端法表示的，而用户的计算机采用的是小端法，那还会有用户使用你的产品吗。所以编写网络程序时需要遵循已经建立的关于字节顺序的规则。
+整数表示
+程序员对二进制不会不知道，比如 11111111表示的是 255（不考虑补码），很容易就能转换为我们所熟悉的 10 进制数据。这种方式我们默认它是无符号数，如果要加入有符号数就开始变得有趣了。
+几乎所有的计算机都是采用有补码来表示有符号整数的，它与无符号整数的区别在于最高位被解释为负权，举个例子：将1111看做补码的话，它的值就为：-23 + 22 + 21 + 20 = -1。
+在程序中不可避免的会使用强制类型转换，C 语言中强制类型转换并没有改变数据的位值，只是改变了解释这些位的方式。比如将无符号数（unsigned） 53191 转换为有符号数的结果为 -12345，它们的位值是完全没有相同的。
+最容易入坑的地方是，对两个不同类型的数据进行运算时，C 语言将会隐式的将有符号数转换为无符号数，所以就有下面这样一个神奇的结果。
+// u 代表无符号数
+-1 &amp;lt; 0u
+// 结果为 0
+// 因为 -1 的补码表示为：11...11
+// 转换为无符号数后就是范围内最大的数
+
+如果需要扩展一个数的位表示，那么放心的扩展就好了，小的数据类型都能安全的向大的数据类型转换，补码表示的数会在前面补上符号位，原码表示的直接在前面补上 0 即可，而需要注意的是从大往小转，这会不可避免的截断位，造成信息的丢失，所以千万不要这么干。
+加法、乘法运算
+在编程入门的时候可能都知道两个正数相加的结果可能为负数，还有一个更奇怪的现象就是：x &amp;lt; y和 x - y &amp;lt; 0两个表达式可能会得出不一样的结果，这些神奇的结果都和计算机整数的底层表示和运算有着密切的关系。
+C 语言中有无符号数与有符号数之分，而在 Java 中只有有符号数，下面的内容还是基于 C 语言进行说明，毕竟更 C 比 Java 更接近底层嘛。
+无符号加法
+假设我们使用 w 位来表示无符号数，那么两个加数取值范围即为：0 ≤ x, y ＜2w，理论上它们的和的范围为：0 ≤ sum ＜ 2w+1，因为只有 w 位表示无符号数（要把和表示出来就需要 w+1 位），所以超过 zw的部分就会造成溢出，如下图所示。
+
+对于无符号数的溢出，计算机采用的处理方式是丢掉最高位，直观的结果就是，当发生溢出了，就将采用取模运算（或者说是减去 2w），举个例子。
+只用 4 为来表示无符号数，即 w = 4，现在有 x [1001] 和 y [1100] 相加，其结果应为：[10101] ，但是没有 5 位用来表示，所以丢掉最高位的1，剩下的值为 5 [0101]，也就是 21 mod 16 = 5。
+那么如何检测是否发生溢出呢？设求和结果为 s，对于加法有 x + y ≥ x 恒成立，即只要没有发生溢出，肯定有 s ≥ x。另一方面，如果确实发生溢出了，就有 s = x + y - 2w，又有 y - 2w ＜ 0，因此 s = x + y - 2w ＜ x。
+补码加法
+和前面一样，对于两个给定范围的加数 - 2w-1 ≤ x, y ≤ 2w-1 - 1，它们的和的范围就在 - 2w ≤ sum ≤ 2w - 2。要想把整个和的范围表示出来，依旧需要 w+1 位才行，而现在只有 w 位，因此还是需要采用将溢出部分截断。
+
+可以发现，当发生正溢出时，截断的结果是从和数中减去了 2w；而当发生负溢出时，截断结果是把和数加上 2w。
+那么对于补码加法如何检测溢出结果呢？通过分析可以发现，当且仅当 x ＞ 0, y ＞ 0，但和 s ≤ 0 时为正溢出；当且仅当 x ＜ 0, y ＜ 0，但 s ≥ 0 时发生负溢出。
+无符号乘法
+有了前面的基础，乘法就变得简单一些了，对于溢出情况，计算机仍然采用的是求模，比如 0 ≤ x, y ≤ 2w - 1，它们乘积的范围为 0 到 22w - 2w+1 + 1 之间，这可能需要 2w 位来表示，溢出部分直接截掉，如下所示。
+
+补码乘法
+对于补码，两个乘数的范围为：- 2w-1 ≤ x, y ≤ 2w-1 + 1，那么其乘积表示范围就为 - 22w-2 + 2w-1 到 22w-2 之间，补码乘法和无符号乘法基本是一样的，只是在无符号基础上多加了一步转换，即将无符号数转换为补码。
+
+乘以常数
+我们知道，计算机做加减法、位级运算的速度最快（1 个指令周期），而做乘除法很慢（10 个甚至更多指令周期），平时编写的程序中常常会乘以一个常数，为了使程序运行的更快，编译器可能会帮我们做一些处理。
+首先我们考虑常数是 2 的幂。x * 21 可以表示为 x &amp;lt;&amp;lt; 1，x * 22 可以表示为 x &amp;lt;&amp;lt; 2，依次类推即可。
+对于不是 2 的幂的常数，比如 x * 14 可以表示为：(x&amp;lt;&amp;lt;3) + (x&amp;lt;&amp;lt;2) + (x&amp;lt;&amp;lt;1)，因为 14 = 23 + 22 + 21；聪明的你可能发现 14 还有另一种表示方法，即 14 = 24 - 21，这种表示比前一种表示方法又少了运算量，所以 x * 14 还可以表示为：(x&amp;lt;&amp;lt;4) - (x&amp;lt;&amp;lt;1)。
+实际上，这里有一个通用的解决方案，对于任何一个常数 K，其二进制可以表示为一组 0 和 1 交替的序列：[(0...0)(1...1)(0...0)(1...1)]，14可以表示为：[(0...0)(111)(0)]，考虑一组从位位置 n 到位位置 m 的连续的 1 （n ≥ m），（对于 14 有 n = 3，m = 1）可以有两种形式来计算位对乘积的影响。
+
+这个优化不是一定的，大多数编译器只在需要少量移位、加减法就足够的时候才使用这种优化。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/oNwbCz1HH/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/c4hRhCBs7/">
+                        使用订阅号实现微信公众号历史文章爬虫
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-10-03</time>
+                    
+                        <a href="https://www.guanngxu.com/mVmVUsbMe/" class="post-tag i-tag
+                            i-tag-">
+            #工具教程
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
+                            i-tag-">
+            #爬虫
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-other_2">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/c4hRhCBs7/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/c4hRhCBs7.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            微信公众号已经成为生活的一部分了，虽然里面有很多作者只是为了蹭热点，撩读者的 G 点，自己从中获得一些收益；但是不乏好的订阅号，像刘大的码农翻身、Fenng的小道消息、曹大的caoz的梦呓等订阅号非常值得阅读。
+平时有时候看到一些好的公众号，也会不自觉去查看该公众号的历史文章，然而每次都看不完，下一次再从微信里面打开历史文章，又需要从头翻起。而且对于写了很多年的大号，每次还翻不到底。有一些平台提供了相关的服务，但是得收几十块钱的费用，倒不是缺几十块钱，主要是觉得这种没必要花的钱不值得去浪费。
+网上搜如何爬微信公众号历史文章，大致给了三种思路，第一是使用搜狗微信搜索文章，但是好像每次能搜到的不多；第二是使用抓包工具；第三种是使用个人订阅号进行抓取。
+简单来说就是使用程序来模拟人的操作，抓取公众号历史文章。首先登录微信公众号个人平台，期间需要管理员扫码才能登录成功。
+def __open_gzh(self):
+    self.driver.get(BASE_URL)
+    self.driver.maximize_window()
+    username_element = self.driver.find_element_by_name(&amp;quot;account&amp;quot;)
+    password_element = self.driver.find_element_by_name(&amp;quot;password&amp;quot;)
+    login_btn = self.driver.find_element_by_class_name(&amp;quot;btn_login&amp;quot;)
+    username_element.send_keys(USERNAME)
+    password_element.send_keys(PASSWORD)
+    login_btn.click()
+    WebDriverWait(driver=self.driver, timeout=200).until(
+        ec.url_contains(&amp;quot;cgi-bin/home?t=home/index&amp;quot;)
+    )
+    # 一定要设置这一步，不然公众平台菜单栏不会自动展开
+    self.driver.maximize_window()
+
+进入微信公众平台首页后，点击素材管理，然后点击新建图文素材，就会进入到文章写作页面，此时前面打开的微信公众平台首页就不需要了，可以将其关闭。
+
+def __open_write_page(self):
+    management = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-menu_management&amp;quot;)
+    material_manage = management.find_element_by_css_selector(&amp;quot;a[title=&#39;素材管理&#39;]&amp;quot;)
+    material_manage.click()
+    new_material = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-btn_main&amp;quot;)
+    new_material.click()
+    # 关闭公众平台首页
+    handles = self.driver.window_handles
+    self.driver.close()
+    self.driver.switch_to_window(handles[1])
+
+在文章写作页面的工具栏上面有一个超链接按钮，点击超链接即会弹出超链接编辑框，选择查找文章，输入自己喜欢的公众号进行查找，一般第一个就是自己想要的结果，点击对应的公众号，该公众号所有的文章就会通过列表的形式展现出来。
+
+
+
+def __open_official_list(self):
+    # 超链接
+    link_click = self.driver.find_element_by_class_name(&amp;quot;edui-for-link&amp;quot;)
+    link_click.click()
+    time.sleep(3)
+    # 查找文章
+    radio = self.driver.find_element_by_class_name(&amp;quot;frm_vertical_lh&amp;quot;).find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1]
+    radio.click()
+    # 输入查找关键字
+    search_input = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_input&amp;quot;)
+    search_input.send_keys(OFFICIAL_ACCOUNT)
+    search_btn = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_btn&amp;quot;)
+    search_btn.click()
+    # 等待5秒，待公众号列表加载完毕
+    time.sleep(5)
+    result_list = self.driver.find_element_by_class_name(&amp;quot;js_acc_list&amp;quot;).find_elements_by_tag_name(&amp;quot;div&amp;quot;)
+    result_list[0].click()
+
+文章列表已经展现出来了，直接抓取每条文章超链接的信息即可，每抓取完一页就进入下一页，继续抓取文章列表信息，直到所有文章信息都抓取完毕。
+
+def __get_article_list(self):
+    # 等待文章列表加载
+    time.sleep(5)
+    total_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
+        .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;)\
+        .find_element_by_class_name(&amp;quot;page_num&amp;quot;)\
+        .find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1].text
+    total_page = int(total_page)
+    articles = []
+    for i in range(0, total_page-1):
+        time.sleep(5)
+        next_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
+            .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;pagination&amp;quot;)\
+            .find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;).find_element_by_class_name(&amp;quot;page_next&amp;quot;)
+        article_list = self.driver.find_element_by_class_name(&amp;quot;js_article_list&amp;quot;)\
+            .find_element_by_class_name(&amp;quot; my_link_list&amp;quot;).find_elements_by_tag_name(&amp;quot;li&amp;quot;)
+        for article in article_list:
+            article_info = {
+                &amp;quot;date&amp;quot;: article.find_element_by_class_name(&amp;quot;date&amp;quot;).text,
+                &amp;quot;title&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).text,
+                &amp;quot;link&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).get_attribute(&amp;quot;href&amp;quot;)
+                }
+            articles.append(article_info)
+        next_page.click()
+    return articles
+
+至此，微信公众号历史文章的爬虫已经实现，其实整个过程只不过是用程序来模拟的了人类的操作。需要注意的是，程序不能设置太快，因为微信做了相关限制，所以设太快会在一段时间内无法使用文章查找功能；另外一点是使用选择器选择页面元素的时候，会有一些坑，而且我发现不同账号登录，有很少部分的页面元素虽然直观上是一样的，但是它的 html 代码有细微的差别。
+这个小程序会用到selenium库，和chromedriver，前者直接pip install即可，后者自行下载；另外你还需要一个订阅号才行，本文只实现了关键的文章信息抓取，并没有进行文章信息的持久化存储，完整代码在这里。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/c4hRhCBs7/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/_v3DmjUkj/">
+                        磁盘到底是怎样工作的？一文理解硬盘结构
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-10-01</time>
+                    
+                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-warning">
+            #数据库
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-info">
+            #操作系统
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/_v3DmjUkj/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/_v3DmjUkj.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            数据库系统总会涉及到辅助存储（大多都是磁盘），因为它们能够存储大量需要长期保存的数据，因此我们有必要先了解了解磁盘的相关知识。
+根据机械原理，存储器的容量越大其速度就越慢。但是速度越快的存储器，其单位字节的价格就越贵。现代计算机系统可以包含几个不同的可以存储数据的部件，就形成了存储器的层次结构，但是需要注意的是「虚拟内存」是操作系统与操作系统运用机器硬件的产物，它不是存储器的层次之一。
+磁盘结构
+传统的硬盘盘结构是像下面这个样子的，它有一个或多个盘片，用于存储数据。盘片多采用铝合金材料；中间有一个主轴，所有的盘片都绕着这个主轴转动。一个组合臂上面有多个磁头臂，每个磁头臂上面都有一个磁头，负责读写数据。
+
+磁盘一般有一个或多个盘片。每个盘片可以有两面，即第一个盘片的正面为0面，反面为 1 面；第二个盘片的正面为 2 面......依次类推。磁头的编号也和盘面的编号是一样的，因此有多少个盘面就有多少个磁头。盘面正视图如下图，磁头的传动臂只能在盘片的内外磁道之间移动。因此不管开机还是关机，磁头总是在盘片上面。关机时，磁头停在盘片上面，抖动容易划伤盘面造成数据损失，为了避免这样的情况，所以磁头都是停留在起停区的，起停区是没有数据的。
+
+每个盘片的盘面被划分成多个狭窄的同心圆环，数据就存储在这样的同心圆环上面，我们将这样的圆环称为磁道 (Track)。每个盘面可以划分多个磁道，最外圈的磁道是0号磁道，向圆心增长依次为1磁道、2磁道......磁盘的数据存放就是从最外圈开始的。
+
+根据硬盘的规格不同，磁道数可以从几百到成千上万不等。每个磁道可以存储数 Kb 的数据，但是计算机不必要每次都读写这么多数据。因此，再把每个磁道划分为若干个弧段，每个弧段就是一个扇区 (Sector)。扇区是硬盘上存储的物理单位，现在每个扇区可存储 512 字节数据已经成了业界的约定。也就是说，即使计算机只需要某一个字节的数据，但是也得把这个 512 个字节的数据全部读入内存，再选择所需要的那个字节。
+
+柱面是我们抽象出来的一个逻辑概念，简单来说就是处于同一个垂直区域的磁道称为柱面 ，即各盘面上面相同位置磁道的集合。需要注意的是，磁盘读写数据是按柱面进行的，磁头读写数据时首先在同一柱面内从 0 磁头开始进行操作，依次向下在同一柱面的不同盘面(即磁头上)进行操作，只有在同一柱面所有的磁头全部读写完毕后磁头才转移到下一柱面。因为选取磁头只需通过电子切换即可，而选取柱面则必须通过机械切换。数据的读写是按柱面进行的，而不是按盘面进行，所以把数据存到同一个柱面是很有价值的。
+磁盘被磁盘控制器所控制（可控制一个或多个），它是一个小处理器，可以完成一些特定的工作。比如将磁头定位到一个特定的半径位置；从磁头所在的柱面选择一个扇区；读取数据等。
+
+现代硬盘寻道都是采用CHS(Cylinder Head Sector)的方式，硬盘读取数据时，读写磁头沿径向移动，移到要读取的扇区所在磁道的上方，这段时间称为寻道时间(seek time)。因读写磁头的起始位置与目标位置之间的距离不同，寻道时间也不同。磁头到达指定磁道后，然后通过盘片的旋转，使得要读取的扇区转到读写磁头的下方，这段时间称为旋转延迟时间(rotational latencytime)。然后再读写数据，读写数据也需要时间，这段时间称为传输时间（transfer time）。
+根据上文的信息，我们可以得出磁盘容量的计算公式为：
+硬盘容量 = 盘面数 × 柱面数 × 扇区数 × 512字节
+
+笔试题实战
+下面的题目是腾讯某一年校招笔试中的一个题目，题干信息描述为：数据存储在磁盘上的排列方式会影响I/O服务的性能，一个圆环磁道上有10个物理块，10个数据记录R1~R10存放在这个磁道上，记录的安排顺序如下表所示。
+
+
+
+物理块
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+
+
+
+逻辑记录
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+
+
+
+假设磁盘的旋转速度为20ms，磁盘当前处在R1的开头处，若系统顺序扫描后将数据放入单缓冲区内，处理数据的时间为4ms（然后再读取下个记录），则处理这10个记录的最长时间是多少？
+
+答案：磁盘会一直朝某个方向旋转，不会因为处理数据而停止。本题要求顺序处理 R1 到 R10，起始位置在 R1，一周是 20ms，共 10 个记录，所以每个记录的读取时间为 2ms。首先读 R1 并处理 R1，读 R1 花 2ms，读好后磁盘处于 R1 的末尾或 R2 的开头，此时处理 R1，需要 4ms，因为磁盘一直旋转，所以 R1 处理好了后磁盘已经转到 R4 的开始了，这时花的时间为 2+4=6ms。这时候要处理 R2，需要等待磁盘从 R5 一直转到 R2 的开始才行，磁盘转动不可反向，所以要经过 8*2ms 才能转到 R1 的末尾，读取 R2 需要 2ms，再处理 R2 需要 4ms，处理结束后磁盘已经转到 R5 的开头了，这时花的时间为 2*8+2+4=22ms。等待磁盘再转到 R3 又要 8*2ms，加上 R3 自身 2ms 的读取时间和 4ms 的处理时间，花的时间也为 22ms，此时磁盘已经转到 R6 的开头了，写到这里，就可以看到规律了，读取并处理后序记录都为 22ms，所以总时间为 6+22*9=204ms。
+
+如何加速对磁盘的访问
+对于理解数据库系统系统特别重要的是磁盘被划分为磁盘块（或像操作系统一样称之为页），每个块的大小是 4~64KB。磁盘访问一个磁盘块平均要用 10ms，但是这并不表示某一应用程序将数据请求发送到磁盘控制器后，需要等 10ms 才能得到数据。如果只有一个磁盘，在最坏的情况下，磁盘访问请求的到达个数超过 10ms 一次，那么这些请求就会被无限的阻塞，调度延迟将会变的非常大。因此，我们有必要做一些事情来减少磁盘的平均访问时间。
+按柱面组织数据：前这一点在前文已经提到过了。因为寻道时间占平均块访问时间的一半，如果我们选择在一个柱面上连续的读取所有块，那么我们只需要考虑一次寻道时间，而忽略其它时间。这样，从磁盘上读写数据的速度就接近于理论上的传输速率。
+使用多个磁盘：如果我们使用多个磁盘来替代一个磁盘，只要磁盘控制器、总线和内存能以 n 倍速率处理数据传输，则使用 n 个磁盘的效果近似于 1 个磁盘执行了 n 次操作。因此使用多个磁盘可以提高系统的性能。
+磁盘调度：提高磁盘系统吞吐率的另一个有效方法是让磁盘控制器在若干个请求中选择一个来首先执行，调度大量块请求的一个简单而有效的方法就是电梯算法。回忆一下电梯的运行方式，它并不是严格按先来后到的顺序为乘客服务，而是从建筑物的底层到顶层，然后再返回来。同样，我们把磁盘看作是在做横跨磁盘的扫描，从柱面最内圈到最外圈，然后再返回来，正如电梯做垂直运动一样。
+预取数据：在一些应用中，我们是可以预测从磁盘请求块的顺序的。因此我们就可以在需要这些块之前就将它们装入主存。这样做的好处是我们能较好的调度磁盘，比如采用前文的电梯算法来减少访问块所需要的平均时间。
+磁盘故障
+如果事情都像我们一开始设计的那样进行，那世界肯定会变得特别无聊。磁盘偶尔也会耍耍小脾气，甚至是罢工不干了。比如在读写某个扇区一次尝试没有成功，但是反复尝试后有成功读写了，我们称之为间歇性故障。
+一种更为严重的故障形式是，一个或多个二进制位永久的损坏了，所以不管我们尝试多少次都不可能成功，这种故障称之为介质损坏。
+另一种相关的错误类型称之为写故障，当我们企图写一个扇区时，既不能正确的写，也不能检索先前写入的扇区，发生这种情况的一种可能原因就是在写过程中断电了。
+当然肯定最严重的就是磁盘崩溃，这种故障中，整个磁盘都变为永久不可读，这是多么可怕的事情。
+既然会出现上面所述的各种大小故障，那么我们就必须要采取各种措施去应对大大小小的变故，保证系统能正常运行。
+规避故障
+我们尝试读一个磁盘块，但是该磁盘块的正确内容没有被传送到磁盘控制器中，就是一个间歇性故障发生了。那么问题是控制器如何能判断传入的内容是否正确呢？答案就是使用校验和，即在每个扇区使用若干个附加位。在读出时如果我们发现校验和对数据位不合适，那么我们就知道有错误；如果校验和正确，磁盘读取仍然有很小的可能是不正确的，但是我们可以通过增加趣多校验位来降低读取不正确发生的概率。
+此处我们使用奇偶校验来举例，通过设置一个校验位使得二进制集合中 1 的个数总是偶数。比如某个扇区的二进制位序列是 01101000，那么就有奇数个 1，所以奇偶位是 1，这个序列加上它后面的奇偶位，就有 011010001；而如果所给的序列是 11101110，那么奇偶位就是 0。所以每一个加上了奇偶位构成的 9 位序列都有偶数奇偶性。
+尽管校验和几乎能正确检测出介质故障或读写故障的存在，但是它却不能帮助我们纠正错误。为了处理这个问题，我们可以在一个或多个磁盘中执行一个被称为稳定存储的策略。通常的思想是，扇区时成对的，每一对代表一个扇区内容 X。我们把代表 X 的扇区对分别称为左拷贝 XL和右拷贝XR。这样实际上就是每个扇区的内容都存储了两份，操作XL失败，那么去操作XR就可以了，更何况我们还在每个扇区中有校验和，把错误的概率就大大降低了。
+到现在为止，我们讨论的都是简单的故障，但是如果发生了磁盘崩溃，其中的数据被永久破坏。而且数据没有备份到另一种介质中，对于银行金融系统这将是巨大的灾难，遇到这种情况我们应该怎么办呢？
+数据恢复
+应对磁盘故障最简单的方式就是镜像磁盘，即我们常说的备份。回忆一下写毕业论文时的做法，那时候大部分同学还不会用版本控制器，所以基本采用每天备份一次数据，并且在文件名称中标注日期，以此来达到备份的效果。
+第二种方式是使用奇偶块，比如一个系统中有 3 个磁盘，那么我们再加一个磁盘作为冗余盘。在冗余盘中，第 i 块由所有数据盘的第 i 块奇偶校验位组成。也就是说，所有第 I 块的第 j 位，包括数据盘和冗余盘，在它们中间必须有偶数个 1，冗余盘的作用就是让这个条件为真。
+我们举个简单例子，假设快仅由一个字节组成，我们有三个数据盘和一个冗余盘，对应的位序列如下。其中 盘4 为冗余盘，它的位序列是根据前面三个盘计算出来的。
+盘 1：11110000
+盘 2：10101010
+盘 3：00111000
+盘 4：01100010
+
+假设现在某个盘崩溃了，那么我们就能根据上面的序列来恢复数据，只需要让每一列 1 的个数为偶数就可以了，但是这种冗余方式也存在很大的不足。
+第一个缺陷是，如果是两个盘同时崩溃了，那数据也恢复不出来了。第二个问题在于，虽然读数据只需要一次 I/O 操作即可，但是写数据时就不一样了，因为需要根据其他数据盘来计算冗余盘中的位序列，假设共有 n 个盘，其中一个为冗余盘，所以每次写数据时，都需要进行 n+1 次 I/O 操作（读不被写入的 n-1 个盘，被重写数据盘的一次写，冗余盘的一次写），而 I/O操作又是非常耗时的操作，所以这种方法会大大拖慢系统性能。
+另一种方案是没有明显的冗余盘，而是把每个磁盘作为某些块的冗余盘来处理。比如现在有 4 个盘，0 号磁盘将作为编号为 4、8、12 等柱面的冗余，而 1 号磁盘作为编号为 1、5、9 等块的冗余......
+一种更为先进的方式使用海明码来帮助从故障中恢复数据，它在多个磁盘崩溃的情况下也能恢复出数据，也是 RAID 的最高等级，由于本人水平有限，用文字表达不清楚，就不作介绍了，嘿嘿。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/_v3DmjUkj/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/WnccL2rgJ/">
+                        学习 Angulr 容易忽略的知识点
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-25</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-other_1">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
+                            i-tag-success">
+            #TypeScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-other_1">
+            #JavaScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
+                            i-tag-other_2">
+            #Angular
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/WnccL2rgJ/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/WnccL2rgJ.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《Angulr5 高级编程（第二版）》
+
+函数声明式和表达式
+// 第一种：函数声明式
+myFunc();
+function myFunc(){
+    ...
+}
+
+// 第二种：函数表达式
+myFunc();
+let myFunc = function(){
+    ...
+}
+
+虽然上面两种函数声明方式在大部分情况下是一样的，第一种可执行，第二种却不可以执行，这是因为浏览器在解析 js 时找到函数声明，并在执行剩余语句之前设置好函数，此过程称为函数提升，但是函数表达式却不会受到提升，因此无法正常工作。
+js 不具备多态性
+js 重不能创建名称相同但参数不同的两个函数，它不具备这个多态性，比如你定义的函数中有两个形参，调用函数时只传一个参数，第二形参的值就是 undefined ，如果传的参数大于 3 个，那么会自动忽略多余的参数。可以使用下列方法来处理函数定义参数数量和用于调用函数实际参数数量之间不匹配的问题。
+// 使用默认参数
+let func = function(age, sex=&#39;男&#39;){
+    ...
+}
+func(23);
+
+// 使用可变长参数
+let func = function(age, sex, ...extraArgs){
+    ...
+}
+func(23, &#39;女&#39;, &#39;张三&#39;, &#39;深圳&#39;);
+// 最后一个参数是一个数组，任何额外的实参都会被赋给这个数组
+
+let 和 war 的区别
+使用 let 和 var 声明变量的区别，使用 let 声明变量会把变量的作用范围限定在它所在的代码区域内。而使用 var 所创建的变量的作用域是它所在的函数。
+function func(){
+    if(false){
+        var age = 23;
+    }
+}
+
+// 上面的代码会被解析成下面的形式，使用 let 则不会出现这样的结果
+
+function func(){
+    var age;
+    if(false){
+        age = 23;
+    }
+}
+
+相等 == 和恒等 === 以及 连接操作符 +
+相等操作符尝试将操作数强制转换为相同的类型，再评估是否相等，实质上相等操作符==是测试二者的值是否相等，而与二者的类型无关；如果要测试值和类型是否都相等则应该用恒等操作符===。
+5 == &#39;5&#39; // 结果为 true
+5 === &#39;5&#39; // 结果为 false
+
+在 js 中，连接操作符的优先级高于加法操作，也就是说5 + &#39;5&#39;的结果是55。
+不同的模块指定方式
+import { Name } from &amp;quot;./modules/NameUtil&amp;quot;;// 第一种
+import { Compont } from &amp;quot;@angular/core&amp;quot;;// 第二种
+
+上面两种导入模块的方式有所不同，第一种是相对模块，第二种是非相对导入。第一种告诉的 TypeScript 编译器，该模块所在的位置是相对于包含 import 语句的文件而言；第二种非相对导入，编译器会用 node_modules 文件夹中的 npm 包来解析它。
+如果在导入模块时，出现需要导入两个不同模块但是名字却相同的情况，可以使用as关键字给导入的模块取一个别名。
+import { Name as otherName } from &amp;quot;./modules/Name&amp;quot;;//取别名
+
+还有一种方法是将模块作为对象导入，如下 import 所示，导入 Name 模块的内容，并创建一个名为 otherName 的对象，然后就可以使用该对象的属性了。
+import * as otherName from &amp;quot;./modules/NameUtil&amp;quot;;
+let name = new otherName.Name(&amp;quot;Admin&amp;quot;, &amp;quot;China&amp;quot;);// Name 是 NameUtil 中的类
+
+多类型和类型断言
+在 ts 中允许指定多个类型，使用字符|进行分隔。看下面的的方法，其功能是把华氏温度转换为摄氏温度。
+// 使用多类型，该函数可以传入 number 和 string 类型的参数
+static convertFtoC(temp: number | string): string {
+    /*
+    尝试使用 &amp;lt;&amp;gt; 声明一个类型断言，将一个对象转换为指定类型，也可以使用 as 关键字实现下列相同的效果
+    let value: number = (temp as number).toPrecision ? temp as number : parseFloat(temp as string);
+    */
+    let value: number = (&amp;lt;number&amp;gt;temp).toPrecision ? &amp;lt;number&amp;gt;temp : parseFloat(&amp;lt;string&amp;gt;temp);
+    return ((parseFloat(value.toPrecision(2)) - 32) / 1.8).toFixed(1);
+}
+
+元组是固定长度的数组，数组的每一项都是指定的类型；可索引类型可以将键与值关联起来，创建类似于 map 的集合。
+// 元组
+let tuple: [string, string, string];
+tuple = [&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;];
+
+// 可索引类型
+let cities: {[index: string] : [string, string]} = {};
+cities[&amp;quot;Beijing&amp;quot;] = [&amp;quot;raining&amp;quot;, &amp;quot;2摄氏度&amp;quot;];
+
+数据绑定
+[target]=&amp;quot;expr&amp;quot;// 方括号表示单向绑定，数据从表达式流向目标；
+
+(target)=&amp;quot;expr&amp;quot;// 圆括号表示单向绑定，数据从目标流向表达式，用于处理事件的绑定；
+[(target)]=&amp;quot;expr&amp;quot;// 圆方括号组合表示双向绑定，数据在表达式与目标之间双向流动；
+{{ expression }}// 字符串插入绑定。
+
+[] 绑定有很多不同的形式，下面介绍不同表现形式的效果。
+&amp;lt;!-- 
+    标准属性绑定（dom对象有的属性），将 input 的 value 属性绑定到一个表达式的结果
+    因为 model.getProduct(1) 可能返回 null ，所以使用模板空条件操作符 ? 浏览返回结果
+    如果返回不为空，那么将读取 name 属性，否则由 null 合并操作符 || 将结果设置为 None
+    字符串插入绑定也可以使用这种表达式
+ --&amp;gt;
+&amp;lt;input [value]=&amp;quot;model.getProduct(1)?.name || &#39;None&#39;&amp;quot;&amp;gt;
+
+&amp;lt;!-- 
+    元素属性绑定，有时候我们需要绑定的属性在 DOMAPI 上面没有
+    可以使用通过在属性名称前加上 attr 前缀的方式来定义目标
+ --&amp;gt;
+&amp;lt;td [attr.colspan]=&amp;quot;model.getProducts().length&amp;quot;&amp;gt;
+    {{ model.getProduct(1)?.name || &#39;None&#39; }}
+&amp;lt;/td&amp;gt;
+
+&amp;lt;!-- 还有其他的 ngClass，ngStyle 等绑定，理解大体上和上面差不多 --&amp;gt;
+
+内置指令
+&amp;lt;!-- 
+    ngIf指令，如果表达式求值结果为 true ，那么 ngIf 将宿主元素机器内容包含在 html 文件中
+    指令前面的星号表示这是一条微模板指令
+    组要注意的是，ngIf 会向 html 中添加元素，也会从中删除元素，并非只是显示和隐藏
+    如果只是控制可见性，可以使用属性绑定挥着样式绑定
+ --&amp;gt;
+&amp;lt;div *ngIf=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;!-- 
+    ngSwitch指令，
+ --&amp;gt;
+&amp;lt;div [ngSwitch]=&amp;quot;expr&amp;quot;&amp;gt;
+    &amp;lt;span *ngSwitchCase=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span *ngSwitchDefault&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;!-- 
+    ngFor指令，见名知意，为数组中的每个对象生成同一组元素
+    ngFor 指令还支持其他的一系列可赋给变量的值，有如下局部模板变量
+    
+    index：当前对象的位置
+    odd：如果当前对象的位置为奇数，那么这个布尔值为 true
+    even：同上相反
+    first：如果为第一条记录，那么为 true
+    last：同上相反
+ --&amp;gt;
+&amp;lt;div *ngFor=&amp;quot;let item of expr; let i = index&amp;quot;&amp;gt;
+    {{ i }}
+&amp;lt;/div&amp;gt;
+
+&amp;lt;!-- 
+    ngTemplateOutlet指令，用于重复模板中的内容块
+    其用法如下所示，需要给源元素指定一个 id 值
+    
+    &amp;lt;ng-template #titleTemplate&amp;gt;
+        &amp;lt;h1&amp;gt;我是重复的元素哦&amp;lt;/h1&amp;gt;
+    &amp;lt;/ng-template&amp;gt;
+    &amp;lt;ng-template [ngTemplateOutlet]=&amp;quot;titleTemplate&amp;quot;&amp;gt;&amp;lt;/ng-template&amp;gt;
+    ...省略若万行 html 代码
+    &amp;lt;ng-template [ngTemplateOutlet]=&amp;quot;titleTemplate&amp;quot;&amp;gt;&amp;lt;/ng-template&amp;gt;
+ --&amp;gt;
+&amp;lt;ng-template [ngTemplateOutlet]=&amp;quot;myTempl&amp;quot;&amp;gt;&amp;lt;/ng-template&amp;gt;
+
+&amp;lt;!-- 
+    下面两个指令就是见名知意了，不解释
+ --&amp;gt;
+&amp;lt;div ngClass=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div ngStyle=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+事件绑定
+事件绑定使用 (target)=&amp;quot;expr&amp;quot;，是单向绑定，数据从目标流向表达式，用于响应宿主元素发送的事件。
+当浏览器触发一个时间时，它将提供一个对象来描述该事件，对于不同类型的事件有不同类型的事件对象，事件对象被赋给一个名为$event的模板变量，但是所有事件对象都有下面三个属性:
+type：返回一个 string 值，用于标识已触发事件类型；
+target：返回触发事件的对象，一般是 html元素对象。
+timeStamp：返回事件触发事件的 number 值，用 1970.1.1 毫秒数表示。
+
+下面举几个例子，作为理解帮助使用。
+&amp;lt;!-- 当数鼠标在上面移动时，就会触发 mouseover 事件 --&amp;gt;
+&amp;lt;td *ngFor=&amp;quot;let item of getProducts()&amp;quot; (mouseover)=&amp;quot;selectedProduct = item.name&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+
+&amp;lt;!-- 当用户编辑 input 元素的内容时就会触发 input 事件 --&amp;gt;
+&amp;lt;input (input)=&amp;quot;selectedProduct=$event.target.value&amp;quot; /&amp;gt;
+
+&amp;lt;input (keyup)=&amp;quot;selectedProduct=product.value&amp;quot; /&amp;gt;
+&amp;lt;!-- 使用事件过滤，上面的写法按下任何一个键都会触发事件，而下面的写法只有回车事件才会触发事件 --&amp;gt;
+&amp;lt;input (keyup.enter=&amp;quot;selectedProduct=product.value&amp;quot;) /&amp;gt;
+
+表单验证
+Angular 提供了一套可扩展的系统来验证表单元素的内容，总共可以向 input表元素中添加 4 个属性，每个属性定义一条验证规则，如下所示：
+required：用于指定必须填写值；
+minlength：用于指定最小字符数；
+maxlength：用于指定最大字符数，（不能在表单元素直接使用，因为它与同名的 H5 属性冲突）；
+pattern：该属性用于指定用户填写的值必须匹配正则表达式
+
+&amp;lt;!-- 
+    Angular 要求验证的元素必须定义 name 属性
+    由于 Angular 使用的验证属性和 H5 规范使用的验证属性相同，
+    所以向表单元素中添加 novalidate 属性，告诉浏览器不要使用原生验证功能
+    ngSubmit 绑定表单元素的 submit 事件
+ --&amp;gt;
+&amp;lt;form novalidate (ngSubmit)=&amp;quot;addProduct(newProduct)&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot;
+        name=&amp;quot;name&amp;quot;
+        [(ngModel)]=&amp;quot;newProduct.name&amp;quot;
+        required
+        minlength=&amp;quot;5&amp;quot;
+        pattern=&amp;quot;^[A-Za-z]+$&amp;quot; /&amp;gt;
+    &amp;lt;button type=&amp;quot;submit&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+Angular 提供了 3 对验证 CSS 类，这些类可以用于样式化表单元素，向用户提供验证反馈，具体说明如下所示。
+ng-untouched ng-touched：如果一个元素未被用户访问，就将其加入到 nguntouched 类中；一旦访问就加入到 ngtouched 类中。
+ng-prisstine ng-dirty：元素内容没有被改变被加入到 ng-prisstine 类中，否则将其加入到 ng-dirty 类中。
+ng-valid ng-invalid：如果满足验证规则定义的条件，就加入到 ng-valid 类中，否则加入到 ng-invalid 类中。
+
+在实际使用过程中，直接定义对应的样式即可，如下所示：
+&amp;lt;style&amp;gt;
+input.ng-dirty.ng-invalid{
+    border: 2px solid red;
+}
+input.ng-dirty.ng-valid{
+    border: 2px solid green;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;form novalidate (ngSubmit)=&amp;quot;addProduct(newProduct)&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot;
+        name=&amp;quot;name&amp;quot;
+        [(ngModel)]=&amp;quot;newProduct.name&amp;quot;
+        required
+        minlength=&amp;quot;5&amp;quot;
+        pattern=&amp;quot;^[A-Za-z]+$&amp;quot; /&amp;gt;
+    &amp;lt;button type=&amp;quot;submit&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+上面的验证方式无法给用户提供更加具体的信息，用户不知道应该做什么，可以使用 ngModel 指令来访问宿主元素的验证状态，当存在验证错误的时候，使用该指令向用户提供指导性信息。
+&amp;lt;form novalidate (ngSubmit)=&amp;quot;addProduct(newProduct)&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot;
+        #nameRef=&amp;quot;ngModel&amp;quot;
+        name=&amp;quot;name&amp;quot;
+        [(ngModel)]=&amp;quot;newProduct.name&amp;quot;
+        required
+        minlength=&amp;quot;5&amp;quot;
+        pattern=&amp;quot;^[A-Za-z]+$&amp;quot; /&amp;gt;
+    &amp;lt;ul class=&amp;quot;text-danger list-unstyled&amp;quot;
+        *ngIf=&amp;quot;name.dirty &amp;amp;&amp;amp; name.invalid&amp;quot;&amp;gt;
+        &amp;lt;li *ngIf=&amp;quot;name.errors?required&amp;quot;&amp;gt;
+            you must enter a product name
+        &amp;lt;/li&amp;gt;
+        &amp;lt;li *ngIf=&amp;quot;name.errors?.pattern&amp;quot;&amp;gt;
+            product name can only contain letters and spases
+        &amp;lt;/li&amp;gt;
+        &amp;lt;li *ngIf=&amp;quot;name.errors?minlength&amp;quot;&amp;gt;
+            &amp;lt;!-- 
+                Angular 表单验证错误描述属性
+                required：如果属性已被应用于 input 元素，此属性返回 true
+                minlength.requiredLength：返回满足 minlength 属性所需的字符数
+                minlength.actualLength：返回用户输入的字符数
+                pattern.requiredPattern：返回使用 pattern 属性指定的正则表达式
+                pattern.actualValue：返回元素的内容
+             --&amp;gt;
+            product name must be at least {{ name.errors.minlength.requiredLenth }} characters
+        &amp;lt;/li&amp;gt;
+    &amp;lt;/ul&amp;gt;
+    &amp;lt;button type=&amp;quot;submit&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+如果在用户尝试提交表单时就显示大量的错误信息，给人的体验感就会很差，所以可以让用户提交表单时再验证整个表单，示例代码如下所示。
+export class ProductionCompont {
+    // ...省略若万行代码
+    formSubmited: boolean = false;
+
+    submitForm(form: ngForm) {
+        this.formSubmited = true;
+        if(form.valid) {
+            this.addProduct(this.newProduct);
+            this.newProduct = new Product();
+            form.reset();
+            this.formSubmited = true;
+        }
+    }
+}
+
+&amp;lt;form novalidate #formRef=&amp;quot;ngForm&amp;quot; (ngSubmit)=&amp;quot;submitForm(formRef)&amp;quot;&amp;gt;
+    &amp;lt;div *ngIf=&amp;quot;formsubmited &amp;amp;&amp;amp; formRef.invalid&amp;quot;&amp;gt;
+        there are problems with the form
+    &amp;lt;/div&amp;gt;
+    &amp;lt;!-- 禁用提交按钮，验证成功提交按钮才可用 --&amp;gt;
+    &amp;lt;button [disabled]=&amp;quot;formSubmited &amp;amp;&amp;amp; formRef.valid&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+fromSubmited 属性用于指示表单是否已经提交，并将用于在用户提交整个表单之前阻止表单验证。当用户提交表单时，调用 submitForm 方法，并将 ngForm 对象作为实参传入，ngForm 提供了 reset 方法，该方法可以重置表单的验证状态，使其返回到最初的未访问状态。
+更高级的还有使用基于模型的表单验证，可以自行查阅相关资料。
+使用 json-server 模拟 web 服务
+因为json-server会经常用到，建议使用全局安装命令npm install -g json-server。因为开发后端的同学太慢了，而我们如果要等他们把接口都提供给我们的时候再开发程序的话，那效率就太低了，所以使用 json-server 来模拟后端服务。只需要建好一个 json 文件，比如下面的格式：
+{
+    &amp;quot;user&amp;quot; : [
+        {
+            &amp;quot;name&amp;quot; : &amp;quot;张三&amp;quot;,
+            &amp;quot;number&amp;quot; : &amp;quot;1234&amp;quot;,
+        },
+        {
+            &amp;quot;name&amp;quot; : &amp;quot;王二&amp;quot;,
+            &amp;quot;number&amp;quot; : &amp;quot;5678&amp;quot;,
+        }
+    ],
+    &amp;quot;praise&amp;quot;: [
+        {&amp;quot;info&amp;quot;:&amp;quot;我是一只小老虎呀！&amp;quot;},
+        {&amp;quot;info&amp;quot;:&amp;quot;我才是大老虎&amp;quot;}
+    ]
+}
+
+启动服务使用命令json-server [你的 json 文件路径]，然后就可以根据提示访问了，你甚至可以使用http://localhost:3000/user?number=5678去过滤数据。这样就能模拟 web 服务，而不必等后端同学的进度了。
+解决跨域请求问题
+Angular 跨域请求问题可以通过 Angular 自身的代理转发功能解决，在项目文件夹下新建一个 proxy.conf.json 并在其中添加如下内容。
+// 可以通过下列配置解决
+&amp;quot;/api&amp;quot;: {
+    &amp;quot;target&amp;quot;: &amp;quot;http://10.9.176.120:8888&amp;quot;,
+}
+
+在启动时使用npm start，或者使用ng serve  --proxy-config proxy.conf.json，Anular 中的/api请求就会被转发到 http://10.9.176.120:8888/api，从而解决跨域请求问题。
+使用第三方 js 插件
+共有三种方式引入第三方插件，第一种很简单，直接在 html 中引入插件就可以了；第二种在angular.json中进行配置；第三种在 ts 文件中使用 import 导入库即可。
+// 第一种(需要重启服务)
+&amp;quot;scripts&amp;quot;: [&amp;quot;src/assets/jquery-3.2.1.js&amp;quot;,&amp;quot;src/assets/jquery.nicescroll.js&amp;quot;,&amp;quot;src/assets/ion.rangeSlider.js&amp;quot;]
+
+// 第二种
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;assets/jquery-3.2.1.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;assets/jquery.nicescroll.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+// 第三种
+import &amp;quot;assets/jquery-3.2.1.js&amp;quot;;
+import &amp;quot;assets/jquery.nicescroll.js&amp;quot;;
+import &amp;quot;assets/ion.rangeSlider.js&amp;quot;;
+
+深拷贝与浅拷贝
+深拷贝与浅拷贝是围绕引用类型变量说的，其本质区别是不可变性，基本类型是不可变得，而引用类型是可变的。
+直接使用赋值操作符，就是浅拷贝，如果对拷贝源进行操作，会直接影响在拷贝目标上，因为这个赋值行为本质是内存地址的赋值，为了获得与拷贝源完全相同但又不会影响彼此的对象就要使用深拷贝。
+let objA = {
+    x: 1,
+    y: -1
+}
+let objB = objA;
+objA.x++;
+console.log(&amp;quot;objA.x:&amp;quot;+objA.x, &amp;quot;objB.x:&amp;quot;+objB.x);
+//打印结果如下：
+objA.x : 2 
+objB.x : 2
+
+Typescript 提供了一种方法来实现引用类型的深拷贝，即Object.assign(target, ...source)，此方法接受多个参数，第一个参数为拷贝目标，剩余参数为拷贝源，同名属性会进行覆盖。
+let objA = {
+    x: 1,
+    y: -1,
+    c: {
+        d: 1,
+    }
+}
+let objB = {};
+Object.assign(objB, objA);
+objA.x++;
+console.log(&amp;quot;objA.x:&amp;quot;+objA[&amp;quot;x&amp;quot;], &amp;quot;objB.x:&amp;quot;+objB[&amp;quot;x&amp;quot;]);
+//打印结果如下：
+objA.x : 2 
+objB.x : 1
+
+需要注意的是，Typescript 提供的深拷贝方法不能实现嵌套对象的深拷贝，会出现下面的情况。
+let objA = {
+    x: 1,
+    y: -1,
+    c: {
+        d: 1,
+    }
+}
+let objB = {};
+Object.assign(objB, objA);
+objA.c.d++;
+console.log(&amp;quot;objA.c.d:&amp;quot;+objA[&amp;quot;c&amp;quot;].d, &amp;quot;objB.c.d:&amp;quot;+objB[&amp;quot;c&amp;quot;].d);
+//打印结果如下：
+objA.c.d : 2 
+objB.c.d : 2
+
+要实现嵌套对象的深拷贝，可以使用 JSON 对象提供的方法，JSON 对象提供了两个方法，分别为：stringify()和parse()，前者将对象 JSON 化，后者将 JSON 对象化，使用这种方式可以实现嵌套深拷贝，但是也有缺点：破坏原型链，不能拷贝属性值为 function 的属性。
+let objA = {
+    a: 1,
+    b: {
+        c: 1
+    }
+}
+let objB = JSON.parse(JSON.stringify(objA));
+objA.b.c++;
+console.log(&amp;quot;objA.b.c:&amp;quot;+objA.b.c, &amp;quot;objB.b.c:&amp;quot;+objB.b.c);
+
+//打印结果如下：
+objA.b.c:2
+objB.b.c:1
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/WnccL2rgJ/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/wfWg7oC32/">
+                        读大学的几点建议
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-18</time>
+                    
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-banana">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/wfWg7oC32/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/wfWg7oC32.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            前天在朋友圈看到一句话：“学生就是无知、狂妄、垃圾的代名词”，让我思考了很多东西。毕业出来也有快两月了，圈子里还有很多学弟学妹，很多同级的同学也都读研了，这里谈谈自己的感受，应该怎么把大学过好，期望不要太高，我自己很普通，大学没有什么出彩的经历。
+很多父母都把孩子的成就与大学挂钩，认为好的大学就是成功的代名词，盲目追求高学历，孩子从小也一直受这些思维的影响，应试能力强的惊人。大家都知道清华北大好，但是你问他哪里好，就回答不上来了，尤其家长，在他们眼里 985 一定比 211 好，211 一定比普通一本好。
+现在大学都会给你传达自己乃名门之后的观念，进校首先讲历史，当然都是挑好的讲，然后讲学校的历史成绩单。不得不说，效果非常好，你一和大学生谈论他的学校时，他会给你说出来学校是某某名人所建，学校在哪方面做的非常好，比如导弹是全国第几，造船位居全国前列等等。但是你一问他本人是哪个专业，回答是学数学的、学计算机的......
+每个学校都有恶心的事，我自己的一个经历，学院一拍脑袋，搞个什么本科生导师制，然后就没有然后了，四年总共见了导师一面。期间最可笑的是，也不知道是教育部还是什么部来检查，学生需要交一个导师沟通表上去，导师在哪个办公室都不知道，那大家怎么办，就模仿导师的口吻给自己下评语，第二天全院的导师沟通表都被打回来了，因为大家模仿的口吻不像导师，要求重新造假。
+上面的类似情况在大部分学校应该都存在，只不过看谁更可笑，某个学生出事了，学校第一想法不是怎么帮自己的学生解决问题，而是想如何把事情压下去，封锁消息。你会发现很多效率像蜗牛一样的机构，其公关效率却像火箭一样。
+现在各个大学的就业率都高的惊人，都不会低于 90%，为啥这么高呢？我也不知道学校是如何统计就业率的，唯一清楚的是，你毕业了，没有签工作，那么辅导员会给你打电话让你随便找个公司把三方协议签了交上去；这算轻的，很多学校是你不交三方协议，就不给你学位证、毕业证，我身边就有好几个随便刻个假章，盖在三方上面，只要交了三方协议的都算就业了的。
+我个人认为大学有的课就应该逃，也看到过文章说学生上课不应该带有批判性思维，什么课有用不应该是学生说了算，大学的课程设置都是专家们讨论的结果，现在最不缺的就是专家，什么人生导师一大把，出来之后，你仍然会发现有的课纯属浪费时间。强调一下，逃课不是去打游戏，是为了把时间利用的比在课堂上更有价值，我大学微积分老师也鼓励我们逃课，现在看来那时还是胆子太小，人家鼓励你逃课，还不敢逃，怂。重要的事再说一遍，逃课是去做比上课更有价值的事情。
+养成自学的习惯，提高自学能力，自学能力太重要了，而且这个时代自学是很容易的，网上有很多视频教程，比学校老师教的还好，而且也更接近于实战，大学教不了你太多东西，仅仅提供了一个平台，只是平台大小的区别而已。经常会听到学生说某个知识点老师没教，潜台词就是这个知识点我就不应该会，而且理直气壮，让人无语。世人都认为学历最重要，实际上真正重要的是学力。
+迷茫的时候就去旅行吧，感受一下不同的文化，见识见识世界的缤纷多彩，你的视野会开阔许多，很多事情必须亲身体验才能感受到它的好处，旅途中你可以结识各种各样的朋友，与他们的思想碰撞，看看其他地方的生活，你可能就不会迷茫了，会找到自己乐趣。
+多结识比自己优秀的人，认识正能量的朋友，大学提供了很多机会，优秀的朋友会在不知不觉中改变你，你也会不知不觉变得更优秀。我在出于兴趣和打发时间，没事写写文章，让我意外的是，对我的改变太大了，通过写作让我认识了一些社会上的优秀人士，通过与他们交谈，我的思维方式有很大的改变，学生思维逐渐摒弃。
+尽量不要透支，学生没有收入来源，基本都是依靠父母每个月给的生活费，很多学生都使用花呗、白条等产品，而且借贷金额还不少，从理财角度来看，每个月的还款额超过自己收入的三分之一，生活就会有压力，何况学生还是没有收入的群体。没必要为了追求时髦而疯狂购买各种新产品，真高品质生活不应该是科技产品堆砌而成，而应该是由惬意、舒心、成长所构建的。
+还是要注重和学院领导、辅导员的关系，这点我是做的最差的，因为我不会拍马屁，看不惯就要说出来，容易得罪人。相信这背后的好处都还是明白一二，什么评奖评优暂且不谈，在保研的时候，这种关系会帮你一个大忙，往大了说就是改变人生的机会。
+写完读了一遍，有的观点还是显得偏激，请自行选择吸收，也欢迎批评指正。总得来说，最重要的就是提升自己的认知水平，思维方式很重要，保持终身学习的态度。有的事要敢想，不要给自己的思维设限制，也不要觉得博士硕士有多么了不起，研究生能做的事，本科生照样能做。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/wfWg7oC32/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/5rUXZg3sM/">
+                        跨域请求是什么？如何解决？
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-18</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-info">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
+                            i-tag-other_2">
+            #Angular
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-">
+            #计算机网络
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-other_2">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/5rUXZg3sM/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/5rUXZg3sM.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+JavaScript: Use a Web Proxy for Cross-Domain XMLHttpRequest Calls
+别慌，不就是跨域么!
+跨域资源共享 CORS 详解
+AJAX请求和跨域请求详解（原生JS、Jquery）
+JavaScript跨域总结与解决办法
+
+
+刚毕业入职，大部分时间还在培训，中间有一段时间的空闲时间，就学习了下 Angular，在学校都是编写的单体应用，所有代码都放在同一个工程下面，到公司使用的是前后端分离了，虽然后端程序也是我自己写的，但是有一些数据是从公司现有接口去拿的，然后就遇到让我纠结了两小时的跨域请求问题，在这里做一个简单的总结输出。
+什么是跨域请求
+跨域请求问题是浏览器的同源策略造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：协议、域名、端口。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。
+http://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 非跨域
+
+http://www.nealyang.cn/index.html 调用 http://www.neal.cn/server.php 跨域,主域不同
+
+http://abc.nealyang.cn/index.html 调用 http://def.neal.cn/server.php 跨域,子域名不同
+
+http://www.nealyang.cn:8080/index.html 调用 http://www.nealyang.cn/server.php 跨域,端口不同
+
+https://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 跨域,协议不同
+
+localhost 调用 127.0.0.1 跨域
+
+同源政策的目的是为了保护用户信息的安全，防止恶意网站窃取数据，随着互联网的发展，同源政策更加严格了，下面三种行为都会受到限制。
+（1） Cookie、LocalStorage 和 IndexDB 无法读取。
+（2） DOM 无法获得。
+（3） AJAX 请求不能发送。
+
+所有的现代浏览器都对网络连接进行了安全限制，包括 XMLHttpRequest，如果你的 web 应用程序和其使用的数据在同一个服务器，你不会遇到跨域请求问题。但是当你的 web 应用程序和 web 服务数据不在同一个服务器时，就会被浏览器限制连接了。
+常用解决方案
+    对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面设置代理。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。
+
+通俗易懂的说，你家的宠物狗不会吃别家的食物，因为它担心别人的食物会把自己给药死，所以你的狗狗只管找你要食物，你是它的主人，它绝对相信你，而你可以鉴别别人给的食物是不是安全的。类比，小狗就是浏览器，你就是代理。
+Angular 中的解决办法
+上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用angular-cli构建你的项目，我们可以创建一个代理配置文件proxy.conf.json（假设你的后端服务的访问地址为10.121.163.10:8080），代理配置文件如下：
+{
+  &amp;quot;/api&amp;quot;: {
+    &amp;quot;target&amp;quot;: &amp;quot;http://10.121.163.10:8080&amp;quot;,
+    &amp;quot;secure&amp;quot;: false
+  }
+}
+
+然后修改package.json文件中的启动命令为&amp;quot;start&amp;quot;: &amp;quot;ng serve --proxy-config proxy.conf.json&amp;quot;，启动项目时使用npm start即可解决跨域请求问题。
+上述解决方案仅在开发时使用，你当然可以使用 tomcat、nginx 配置代理，但是这很麻烦，需要打包代码部署，为了保证效率，我们想写完了立刻测试，同时也不想麻烦做后端的同学，在项目发布时，应该把代理配置到服务器中去；修改启动命令也不是必须的，你也可以选择每次使用 ng serve  --proxy-config proxy.conf.json命令启动项目；示例代理配置文件内容可以有更多的属性，可以通过网络查阅相关资料。
+后端解决办法
+我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。
+这时需要了解一下简单请求和非简单请求了，简单请求就是只发送一次请求的请求；非简单请求会发送数据之前先发一次请求做预检，通过预检后才能再发送一次请求用于数据传输。
+更清晰区别，满足下列两大条件的属于简单请求，而非简单请求就是请求方法为PUT或DELETE，或者 Content-Type字段是application/json的请求。
+
+1.请求方法为 GET、POST、HEAD之一
+2.HTTP头信息不超出字段：Accept、Accept-Language、Content-Language、Last-Event-ID、Content-Type，并且 Content-Type 的值仅限于 application/x-www-form-urlencoded、multipart/form-data、text/plain。
+
+对于简单请求，只需要设置一下响应头就可以了。
+class TestHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        # 可以把 * 写成具体的域名
+        self.write(&#39;cors get success&#39;)
+
+对于复杂请求，需要设置预检方法，如下所示：
+class CORSHandler(tornado.web.RequestHandler):
+    # 复杂请求方法put
+    def put(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        self.write(&#39;put success&#39;)
+    # 预检方法设置
+    def options(self, *args, **kwargs):
+        #设置预检方法接收源
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        #设置预复杂方法自定义请求头h1和h2
+        self.set_header(&#39;Access-Control-Allow-Headers&#39;, &amp;quot;h1,h2&amp;quot;)
+        #设置允许哪些复杂请求方法
+        self.set_header(&#39;Access-Control-Allow-Methods&#39;, &amp;quot;PUT,DELETE&amp;quot;)
+        #设置预检缓存时间秒,缓存时间内发送请求无需再预检
+        self.set_header(&#39;Access-Control-Max-Age&#39;, 10)
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/5rUXZg3sM/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+    <div class="pagination-container">
+        
+            <a href="https://www.guanngxu.com/page/7/" class="page-btn btn">上一页</a>
+            
+                
+                    <a href="https://www.guanngxu.com/page/9/" class="page-btn btn">下一页</a>
+                    
+    </div>
+    
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1721109094724">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                        <!-- 最新文章 -->
+                        <div class="new_posts_card i-card">
+    <h2 class="new_posts_card-title">
+        最新文章
+    </h2>
+    <div class="new-posts">
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/-loFmea4T/">电源 PCB 布局及其常见错误</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/asBsvJSki/">电平转换器基础知识</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/L3EbniCYD/">LDO 基础知识</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/xdxGDHzvU/">半导体功率器件</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/br0hmOiiG/">BUCK 电路基础知识</a>
+            </h4>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+</div>
+                            <!-- 标签云 -->
+                            <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+                                <!-- 公告栏 -->
+                                
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>
