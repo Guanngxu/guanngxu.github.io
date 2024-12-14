@@ -1,0 +1,1953 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1734167562191">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://analytics.eu.umami.is/script.js" data-website-id="d80638ca-7f47-4227-af1c-714b9739ba9d"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1734167562191" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/qzip9Ct6U/">
+                        Vue 入门避坑——Vue + TypeScript 项目起手式
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-09</time>
+                    
+                        <a href="https://www.guanngxu.com/7QbLXmeen/" class="post-tag i-tag
+                            i-tag-other_4">
+            #Vue
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-other_3">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
+                            i-tag-primary">
+            #TypeScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-primary">
+            #JavaScript
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/qzip9Ct6U/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/qzip9Ct6U.webp) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            在此前我使用的前端框架是 Angular，使用过 TypeScript 后你就会讨厌 JS 了，我学习 Vue 时的最新版本是 2.5，相信大部分同学都不会认为 Vue 那样又细又长的代码很美观吧，简单看了一些网络博客后，我毅然决然引入了 TypeScript 进行开发，本文仅整理记录我自己遇到的一些坑。
+使用 Cli
+脚手架是一个比较方便的工具，这里需要注意的是@vue/cli和vue-cli是不一样的，推荐使用npm i -g @vue/cli安装。
+安装完成后，可以直接使用vue create your-app创建项目，你可以选择使用默认配置亦或是自己手动选择配置，按提示一步一步向下走即可，它会根据你的选择自己创建比如tsconfig.json等等配置文件。这里推荐使用less开发样式，sass老是在安装的过程中出问题。
+当然你也可以使vue ui命令启动一个本地服务，它是一个 Vue 项目管理器，提供了一个可视化的页面供你管理自己的项目，它的样子如下图所示，还是比较清新的。
+
+使用 vue-property-decorator
+Vue 官方维护了 vue-class-component 装饰器，vue-property-decorator 则是在vue-class-component基础上增强了更多结合Vue特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。
+截止本文时间，vue-property-decorator共提供了 11 个装饰器和 1 个Mixins方法，下面用@Prop举个例子，是不是看起来引起极度舒适。
+import { Vue, Component, Prop } from &#39;vue-property-decorator&#39;
+
+@Component
+export default class YourComponent extends Vue {
+    @Prop(Number) readonly propA: number | undefined
+    @Prop({ default: &#39;default value&#39; }) readonly propB!: string
+    @Prop([String, Boolean]) readonly propC: string | boolean | undefined
+}
+
+
+// 上面的内容将会被解析成如下格式
+
+export default {
+    props: {
+        propA: {
+            type: Number
+        },
+        propB: {
+            default: &#39;default value&#39;
+        },
+        propC: {
+            type: [String, Boolean]
+        }
+    }
+}
+
+使用 Vuex
+关于怎么使用Vuex此处就不再做过多说明了，需要注意的一点是，如果你需要访问$store属性的话，那么你必须得继承Vue类，坑的地方是在某些情况下即使你没有继承Vue，它也能通过编译，只有在程序运行起来的时候才报错。
+class ExampleApi extends Vue {
+
+    public async getExampleData() {
+        if (!this.$store.state.exampleData) {
+            const res = await http.get(&#39;url/exampleData&#39;);
+            if (res.result) {
+                this.$store.commit(&#39;setExampleData&#39;, res.data);
+                return res.data;
+            } else {
+            promptUtil.showMessage(&#39;get exampleData failed&#39;, &#39;warning&#39;);
+            }
+        } else {
+            return this.$store.state.exampleData;
+        }
+    }
+}
+
+使用自己的配置（含代理）
+vue.config.js是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被@vue/cli-service自动加载，它的配置项说明可以查看配置参考。
+我们再开发过程中都会使用代理来转发请求，代理的配置也是在这个文件中，它的官方说明在devserver-proxy中，下面是一个简单的vue.config.js文件例子。
+module.exports = {
+    filenameHashing: true,
+    outputDir: &#39;dist&#39;,
+    assetsDir: &#39;asserts&#39;,
+    indexPath: &#39;index.html&#39;,
+    productionSourceMap: false,
+    transpileDependencies: [
+        &#39;vue-echarts&#39;,
+        &#39;resize-detector&#39;
+    ],
+    devServer: {
+        hotOnly: true,
+        https: false,
+        proxy: {
+            &amp;quot;/statistics&amp;quot;: {
+                target: &amp;quot;http://10.7.213.186:3889&amp;quot;,
+                secure: false,
+                pathRewrite: {
+                    &amp;quot;^/statistics&amp;quot;: &amp;quot;&amp;quot;,
+                },
+                changeOrigin: true
+            },
+            &amp;quot;/mail&amp;quot;: {
+                target: &amp;quot;http://10.7.213.186:8888&amp;quot;,
+                secure: false,
+                changeOrigin: true
+            }
+        }
+    }
+}
+
+让 Vue 识别全局方法和变量
+我们在项目中都会使用一些第三方 UI 组件，比如我自己就使用了 Element，但是在使用它的$message、$notify等方法时就直接报错了，究其原因就是$message等属性并没有在 Vue 实例中声明。
+官方对此给出了很明确的解决方案，使用的是 TypeScript 的 模块补充特性，可以查看增强类型以配合插件使用。既然知道是因为没有声明导致的错误，那我们就给它声明一下好了，在src/shims-vue.d.ts文件中添加如下代码即可，如果没有该文件请自行创建。
+
+看到网上也有一部分人说的是src/vue-shim.d.ts，反正不管是怎么命名这个文件的，它们的作用是一样的。
+
+declare module &#39;vue/types/vue&#39; {
+    interface Vue {
+        $message: any,
+        $confirm: any,
+        $prompt: any,
+        $notify: any
+    }
+}
+
+这里顺道提一下，src/shims-vue.d.ts文件中的如下代码是为了让你的 IDE 明白以.vue结尾的文件是什么玩意儿。
+declare module &#39;*.vue&#39; {
+    import Vue from &#39;vue&#39;;
+    export default Vue;
+}
+
+
+路由懒加载
+Vue Router 官方有关于路由懒加载的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用require.ensure()按需加载组件可以生效。
+// base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中
+const Home = (r: any) =&amp;gt; require.ensure([], () =&amp;gt; r(require(&#39;@/views/home.vue&#39;)), layzImportError, &#39;base-view&#39;);
+
+// 路由加载错误时的提示函数
+function layzImportError() {
+    alert(&#39;路由懒加载错误&#39;);
+}
+
+上面的方式会在编译的时候把文件自动分成多个小文件，编译后的文件会以你自己命名的模块名来命名，如果代码之间有相互依赖，依赖部分代码编译后的文件会以两个模块名相连后进行命名。
+但是需要注意的是，这样拆分小文件之后引入了另外一个新的问题，因为客户端会缓存这些编译后的 js 文件，如果功能 A 同时依赖了a.js和b.js两个文件，但用户在使用其它功能时已经把a.js缓存到本地了，使用功能 A 时需要请求b.js文件，这时程序就很容易报错，因为此时在客户端这两个文件不是同一个版本，所以可能导致a.js调用b.js中的方法已经被删了，进而导致客户端页面异常。
+关于引入第三方包
+项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。
+/*
+ 引入 jquery 等库可以尝试下面这种方式
+ 只需要把相应的 js 文件放到指定文件夹即可
+**/
+const $ = require(&#39;@/common/js/jquery.min.js&#39;);
+const md5 = require(&#39;@/common/js/md5.js&#39;);
+
+引入一些第三方样式文件、UI 组件等，如果引入不成功可以尝试建一个 js 文件，将导入语句都写在 js 文件中，然后再在main.ts文件中导入这个 js 文件，这个方法能解决大部分的问题。例如我先建了一个lib.js，然后在main.ts中引入lib.js就没有报错。
+// src/plugins/lib.js
+import Vue from &#39;vue&#39;;
+
+// 树形组件
+import &#39;vue-tree-halower/dist/halower-tree.min.css&#39;;
+import {VTree} from &#39;vue-tree-halower&#39;;
+// 饿了么组件
+import Element from &#39;element-ui&#39;;
+import &#39;element-ui/lib/theme-chalk/index.css&#39;;
+// font-awesome 图标
+import &#39;../../node_modules/font-awesome/css/font-awesome.css&#39;;
+import VueCookies from &#39;vue-cookies&#39;;
+import VueJWT from &#39;vuejs-jwt&#39;;
+
+Vue.use(VueJWT);
+Vue.use(VueCookies);
+Vue.use(VTree);
+Vue.use(Element);
+
+
+// src/main.ts
+import App from &#39;@/app.vue&#39;;
+import Vue from &#39;vue&#39;;
+import router from &#39;./router&#39;;
+import store from &#39;./store&#39;;
+import &#39;./registerServiceWorker&#39;;
+import &#39;./plugins/lib&#39;;
+
+Vue.config.productionTip = false;
+
+new Vue({
+    router,
+    store,
+    render: (h) =&amp;gt; h(App),
+}).$mount(&#39;#app&#39;);
+
+因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个index.d.ts文件，实在不行的话，那个特殊的组件不使用 TypeScript 来写也能解决，我目前还没有找一个可以完全解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/qzip9Ct6U/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/lSehulG6w/">
+                        2019 年个人总结
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-06</time>
+                    
+                        <a href="https://www.guanngxu.com/6ZjSGnvm9/" class="post-tag i-tag
+                            i-tag-other_1">
+            #年度总结
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-warning">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/lSehulG6w/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/lSehulG6w.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            写总结的习惯是从 2015 年开始的，我的大学学费是县政协资助的，叔叔阿姨们唯一的要求就是每年给他们写个总结汇报一下学习情况，毕业后敦促我写总结的人则从外力转为内心。
+一点感动
+上半年我还很年轻，那时候还会经常使用 QQ、Soul、同桌、一罐 等等社交产品，无意结识了一个还在读高中的同性恋女孩子，我没学过心理学不知道用什么专业名词描述她的情况，反正就是心理上有严重的问题，玻璃心、想自杀等等。几次拼了我老命陪她聊到半夜两三点，现在完完全全能正视自己的情况了。
+让我感动的是有次她问我在干啥，我随便拍了一张自己的被汗水打湿衣服发给她，告诉她自己正在打羽毛球。小姑娘给我说我穿的衣服不好看，说我才多大穿的衣服太老了，我也就随口一说叫她给我这个老年人推荐推荐衣服，因为她要上课后面就一直没有回我消息。
+第二天早上睡醒了看到了小姑娘的几十条消息，是半夜两点多发的，给我挑了好几件衣服裤子，还给我画了几张示意图（如下），瞬间收获一份小感动。我也遵从小姑娘的意见买了两件上班穿穿，结果一到部门就是众目睽睽之下给我说穿的好酷，穿几次了都还是会引来大家不一样的目光，个性低调的我还是选择走大众程序员路线，老就老吧。
+
+
+前几天小姑娘给我发了她暗恋的小姐姐的照片，虽然极少时候还是会上课偷偷玩手机，但也在努力的备战高考。我做的不好的就是她多次给我讲自己在龙岗，我每次都把她当成龙华的，希望写了这篇总结之后不再记错吧。
+赚钱理财
+这个小标题起的有点大，仅说说我自己的实际情况吧。凭着运气，2019 年的银行理财收益在 4.5% 左右，基金收益在 7% 左右。我没有去玩股票，网上各种理财课程可能都会给你讲股票的收益多么多么高，但是他们从来不会给你说玩股票的风险有多高，更不可能给你讲玩股票会严重影响自己的心情，可能连自己的本职工作都会搞砸，所以我不建议职场新人进入股市。
+房东忙的时候我会帮他带房客看房，他也给了我小几千块钱的介绍费，加上每个月没交网费直接用他的，还时不时蹭蹭房东的饭局，也给自己省下来周末出去散步的费用了。上半年也给别人分享过两三个课程，在群里分享过一点小技能，大家给发了点红包，交个朋友、图个开心。
+总的来讲，理财这方面做得很差，没有花什么时间去学习，我们的大学也没有教给学生一点金融知识，这一年只读了几本写给小白的理财书，今年在这个领域要多花一点功夫，希望能入得了门吧。
+写书失败
+快要毕业的时候和电子工业出版社签了一份合同，合同内容就是我要写一本叫做《知识图谱：自顶向下方法》，这本书的计划内容是我的毕业设计，已经写了一百多页的内容了，但现在确定以失败告终。
+一者我手里现有的数据属于机密数据，没办法拿来直接使用；二来书中有很大一部分内容涉及到网络爬虫，上半年网上曝了很多因为抓数据而入狱的案例，出版社和我都害怕；三者知识图谱所需要的数据量很大，而且我写的那个领域又是中国特有的经济责任审计领域，大量数据都得从政府网站来，更害怕了；最重要的原因是自己懒，写书的那几个月确实非常的累，想想自己都还是个菜鸟呐，有啥资本教给别人知识，心里给了自己后退的理由。
+小时候曾夸下海口说要给父亲写个传记，也不知道有没有那么一丢丢可能性实现，写家里的狗时，发现写这样的内容会增加我的多巴胺分泌，以后不开心了就写这样的小故事。
+运动健身
+在深圳校友会骑行社师兄师姐们的带领下，同时也得益于一起入职的小伙伴送了我一辆 MERIDA，我喜欢上了骑行这项运动，基本上每周五都会出去骑几十公里，中间还参加了环漓江骑行和 TREK100 骑行，锻炼的同时也见到了美丽的风景。深圳对自行车是不太友好的，基本没有什么自行车道，所以我们大部分时间都是等到晚上车少，交警下班了之后才开始骑行。
+除了骑行每周一也会打两小时羽毛球，谈不上专业，但至少打的不再是广场球了。偶尔也会出去爬爬山啥的，身体确实比上学时候要好很多，而且多锻炼能让自己的精神面貌更好，精气神好也能稍稍掩盖长得丑的缺点。以前每年再怎么也会因为感冒一类的问题进几次医院，19 年仅一次因为智齿发炎去过医院。
+削减迷茫
+大概在四五月份的时候吧，几乎天天失眠，经常夜里只睡了三四个小时，有时甚至通宵未眠，心里很清楚是因为迷茫了，大概就是「晚上想了千条路，早上醒来走原路」的状态。好在自己的调节能力还不算差，同时也有楼下的叔叔、自己的好朋友能唠唠嗑，差不多两个月就回归正常状态了。
+从几个比我晚入职半年的小伙伴那里了解到，他们现在的情况和我四五月份的情况差不多，我想绝大部分普通人都会经历这个迷茫期吧，大部分人也都能通过时间调节过来，调节不过来的那部分人就成为了媒体比较喜欢的人。
+现在迷茫的雾气已经没有那么浓了，初入社会肯定有很多的不成熟，但谁不是这样过来的呢？更何况我并不像多数程序员那样交友严重同质化，周末也不会死宅在家里不出去，猜测我应该比大多数人更潇洒自在的，嘿嘿。
+新的思想
+大家基本都是看着金庸武侠小说（相关影视作品）长大的，没有人写武侠小说能超过金庸。偶然一天在推特上刷到一条评论，大意是：没有人写武侠小说能超过金庸不正代表着社会的进步吗？金庸的成就如此巨大，一个很重要的历史背景是那时候大家没有那么多小说可看呀，哪里像今天遍地的网络小说。咱们没必要去争论这个观点的对错，重要的是它告诉了我们一个不一样的角度去看待问题。
+上面只是一个特例，思维方式是一点一点改变的，认知水平是一点一点提升的，一年时间修正了不少我此前狭隘的观点，这样的修正还在继续，我也会让这样的修正持续下去。
+写在最后
+巴黎圣母院被烧、凉山火灾、女排十连冠、NBA 事件、无锡高架桥倒塌......等等发生在 2019 年的大事，不知道还有多少朋友会记起来。时间从来不会等谁，网友也都是不长记性的，成熟的一部分无非是经历的多了，失望的多了，然后变得更耐操一点，总之生活依旧得继续，人总会亦悲亦喜，那为啥不把悲缩小喜放大呢？
+成功没有银弹、没有捷径，少讲大道理，多解决小问题。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/lSehulG6w/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/G1rwEVR-s/">
+                        MongoDB 聚合(aggregate)入门
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-04</time>
+                    
+                        <a href="https://www.guanngxu.com/iqW8DWbw7/" class="post-tag i-tag
+                            i-tag-error">
+            #MongoDB
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-other_1">
+            #数据库
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/G1rwEVR-s/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/G1rwEVR-s.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            MongoDB 聚合官方文档
+聚合管道是一个基于数据处理管道概念建模的数据聚合框架，文档进入一个多阶段的处理管道，该管道最终将其转换为聚合后的结果。
+下面的例子来源于官方文档。第一阶段，$match按status字段来过滤文档，并把status字段值为A的文档传递到下一阶段；第二阶段，$group将文档按cust_id进行分组，并针对每一组数据对amount进行求和。
+db.orders.aggregate([
+   { $match: { status: &amp;quot;A&amp;quot; } },
+   { $group: { _id: &amp;quot;$cust_id&amp;quot;, total: { $sum: &amp;quot;$amount&amp;quot; } } }
+])
+
+管道
+
+聚合管道包含很多步骤，每一步都会将输入的文档进行转换，但并不是每个阶段都一定需要对每个输入文档生成一个输出文档，比如某些阶段可能生成新的文档或者过滤掉文档。
+除了$out、$merge、$geoNear外，其它的阶段都可以在管道中多次出现，更加详细的内容可以查看 Aggregation Pipeline Stages。
+
+管道表达式
+一些管道阶段采用表达式作为操作元，管道表达式指定了要应用到输入文档的转换，表达式自己是一个文档结构（JSON），表达式也可以包含其它的表达式。
+表达式仅提供文档在内存中的转换，即管道表达式只能对管道中的当前文档进行操作，不能引用来自其他文档的数据。
+写聚合表达式式建议直接参考官方文档，下面列出一些我收集的案例，供深入理解使用。
+案例一：将对象数组转换为单个文档
+// 转换前
+{
+    &amp;quot;_id&amp;quot;: &amp;quot;10217941&amp;quot;,
+    &amp;quot;data&amp;quot;: [
+        {
+            &amp;quot;count&amp;quot;: 2,
+            &amp;quot;score&amp;quot;: &amp;quot;0.5&amp;quot;
+        },
+        {
+            &amp;quot;count&amp;quot;: 6,
+            &amp;quot;score&amp;quot;: &amp;quot;0.3&amp;quot;
+        },
+        {
+            &amp;quot;count&amp;quot;: 5,
+            &amp;quot;score&amp;quot;: &amp;quot;0.8&amp;quot;
+        }
+    ]
+}
+
+// 转换后
+{
+    &amp;quot;_id&amp;quot;: &amp;quot;10217941&amp;quot;,
+    &amp;quot;0.3&amp;quot;: 6,
+    &amp;quot;0.5&amp;quot;: 2,
+    &amp;quot;0.8&amp;quot;: 5
+}
+
+需要说明的是，如果上面data属性中的数据格式为{&amp;quot;k&amp;quot;: &amp;quot;0.6&amp;quot;, &amp;quot;v&amp;quot;: 5}，那么下面的聚合表达式就不需要$map，这一点可以查看 $arrayToObject。这个案例的难点在于score中有小数点，这个小数点会让聚合表达式懵逼的。
+db.collection.aggregate([
+    {
+        &amp;quot;$addFields&amp;quot;: {
+            &amp;quot;data&amp;quot;: {
+                &amp;quot;$arrayToObject&amp;quot;: {
+                    &amp;quot;$map&amp;quot;: {
+                        &amp;quot;input&amp;quot;: &amp;quot;$data&amp;quot;,
+                        &amp;quot;as&amp;quot;: &amp;quot;item&amp;quot;,
+                        &amp;quot;in&amp;quot;: {
+                            &amp;quot;k&amp;quot;: &amp;quot;$$item.score&amp;quot;,
+                            &amp;quot;v&amp;quot;: &amp;quot;$$item.count&amp;quot;
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        &amp;quot;$addFields&amp;quot;: {
+            &amp;quot;data._id&amp;quot;: &amp;quot;$_id&amp;quot;
+        }
+    },
+    {
+        &amp;quot;$replaceRoot&amp;quot;: {
+            &amp;quot;newRoot&amp;quot;: &amp;quot;$data&amp;quot;
+        }
+    }
+]);
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/G1rwEVR-s/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/S4taTDbrM/">
+                        正则表达式是如何运行的？——浅析正则表达式原理
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-03</time>
+                    
+                        <a href="https://www.guanngxu.com/XcHzo7Nc6/" class="post-tag i-tag
+                            i-tag-info">
+            #正则表达式
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/UGoTtZqQ-y/" class="post-tag i-tag
+                            i-tag-">
+            #编译原理
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/S4taTDbrM/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/S4taTDbrM.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《编译原理》
+实现简单的正则表达式引擎
+正则表达式回溯原理
+浅谈正则表达式原理
+
+最近在一个业务问题中遇到了一个正则表达式性能问题，于是查了点资料去回顾了下正则表达式的原理，简单整理了一下就发到这里吧；另外也是想试试 Apple Pencil 的手感如何，画的太丑不要嫌弃哈。
+有穷自动机
+正则表达式的规则不是很多，这些规则也很容易就能理解，但是正则表达式并不能用来直接识别字符串，我们还需要引入一种适合转换为计算机程序的模型，我们引入的就是有穷自动机。
+在编译原理中通过构造有穷自动机把正则表达式编译成识别器，识别器以字符串x作为输入，当x是语言的句子时回答是，否则回答不是，这正是我们使用正则表达式时需要达到的效果。
+有穷自动机分为确定性有穷自动机（DFA）和非确定性有穷自动机（NFA），它们都能且仅能识别正则表达式所表示的语言。它们有着各自的优缺点，DFA 导出的识别器时间复杂度是多项式的，它比 NFA 导出的识别器要快的多，但是 DFA 导出的识别器要比与之对应的 NFA 导出的识别器大的多。
+大部分正则表达式引擎都是使用 NFA 实现的，也有少部分使用 DFA 实现。从我们写正则表达式的角度来讲，DFA 实现的引擎要比 NFA 实现的引擎快的多，但是 DFA 支持的功能没有 NFA 那么强大，比如没有捕获组一类的特性等等。
+我们可以用带标记的有向图来表示有穷自动机，称之为转换图，其节点是状态，有标记的边表示转换函数。同一个字符可以标记始于同一个状态的两个或多个转换，边可以由输入字符符号标记，其中 NFA 的边还可以用ε标记。
+之所以一个叫有确定和非确定之分，是因为对于同一个状态与同一个输入符号，NFA 可以到达不同的状态。下面看两张图就能明白上面那一长串的文字了。
+图中两个圈圈的状态表示接受状态，也就是说到达这个状态就表示匹配成功。细心的你应该发现了两张图所表示的正则表达式是一样的，这就是有穷自动机神奇的地方，每一个 NFA 我们都能通过算法将其转换为 DFA，所以我们先根据正则表达式构建 NFA，然后再转换成相应的 DFA，最后再进行识别。
+
+上图的画法在正则表达式很简单的时候还可以，如果遇到很复杂的正则表达式画起来还是挺费力的，如果想对自动机有更加深入的认识可以自行查阅相关资料。下面的图片是使用正则可视化工具生成的，对应的正则表达式是^-?\d+(,\d{3})*(\.\d{1,2})?$，它所匹配的字符串是数字/货币金额（支持负数、千分位分隔符）。
+
+回溯
+NFA 引擎在遇到多个合法的状态时，它会选择其中一个并记住它，当匹配失败时引擎就会回溯到之前记录的位置继续尝试匹配。这种回溯机制正是造成正则表达式性能问题的主要原因。下面我们通过具体的例子来看看什么是回溯。
+/ab{1,3}c/
+
+
+
+
+正则
+文本
+
+
+
+
+ab{1,3}c
+abbbc
+
+
+ab{1,3}c
+abbbc
+
+
+ab{1,3}c
+abbbc
+
+
+ab{1,3}c
+abbbc
+
+
+ab{1,3}c
+abbbc
+
+
+ab{1,3}c
+abbbc
+
+
+
+上表中展示的是使用ab{1,3}c匹配abbbc的过程，如果把匹配字符串换成abbc，在第五步就会出现匹配失败的情况，第六步会回到上一次匹配正确的位置，进而继续匹配。这里的第六步就是「回溯」
+
+
+
+正则
+文本
+备注
+
+
+
+
+ab{1,3}c
+abbc
+
+
+
+ab{1,3}c
+abbc
+
+
+
+ab{1,3}c
+abbc
+
+
+
+ab{1,3}c
+abbc
+
+
+
+ab{1,3}c
+abbc
+匹配失败
+
+
+ab{1,3}c
+abbc
+回溯
+
+
+ab{1,3}c
+abbc
+
+
+
+
+会出现上面这种情况的原因在于正则匹配采用了回溯法。回溯法采用试错的思想，它尝试分步的去解决一个问题。在分步解决问题的过程中，当它通过尝试发现现有的分步答案不能得到有效的正确的解答的时候，它将取消上一步甚至是上几步的计算，再通过其它的可能的分步解答再次尝试寻找问题的答案。它通常采用最简单的递归来实现，在反复重复上述的步骤后可能找到一个正确的答案，也可能尝试所有的步骤后发现该问题没有答案，回溯法在最坏的情况下会导致一次复杂度为指数时间的计算。
+上面一段的内容来源于维基百科，精简一下就是深度优先搜索算法。贪婪量词、惰性量词、分支结构等等都是可能产生回溯的地方，在写正则表达式时要注意会引起回溯的地方，避免导致性能问题。
+John Graham-Cumming 在他的博文 Details of the Cloudflare outage on July 2, 2019 中详细记录了因为一个正则表达式而导致线上事故的例子。该事故就是因为一个有性能问题的正则表达式，引起了灾难性的回溯，进而导致了 CPU 满载。
+(?:(?:\&amp;quot;|&#39;|\]|\}|\\|\d|(?:nan|infinity|true|false|null|undefined|symbol|math)|\`|\-|\+)+[)]*;?((?:\s|-|~|!|{}|\|\||\+)*.*(?:.*=.*)))
+
+上面是引起事故的正则表达式，出问题的关键部分在.*(?:.*=.*)中，就是它引起的灾难性回溯导致 CPU 满载。那么我们应该怎么减少或避免回溯呢？无非是提高警惕性，好好写正则表达式；或者使用 DFA 引擎的正则表达式。
+[0-9] 与 \d 的区别
+此问题来源于Stackoverflow，题主遇到的问题是\d比[0-9]的效率要低很多，并且给出了如下的测试结果，可以看到\d比[0-9]慢了差不多一倍。
+Regular expression \d           took 00:00:00.2141226 result: 5077/10000
+Regular expression [0-9]        took 00:00:00.1357972 result: 5077/10000  63.42 % of first
+Regular expression [0123456789] took 00:00:00.1388997 result: 5077/10000  64.87 % of first
+
+出现这个性能问题的原因在于\d匹配的不仅仅是0123456789，\d匹配的是所有的 Unicode 的数字，你可以从 Unicode Characters in the &#39;Number, Decimal Digit&#39; Category 中看到所有在 Unicode 中属于数字的字符。
+此处多提一嘴，[ -~]可以匹配 ASCII 码中所有的可打印字符，你可以查看 ASCII 码中的可显示字符，就是从&amp;quot; &amp;quot;（32）至&amp;quot;~&amp;quot;（126）的字符。
+工具/资源推荐
+正则表达式确实很强大，但是它那晦涩的语法也容易让人头疼抓狂，不论是自己还是别人写的正则表达式都挺头大，好的是已经有人整理了常用正则大全，也大神写了个叫做 VerbalExpressions 的小工具，主流开发语言的版本它都提供了，可以让你用类似于自然语言的方式来写正则表达式，下面是它给出的一个 JS 版示例。
+// Create an example of how to test for correctly formed URLs
+const tester = VerEx()
+    .startOfLine()
+    .then(&#39;http&#39;)
+    .maybe(&#39;s&#39;)
+    .then(&#39;://&#39;)
+    .maybe(&#39;www.&#39;)
+    .anythingBut(&#39; &#39;)
+    .endOfLine();
+
+// Create an example URL
+const testMe = &#39;https://www.google.com&#39;;
+
+// Use RegExp object&#39;s native test() function
+if (tester.test(testMe)) {
+    alert(&#39;We have a correct URL&#39;); // This output will fire
+} else {
+    alert(&#39;The URL is incorrect&#39;);
+}
+
+console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)(www\.)?([^\ ]*)$/
+
+文章大部分内容都是介绍的偏原理方面的知识，如果仅仅是想要学习如何使用正则表达式，可以看正则表达式语法或者 Learn-regex，更为详细的内容推荐看由老姚写的JavaScript 正则表达式迷你书
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/S4taTDbrM/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/lZGv3YBvB/">
+                        Vim 常用命令快捷查询
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-11-01</time>
+                    
+                        <a href="https://www.guanngxu.com/mVmVUsbMe/" class="post-tag i-tag
+                            i-tag-banana">
+            #工具教程
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/lZGv3YBvB/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/lZGv3YBvB.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容
+Learning Vim The Pragmatic Way
+《鸟哥的 Linux 私房菜》
+
+Vim 可以认为是 Vi 的高级版本，Vim 可以用颜色或下划线的方式来显示一些特殊信息，您可以认为 Vi 是一个文本处理工具，而 Vim 是一个程序开发工具，现在大部分 Linux 的发行版都以 Vim 替换 Vi 了。在 Linux 命令行模式下有很多编辑器，但是 Vi 文本编辑器是所有 Unix-like 系统都会内置的，因此学会 Vi/Vim 的使用时非常有必要的，对于 Vi 的三种模式（命令模式、编辑模式、命令行模式）这里就不在做说明了，下面是一些比较常用的命令。
+一般命令模式下
+
+
+
+命令
+说明
+
+
+
+
+h、j、k、l
+与键盘的方向键一一对应，分别为左、下、上、右，在键盘上着几个字母是排在一起的
+
+
+Ctrl+f、Ctrl+b
+分别对应键盘的「Page Down」、「Page Up」，我更习惯于这两个键，而不是前面的组合键
+
+
+0、$
+分别对应键盘的「Home」、「End」，即移动到该行的最前面/后面字符处
+
+
+n&amp;lt;Enter&amp;gt;
+n 为数字，光标向下移动 n 行
+
+
+/word、?word
+向光标之上/下寻找一个字符串名称为 word 的字符串
+
+
+n、N
+如果我们刚刚执行了上面上面的 /word 或 ?word 查找操作，那么 n 则表示重复前一个查找操作，可以简单理解为向下继续查找下一个名称为 word 的字符串，N 则与 n 刚好相反
+
+
+:n1,n2s/word1/word2/g
+在第 n1 行与 n2 行之间寻找 word1 这个字符串，并将这个字符串替换为 word2，如果前面的 n1,n2 使用 1,$ 代替则表示从第一行到最后一行，最后的 g 后面可以加个 c，即 :1,$s/word1/word2/gc，这样就会在替换钱显示提示字符给用户确认（confirm）
+
+
+x、X
+分别对应键盘的「Del」、「Backspace」键
+
+
+dd、yy
+删除/复制光标所在的那一整行
+
+
+p、P
+p 将已复制的数据在光标下一行粘贴，P 粘贴在光标上一行
+
+
+u
+恢复前一个操作，类似于 Windows 下的 Ctrl+Z
+
+
+Ctrl+r
+重做上一个操作
+
+
+.
+小数点，重复上一个操作
+
+
+
+命令行模式下
+
+
+
+命令
+说明
+
+
+
+
+:w
+将编辑的数据写入硬盘中
+
+
+:w!
+若文件属性为只读，强制写入该文件，不过到底能不能写入，还是跟文件权限有关系
+
+
+:q、:q!
+与 w 一样，q 为关闭的意思
+
+
+:r [filename]
+在编辑的数据中读入另一个文件的数据，即将[filename]这个文件的内容追加到光标所在行的后面
+
+
+:w [filename]
+将编辑的数据保存为另一个文件
+
+
+:set nu/nonu
+显示/不显示行号
+
+
+
+编辑模式下
+
+
+
+组合键
+作用
+
+
+
+
+[ctrl]+x -&amp;gt; [ctrl]+n
+通过目前正在编辑的这个文件的内容文字作为关键字，予以自动补全
+
+
+[ctrl]+x -&amp;gt; [ctrl]+f
+以当前目录内的文件名作为关键字补全
+
+
+[ctrl]+x -&amp;gt; [ctrl]+o
+以扩展名作为语法补充，以 Vim 内置的关键字予以补全
+
+
+
+当我们在使用 Vim 编辑器的时候，Vim 会在与被编辑的文件目录下再建立一个名为.filename.swp的文件，我们对文件的操作都会记录到这个 swp 文件中去，如果系统因为某些原因掉线了，就可以利用这个 swp 文件来恢复内容。如果存在对应的 swp 文件，那么 Vim 就会主动判断当前这个文件可能有问题，会给出相应的提示。
+我们也可以给 Vim 环境设置一些个性化的参数，虽然在命令行模式下可以使用:set来设置，但是这样每次设置实在是太麻烦，因此我们可以设置一些全局的参数。Vim 的整体设置值一般放在/etc/vimrc中，我们一般通过修改~/.vimrc这个文件（默认不存在）来设置一些自己的参数，比如：
+&amp;quot; 该文件的双引号是注释
+set nu &amp;quot;在每一行的最前面显示行号
+set autoindent &amp;quot; 自动缩进
+set ruler &amp;quot; 可显示最后一行的状态
+set bg=dark &amp;quot; 显示不同的底色色调
+syntax on &amp;quot;进行语法检验，颜色显示，比如 C 语言等
+
+最后附上一张命令速查卡，此图来源于Learning Vim The Pragmatic Way，PDF 版下载链接在这里。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/lZGv3YBvB/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/25MtObxIW/">
+                        如何加快 Nginx 的文件传输？——Linux 中的零拷贝技术
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-18</time>
+                    
+                        <a href="https://www.guanngxu.com/j7DVou3EA/" class="post-tag i-tag
+                            i-tag-banana">
+            #Nginx
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-success">
+            #操作系统
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-primary">
+            #计算机网络
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/25MtObxIW/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/25MtObxIW.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+Two new system calls: splice() and sync_file_range()
+Linux 中的零拷贝技术1
+Linux 中的零拷贝技术2
+Zero Copy I: User-Mode Perspective
+Linux man-pages splice()
+Nginx AIO 机制与 sendfile 机制
+sendfile 适用场景
+扯淡 Nginx 的 sendfile 零拷贝的概念
+浅析 Linux 中的零拷贝技术
+Linux man-pages sendfile
+
+今天在看 Nginx 配置的时候，看到了一个sendfile配置项，它可以配置在http、server、location三个块中，出于好奇就去查了一下sendfile的作用。
+文件下载是服务器的基本功能，其基本流程就是循环的从磁盘读取文件内容到缓冲区，再将缓冲区内容发送到socket文件，程序员基本都会写出类似下面看起来比较高效的程序。
+while((n = read(diskfd, buf, BUF_SIZE)) &amp;gt; 0)
+    write(sockfd, buf , n);
+
+上面程序中我们使用了read和write两个系统调用，看起来也已经没有什么优化空间了。这里的read和write屏蔽了系统内部的操作，我们并不知道操作系统做了什么，现实情况却是由于 Linux 的 I/O 操作默认是缓冲 I/O，上面的程序发生了多次不必要的数据拷贝与上下文切换。
+上述两行代码执行流程大致可以描述如下：
+
+系统调用read产生一个上下文切换，从用户态切换到内核态；
+DMA 执行拷贝（现在都是 DMA 了吧！），把文件数据拷贝到内核缓冲区；
+文件数据从内核缓冲区拷贝到用户缓冲区；
+read调用返回，从内核态切换为用户态；
+系统调用write产生一个上下文切换，从用户态切换到内核态；
+把步骤 3 读到的数据从用户缓冲区拷贝到 Socket 缓冲区；
+系统调用write返回，从内核态切换到用户态；
+DMA 从 Socket 缓冲区把数据拷贝到协议栈。
+
+
+可以看到两行程序共发生了 4 次拷贝和 4 次上下文切换，其中 DMA 进行的数据拷贝不需要 CPU 访问数据，所以整个过程需要 CPU 访问两次数据。很明显中间有些拷贝和上下文切换是不需要的，sendfile就是来解决这个问题的，它是从 2.1 版本内核开始引入的，这里放个 2.6 版本的源码。
+系统调用sendfile是将in_fd的内容发送到out_fd，描述符out_fd在 Linux 2.6.33 之前，必须指向套接字文件，自 2.6.33 开始，out_fd可以是任何文件；in_fd只能是支持mmap的文件（mmap是一种内存映射方法，在被调用进程的虚拟地址空间中创建一个新的指定文件的映射）。
+所以当 Nginx 是一个静态服务器时，开启sendfile配置项是可以大大提高 Nginx 性能的，但是当把 Nginx 作为一个反向代理服务器时，sendfile则没有什么用，因为当 Nginx 时反向代理服务器时，in_fd就是一个套接字，这不符合sendfile的参数要求。
+
+可以看到现在我们只需要一次拷贝就可以完成功能了，但是能否把这一次拷贝也省略掉呢？我们可以借助硬件来实现，仅仅需要把缓冲区描述符和文件长度传过去，这样 DMA 直接将缓冲区的数据打包发送到网络中就可以了。
+这样就实现了零拷贝技术，需要注意的是这里所说的零拷贝是相对操作系统而言的，即在内核空间不存在冗余数据。数据的实际走向是从硬盘到内存，再从内存到设备。
+Nginx 中还有一个aio配置，它的作用是启用内核级别的异步 I/O 功能，要使aio生效需要将directio开启（directio对大文件的读取速度有优化作用），aio很适合大文件的传送。需要注意的是sendfile和aio是互斥的，不可同时兼得二者，因此我们可以设置一个文件大小限制，超过该阀值使用aio，低于该阀值使用sendfile。
+location /video/ {
+    sendfile on;
+    sendfile_max_chunk 256k; 
+    aio threads;
+    directio 512k;
+    output_buffers 1 128k;
+}
+
+上面已经提到了零拷贝技术，它可以有效的改善数据传输的性能，但是由于存储体系结构非常复杂，而且网络协议栈有时需要对数据进行必要的处理，所以零拷贝技术有可能会产生很多负面影响，甚至会导致零拷贝技术自身的优点完全丧失。
+零拷贝就是一种避免 CPU 将一块存储拷贝到另一块存储的技术。它可以减少数据拷贝和共享总线操作的次数，消除传输数据在存储器之间不必要的中间拷贝次数，从而有效的提高数据传输效率，而且零拷贝技术也减少了内核态与用户态之间切换所带来的开销。进行大量的数据拷贝操作是一件简单的任务，从操作系统的角度来看，如果 CPU 一直被占用着去执行这项简单的任务，是极其浪费资源的。如果是高速网络环境下，很可能就出现这样的场景。
+零拷贝技术分类
+现在的零拷贝技术种类很多，也并没有一个适合于所有场景的零拷贝零拷贝技术，概括起来总共有下面几种：
+
+
+直接 I/O：对于这种数据传输方式来说，应用程序可以直接访问硬件存储，操作系统只是辅助数据传输，这类零拷贝技术可以让数据在应用程序空间和磁盘之间直接传输，不需要操作系统提供的页缓存支持。关于直接 I/O 可以参看Linux 中直接 I/O 机制的介绍。
+
+
+避免数据在内核态与用户态之间传输：在一些场景中，应用程序在数据进行传输的过程中不需要对数据进行访问，那么将数据从页缓存拷贝到用户进程的缓冲区是完全没有必要的，Linux 中提供的类似系统调用主要有mmap()、sendfile()和splice()。
+
+
+对数据在页缓存和用户进程之间的传输进行优化：这类零拷贝技术侧重于灵活地处理数据在用户进程的缓冲区和操作系统页缓存之间的拷贝操作，此类方法延续了传统的通信方式，但是更加灵活。在 Linux 中主要利用了「写时复制」技术。
+
+
+前两类方法的目的主要是为了避免在用户态和内核态的缓冲区间拷贝数据，第三类方法则是对数据传输本身进行优化。我们知道硬件和软件之间可以通过 DMA 来解放 CPU，但是在用户空间和内核空间并没有这种工具，所以此类方法主要是改善数据在用户地址空间和操作系统内核地址空间之间传递的效率。
+避免在内核与用户空间拷贝
+Linux 主要提供了mmap()、sendfile()、splice()三个系统调用来避免数据在内核空间与用户空间进行不必要的拷贝，在Nginx 文件操作优化对sendfile()已经做了比较详细的介绍了，这里就不再赘述了，下面主要介绍mmap()和splice()。
+mmap()
+当调用mmap()之后，数据会先通过 DMA 拷贝到操作系统的缓冲区，然后应用程序和操作系统共享这个缓冲区，这样用户空间与内核空间就不需要任何数据拷贝了，当大量数据需要传输的时候，这样做就会有一个比较好的效率。
+但是这种改进是需要代价的，当对文件进行了内存映射，然后调用write()系统调用，如果此时其它进程截断了这个文件，那么write()系统调用将会被总线错误信号SIGBUG中断，因为此时正在存储的是一个错误的存储访问，这个信号将会导致进程被杀死。
+一般可以通过文件租借锁来解决这个问题，我们可以通过内核给文件加读或者写的租借锁，当另外一个进程尝试对用户正在进行传输的文件进行截断时，内核会给用户发一个实时RT_SIGNAL_LEASE信号，这个信号会告诉用户内核破坏了用户加在那个文件上的写或者读租借锁，write()系统调用就会被中断，并且进程会被SIGBUS信号杀死。需要注意的是文件租借锁需要在对文件进行内存映射之前设置。
+splice()
+和sendfile()类似，splice()也需要两个已经打开的文件描述符，并且其中的一个描述符必须是表示管道设备的描述符，它可以在操作系统地址空间中整块地移动数据，从而减少大多数数据拷贝操作。适用于可以确定数据传输路径的用户应用程序，不需要利用用户地址空间的缓冲区进行显示的数据传输操作。
+splice()不局限于sendfile()的功能，也就是说sendfile()是splice()的一个子集，在 Linux 2.6.23 中，sendfile()这种机制的实现已经没有了，但是这个 API 以及相应的功能还存在，只不过内部已经使用了splice()这种机制来实现了。
+写时复制
+在某些情况下，Linux 操作系统内核中的页缓存可能会被多个应用程序所共享，操作系统有可能会将用户应用程序地址空间缓冲区中的页面映射到操作系统内核地址空间中去。如果某个应用程序想要对这共享的数据调用write()系统调用，那么它就可能破坏内核缓冲区中的共享数据，传统的write()系统调用并没有提供任何显示的加锁操作，Linux 中引入了写时复制这样一种技术用来保护数据。
+写时复制的基本思想是如果有多个应用程序需要同时访问同一块数据，那么可以为这些应用程序分配指向这块数据的指针，在每一个应用程序看来，它们都拥有这块数据的一份数据拷贝，当其中一个应用程序需要对自己的这份数据拷贝进行修改的时候，就需要将数据真正地拷贝到该应用程序的地址空间中去，也就是说，该应用程序拥有了一份真正的私有数据拷贝，这样做是为了避免该应用程序对这块数据做的更改被其他应用程序看到。这个过程对于应用程序来说是透明的，如果应用程序永远不会对所访问的这块数据进行任何更改，那么就永远不需要将数据拷贝到应用程序自己的地址空间中去。这也是写时复制的最主要的优点。
+写时复制的实现需要 MMU 的支持，MMU 需要知晓进程地址空间中哪些特殊的页面是只读的，当需要往这些页面中写数据的时候，MMU 就会发出一个异常给操作系统内核，操作系统内核就会分配新的物理存储空间，即将被写入数据的页面需要与新的物理存储位置相对应。它最大好处就是可以节约内存，不过对于操作系统内核来说，写时复制增加了其处理过程的复杂性。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/25MtObxIW/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/X1-n4nEmj/">
+                        家里的狗
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-12</time>
+                    
+                        <a href="https://www.guanngxu.com/KCICs8Iip/" class="post-tag i-tag
+                            i-tag-">
+            #记录回忆
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-warning">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/X1-n4nEmj/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/X1-n4nEmj.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            为了防止晚上有人来家里偷东西，几乎家家户户都至少会养一只狗。在我的记忆中，我家一开始是没有狗的。
+忘记是哪一年夏天的一个清晨，天还没有大亮，我隐约看见在牛棚后面的空地有个黑影，走近一点仔细一看，原来是一只不知道从哪里来的一只黑狗。
+它惊恐的看着我，眼神中夹杂着恐惧与无助，佝偻的身子比弓还要弯，倒是很像一个活着的牛轭。他的身子还没有草高，露水把全身的毛都打湿了，还沾着一些不知名的植物种子。我和它对视着，恐惧慢慢填满了它的眼球，我害怕吓到它，赶紧走开去告诉妈。
+妈远远看了一眼，让我别管它。随后妈把装着昨晚剩饭的猪食瓢放到牛棚后面的一块石头上，黑狗看见妈带着武器走近早就跑了，我吃早饭时还不时去望望它在不在，有没有吃妈给放在那里的饭。
+妈已经把猪喂完准备下地干活了，仍旧没有再次发现黑狗的踪影，也没见猪食瓢有什么变化，我心里有一点点的失落，黑狗应该是已经逃走了吧。
+晚上吃完饭妈去拿猪食瓢，告诉我里面的饭已经被吃的一粒不剩，我心里开始期待和它的再次见面。第二天早晨果然见到它了，身上已经没有昨天那么湿了，显然没有前一天来这里时钻的草丛多，妈依旧用猪食瓢装着米饭和米汤放在牛棚后的那个石头上。
+就这样过了几日，黑狗走进了我家的屋檐，它的样子实在太丑了。每一根肋骨都清晰的扎眼，看起来爸的手指都比它的小腿粗，感觉下一秒它就会死去。
+我并不喜欢它，甚至还有些讨厌它，我实在找不到更丑的词来形容它，不过是出于心里的怜悯与对生命的敬畏，会在吃饭的时候给它丢几个我不吃的肥肉，被烟熏黑的那一层肉边我也丢给它......
+有一次同村的一个人路过家门口时，看见那只黑狗吓的赶紧往妈身后躲。“有我在，它不敢咬。”，妈说。邻居夸夸妈说：“这个狗儿喂得好肥”。妈自豪的告诉那个人这只狗每天还送林儿（我）上学。
+是的，我也不知道什么时候我已经和大黑狗变得如此亲密了，它每天早上会把我送到山顶的学校，我每天下午回家做完作业会和它一起到田间追逐。在学校也常常会给同学们说大黑狗胸前的那长成了“人”字的一片白毛，我一直相信“人”字是老天爷特地印在它身上，用来告诉我大黑狗是他派来的使者。
+大黑狗来我家时已经很老很老了，是我读三年级的某一天，它像往常一样把我送到学校，但是我下午回家却不见它的踪影，一直等到晚上都没有见它回来。那些天我放学回家第一件事就是朝我和它常去的那些地方大声的唤它。
+不到一个月后的一天早晨，像大黑狗第一次来我家附近时的场景一样，湿漉漉的身子带着些杂草种子，不同的是它身旁还跟着一只背部有些黑毛的小黄狗，小黄狗胸前也有一个很明显的“人”字。我赶紧去用猪食瓢盛满饭放在它面前，它吃了几口就又走了。
+就这样，大黑狗离开了我，给我留下了一只小小的黄奶狗。我不知道它是去找它原来的主人去了，还是觉得自己老了，不愿意让我看见它倒下的样子，反正它就是再也没有回来过。
+小黄狗长成了大黄狗，我对这只大黄狗的印象很浅，只记得爸妈把这只黄狗送给了外婆家附近的亲戚，我们留下了它生的一只小黄狗。外婆知道我们把大黄狗送人，还狠狠的批评了爸妈，说自己来家里的狗不能送人。
+自然小黄狗很快就长成了大黄狗，我像以前一样也偷偷给大黄狗吃肉，逐渐开始懂事的妹妹也会背着爸妈给它肉吃，我和妹都会夹几片我们压根就不吃的肥肉，离开饭桌假装是到外面吃饭，实际上是给大黄狗送肉去了。
+我到离家 30 多公里的镇上读高中，每个月才回家一次。每次离家大黄狗都会送我到集市去赶车，我会在寒暑假的黄昏和它到新修的公路去追逐，带它去它自己一个人不敢去探索的地方。
+上大学后和大黄狗相处的时间更少了，听爸妈说它会经常跑到外婆家，外婆好吃好喝的招待它，招呼都不打一声就又跑回来了。还经常和邻居家的狗到麦子地打闹，要把一大片麦子弄倒才肯回家。
+每学期回家在离家还有四五百米的地方都会听到它的吠叫，因为它把我当陌生人了。但是只要我大喊一声，它就会立刻停止吠叫，飞奔到我这里，兴奋的往我身上爬，把它的前爪往我身上搭；我努力不让它碰到我的衣服，然而每次到家时我都带着一身泥巴做的狗爪印。
+现在大黄狗已经 10 多岁了，它就像大黑狗当年送我一样每天送我妹上学。我也已经走入职场开始工作，待在家里的时间更少了，我不知道它还能活多久，生怕哪次爸妈打电话时会给我说大黄狗死了，只要爸妈没有在电话中提及大黄狗，我都是非常开心的，因为那就代表着它依旧健健康康的活着。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/X1-n4nEmj/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/CJEg4Tlzw/">
+                        JavaScript 进阶知识、技巧
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-11</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-banana">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-warning">
+            #JavaScript
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/CJEg4Tlzw/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/CJEg4Tlzw.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            对象
+Js 共有number、string、boolean、null、undefined、object六种主要类型，除了object的其它五中类型都属于基本类型，它们本身并不是对象。但是null有时会被当做对象处理，其原因在于不同的对象在底层都表示为二进制，在 js 中二进制前三位都为 0 的话就会被判定为object类型，而null的二进制表示全是 0， 所以使用typeof操作符会返回object，而后续的 Js 版本为了兼容前面埋下的坑，也就没有修复这个 bug。
+&amp;quot;I&#39;m a string&amp;quot;本身是一个字面量，并且是一个不可变的值，如果要在这个字面量上执行一些操作，比如获取长度、访问某个字符等，那就需要将其转换为String类型，在必要的时候 js 会自动帮我们完成这种转换，也就是说我们并不需要用new String(&#39;I&#39;m a string&#39;)来显示的创建一个对象。类似的像使用42.359.toFixed(2)时，引擎也会自动把数字转换为Number对象。
+null和undefined没有对应的构造形式，它们只有文字形式。相反，Date只有构造，没有文字形式。对于Object、Array、Function和RegExp（正则表达式）来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。
+Array 类型
+数组类型有一套更加结构化的值存储机制，但是要记住的是，数组也是对象，所以有趣的是你也可以给数组添加属性。
+var myArray = [&amp;quot;foo&amp;quot;, 42, &amp;quot;bar&amp;quot;];
+myArray.baz = &amp;quot;baz&amp;quot;;
+myArray.length; // 3
+myArray.baz; // &amp;quot;baz&amp;quot;
+
+数组类型的length属性是比较有特点的，它的特点在于不是只读的，也就是说你可以修改它的值。因此可以通过设置这个属性从数组末尾删除或添加新的项。
+var colors = [&amp;quot;red&amp;quot;, &amp;quot;blue&amp;quot;, &amp;quot;green&amp;quot;];
+colors.length = 2;
+console.info(colors[2]); // undefined
+colors.length = 4;
+console.info(colors[4]); // undefined
+// 向后面追加元素
+colors[colors.length] = &amp;quot;black&amp;quot;;
+
+数组还有一些很方便的迭代方法，比如every()、filter()、forEach()、map()、some()，这些方法都不会修改数组中包含的值，传入这些方法的函数会接收三个参数：数组项的值、该项在数组中的位置、和数组对象本身。
+Function 类型
+在 ECMAScript 中，每个函数都是Function类的实例，而且都与其它引用类型一样具有属性和方法。由于函数时对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
+在函数的内部有两个特殊的对象，this和arguments。arguments对象有callee和caller属性。caller用来指向调用它的function对象，若直接在全局环境下调用，则会返回null；callee用来指向当前执行函数，所以我们可以通过下面的方式来实现阶乘函数。
+function factorial(num) {
+    if (num &amp;lt;= 1) {
+        return 1;
+    } else {
+        return num * arguments.callee(num-1);
+    }
+}
+
+每个函数都包含两个非继承而来的方法，apply()和call()，这两个方法都是在特定作用域中调用函数，实际上等于设置函数体内this对象的值。首先，apply()方法接收两个参数，一个是在其中运行函数的作用域，另一个是参数数组，其中第二个参数可以是Array的实例，也可以是arguments对象。call()方法与apply()方法的作用相同，它们的区别仅仅在于接收参数的方式不同，在使用call()方法时必须逐个列举出来。
+window.color = &amp;quot;red&amp;quot;;
+var o = {color: &amp;quot;blue&amp;quot;};
+function sayColor() {
+    console.info(this.color);
+}
+sayColor(); // red
+sayColor.call(this); // red
+sayColor.call(window); // red
+sayColor.call(o); // blue
+sayColor.apply(o); // blue
+
+需要注意的是，在严格模式下未指定环境对象而调用函数，则this值不会转型为window，除非明确把函数添加到某个对象或者调用apply()或call()。
+安全的类型检查
+Js 内置的类型检查机制并不是完全可靠的，比如在 Safari（第5版前），对正则表达式应用typeof操作符会返回function；像instanceof在存在多个全局作用域（包含 frame）的情况下，也会返回不可靠的结果；前文提到的 Js 一开始埋下的坑也会导致类型检查出错。
+我们可以使用toString()方法来达到安全类型检查的目的，在任何值上调用Object原生的toString()方法都会返回一个[object NativeConstructorName]格式的字符串，下面以检查数组为例。
+Object.prototype.toString.call([]); // &amp;quot;[object Array]&amp;quot;
+function isArray(val) {
+    return Object.prototype.toString.call(val) == &amp;quot;[object Array]&amp;quot;;
+}
+
+
+作用域安全的构造函数
+构造函数其实就是一个使用new操作符调用的函数，当使用new操作符调用时，构造函数内用到的this对象会指向新创建的对象实例，比如我们有下面的构造函数。
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+现在的问题在于，要是我们不使用new操作符呢？会发生什么！
+let person = Person(&#39;name&#39;, 23);
+console.info(window.name); // name
+console.info(window.age); // 23
+
+很明显，这里污染了全局作用域，原因就在于没有使用new操作符调用构造函数，此时它就会被当作一个普通的函数被调用，this就被解析成了window对象。我们需要将构造函数修改为先确认this是否是正确类型的实例，如果不是则创建新的实例并返回。
+function Person(name, age) {
+    if (this instanceof Person) {
+        this.name = name;
+        this.age = age;
+    } else {
+        return new Person(name, age);
+    }
+}
+
+高级定时器
+大部分人都知道使用setTimeout()和setInterval()可以方便的创建定时任务，看起来好像 Js 也是多线程的一样，实际上定时器仅仅是计划代码在未来的某个时间执行，但是执行时机是不能保证的。因为在页面的生命周期中，不同时间可能有其它代码控制着 JavaScript 进程。
+这里需要注意一下setInterval()函数，仅当没有该定时器的任何其他代码实例时，Js 引起才会将定时器代码添加到队列中。这样可以避免定时器代码可能在代码再次被添加到队列之前还没有完成执行，进而导致定时器代码连续运行好几次的问题。但是这也导致了另外的问题：（1）某些间隔会被跳过；（2）多个定时器的代码执行之间的间隔可能会比预期小。
+假设某个click事件处理程序使用setInterval()设置了一个 200ms 间隔的重复定时器。如果这个事件处理程序花了 300ms 多的时间完成，同时定时器代码也花了差不多了的时间，就会同时出现跳过间隔切连续运行定时器代码的情况。
+为了避免setInterval()的重复定时器的这两个缺点，我们可以使用如下模式的链式setTimeout()，代码一看就懂什么意思了。
+setTimeout(function() {
+    // 处理中
+    setTimeout(arguements.callee, interval);
+}, interval)
+
+消息队列与事件循环
+如下图所示，左边的栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。
+
+右边的堆用来存储声明的变量、对象。下面的队列就是消息队列，一旦某个异步任务有了响应就会被推入队列中。如用户的点击事件、浏览器收到服务的响应和setTimeout中待执行的事件，每个异步任务都和回调函数相关联。
+JS引擎线程用来执行栈中的同步任务，当所有同步任务执行完毕后，栈被清空，然后读取消息队列中的一个待处理任务，并把相关回调函数压入栈中，单线程开始执行新的同步任务。
+来看个例子：执行下面这段代码，执行后，在 5s 内点击两下，过一段时间（&amp;gt; 5s）后，再点击两下，整个过程的输出结果是什么？
+setTimeout(function(){
+    for(var i = 0; i &amp;lt; 100000000; i++){}
+    console.log(&#39;timer a&#39;);
+}, 0)
+for(var j = 0; j &amp;lt; 5; j++){
+    console.log(j);
+}
+setTimeout(function(){
+    console.log(&#39;timer b&#39;);
+}, 0)
+function waitFiveSeconds(){
+    var now = (new Date()).getTime();
+    while(((new Date()).getTime() - now) &amp;lt; 5000){}
+    console.log(&#39;finished waiting&#39;);
+}
+document.addEventListener(&#39;click&#39;, function(){
+    console.log(&#39;click&#39;);
+})
+console.log(&#39;click begin&#39;);
+waitFiveSeconds();
+
+首先，先执行同步任务。其中waitFiveSeconds是耗时操作，持续执行长达 5s。然后，在 Js 引擎线程执行的时候，&#39;timer a&#39;对应的定时器产生的回调、&#39;timer b&#39;对应的定时器产生的回调和两次 click 对应的回调被先后放入消息队列。由于 Js 引擎线程空闲后，会先查看是否有事件可执行，接着再处理其他异步任务，最后，5s 后的两次 click 事件被放入消息队列，由于此时 Js 引擎线程空闲，便被立即执行了。因此会产生下面的输出顺序。
+0
+1
+2
+3
+4
+click begin
+finished waiting
+click
+click
+timer a
+timer b
+click
+click
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/CJEg4Tlzw/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/w-PjYn9Fz/">
+                        信息茧房｜如何保持开心｜自己的圈子—校友、房东｜潮州彩塘抛光厂
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-09-08</time>
+                    
+                        <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
+                            i-tag-other_4">
+            #随笔思考
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/w-PjYn9Fz/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/w-PjYn9Fz.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            好几个月没有发文章了，主要是因为觉得自己太菜了，肚子里的东西太多浮于表面（实际上肚子也没有东西），也写不出来什么深度。不知道大家发现没有，现在很多公众号的味道都变了，一者是肚子里的货已经吐的差不多了，二者是在自媒体疯狂变现的年代，太多作者都开始为流量而写作，已经忘记了原来的初心。好友说长期不发文，突然发会掉粉的，我也想试试会掉下去多少。
+说到为流量写作，其实并不是自媒体作者天天在干的事，专业的记者也在做这些事情。从商业角度来看，一篇有深度而没有阅读量的文章肯定是比不上一篇适合大众口味但阅读量高的文章。
+媒体总是会挑那些吸引眼球的事件来报道，因为负面故事总比中性或正面故事更具有戏剧性，而且人在进化的过程中保留了对一些事物的恐惧感，这些恐惧感根植于我们大脑的深处，它们对我们祖先的生存是有帮助的。在现在的这个时代，你也很容易就把眼球放到那些能够激发我们本能的故事上。
+包含地震、恐怖袭击、战争、疾病、难民等等字眼的标题总是容易成为头版头条（现在朋友圈肯定都在传四川内江的地震），而像“在过去 100 年，死于自然灾害的人数几乎减少了四分之三”一类的标题总是不会收获多少阅读量，就更不具备什么商业价值了。大家都在说信息茧房，人类的本能也是造成信息茧房的原因之一。
+
+周四和一个同事一起散步的时候，他问了我一句话：“小老虎，你为什么总是能保持这么开心呢？”（小老虎是在部门大家对我的称呼）我思考了几秒，不知道怎么回答同事的问题。对哦，我是怎么保持每天都这么开心的？是我给他们的错觉还是我确实就这么开心呢？于是给了同事一个简单的答案：“当你变得没心没肺的时候，你就会超开心；另外降低对事物的期望值，这样你就总能收到正反馈，会把你的开心加成。”
+像之前一样，我又成长为同事圈子里的小开心果了。其实我也不是一直开心的，可能就是我这个人比较逗比，我一直认为逗比是一种生活态度。但在公司我同样怼大叔、怼领导，不管我是不是真的开心，既然给大家的印象是开开心心的，那就假装我是一直都开心的吧。
+我常常开玩笑说的一句话：“你对它笑，它就会对你笑，如果它不对你笑，那就对它多笑几次”。你对它笑，你肯定希望对方也给你回一个笑，但是我和大多数人不同的是我降低了期望值，我从来不期望对方能给我一个笑容，于是当对方给了你一个笑容的时候，那就是意外地收获，如果是一个大大的甜甜的笑容，就会突然冒出来幸福来的太突然了感觉。降低期望值也是一个很适合长期学习某项技能的方法，过高的期望值总是会让你放弃。
+很多人说情商是为了别人高兴，话外音就是不想委屈自己迁就别人。但是你让别人高兴了就是与人方便，那对方自然会给你方便，自己方便了不就是高兴吗，所以对这个世界好一点，降低对它的期望值，你就总是能开开心心的过日子。
+
+毕业这一年认识了很多人，现在我日常接触的圈子差不多有四个，同事这个圈子没啥特别的，团队氛围比较好，时常在晚上悄悄定个会议室，大家一起打王者；推特、微信等软件里面结交的互联网大佬圈我插不上话，不敢说；然后是我两任房东带我进的圈子，和高校毕业人群所建立的圈子完全不一样。
+这群人大部分对我都很好，我目前比较害怕见到现任房东，因为基本上见到他就是出去吃饭。我住在房东隔壁，刚搬过来的时候一出门见到他：“小光，走，去吃饭。”房东的吃饭一般是两场，一场到餐厅点菜吃到 11：00-12：00 的样子，然后再继续下半场烧烤，在房东的带领下，我一个月长了 10 多斤。
+于是我现在出房门的时候，先瞅瞅房东在不在，如果不在就直接坐电梯下楼，如果在就先下到 5 楼，再坐电梯。所以我们现在更多的是没事喝喝茶，偶尔吃吃饭，体重总算控制住了。
+当然这个圈子也有不太好的人，有借了我钱后人就跑的没了踪影的人。但是我很庆幸我能这么早遇到这样的人，因为现在我借出去的并不多，如果再等 10 年我才能遇到这样的人，那我的损失可能就是很多很多倍了。
+
+另外一个对我很重要的圈子就是校友会，我不清楚学校其它地区校友会是什么情况，更不清楚其它学校校友会是怎么样的，深圳校友会确实给了我一个温馨的感觉。校友之间都很单纯，学长学姐们都愿意带年轻人，最大有 79 级的师姐，最小的 15 级也已经到来，老人都会给新人讲他们所经历的事情，给年轻人传授经验。
+当然由于学校带着军校的基因，校友里面没有什么非常非常出名的企业家，但是大家都是很尽心尽力的相互帮助。仅仅靠校友情能达到这样的效果，这一点确确实实是出乎我的意料了，校友会目前是对我开心的加成作用很大。
+举个例子，一个学长新开了烧烤店，现在还没有开始对外营业，处于内测阶段。这一周每天店内至少有一半都是校友，店内的设计、装修、监控等等校友都在出力，当然像我这种没资源的学弟只能试吃给出改进意见了，一个人在外地能成为这样大家庭中的一员是很幸福的。
+
+高校毕业生一年比一年多，媒体每年的标题都差不多一个意思：史上最难就业季。不得不承认独自一人到外地打工确实辛苦，大家都是独自承受着来自各方的压力，杭州闯红灯小伙的突然崩溃就是一个极端的例子。
+我之前的住的地方，仅仅我知道的就有三个年龄比我还小的女孩被包养，仅从外部观察来看，她们过的其实挺好的，嘴角也常常挂着 45 度的微笑，倒是包养她们的人过的不是多随性。其中一个还开了一家奶茶店，我有幸也喝了几杯免费奶茶。
+另外还有一些像我一样的打工者，我和前任房东也常常喝茶吃饭（现在也是），听他说住在那里的女孩子很多没有男朋友，但是她们晚上经常会带不同的男生回来，我想这对她们来说也是一种释压方式，当然住那里的男生可能只是没有带回来，房东不知道而已。
+
+我不是太喜欢天天去研究某个业界名人所讲的话，也对各种各样的产品不是多感冒，不否认有些营销文案、产品功能、讲话内容是公司有意精心为之，但是有没有另外一种可能呢？是领导背错了台词、或者是说错了，而我们却非得去给它找出各种各样的原理。
+周末闲着去感受了一下农民工的圈子，我去的是潮州彩塘镇的抛光厂，才知道我们平时用的那些锅碗瓢盆那么亮不是因为镀上了一层，而是硬生生给磨掉了一层，给磨亮的。最后再说一个，不知道你有没有注意到马路边的人行道上，总是会有一列地砖是有凸起的，有的是条状凸起，有的是圆点凸起，有没有想过为什么是这样的呢？
+凸起是盲人走的道路，条状代表直走，圆点代表拐弯。是不是觉得这个世界对每个人都是美好的，既然这个世界对我们这么美好，那干嘛要不开心呢？
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/w-PjYn9Fz/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/bOFRz9RDX/">
+                        深入理解 JavaScript——变量提升与作用域
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-08-06</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-other_4">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-info">
+            #JavaScript
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/bOFRz9RDX/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/bOFRz9RDX.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+lhs rhs是啥意思
+《Javasript 高级程序设计（第三版）》
+《你不知道的 JavaScript（上卷）》
+
+几乎所有的编程语言都能够存储变量当中的值，并且可以在之后对该值进行访问或修改。很明显需要一套良好的规则来存储这些变量，并且之后可以方便的找到这些变量，这套规则我们称之为作用域。
+编译原理
+我们一般把 js 归为「动态」或「解释执行」语言，但是它也会经历编译阶段，不过它不像传统语言那样是提前编译的，它的编译发生在代码执行前的几微秒内。
+传统语言在执行之前会经历三个步骤：分词/词法分析、解析/语法分析、代码生成，关于这三个步骤的具体工作，可以查看编译原理相关的文献，我们可以把这三个步骤统称为编译。不过 js 引擎要复杂的多，它会在编译的时候对代码进行性能优化，尽管给 js 引擎优化的时间非常少，但是它用尽了各种办法来保证性能最佳。
+我们需要先了解三个名词。引擎：从头到尾负责整个 js 程序的编译及执行过程；编译器：负责词法分析及代码生成；作用域：负责收集并维护由所有声明的标识符（变量）组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限。
+var a = 2;，我们以这段程序为例，它首先声明了变量a，然后将2赋值给变量a。前一个阶段在编译器处理，后一个阶段由 js 引擎处理。
+变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对它赋值。
+变量提升
+用过 js 的人都知道 js 存在变量提升，那么它到底是如何提升的呢？我们看下面的一段代码
+console.log(a);
+var a = 2;
+
+上述代码在a声明之前访问了变量a，按我们的逻辑它应该会抛出 ReferenceError 异常；或是变量提升直接输出 2。但是这两种答案都不对，输出的是undefined。
+回顾一下前文的关于编译的内容，引擎会在解释 js 代码之前对其进行编译，编译阶段的一个重要工作就是找到所有的声明，并用合适的作用域将它们关联起来，包括变量和函数在内的所有声明都会在任何代码被执行之前首先被处理。所以我们前面列出来的代码实际上会变成下面这个样子。
+var a;
+console.log(a);
+a = 2;
+
+这个过程就好像变量和函数声明会从它们的代码中出现的位置被移动到最上面一样，这个过程就是提升。但是需要注意的是，函数声明会首先被提升，然后才是变量提升。
+foo(); // 1
+var foo;
+
+function foo() {
+    console.info(1);
+}
+
+foo = function() {
+    console.info(2);
+}
+
+这段代码输出 1 而不是 2 ，它会被引擎理解为下面的形式。
+function foo() {
+    console.log(1);
+}
+
+foo(); // 1
+
+foo = function() {
+    console.log(2);
+};
+
+可以看到，虽然var foo出现在function foo()之前，但是它是重复的声明，因此会被忽略掉，因为函数函数声明会提升到普通变量前。所以在在同一个作用域中进行重复定义是一个很糟糕的做法，经常会导致各种奇怪的问题。
+LHS 和 RHS 查询
+LHS 和 RHS 是数学领域内的概念，意为等式左边和等式右边的意思，在我们现在的场景下就是赋值操作符的左侧和右侧。当变量出现在赋值操作符的左边时，就进行 LHS 查询；反之进行 RHS 查询。
+RHS 查询与简单的查找某个变量的值没什么区别，它的意思是取得某某的值。而 LHS 查询则是试图找到变量容器的本身，从而可以对其进行赋值。
+console.info(a);我们深入研究一下这句代码。这里对a的引用是 RHS 引用，因为这里a并没有赋予任何值，相应的需要查找并取得a的值，这样才能传递给console.info()。
+a = 2;对a的引用则是一个 LHS 引用，因为实际上我们并关心a当前的值是什么，只是想为= 2这个赋值操作找到一个目标。
+function foo(a) {
+    console.info(a);
+}
+foo(2);
+
+为了加深印象，我们再来分析一下上述代码中的 RHS 和 LHS 引用。最后一行foo()函数的调用需要对foo进行 RHS 引用。这里有一个很容易被忽略的细节，2 被当作参数传递给foo()函数时，2 会被分配给参数a，为了给参数a（隐式地）分配值，需要进行一次 LHS 查询，也就是说代码中隐含了a = 2的语句。
+前文已经说过了console.info(a);会对a进行一次 RHS 查询，需要注意的是console.info()本身也需要一个引用才能执行，因此会对console对象进行 RHS 查询，并检查得到的值中是否有一个log方法。
+为什么区分 LHS 和 RHS
+我们考虑下面的一段代码，就可以为什么要区分 LHS 和 RHS 查询了，而且区分它们是分厂有必要的。
+function foo(a) {
+    console.info(a + b);
+    b = a;
+}
+foo(2);
+
+第一次对b进行 RHS 查询时是无法找到该变量的，这是一个未声明的变量，在任何相关的作用域中都无法找到它。如果 RHS 查询在所有嵌套作用域中都找不到该变量，引擎就会抛出 ReferenceError 异常。
+引擎在执行 LHS 查询时，如果在全局作用域中也无法找到目标变量，全局作用域就会创建一个具有该名称的变量，并将其返还给引擎。
+
+需要注意的是，在严格模式下是禁止自动或隐式地创建全局变量的，因此在严格模式中 LHS 查询失败时，引擎同样会抛出 ReferenceError 异常。
+
+接下来，如果 RHS 查询找到了一个变量，但是你尝试对这个值进行不合理的操作，比如对一个非函数类型的值进行函数调用，那么引擎就会抛出另一种叫做 TypeError 的异常。
+作用域链
+执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中，在 Web 浏览器中，全局执行环境被认为是window对象，因此所有的全局变量和函数都是作为window对象的属性和方法创建的。
+每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，而函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境，这个函数调用的压栈出栈是一样的。
+当代码在环境中执行时，会创建变量对象的一个作用域链。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端始终都是当前执行的代码所在环境的变量对象，说的比较抽象，我们可以看下面的示例。
+var color = &amp;quot;blue&amp;quot;;
+
+function changeColor() {
+    var anotherColor = &amp;quot;red&amp;quot;;
+
+    function swapColors() {
+        var tempColor = anotherColor;
+        anotherColor = color;
+        color = tempColor;
+        // 这里可以访问 color、anotherColor 和 tempColor
+    }
+    // 这里可以访问 color 和 anotherColor，但不能访问 tempColor
+    swapColors();
+}
+// 这里只能访问 color
+changeColor();
+
+下面的图形象的展示了上述代码的作用域链，内部环境可以通过作用域链访问所有的外部环境，但是外部环境不能访问内部环境中的任何变量和函数。函数参数也被当做变量来对待，因此其访问规则与执行环境中的其它变量相同。
+window
+  |-----color
+  |-----changeColor()
+            |----------anotherColor
+            |----------swapColors()
+                           |----------tempColor
+
+作用域链还用于查询标识符，当某个环境中为了读取或写入而引入一个标识符时，必须通过搜索来确定该标识符实际代表什么。搜索过程从作用域链的前端开始，向上逐级查询与给定名字匹配的标识符，如果在局部环境中找到了该标识符，搜索过程就停止，变量就绪；如果在局部环境没有找到这个标识符，则继续沿作用域链向上搜索，如下所示：
+var color = &amp;quot;blue&amp;quot;;
+
+function getColor() {
+    var color = &amp;quot;red&amp;quot;;
+    return color;
+}
+
+console.info(getColor()); // &amp;quot;red&amp;quot;
+
+在getColor()中沿着作用域链在局部环境中已经找到了color，所以搜索就停止了，也就是说任何位于局部变量color的声明之后的代码，如果不使用window.color都无法访问全局color变量。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/bOFRz9RDX/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+    <div class="pagination-container">
+        
+            <a href="https://www.guanngxu.com/page/5/" class="page-btn btn">上一页</a>
+            
+                
+                    <a href="https://www.guanngxu.com/page/7/" class="page-btn btn">下一页</a>
+                    
+    </div>
+    
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1734167562191">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                        <!-- 最新文章 -->
+                        <div class="new_posts_card i-card">
+    <h2 class="new_posts_card-title">
+        最新文章
+    </h2>
+    <div class="new-posts">
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/VvjVruOGrV/">Boost 电路基础知识</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/-loFmea4T/">电源 PCB 布局及其常见错误</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/asBsvJSki/">电平转换器基础知识</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/L3EbniCYD/">LDO 基础知识</a>
+            </h4>
+        
+        
+        
+            <h4>
+                <a href="https://www.guanngxu.com/xdxGDHzvU/">半导体功率器件</a>
+            </h4>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+</div>
+                            <!-- 标签云 -->
+                            <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+                                <!-- 公告栏 -->
+                                
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>
