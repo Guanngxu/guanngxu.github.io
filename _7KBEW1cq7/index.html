@@ -1,0 +1,800 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Python | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1762683028797">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1762683028797" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        Python</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/c4hRhCBs7/">
+                        使用订阅号实现微信公众号历史文章爬虫
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-10-03</time>
+                    
+                        <a href="https://www.guanngxu.com/mVmVUsbMe/" class="post-tag i-tag
+                            i-tag-">
+            #工具教程
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
+                            i-tag-success">
+            #爬虫
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-success">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/c4hRhCBs7/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/c4hRhCBs7.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            微信公众号已经成为生活的一部分了，虽然里面有很多作者只是为了蹭热点，撩读者的 G 点，自己从中获得一些收益；但是不乏好的订阅号，像刘大的码农翻身、Fenng的小道消息、曹大的caoz的梦呓等订阅号非常值得阅读。
+平时有时候看到一些好的公众号，也会不自觉去查看该公众号的历史文章，然而每次都看不完，下一次再从微信里面打开历史文章，又需要从头翻起。而且对于写了很多年的大号，每次还翻不到底。有一些平台提供了相关的服务，但是得收几十块钱的费用，倒不是缺几十块钱，主要是觉得这种没必要花的钱不值得去浪费。
+网上搜如何爬微信公众号历史文章，大致给了三种思路，第一是使用搜狗微信搜索文章，但是好像每次能搜到的不多；第二是使用抓包工具；第三种是使用个人订阅号进行抓取。
+简单来说就是使用程序来模拟人的操作，抓取公众号历史文章。首先登录微信公众号个人平台，期间需要管理员扫码才能登录成功。
+def __open_gzh(self):
+    self.driver.get(BASE_URL)
+    self.driver.maximize_window()
+    username_element = self.driver.find_element_by_name(&amp;quot;account&amp;quot;)
+    password_element = self.driver.find_element_by_name(&amp;quot;password&amp;quot;)
+    login_btn = self.driver.find_element_by_class_name(&amp;quot;btn_login&amp;quot;)
+    username_element.send_keys(USERNAME)
+    password_element.send_keys(PASSWORD)
+    login_btn.click()
+    WebDriverWait(driver=self.driver, timeout=200).until(
+        ec.url_contains(&amp;quot;cgi-bin/home?t=home/index&amp;quot;)
+    )
+    # 一定要设置这一步，不然公众平台菜单栏不会自动展开
+    self.driver.maximize_window()
+
+进入微信公众平台首页后，点击素材管理，然后点击新建图文素材，就会进入到文章写作页面，此时前面打开的微信公众平台首页就不需要了，可以将其关闭。
+
+def __open_write_page(self):
+    management = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-menu_management&amp;quot;)
+    material_manage = management.find_element_by_css_selector(&amp;quot;a[title=&#39;素材管理&#39;]&amp;quot;)
+    material_manage.click()
+    new_material = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-btn_main&amp;quot;)
+    new_material.click()
+    # 关闭公众平台首页
+    handles = self.driver.window_handles
+    self.driver.close()
+    self.driver.switch_to_window(handles[1])
+
+在文章写作页面的工具栏上面有一个超链接按钮，点击超链接即会弹出超链接编辑框，选择查找文章，输入自己喜欢的公众号进行查找，一般第一个就是自己想要的结果，点击对应的公众号，该公众号所有的文章就会通过列表的形式展现出来。
+
+
+
+def __open_official_list(self):
+    # 超链接
+    link_click = self.driver.find_element_by_class_name(&amp;quot;edui-for-link&amp;quot;)
+    link_click.click()
+    time.sleep(3)
+    # 查找文章
+    radio = self.driver.find_element_by_class_name(&amp;quot;frm_vertical_lh&amp;quot;).find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1]
+    radio.click()
+    # 输入查找关键字
+    search_input = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_input&amp;quot;)
+    search_input.send_keys(OFFICIAL_ACCOUNT)
+    search_btn = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_btn&amp;quot;)
+    search_btn.click()
+    # 等待5秒，待公众号列表加载完毕
+    time.sleep(5)
+    result_list = self.driver.find_element_by_class_name(&amp;quot;js_acc_list&amp;quot;).find_elements_by_tag_name(&amp;quot;div&amp;quot;)
+    result_list[0].click()
+
+文章列表已经展现出来了，直接抓取每条文章超链接的信息即可，每抓取完一页就进入下一页，继续抓取文章列表信息，直到所有文章信息都抓取完毕。
+
+def __get_article_list(self):
+    # 等待文章列表加载
+    time.sleep(5)
+    total_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
+        .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;)\
+        .find_element_by_class_name(&amp;quot;page_num&amp;quot;)\
+        .find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1].text
+    total_page = int(total_page)
+    articles = []
+    for i in range(0, total_page-1):
+        time.sleep(5)
+        next_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
+            .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;pagination&amp;quot;)\
+            .find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;).find_element_by_class_name(&amp;quot;page_next&amp;quot;)
+        article_list = self.driver.find_element_by_class_name(&amp;quot;js_article_list&amp;quot;)\
+            .find_element_by_class_name(&amp;quot; my_link_list&amp;quot;).find_elements_by_tag_name(&amp;quot;li&amp;quot;)
+        for article in article_list:
+            article_info = {
+                &amp;quot;date&amp;quot;: article.find_element_by_class_name(&amp;quot;date&amp;quot;).text,
+                &amp;quot;title&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).text,
+                &amp;quot;link&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).get_attribute(&amp;quot;href&amp;quot;)
+                }
+            articles.append(article_info)
+        next_page.click()
+    return articles
+
+至此，微信公众号历史文章的爬虫已经实现，其实整个过程只不过是用程序来模拟的了人类的操作。需要注意的是，程序不能设置太快，因为微信做了相关限制，所以设太快会在一段时间内无法使用文章查找功能；另外一点是使用选择器选择页面元素的时候，会有一些坑，而且我发现不同账号登录，有很少部分的页面元素虽然直观上是一样的，但是它的 html 代码有细微的差别。
+这个小程序会用到selenium库，和chromedriver，前者直接pip install即可，后者自行下载；另外你还需要一个订阅号才行，本文只实现了关键的文章信息抓取，并没有进行文章信息的持久化存储，完整代码在这里。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/c4hRhCBs7/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/5rUXZg3sM/">
+                        跨域请求是什么？如何解决？
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-18</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-banana">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
+                            i-tag-primary">
+            #Angular
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-other_4">
+            #计算机网络
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-banana">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/5rUXZg3sM/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/5rUXZg3sM.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+JavaScript: Use a Web Proxy for Cross-Domain XMLHttpRequest Calls
+别慌，不就是跨域么!
+跨域资源共享 CORS 详解
+AJAX请求和跨域请求详解（原生JS、Jquery）
+JavaScript跨域总结与解决办法
+
+
+刚毕业入职，大部分时间还在培训，中间有一段时间的空闲时间，就学习了下 Angular，在学校都是编写的单体应用，所有代码都放在同一个工程下面，到公司使用的是前后端分离了，虽然后端程序也是我自己写的，但是有一些数据是从公司现有接口去拿的，然后就遇到让我纠结了两小时的跨域请求问题，在这里做一个简单的总结输出。
+什么是跨域请求
+跨域请求问题是浏览器的同源策略造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：协议、域名、端口。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。
+http://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 非跨域
+
+http://www.nealyang.cn/index.html 调用 http://www.neal.cn/server.php 跨域,主域不同
+
+http://abc.nealyang.cn/index.html 调用 http://def.neal.cn/server.php 跨域,子域名不同
+
+http://www.nealyang.cn:8080/index.html 调用 http://www.nealyang.cn/server.php 跨域,端口不同
+
+https://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 跨域,协议不同
+
+localhost 调用 127.0.0.1 跨域
+
+同源政策的目的是为了保护用户信息的安全，防止恶意网站窃取数据，随着互联网的发展，同源政策更加严格了，下面三种行为都会受到限制。
+（1） Cookie、LocalStorage 和 IndexDB 无法读取。
+（2） DOM 无法获得。
+（3） AJAX 请求不能发送。
+
+所有的现代浏览器都对网络连接进行了安全限制，包括 XMLHttpRequest，如果你的 web 应用程序和其使用的数据在同一个服务器，你不会遇到跨域请求问题。但是当你的 web 应用程序和 web 服务数据不在同一个服务器时，就会被浏览器限制连接了。
+常用解决方案
+    对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面设置代理。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。
+
+通俗易懂的说，你家的宠物狗不会吃别家的食物，因为它担心别人的食物会把自己给药死，所以你的狗狗只管找你要食物，你是它的主人，它绝对相信你，而你可以鉴别别人给的食物是不是安全的。类比，小狗就是浏览器，你就是代理。
+Angular 中的解决办法
+上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用angular-cli构建你的项目，我们可以创建一个代理配置文件proxy.conf.json（假设你的后端服务的访问地址为10.121.163.10:8080），代理配置文件如下：
+{
+  &amp;quot;/api&amp;quot;: {
+    &amp;quot;target&amp;quot;: &amp;quot;http://10.121.163.10:8080&amp;quot;,
+    &amp;quot;secure&amp;quot;: false
+  }
+}
+
+然后修改package.json文件中的启动命令为&amp;quot;start&amp;quot;: &amp;quot;ng serve --proxy-config proxy.conf.json&amp;quot;，启动项目时使用npm start即可解决跨域请求问题。
+上述解决方案仅在开发时使用，你当然可以使用 tomcat、nginx 配置代理，但是这很麻烦，需要打包代码部署，为了保证效率，我们想写完了立刻测试，同时也不想麻烦做后端的同学，在项目发布时，应该把代理配置到服务器中去；修改启动命令也不是必须的，你也可以选择每次使用 ng serve  --proxy-config proxy.conf.json命令启动项目；示例代理配置文件内容可以有更多的属性，可以通过网络查阅相关资料。
+后端解决办法
+我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。
+这时需要了解一下简单请求和非简单请求了，简单请求就是只发送一次请求的请求；非简单请求会发送数据之前先发一次请求做预检，通过预检后才能再发送一次请求用于数据传输。
+更清晰区别，满足下列两大条件的属于简单请求，而非简单请求就是请求方法为PUT或DELETE，或者 Content-Type字段是application/json的请求。
+
+1.请求方法为 GET、POST、HEAD之一
+2.HTTP头信息不超出字段：Accept、Accept-Language、Content-Language、Last-Event-ID、Content-Type，并且 Content-Type 的值仅限于 application/x-www-form-urlencoded、multipart/form-data、text/plain。
+
+对于简单请求，只需要设置一下响应头就可以了。
+class TestHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        # 可以把 * 写成具体的域名
+        self.write(&#39;cors get success&#39;)
+
+对于复杂请求，需要设置预检方法，如下所示：
+class CORSHandler(tornado.web.RequestHandler):
+    # 复杂请求方法put
+    def put(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        self.write(&#39;put success&#39;)
+    # 预检方法设置
+    def options(self, *args, **kwargs):
+        #设置预检方法接收源
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        #设置预复杂方法自定义请求头h1和h2
+        self.set_header(&#39;Access-Control-Allow-Headers&#39;, &amp;quot;h1,h2&amp;quot;)
+        #设置允许哪些复杂请求方法
+        self.set_header(&#39;Access-Control-Allow-Methods&#39;, &amp;quot;PUT,DELETE&amp;quot;)
+        #设置预检缓存时间秒,缓存时间内发送请求无需再预检
+        self.set_header(&#39;Access-Control-Max-Age&#39;, 10)
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/5rUXZg3sM/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/uDVEq7OW-/">
+                        Scrapy 爬虫框架入门——抓取豆瓣电影 Top250
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-07-27</time>
+                    
+                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
+                            i-tag-warning">
+            #爬虫
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-success">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/uDVEq7OW-/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/uDVEq7OW-.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            最好的学习方式就是输入之后再输出，分享一个自己学习scrapy框架的小案例，方便快速的掌握使用scrapy的基本方法。
+本想从零开始写一个用Scrapy爬取教程，但是官方已经有了样例，一想已经有了，还是不写了，尽量分享在网上不太容易找到的东西。自己近期在封闭培训，更文像蜗牛一样，抱歉。
+Scrapy简介
+Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
+其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。
+
+如果此前对scrapy没有了解，请先查看下面的官方教程链接。
+架构概览：https://docs.pythontab.com/scrapy/scrapy0.24/topics/architecture.html
+Scrapy入门教程：https://docs.pythontab.com/scrapy/scrapy0.24/intro/tutorial.html
+爬虫教程
+首先，我们看一下豆瓣TOP250页面，发现可以从中提取电影名称、排名、评分、评论人数、导演、年份、地区、类型、电影描述。
+
+Item对象是种简单的容器，保存了爬取到得数据。其提供了类似于词典的API以及用于声明可用字段的简单语法。所以可以声明Item为如下形式。
+class DoubanItem(scrapy.Item):
+    # 排名
+    ranking = scrapy.Field()
+    # 电影名称
+    title = scrapy.Field()
+    # 评分
+    score = scrapy.Field()
+    # 评论人数
+    pople_num = scrapy.Field()
+    # 导演
+    director = scrapy.Field()
+    # 年份
+    year = scrapy.Field()
+    # 地区
+    area = scrapy.Field()
+    # 类型
+    clazz = scrapy.Field()
+    # 电影描述
+    decsription = scrapy.Field()
+
+我们抓取到相应的网页后，需要从网页中提取自己需要的信息，可以使用xpath语法，我使用的是BeautifulSoup网页解析器，经过BeautifulSoup解析的网页，可以直接使用选择器筛选需要的信息。有一些说明写到代码注释里面去了，就不再赘述。
+Chrome 也可以直接复制选择器或者XPath，如下图所示。
+
+class douban_spider(Spider):
+
+    count = 1
+
+    # 爬虫启动命令
+    name = &#39;douban&#39;
+
+    # 头部信息，伪装自己不是爬虫程序
+    headers = {
+        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#39;,
+    }
+
+    # 爬虫启动链接
+    def start_requests(self):
+        url = &#39;https://movie.douban.com/top250&#39;
+        yield Request(url, headers=self.headers)
+
+    # 处理爬取的数据
+    def parse(self, response):
+
+        print(&#39;第&#39;, self.count, &#39;页&#39;)
+        self.count += 1
+
+        item = DoubanItem()
+        soup = BeautifulSoup(response.text, &#39;html.parser&#39;)
+
+        # 选出电影列表
+        movies = soup.select(&#39;#content div div.article ol li&#39;)
+
+        for movie in movies:
+            item[&#39;title&#39;] = movie.select(&#39;.title&#39;)[0].text
+            item[&#39;ranking&#39;] = movie.select(&#39;em&#39;)[0].text
+            item[&#39;score&#39;] = movie.select(&#39;.rating_num&#39;)[0].text
+            item[&#39;pople_num&#39;] = movie.select(&#39;.star span&#39;)[3].text
+
+            # 包含导演、年份、地区、类别
+            info = movie.select(&#39;.bd p&#39;)[0].text
+            director = info.strip().split(&#39;\n&#39;)[0].split(&#39;   &#39;)
+            yac = info.strip().split(&#39;\n&#39;)[1].strip().split(&#39; / &#39;)
+
+            item[&#39;director&#39;] = director[0].split(&#39;: &#39;)[1]
+            item[&#39;year&#39;] = yac[0]
+            item[&#39;area&#39;] = yac[1]
+            item[&#39;clazz&#39;] = yac[2]
+
+            # 电影描述有为空的，所以需要判断
+            if len(movie.select(&#39;.inq&#39;)) is not 0:
+                item[&#39;decsription&#39;] = movie.select(&#39;.inq&#39;)[0].text
+            else:
+                item[&#39;decsription&#39;] = &#39;None&#39;
+            yield item
+
+        # 下一页：
+        # 1，可以在页面中找到下一页的地址
+        # 2，自己根据url规律构造地址，这里使用的是第二种方法
+        next_url = soup.select(&#39;.paginator .next a&#39;)[0][&#39;href&#39;]
+        if next_url:
+            next_url = &#39;https://movie.douban.com/top250&#39; + next_url
+            yield Request(next_url, headers=self.headers)
+
+然后在项目文件夹内打开cmd命令，运行scrapy crawl douban -o movies.csv就会发现提取的信息就写入指定文件了，下面是爬取的结果，效果很理想。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/uDVEq7OW-/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/bdeuyZAFy/">
+                        知识图谱如何构建？——经济责任审计知识图谱构建案例实战
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-05-06</time>
+                    
+                        <a href="https://www.guanngxu.com/_9zQ4w6VQ/" class="post-tag i-tag
+                            i-tag-info">
+            #自然语言处理
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-success">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/bdeuyZAFy/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/bdeuyZAFy.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考：
+汉语言处理包 HanLP：https://github.com/hankcs/HanLP
+中文文本分类：https://github.com/gaussic/text-classification-cnn-rnn
+农业知识图谱：https://github.com/qq547276542/Agriculture_KnowledgeGraph
+事实三元组抽取：https://github.com/twjiang/fact_triple_extraction
+中文自然语言处理相关资料：https://github.com/mengxiaoxu/Awesome-Chinese-NLP
+开放中文实体关系抽取：http://www.docin.com/p-1715877509.html
+
+自 2012 年 Google 提出“知识图谱”的概念以来，知识图谱就一直是学术研究的重要方向，现在有很多高校、企业都致力于将这项技术应用到医疗、教育、商业等领域，并且已经取得了些许成果。Google 也宣布将以知识图谱为基础，构建下一代智能搜索引擎。
+现在已经可以在谷歌、百度、搜狗等搜索引擎上面看到知识图谱的应用了。比如在 Google 搜索某个关键词时，会在其结果页面的右边显示该关键字的详细信息。在几个常用的搜索引擎中搜索知识时，返回的答案也变得更加精确，比如搜索“汪涵的妻子”，搜索引擎会直接给出答案“杨乐乐”，方便了用户快速精准的获取想要的信息。不过目前的搜索引擎只有少部分搜索问题能达到这种效果。
+关于知识图谱是什么，我想就不用介绍了，这种通过搜索引擎就能轻松得到的结果写在这里有点浪费篇章，并且我对知识图谱的理解也不深，不敢夸夸其谈，只是把自己这一段时间以来的工作做一个总结。
+本文只相当于以经济责任审计这一特定领域构建了一个知识图谱，仅仅是走了一遍流程，当作入门项目，构建过程中参考甚至抄袭了别人的很多方法与代码，末尾都会给出参考的项目等等。
+
+上图是我构建经济责任审计知识图谱的流程，看起来很繁琐，但只要静下心看，个人觉得相对还算清晰，箭头都有指向。下面就一步一步进行说明。
+数据获取
+数据获取主要分为两部分数据，一部分是新闻类数据，我把它用作文本分类模型的训练集；另一部分是实体数据，为了方便，我直接把互动百科抓取的词条文件作为实体，省了属性抽取这一环节。
+因为本文构建的是一个经济责任审计领域的知识图谱，所以作为文本分类模型训练集的数据也应该是经济责任审计领域的。这里主要抓取了审计署、纪检委、新浪网的部分新闻。
+
+像上面的图一样，新闻类网站一般都有搜索框，为了简单，所以我直接用搜索框搜索“经济责任审计”，然后从搜索结果中抓取新闻数据，即认为是经济责任审计相关的文本。抓取新闻类网站使用了 chrome 模拟用户进行访问。最终获得了 3500 多条新闻文本。
+领域词汇判定
+领域词汇判定，本文构建的不是开放领域的知识图谱，所以需要采用一种方法来判定所抓取的内容是否属于经济责任审计领域。领域词汇本文的方法实际上是领域句子判定，直接使用了大神的项目。CNN-RNN中文文本分类，基于tensorflow。也看到有人通过改进逻辑回归算法，在进行领域词汇的判定。
+我判定领域词汇的逻辑是这样的，一个词语即使是人类也不一定能确定它是否属于经济责任审计领域，但是每个词语都会有它的含义解释对不对，一个词语的解释就是一段话。我用网上的新闻训练出一个判断一段话属于哪个领域的模型，然后把词语的解释放到模型了里面去，如果模型给出的结果是属于经济责任审计领域，那则认为这个词语属于经济责任审计领域。
+实体关系抽取
+知识图谱的基本单位为（实体1，关系，实体2）这样的三元组，实体是直接从互动百科获取的词条，关系由两部分组成，一部分来自 wikidata 所提供的关系，这一部分直接从 wikidata 爬取即可得到，另一部分使用的是基于依存句法分析的开放式中文实体关系抽取，已经在前面的文章发过了。
+知识存储
+有了实体和实体关系，那么把这些数据进行筛选，然后入库，通过直观的页面展示，就可以了。这里使用的数据库是 neo4j，它作为图形数据库，用于知识图谱的存储非常方便。知识的展示使用了别人的项目，仅仅是把里面的数据换掉了而已，感谢大神的无私。
+当然你也可以选择使用关系型数据库，因为我做的经济责任审计知识图谱不够深入，所以做到最后展示的时候，发现其实用我比较熟悉的 MySql 更好，相比 NOSql 我更熟悉关系型数据库，而且 MySql 有更大的社区在维护，它的 Bug 少、性能也更好。
+最后放几张效果图
+
+
+下面是以“职业”为关系查询条件所得出的结果。
+
+总结一下
+只是对几个月工作的梳理，大多数核心代码都改自现有的代码，所有的数据都来自于网络，与知识图谱相关的公开技术较少，我也只是尝试着做了一下，虽然很菜，也可以对大致的技术路线、流程有一个简单的了解，主要工作都是自然语言处理的内容。后期可以利用现在的知识图谱构建智能问答系统，实现从 what 到 why 的转换。
+以下内容更新于 2020 年 3 月。
+在毕业前收到了电子工业出版社和另一家出版社的写书邀请，我和电子工业出版社签订了写书合同，从还未毕业开始断断续续写作了一年的时间，因为自己的懒惰，加上内容中涉及到大量爬虫，而且爬目标网站是政府网站（不允许爬），另外 19 年网上时不时曝出某某程序员因爬虫而入狱的故事，出版社和我难免不会恐惧，我也正好找到了不再继续写下去的理由。
+花了点时间把以前的程序，书籍已经写成的内容整理了一下，放在了 economic_audit_knowledge_graph 中，所有资料都在里面，希望能帮助到自然语言入门的小伙伴，我自己已经不做这个领域了！
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/bdeuyZAFy/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/S8r7al_js/">
+                        如何抽取实体关系？——基于依存句法分析的事实三元组抽取
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-04-26</time>
+                    
+                        <a href="https://www.guanngxu.com/_9zQ4w6VQ/" class="post-tag i-tag
+                            i-tag-banana">
+            #自然语言处理
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
+                            i-tag-other_4">
+            #Java
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
+                            i-tag-">
+            #爬虫
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-warning">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/S8r7al_js/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/S8r7al_js.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考：
+HanLP 自然语言处理
+基于依存分析的开放式中文实体关系抽取方法
+命名实体三元组抽取参考自fact_triple_extraction
+
+这一段时间一直在做知识图谱，卡在实体关系抽取这里几个月了，在 Github 上面看到有人使用卷积神经网络训练模型进行抽取，自己也尝试了一下，但是一直苦于没有像样数据去训练，而标注训练集又太费时间了，我不太愿意干体力活。另外自己也不会什么机器学习、深度学习之类的技术，而且毕业设计都是有时间要求的，所以采用了一个低档次的方法，基于依存句法分析的实体关系抽取，记录一下心得，方便日后忘记可以再找回来。
+论文给出了 8 种中文关系的表达方式，并且最后给出了一个采用正则表达式语法指出表达，核心就是谓语动词表示关系，即关系表述中一定得有动词。
+状语*动词+补语?宾语?
+
+我不太赞同把宾语也当作关系表述的一部分，论文指出“p4生于山西”应该抽出（p4，山西，生于山西），我认为关系不应该表述为“生于山西”，所以我把关系表述改为下面的样子了。
+状语*动词+补语?
+
+这篇文章只是作为一个方法介绍，我自己先看了一遍，能够保证我下次看到这篇文章，可以立马回忆起自己的实现方法，希望你看了也能了解方法，看不懂的话，我表示抱歉，浪费您的时间了，我已经尽可能写到简单了。
+先来看几个简单句子吧：
+主谓宾关系：刘小绪 生于 四川
+// 这个三元组很明显：（刘小绪，生于，四川）
+
+
+动补结构：刘小绪 洗 干净 了 衣服
+// 如果套用主谓宾关系就是：（刘小绪，洗，衣服）
+// 但是这里描述的是一个状态，是刘小绪把衣服洗干净了
+// “干净”是动词“洗”的补语，所以还应该提取出一个如下三元组
+// （刘小绪，洗干净了，衣服）
+
+状动结构：父亲 非常 喜欢 跑步
+// 这句和上面很像，主谓宾关系是：父亲喜欢跑步
+// “非常”用于修饰“喜欢”
+// （父亲，非常喜欢，跑步）
+
+介宾关系：刘小绪 就职 于 学校
+// 如果直接把这个三元组抽取为（刘小绪，就职，学校），很别扭
+// “于”和“学校”是介宾关系，它们的关系应该是：就职于
+// （刘小绪，就职于，学校）
+
+宾语前置：海洋 由 水 组成
+// “海洋”是“组成”的前置宾语
+// “由”是“组成”的状语
+// “水”和“由”是介宾关系
+// 所以上面的句子没有明确的主谓关系，需要我们判断
+// 抽出的三元组应该为：（水，组成，海洋）
+
+HanLP 提供了两种依存句法分析的器，默认采用的是基于神经网络的依存句法分析器。依存句法分析就是将句子分析成一棵依存句法树，描述各个词语之间的依存关系，即指出词语之间在句法上的搭配关系。
+有了上面所说的依存句法树，其实我们只需要进行各种判断就可以了。先做出下面的一点说明，就拿第一个例子来说。
+原文：刘小绪生于四川
+
+# 这是分词结果
+[刘小绪/nr, 生于/v, 四川/ns]
+
+#这是句法分析结果
+刘小绪 --(主谓关系)--&amp;gt; 生于
+生于 --(核心关系)--&amp;gt; ##核心##
+四川 --(动宾关系)--&amp;gt; 生于
+
+为了方便理解，也为了方便程序的编写，我把他们组织成了下面的形式，为每一个词语都建一个依存句法字典。
+刘小绪：{}
+生于：{主谓关系=[刘小绪], 动宾关系=[四川]}
+四川：{}
+
+然后只需要写出类似于下面的程序段就可以抽出关系了。
+// 主谓宾关系：刘小绪生于四川
+// dic是这个词语的依存句法字典
+if (dic.containsKey(&amp;quot;主谓关系&amp;quot;) &amp;amp;&amp;amp; dic.containsKey(&amp;quot;动宾关系&amp;quot;)){
+    
+    // 当前的词语，用上面的例子来说，relation=“生于”
+    String relation = curWord.LEMMA;
+
+
+    // 用循环遍历，是因为关系列表里面不一定只有一个词语
+    for (CoNLLWord entity1:
+            dic.get(&amp;quot;主谓关系&amp;quot;)) {
+
+        for (CoNLLWord entity2:
+                dic.get(&amp;quot;动宾关系&amp;quot;)) {
+
+            System.out.println(entity1.LEMMA + &amp;quot;,&amp;quot; + relation + &amp;quot;,&amp;quot; + entity2.LEMMA);
+        }
+
+    }
+}
+
+对于分词后的每个词语都进行上面程序段的操作。“刘小绪”和“四川”，关系字典都为空。而对于“生于”，关系列表里面既有主谓也有动宾，而自己本身就是动词，主谓宾就出来了。直接从主谓关系中拿出来词语作为 entity1，再拿上自己作为关系，最后拿出动宾关系中的词语作为 entity2。很明确的三元组（刘小绪，生于，四川）就出来了。
+最后给出一个程序运行结果图吧。
+
+我个人觉得效果还行，在简单句子上面表现的差强人意，在长句子上面表现的差劲。注意上文使用的第三方包随着时间的推移肯定会改一些接口，源码链接：entity_relation_extraction
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/S8r7al_js/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1762683028797">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>
