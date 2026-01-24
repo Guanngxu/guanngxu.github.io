@@ -1,0 +1,708 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Java | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        Java</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/9Ov7sD1uz/">
+                        Oracle 安装及 Spring 使用 Oracle
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2023-03-30</time>
+                    
+                        <a href="https://www.guanngxu.com/M4PlaWNdk/" class="post-tag i-tag
+                            i-tag-">
+            #Oracle
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-banana">
+            #数据库
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
+                            i-tag-error">
+            #Java
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/9Ov7sD1uz/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/9Ov7sD1uz.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+docker安装oracle数据库史上最全步骤（带图文）
+Mac下oracle数据库客户端
+Docker安装Oracle
+docker能安装oracle吗
+Batch script for add a auto-increased primary key for exist table with records
+
+Docker 安装 Oracle11g
+注意：下列安装方式仅适用于x86架构服务器，不适用于arm架构服务器。
+# 拉取 oracle11，镜像有点大，需要花一些时间
+docker pull registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g
+
+# 查看镜像是否拉取成功
+docker images
+
+# 给镜像重新打 tag，原来的名字太长了
+docker tag registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g oracle11g:latest
+
+# 启动 oracle11g 容器
+docker run --name=oracle11g -itd -p 1521:1521
+
+# 进入容器进行配置
+docker exec -it oracle11g /bin/bash
+
+# 切换到 root 用户，密码为：helowin
+su root
+
+# 编辑配置文件
+
+编辑/etc/profile，在其中增加如下内容：
+export ORACLE_HOME=/home/oracle/app/oracle/product/11.2.0/dbhome_2
+export ORACLE_SID=helowin
+export PATH=$ORACLE_HOME/bin:$PATH
+
+编辑完成后，需要刷新上述环境变量才能使用。
+# 刷新环境变量
+source /etc/profile
+
+# 创建软链接
+ln -s $ORACLE_HOME/bin/sqlplus /usr/bin
+
+# 切换到 oracle 用户
+su - oracle
+
+# 登陆 sqlplus
+sqlplus /nolog
+conn /as sysdba
+
+# 修改 system 用户密码
+alter user system identified by system;
+# 修改 sys 用户密码
+alter user sys identified by system;
+
+# 创建内部管理员账号
+create user test identified by test;
+
+# 将 dba 权限授权给内部管理员账号和密码
+grant connect,resource,dba to test;
+
+# 修改密码规则策略为密码永不过期
+ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
+
+# 修改数据库最大连接数据
+alter system set processes=1000 scope=spfile;
+
+修改上述信息后，需要重新启动数据库才会生效。
+conn /as sysdba
+
+# 关闭数据库
+shutdown immediate;
+
+# 启动数据库
+startup;
+
+# 退出软链接
+exit;
+
+客户端连接 Oracle
+以 Navicat 客户端为例，新建连接时按下图方式填写连接信息即可，密码即为system。需要注意的是，在 Windows 下选择 SID 或是服务名均可连接成功，但是在 Mac 下需要选择 SID 方式才能连接成功。
+
+Oracle 实现主键自增
+Oracle 在创建表的时候，不能像 MySQL 那样选择主键直接自增，但是我们可以通过给表创建序列和触发器去实现自增。下文以创建 USER 表为例。
+-- 删除原有 USER 表
+DROP TABLE &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot;;
+-- 创建 USER 表
+CREATE TABLE &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; (
+  &amp;quot;id&amp;quot; NUMBER NOT NULL,
+  &amp;quot;gmt_create&amp;quot; DATE NOT NULL,
+  &amp;quot;gmt_modified&amp;quot; DATE NOT NULL,
+  &amp;quot;is_deleted&amp;quot; NUMBER NOT NULL,
+  &amp;quot;login&amp;quot; NVARCHAR2(255) NOT NULL,
+  &amp;quot;passwd&amp;quot; NVARCHAR2(255) NOT NULL,
+  &amp;quot;nick&amp;quot; NVARCHAR2(255) NOT NULL,
+  &amp;quot;phone&amp;quot; NVARCHAR2(255),
+  &amp;quot;head_img&amp;quot; NVARCHAR2(255),
+  &amp;quot;status&amp;quot; NVARCHAR2(255),
+  &amp;quot;remark&amp;quot; NCLOB
+);
+
+-- 删除原有序列
+DROP SEQUENCE &amp;quot;TEST&amp;quot;.&amp;quot;USER_SEQ&amp;quot;;
+-- 创建 USER_SEQ 序列，最小值为 1
+CREATE SEQUENCE &amp;quot;TEST&amp;quot;.&amp;quot;USER_SEQ&amp;quot; 
+-- 最小值为 1
+MINVALUE 1 
+-- 最大值为 9999999999999999999999999999
+MAXVALUE 9999999999999999999999999999 
+-- 每次增加 1
+INCREMENT BY 1 
+-- 将 20 个序列值放入缓存
+CACHE 20;
+
+-- 创建触发器
+CREATE TRIGGER &amp;quot;TEST&amp;quot;.&amp;quot;USER_TRIGGER&amp;quot; 
+-- 在插入数据前执行
+BEFORE INSERT ON &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; 
+-- 命名老数据为 OLD，新数据为 NEW
+REFERENCING OLD AS &amp;quot;OLD&amp;quot; NEW AS &amp;quot;NEW&amp;quot; 
+-- 针对表的每一行都执行触发器
+FOR EACH ROW 
+-- 将序列值赋值给 id
+BEGIN
+	:NEW.&amp;quot;id&amp;quot; := USER_SEQ.NEXTVAL;
+END;
+/
+
+需要注意的是，上面的/符号不能少。执行插入语句时可以发现，id会自动增加。
+INSERT INTO &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; (&amp;quot;gmt_create&amp;quot;, &amp;quot;gmt_modified&amp;quot;, &amp;quot;is_deleted&amp;quot;, &amp;quot;login&amp;quot;, &amp;quot;passwd&amp;quot;, &amp;quot;nick&amp;quot;, &amp;quot;phone&amp;quot;, &amp;quot;head_img&amp;quot;, &amp;quot;status&amp;quot;, &amp;quot;remark&amp;quot;) VALUES (TO_DATE(&#39;2023-04-01 00:00:00&#39;, &#39;SYYYY-MM-DD HH24:MI:SS&#39;), TO_DATE(&#39;2023-04-01 17:04:30&#39;, &#39;SYYYY-MM-DD HH24:MI:SS&#39;), &#39;0&#39;, &#39;user&#39;, &#39;123&#39;, &#39;Jack&#39;, &#39;1111&#39;, &#39;head.jpg&#39;, &#39;激活&#39;, &#39;测试&#39;);
+
+Java Spring+Mybatis 使用 Oracle 及配置分页
+application.properties文件配置信息：
+# mybatis
+spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@8127.0.0.1:1521:helowin
+spring.datasource.username=system
+spring.datasource.password=system
+mybatis.mapper-locations=classpath*:mybatis/*.xml
+mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+
+# pageHelper
+pagehelper.helperDialect=oracle
+pagehelper.reasonable=true
+pagehelper.supportMethodsArguments=true
+pagehelper.params=count=countSql
+
+pom.xml配置文件关键信息。
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;project xmlns=&amp;quot;http://maven.apache.org/POM/4.0.0&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+         xsi:schemaLocation=&amp;quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&amp;quot;&amp;gt;
+
+    &amp;lt;properties&amp;gt;
+        &amp;lt;java.version&amp;gt;1.8&amp;lt;/java.version&amp;gt;
+        &amp;lt;maven.compiler.target&amp;gt;1.8&amp;lt;/maven.compiler.target&amp;gt;
+        &amp;lt;maven.compiler.source&amp;gt;1.8&amp;lt;/maven.compiler.source&amp;gt;
+        &amp;lt;project.build.sourceEncoding&amp;gt;UTF-8&amp;lt;/project.build.sourceEncoding&amp;gt;
+        &amp;lt;project.reporting.outputEncoding&amp;gt;UTF-8&amp;lt;/project.reporting.outputEncoding&amp;gt;
+
+        &amp;lt;spring.boot-version&amp;gt;2.1.3.RELEASE&amp;lt;/spring.boot-version&amp;gt;
+    &amp;lt;/properties&amp;gt;
+
+    &amp;lt;dependencyManagement&amp;gt;
+        &amp;lt;dependencies&amp;gt;
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;spring-boot-dependencies&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;${spring.boot-version}&amp;lt;/version&amp;gt;
+                &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;
+                &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;org.mybatis.spring.boot&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;mybatis-spring-boot-starter&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;com.oracle.ojdbc&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;ojdbc8&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;19.3.0.0&amp;lt;/version&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;com.github.pagehelper&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;pagehelper-spring-boot-starter&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;1.4.3&amp;lt;/version&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;com.github.pagehelper&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;pagehelper-spring-boot-starter&amp;lt;/artifactId&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+        &amp;lt;/dependencies&amp;gt;
+    &amp;lt;/dependencyManagement&amp;gt;
+&amp;lt;/project&amp;gt;
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/9Ov7sD1uz/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/qxVW9efzD/">
+                        Java 垃圾回收机制详解
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-10-15</time>
+                    
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-primary">
+            #操作系统
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
+                            i-tag-warning">
+            #Java
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/qxVW9efzD/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/qxVW9efzD.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            最近主要时间都放在知识图谱构建中，但是还是需要给自己充电。想在近段时间好好把 JVM 的垃圾回收好好看一下，学习然后输出，是我新找到的有效学习方法，希望你看了之后能有收获。
+什么是垃圾
+垃圾回收（常称做GC——Garbage Collection）诞生于1960年 MIT 的 Lisp 语言，垃圾回收机制也已经用在了很多编程语言中，比如 Java、Python、C# 等。我们这里主要说 Java 中的垃圾回收。
+在JVM中，程序计数器、虚拟机栈、本地方法栈都是随线程生而生，随线程灭而灭；栈帧随着方法的进入和退出做入栈和出栈操作，实现了自动的内存清理；常说的垃圾回收主要集中在堆和方法区，这部分内存是随着程序运行动态分配的。
+既然要回收垃圾，那么我们首先需要知道的就是，什么样的对象是垃圾。一般有两种方式：
+引用计数
+每个对象有一个引用计数属性，新增一个引用时计数加 1，引用释放时计数减 1，当引用计数变为 0 的时候，这个对象就可以回收了。但是这个方法无法解决对象循环引用的问题。
+    // 对象循环引用示例
+    
+    Object objectA = new Object();
+    Object objectB = new Object();
+    
+    objectA.instance = objectB;
+    objectB.instance = objectA;
+    
+    objectA = null;
+    objectB = null;
+
+假设我们有上面的代码。程序启动后，objectA和objectB两个对象被创建并在堆中分配内存，它们都相互持有对方的引用，但是除了它们相互持有的引用之外，再无别的引用。而实际上，引用已经被置空，这两个对象不可能再被访问了，但是因为它们相互引用着对方，导致它们的引用计数都不为 0，因此引用计数算法无法通知GC回收它们，造成了内存的浪费。如下图：对象之间的引用形成一个有环图。
+
+可达性分析
+或者叫根搜索算法，在主流的JVM中，都是使用的这种方法来判断对象是否存活的。这个算法的思路很简单，它把内存中的每一个对象都看作一个结点，然后定义了一些可以作为根结点的对象，我们称之为「GC Roots」。果一个对象中有另一个对象的引用，那么就认这个对象有一条指向另一个对象的边。
+
+像上面这张图，JVM会起一个线程从所有的GC Roots开始往下遍历，当遍历完之后如果发现有一些对象不可到达，那么就认为这些对象已经没有用了，需要被回收。（这里多说一句，我们的JVM一起动，就至少有两个线程启动，一个是垃圾回收线程，一个是我们自己的主线程。）
+那么现在问题就变成了——什么样的对象可以当作 GC Roots？共有四种对象可以作为 GC Roots。
+虚拟机栈中的引用的对象
+们在程序中正常创建一个对象，对象会在堆上开辟一块空间，同时会将这块空间的地址作为引用保存到虚拟机栈中，如果对象生命周期结束了，那么引用就会从虚拟机栈中出栈，因此如果在虚拟机栈中有引用，就说明这个对象还是有用的，这种对象可以作为 GC Roots。
+全局的静态的对象
+也就是使用了static关键字定义了的对象，这种对象的引用保存在共有的方法区中，因为虚拟机栈是线程私有的，如果保存在栈里，就不叫全局了，很显然，这种对象是要作为 GC Roots 的。
+常量引用
+就是使用了static final关键字，由于这种引用初始化之后不会修改，所以方法区常量池里的引用的对象也作为GC Roots。
+本地方法栈中JNI引用的对象
+有时候单纯的java代码不能满足我们的需求，就可能需要调用 C 或 C++ 代码（Java 本身就是用 C 和 C++ 写的嘛），因此会使用native方法，JVM 内存中专门有一块本地方法栈，用来保存这些对象的引用，所以本地方法栈中引用的对象也会被作为 GC Roots。
+垃圾回收算法
+有意思的是在 JVM 规范中，并没有明确指明 GC 的运作方式，各个厂商可以采用不同的方式去实现垃圾收集器。这篇文章简单介绍常见的垃圾回收算法。
+标记-清除算法
+标记-清除算法分两个步骤，分别为「标记」和「清除」，字如其人。它是一个最基础的垃圾回收算法，更高级的垃圾回收算法都是基于它改进的。
+它的运行过程是这样的：首先标记出所有需要回收的对象，标记完成后，再统一回收掉所有被标记的对象。
+
+标记-清除算法的缺点有两个，一个是空间问题，标记清除之后会产生大量的不连续内存碎片。内存碎片太多，程序在之后的运行过程中就有可能找不到足够的连续内存来分配较大的对象，进而不得不提前触发另一次垃圾回收，导致程序效率降低。标记-清除算法的另一个缺点是效率问题，标记和清除的效率都不高，两次扫描耗时严重。
+复制算法
+复制算法把内存按容量划分为大小相等的两块，每次只使用其中的一块。如果正在用的这块没有足够的可使用空间了，那么就将还活着的对象复制到另一块去，再把使用过的内存一次性清掉。
+
+这样就实现了简单高效的做法，每一次进行内存回收时，就不用再去考虑内存碎片这些复杂的情况，只需要移动堆顶指针就可以。但是缺点也很明显，可使用内存只有原来的一半了，而且持续复制生命力很旺盛的对象也会让效率降低哇。复制算法适用于存活对象少、垃圾对象多的情况，这种情况在新生代比较常见。
+标记-压缩算法
+在老年代，大部分对象都是存活的对象，复制算法在这里就不靠谱了，所以有人提出了标记压缩算法，标记过程和标记清除算法一样，但是清理时不是简单的清理，而是让所有存活的对象都向一端移动，然后直接清理掉边界以外的内存，需要移动对象的成本。
+
+分代算法
+前面的几种垃圾回收算法中，没有一种可以完全替代其他算法，他们具备各自的特点与优势，因此更好的方法是根据垃圾对象的特性来选择合适的回收算法。
+分代算法的思想就是将内存空间根据对象的特点不同进行划分，选择合适的垃圾回收算法来提高回收效率。分代的思想已经被现有的虚拟机广泛采用。
+分区算法
+分区算法就是将整个堆空间再划分为连续的不同小区间，每一个小区间独立使用，也独立回收。
+
+一般在相同条件下，堆空间越大，那么一次GC的时间就越长，因此而产生的停顿时间也就越长。为了控制GC的停顿时间，根据目标停顿时间，每次合理回收若干个小区间，而不是整个堆空间，进而减少一个GC的停顿时间。
+垃圾收集器
+上面讲的是垃圾收集算法，讲的是理论，垃圾收集器就是这些理论的具体实现。下面介绍一些垃圾收集器
+Serial收集器
+串行收集器是高效率的、古老的收集器，它只用了一个线程去回收垃圾。新生代、老年代使用串行回收；新生代复制算法、老年代标记-压缩算法。串行是指 GC 过程和用户过程是串行的，在垃圾收集过程中会 stop the world，JVM在后台自动发起垃圾回收，会在用户不可见的情况下，把用户的线程全部停掉，就是 GC 停顿，给用户带来不良体验。
+红色代表 GC 线程，灰色代表用户线程，下同。
+
+ParNew收集器
+ParNew 收集器就是 Serial 收集器的多线程版本，除了多线程以外，其余行为都和 Serial 收集器一样。新生代并行收集，老年代串行收集；新生代使用复制算法、老年代使用标记-压缩算法。
+
+Parallel Scavenge收集器
+Parallel Scavenge 收集器类似于 ParNew 收集器，因为与吞吐量密切，也称为吞吐量收集器。可以通过参数来打开自适应调节策略，虚拟机会根据当前系统的运行情况收集性能监控信息，动态调整这些参数以提供最合适的停顿时间或最大的吞吐量；也可以通过参数控制 GC 的时间不大于多少毫秒或者比例。Parallel Scavenge 收集器以高吞吐量为目标，减少垃圾收集时间，让用户代码获得更长的运行时间；GC 停顿时间的缩短，是用牺牲吞吐量和新生代空间来换取的。
+Parallel Old收集器
+Parallel Old 收集器是 Parallel Scavenge 收集器的老年代版本，使用多线程和「标记-压缩」算法，在 JDK1.6 版本才开始提供。
+CMS收集器
+CMS（Concorrect mask sweep）收集器是一种以获取最短停顿时间为目标的收集器；也称为并发低停顿收集器。常用在 WEB、B/S 架构的服务系统中，因为这类应用很注重响应速度，尽可能减少系统停顿时间，给用户带来较好的体验。从名字上就可以看出来，它是基于「标记-清除」算法实现的，整个过程分为 4 步：
+初始标记
+初始标记仅仅标记 GC Roots 能直接关联到的对象，所以速度很快，需要停止服务（Stop The World）。
+并发标记
+并发标记是进行 GC Roots Tracing 的过程，为了标记上一步集合中的存活对象，因为用户程序这段时间也在运行，所以并不能保证可以标记出所有的存活对象。
+重新标记
+重新标记阶段是为了修正并发标记阶段因用户程序继续运作而导致标记变动的那一部分对象，采用多线程并行来提升效率，会停止服务，时间上远比并发标记短，较初始标记稍长。
+并发清除
+这个阶段即并发收集垃圾对象，可以与用户线程一起工作。
+虽然 CMS 收集器线程可以和用户线程一起进行，但是它肯定会占用 CPU 资源，拖慢应用程序是肯定的，总的吞吐量会降低。
+
+G1收集器
+（看下垃圾回收算法中的分区算法）这是目前最新的前沿成果，它基于“标记-压缩”算法，可以进行空间整理，不会产生碎片。前面的垃圾收集器，收集范围都是整个新生代或老年代，但是 G1 收集器不是这样，使用 G1 收集器时，java堆的内存模型不同，它还保留有新生代和老年代的概念，它们都是一部分区域（可以不连续）的集合。除此之外，G1 收集器还能建立可预测的停顿时间模型，可以明确指定M毫秒时间片内，垃圾收集消耗的时间不超过N毫秒。G1 跟踪各个区域（Region）获得其收集价值大小，在后台维护一个优先列表，每次根据允许的收集时间，优先回收价值最大的 Region。G1 垃圾回收也分4步：
+初始标记
+仅标记 GC Roots 能直接关联到的对象。
+并发标记
+进行 GC Roots Tracing 的过程，并不能保证可以标记出所有的存活对象。这个阶段若发现区域对象中的所有对象都是垃圾，那个这个区域会被立即回收。
+最终标记
+为了修正并发标记期间因用户程序继续运作而导致标记变动的那一部分对象的标记记录，G1 中采用了比 CMS 更快的初始快照算法: snapshot-at-the-beginning (SATB)。
+筛选回收
+首先排序各个 Region 的回收价值和成本，然后根据用户期望的 GC 停顿时间来制定回收计划，最后按计划回收一些价值高的 Region 中垃圾对象，回收时采用&amp;quot;复制&amp;quot;算法，从一个或多个 Region 复制存活对象到堆上的另一个空的 Region，并且在此过程中压缩和释放内存。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/qxVW9efzD/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/S8r7al_js/">
+                        如何抽取实体关系？——基于依存句法分析的事实三元组抽取
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-04-26</time>
+                    
+                        <a href="https://www.guanngxu.com/_9zQ4w6VQ/" class="post-tag i-tag
+                            i-tag-primary">
+            #自然语言处理
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
+                            i-tag-other_3">
+            #Java
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
+                            i-tag-other_2">
+            #爬虫
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-other_3">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/S8r7al_js/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/S8r7al_js.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考：
+HanLP 自然语言处理
+基于依存分析的开放式中文实体关系抽取方法
+命名实体三元组抽取参考自fact_triple_extraction
+
+这一段时间一直在做知识图谱，卡在实体关系抽取这里几个月了，在 Github 上面看到有人使用卷积神经网络训练模型进行抽取，自己也尝试了一下，但是一直苦于没有像样数据去训练，而标注训练集又太费时间了，我不太愿意干体力活。另外自己也不会什么机器学习、深度学习之类的技术，而且毕业设计都是有时间要求的，所以采用了一个低档次的方法，基于依存句法分析的实体关系抽取，记录一下心得，方便日后忘记可以再找回来。
+论文给出了 8 种中文关系的表达方式，并且最后给出了一个采用正则表达式语法指出表达，核心就是谓语动词表示关系，即关系表述中一定得有动词。
+状语*动词+补语?宾语?
+
+我不太赞同把宾语也当作关系表述的一部分，论文指出“p4生于山西”应该抽出（p4，山西，生于山西），我认为关系不应该表述为“生于山西”，所以我把关系表述改为下面的样子了。
+状语*动词+补语?
+
+这篇文章只是作为一个方法介绍，我自己先看了一遍，能够保证我下次看到这篇文章，可以立马回忆起自己的实现方法，希望你看了也能了解方法，看不懂的话，我表示抱歉，浪费您的时间了，我已经尽可能写到简单了。
+先来看几个简单句子吧：
+主谓宾关系：刘小绪 生于 四川
+// 这个三元组很明显：（刘小绪，生于，四川）
+
+
+动补结构：刘小绪 洗 干净 了 衣服
+// 如果套用主谓宾关系就是：（刘小绪，洗，衣服）
+// 但是这里描述的是一个状态，是刘小绪把衣服洗干净了
+// “干净”是动词“洗”的补语，所以还应该提取出一个如下三元组
+// （刘小绪，洗干净了，衣服）
+
+状动结构：父亲 非常 喜欢 跑步
+// 这句和上面很像，主谓宾关系是：父亲喜欢跑步
+// “非常”用于修饰“喜欢”
+// （父亲，非常喜欢，跑步）
+
+介宾关系：刘小绪 就职 于 学校
+// 如果直接把这个三元组抽取为（刘小绪，就职，学校），很别扭
+// “于”和“学校”是介宾关系，它们的关系应该是：就职于
+// （刘小绪，就职于，学校）
+
+宾语前置：海洋 由 水 组成
+// “海洋”是“组成”的前置宾语
+// “由”是“组成”的状语
+// “水”和“由”是介宾关系
+// 所以上面的句子没有明确的主谓关系，需要我们判断
+// 抽出的三元组应该为：（水，组成，海洋）
+
+HanLP 提供了两种依存句法分析的器，默认采用的是基于神经网络的依存句法分析器。依存句法分析就是将句子分析成一棵依存句法树，描述各个词语之间的依存关系，即指出词语之间在句法上的搭配关系。
+有了上面所说的依存句法树，其实我们只需要进行各种判断就可以了。先做出下面的一点说明，就拿第一个例子来说。
+原文：刘小绪生于四川
+
+# 这是分词结果
+[刘小绪/nr, 生于/v, 四川/ns]
+
+#这是句法分析结果
+刘小绪 --(主谓关系)--&amp;gt; 生于
+生于 --(核心关系)--&amp;gt; ##核心##
+四川 --(动宾关系)--&amp;gt; 生于
+
+为了方便理解，也为了方便程序的编写，我把他们组织成了下面的形式，为每一个词语都建一个依存句法字典。
+刘小绪：{}
+生于：{主谓关系=[刘小绪], 动宾关系=[四川]}
+四川：{}
+
+然后只需要写出类似于下面的程序段就可以抽出关系了。
+// 主谓宾关系：刘小绪生于四川
+// dic是这个词语的依存句法字典
+if (dic.containsKey(&amp;quot;主谓关系&amp;quot;) &amp;amp;&amp;amp; dic.containsKey(&amp;quot;动宾关系&amp;quot;)){
+    
+    // 当前的词语，用上面的例子来说，relation=“生于”
+    String relation = curWord.LEMMA;
+
+
+    // 用循环遍历，是因为关系列表里面不一定只有一个词语
+    for (CoNLLWord entity1:
+            dic.get(&amp;quot;主谓关系&amp;quot;)) {
+
+        for (CoNLLWord entity2:
+                dic.get(&amp;quot;动宾关系&amp;quot;)) {
+
+            System.out.println(entity1.LEMMA + &amp;quot;,&amp;quot; + relation + &amp;quot;,&amp;quot; + entity2.LEMMA);
+        }
+
+    }
+}
+
+对于分词后的每个词语都进行上面程序段的操作。“刘小绪”和“四川”，关系字典都为空。而对于“生于”，关系列表里面既有主谓也有动宾，而自己本身就是动词，主谓宾就出来了。直接从主谓关系中拿出来词语作为 entity1，再拿上自己作为关系，最后拿出动宾关系中的词语作为 entity2。很明确的三元组（刘小绪，生于，四川）就出来了。
+最后给出一个程序运行结果图吧。
+
+我个人觉得效果还行，在简单句子上面表现的差强人意，在长句子上面表现的差劲。注意上文使用的第三方包随着时间的推移肯定会改一些接口，源码链接：entity_relation_extraction
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/S8r7al_js/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

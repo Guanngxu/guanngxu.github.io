@@ -1,0 +1,668 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    电平转换器基础知识 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            电平转换器基础知识
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2024-05-27</time>
+                            <span class="read-time">9 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/ONdBQtmOe/" class="post-tag i-tag
+                            i-tag-other_3">
+                            #电平转换
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
+                            i-tag-primary">
+                            #电路基础
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/asBsvJSki.png')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：</p>
+<p><a href="https://www.youtube.com/watch?v=PELQij4Rci4">迷失在电平转换中</a></p>
+<p><a href="https://www.youtube.com/watch?v=4wgccSVBGYk">为什么芯片都是 CMOS 的呢？CMOS 和 TTL 有什么区别？</a></p>
+<p><a href="https://www.eet-china.com/mp/a82794.html">高阻态，三态门</a></p>
+<p><a href="https://www.semiee.com/file/TI/TI-SN74ABT162245.pdf">TI 162245 用户手册</a></p>
+</blockquote>
+<h2 id="为什么需要电平转换">为什么需要电平转换</h2>
+<p>在电路设计中，常常会遇到一个系统中存在不同的电平信号，比如 0.9V、1.8V、3.3V、5V 等，要使系统不同模块协同工作，就需要对电平信号进行转换。</p>
+<p>其实需要进行电平转换的本质原因是因为半导体加工工艺的不同。比如 TTL 电平 2.0V 以上表示<code>高</code>，0.8V 以下表示<code>低</code>。但是 CMOS 电平由于其物理原因，常常是将<code>高</code>定义为 3.5V 以上，<code>低</code>定义为 1.5V 以下。所以伴随着每一个新的半导体发展阶段，<code>高</code>和<code>低</code>都被改了一下，直到形成了下图这个样子。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1716801232626.jpg" alt="" loading="lazy"></figure>
+<p>一个 5V TTL 输出跟一个 5V TTL 输入可以没有障碍的交流，但是当一个 3V CMOS 和一个 5V CMOS 进行交流时就存在问题了。当 3V CMOS 输出<code>高</code>时，意味着它应用一个 2.5V 的信号在其输出引脚上，如果此时将这个输出与一个 5V CMOS 输入端进行连接，5V CMOS 只能识别超过 3.5V 的<code>高</code>信号和低于 1.5V 的<code>低</code>信号，那么 2.5V 的输入对于 5V CMOS 来说是<code>高</code>还是<code>低</code>呢？</p>
+<h2 id="常见电平转换电路">常见电平转换电路</h2>
+<h3 id="使用电阻分压">使用电阻分压</h3>
+<p>最直接也是最简单的办法就是使用电阻来分压来转换电平，后续芯片可以等效为一个负载电阻，通过串联一个电阻与芯片内部电阻构成分压关系。这种电路的优势是电阻器件采购方便、价格低廉，电路也很简单。但是缺点也很明显，因为两芯片引脚之间存在电压差且中间只有串联电阻，所以会有电流的流动造成两芯片相互影响。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1716801272174.jpg" alt="" loading="lazy"></figure>
+<h3 id="二极管电平转换">二极管电平转换</h3>
+<p>二极管电平转换电路如下图所示。该电路由二极管和电阻组成，电路使用元件比较少，其中二极管最好用肖特基二极管，因为肖特基二极管具有开关频率高和正向压降低的优点。</p>
+<ol>
+<li>当 5V TXD1 发送高电平时，二极管正极电压比负极电压低，二极管截止，RXD2 被上拉电阻拉为高电平；</li>
+<li>当 5V TXD1 发送低电平时，二极管导通，RXD2 被钳位至二极管管压降（0.7V），所以收到低电平；</li>
+<li>当 3.3V TXD2 发送低电平时，二极管导通，RXD1 被钳位至二极管管压降（0.7V），所以收到低电平；</li>
+<li>当 3.3V TXD2 发送高电平时，二极管也是导通的，RXD1 电压为 3.3V 加上一个管压降，即 4.0V，所以收到高电平。</li>
+</ol>
+<p>当 3.3V 端发送高电平给 5V 端时，5V 端收到的并不是 5V，同时该电路只适合单向通讯的场景，发送端和接收端不可以互换。</p>
+<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1716801316133.jpg" alt="" loading="lazy"></figure>
+<h3 id="三极管电平转换">三极管电平转换</h3>
+<p>三极管电平转换电路其实就是模电中的共射极放大电路，也就是 TTL 的前身，原来的 RTL（Resistor Transistor Logic），以下图左边 5V 转 3.3V 为例。</p>
+<ol>
+<li>当 TXD1 发送高电平时，第一个三极管导通，导致其集电极电位为低电平，所以第二个三极管基极为低电平，第二个三极管处于截止状态，RXD2 被上拉电阻拉高至 3.3V；</li>
+<li>当 TXD1 发送低电平时，第一个三极管截止，第二个三极管导通，RXD2 相当于接地，输出低电平信号。</li>
+<li>3V 转 5V 类似则不再赘述。</li>
+</ol>
+<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1716801357060.jpg" alt="" loading="lazy"></figure>
+<p>如果接收端可以接受反相信号，则可以去掉电路中一个三极管，电路会简单一些，如下图所示。</p>
+<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1716801386301.jpg" alt="" loading="lazy"></figure>
+<h3 id="mos-管电平转换">MOS 管电平转换</h3>
+<p>使用三极管搭建的逻辑电路的优点是速度快，但是其缺点也很明显，就是静态电流损耗很大，所以无法进行大规模的集成。MOS 管的导通电阻很小，其静态功耗可以忽略不计。MOS 管搭建的逻辑电路相比三极管的速度要慢，原因在于三极管是电流控制型器件，而 MOS 管是电压控制型器件，打开 MOS 管会涉及到给 MOS 管寄生电容充电，这个充电过程即是导致速度慢的原因。以 MOS 管搭建的如下电平转换电路可双向传输。</p>
+<ol>
+<li>5V 电路发送高电平时，MOS 管 D 极电压被拉至 5V，但是 MOS 管的状态和 D 极电压无关，由 VGS 决定导通程度，所以 MOS 管截止，S 极被上拉电阻拉高为 3.3V；</li>
+<li>5V 电路发送低电平时，MOS 管 D 极电压为 0V，S 极电压为 3.3V，由于 MOS 管存在体二极管，所以 3.3V 电路被钳位在 0.7V，为低电平；</li>
+<li>3.3V 发送高电平时，MOS 管 G 极和 S 极电压都为 3.3V，MOS 管截止，D 极被上拉电阻拉高至 5V；</li>
+<li>3.3V 发送低电平时，MOS 管 G 极为 3.3V，S 极为 0V，MOS 管导通，D 极为低电平。</li>
+</ol>
+<figure data-type="image" tabindex="6"><img src="https://www.guanngxu.com/post-images/1716801423782.jpg" alt="" loading="lazy"></figure>
+<h2 id="电平转换芯片">电平转换芯片</h2>
+<p>在介绍集成好的电平转换芯片之前，我们需要先了解高阻态、三态门等基本的概念，最后再将三态门等进行组合形成电平转换芯片。</p>
+<h3 id="高阻态">高阻态</h3>
+<p><code>高阻态</code>是数字电路中常见的术语，表示电路中的某个节点具有相对电路中其它点更高的阻抗，它是电路的一种特殊的输出状态，但是这个状态既不是高电平也不是低电平。如果用万用表进行测试，可能测到高电平也可能测到低电平，它的状态取决于其后面的电路。</p>
+<p>在电路分析时可以将高阻态作开路理解，理论上高阻态是不悬空的，它对地和对电源的电阻都非常大，但实际应用时与引脚悬空几乎一致，因此高阻态的极限可以认为就是悬空。</p>
+<p>那么高阻态又是如何造成的呢？通常是由于三态门或三态缓冲器的存在而导致的，当三态门的使能端为低电平时，门电路输出上拉管和下拉管都截止，输出端就处于浮空状态，即没有电流的流动。此时相当于门电路放弃了对输出端电路的控制，其实际电平就由外部电平来决定。</p>
+<h3 id="三态门">三态门</h3>
+<p>那么什么又是<code>三态门</code>呢？三态门允许输出端除了高电平和低电平之外呈现高阻态。可以理解为除了输出输出端口外，三态门另外加了一个 EN 引脚，若没有对三态门进行使能，则其输出为高阻态，否则输出由输入决定。</p>
+<figure data-type="image" tabindex="7"><img src="https://www.guanngxu.com/post-images/1718096194711.jpg" alt="" loading="lazy"></figure>
+<p>三态门常常用于总线连接结构。在总线上有多个设备连接到同一条数据线上，但是在特定时间内只有一个设备是有效的，不活动的设备处于高阻态，因此不会对总线上其它设备产生影响。一般来说需要双向数据传输，我们再增加一个三态门即可实现此功能。</p>
+<figure data-type="image" tabindex="8"><img src="https://www.guanngxu.com/post-images/1718097966059.jpg" alt="" loading="lazy"></figure>
+<h3 id="三态门输出结构">三态门输出结构</h3>
+<p>三态门输出端由上 PMOS 管、下 NMOS 管和一个输出供电电压构成，当上管导通时输出低电平，当下管导通时输出为高电平。</p>
+<figure data-type="image" tabindex="9"><img src="https://www.guanngxu.com/post-images/1718115240043.png" alt="" loading="lazy"></figure>
+<p>但是仔细观察会发现输出和输入是反相的，因此为了保证输入与输出同相，我们还需要在输入端加一级反相器。神奇的事情发生了，这不是<code>施密特触发器</code>吗？而且实际应用时为加强电路的抗干扰能力，使用的就是施密特触发器。</p>
+<figure data-type="image" tabindex="10"><img src="https://www.guanngxu.com/post-images/1718115813032.png" alt="" loading="lazy"></figure>
+<p>我们在上文的基础上再加入 EN 使能逻辑，即可实现完整的三态门输出结构，在排故障时可通过该等效电路对现象进行分析。</p>
+<figure data-type="image" tabindex="11"><img src="https://www.guanngxu.com/post-images/1718117267080.png" alt="" loading="lazy"></figure>
+<h3 id="集成芯片">集成芯片</h3>
+<p>在实际应用中肯定不能一位一位的传输，我们假设一次传输一个字节（8 bit），为了简化电路我们把同一个方向的 EN 信号接到一起，如此即只需要两个信号即可控制数据的传输方向了。</p>
+<figure data-type="image" tabindex="12"><img src="https://www.guanngxu.com/post-images/1718118135417.jpg" alt="" loading="lazy"></figure>
+<p>通过控制 EN1 和 EN2 的使能与否，即可控制数据的传输方向。需要注意的是应该避免 EN1 和 EN2 同时都使能的状态，因为在此种状态下左右两侧的数据传输会打架，谁也不知道接收到的信号到底是自己发出去的还是别人发过来的。</p>
+<table>
+<thead>
+<tr>
+<th>EN1</th>
+<th>EN2</th>
+<th>左侧</th>
+<th>右侧</th>
+<th>输出状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H</td>
+<td>H</td>
+<td>使能</td>
+<td>使能</td>
+<td>无效状态</td>
+</tr>
+<tr>
+<td>H</td>
+<td>L</td>
+<td>使能</td>
+<td>高阻态</td>
+<td>数据由左至右</td>
+</tr>
+<tr>
+<td>L</td>
+<td>H</td>
+<td>高阻态</td>
+<td>使能</td>
+<td>数据由右至左</td>
+</tr>
+<tr>
+<td>L</td>
+<td>L</td>
+<td>高阻态</td>
+<td>高阻态</td>
+<td>隔离，不传输数据</td>
+</tr>
+</tbody>
+</table>
+<p>为了避免上述同时使能的状态，我们对电路做一点改进，以保证芯片不会出现稀奇古怪的现象。</p>
+<figure data-type="image" tabindex="13"><img src="https://www.guanngxu.com/post-images/1718118147442.jpg" alt="" loading="lazy"></figure>
+<table>
+<thead>
+<tr>
+<th>OE</th>
+<th>DIR</th>
+<th>左侧</th>
+<th>右侧</th>
+<th>输出状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H</td>
+<td>H</td>
+<td>使能</td>
+<td>高阻态</td>
+<td>数据由左至右</td>
+</tr>
+<tr>
+<td>H</td>
+<td>L</td>
+<td>高阻态</td>
+<td>使能</td>
+<td>数据由右至左</td>
+</tr>
+<tr>
+<td>L</td>
+<td>H</td>
+<td>高阻态</td>
+<td>高阻态</td>
+<td>隔离，不传输数据</td>
+</tr>
+<tr>
+<td>L</td>
+<td>L</td>
+<td>高阻态</td>
+<td>高阻态</td>
+<td>隔离，不传输数据</td>
+</tr>
+</tbody>
+</table>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/L3EbniCYD/">
+                                <h3 class="post-title">
+                                    LDO 基础知识
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E7%94%B5%E5%B9%B3%E8%BD%AC%E6%8D%A2">为什么需要电平转换</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E7%94%B5%E5%B9%B3%E8%BD%AC%E6%8D%A2%E7%94%B5%E8%B7%AF">常见电平转换电路</a>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8%E7%94%B5%E9%98%BB%E5%88%86%E5%8E%8B">使用电阻分压</a></li>
+<li><a href="#%E4%BA%8C%E6%9E%81%E7%AE%A1%E7%94%B5%E5%B9%B3%E8%BD%AC%E6%8D%A2">二极管电平转换</a></li>
+<li><a href="#%E4%B8%89%E6%9E%81%E7%AE%A1%E7%94%B5%E5%B9%B3%E8%BD%AC%E6%8D%A2">三极管电平转换</a></li>
+<li><a href="#mos-%E7%AE%A1%E7%94%B5%E5%B9%B3%E8%BD%AC%E6%8D%A2">MOS 管电平转换</a></li>
+</ul>
+</li>
+<li><a href="#%E7%94%B5%E5%B9%B3%E8%BD%AC%E6%8D%A2%E8%8A%AF%E7%89%87">电平转换芯片</a>
+<ul>
+<li><a href="#%E9%AB%98%E9%98%BB%E6%80%81">高阻态</a></li>
+<li><a href="#%E4%B8%89%E6%80%81%E9%97%A8">三态门</a></li>
+<li><a href="#%E4%B8%89%E6%80%81%E9%97%A8%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%84">三态门输出结构</a></li>
+<li><a href="#%E9%9B%86%E6%88%90%E8%8A%AF%E7%89%87">集成芯片</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

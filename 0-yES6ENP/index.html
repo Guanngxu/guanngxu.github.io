@@ -1,0 +1,503 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    深入理解计算机系统——函数调用与空间分配 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            深入理解计算机系统——函数调用与空间分配
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2018-11-08</time>
+                            <span class="read-time">6 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-warning">
+                            #操作系统
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/0-yES6ENP.jpeg')"></div>
+                            
+                                <div class="post-content">
+                                    <p>我们在编程序的时候，都会把某一个特定功能封装在一个函数里面，对外暴露一个接口，而隐藏了函数行为的具体实现，一个大型的复杂系统里面包含了很多这样的小函数，我们称之为<strong>过程</strong>。</p>
+<p>过程是相对独立的小模块，系统的运行需要这些过程的紧密合作，这种合作就是函数调用。</p>
+<p>在一个函数执行时调用别的函数，比如 P 调用 Q，需要执行一些特定的动作。<code>传递控制</code>，在调用 Q 之前，控制权在 P 的手里，既然要调用 Q，那么就需要把控制权交给 Q；<code>传递数据</code>，就是函数传参；<code>分配与释放内存</code>，在开始时，Q 可能需要位局部变量分配空间，结束时又必须释放这些存储空间。</p>
+<p>大多数语言都使用栈提供的先进后出机制来管理内存，x86-64 可以通过通用寄存器传递最多 6 个整数值（整数或地址），如果超过 6 个，那就需要在栈中分配内存，并且通过栈传递参数时，所有数据的大小都要向 8 的倍数对齐。将控制权从 P 转交给 Q，只需要将 PC（程序计数器）的值置为 Q 代码的起始位置，并记录好 P 执行的位置，方便 Q 执行完了，继续执行 P 剩余的代码。</p>
+<p>在函数的传参、执行中，多多少少都需要空间来保存变量，局部数据能保存在寄存器中就会保存在寄存器中，如果寄存器不够，将会保存在内存中。除了寄存器不够用的情况，还有数组、结构体和地址等局部变量都必须保存在内存中。分配内存很简单，只需要减小栈指针的值就行了，同样释放也只需要增加栈指针。</p>
+<p>在函数执行过程中，处理栈指针<code>%rsp</code>，其它寄存器都被分类为<code>被调用者保存寄存器</code>，即当过程 P 调用过程 Q 时，Q 必须保存这些寄存器的值，保证它们的值在 Q 返回到 P 时与 Q 被调用时是一样的。</p>
+<p>所以递归也就不难理解了，初学算法总觉得递归有点奇妙，怎么自己调用自己，而实际上对于计算机来说，它和调用其它函数没什么区别，在计算机眼里，没有自身与其它函数的区别，所有被调用者都是其它人。</p>
+<p>数组是编程中不可或缺的一种结构，“数组是分配在连续的内存中”这句话已经烂熟于心了，历史上，C 语言只支持大小在编译时就能确定的多维数组，这个多多少少有一些不便利，所以在<code>ISO C99</code>标准中就引入了新的功能，允许数组的维度是表达式。</p>
+<pre><code class="language-c">int A[expr1][expr2]
+</code></pre>
+<p>因为数组是连续的内存，所以很容易就能访问到指定位置的元素，它通过首地址加上偏移量即可计算出对应元素的地址，这个偏移量一定意义上就是由索引给出。</p>
+<p>比如现在有一个数组<code>A</code>，那么<code>A[i]</code>就等同于表达式<code>* (A + i)</code>，这是一个指针运算。C 语言的一大特性就是指针，既是优点也是难点，单操作符<code>&amp;</code>和<code>*</code>可以产生指针和简介引用指针，也就是，对于一个表示某个对象的表达式<code>expr</code>，<code>&amp;expr</code>给出该对象地址的一个指针，而对于一个表示地址的表达式<code>Aexpr</code>，<code>*Aexpr</code>给出该地址的值。</p>
+<p>即使我们创建嵌套（多维）数组，上面的一般原则也是成立的，比如下面的例子。</p>
+<pre><code class="language-c">int A[5][3];
+
+// 上面声明等价于下面
+typedef int row3_t[3];
+row3_t A[5];
+</code></pre>
+<p>这个数组在内存的中就是下面那个样子的。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1664023363514.png" alt="" loading="lazy"></figure>
+<p>还有一个重要的概念叫做<code>数据对齐</code>，即很多计算机系统要求某种类型的对象的地址必须是某个值 K（一般是2、4 或 8）的倍数，这种限制简化了处理器和内存接口之间的设计，甚至有的系统没有进行数据对齐，程序就无法正常运行。</p>
+<p>比如现在有一个如下的结构体。</p>
+<pre><code class="language-c">struct S1 {
+    int i;
+    char c;
+    int j;
+}
+</code></pre>
+<p>如果编译器用最小的 9 字节分配，那么将是下面的这个样子。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1664023388089.png" alt="" loading="lazy"></figure>
+<p>但是上面这种结构无法满足 i 和 j 的 4 字节对齐要求，所以编译器会在 c 和 j 之间插入 3 个字节的间隙。</p>
+<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1664023399833.png" alt="" loading="lazy"></figure>
+<p>在极客时间专栏中有这样一段代码。</p>
+<pre><code class="language-c">int main(int argc, char *argv[]){
+    int i = 0;
+    int arr[3] = {0};
+    for(; i &lt;= 3; i++){
+        arr[i] = 0;
+        printf(&quot;Hello world!\n&quot;);
+    }
+    return 0;
+}
+</code></pre>
+<p>这段代码神奇的是在某种情况下会一直循环的输出<code>Hello world</code>，并不会结束，在<a href="https://mp.weixin.qq.com/s/BRRReU3akhqh8vgm59GNvA">计算机系统漫游（补充）</a>中也提到过。</p>
+<p>造成上面这种结果是因为函数体内的局部变量存在栈中，并且是连续压栈，而 Linux 中栈又是从高向低增长。数组<code>arr</code>中是 3 个元素，加上 i 是 4 个元素，刚好满足 8 字节对齐（编译器 64 位系统下默认会 8 字节对齐），变量<code>i</code>在数组<code>arr</code>之前，即<code>i</code>的地址与<code>arr</code>相邻且比它大。</p>
+<p>代码中很明显访问数组时越界了，当<code>i</code>为 3 时，实际上正好访问到变量<code>i</code>的地址，而循环体中又有一句<code>arr[i] = 0;</code>，即又把<code>i</code>的值设置为了 0，由此就导致了死循环。</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/K8GZGQszm/">
+                                <h3 class="post-title">
+                                    认知如何提升？我是怎样转变自己思维方式的
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

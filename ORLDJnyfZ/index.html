@@ -1,0 +1,554 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    讲一个爱情故事，让 HTTPS 简单易懂 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            讲一个爱情故事，让 HTTPS 简单易懂
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2018-08-26</time>
+                            <span class="read-time">8 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-other_1">
+                            #计算机网络
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/ORLDJnyfZ.jpeg')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容<br>
+<a href="https://medium.freecodecamp.org/https-explained-with-carrier-pigeons-7029d2193351">HTTPS explained with carrier pigeons</a></p>
+</blockquote>
+<p>充满各种数学证明的密码学是令人头疼的，一听到密码、黑客、攻击等词的时候，就给人一种神秘又高大上的感觉，但除非你真的从事密码学相关工作，否则你并不需要对密码学有多么深刻的理解。</p>
+<p>这是一篇适合在饭后的品茶时光中阅读的文章，咱们虚构一个故事来讲解，虽然故事看起来很随性，但是 HTTPS 也是这么工作的。里面有一些术语你也应该听过，因为它们经常出现在技术文献里面。</p>
+<h2 id="故事背景">故事背景</h2>
+<p>一天，一个男子到河边抓鱼给母亲吃，而河岸的另一头是一大户人家的小姐和她的丫鬟在散步。突然，一个不小心，对面小姐不慎跌入水中，而丫鬟又不会游泳，这可把小丫鬟急的呀！！！正在抓鱼的男子见此状况，来不及脱掉身上的衣物，就像箭一样窜入水中.....想必看客已经猜到了，小姐被救起，男子抱着迷迷糊糊小姐走上岸的过程中，小姐感觉自己像触电了一样，觉得这个男人很安全，只要靠着他，就算天塌下来也不怕，而男子把小姐放下的那一刻，也很不舍，好像把她放下就失去了活下去的希望。</p>
+<p>小姐回到家中，给父亲大人说了这件事，父亲很高兴，就叫下人去把这位男子请到家中表示感谢，结果一问，这小伙幼年丧父，现在家中还有病弱的老母亲，连一间屋子都没有，一直和母亲寄住在城外的破庙里面，不过他毕竟救了自己的女儿，父亲让下人拿出了五十两黄金以表谢意，但不允许他和小姐再有任何来往。</p>
+<p>.....此处省略五千字。</p>
+<p>我们姑且称小姐为小花，称男子为小明，他们不能相见了，但是又备受相思之苦，因此只能通过写信的方式来传达彼此的思念了。</p>
+<h2 id="最简单的通信方式">最简单的通信方式</h2>
+<p>如果小花想给小明写信，那么她可以把写好的信让信鸽给小明送去，小明也可以通过信鸽给小花回信，这样他们就能知道彼此的感情了。</p>
+<p>但是很快这种方式出问题了，因为他们都隐约感觉到收到的来信不是对方写的，因为从信件上看，双方都表示不再喜欢彼此。凭借着对彼此的信任，他们才知道是小花的父亲从中阻挠他们。每次他们写的信都被父亲的下人拦下了，然后换上他们事先准备好的信件，目的就是为了让小花和小明断了感情。</p>
+<p>HTTP 就是这样的工作方式。</p>
+<h2 id="对称加密">对称加密</h2>
+<p>小花是博冠古今的人，这怎么能难倒她呢。他们彼此约定，每次写信都加上密码，让信鸽传送的信件是用密文书写的。他们约定的密码是把每个字母的位置向后移动三位，比如 A → D 、 B → E ，如果他们要给对方写一句 &quot;I love you&quot; ，那么实际上信件上面写的就是 &quot;L oryh brx&quot; 。现在就算父亲把信件拦截了，他也不知道里面的内容是什么，而且也没办法修改为有效的内容，因为他不知道密码，现在小花和小明又能给对方写情书了。</p>
+<p>这就是<strong>对称加密</strong>，因为如果你知道如何加密信息，那也能知道如何解密信息。上面所说的加密常称为<strong>凯撒密码</strong>，在现实生活中，我们使用的密码肯定会更复杂，但是主要思想是一样的。</p>
+<h2 id="如何确定密钥">如何确定密钥</h2>
+<p>显然对称加密是比较安全的（只有两个人知道密码的情况下）。在凯撒密码中，密码通常是偏移指定位数的字母，我们使用的是偏移三位。</p>
+<p>可能你已经发现问题了，在小花和小明开始写信之前，他们就已经没办法相见了，那他们怎么确定密钥呢，如果一开始通过信鸽告诉对方密钥，那父亲就能把信鸽拦下，也能知道他们的密钥，那么父亲也就可以查看他们信件的内容，同时也能修改信件了。</p>
+<p>这就是典型的<strong>中间人攻击</strong>，唯一能解决这个问题的办法就是改变现有的加密方式。</p>
+<h2 id="非对称加密">非对称加密</h2>
+<p>小花想出了更好的办法，当小花想给小明写情书的时候，她将会按照下面的步骤来进行：</p>
+<ul>
+<li>小花给小明送一只没有携带任何信件的鸽子；</li>
+<li>小明让信鸽带一个没有上锁的空箱子回去，钥匙由小明保管；</li>
+<li>小花把写好的情书放到箱子里面，并锁上箱子</li>
+<li>小明收到箱子后，用钥匙打开箱子就可以了。</li>
+</ul>
+<p>使用这种方式，父亲大人就没办法拦截信鸽了，因为他没有箱子的钥匙。同样如果小明想给小花写情书，也采用这种方式。</p>
+<p>这就是<strong>非对称加密</strong>，之所以称之为非对称加密，是因为即使你能加密信息（锁箱子），但是你却无法解密信息（开箱子），因为箱子的钥匙在对方那里。在技术领域，把这里的箱子称作<strong>公钥</strong>，把钥匙称作<strong>私钥</strong>。</p>
+<h2 id="认证机构">认证机构</h2>
+<p>细心的你可能发现问题了，当小明收到箱子后，他如何确定这个箱子的主人是谁呢，因为父亲也可以让信鸽带箱子给小明啊，所以父亲如果想知道他们的信件内容，那只需要把箱子偷换掉就好了。</p>
+<p>小花决定在箱子上面签上自己的名字，因为笔迹是不能模仿的，这样父亲就没办法伪造箱子了。但是依旧有问题，小花和小明在不能相见之前并没有见过彼此写的字，那么小明又如何识别出小花的字迹呢？所以他们的解决办法是，找张三丰替小花签名。</p>
+<p>众所周知，张三丰是当世的得道高人，他的品德是世人都认可的，大家都把他奉为圣人，而且天下肯定不止一对有情人遇到小花和小红这样的问题。张三丰只会为合法居民签名。</p>
+<p>张三丰会在小花的盒子上签名，前提是他确定了要签名的是小花。所以父亲大人是无法得到张三丰代表小花签名的盒子，否则小明就会知道这是一个骗局，因为张三丰只在验证了人们的身份后才会代表他们给盒子签名。</p>
+<p>张三丰在技术领域的角色就是<strong>认证机构</strong>，你现在阅读这篇文章所使用的浏览器是附带了各种认证机构的签名的。所以当你第一次访问某个网站时，你相信这不是一个钓鱼网站，是因为你相信第三方认证机构，因为他们告诉你这个箱子是合法的。</p>
+<h2 id="箱子太重了">箱子太重了</h2>
+<p>虽然现在小花和小明有了一个可靠的通信系统，但是信鸽带个箱子飞的慢啊，热恋中的人是“一日不见如隔三秋”，信鸽飞慢了怎么行呢。</p>
+<p>所以他们决定还是采用对称加密的方式来写情书，但是对称加密的密钥要用箱子来传递，也就是用非对称加密方式来传递对称加密密钥，这样就可以同时获得对称加密和非对称加密的优点了，还能避免彼此的缺点。</p>
+<p>需要注意的是，在网络世界中，信息不会像鸽子传送的那么慢，只不过只用非对称加密技术加密信息要比对称加密慢，所以只用它来交换密钥。</p>
+<p>以上就是 HTTPS 的工作过程。</p>
+<h2 id="一个故事">一个故事</h2>
+<blockquote>
+<p>这个故事你可能早就知道了，我只是在写文章的过程中突然想起了它，就是笛卡尔的爱情故事。</p>
+</blockquote>
+<blockquote>
+<p>具体细节你可以网上去查，笛卡尔每天给自己喜欢的公主写信，但是信都被国王拦截了，笛卡尔给公主写的第十三封信中只有一个数学方程，但是这个方程国王看不懂，所以就把这封信交给了公主，公主一看方程，立刻着手把方程的图形画了出来，发现这是一颗心的形状。</p>
+</blockquote>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1662967841826.png" alt="" loading="lazy"></figure>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/uDVEq7OW-/">
+                                <h3 class="post-title">
+                                    Scrapy 爬虫框架入门——抓取豆瓣电影 Top250
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%95%85%E4%BA%8B%E8%83%8C%E6%99%AF">故事背景</a></li>
+<li><a href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F">最简单的通信方式</a></li>
+<li><a href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86">对称加密</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E5%AF%86%E9%92%A5">如何确定密钥</a></li>
+<li><a href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86">非对称加密</a></li>
+<li><a href="#%E8%AE%A4%E8%AF%81%E6%9C%BA%E6%9E%84">认证机构</a></li>
+<li><a href="#%E7%AE%B1%E5%AD%90%E5%A4%AA%E9%87%8D%E4%BA%86">箱子太重了</a></li>
+<li><a href="#%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B">一个故事</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

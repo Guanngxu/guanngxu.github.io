@@ -1,0 +1,660 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    FastDFS 分布式文件系统简介 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            FastDFS 分布式文件系统简介
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2018-03-04</time>
+                            <span class="read-time">11 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-info">
+                            #操作系统
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/uHEHy2zPz.jpeg')"></div>
+                            
+                                <div class="post-content">
+                                    <p>文章内容是刘欣大大（《码农翻身》作者，公众号：码农翻身）的直播课内容，主要是了解一下分布式文件系统，学习FastDFS的一些设计思想，学习它怎么实现高效、简洁、轻量级的一个系统的</p>
+<h2 id="fastdfs分布式文件系统简介">FastDFS分布式文件系统简介</h2>
+<p>国内知名的系统级开源软件凤毛菱角，FastDFS就是其中的一个，其用户包括我们所熟知的支付宝、京东商城、迅雷、58同城、赶集网等等，它是个人所开发的软件，作者是余庆。</p>
+<p>我们已经进入互联网时代，互联网给我们的生活带来便捷的同时，也给我们带来了诸多挑战。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1664023841320.png" alt="" loading="lazy"></figure>
+<p>对于海量文件的存储，一个机器不够，那么就用多台机器来存储。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1664023864778.png" alt="" loading="lazy"></figure>
+<p>如果一个文件只存储一份，那么如果存储这个文件的机器坏掉了，文件自然就丢失了，解决办法就是将文件进行备份，相信大多数人都有备份重要文件的习惯。FastDFS也是如此，为了防止单点的失败，肯定是需要冗余备份的。</p>
+<p>FastDFS把应用服务器分为若干个组，每一组里面可以有多台机器（一般采用3台），每一台机器叫做存储服务器（storage server）。同一组内之间的数据是互为备份的，也就是说用户把文件传到任一服务器，都会在同组内其它两个服务器进行备份，因此一个组的存储空间大小是由该组内存储空间最小的那台机器是一样的（和木桶原理一样）。为了不造成存储空间的浪费，同一个组内的三台机器最好都一样。</p>
+<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1664023902298.png" alt="" loading="lazy"></figure>
+<p>每个存储服务器（storage server）的存储就够又是怎样的呢？展开来看，它可以分为多个目录，每个目录以M开头，用00、01、02......来划分，一般无需划分这么多目录，只用一个目录就可以了。</p>
+<p>在每个根目录下面又划分了两级目录。如图所示，在/data/fastdfs0下又划分出两级目录，每一级有256个目录，这样算下来总共就有65535个目录了。存储文件时，就是通过两次哈希来确定放在哪一个目录下面。</p>
+<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1664023926667.png" alt="" loading="lazy"></figure>
+<p>那么问题就来了，有这么多组，到底该选择哪个组的服务器进行存储呢？或者说，访问的时候到底访问哪一个组呢？</p>
+<p>FastDFS提供的解决思路是引入一个跟踪服务器（tracker server），它用于记录每一个组内的存储服务器信息，存储信息是每个storage主动回报给tracker，有了这些信息之后，tracker就可以做调度工作了，看看谁的存储空间大，就把文件放过去。</p>
+<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1664023947863.png" alt="" loading="lazy"></figure>
+<h2 id="fastdfs的特点">FastDFS的特点</h2>
+<ul>
+<li><strong>组与组之间是相互独立的</strong></li>
+<li><strong>同一个组内的storage server之间需要相互备份</strong>
+<ul>
+<li>文件存放到一个storage之后，需要备份到别的服务器</li>
+</ul>
+</li>
+<li><strong>tracker之间是不交互的</strong>
+<ul>
+<li>每个storgae server都需要向所有的tracker去主动报告信息</li>
+<li>tracker与tracker之间是不知道彼此的存在的</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何上传文件">如何上传文件</h2>
+<p>为方便下载文件的理解，这里假设上传的文件为：<code>Group1/M00/00/0C/wKjGgVgbV2-ABdo-AAAAHw.jpg</code></p>
+<p>如下面的时序图可以看到客户端是如何上传文件到服务器的。首先client向tracker发送上传链接请求，然后由tracker进行调度，查询可用的storage，并把该storgae对应的ip和端口发送给client；拿到了存储服务器信息，client就直接将文件上传到storage即可；storage会生成新的文件名再写入到磁盘，完成之后再把新的文件信息返回给client，client最后把文件信息保存到本地。需要注意的是，storage会定时向tracker回报信息。</p>
+<figure data-type="image" tabindex="6"><img src="https://www.guanngxu.com/post-images/1664023975435.png" alt="" loading="lazy"></figure>
+<h3 id="如何进行选择服务器">如何进行选择服务器</h3>
+<ul>
+<li>tracker不止一个，客户端选择哪一个做上传文件？
+<ul>
+<li>tracker之间是对等的，任选一个都可以</li>
+</ul>
+</li>
+<li>tracker如何选择group？
+<ul>
+<li>round robin（轮询）</li>
+<li>load balance（选择最大剩余空间group上传）</li>
+<li>specify group（制定group上传）</li>
+</ul>
+</li>
+<li>如何选定storage?
+<ul>
+<li>round robin，所有server轮询使用（默认）</li>
+<li>根据ip地址进行排序选择第一个storage（ip地址最小者）</li>
+<li>根据优先级进行排序（上传优先级由stoage来设置，参数为upload_priority）</li>
+</ul>
+</li>
+<li>如何选择storage path
+<ul>
+<li>round robin，轮询（默认）</li>
+<li>load balance，选择使用剩余空间最大的存储路径</li>
+</ul>
+</li>
+</ul>
+<h3 id="如何选择存放目录">如何选择存放目录</h3>
+<ul>
+<li>选定存放目录？
+<ul>
+<li>storage会生成一个file_id，采用Base64编码，字段包括：storage ip、文件创建时间、文件大小、文件CRC32校验和随机数</li>
+<li>每个存储目录下面有两个256 * 256个子目录，storage会按文件file_id进行两次hash，然后将文件以file_id为文件名存储到子目录下</li>
+</ul>
+</li>
+</ul>
+<p>需要注意的是：file_id由cilent来保存，如果没有保存，你就不知道你上传的文件去那里了</p>
+<h3 id="storage-server之间的文件同步">Storage server之间的文件同步</h3>
+<ul>
+<li>同一组内的storage之间是对等的，文件上传、删除等操作可以在任意一台storage上进行</li>
+<li>文件同步只在同组内的stroage之间进行，采用push方式，即源服务器同步给目标服务器</li>
+<li>源头数据才需要同步，备份数据不需要再次同步，否则就构成环路了</li>
+<li>新增一台storage时，由已有的一台storage将已有的所有数据（包括源头数据和备份数据）同步给该新增服务器</li>
+</ul>
+<h3 id="storage的最后最早同步被同步时间">Storage的最后最早同步被同步时间</h3>
+<p>这个标题有一些拗口，现在有三台服务器A、B、C，每个服务器都需要记录其他两台服务器向自己进行同步操作的最后时间。比如下图中的服务器A，B在9：31向A同步了所有的文件、C在9：33向A同步了所有的文件，那么A服务器的最后最早被同步时间就是9:31。其他两个服务器也是一样。</p>
+<p>最后最早被同步时间的意义在于判断一个文件是否存在于某个storage上。比如这里的A服务器最后最早被同步时间为9：31，那么如果一个文件的创建时间为9：30，就可以肯定这个文件在服务器A上肯定有。</p>
+<p>Stroage会定期将每台机器的同步时间告诉给tracker，tracker在client需要下载一个文件时，要判断一个storage是否有该文件，只需要解析文件的创建时间，然后与该值作比较，若该值大于创建时间，说明storage存在这个文件，可以从该storage下载。</p>
+<figure data-type="image" tabindex="7"><img src="https://www.guanngxu.com/post-images/1664024000488.png" alt="" loading="lazy"></figure>
+<p>但是这个算法有缺陷，比如下面的情况：W文件的创建时间是9：33，服务器C已经把9：33之前的文件都同步给B了，因此B服务器里面其实已经有W文件了，但是根据最后最早被同步时间，会认为B中没有W文件。因此这个算法虽然简单，但是牺牲了部分文件。</p>
+<figure data-type="image" tabindex="8"><img src="https://www.guanngxu.com/post-images/1664024022493.png" alt="" loading="lazy"></figure>
+<h2 id="如何下载文件">如何下载文件</h2>
+<p>首先由client发送下载连接请求，请求的东西本质上就是<mark>Group1/M00/00/0C/wKjGgVgbV2-ABdo-AAAAHw.jpg</mark>；tracker将查询到的可用storage server（按下文的四个原则进行选择）的ip和端口发送给client；现在client有本地保存的文件信息，也有服务器的地址和端口，那么直接访问对应的服务器下载文件即可。</p>
+<figure data-type="image" tabindex="9"><img src="https://www.guanngxu.com/post-images/1664024050546.png" alt="" loading="lazy"></figure>
+<h3 id="如何选择一个可供下载的storage-server">如何选择一个可供下载的storage server</h3>
+<p>共下面四个原则，从上到小条件越来越宽松</p>
+<ul>
+<li>该文件上传到的源storage（文件直接上传到该服务器上）</li>
+<li>文件创建时间戳 &amp;lt; storage被同步到的文件时间戳，这意味着当前文件已经被同步过来了</li>
+<li>文件创建时间戳 = storage被同步到的文件时间戳，并且（当前时间-文件创建时间戳）&amp;gt; 一个文件同步完场需要的最大时间（5分钟）</li>
+<li>（当前时间 - 文件创建时间）&amp;gt; 文件同步延迟阀值，比如我们把阀值设置为1天，表示文件同步在一天内肯定可以完成</li>
+</ul>
+<h2 id="fastdfs的使用">FastDFS的使用</h2>
+<p>用户通过浏览器或者手机端访问web服务器，web服务器把请求转发给应用服务器，应用服务器收到请求后，通过fastDFS API和FastDFS文件系统进行交互。但是这么设计会造成应用服务器的压力，因为上传和下载都经过应用服务器。</p>
+<figure data-type="image" tabindex="10"><img src="https://www.guanngxu.com/post-images/1664024080876.png" alt="" loading="lazy"></figure>
+<p>为了避免应用服务器压力过大，可以让客户端直接使用Http访问，不通过应用服务器。</p>
+<figure data-type="image" tabindex="11"><img src="https://www.guanngxu.com/post-images/1664024101940.png" alt="" loading="lazy"></figure>
+<h2 id="fastdfs其他内容">FastDFS其他内容</h2>
+<h3 id="防止盗链">防止盗链</h3>
+<p>为了防止辛辛苦苦上传的文件被别人盗去，可以通过给URL设置token来解决。FastDFS的防止盗链配置如下：</p>
+<pre><code># 是否做tokrn检查，缺省值为false
+
+http.anti\_steal.check\_token=true
+
+# 生成token的有效时长/秒
+
+http.anti\_steal.token\_ttl=900
+
+# 生成token的密钥，尽量设置长一些
+
+http.anti\_steal.secret\_key=@#$%\*+\*&amp;amp;amp;!~
+
+FastDFS生成token策略为：token = md5（文件名，密钥，时间戳）
+</code></pre>
+<figure data-type="image" tabindex="12"><img src="https://www.guanngxu.com/post-images/1664024124906.png" alt="" loading="lazy"></figure>
+<h3 id="合并存储">合并存储</h3>
+<ul>
+<li>海量小文件的缺点
+<ul>
+<li>元数据管理低效，磁盘文件系统中，目录项、索引节点（inode）和数据（data）保存在介质不同的位置上</li>
+<li>数据存储分散</li>
+<li>磁盘的大量随机访问降低效率（小文件有可能这个在这个磁道，那个在那个磁道，就会造成大量的随机访问，大量小文件对I/O是非常不友好的）</li>
+</ul>
+</li>
+<li>FastDFS提供的合并存储功能
+<ul>
+<li>默认大文件64M</li>
+<li>每个文件空间称为slot（256bytes = slot = 16MB）</li>
+</ul>
+</li>
+</ul>
+<p>也就是说对于小文件，FastDFS会采用把多个小文件合并为一个大文件的方式来存储，默认建一个大小为64M的大文件，然后再分成多个槽，最小的槽是256bytes，因此如果一个文件小于256bytes，那么它也会占256bytes的大小。就好像我们在医院见到的中药柜子一样，每个抽屉里面再分成多个小格子，根据药材包的大小来选择不同大小的格子。</p>
+<p>没有合并时的文件ID</p>
+<figure data-type="image" tabindex="13"><img src="https://www.guanngxu.com/post-images/1664024147272.png" alt="" loading="lazy"></figure>
+<p>合并时的文件ID</p>
+<figure data-type="image" tabindex="14"><img src="https://www.guanngxu.com/post-images/1664024167536.png" alt="" loading="lazy"></figure>
+<p>此处不再深入探讨存储合并的机制，因为它带来了一系列新的问题，比如同步时不仅需要记录大文件的名称，还需要进入小文件的名称，一下子变得麻烦多了；原来空闲空间管理直接通过操作系统就能计算出来，但是现在不行了，因为是创建了一个64M的块，这个块里面还有空闲空间，计算起来就很麻烦了。</p>
+<h4 id="总结">总结</h4>
+<ul>
+<li>FastDFS是穷人的解决方案</li>
+<li>FastDFS把简洁和高效做到了极致，非常节约资源，中小型网站完全用得起</li>
+</ul>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#fastdfs%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B">FastDFS分布式文件系统简介</a></li>
+<li><a href="#fastdfs%E7%9A%84%E7%89%B9%E7%82%B9">FastDFS的特点</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6">如何上传文件</a>
+<ul>
+<li><a href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8">如何进行选择服务器</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E5%AD%98%E6%94%BE%E7%9B%AE%E5%BD%95">如何选择存放目录</a></li>
+<li><a href="#storage-server%E4%B9%8B%E9%97%B4%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5">Storage server之间的文件同步</a></li>
+<li><a href="#storage%E7%9A%84%E6%9C%80%E5%90%8E%E6%9C%80%E6%97%A9%E5%90%8C%E6%AD%A5%E8%A2%AB%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4">Storage的最后最早同步被同步时间</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6">如何下载文件</a>
+<ul>
+<li><a href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E4%B8%80%E4%B8%AA%E5%8F%AF%E4%BE%9B%E4%B8%8B%E8%BD%BD%E7%9A%84storage-server">如何选择一个可供下载的storage server</a></li>
+</ul>
+</li>
+<li><a href="#fastdfs%E7%9A%84%E4%BD%BF%E7%94%A8">FastDFS的使用</a></li>
+<li><a href="#fastdfs%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9">FastDFS其他内容</a>
+<ul>
+<li><a href="#%E9%98%B2%E6%AD%A2%E7%9B%97%E9%93%BE">防止盗链</a></li>
+<li><a href="#%E5%90%88%E5%B9%B6%E5%AD%98%E5%82%A8">合并存储</a>
+<ul>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

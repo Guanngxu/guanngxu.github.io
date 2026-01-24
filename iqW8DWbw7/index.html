@@ -1,0 +1,325 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    MongoDB | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        MongoDB</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/G1rwEVR-s/">
+                        MongoDB 聚合(aggregate)入门
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-04</time>
+                    
+                        <a href="https://www.guanngxu.com/iqW8DWbw7/" class="post-tag i-tag
+                            i-tag-other_4">
+            #MongoDB
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-other_1">
+            #数据库
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/G1rwEVR-s/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/G1rwEVR-s.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            MongoDB 聚合官方文档
+聚合管道是一个基于数据处理管道概念建模的数据聚合框架，文档进入一个多阶段的处理管道，该管道最终将其转换为聚合后的结果。
+下面的例子来源于官方文档。第一阶段，$match按status字段来过滤文档，并把status字段值为A的文档传递到下一阶段；第二阶段，$group将文档按cust_id进行分组，并针对每一组数据对amount进行求和。
+db.orders.aggregate([
+   { $match: { status: &amp;quot;A&amp;quot; } },
+   { $group: { _id: &amp;quot;$cust_id&amp;quot;, total: { $sum: &amp;quot;$amount&amp;quot; } } }
+])
+
+管道
+
+聚合管道包含很多步骤，每一步都会将输入的文档进行转换，但并不是每个阶段都一定需要对每个输入文档生成一个输出文档，比如某些阶段可能生成新的文档或者过滤掉文档。
+除了$out、$merge、$geoNear外，其它的阶段都可以在管道中多次出现，更加详细的内容可以查看 Aggregation Pipeline Stages。
+
+管道表达式
+一些管道阶段采用表达式作为操作元，管道表达式指定了要应用到输入文档的转换，表达式自己是一个文档结构（JSON），表达式也可以包含其它的表达式。
+表达式仅提供文档在内存中的转换，即管道表达式只能对管道中的当前文档进行操作，不能引用来自其他文档的数据。
+写聚合表达式式建议直接参考官方文档，下面列出一些我收集的案例，供深入理解使用。
+案例一：将对象数组转换为单个文档
+// 转换前
+{
+    &amp;quot;_id&amp;quot;: &amp;quot;10217941&amp;quot;,
+    &amp;quot;data&amp;quot;: [
+        {
+            &amp;quot;count&amp;quot;: 2,
+            &amp;quot;score&amp;quot;: &amp;quot;0.5&amp;quot;
+        },
+        {
+            &amp;quot;count&amp;quot;: 6,
+            &amp;quot;score&amp;quot;: &amp;quot;0.3&amp;quot;
+        },
+        {
+            &amp;quot;count&amp;quot;: 5,
+            &amp;quot;score&amp;quot;: &amp;quot;0.8&amp;quot;
+        }
+    ]
+}
+
+// 转换后
+{
+    &amp;quot;_id&amp;quot;: &amp;quot;10217941&amp;quot;,
+    &amp;quot;0.3&amp;quot;: 6,
+    &amp;quot;0.5&amp;quot;: 2,
+    &amp;quot;0.8&amp;quot;: 5
+}
+
+需要说明的是，如果上面data属性中的数据格式为{&amp;quot;k&amp;quot;: &amp;quot;0.6&amp;quot;, &amp;quot;v&amp;quot;: 5}，那么下面的聚合表达式就不需要$map，这一点可以查看 $arrayToObject。这个案例的难点在于score中有小数点，这个小数点会让聚合表达式懵逼的。
+db.collection.aggregate([
+    {
+        &amp;quot;$addFields&amp;quot;: {
+            &amp;quot;data&amp;quot;: {
+                &amp;quot;$arrayToObject&amp;quot;: {
+                    &amp;quot;$map&amp;quot;: {
+                        &amp;quot;input&amp;quot;: &amp;quot;$data&amp;quot;,
+                        &amp;quot;as&amp;quot;: &amp;quot;item&amp;quot;,
+                        &amp;quot;in&amp;quot;: {
+                            &amp;quot;k&amp;quot;: &amp;quot;$$item.score&amp;quot;,
+                            &amp;quot;v&amp;quot;: &amp;quot;$$item.count&amp;quot;
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        &amp;quot;$addFields&amp;quot;: {
+            &amp;quot;data._id&amp;quot;: &amp;quot;$_id&amp;quot;
+        }
+    },
+    {
+        &amp;quot;$replaceRoot&amp;quot;: {
+            &amp;quot;newRoot&amp;quot;: &amp;quot;$data&amp;quot;
+        }
+    }
+]);
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/G1rwEVR-s/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

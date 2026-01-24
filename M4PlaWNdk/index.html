@@ -1,0 +1,452 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Oracle | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        Oracle</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/9Ov7sD1uz/">
+                        Oracle 安装及 Spring 使用 Oracle
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2023-03-30</time>
+                    
+                        <a href="https://www.guanngxu.com/M4PlaWNdk/" class="post-tag i-tag
+                            i-tag-error">
+            #Oracle
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-warning">
+            #数据库
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
+                            i-tag-warning">
+            #Java
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/9Ov7sD1uz/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/9Ov7sD1uz.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+docker安装oracle数据库史上最全步骤（带图文）
+Mac下oracle数据库客户端
+Docker安装Oracle
+docker能安装oracle吗
+Batch script for add a auto-increased primary key for exist table with records
+
+Docker 安装 Oracle11g
+注意：下列安装方式仅适用于x86架构服务器，不适用于arm架构服务器。
+# 拉取 oracle11，镜像有点大，需要花一些时间
+docker pull registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g
+
+# 查看镜像是否拉取成功
+docker images
+
+# 给镜像重新打 tag，原来的名字太长了
+docker tag registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g oracle11g:latest
+
+# 启动 oracle11g 容器
+docker run --name=oracle11g -itd -p 1521:1521
+
+# 进入容器进行配置
+docker exec -it oracle11g /bin/bash
+
+# 切换到 root 用户，密码为：helowin
+su root
+
+# 编辑配置文件
+
+编辑/etc/profile，在其中增加如下内容：
+export ORACLE_HOME=/home/oracle/app/oracle/product/11.2.0/dbhome_2
+export ORACLE_SID=helowin
+export PATH=$ORACLE_HOME/bin:$PATH
+
+编辑完成后，需要刷新上述环境变量才能使用。
+# 刷新环境变量
+source /etc/profile
+
+# 创建软链接
+ln -s $ORACLE_HOME/bin/sqlplus /usr/bin
+
+# 切换到 oracle 用户
+su - oracle
+
+# 登陆 sqlplus
+sqlplus /nolog
+conn /as sysdba
+
+# 修改 system 用户密码
+alter user system identified by system;
+# 修改 sys 用户密码
+alter user sys identified by system;
+
+# 创建内部管理员账号
+create user test identified by test;
+
+# 将 dba 权限授权给内部管理员账号和密码
+grant connect,resource,dba to test;
+
+# 修改密码规则策略为密码永不过期
+ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
+
+# 修改数据库最大连接数据
+alter system set processes=1000 scope=spfile;
+
+修改上述信息后，需要重新启动数据库才会生效。
+conn /as sysdba
+
+# 关闭数据库
+shutdown immediate;
+
+# 启动数据库
+startup;
+
+# 退出软链接
+exit;
+
+客户端连接 Oracle
+以 Navicat 客户端为例，新建连接时按下图方式填写连接信息即可，密码即为system。需要注意的是，在 Windows 下选择 SID 或是服务名均可连接成功，但是在 Mac 下需要选择 SID 方式才能连接成功。
+
+Oracle 实现主键自增
+Oracle 在创建表的时候，不能像 MySQL 那样选择主键直接自增，但是我们可以通过给表创建序列和触发器去实现自增。下文以创建 USER 表为例。
+-- 删除原有 USER 表
+DROP TABLE &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot;;
+-- 创建 USER 表
+CREATE TABLE &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; (
+  &amp;quot;id&amp;quot; NUMBER NOT NULL,
+  &amp;quot;gmt_create&amp;quot; DATE NOT NULL,
+  &amp;quot;gmt_modified&amp;quot; DATE NOT NULL,
+  &amp;quot;is_deleted&amp;quot; NUMBER NOT NULL,
+  &amp;quot;login&amp;quot; NVARCHAR2(255) NOT NULL,
+  &amp;quot;passwd&amp;quot; NVARCHAR2(255) NOT NULL,
+  &amp;quot;nick&amp;quot; NVARCHAR2(255) NOT NULL,
+  &amp;quot;phone&amp;quot; NVARCHAR2(255),
+  &amp;quot;head_img&amp;quot; NVARCHAR2(255),
+  &amp;quot;status&amp;quot; NVARCHAR2(255),
+  &amp;quot;remark&amp;quot; NCLOB
+);
+
+-- 删除原有序列
+DROP SEQUENCE &amp;quot;TEST&amp;quot;.&amp;quot;USER_SEQ&amp;quot;;
+-- 创建 USER_SEQ 序列，最小值为 1
+CREATE SEQUENCE &amp;quot;TEST&amp;quot;.&amp;quot;USER_SEQ&amp;quot; 
+-- 最小值为 1
+MINVALUE 1 
+-- 最大值为 9999999999999999999999999999
+MAXVALUE 9999999999999999999999999999 
+-- 每次增加 1
+INCREMENT BY 1 
+-- 将 20 个序列值放入缓存
+CACHE 20;
+
+-- 创建触发器
+CREATE TRIGGER &amp;quot;TEST&amp;quot;.&amp;quot;USER_TRIGGER&amp;quot; 
+-- 在插入数据前执行
+BEFORE INSERT ON &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; 
+-- 命名老数据为 OLD，新数据为 NEW
+REFERENCING OLD AS &amp;quot;OLD&amp;quot; NEW AS &amp;quot;NEW&amp;quot; 
+-- 针对表的每一行都执行触发器
+FOR EACH ROW 
+-- 将序列值赋值给 id
+BEGIN
+	:NEW.&amp;quot;id&amp;quot; := USER_SEQ.NEXTVAL;
+END;
+/
+
+需要注意的是，上面的/符号不能少。执行插入语句时可以发现，id会自动增加。
+INSERT INTO &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; (&amp;quot;gmt_create&amp;quot;, &amp;quot;gmt_modified&amp;quot;, &amp;quot;is_deleted&amp;quot;, &amp;quot;login&amp;quot;, &amp;quot;passwd&amp;quot;, &amp;quot;nick&amp;quot;, &amp;quot;phone&amp;quot;, &amp;quot;head_img&amp;quot;, &amp;quot;status&amp;quot;, &amp;quot;remark&amp;quot;) VALUES (TO_DATE(&#39;2023-04-01 00:00:00&#39;, &#39;SYYYY-MM-DD HH24:MI:SS&#39;), TO_DATE(&#39;2023-04-01 17:04:30&#39;, &#39;SYYYY-MM-DD HH24:MI:SS&#39;), &#39;0&#39;, &#39;user&#39;, &#39;123&#39;, &#39;Jack&#39;, &#39;1111&#39;, &#39;head.jpg&#39;, &#39;激活&#39;, &#39;测试&#39;);
+
+Java Spring+Mybatis 使用 Oracle 及配置分页
+application.properties文件配置信息：
+# mybatis
+spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@8127.0.0.1:1521:helowin
+spring.datasource.username=system
+spring.datasource.password=system
+mybatis.mapper-locations=classpath*:mybatis/*.xml
+mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+
+# pageHelper
+pagehelper.helperDialect=oracle
+pagehelper.reasonable=true
+pagehelper.supportMethodsArguments=true
+pagehelper.params=count=countSql
+
+pom.xml配置文件关键信息。
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;project xmlns=&amp;quot;http://maven.apache.org/POM/4.0.0&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+         xsi:schemaLocation=&amp;quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&amp;quot;&amp;gt;
+
+    &amp;lt;properties&amp;gt;
+        &amp;lt;java.version&amp;gt;1.8&amp;lt;/java.version&amp;gt;
+        &amp;lt;maven.compiler.target&amp;gt;1.8&amp;lt;/maven.compiler.target&amp;gt;
+        &amp;lt;maven.compiler.source&amp;gt;1.8&amp;lt;/maven.compiler.source&amp;gt;
+        &amp;lt;project.build.sourceEncoding&amp;gt;UTF-8&amp;lt;/project.build.sourceEncoding&amp;gt;
+        &amp;lt;project.reporting.outputEncoding&amp;gt;UTF-8&amp;lt;/project.reporting.outputEncoding&amp;gt;
+
+        &amp;lt;spring.boot-version&amp;gt;2.1.3.RELEASE&amp;lt;/spring.boot-version&amp;gt;
+    &amp;lt;/properties&amp;gt;
+
+    &amp;lt;dependencyManagement&amp;gt;
+        &amp;lt;dependencies&amp;gt;
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;spring-boot-dependencies&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;${spring.boot-version}&amp;lt;/version&amp;gt;
+                &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;
+                &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;org.mybatis.spring.boot&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;mybatis-spring-boot-starter&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;com.oracle.ojdbc&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;ojdbc8&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;19.3.0.0&amp;lt;/version&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;com.github.pagehelper&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;pagehelper-spring-boot-starter&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;1.4.3&amp;lt;/version&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;com.github.pagehelper&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;pagehelper-spring-boot-starter&amp;lt;/artifactId&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+        &amp;lt;/dependencies&amp;gt;
+    &amp;lt;/dependencyManagement&amp;gt;
+&amp;lt;/project&amp;gt;
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/9Ov7sD1uz/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

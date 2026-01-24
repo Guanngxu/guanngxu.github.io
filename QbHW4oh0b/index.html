@@ -1,0 +1,857 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    开关电源 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        开关电源</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/yWl6bPr5jd/">
+                        动态电压调节
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2025-06-18</time>
+                    
+                        <a href="https://www.guanngxu.com/HoPoXlgLN/" class="post-tag i-tag
+                            i-tag-success">
+            #线性稳压器
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/jSM-A51qWd/" class="post-tag i-tag
+                            i-tag-error">
+            #LDO
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/QbHW4oh0b/" class="post-tag i-tag
+                            i-tag-other_2">
+            #开关电源
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/g-HWNOeTH/" class="post-tag i-tag
+                            i-tag-warning">
+            #BUCK
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/f2t0BU6fkn/" class="post-tag i-tag
+                            i-tag-warning">
+            #DC-DC
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/yWl6bPr5jd/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/yWl6bPr5jd.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+Dynamically Program Voltage Regulators
+How to Dynamically Adjust Power Module Output Voltage
+一种通过DAC调节DCDC输出电压的电路方案
+
+诸如音频放大器供电等应用中需要动态电压。虽然有许多线性稳压器或开关电源 IC 可以允许通过固定的分压电阻设置其输出电压，但却很少有实现动态电压调整的，并且设置的输出电压也必须大于内部参考电压。
+那么如何实现能够将输出变化到小于参考电压值的电源，或者如何实现一个输出电压可动态调整的稳压器。
+固定输出电压反馈网络
+下面这张图展示了线性稳压器的反馈网络，其包含一个误差放大器，放大器将外部电压（通过分压电阻网络从输出电压采样得到）与内部固定的电压基准源进行比较。误差放大器的输出驱动导通器件的导通程度，导通器件将电流运送到输出端。通过设置外部电阻 Rf1 和 Rf2，可以将线性稳压器的输出电压设置为大于或等于内部基准的任何电压。
+
+接下来的这张图展示的是降压型开关稳压器的典型电路。与线性放大器类似，同样具有误差放大器和内部基准电压。不同的是导通器件通过 PWM 或者脉冲频率调制方式实现快速打开或关闭，功率波形经过滤波器以产生恒定的直流电压输出。
+
+可以发现不论是 LDO，还是降压型开关电源，它们都可以用下面的模型简化。即通过分压电阻网络对输出进行采样，将采样结果反馈至内部误差放大器，与内部基准源进行比较，从而调节输出电压使之稳定在设定值。
+
+动态调节输出电压
+很容易能想到只需要将反馈网络的上分压电阻或下分压电阻替换为滑动电阻，通过改变不同的阻值即可达到动态调节电压的目的。
+当然在实际应用中不太可能使用滑动电阻那么笨拙的东西，我们可以通过向反馈网络中注入少量电流，以此来改变反馈网络的有效增益VFBVOUT\frac{V_{FB}}{V_{OUT}}VOUT​VFB​​。当在反馈节点注入正电流时，上分压电阻表现为变小，因此输出电压会降低；当电流被拉出时，下分压电阻表现为变小，因此输出电压表现为增加。
+
+上文提到的电流源我们可以通过外部对一个电阻施加电压来实现，用下面图中简化模型来进行理论计算。芯片正常工作时，FB 引脚电压始终为芯片内部基准电压，利用这一特点我们可以推导出 Vout 与外部施加电压 Vs 之间的关系。
+
+I2=I1+I3I_{2} = I_{1} + I_{3}
+I2​=I1​+I3​
+VrefR2=Vout−VrefR1+Vs−VrefR3\frac{V_{ref}}{R_{2}} =  \frac{V_{out} - V_{ref}}{R_{1}} + \frac{V_{s} - V_{ref}}{R_{3}}
+R2​Vref​​=R1​Vout​−Vref​​+R3​Vs​−Vref​​
+Vout=R1∙(VrefR2+Vref−VsR3)+VrefV_{out} = R_{1} \bullet (\frac{V_{ref}}{R_{2}} + \frac{V_{ref} - V_{s}}{R_{3}} ) + V_{ref}
+Vout​=R1​∙(R2​Vref​​+R3​Vref​−Vs​​)+Vref​
+Vout=−VsR1R3+Vref∙(1+R1R3+R1R2)V_{out} = -V_{s}\frac{R_{1}}{R_{3}} + V_{ref}\bullet (1 + \frac{R_{1}}{R_{3}} + \frac{R_{1}}{R_{2}})
+Vout​=−Vs​R3​R1​​+Vref​∙(1+R3​R1​​+R2​R1​​)
+通过理论计算可以得出VoutV_{out}Vout​与VsV_{s}Vs​是负相关关系。R3 的值越大，曲线就越缓，意味着可调的精度越高。当 Vs 为 0 时，即 R3 与 R2 并联后的等效阻值为下分压电阻。
+
+能否实现负压输出？
+上文中曲线看出可以通过调节 Vs 的值，实现输出负压的效果，那是否真的能输出负压呢？
+以前在BUCK 电路基础知识中提到过电感电流是个三角波，电感电流上升阶段的斜率为Vi−VoL\frac{V_{i}-V_{o}}{L}LVi​−Vo​​，电感电流下降阶段斜率为−VoL-\frac{V_{o}}{L}−LVo​​。若通过上述方式输出负压，则电感电流将一直处于上升阶段，系统是不稳定的，因此无法输出负压。
+
+BUCK 电路不能输出负压，那如果换成 LDO 芯片能否输出负压呢？答案也是不能输出负压，原因在于从 GND 至 VOUT 都放了 ESD 二极管，如果 VOUT 为负压，那么二极管就会被导通钳位。
+Buck-Boost 实现正转负
+虽然 Buck 不能实现正转负的功能，但是我们可以通过改变 Buck 芯片外围电路，使其工作在 Buck-Boost 模式下，以此来达到正转负的目的。而对外围电路的修改也很简单，只需要将原来的的 Vout 改为 GND，那么原来的 GND 即输出负压。
+与上文同理，我们可以通过外部施加一个电流源来实现对负压进行动态调节的目的。用下面图中简化模型来进行理论计算。芯片正常工作时，FB 引脚电压始终为芯片内部基准电压，利用这一特点我们可以推导出 Vout 与外部施加电压 Vs 之间的关系。
+
+I2=I1+I3I_{2} = I_{1} + I_{3}
+I2​=I1​+I3​
+GND−VrefR1+Vs−VrefR3=Vref−VoutR2\frac{ GND-V_{ref} }{ R_{1} } + \frac{ V_{s}-V_{ref} }{ R_{3} } = \frac{ V_{ref}-V_{out} }{ R_{2} }
+R1​GND−Vref​​+R3​Vs​−Vref​​=R2​Vref​−Vout​​
+Vout=Vref+R2R1Vref−R2R3(Vs−Vref)V_{out} = V_{ref} + \frac{R_{2}}{R_{1}}V_{ref} - \frac{R_{2}}{R_{3}}(V_{s} - V_{ref})
+Vout​=Vref​+R1​R2​​Vref​−R3​R2​​(Vs​−Vref​)
+Vout=Vref∙(1+R2R1+R2R3)−R2R3VsV_{out} = V_{ref} \bullet (1 + \frac{R_{2}}{R_{1}} + \frac{R_{2}}{R_{3}}) -  \frac{R_{2}}{R_{3}} V_{s}
+Vout​=Vref​∙(1+R1​R2​​+R3​R2​​)−R3​R2​​Vs​
+考虑到此处的 Vout 是负压，Vout 与 Vs 为正相关关系，所以画出 Vout 与 Vs 的曲线关系如下图所示。
+
+输出最大值最小值由什么决定？
+由于 BUCK 上下管打开关断始终需要一定时间，因此最小值由最小占空比决定，即由 min-on time 决定。
+同理最大值则由 min-off time 决定。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/yWl6bPr5jd/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/VvjVruOGrV/">
+                        Boost 电路基础知识
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2024-12-10</time>
+                    
+                        <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
+                            i-tag-other_4">
+            #电路基础
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/QbHW4oh0b/" class="post-tag i-tag
+                            i-tag-info">
+            #开关电源
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/f2t0BU6fkn/" class="post-tag i-tag
+                            i-tag-">
+            #DC-DC
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/VvjVruOGrV/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/VvjVruOGrV.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+boost升压，电感电压和输入电压叠加、实现升压
+电力电子技术 05 DC-DC变换器
+手撕Boost！Boost公式推导及实验验证
+
+Boost 电路构建
+我们先复习一下 BUCK 电路的基础知识。BUCK 电路是一个降压结构，在不考虑电路的损耗时，输入功率 Pin 与输出功率 Pout 是一致的。电压降低，那么电流就必然升高，因此我们可以说 BUCK 是一个降压、升流的电路。
+在不考虑使用变压器的情况下，如何构造一个升压结构呢？其实换个角度想构造升压电路，其实就是构造一个降流电路出来。那么如何构造降流电路呢？
+参考 BUCK 降压的原理，我们使用同样的方式对电流进行处理，即将 BUCK 电路进行改造来完成这个降流工作。下面是一个电流源、开关和负载构成的电路，当开关 S 闭合时，电流不流向负载；当开关 S 打开时，电流即流向负载。
+
+此时负载所获得的电流是一个方波，大致是下面这个样子的。可以发现与 BUCK 电路很像，我们只需要控制开关 S 的闭合时间，就可以控制流向负载的总电流。根据波形图可以确定，流向负载的电流一定小于输入电流，当开关打开时电流才流向负载。设置占空比为 D，则 Io=(1−D)IiI_{o}=(1-D)I_{i}Io​=(1−D)Ii​，根据 VoIo=ViIiV_{o}I_{o}=V_{i}I_{i}Vo​Io​=Vi​Ii​，那么即有 Vo=11−DViV_{o}=\frac{1}{1-D}V _{i}Vo​=1−D1​Vi​
+
+我们目前的电路还是过于理想化了，我们平时见到的都是电压源，基本没有见过电流源的场景。那么如何利用电压源做出来电流源呢？考虑到电感可以阻碍电路的变化，一个电压源串联一个电感我们可以将之近似认为是一个电流源。
+
+回想一下前面的波形，负载所获得的电流波动太剧烈了，势必会影响电压的剧烈抖动。与 BUCK 电路的思维一致，我们还是可以用电容来进行稳压。
+
+在负载端添加输出电容后，电压得以被稳定，但是考虑一下此时开关 S 闭合时是什么情况？直接将电容短路了，如何解决电容被短路的问题呢？发现当只有当 S 闭合时才会有电容短路的问题，S 打开时电流从电源端流向负载并给电容充电。我们可以通过添加一个二极管来防止 S 闭合时电容短路。
+
+当然，也可以把二极管换成另一个开关，只要保证 S 打开时二极管位置闭合，S 闭合时二极管位置打开即可。
+
+
+考虑到机械开关容易磨损、使用寿命短、有机械惯性（转换频率低）的问题，我们需要将机械开关换成转换频率高的半导体器件，此处我们选择 NMOS 管来替代开关。同时二极管起到的是一个开关的作用。而且考虑到电流从二极管流过期间，二极管两端的压降恒定为导通电压 0.7V，二极管所消耗的能量较大。因此我们也可以把二极管换为导通电阻更小的 NMOS 管。
+
+为了提高 Boost 电路的稳定性，防止由于输入纹波带来异常，我们在 Boost 电路的输入端并联一个电容，用于滤除输入电压的纹波。
+
+至此我们即构建了一个标准的同步 Boost 电路。回过头再来看看，我们利用储能元件从输入电源获得能量得到一个电压，并将这个电压与输入电压进行串联，以此来实现了升压的效果。电容和电感是两种常见的储能元件，使用电感或电容均可以达到升压目的。
+比如 BUCK 电路中若上管为 NMOS，则需要添加 boot 电容实现升压才能打开 NMOS 管。原因在于 NMOS 导通条件为 VGS 大于 Vth，而 BUCK 电路中的 NMOS 上管 S 电压最低为 Vin，因此需要 boot 电容进行升压。
+我们在 Boost 电路中使用电感来实现升压升压的功能。当电感与负载断开并接地时，电感激磁并将能量存储在电感中。当电感和输入电压断开后，由于电感电流不能突变：Vin=LdidtV_{in} =L\frac{di}{dt}Vin​=Ldtdi​，电感中变化的电流产生感应电压，感应电压与输入电压串联达到了升压目的。
+
+稳态分析
+我们所说的稳态分析，是指输入输出电压都是稳定不变的前提下进行的分析。我们将一些已知条件列出来：
+
+输入电压：ViV_{i}Vi​
+输出电压：VoV_{o}Vo​
+负载电阻：RRR
+开关频率：fff
+
+伏秒平衡
+计算的基本原理就是电容和电感的充放电，根据前文所说的 Vo=11−DViV_{o}=\frac{1}{1-D}V _{i}Vo​=1−D1​Vi​，可以知道输出电压肯定大于输入电压。
+在下管导通上管截止时，电感两端电压是 ViV_{i}Vi​；在下管截止上管导通时，电感右侧的电压为 VoV_{o}Vo​，左侧为电源输入 ViV_{i}Vi​，所以电感两端电压为 Vo−ViV_{o}-V_{i}Vo​−Vi​。
+整个电路处于稳定状态，负载电流恒定，那么在一个周期内，电感电流增加的量肯定等于电感电流减小的量，即充了多少电就要放多少电，不然负载的电流或电压将会发生变化。
+前文已有didt=UL\frac{\mathrm{d} i}{\mathrm{d} t} =\frac{{U}}{L}dtdi​=LU​，而 LLL 恒定，那么电感电流的变化速度即与电压成正比关系，即电感电流上升（下降）的斜率与电压成正比关系。而电感电流上升和下降的高度相同，那么上升时间和下降时间就自然构成反比关系。
+TonToff=Vo−ViVi\frac{T_{on} }{T_{off} } = \frac{V_{o}-V_{i}}{V_{i}}Toff​Ton​​=Vi​Vo​−Vi​​，将其进行简单变换即可得到闻名江湖的伏秒平衡法则。
+TonVi=Toff(Vo−Vi)T_{on}V_{i} = T_{off}(V_{o}-V_{i})Ton​Vi​=Toff​(Vo​−Vi​)
+占空比
+已知 T=Ton+Toff=1fT=T_{on}+T_{off}=\frac{1}{f}T=Ton​+Toff​=f1​，结合伏秒平衡法则可以计算出：
+开通时间：Ton=Vo−ViVo∙1fT_{on} = \frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{1}{f}Ton​=Vo​Vo​−Vi​​∙f1​
+关断时间：Toff=ViVo∙1fT_{off} = \frac{V_{i}}{V_{o}} \bullet \frac{1}{f}Toff​=Vo​Vi​​∙f1​
+占空比：D=TonT=Vo−ViVoD = \frac{T_{on}}{T}=\frac{V_{o}-V_{i}}{V_{o}}D=TTon​​=Vo​Vo​−Vi​​
+通过计算可以发现，占空比与电感没有关系，与负载电流大小也没有关系，只和输入输出电压有联系。
+纹波电流
+上文计算电感电流斜率时已经能确定电流波形是个三角波，纹波电流等于在下管导通时电感电流的增大值，也等于在下管截止时电感电流减小的值，计算任意一个即可得到纹波电流。我们以下管导通时增大的电感电流计算。
+
+下管导通时电感两端电压为 ViV_{i}Vi​，导通时间为 Ton=Vo−ViVo∙1fT_{on} = \frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{1}{f}Ton​=Vo​Vo​−Vi​​∙f1​，根据 U=LdidtU=L\frac{di}{dt}U=Ldtdi​ 有：
+△IL=di\triangle I_{L} =di△IL​=di
+=Ton∙UL=T_{on}\bullet \frac{U}{L}=Ton​∙LU​
+=Vo−ViVo∙ViL∙1f=\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}=Vo​Vo​−Vi​​∙LVi​​∙f1​
+=(Vo−Vi)ViVoLf=\frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf}=Vo​Lf(Vo​−Vi​)Vi​​
+根据理论计算可以发现，电感电流的纹波和负载电流的大小没有关系。同时电感的感值会影响纹波电流的大小，因此电感的选择是系统一个很重要的参数。
+功率电感选择
+在系统稳态时，输出端电容是不耗电的，电压也不会有变化，所以输出电容上面流过的平均电流为 0。负载的所有电流都从上管而来，因此流过上管的平均电流也是 IoI_{o}Io​。输入功率等于输出功率，输入电流等于流过电感的电流，即有：
+ViIL=VoIoV_{i}I_{L}=V_{o}I_{o}Vi​IL​=Vo​Io​
+IL=VoIoViI_{L}=\frac{V_{o}I_{o}}{V_{i}}IL​=Vi​Vo​Io​​
+计算电感峰值电流可以得到：
+ILP=Io+△IL2I_{LP} =I_{o}+\frac{\triangle I_{L}}{2}ILP​=Io​+2△IL​​
+=IL+Vo−Vi2Vo∙ViL∙1f=I_{L}+\frac{V_{o}-V_{i}}{2V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}=IL​+2Vo​Vo​−Vi​​∙LVi​​∙f1​
+=VoIoVi+Vo−Vi2Vo∙ViL∙1f=\frac{V_{o}I_{o}}{V_{i}}+\frac{V_{o}-V_{i}}{2V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}=Vi​Vo​Io​​+2Vo​Vo​−Vi​​∙LVi​​∙f1​
+在选择功率电感时，电感的饱和电流就必须要大于这个ILPI_{LP}ILP​，并且需要留有一定的裕量。实际应用时电感的纹波电流应是平均电流的 30%30\%30% 至 50%50\%50% 为宜，我们将这个参数称之为电流纹波率 r，关于电流纹波率为什么选择 0.3 至 0.5，可以查看为何 r 为 0.3～0.5。根据电流纹波率范围就可以计算出电感值的范围：
+△IL=Vo−ViVo∙ViL∙1f\triangle I_{L} =\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}△IL​=Vo​Vo​−Vi​​∙LVi​​∙f1​
+L=Vo−ViVo∙Vi△IL∙1fL =\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{\triangle I_{L}} \bullet \frac{1}{f}L=Vo​Vo​−Vi​​∙△IL​Vi​​∙f1​
+=Vo−ViVo∙Vi(0.3至0.5)Ii∙1f=\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{(0.3至0.5) I_{i}} \bullet \frac{1}{f}=Vo​Vo​−Vi​​∙(0.3至0.5)Ii​Vi​​∙f1​
+=(Vo−Vi)Vi(0.3至0.5)IiVof=\frac{(V_{o}-V_{i})V_{i}}{(0.3至0.5) I_{i}V_{o}f}=(0.3至0.5)Ii​Vo​f(Vo​−Vi​)Vi​​
+输入纹波
+输入电压纹波就是输入电容上面电压的变化，这个变化可以分为两部分。一部分为电容充放电所导致的电压变化 UqU_{q}Uq​，另一部分为电流流过电容 ESRESRESR 导致的压降 UesrU_{esr}Uesr​。即 △Vi=Uq+User\triangle V_{i} = U_{q} + U_{ser}△Vi​=Uq​+User​。
+我们来看输入节点，这个节点的电流有三个，一个是来自电源输入的，在一个周期内我们看作是恒定的。另外两个节点是电容和电感。根据基尔霍夫电流定律，节点电流和为 0，并且电源输入的电流恒定，那么电感电流的变化量必然等于电容电流的变化量，因为最终三者的和为 0。
+
+节点电流和为 0，那么输入电容的电流变化就是功率电感的电流变化。我们画出三者的电流波形。电容电流大于 0 时，电容在充电，电容电流小于 0 时，电容在放电。并且电容充电和放电时间长度是一样的，都是周期的一半。
+
+需要注意的是充电与放电的切换的时刻并不是开关导通与断开的时候，而是在中间时刻。电容充放电的总电荷量即等于电流乘以时间，其实就是图中阴影三角形的面积。
+三角形底部是时间，充电/放电时间为T2\frac{T}{2}2T​；三角形的高为电感纹波电流的一半 △IL2\frac{\triangle I_{L}}{2}2△IL​​；根据三角形面积计算公式即有：
+Q=CiUqQ=C_{i}U_{q}Q=Ci​Uq​
+=12∙T2∙△IL2=\frac{1}{2}\bullet \frac{T}{2}\bullet \frac{\triangle I_{L}}{2}=21​∙2T​∙2△IL​​
+=12∙12f∙(Vo−Vi)ViVoLf2=\frac{1}{2}\bullet \frac{1}{2f}\bullet \frac{\frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf}}{2}=21​∙2f1​∙2Vo​Lf(Vo​−Vi​)Vi​​​
+=(Vo−Vi)Vi8f2VoL=\frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}L}=8f2Vo​L(Vo​−Vi​)Vi​​
+Uq=(Vo−Vi)Vi8f2VoLCiU_{q}=\frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}LC_{i}}Uq​=8f2Vo​LCi​(Vo​−Vi​)Vi​​
+前面波形图已经知道，电容的充电电流最大是 △IL2\frac{\triangle I_{L}}{2}2△IL​​，放电电流最大是 −△IL2-\frac{\triangle I_{L}}{2}−2△IL​​。那么 ESRESRESR 引起的总压降即为：
+Uesr=△IL2∙ESR−(−△IL2∙ESR)U_{esr} = \frac{\triangle I_{L}}{2} \bullet ESR - (-\frac{\triangle I_{L}}{2} \bullet ESR)Uesr​=2△IL​​∙ESR−(−2△IL​​∙ESR)
+=△IL∙ESR= \triangle I_{L}\bullet ESR=△IL​∙ESR
+=(Vo−Vi)ViVoLf∙ESR= \frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf} \bullet ESR=Vo​Lf(Vo​−Vi​)Vi​​∙ESR
+最终可得：
+△Vi=Uq+Uesr\triangle V_{i} = U_{q} + U_{esr}△Vi​=Uq​+Uesr​
+=(Vo−Vi)Vi8f2VoLCi+(Vo−Vi)ViVoLf∙ESR=\frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}LC_{i}} + \frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf} \bullet ESR=8f2Vo​LCi​(Vo​−Vi​)Vi​​+Vo​Lf(Vo​−Vi​)Vi​​∙ESR
+输入电容选择
+考虑到电容的实际使用情况，陶瓷电容的 ESRESRESR 小，容量小，所以 UqU_{q}Uq​ 对纹波起决定性作用，输入纹波可近似为 UqU_{q}Uq​。若选择铝电解电容，则 ESRESRESR 大，容量大，UesrU_{esr}Uesr​ 对纹波起到决定性作用，输入纹波可以近似为 UesrU_{esr}Uesr​，假设电路设计要求输入纹波不能大于 △Vi\triangle V_{i}△Vi​，则有：
+陶瓷电容：Ci≥(Vo−Vi)Vi8f2VoL△ViC_{i} \ge \frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}L \triangle V_{i}}Ci​≥8f2Vo​L△Vi​(Vo​−Vi​)Vi​​
+铝电解电容：ESR≤△ViVoLf(Vo−Vi)ViESR \le \frac{\triangle V_{i}V_{o}Lf}{(V_{o}-V_{i})V_{i}}ESR≤(Vo​−Vi​)Vi​△Vi​Vo​Lf​
+输出纹波
+输出纹波与输入纹波同理，亦是 △Vo=Uq+Uesr\triangle V_{o} = U_{q} + U_{esr}△Vo​=Uq​+Uesr​。一个周期内电容的充电电荷必然与放电电荷量相等，我们只需要计算出其中任意一个即可。很显然计算放电电荷量更为容易，因为放电电流就是负载电流，负载电流为恒定的 Io=VoRLI_{o} = \frac{V_{o}}{R_{L}}Io​=RL​Vo​​。
+Q=CoUq=IoTonQ = C_{o}U_{q}=I_{o}T_{on}Q=Co​Uq​=Io​Ton​
+Ton=Vo−ViVo∙1fT_{on} = \frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{1}{f}Ton​=Vo​Vo​−Vi​​∙f1​
+Uq=IoTonCoU_{q} = \frac{I_{o}T_{on}}{C_{o}}Uq​=Co​Io​Ton​​
+=Io(Vo−Vi)CoVof= \frac{I_{o}(V_{o}-V_{i})}{C_{o}V_{o}f}=Co​Vo​fIo​(Vo​−Vi​)​
+在下管导通的时候，负载的电流为 IoI_{o}Io​，完全由输出滤波电容提供，即滤波电容的放电电流也为 IoI_{o}Io​，而且还是在导通时间里面恒定不变的。
+在下管从导通切换到截止时，电感的电流已经是充到最大的，因为先前下管导通时电感一直在充电，所以切换时电感电流最大，且等于电感平均电流加上纹波电流的一半，即 IL+△IL2I_{L}+\frac{\triangle I_{L}}{2}IL​+2△IL​​。已经充好的电感电流会给负载供电，负载电流为 IoI_{o}Io​。同时电感还要给输出电容进行充电，根据基尔霍夫电流定律，电容的充电电流就是电感充到最大的电流减去负载的电流，即 IL+△IL2−IoI_{L}+\frac{\triangle I_{L}}{2} - I_{o}IL​+2△IL​​−Io​。
+在下管关断之后，电感电压反向，电感电流持续减小，负载电流恒定不变，所以输出滤波电容的电流持续减小。画出输出电容的电流波形就非常明显了。
+
+在下管导通时，ESRESRESR 两端的电流为 −Io-I_{o}−Io​。在下管截止时，ESRESRESR 两端的电流为 IL+△IL2−IoI_{L}+\frac{\triangle I_{L}}{2} - I_{o}IL​+2△IL​​−Io​。由此即可计算出 ESRESRESR 上的电压变化量。
+Uesr=(IL+△IL2−Io)∙ESR−(−Io∙ESR)U_{esr} = (I_{L}+\frac{\triangle I_{L}}{2} - I_{o})\bullet ESR - (-I_{o} \bullet ESR)Uesr​=(IL​+2△IL​​−Io​)∙ESR−(−Io​∙ESR)
+=(IL+△IL2)∙ESR= (I_{L}+\frac{\triangle I_{L}}{2})\bullet ESR=(IL​+2△IL​​)∙ESR
+=(VoIoVi+(Vo−Vi)Vi2VoLf)∙ESR= (\frac{V_{o}I_{o}}{V_{i}} + \frac{(V_{o}-V_{i})V_{i}}{2V_{o}Lf}) \bullet ESR=(Vi​Vo​Io​​+2Vo​Lf(Vo​−Vi​)Vi​​)∙ESR
+最终可得：
+△Uo=Uq+Uesr\bigtriangleup U_{o} = U_{q} + U_{esr}△Uo​=Uq​+Uesr​
+=Io(Vo−Vi)CoVof+(VoIoVi+(Vo−Vi)Vi2VoLf)∙ESR=\frac{I_{o}(V_{o}-V_{i})}{C_{o}V_{o}f} +  (\frac{V_{o}I_{o}}{V_{i}} + \frac{(V_{o}-V_{i})V_{i}}{2V_{o}Lf}) \bullet ESR=Co​Vo​fIo​(Vo​−Vi​)​+(Vi​Vo​Io​​+2Vo​Lf(Vo​−Vi​)Vi​​)∙ESR
+输出电容选择
+与输入电容选择的方式一致，考虑是容值还是 ESRESRESR 占主导地位，假设要求输出纹波要小于 △Vo\triangle V_{o}△Vo​，则有：
+陶瓷电容：Co≥Io(Vo−Vi)△VoVofC_{o} \ge \frac{I_{o}(V_{o}-V_{i})}{\triangle V_{o}V_{o}f}Co​≥△Vo​Vo​fIo​(Vo​−Vi​)​
+铝电解电容：ESR≤△VoVoIoVi+(Vo−Vi)Vi2VoLfESR \le \frac{\triangle V_{o}}{\frac{V_{o}I_{o}}{V_{i}} + \frac{(V_{o}-V_{i})V_{i}}{2V_{o}Lf}}ESR≤Vi​Vo​Io​​+2Vo​Lf(Vo​−Vi​)Vi​​△Vo​​
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/VvjVruOGrV/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/-loFmea4T/">
+                        电源 PCB 布局及其常见错误
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2024-07-09</time>
+                    
+                        <a href="https://www.guanngxu.com/COeYlWWen/" class="post-tag i-tag
+                            i-tag-warning">
+            #PCB
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ypjmBXLlm3/" class="post-tag i-tag
+                            i-tag-info">
+            #Layout
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
+                            i-tag-banana">
+            #电路基础
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/QbHW4oh0b/" class="post-tag i-tag
+                            i-tag-other_3">
+            #开关电源
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/g-HWNOeTH/" class="post-tag i-tag
+                            i-tag-success">
+            #BUCK
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/f2t0BU6fkn/" class="post-tag i-tag
+                            i-tag-info">
+            #DC-DC
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/-loFmea4T/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/-loFmea4T.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+电源 PCB 布局中的常见错误及避免方式
+嘉立创EDA-PCB设计零基础入门课程（54集全）
+硬件设计基础之PCB设计中的10条重要布线原则
+
+PCB 基础
+我们先来看看在没有 PCB 之前的电路是如何连接的，阻容感和芯片等均通过导线连接，由此不可避免的就带来了混乱的问题。为了解决束线、混乱等问题就出现了 PCB。
+
+PCB（Printed Circuit Board）即印制电路板，由保罗.爱斯勒发明。PCB 是元器件的支撑体，更是实现诸多电子元器件电气连接的载体。随着历史车轮的滚滚前进，为了在 PCB 上放置更多的元器件，由一层板逐渐发展为多层板。
+多层板可以看作是由多个两层板，加上一个芯板组成，不同层之间的切换通过过孔来实现，即钻孔并在孔的内壁覆上铜。由于制造 3 层板和制造 4 层板的工艺、成本等均基本一致，所以需要注意一般是没有单数层板的，只有偶数层的 PCB。
+
+图中 1 属于盲孔，用于第一层和最后一层之间的切换；2 属于埋孔，用于内层之间的切换；3 属于通孔，用于第一层和除最后一层之间的切换。这些孔我们统一将其称之为过孔。
+走线为什么要避免锐角、直角
+PCB 板上的铜线需要做到阻抗连续，那么什么情况下会导致其阻抗不连续呢？当线宽改变的时候阻抗就会变得不连续，同时寄生电容、电感的值也会发生变化，那么什么情况会导致线宽改变呢？自然是涉及到拐弯的时候。
+
+除了线宽改变导致阻抗不连续外还有哪些影响呢？比如线宽改变会导致寄生容值变大，即相当于在传输导线上加了容性负载，当信号通过时即会涉及到充放电的过程，信号速度即会被减缓。
+另外还存在尖端放电的问题，导体上面很尖的点即表示面积非常小，相应即电荷密度很高，将产生巨大的电场强度，击穿空气释放电子，就会产生比较强的电磁干扰，因此布线拐角应该使用钝角或是圆角。
+典型案例
+对于整体性能来说，电源的布局与挑选合适的半导体（芯片、阻容感）是一样重要的。一个糟糕的布局会在电路中产生额外的寄生阻容感，这会让电路在不同的地方产生更多的噪音。除此之外，如果没有注意布局还可能让功率元件无法有效散热。
+输入电容太远导致寄生电感过大
+如图所示是一个同步降压转换器上下两面的布局。这是一个将 12V 输入降低到 1.2V 输出，且能够承载 8A 电流的降压转换器。可以从图中左上角看到开关节点（SW）对 GND 的电压波形。可以发现振铃峰值已经到了 17V，这种高频的振荡几乎可以肯定会对 EMI 造成不利的影响。而且该开关电源元件建议的最高操作电压即为 17V，绝对额定值最高为 19V，这个振荡峰值已经很接近让电源芯片因超过电压应力而损坏的点。同时该振荡电压也导致了输出纹波超过 100mV。
+
+在图中右边部分用绿色框起来的电容即为输入电容，它不止离集成开关电源芯片的 VIN 和 PGND 有一段距离，甚至还通过过孔连接到另外一面，造成额外的寄生电感。而改进方法也很简单，在原理图不变的前提下，直接在芯片的 VIN 和 PGND 引脚旁边放上输入电容器，如下图中绿色框中所示。需要注意的是较小的高频旁路电容要越靠近电源芯片才好。
+
+从测试波形可以发现，当输入电容位置摆放正确后，振荡电压几乎就被消除了，这肯定会对 EMI 特性产生正面影响。开关电压峰值也远低于芯片所建议的操作范围之内。输出电压纹波同样有了极大的改善，峰峰值已经降到 10mV 以下。
+
+方波的波形是由基本的开关频率加上各个奇次谐波所组成，越快的电压瞬间爬升或下降即表示会包含更高的频率，这就是可能导致振荡和 EMI 的原因。上图给出了不同容值（尺寸）的陶瓷电容的典型阻抗曲线，电容引起的阻抗会随着频率的增加减小，到某个频率点以上则由寄生电感所带来的阻抗影响占主导。图中红色虚线表示将不同尺寸的电容器并联时等效的阻抗，随着开关频率的不断增加，其 EMI 的要求也会变得更加严格，高频电容器和其摆放的位置也变得更加重要。
+
+回过头来看为什么将输入电容仅靠输入引脚就可以减少解决上述问题呢？如上图所示表示了一个同步降压拓扑中，寄生电感影响最大的地方，以及可以容忍且影响相对小的地方。可以发现输入电容的环路对寄生电感最为敏感，上述案例中最开始的布局由于输入电容离芯片引脚过长，PCB 走线太长导致寄生电感过大，进一步导致高频振荡严重。
+电感磁场扩散至外围
+如下图是一个从 12V 输入转为 2.5V 输出，承载 2.5A 的一个拓扑结构。从右上角可以看到测量的输出波形中虽然纹波没有很大，但是可以看到里面包含可疑的方波分量。有意思的是当我们把电感解焊旋转 180 度后再装上，方波分量会随之反转，那么这个设计发生了什么呢？
+
+此处的线索是电感器，仔细观察会发现这个是一个半屏蔽式的电感器。实际上半屏蔽式的电感器和非屏蔽式的电感器没有太大区别，这表示磁场没有得到适当的控制，而且还有可能扩散到电感器外面。如图所示可以发现输出电容 1 在靠近电感器的位置，这会导致电感器的磁场耦合到输出电容的等效串联电感中，这就像一个变压器一样。因此显示了除转换器本身的输出纹波外，还加上了被磁场耦合到的夹噪。
+
+当把电感器旋转 180 度时，磁场也会跟着翻转，这就是波形完全反转的原因。要摆脱这种方波的方法是确保来自电感的磁场不会耦合到输出电容器的等效串联电感中，那么我们把输出电容移到电感磁场范围之外，比如图中 2 或另一侧 3 的地方。上图左侧就是改善后的布局，即将输出电容移到了另一侧，从波形可以看出方波分量即被消除了。
+
+另一种减少电感器和输出电容之间耦合的方法是使用全屏蔽的电感器，这与上文移动输出电容位置的方法一样有效。上图右下角显示了非屏蔽、半屏蔽、全屏蔽电感器的磁幅射影，可以发现黑色线和红色线仅仅只是小了 5dB 左右，而蓝色线则少了 30dB 的以上。
+另一个小地方要注意的是绕组（电感）的起点用一个点或一条线来标记，这个端点应该要连接到电路里面的开关节点，即接到电压会有跳动方波的那一点。因为绕组的起点埋在电感器的中心，并且连接到直流输出的外绕组，会有一定的自我屏蔽的效应。在电感器下方有一个接地层也能屏蔽电场带来的干扰。
+回过头来看上文虽然将输出纹波中的方波分量消除了，但是开关瞬间产生的纹波尖峰并没有消失，这些尖峰的主要来源是通过电感器本身并联的寄生电容耦合到电压开关瞬间变化所造成的。电容本身很少出现在电感器的规格书中，但是我们还是可以通过自谐振频率推断出来，为了确保最小寄生电容和最小输出尖峰，我们应该选择具有高 SRF 的电感器。
+高阻抗反馈电阻走线太长引入噪声
+如下是一个将 12V 输入转换为 1.05V 且输出为 5A 的拓扑，从右上角波形可以看出输出波形中大约有 70mV 的噪音纹波，另外开关波形上面也能看出有一些抖动，这会让输出瞬态响应的稳定性受到影响。
+
+解决上述问题的线索是反馈电阻，可以发现绿色框出来的地方摆在板子的右上方，而红色框起来的地方为电源芯片摆在板子的正中央。反馈引脚是一个高阻抗的节点，因此对噪音会很敏感。在初版布局中反馈电阻摆放在输出连接器的附近，这会使敏感的反馈走线跨越了快整个电路板，而且还穿过了电感的下方，干扰源很容易就耦合到这种长的反馈走线上，还有可能会导致转换器运行不稳定。
+
+右上角的第二版是改善后的布局，可以看出反馈电阻比上一版更靠近反馈引脚，同时输出电压反馈点放在远离电感和开关节点的另一侧，这样输出的波形会更加干净。右下角可以发现纹波也从大于 70mV 降低到 20mV，开关波形的抖动现象也大大减小。
+
+尽量让敏感的信号拉线远离电感器或开关节点，如果负载端与反馈调节点有一段的距离，那就要考虑上图所示的差分接线，以此来提高噪音的抑制能力。另外在选择反馈电阻时，虽然阻值越高是可以减少一些损耗，但是也更容易受到噪音的影响，并且可能因为一点点的反馈偏置电流而改变输出电压，10kohm~100kohm 范围的总的反馈电阻通常是一个不错的折中方案。
+大电流引起压降
+下面是一个大电流同步降压转换器的负载调节案例，这是一个将 12V 转换为 0.85V 并承受 20A 负载的设计。其 PCB 布局如图左下角所示，控制器位于电路板右侧而输出是位于左上角。左上图显示了输出电压调节与负载的关系，可以看到随着电流的增加输出电压下降到低于规定值的两个百分点。
+
+造成这个问题的原因是因为控制器直接检测输出电压，第一版设计中反馈与输出之间的连接点就在电感旁边，而且远离输出连接器。大的铜线会有一些寄生电阻，根据欧姆定律我们知道当电流流过电阻时会有一定的电压降，虽然铜的电阻相对较低，但是在高电流下可能还是会有影响。
+
+通过将输出的反馈点移动到输出连接器旁边，控制器能够补偿寄生电阻带来的损失，并且更好的调节输出电压。左边的蓝线即改进后的输出电压调节与负载的关系。那么又如何计算铜的寄生电阻呢？
+
+估计铜铂寄生电阻的快速方法是使用计数平方，通过将长宽设置为彼此相等，平面总电阻的方程简化为铜的电阻率除以厚度。表中给出了几个标准铜铂厚度的每平方电阻，在查看铜铂时串联的电阻相加，平行的相当于并联等效电阻更小。
+
+再回过头来看这个案例，使用的 PCB 是 2 盎司的铜，从输出到回收点的距离有 4 个正方形这么长，每平方电阻为 0.25mohm，4 个即为 1mohm，再乘以 20A 的负载电流就可以解释最大负载下输出大约下降了 20mV 的现象。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/-loFmea4T/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/br0hmOiiG/">
+                        BUCK 电路基础知识
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2024-03-30</time>
+                    
+                        <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
+                            i-tag-info">
+            #电路基础
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/QbHW4oh0b/" class="post-tag i-tag
+                            i-tag-other_1">
+            #开关电源
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/g-HWNOeTH/" class="post-tag i-tag
+                            i-tag-warning">
+            #BUCK
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/f2t0BU6fkn/" class="post-tag i-tag
+                            i-tag-error">
+            #DC-DC
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/br0hmOiiG/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/br0hmOiiG.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+手撕Buck！Buck公式推导过程
+电力电子的基础应用
+《精通开关电源设计（第二版）》
+Buck电源芯片输出有问题？检查这几样
+原来PWM这么简单！
+为什么 DC-DC 芯片设计中都有一个自举电容？
+如何克服开关电源中的最小导通时间挑战
+
+BUCK 电路构建
+根据高中所学习的物理知识可以很容易的想到，使用一个滑动变阻器即可实现降压和稳压的效果。当负载波动时，通过改变滑动变阻器的阻值，可以调节负载所获得的电压。但是使用滑动变阻器的劣势也很明显，大量的耗能会导致器件温度快速升高。
+
+
+上面所提到的电路主要缺点在于导通器件（变阻器或三极管）本身存在耗能，那么有没有不会耗能的导通器件呢？首先肯定不能选导线，不然又回到最原始的问题，所有电压都被加到负载上了。有没有能不耗能且能控制加在负载电压的导通器件呢？最常见的机械开关就能做到这个效果。
+
+当开关闭合时，负载即获得电压源输出的电压；当开关打开时，负载所获得的电压为 0V。计算平均值可以确定达到了降压的目的，通过控制开关闭合的时间长短，就可以达到调节电压的效果。但仔细想想就会发现不对劲，电路并不会帮助我们计算平均值，负载所获得的电压波形如下图所示，是完美的方波，并不是一条直线。
+
+控制开关闭合的时间，即后文要讲的控制占空比
+
+
+此时很容易就能想到利用电容两端电压不能突变的特点，给负载并联一个电容即可，电容即保证负载可以获得连续的能量流。
+
+一旦引入了电容，就需要考虑浪涌电流的问题。根据公式 Q=CV=ItQ=CV=ItQ=CV=It 可得 I=CVtI=\frac{CV}{t}I=tCV​，开关闭合时电压在非常短的时间内升高，所以电流会突然变得很大。
+我们当然可以简单的利用电阻来抑制浪涌电流，但不幸的是电阻总要消耗功率。为了最大限度的提高效率，可以考虑使用电感，电感本身不消耗任何能量，只会进行储能，且其无损限流的能力正好可以用来抑制电容的浪涌电流。
+
+引入电感后可以发现当开关打开时，电感没有续流回路，因此需要想办法构造电感的续流回路。续流回路需要保证不论开关打开还是闭合，电流都流向负载，且开关闭合时电源正极与负极回路必须经过电感与负载。这个需求很符合二极管的特点，即只允许单向导通。
+
+到目前为止我们构建了非同步 BUCK 电路，考虑到机械开关容易磨损、使用寿命短、有机械惯性（转换频率低）的问题，我们需要将机械开关换成转换频率高的半导体器件，此处我们选择 NMOS 管来替代开关。
+
+选择 NMOS 和 PMOS 的主要区别在于驱动电路的设计
+
+
+可以发现当 NMOS 开关管导通时，续流二极管处于截止状态；当开关管关断时，续流二极管处于导通状态。即二极管的导通和截止和开关管的截止导通是同步的，也就是说二极管起到的是一个开关的作用。而且考虑到电流从二极管流过期间，二极管两端的压降恒定为导通电压 0.7V，二极管所消耗的能量较大。因此我们也可以把二极管换为导通电阻更小的 NMOS 管。
+
+为了提高 BUCK 电路的稳定性，防止由于输入纹波带来异常，我们在 BUCK 电路的输入端并联一个电容，用于滤除输入电压的纹波。
+
+至此我们就搭建了一个标准的同步 BUCK 电路，我们将其简单变个样子，再加几个标签即可得到下图。在同步 BUCK 电路中需要两个开关管密切配合，以防止整个线路导通，所以它们之间需要保持一定的相位关系，即上管导通下管截止；上管截止下管导通，我们把这种关系称之为同步。
+
+信号角度理解 LC
+我们以占空比为 0.5 来进行说明，将时域下的方波转换到频域，通过傅立叶变换可以分解出一系列的频率分量。其中包含频率为 0 的分量，即直流分量，也就是我们想要保留的部分，还有频率为 n 倍 fsf_{s}fs​ 的分量。那么如何把我们不想要的部分去掉呢？从滤波角度考虑就需要加入一个低通滤波器。
+
+通过加入低通滤波器可以把高频分量滤除，把二阶低通滤波器的截止频率设置在 0 到 fsf_{s}fs​ 之间，即可把 fsf_{s}fs​ 所有以上的部分给滤除。整体达到的效果即通过一个 LC 低通滤波器，配合一个开关网络，将一个数字化的电平重新滤出，得到一个比较平缓的电压输出，这个过程即完成了电压从高到低的转换。其中直流分量的大小受占空比 D 控制，所以通过改变占空比 D 即可改变输出电压大小。
+
+稳态分析
+我们需要先强调一下前提，此处我们说的稳态分析，即输入电压输出电压都是稳定，且纹波足够小的状态。下文的所有计算都将基于稳态进行分析，并且是在 (F)CCM（连续导通模式）下计算的。
+我们将一些已知条件列出来：
+
+输入电压：ViV_{i}Vi​
+输出电压：VoV_{o}Vo​
+负载电阻：RRR
+输出电感：LLL
+开关频率：fff
+
+伏秒平衡
+当上管导通下管截止时，电感右边的电压为 ViV_{i}Vi​，左边的电压为 VoV_{o}Vo​，因为同步 BUCK 电路是降压电路，所以 Vi&amp;gt;VoV_{i}&amp;gt;V_{o}Vi​&amp;gt;Vo​，所以电感两端电压即为 Vi−VoV_{i}-V_{o}Vi​−Vo​，也就是说是一个恒定值。由于有 Ldidt=Vi−VoL\frac{\mathrm{d} i}{\mathrm{d} t} =V_{i}-V_{o}Ldtdi​=Vi​−Vo​，所以 didt=Vi−VoL\frac{\mathrm{d} i}{\mathrm{d} t} =\frac{V_{i}-V_{o}}{L}dtdi​=LVi​−Vo​​，即电感电流的上升斜率，由于是稳态前提，所以可以确定该值是一个常数。
+当上管截止下管导通时，电感右边电压为 VoV_{o}Vo​，左边电压为 000，所以电感两端电压为 0−Vo0-V_{o}0−Vo​，即 −Vo-V_{o}−Vo​。由于 Ldidt=−VoL\frac{\mathrm{d} i}{\mathrm{d} t} =-V_{o}Ldtdi​=−Vo​，所以 didt=−VoL\frac{\mathrm{d} i}{\mathrm{d} t} =-\frac{V_{o}}{L}dtdi​=−LVo​​，即电感电流的下降斜率，也是一个常数。
+整个电路处于稳定状态，负载电流恒定，那么在一个周期内，电感电流增加的量肯定等于电感电流减小的量，即充了多少电就要放多少电，不然负载的电流或电压将会发生变化。
+前文已有didt=UL\frac{\mathrm{d} i}{\mathrm{d} t} =\frac{{U}}{L}dtdi​=LU​，而 LLL 恒定，那么电感电流的变化速度即与电压成正比关系，即电感电流上升（下降）的斜率与电压成正比关系。而电感电流上升和下降的高度相同，那么上升时间和下降时间就自然构成反比关系。
+TonToff=VoVi−Vo\frac{T_{on} }{T_{off} } = \frac{V_{o}}{V_{i}-V_{o}}Toff​Ton​​=Vi​−Vo​Vo​​，将其进行简单变换即可得到闻名江湖的伏秒平衡法则。
+Ton(Vi−Vo)=ToffVoT_{on}(V_{i}-V_{o}) = T_{off}V_{o}Ton​(Vi​−Vo​)=Toff​Vo​
+占空比
+已知 T=Ton+Toff=1fT=T_{on}+T_{off}=\frac{1}{f}T=Ton​+Toff​=f1​，结合伏秒平衡法则可以计算出：
+开通时间：Ton=VoVi∙1fT_{on} = \frac{V_{o} }{V_{i} } \bullet \frac{1}{f}Ton​=Vi​Vo​​∙f1​
+关断时间：Toff=Vi−VoVi∙1fT_{off} = \frac{V_{i}-V_{o} }{V_{i} } \bullet \frac{1}{f}Toff​=Vi​Vi​−Vo​​∙f1​
+占空比：D=TonT=VoViD = \frac{T_{on} }{T}=\frac{V_{o} }{V_{i}}D=TTon​​=Vi​Vo​​
+纹波电流
+由于输出电压不变，也就是说输出电容两端的电压没有变化，即输出电容的平均电流为 0。根据输出节点的基尔霍夫电流定律可知，输出节点电流和为 0，那么功率电感的平均电流就等于负载的平均电流，即IL=Io=VoRI_{L} = I_{o} = \frac{V_{o} }{R}IL​=Io​=RVo​​。
+
+上文计算电感电流斜率时已经能确定电流波形是个三角波，纹波电流等于在开关导通时电感电流的增大值，也等于在关断时电感电流减小的值，计算任意一个即可得到纹波电流。我们以上管导通时增大的电感电流计算。
+
+上管导通时电感两端电压为 Vi−VoV_{i}-V_{o}Vi​−Vo​，导通时间为 Ton=VoVi∙1fT_{on} = \frac{V_{o} }{V_{i} } \bullet \frac{1}{f}Ton​=Vi​Vo​​∙f1​，根据 U=LdidtU=L\frac{\mathrm{d} i}{\mathrm{d} t}U=Ldtdi​ 可知：
+△IL=di\triangle I_{L} =di△IL​=di
+=Ton∙UL=T_{on}\bullet \frac{U}{L}=Ton​∙LU​
+=Vi−VoL∙VoVi∙1f=\frac{V_{i}-V_{o}}{L}\bullet \frac{V_{o}}{V_{i}}\bullet \frac{1}{f}=LVi​−Vo​​∙Vi​Vo​​∙f1​
+根据理论计算可以发现，电感电流的纹波和负载电流的大小没有关系，但是负载电流与平均电感电流是相等关系。
+功率电感选择
+根据上文的信息进一步可以计算出电感的峰值电流：
+ILP=Io+△IL2I_{LP} =I_{o}+\frac{\triangle I_{L}}{2}ILP​=Io​+2△IL​​
+=Io+Vi−Vo2L∙VoVi∙1f=I_{o}+\frac{V_{i}-V_{o}}{2L}\bullet \frac{V_{o}}{V_{i}}\bullet \frac{1}{f}=Io​+2LVi​−Vo​​∙Vi​Vo​​∙f1​
+那么在选择功率电感时，电感的饱和电流就必须要大于这个ILPI_{LP}ILP​，并且需要留有一定的裕量。实际应用时电感的纹波电流应是平均电流的 30%30\%30% 至 50%50\%50% 为宜，我们将这个参数称之为电流纹波率 r。根据电流纹波率范围就可以计算出电感值的范围：
+△IL=Vi−VoL∙VoVi∙1f\triangle I_{L} =\frac{V_{i}-V_{o}}{L}\bullet \frac{V_{o}}{V_{i}}\bullet \frac{1}{f}△IL​=LVi​−Vo​​∙Vi​Vo​​∙f1​
+L=Vi−Vo△IL∙VoVi∙1fL =\frac{V_{i}-V_{o}}{\triangle I_{L}}\bullet \frac{V_{o}}{V_{i}}\bullet \frac{1}{f}L=△IL​Vi​−Vo​​∙Vi​Vo​​∙f1​
+=Vi−Vo(0.3至0.5)Io∙VoVi∙1f=\frac{V_{i}-V_{o}}{(0.3至0.5) I_{o}}\bullet \frac{V_{o}} {V_{i}}\bullet \frac{1}{f}=(0.3至0.5)Io​Vi​−Vo​​∙Vi​Vo​​∙f1​
+=(Vi−Vo)Vo(0.3至0.5)IoVif=\frac{(V_{i}-V_{o})V_{o}}{(0.3至0.5) I_{o} V_{i} f}=(0.3至0.5)Io​Vi​f(Vi​−Vo​)Vo​​
+为何 r 为 0.3～0.5
+电流纹波率即是电感电流的交流分量与其相对应的直流分量的比值，一旦 r 确定，那么输入输出滤波电容的电流、开关管的有效电流等都确定了，因此 r 的选择会影响器件选择和芯片的成本。使用公式可以表述为：
+r=△IIL=2×IACIDCr=\frac{\triangle I}{I_{L}}=2\times \frac{I_{AC}}{I_{DC}}r=IL​△I​=2×IDC​IAC​​
+一般认为，电感体积与其能量处理能量成正比，因为要处理更高的能量就需要更大的磁芯。选择电感磁芯的能量处理能力至少要等于其需存储量，即 E=12×L×Ipk2E=\frac{1}{2} \times L \times I_{pk}^{2}E=21​×L×Ipk2​，下图是 E 与 r 的的函数曲线，可以发现在 r=0.4r=0.4r=0.4 附近有一个拐点。
+
+选择的 r 如果较 0.4 低很多，则所需要的电感体积越大；而若继续增大 r，则电感的体积并不会减少多少，即当 r 超过 0.4 后，通过增加 r 来减少电感体积的效果已经不明显了。
+输入纹波
+电源输入功率为 Pi=ViIiP_{i}=V_{i}I_{i}Pi​=Vi​Ii​，负载功率为 Pr=VoIoP_{r}=V_{o}I_{o}Pr​=Vo​Io​，不考虑开关损耗、导通损耗等等因素，那么输入功率和输出功率相等，可得输入平均电流为 Ii=VoIoViI_{i}=\frac{V_{o}I_{o}}{V_{i}}Ii​=Vi​Vo​Io​​。
+输入电压纹波就是输入电容上面电压的变化，这个变化可以分为两部分。一部分为电容充放电所导致的电压变化 UqU_{q}Uq​，另一部分为电流流过电容 ESRESRESR 导致的压降 UesrU_{esr}Uesr​。即 △Vi=Uq+User\triangle V_{i} = U_{q} + U_{ser}△Vi​=Uq​+User​。
+∵Q=CiUq=Iit=IiToff\because Q = C_{i}U_{q} = I_{i}t = I_{i}T_{off}∵Q=Ci​Uq​=Ii​t=Ii​Toff​
+∴Uq=IiToffCi\therefore U_{q} = \frac{I_{i}T_{off}}{C_{i}}∴Uq​=Ci​Ii​Toff​​
+∵Toff=Vi−VoVif\because T_{off} = \frac{V_{i}-V_{o} }{V_{i}f }∵Toff​=Vi​fVi​−Vo​​
+且 Ii=VoIoViI_{i}=\frac{V_{o}I_{o}}{V_{i}}Ii​=Vi​Vo​Io​​
+∴Uq=VoIoCiVif∙Vi−VoVi\therefore U_{q} = \frac{V_{o}I_{o}}{C_{i}V_{i}f}\bullet \frac{V_{i}-V_{o}}{V_{i}}∴Uq​=Ci​Vi​fVo​Io​​∙Vi​Vi​−Vo​​
+要想知道 ESRESRESR 所造成的纹波，只需要知道流过输入电容的电流即可。当上管断开时，电源输入电流 IiI_{i}Ii​ 全部流入电容 CiC_{i}Ci​。电感电流原本从下管的体二极管续流，当上管导通后，变为了从上管续流。因为此前电感一直处于放电状态，所以切换的那一刻电感电流是最小的，为 IL−△IL2I_{L}-\frac{\triangle I_{L}}{2}IL​−2△IL​​。
+在整个 TonT_{on}Ton​ 时间内，电感都被充电，电感电流一直都在增大，直到 IL+△IL2I_{L}+\frac{\triangle I_{L}}{2}IL​+2△IL​​，并且在 TonT_{on}Ton​ 时间内，电感电流都是走的上 MOS 管通路，所以上 MOS 管最大电流也是 IL+△IL2I_{L}+\frac{\triangle I_{L}}{2}IL​+2△IL​​。
+根据基尔霍夫电流定律可知，输入节点的电流和为 0，那么输入电源电流 IiI_{i}Ii​ 和电容 CiC_{i}Ci​ 的放电电流就等于通过上 MOS 管的电流。所以 CiC_{i}Ci​ 的最大放电电流即为 IL+△IL2−IiI_{L}+\frac{\triangle I_{L}}{2} - I_{i}IL​+2△IL​​−Ii​。我们约定充电为正，放电为负，则放电电流为 Ii−△IL2−ILI_{i} - \frac{\triangle I_{L}}{2} - I_{L}Ii​−2△IL​​−IL​。
+
+
+上管截止时 ESRESRESR 的压降为 Ii∙ESRI_{i} \bullet ESRIi​∙ESR，上管导通时压降为 (Ii−△IL2−IL)∙ESR(I_{i} - \frac{\triangle I_{L}}{2} - I_{L}) \bullet ESR(Ii​−2△IL​​−IL​)∙ESR，则可得：
+User=Ii∙ESR+(Ii−△IL2−IL)∙ESRU_{ser} = I_{i} \bullet ESR + (I_{i} - \frac{\triangle I_{L}}{2} - I_{L}) \bullet ESRUser​=Ii​∙ESR+(Ii​−2△IL​​−IL​)∙ESR
+=(IL+△IL2)∙ESR=(I_{L} + \frac{\triangle I_{L}}{2}) \bullet ESR=(IL​+2△IL​​)∙ESR
+∵△IL==Vi−VoL∙VoVi∙1f\because \triangle I_{L} ==\frac{V_{i}-V_{o}}{L}\bullet \frac{V_{o}}{V_{i}}\bullet \frac{1}{f}∵△IL​==LVi​−Vo​​∙Vi​Vo​​∙f1​
+且 IL=IoI_{L} = I_{o}IL​=Io​
+∴User=(Io+(Vi−Vo)Vo2ViLf)∙ESR\therefore U_{ser} = \left ( I_{o} + \frac{\left ( V_{i}-V_{o} \right ) V_{o}}{2V_{i}Lf} \right )\bullet ESR∴User​=(Io​+2Vi​Lf(Vi​−Vo​)Vo​​)∙ESR
+综上所述可得：
+△Vi=Uq+Uesr\triangle V_{i} = U_{q} + U_{esr}△Vi​=Uq​+Uesr​
+=VoIoCiVif∙Vi−VoVi+(Io+(Vi−Vo)Vo2ViLf)∙ESR=\frac{V_{o}I_{o}}{C_{i}V_{i}f} \bullet \frac{V_{i}-V_{o}}{V_{i}} +\left ( I_{o} + \frac{\left ( V_{i}-V_{o} \right ) V_{o}}{2V_{i}Lf} \right )\bullet ESR=Ci​Vi​fVo​Io​​∙Vi​Vi​−Vo​​+(Io​+2Vi​Lf(Vi​−Vo​)Vo​​)∙ESR
+输入电容选择
+考虑到电容的实际使用情况，陶瓷电容的 ESRESRESR 小，容量小，所以 UqU_{q}Uq​ 对纹波起决定性作用，输入纹波可近似为 UqU_{q}Uq​。若选择铝电解电容，则 ESRESRESR 大，容量大，UesrU_{esr}Uesr​ 对纹波起到决定性作用，输入纹波可以近似为 UesrU_{esr}Uesr​，假设电路设计要求输入纹波不能大于 △Vi\triangle V_{i}△Vi​，则有：
+陶瓷电容：Ci≥VoIo△ViVif∙Vi−VoViC_{i} \ge \frac{V_{o}I_{o}}{\triangle V_{i}V_{i}f} \bullet \frac{V_{i}-V_{o}}{V_{i}}Ci​≥△Vi​Vi​fVo​Io​​∙Vi​Vi​−Vo​​
+铝电解电容：ESR≤△ViIo+(Vi−Vo)Vo2fLViESR \le \frac{\triangle V_{i}}{I_{o} + \frac{(V_{i}-V_{o})V_{o}}{2fLV_{i}} }ESR≤Io​+2fLVi​(Vi​−Vo​)Vo​​△Vi​​
+输出纹波
+输出纹波与输入纹波同理，亦是 △Vo=Uq+Uesr\triangle V_{o} = U_{q} + U_{esr}△Vo​=Uq​+Uesr​，我们画出负载、功率电感、输出电容三者的电流波形。其中电感的纹波电流是 △IL\triangle I_{L}△IL​，则电容的纹波电流也是 △IL\triangle I_{L}△IL​，又因为电容的平均电流为 0，所以充电电流和放电电流都是 △IL2\frac{\triangle I_{L}}{2}2△IL​​。
+电容充放电的总电荷量 Q 等于电流乘以时间，即图中阴影三角形的面积，三角形底部时间为 T2\frac{T}{2}2T​，高为 △IL2\frac{\triangle I_{L}}{2}2△IL​​，所以总的放电量可以计算出来为 Q=12∙T2∙△IL2Q=\frac{1}{2} \bullet \frac{T}{2} \bullet \frac{\triangle I_{L}}{2}Q=21​∙2T​∙2△IL​​
+
+结合 Q=CoUqQ=C_{o}U_{q}Q=Co​Uq​ 可得：
+Uq=(Vi−Vo)Vo8ViCoLf2U_{q} = \frac{\left ( V_{i}-V_{o} \right ) V_{o}}{8V_{i}C_{o}Lf^{2} }Uq​=8Vi​Co​Lf2(Vi​−Vo​)Vo​​
+由前面电流波形可知，电容的充电电流最大是 △IL2\frac{\triangle I_{L}}{2}2△IL​​，放电电流最大是 −△IL2-\frac{\triangle I_{L}}{2}−2△IL​​，则可以得到 ESRESRESR 引起的总压降为：
+User=△IL2∙ESR−(−△IL2∙ESR)U_{ser} = \frac{\triangle I_{L}}{2} \bullet ESR - (-\frac{\triangle I_{L}}{2} \bullet ESR)User​=2△IL​​∙ESR−(−2△IL​​∙ESR)
+∵△IL=Vi−VoL∙VoVi∙1f\because \triangle I_{L} = \frac{V_{i}-V_{o}}{L}\bullet \frac{V_{o}}{V_{i}}\bullet \frac{1}{f}∵△IL​=LVi​−Vo​​∙Vi​Vo​​∙f1​
+∴(Vi−Vo)VoViLf∙ESR\therefore \frac{\left ( V_{i}-V_{o} \right ) V_{o}}{V_{i}Lf} \bullet ESR∴Vi​Lf(Vi​−Vo​)Vo​​∙ESR
+最终可得：
+△Uo=Uq+Uesr\bigtriangleup U_{o} = U_{q} + U_{esr}△Uo​=Uq​+Uesr​
+=(Vi−Vo)Vo8ViCoLf2+(Vi−Vo)VoViLf∙ESR=\frac{\left ( V_{i}-V_{o} \right ) V_{o}}{8V_{i}C_{o}Lf^{2} } + \frac{\left ( V_{i}-V_{o} \right ) V_{o}}{V_{i}Lf} \bullet ESR=8Vi​Co​Lf2(Vi​−Vo​)Vo​​+Vi​Lf(Vi​−Vo​)Vo​​∙ESR
+=(Vi−Vo)VoViLf∙(ESR+18fCo)=\frac{\left ( V_{i}-V_{o} \right ) V_{o}}{V_{i}Lf}\bullet \left ( ESR + \frac{1}{8fC_{o}} \right )=Vi​Lf(Vi​−Vo​)Vo​​∙(ESR+8fCo​1​)
+输出电容选择
+与输入电容选择的方式一致，考虑是容值还是 ESRESRESR 占主导地位，假设要求输出纹波要小于 △Vo\triangle V_{o}△Vo​，则有：
+陶瓷电容：Co≥(Vi−Vo)Vo8Vi△VoLf2C_{o} \ge \frac{\left ( V_{i}-V_{o} \right ) V_{o}}{8V_{i}\triangle V_{o}Lf^{2} }Co​≥8Vi​△Vo​Lf2(Vi​−Vo​)Vo​​
+铝电解电容：ESR≤△VoViLf(Vi−Vo)VoESR \le \frac{\triangle V_{o}V_{i}Lf}{\left ( V_{i}-V_{o} \right ) V_{o}}ESR≤(Vi​−Vo​)Vo​△Vo​Vi​Lf​
+电感续流模式
+电感电流曲线不能断续（无突降），因为电流断续会引起实际不可能发生的能量断续现象。但是电流的变化率可以突变，比如从上升斜率（电感储能增加）变为下降斜率（电感储能释放），尽管这样电感电流也必须连续。根据稳定状态下每个周期电流是否回到零，划分为不同的导通模式，并且通过减小负载电流，可以使电路从 CCM 经过 BCM 最终转变为 DCM。
+CCM（连续导通模式）
+稳定状态下每个周期，电流都回到某一非零值，称之为连续导通模式（CCM：Continuous Conduction Mode）。CCM 是功率变换中最常见的工作模式，有输出纹波小但功耗高的特点。
+FCCM（强制连续导通模式）只存在于同步 BUCK 中，由于使用 MOS 管将非同步拓扑的二极管取代，MOS 管的导通压降远低于二极管压降，除了显著减小了续流通路的导通损耗外，也允许电感电流反向，即从负载瞬时流出电流。
+
+DCM（断续导通模式）
+若稳定状态下每个周期中电流都会回到零，那么就称之为断续导通模式（DCM：Discontinuous Conduction Mode），DCM 由于其电感电流的不连续，计算平均电感电流就需要更加详细复杂的公式，这也是 DCM 方程看上去复杂的根本原因。
+
+BCM（临界导通模式）
+BCM 是临界导通模式（Boundary Conduction Mode），由控制器监控电感电流，一旦检测到电流等于 0，功率开关立即闭合，控制器总是等电感电流「复位」来激活开关。即 BCM 处于 CCM 和 DCM 之间，可以将其视为 CCM 和 DCM 的极端情况，所以 BCM 模式下可以自由的选择 CCM 或 BCM 方程。
+
+DC-DC 功能框图
+前文所构建的 BUCK 电路只能是纸上谈兵，还需要解决诸多问题才能应用于实际电路。
+基础驱动与控制
+首先需要解决的问题就是 MOS 管不可能平白无故就打开，所以我们需要添加 MOS 管驱动器。
+
+理想情况是上管关闭，下管立刻打开，中间没有任何时间差，但是 MOS 管并非理想开关，从关断到导通存在一个过渡的过程，若同时导通则电源通过上下 MOS 管直接对地短路，很容易就会导致 MOS 损坏，甚至可能会把前一级电源也损坏，所以上下管同时导通的状态必须得避免。
+为了避免上下管直通的情况，实际应用会故意让上管和下管切换时多等一会儿，宁愿出现同时关断的情况，也不能出现同时导通的状态，这个等待的过程就叫做死区时间。
+
+需要注意的是，在死区时间内虽然下管没有被导通，但是功率 MOS 管本身存在一个寄生二极管，这个寄生二极管可以像非同步 BUCK 那样帮助电感续流，而且这个时间非常的短暂，所以产生的功耗没有那么大，因此不必担心系统会出问题。
+到目前为止，不知道您有没有发现我们都在自嗨，系统中并没有用来控制上下 MOS 导通和关断的信号。因此需要增加一个振荡器用来产生控制信号，注意我们在前文中使用的是占空比一词，也就是说我们要使用的是 PWM（脉冲宽度调制）。当然你也可以使用 PFM（脉冲频率调制），本文只介绍 PWM 方式。
+
+PWM（脉冲宽度调制）
+PWM 的全称是脉冲宽度调制（Pulse-width modulation），是通过将有效的电信号分散成离散形式，从而来降低电信号所传递的平均功率的一种方式。其基本实现原理是通过锯齿波/三角波（载波）与所需要合成的波形（调制波）进行比较，然后确定 PWM 所需要输出的极性。因为一般都是用到开关器件上，通常是 ON 或者 OFF，具体如下图所示。
+
+将振荡器输出的锯齿波和参考值 VthV_{th}Vth​ 进行比较，就可以输出 PWM 波形了。话不多说，上图就明白了。
+
+上图中的锯齿波（橙色）最大为 10，但是我们希望输出平均为 5 的波形（图中紫色的水平线），那么通过比较器进行比较，当锯齿波小于 5 时，PWM 即输出低电平 OFF，当锯齿波大于 5 时，PWM 即输出高电平 ON，此时的占空比即为 50%。
+若是想输出一个电压逐渐抬高的波形，即占空比逐渐增大，那只需要将调制的波形设置为斜坡输出即可达到效果。比如下图中可以看到，占空比从 0% 逐渐增大到 100%。
+
+同样的道理，我们可以通过改变调制波形，进一步调制出来其它的波形，比如要调制一个正弦波（sin wave），也就是我们常说的 SPWM，那么就是下面的样子。
+
+负反馈环路
+有了调制信号，开关管也可以正常打开与关闭，看起来可以应用到实际电路中了，但是别忘了负载的电阻并不是恒定的，负载的变化必然会引起输出电压的波动。为了减小输出电压的波动，我们可以在输出端添加分压电阻，与误差放大器和基准电压一起构成负反馈回路，这种通过取样输出电压进行闭环反馈的方式称之为电压模式控制。
+
+误差放大器的输入端分别为带隙基准源输出电压采样，当输出电压减小/增大时，与基准电压的细微差异都会被误差放大器放大，今儿调节脉冲宽度来达到调节调整输出电压的目的。图中 R2 接地，所以可以很容易计算出输出电压与分压电阻的关系：Vout=Vref(R1+R2)R2V_{out} = \frac{V_{ref}(R_{1}+R_{2})}{R_{2}}Vout​=R2​Vref​(R1​+R2​)​。
+除了输出电压可以用作控制取样信号，还有输入电压、输出电流、输出电感电压、开关器件峰值电流可以作为控制取样信号。使用这些信号可以构成单环、双环或多环反馈系统，进而实现稳压、稳流以及恒定功率的目的，也可以实现过流、过压、均流等功能。
+现在回过头来评判一下电压模式控制的优缺点。单一的反馈电压闭环设计使得调试更加容易、对输出负载的变化有比较好的响应调节、占空比的调节也不会受到什么限制等等都是它的优点，但是其缺点也很明显。由于主电路有较大的输出电容和电感的相移延时作用，输出电压的变小/变大也延时滞后，再经过误差放大器的延时，使得瞬态响应变得更慢。由于电压控制模式不采样电流，逐周期限流保护功能必须另外增加电路来实现。
+峰值电流模式控制在电压模式控制的基础上又增加了电流环，所以峰值电流模式控制是一个双环反馈系统。误差电压信号与一个变化的，其峰值代表输出电感电流峰值的三角波形进行比较，然后得到 PWM 脉冲的关断时刻。所以峰值电流模式控制不是使用电压误差信息直接控制 PWM 脉冲宽度，而是直接控制峰值输出侧的电感电流大小，进而间接的控制 PWM 脉冲宽度。
+
+峰值电流在逻辑上与平均电感电流大小变化一致，但是峰值电感电流的大小并不能与平均电感电流的大小一一对应。在占空比不同的情况下，相同的峰值电感电流大小可以对应不同的平均电感电流大小，但平均电感电流大小才是唯一决定输出电压大小的因素。
+为了解决不同占空比对平均电感电流大小的扰动作用，使得所控制的峰值电感电流最后收敛于平均电感电流，需要将电感电流下斜坡斜率的至少一半以上斜率加在实际检测电流的上斜坡上，这一点可以从数学上进行证明（具体咋证明暂不讨论）。
+总结一下峰值电流模式控制 PWM 是双闭环控制系统，电压外环控制电流内环。电流内环是瞬时快速按照逐个脉冲工作的。功率级石油电流内环控制的电流源，而电压外环再控制次功率级电流源。电流内环只负责输出电感的动态变化，电压外环仅需控制输出电容，所以峰值电流模式控制 PWM 具有比电压模式控制大得多的带宽。
+为了防止在应用过程中可能出现的短路等异常场景，DC-DC 少不了过温保护、过流保护、过压保护等保护手段。再设定一定的辅助功能，比如 PG 状态显示、缓启动、欠压保护等即可搭建完整的 DC-DC 电路。
+
+异常模式
+参考上文中的电路图，我们把绿色部分称之为控制电路，灰色部分是功率电路，功率电路中最核心的就是上下两个 MOS 管，下文我们讨论不同的异常场景中，控制电路、上管、下管三部分应该处于什么状态，其中控制电路关闭相当于整个芯片重启。
+过压保护
+当输出电压偏高并且达到了过压保护的阈值。过压状态需要控制电路去调整把输出电压降下来，所以不需要重启整个芯片。可以想到输出端已经处于过压状态了，上管如果打开那会加重过压的程度，因此上管需要关闭。若下管打开，则电感、负载、下管形成回路，即电感有续流回路，会把过压状态维持的时间更长，因此下管也需要关闭。综上有：过压保护：关上管、关下管。
+过温保护
+温度过高的情况无非两种，一种是流过芯片的电流太大，即功率太大导致芯片自身发热达到了过温保护的阈值，此时关闭芯片肯定可以解决，另外切断电流回路也是可以解决的，即关闭上管。过温的第二种情况是由于环境温度过高而导致芯片温度过高，此时最好还是关闭芯片吧。综上有：过温保护：关闭芯片。
+
+关闭芯片指关闭芯片中的 BUCK 部分，但是基准源部分仍然保持工作
+
+过流保护
+过流保护还需要区分是正向过流还是负向过流，因为工作在 FCCM 模式的 DC-DC 在轻载或空载时，可能会有负向过流的情况。存在负向过流的另一原因也是因为同步 BUCK 没有像非同步 BUCK 那样的整流二极管，所以当存在负向过流情况时，直接模拟非同步 BUCK 中的二极管即可。综上有：负向过流保护：关下管。
+若发生正向过流时如何进行保护呢？首先考虑到电流经上管到负载，既然已经过流了那么肯定需要关上管。为了使电流减小的更快，那么就需要将电流流向地，所以需要将下管打开以构成回路。综上有：正向过流保护：关上管、开下管。
+异常排查
+不管系统设计的多好，在实际应用中都可能会或多或少出现问题，比如电感选用不合适、触发 min-on time、触发 min-off time、输出电容 ESR 过大等，下面我们逐一进行讨论。
+min-on time
+虽然 MOS 管打开速度很快，但是打开始终是一个过程，要完成一个过程就必须需要一定的时间，当高频且压差大的情况下很容易触发完成「打开」这个过程的最小时间。也就是说占空比已经是实际最小了，占空比无法再降低了，所以查看输出电压纹波可能会出现下面的波形。
+
+出现该波形的原因在于，占空比已经无法继续降低，所以电压整体处于逐渐抬高的趋势，当抬高到一定程度时即触发过压保护，上下管都关断，所以电压快速下降。
+min-off time
+与 min-on time 相对应的是 min-off time，当开关频率足够高且输入和输出电压接近时即容易出现此问题，此时即达到系统所能达到的最大占空比也无法满足负载所需要的电压，表现为输出电压无法达到设定值，负反馈分压电阻电压也低于电压基准值。
+电感饱和电流过小
+电感电流正常是一个三角波，但是如果电感饱和电流过小，则会电感电流将会变成下图很苗条的样子。因为电感电流饱和所以电流不再线性增加，电流快速增大导致磁通率减小，会导致磁性损耗增大、芯片热耗增大，而且这是一个正反馈过程，整个系统的可靠性会大大降低。
+
+输出电容选用不合适
+当输出电容选用过小时，会导致动态响应输出出现抖动。若输出电容的等效串联电阻（ESR）过大，也会导致输出纹波异常增大，这一点从前文的理论计算即可验证。因此在实际使用过程中需要同时考虑电容容值和所选电容的 ESR。
+为什么需要 min-on time
+占空比 D 控制相对于输入电压的输出电压，虽然通过提高开关频率有助于减小电感尺寸，但是也必须满足最小导通时间（min-on time）才能使芯片正常工作。那么这个 min-on time 是由哪些因素引起的呢？
+因为上管中电流波形前沿的电流尖峰。由于 MOS 管也是由 PN 结组成，存在 PN 结就肯定存在结电容，MOS 管的寄生电容 CgsC_{gs}Cgs​ 和 CgdC_{gd}Cgd​ 会导致上管在导通时电流突然变化，也就是说会出现电流尖峰。如果在这个电流尖峰的时间段内去检测电流的话，很可能就会触发过流保护，因此开关电路的最小导通时间必须大于电流尖峰出现的时间，这个时间我们称之为消隐时间。
+
+另一个原因是因为上下管开关完成后，由于键合线存在寄生电感的原因会产生很大的振铃，这个振铃同样可能会导致峰值电流检测出错，需要一个 min-on time 将这个振铃隔离过去。
+为什么需要 min-off time
+如下图所示，最简单的需要最小关断时间（min-off time）的原因是，若下管不打开则没有办法给自举电容充电，所以需要在该时间内给自举电容充电，为下一个开关周期做准备。
+
+另一个原因是因为没有最小关断时间，即占空比 D 增大到 100%，那么就无法对负向电流、谷值电流进行采样，也就无法实现实现相应的异常保护功能。与 min-on time 一致，电流检测也需要一个 min-off time 隔离振铃。
+为什么需要自举电容
+DC-DC 的上 MOS 管可以是 PMOS，也可以是 NMOS。但是一般因为生产工艺问题，PMOS 导通电流往往做不不到很大，而在相同成本下 NMOS 的导通电流可以做到更大，也就是 RdsonR_{dson}Rdson​ 可以做到相对较低，所以往往更倾向于 NMOS。
+将上管换为 NMOS 后也带来了新的问题，如何打开 NMOS ？如图所示，上管的 S 极连接 PH 点，该点的电压为 +5V，要打开 NMOS 需要 VGS&amp;gt;0V_{GS} &amp;gt; 0VGS​&amp;gt;0，驱动 MOS 管打开的压降需要 5V，那么驱动电压就需要 +10V 才可以打开上管，但是纵观整个电路并没有能达到 +10V 级别的电压，所以需要自举电容来进行升压才能打开上 MOS 管。
+
+所以 DC-DC 芯片是否需要自举电容是由芯片所选用的 MOS 管类型决定的，若是 PMOS 则无需自举电容。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/br0hmOiiG/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

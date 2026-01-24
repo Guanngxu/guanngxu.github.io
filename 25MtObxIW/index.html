@@ -1,0 +1,588 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    如何加快 Nginx 的文件传输？——Linux 中的零拷贝技术 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            如何加快 Nginx 的文件传输？——Linux 中的零拷贝技术
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-10-18</time>
+                            <span class="read-time">11 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/j7DVou3EA/" class="post-tag i-tag
+                            i-tag-other_1">
+                            #Nginx
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-other_4">
+                            #操作系统
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-other_4">
+                            #计算机网络
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/25MtObxIW.jpg')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：<br>
+<a href="https://lwn.net/Articles/178199/">Two new system calls: splice() and sync_file_range()</a><br>
+<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-zerocopy1/index.html">Linux 中的零拷贝技术1</a><br>
+<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-zerocopy2/index.html">Linux 中的零拷贝技术2</a><br>
+<a href="https://www.linuxjournal.com/article/6345">Zero Copy I: User-Mode Perspective</a><br>
+<a href="http://man7.org/linux/man-pages/man2/splice.2.html">Linux man-pages splice()</a><br>
+<a href="http://www.178linux.com/54790">Nginx AIO 机制与 sendfile 机制</a><br>
+<a href="https://segmentfault.com/q/1010000003055006/a-1020000003064578">sendfile 适用场景</a><br>
+<a href="http://xiaorui.cc/2015/06/24/%E6%89%AF%E6%B7%A1nginx%E7%9A%84sendfile%E9%9B%B6%E6%8B%B7%E8%B4%9D%E7%9A%84%E6%A6%82%E5%BF%B5/">扯淡 Nginx 的 sendfile 零拷贝的概念</a><br>
+<a href="https://www.jianshu.com/p/fad3339e3448">浅析 Linux 中的零拷贝技术</a><br>
+<a href="http://man7.org/linux/man-pages/man2/sendfile.2.html">Linux man-pages sendfile</a></p>
+</blockquote>
+<p>今天在看 Nginx 配置的时候，看到了一个<code>sendfile</code>配置项，它可以配置在<code>http、server、location</code>三个块中，出于好奇就去查了一下<code>sendfile</code>的作用。</p>
+<p>文件下载是服务器的基本功能，其基本流程就是循环的从磁盘读取文件内容到缓冲区，再将缓冲区内容发送到<code>socket</code>文件，程序员基本都会写出类似下面看起来比较高效的程序。</p>
+<pre><code class="language-c">while((n = read(diskfd, buf, BUF_SIZE)) &gt; 0)
+    write(sockfd, buf , n);
+</code></pre>
+<p>上面程序中我们使用了<code>read</code>和<code>write</code>两个系统调用，看起来也已经没有什么优化空间了。这里的<code>read</code>和<code>write</code>屏蔽了系统内部的操作，我们并不知道操作系统做了什么，现实情况却是由于 Linux 的 I/O 操作默认是缓冲 I/O，上面的程序发生了多次不必要的数据拷贝与上下文切换。</p>
+<p>上述两行代码执行流程大致可以描述如下：</p>
+<ol>
+<li>系统调用<code>read</code>产生一个上下文切换，从用户态切换到内核态；</li>
+<li>DMA 执行拷贝（现在都是 DMA 了吧！），把文件数据拷贝到内核缓冲区；</li>
+<li>文件数据从内核缓冲区拷贝到用户缓冲区；</li>
+<li><code>read</code>调用返回，从内核态切换为用户态；</li>
+<li>系统调用<code>write</code>产生一个上下文切换，从用户态切换到内核态；</li>
+<li>把步骤 3 读到的数据从用户缓冲区拷贝到 Socket 缓冲区；</li>
+<li>系统调用<code>write</code>返回，从内核态切换到用户态；</li>
+<li>DMA 从 Socket 缓冲区把数据拷贝到协议栈。</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1664010005879.png" alt="" loading="lazy"></figure>
+<p>可以看到两行程序共发生了 4 次拷贝和 4 次上下文切换，其中 DMA 进行的数据拷贝不需要 CPU 访问数据，所以整个过程需要 CPU 访问两次数据。很明显中间有些拷贝和上下文切换是不需要的，<code>sendfile</code>就是来解决这个问题的，它是从 2.1 版本内核开始引入的，这里放个 2.6 版本的<a href="http://lxr.linux.no/linux+v2.6.36/fs/read_write.c#L809">源码</a>。</p>
+<p>系统调用<code>sendfile</code>是将<code>in_fd</code>的内容发送到<code>out_fd</code>，描述符<code>out_fd</code>在 Linux 2.6.33 之前，必须指向套接字文件，自 2.6.33 开始，<code>out_fd</code>可以是任何文件；<code>in_fd</code>只能是支持<code>mmap</code>的文件（<code>mmap</code>是一种内存映射方法，在被调用进程的虚拟地址空间中创建一个新的指定文件的映射）。</p>
+<p>所以当 Nginx 是一个静态服务器时，开启<code>sendfile</code>配置项是可以大大提高 Nginx 性能的，但是当把 Nginx 作为一个反向代理服务器时，<code>sendfile</code>则没有什么用，因为当 Nginx 时反向代理服务器时，<code>in_fd</code>就是一个套接字，这不符合<code>sendfile</code>的参数要求。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1664010082124.png" alt="" loading="lazy"></figure>
+<p>可以看到现在我们只需要一次拷贝就可以完成功能了，但是能否把这一次拷贝也省略掉呢？我们可以借助硬件来实现，仅仅需要把缓冲区描述符和文件长度传过去，这样 DMA 直接将缓冲区的数据打包发送到网络中就可以了。</p>
+<p>这样就实现了零拷贝技术，需要注意的是这里所说的零拷贝是相对操作系统而言的，即在内核空间不存在冗余数据。数据的实际走向是从硬盘到内存，再从内存到设备。</p>
+<p>Nginx 中还有一个<code>aio</code>配置，它的作用是启用内核级别的异步 I/O 功能，要使<code>aio</code>生效需要将<code>directio</code>开启（<code>directio</code>对大文件的读取速度有优化作用），<code>aio</code>很适合大文件的传送。需要注意的是<code>sendfile</code>和<code>aio</code>是互斥的，不可同时兼得二者，因此我们可以设置一个文件大小限制，超过该阀值使用<code>aio</code>，低于该阀值使用<code>sendfile</code>。</p>
+<pre><code class="language-nginx">location /video/ {
+    sendfile on;
+    sendfile_max_chunk 256k; 
+    aio threads;
+    directio 512k;
+    output_buffers 1 128k;
+}
+</code></pre>
+<p>上面已经提到了零拷贝技术，它可以有效的改善数据传输的性能，但是由于存储体系结构非常复杂，而且网络协议栈有时需要对数据进行必要的处理，所以零拷贝技术有可能会产生很多负面影响，甚至会导致零拷贝技术自身的优点完全丧失。</p>
+<p>零拷贝就是一种避免 CPU 将一块存储拷贝到另一块存储的技术。它可以减少数据拷贝和共享总线操作的次数，消除传输数据在存储器之间不必要的中间拷贝次数，从而有效的提高数据传输效率，而且零拷贝技术也减少了内核态与用户态之间切换所带来的开销。进行大量的数据拷贝操作是一件简单的任务，从操作系统的角度来看，如果 CPU 一直被占用着去执行这项简单的任务，是极其浪费资源的。如果是高速网络环境下，很可能就出现这样的场景。</p>
+<h2 id="零拷贝技术分类">零拷贝技术分类</h2>
+<p>现在的零拷贝技术种类很多，也并没有一个适合于所有场景的零拷贝零拷贝技术，概括起来总共有下面几种：</p>
+<ul>
+<li>
+<p><strong>直接 I/O</strong>：对于这种数据传输方式来说，应用程序可以直接访问硬件存储，操作系统只是辅助数据传输，这类零拷贝技术可以让数据在应用程序空间和磁盘之间直接传输，不需要操作系统提供的页缓存支持。关于直接 I/O 可以参看<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-directio/index.html">Linux 中直接 I/O 机制的介绍</a>。</p>
+</li>
+<li>
+<p><strong>避免数据在内核态与用户态之间传输</strong>：在一些场景中，应用程序在数据进行传输的过程中不需要对数据进行访问，那么将数据从页缓存拷贝到用户进程的缓冲区是完全没有必要的，Linux 中提供的类似系统调用主要有<code>mmap()</code>、<code>sendfile()</code>和<code>splice()</code>。</p>
+</li>
+<li>
+<p><strong>对数据在页缓存和用户进程之间的传输进行优化</strong>：这类零拷贝技术侧重于灵活地处理数据在用户进程的缓冲区和操作系统页缓存之间的拷贝操作，此类方法延续了传统的通信方式，但是更加灵活。在 Linux 中主要利用了「写时复制」技术。</p>
+</li>
+</ul>
+<p>前两类方法的目的主要是为了避免在用户态和内核态的缓冲区间拷贝数据，第三类方法则是对数据传输本身进行优化。我们知道硬件和软件之间可以通过 DMA 来解放 CPU，但是在用户空间和内核空间并没有这种工具，所以此类方法主要是改善数据在用户地址空间和操作系统内核地址空间之间传递的效率。</p>
+<h2 id="避免在内核与用户空间拷贝">避免在内核与用户空间拷贝</h2>
+<p>Linux 主要提供了<code>mmap()</code>、<code>sendfile()</code>、<code>splice()</code>三个系统调用来避免数据在内核空间与用户空间进行不必要的拷贝，在<a href="https://mengxiaoxu.github.io/post/nginx-wen-jian-cao-zuo-you-hua/">Nginx 文件操作优化</a>对<code>sendfile()</code>已经做了比较详细的介绍了，这里就不再赘述了，下面主要介绍<code>mmap()</code>和<code>splice()</code>。</p>
+<h3 id="mmap">mmap()</h3>
+<p>当调用<code>mmap()</code>之后，数据会先通过 DMA 拷贝到操作系统的缓冲区，然后应用程序和操作系统共享这个缓冲区，这样用户空间与内核空间就不需要任何数据拷贝了，当大量数据需要传输的时候，这样做就会有一个比较好的效率。</p>
+<p>但是这种改进是需要代价的，当对文件进行了内存映射，然后调用<code>write()</code>系统调用，如果此时其它进程截断了这个文件，那么<code>write()</code>系统调用将会被总线错误信号<code>SIGBUG</code>中断，因为此时正在存储的是一个错误的存储访问，这个信号将会导致进程被杀死。</p>
+<p>一般可以通过文件租借锁来解决这个问题，我们可以通过内核给文件加读或者写的租借锁，当另外一个进程尝试对用户正在进行传输的文件进行截断时，内核会给用户发一个实时<code>RT_SIGNAL_LEASE</code>信号，这个信号会告诉用户内核破坏了用户加在那个文件上的写或者读租借锁，<code>write()</code>系统调用就会被中断，并且进程会被<code>SIGBUS</code>信号杀死。需要注意的是文件租借锁需要在对文件进行内存映射之前设置。</p>
+<h3 id="splice">splice()</h3>
+<p>和<code>sendfile()</code>类似，<code>splice()</code>也需要两个已经打开的文件描述符，并且其中的一个描述符必须是表示管道设备的描述符，它可以在操作系统地址空间中整块地移动数据，从而减少大多数数据拷贝操作。适用于可以确定数据传输路径的用户应用程序，不需要利用用户地址空间的缓冲区进行显示的数据传输操作。</p>
+<p><code>splice()</code>不局限于<code>sendfile()</code>的功能，也就是说<code>sendfile()</code>是<code>splice()</code>的一个子集，在 Linux 2.6.23 中，<code>sendfile()</code>这种机制的实现已经没有了，但是这个 API 以及相应的功能还存在，只不过内部已经使用了<code>splice()</code>这种机制来实现了。</p>
+<h2 id="写时复制">写时复制</h2>
+<p>在某些情况下，Linux 操作系统内核中的页缓存可能会被多个应用程序所共享，操作系统有可能会将用户应用程序地址空间缓冲区中的页面映射到操作系统内核地址空间中去。如果某个应用程序想要对这共享的数据调用<code>write()</code>系统调用，那么它就可能破坏内核缓冲区中的共享数据，传统的<code>write()</code>系统调用并没有提供任何显示的加锁操作，Linux 中引入了写时复制这样一种技术用来保护数据。</p>
+<p>写时复制的基本思想是如果有多个应用程序需要同时访问同一块数据，那么可以为这些应用程序分配指向这块数据的指针，在每一个应用程序看来，它们都拥有这块数据的一份数据拷贝，当其中一个应用程序需要对自己的这份数据拷贝进行修改的时候，就需要将数据真正地拷贝到该应用程序的地址空间中去，也就是说，该应用程序拥有了一份真正的私有数据拷贝，这样做是为了避免该应用程序对这块数据做的更改被其他应用程序看到。这个过程对于应用程序来说是透明的，如果应用程序永远不会对所访问的这块数据进行任何更改，那么就永远不需要将数据拷贝到应用程序自己的地址空间中去。这也是写时复制的最主要的优点。</p>
+<p>写时复制的实现需要 MMU 的支持，MMU 需要知晓进程地址空间中哪些特殊的页面是只读的，当需要往这些页面中写数据的时候，MMU 就会发出一个异常给操作系统内核，操作系统内核就会分配新的物理存储空间，即将被写入数据的页面需要与新的物理存储位置相对应。它最大好处就是可以节约内存，不过对于操作系统内核来说，写时复制增加了其处理过程的复杂性。</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/X1-n4nEmj/">
+                                <h3 class="post-title">
+                                    家里的狗
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%9B%B6%E6%8B%B7%E8%B4%9D%E6%8A%80%E6%9C%AF%E5%88%86%E7%B1%BB">零拷贝技术分类</a></li>
+<li><a href="#%E9%81%BF%E5%85%8D%E5%9C%A8%E5%86%85%E6%A0%B8%E4%B8%8E%E7%94%A8%E6%88%B7%E7%A9%BA%E9%97%B4%E6%8B%B7%E8%B4%9D">避免在内核与用户空间拷贝</a>
+<ul>
+<li><a href="#mmap">mmap()</a></li>
+<li><a href="#splice">splice()</a></li>
+</ul>
+</li>
+<li><a href="#%E5%86%99%E6%97%B6%E5%A4%8D%E5%88%B6">写时复制</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,566 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    深入理解计算机系统——信息的表示与处理 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            深入理解计算机系统——信息的表示与处理
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2018-10-19</time>
+                            <span class="read-time">10 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-other_4">
+                            #操作系统
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/oNwbCz1HH.jpeg')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：<br>
+《深入理解计算机系统》（第三版）</p>
+</blockquote>
+<h2 id="字数据大小">字数据大小</h2>
+<p>前面已经提到过<strong>信息=位+上下文</strong>，但是基本上的计算机都没有将位作为最小的可寻址单位，而是将字节作为了最小的可寻址单位，内存就是一个非常大的字节数组，它的的每个字节都由一个唯一的数字来标识（这个数字是不需要存的），所有可能的地址集合就是虚拟地址空间。</p>
+<p>我们常说的 32 位、64 位指的是一台计算机的<strong>字长</strong>，用于指明指针数据的的标称大小。有的面试官在面试的时候会问这样一个问题：在 C/C++ 中指针的大小是多少？如果你一下就回答出来时多少个字节了，那基本上不必再问了，因为一个指针的大小取决于计算机的字长，所以应该分 32 位机还是 64 位机的情况。</p>
+<p>字长还会决定一个极为重要的系统参数——<strong>虚拟地址空间</strong>。比如现在有一个 32 位机，每一位可以取值 1 或 总共 32 位，能组合的出局就有 2<sup>32</sup> 个，所以它能访问 2<sup>32</sup> 个地址，其大小也就是 4G，因此你如果给 32 位机装上 8G 的内存条，是起不了多大作用的。</p>
+<p>我们平时所说的 32 位程序和 64 位程序并不是指机器的字长，它们的区别在于程序时如何编译的，而不是其运行的机器类型，高版本都应该做到向后兼容，所以 32 位程序一般都能运行在 64 位机器上，而 64 位程序时不能运行在 32 位机上面的。下面两种伪指令就分别用于编译 32 位程序和 64 位程序。</p>
+<pre><code class="language-shell">gcc -m32 prog.c
+gcc -m64 prog.c
+</code></pre>
+<p>C 语言在 32 位机和 64 位机上所表现的差别在于<code>long</code>数据类型，一般在 32 位机上是 4 个字节，而在 64 位机上是 8 个字节，而作为程序员要力图程序能在不同的机器上进行编译执行，要做到这一点就需要保证程序对不同数据类型的确切大小不敏感。</p>
+<blockquote>
+<p>曾经某运营商的一个基站版本因为数据范围的不同而造成了巨大的损失，在编程环境中使用的是 32 位机，而基站所使用的处理器没有 32 位，最后表现的效果就是大概每隔 40 天，基站就自动复位了。定位到这个问题都花费了巨大的财力和人力资源。</p>
+</blockquote>
+<h2 id="寻址及字节顺序">寻址及字节顺序</h2>
+<p>上文已经提到，有很多的对象实际上不止占用一个字节，而是占用了多个字节，此时就涉及到如何排列这些字节了，以及如何存储这些字节。以<code>11001100 11001100</code>为例，它占用了两个字节，我们可以选择将这两个字节放在连续的内存中，也可以将两个字节分开放在不连续的内存中；另外我们可以将左边的字节当做起始位置，也可以将右边的字节当做起始位置（更专业的称为<strong>大端法和小端法</strong>）。</p>
+<p>对于字节的排列，到底是用大端法还是小端法，没有技术上的争论，只有社会政治论题的争论，而且机器它对程序员是完全不可见的。几乎所有的机器都将多字节对象存储为连续的字节序列，所使用字节中最小的地址作为对象的地址。</p>
+<p>那么什么时候需要注意字节的顺序规则呢，那就是编写网络应用程序的时候，试想你传输的数据是用大端法表示的，而用户的计算机采用的是小端法，那还会有用户使用你的产品吗。所以编写网络程序时需要遵循已经建立的关于字节顺序的规则。</p>
+<h2 id="整数表示">整数表示</h2>
+<p>程序员对二进制不会不知道，比如 <code>11111111</code>表示的是 255（不考虑补码），很容易就能转换为我们所熟悉的 10 进制数据。这种方式我们默认它是无符号数，如果要加入有符号数就开始变得有趣了。</p>
+<p>几乎所有的计算机都是采用有<strong>补码</strong>来表示有符号整数的，它与无符号整数的区别在于最高位被解释为<strong>负权</strong>，举个例子：将<code>1111</code>看做补码的话，它的值就为：-2<sup>3</sup> + 2<sup>2</sup> + 2<sup>1</sup> + 2<sup>0</sup> = -1。</p>
+<p>在程序中不可避免的会使用强制类型转换，C 语言中强制类型转换并没有改变数据的位值，只是改变了解释这些位的方式。比如将无符号数（<code>unsigned</code>） 53191 转换为有符号数的结果为 -12345，它们的位值是完全没有相同的。</p>
+<p>最容易入坑的地方是，对两个不同类型的数据进行运算时，C 语言将会隐式的将有符号数转换为无符号数，所以就有下面这样一个神奇的结果。</p>
+<pre><code class="language-C">// u 代表无符号数
+-1 &lt; 0u
+// 结果为 0
+// 因为 -1 的补码表示为：11...11
+// 转换为无符号数后就是范围内最大的数
+</code></pre>
+<p>如果需要扩展一个数的位表示，那么放心的扩展就好了，小的数据类型都能安全的向大的数据类型转换，补码表示的数会在前面补上符号位，原码表示的直接在前面补上 0 即可，而需要注意的是从大往小转，这会不可避免的截断位，造成信息的丢失，所以千万不要这么干。</p>
+<h2 id="加法-乘法运算">加法、乘法运算</h2>
+<p>在编程入门的时候可能都知道两个正数相加的结果可能为负数，还有一个更奇怪的现象就是：<code>x &lt; y</code>和 <code>x - y &lt; 0</code>两个表达式可能会得出不一样的结果，这些神奇的结果都和计算机整数的底层表示和运算有着密切的关系。</p>
+<p>C 语言中有无符号数与有符号数之分，而在 Java 中只有有符号数，下面的内容还是基于 C 语言进行说明，毕竟更 C 比 Java 更接近底层嘛。</p>
+<h3 id="无符号加法">无符号加法</h3>
+<p>假设我们使用 w 位来表示无符号数，那么两个加数取值范围即为：0 ≤ x, y ＜2<sup>w</sup>，理论上它们的和的范围为：0 ≤ sum ＜ 2<sup>w+1</sup>，因为只有 w 位表示无符号数（要把和表示出来就需要 w+1 位），所以超过 z<sup>w</sup>的部分就会造成溢出，如下图所示。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1664023582027.png" alt="" loading="lazy"></figure>
+<p>对于无符号数的溢出，计算机采用的处理方式是丢掉最高位，直观的结果就是，当发生溢出了，就将采用取模运算（或者说是减去 2<sup>w</sup>），举个例子。</p>
+<p>只用 4 为来表示无符号数，即 w = 4，现在有 x [1001] 和 y [1100] 相加，其结果应为：[10101] ，但是没有 5 位用来表示，所以丢掉最高位的1，剩下的值为 5 [0101]，也就是 21 mod 16 = 5。</p>
+<p>那么如何检测是否发生溢出呢？设求和结果为 s，对于加法有 x + y ≥ x 恒成立，即只要没有发生溢出，肯定有 s ≥ x。另一方面，如果确实发生溢出了，就有 s = x + y - 2<sup>w</sup>，又有 y - 2<sup>w</sup> ＜ 0，因此 s = x + y - 2<sup>w</sup> ＜ x。</p>
+<h3 id="补码加法">补码加法</h3>
+<p>和前面一样，对于两个给定范围的加数 - 2<sup>w-1</sup> ≤ x, y ≤ 2<sup>w-1</sup> - 1，它们的和的范围就在 - 2<sup>w</sup> ≤ sum ≤ 2<sup>w</sup> - 2。要想把整个和的范围表示出来，依旧需要 w+1 位才行，而现在只有 w 位，因此还是需要采用将溢出部分截断。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1664023593362.png" alt="" loading="lazy"></figure>
+<p>可以发现，当发生正溢出时，截断的结果是从和数中减去了 2<sup>w</sup>；而当发生负溢出时，截断结果是把和数加上 2<sup>w</sup>。</p>
+<p>那么对于补码加法如何检测溢出结果呢？通过分析可以发现，当且仅当 x ＞ 0, y ＞ 0，但和 s ≤ 0 时为正溢出；当且仅当 x ＜ 0, y ＜ 0，但 s ≥ 0 时发生负溢出。</p>
+<h3 id="无符号乘法">无符号乘法</h3>
+<p>有了前面的基础，乘法就变得简单一些了，对于溢出情况，计算机仍然采用的是求模，比如 0 ≤ x, y ≤ 2<sup>w</sup> - 1，它们乘积的范围为 0 到 2<sup>2w</sup> - 2<sup>w+1</sup> + 1 之间，这可能需要 2w 位来表示，溢出部分直接截掉，如下所示。</p>
+<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1664023603134.png" alt="" loading="lazy"></figure>
+<h3 id="补码乘法">补码乘法</h3>
+<p>对于补码，两个乘数的范围为：- 2<sup>w-1</sup> ≤ x, y ≤ 2<sup>w-1</sup> + 1，那么其乘积表示范围就为 - 2<sup>2w-2</sup> + 2<sup>w-1</sup> 到 2<sup>2w-2</sup> 之间，补码乘法和无符号乘法基本是一样的，只是在无符号基础上多加了一步转换，即将无符号数转换为补码。</p>
+<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1664023613568.png" alt="" loading="lazy"></figure>
+<h3 id="乘以常数">乘以常数</h3>
+<p>我们知道，计算机做加减法、位级运算的速度最快（1 个指令周期），而做乘除法很慢（10 个甚至更多指令周期），平时编写的程序中常常会乘以一个常数，为了使程序运行的更快，编译器可能会帮我们做一些处理。</p>
+<p>首先我们考虑常数是 2 的幂。x * 2<sup>1</sup> 可以表示为 <code>x &lt;&lt; 1</code>，x * 2<sup>2</sup> 可以表示为 <code>x &lt;&lt; 2</code>，依次类推即可。</p>
+<p>对于不是 2 的幂的常数，比如 x * 14 可以表示为：<code>(x&lt;&lt;3) + (x&lt;&lt;2) + (x&lt;&lt;1)</code>，因为 14 = 2<sup>3</sup> + 2<sup>2</sup> + 2<sup>1</sup>；聪明的你可能发现 14 还有另一种表示方法，即 14 = 2<sup>4</sup> - 2<sup>1</sup>，这种表示比前一种表示方法又少了运算量，所以 x * 14 还可以表示为：<code>(x&lt;&lt;4) - (x&lt;&lt;1)</code>。</p>
+<p>实际上，这里有一个通用的解决方案，对于任何一个常数 K，其二进制可以表示为一组 0 和 1 交替的序列：[(0...0)(1...1)(0...0)(1...1)]，14可以表示为：[(0...0)(111)(0)]，考虑一组从位位置 n 到位位置 m 的连续的 1 （n ≥ m），（对于 14 有 n = 3，m = 1）可以有两种形式来计算位对乘积的影响。</p>
+<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1664023624906.png" alt="" loading="lazy"></figure>
+<p>这个优化不是一定的，大多数编译器只在需要少量移位、加减法就足够的时候才使用这种优化。</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/c4hRhCBs7/">
+                                <h3 class="post-title">
+                                    使用订阅号实现微信公众号历史文章爬虫
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AD%97%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F">字数据大小</a></li>
+<li><a href="#%E5%AF%BB%E5%9D%80%E5%8F%8A%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F">寻址及字节顺序</a></li>
+<li><a href="#%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA">整数表示</a></li>
+<li><a href="#%E5%8A%A0%E6%B3%95-%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97">加法、乘法运算</a>
+<ul>
+<li><a href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E5%8A%A0%E6%B3%95">无符号加法</a></li>
+<li><a href="#%E8%A1%A5%E7%A0%81%E5%8A%A0%E6%B3%95">补码加法</a></li>
+<li><a href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95">无符号乘法</a></li>
+<li><a href="#%E8%A1%A5%E7%A0%81%E4%B9%98%E6%B3%95">补码乘法</a></li>
+<li><a href="#%E4%B9%98%E4%BB%A5%E5%B8%B8%E6%95%B0">乘以常数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

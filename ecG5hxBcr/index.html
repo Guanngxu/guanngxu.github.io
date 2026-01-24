@@ -1,0 +1,771 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    数据库 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        数据库</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/9Ov7sD1uz/">
+                        Oracle 安装及 Spring 使用 Oracle
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2023-03-30</time>
+                    
+                        <a href="https://www.guanngxu.com/M4PlaWNdk/" class="post-tag i-tag
+                            i-tag-other_4">
+            #Oracle
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-other_1">
+            #数据库
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
+                            i-tag-other_2">
+            #Java
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/9Ov7sD1uz/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/9Ov7sD1uz.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+docker安装oracle数据库史上最全步骤（带图文）
+Mac下oracle数据库客户端
+Docker安装Oracle
+docker能安装oracle吗
+Batch script for add a auto-increased primary key for exist table with records
+
+Docker 安装 Oracle11g
+注意：下列安装方式仅适用于x86架构服务器，不适用于arm架构服务器。
+# 拉取 oracle11，镜像有点大，需要花一些时间
+docker pull registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g
+
+# 查看镜像是否拉取成功
+docker images
+
+# 给镜像重新打 tag，原来的名字太长了
+docker tag registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g oracle11g:latest
+
+# 启动 oracle11g 容器
+docker run --name=oracle11g -itd -p 1521:1521
+
+# 进入容器进行配置
+docker exec -it oracle11g /bin/bash
+
+# 切换到 root 用户，密码为：helowin
+su root
+
+# 编辑配置文件
+
+编辑/etc/profile，在其中增加如下内容：
+export ORACLE_HOME=/home/oracle/app/oracle/product/11.2.0/dbhome_2
+export ORACLE_SID=helowin
+export PATH=$ORACLE_HOME/bin:$PATH
+
+编辑完成后，需要刷新上述环境变量才能使用。
+# 刷新环境变量
+source /etc/profile
+
+# 创建软链接
+ln -s $ORACLE_HOME/bin/sqlplus /usr/bin
+
+# 切换到 oracle 用户
+su - oracle
+
+# 登陆 sqlplus
+sqlplus /nolog
+conn /as sysdba
+
+# 修改 system 用户密码
+alter user system identified by system;
+# 修改 sys 用户密码
+alter user sys identified by system;
+
+# 创建内部管理员账号
+create user test identified by test;
+
+# 将 dba 权限授权给内部管理员账号和密码
+grant connect,resource,dba to test;
+
+# 修改密码规则策略为密码永不过期
+ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
+
+# 修改数据库最大连接数据
+alter system set processes=1000 scope=spfile;
+
+修改上述信息后，需要重新启动数据库才会生效。
+conn /as sysdba
+
+# 关闭数据库
+shutdown immediate;
+
+# 启动数据库
+startup;
+
+# 退出软链接
+exit;
+
+客户端连接 Oracle
+以 Navicat 客户端为例，新建连接时按下图方式填写连接信息即可，密码即为system。需要注意的是，在 Windows 下选择 SID 或是服务名均可连接成功，但是在 Mac 下需要选择 SID 方式才能连接成功。
+
+Oracle 实现主键自增
+Oracle 在创建表的时候，不能像 MySQL 那样选择主键直接自增，但是我们可以通过给表创建序列和触发器去实现自增。下文以创建 USER 表为例。
+-- 删除原有 USER 表
+DROP TABLE &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot;;
+-- 创建 USER 表
+CREATE TABLE &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; (
+  &amp;quot;id&amp;quot; NUMBER NOT NULL,
+  &amp;quot;gmt_create&amp;quot; DATE NOT NULL,
+  &amp;quot;gmt_modified&amp;quot; DATE NOT NULL,
+  &amp;quot;is_deleted&amp;quot; NUMBER NOT NULL,
+  &amp;quot;login&amp;quot; NVARCHAR2(255) NOT NULL,
+  &amp;quot;passwd&amp;quot; NVARCHAR2(255) NOT NULL,
+  &amp;quot;nick&amp;quot; NVARCHAR2(255) NOT NULL,
+  &amp;quot;phone&amp;quot; NVARCHAR2(255),
+  &amp;quot;head_img&amp;quot; NVARCHAR2(255),
+  &amp;quot;status&amp;quot; NVARCHAR2(255),
+  &amp;quot;remark&amp;quot; NCLOB
+);
+
+-- 删除原有序列
+DROP SEQUENCE &amp;quot;TEST&amp;quot;.&amp;quot;USER_SEQ&amp;quot;;
+-- 创建 USER_SEQ 序列，最小值为 1
+CREATE SEQUENCE &amp;quot;TEST&amp;quot;.&amp;quot;USER_SEQ&amp;quot; 
+-- 最小值为 1
+MINVALUE 1 
+-- 最大值为 9999999999999999999999999999
+MAXVALUE 9999999999999999999999999999 
+-- 每次增加 1
+INCREMENT BY 1 
+-- 将 20 个序列值放入缓存
+CACHE 20;
+
+-- 创建触发器
+CREATE TRIGGER &amp;quot;TEST&amp;quot;.&amp;quot;USER_TRIGGER&amp;quot; 
+-- 在插入数据前执行
+BEFORE INSERT ON &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; 
+-- 命名老数据为 OLD，新数据为 NEW
+REFERENCING OLD AS &amp;quot;OLD&amp;quot; NEW AS &amp;quot;NEW&amp;quot; 
+-- 针对表的每一行都执行触发器
+FOR EACH ROW 
+-- 将序列值赋值给 id
+BEGIN
+	:NEW.&amp;quot;id&amp;quot; := USER_SEQ.NEXTVAL;
+END;
+/
+
+需要注意的是，上面的/符号不能少。执行插入语句时可以发现，id会自动增加。
+INSERT INTO &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; (&amp;quot;gmt_create&amp;quot;, &amp;quot;gmt_modified&amp;quot;, &amp;quot;is_deleted&amp;quot;, &amp;quot;login&amp;quot;, &amp;quot;passwd&amp;quot;, &amp;quot;nick&amp;quot;, &amp;quot;phone&amp;quot;, &amp;quot;head_img&amp;quot;, &amp;quot;status&amp;quot;, &amp;quot;remark&amp;quot;) VALUES (TO_DATE(&#39;2023-04-01 00:00:00&#39;, &#39;SYYYY-MM-DD HH24:MI:SS&#39;), TO_DATE(&#39;2023-04-01 17:04:30&#39;, &#39;SYYYY-MM-DD HH24:MI:SS&#39;), &#39;0&#39;, &#39;user&#39;, &#39;123&#39;, &#39;Jack&#39;, &#39;1111&#39;, &#39;head.jpg&#39;, &#39;激活&#39;, &#39;测试&#39;);
+
+Java Spring+Mybatis 使用 Oracle 及配置分页
+application.properties文件配置信息：
+# mybatis
+spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@8127.0.0.1:1521:helowin
+spring.datasource.username=system
+spring.datasource.password=system
+mybatis.mapper-locations=classpath*:mybatis/*.xml
+mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+
+# pageHelper
+pagehelper.helperDialect=oracle
+pagehelper.reasonable=true
+pagehelper.supportMethodsArguments=true
+pagehelper.params=count=countSql
+
+pom.xml配置文件关键信息。
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;project xmlns=&amp;quot;http://maven.apache.org/POM/4.0.0&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+         xsi:schemaLocation=&amp;quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&amp;quot;&amp;gt;
+
+    &amp;lt;properties&amp;gt;
+        &amp;lt;java.version&amp;gt;1.8&amp;lt;/java.version&amp;gt;
+        &amp;lt;maven.compiler.target&amp;gt;1.8&amp;lt;/maven.compiler.target&amp;gt;
+        &amp;lt;maven.compiler.source&amp;gt;1.8&amp;lt;/maven.compiler.source&amp;gt;
+        &amp;lt;project.build.sourceEncoding&amp;gt;UTF-8&amp;lt;/project.build.sourceEncoding&amp;gt;
+        &amp;lt;project.reporting.outputEncoding&amp;gt;UTF-8&amp;lt;/project.reporting.outputEncoding&amp;gt;
+
+        &amp;lt;spring.boot-version&amp;gt;2.1.3.RELEASE&amp;lt;/spring.boot-version&amp;gt;
+    &amp;lt;/properties&amp;gt;
+
+    &amp;lt;dependencyManagement&amp;gt;
+        &amp;lt;dependencies&amp;gt;
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;spring-boot-dependencies&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;${spring.boot-version}&amp;lt;/version&amp;gt;
+                &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;
+                &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;org.mybatis.spring.boot&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;mybatis-spring-boot-starter&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;com.oracle.ojdbc&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;ojdbc8&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;19.3.0.0&amp;lt;/version&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;com.github.pagehelper&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;pagehelper-spring-boot-starter&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;1.4.3&amp;lt;/version&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;com.github.pagehelper&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;pagehelper-spring-boot-starter&amp;lt;/artifactId&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+        &amp;lt;/dependencies&amp;gt;
+    &amp;lt;/dependencyManagement&amp;gt;
+&amp;lt;/project&amp;gt;
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/9Ov7sD1uz/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/wZWdqj3Rd/">
+                        Schema 与数据类型优化
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-11-03</time>
+                    
+                        <a href="https://www.guanngxu.com/wjM4wf9IE/" class="post-tag i-tag
+                            i-tag-other_4">
+            #MySQL
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-other_4">
+            #数据库
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/wZWdqj3Rd/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/wZWdqj3Rd.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《高性能 MySQL（第三版））》
+
+选择优化的数据类型
+世面上常见的数据库大多支持了多种多样的数据类型，选择正确的数据类型对于获得高性能至关重要，一般都需要遵循如下的几个原则：
+
+更小的通常更好：更小的通常更快，因为占用着更少的磁盘、内存和 CPU，并且处理时需要的 CPU 周期也更少；
+简单就好：简单数据类型的操作通常需要更少的 CPU 周期；
+尽量避免 NULL：如果查询中包含可为 NULL 的列，就会使得索引、索引统计和值比较变得复杂，因此在设计表是最好指定列为 NOT NULL。
+
+整数类型
+在 MYSQL 中可以为整数类型指定宽度，例如INT(11)，但是这对大多数应用是没有意义的，它不会限制值的合法范围，只是规定了 MySQL 的一些交互工具（如 MySQL 命令行客户端）用来显示字符的个数。对于存储和计算来说INT(1)和INT(20)是相同的。
+字符串类型
+需要注意的是当 MySQL 存储 CHAR 值时，它会删掉所有的末尾空格，因为 CHAR 值会根据需要采用空格进行填充以方便比较，这导致的问题就是你使用 CHAR 存储的string 会变成string。CHAR 的好处在于它是定长的，很适合存储像 MD5 值一样的定长值，定长值的 CHAR 类型不易产生碎片，而且对于非常短的列 CHAR 也会比 VERCHAR 好，比如CHAR(1)只需要一个字节，而VERCHAR(1)则需要两个字节，因为它还需要一个字节来存长度。
+VERCHAR 类型在存储可变长字符串时，会比 CHAR 更节省空间，它需要使用 1 或者 2 个额外的字节记录字符串的长度。但由于行是变长的，当一个行占用的空间增长，并且在页内没有更多的可用空间可以存储，就容易产生碎片。
+使用枚举代替字符串
+有时候可以使用枚举列代替常用的字符串类型，枚举列可以把一些不重复的字符串存储成一个预定义的集合，而且 MySQL 在存储枚举时非常紧凑，会根据列的数量压缩到一个或两个字节。比如下面的例子：
+CREATE TABLE enum_test(
+    e ENUM(&#39;fish&#39;, &#39;apple&#39;, &#39;dog&#39;) NOT NULL
+);
+
+INSERT INTO enum_test(e) VALUES(&#39;fish&#39;), (&#39;dog&#39;), (&#39;apple&#39;);
+
+SELECT e+0 FROM enum_test;
+
+# result
++-----+
+| e+0 |
++-----+
+|   1 |
+|   2 |
+|   3 |
++-----+
+
+可以看到使用枚举类型后，上面三行数据实际上存储为了整数，而不是字符串，而且还有一个让人吃惊的地方：枚举字段是按照内部存储的整数而不是定义的字符串进行排序的，这一点需要特别注意，不然在写程序时容易中犯错。当然你也可以在查询时使用FIELD()函数显式地指定排序顺序。
+可以看到上面
+范式和反范式
+关系型数据库有设计范式的概念，这一点在大学的数据库课程中肯定都会提及。因为有比较高的范式，那么就只有很少或者没有重复的数据，因此在 UPDATE 时只需要修改更少的数据；高范式的表通常也更小，因此占用的内存也会更小，操作起来也会更快......
+但是高范式也带来了另一个缺点，比较好的范式通常意味着需要关联，稍微复杂一点的查询就需要使用 JOIN，关联的代价是昂贵的，甚至让一些索引策略失效；而如果不需要关联，即使某个查询需要全表扫描，当数据比内存大时可能会比关联查询快的多。所以一般都会根据实际情况将范式与反范式混用，完全的范式化和完全的反范式化都是实验室才有的东西。
+缓存表和汇总表
+这里的「缓存表」和「汇总表」并没有什么标准的含义。我们用「缓存表」来存储那些可以从其他表获取，但是获取的速度很慢的数据；而「汇总表」则用来保存那些使用 GROUP BY 语句聚合数据的表。毫无疑问，我们存这些冗余数据也是为了性能。
+比如近两年各种应用流行的年终报告，每次网易云音乐的年终报告都会把朋友圈撑满，其它类似于缓存一个用户的朋友数、一个文件的下载次数等等。这些数据实时计算的开销是很大的，而且多数情况下用户也等不起实时计算的时间，一般的解决方案都是通过增加计数器表（缓存表）来解决这个问题。
+计算机科学中总是伴随着双面性，上面的计数器表带来性能提升的同时也带来了并发问题。网站的每一次点击都会导致对计数器的更新，对于任何想要更新这一行的事务来说，这条记录都有一个全局的互斥锁，这会使得这些事务只能串行的进行。每一次点击都会触发下面的语句，但大量的点击伴随着该行数据的互斥锁，想想性能也不会提升到哪里去吧。
+UPDATE hit_counter SET cnt = cnt + 1;
+
+大多数应用都是读查询居多，为了提升读查询的速度，经常会需要增加一些额外的索引，增加冗余列、汇总表、缓存表等等。但是不要忘了这些技巧也会增加写查询的负担，还会增加开发难度，因此应该根据实际应用场景来做权衡。
+加快 ALTER TABLE 表的速度
+MySQL 执行大部分修改表结构的方法都是用新的结构创建一个空表，然后从旧表中查出所有数据插入到新表，然后删除旧表。在内存不足、表很大、索引多的情况下会花费很长的时间。一个很严重的缺点是大部分 ALTER TABLE 操作将导致 MySQL 服务中断。
+对于常见的场景我们有两种技巧避免服务中断。一种是先在一台不提供服务的机器上执行 ALTER TABLE 操作，然后和提供服务的主库进行切换；另一种技巧是「影子拷贝」，即用要求的表结构创建一张和源表无关的新表，然后通过重命名和删除表的操作交换两张表。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/wZWdqj3Rd/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/G1rwEVR-s/">
+                        MongoDB 聚合(aggregate)入门
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-04</time>
+                    
+                        <a href="https://www.guanngxu.com/iqW8DWbw7/" class="post-tag i-tag
+                            i-tag-success">
+            #MongoDB
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-warning">
+            #数据库
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/G1rwEVR-s/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/G1rwEVR-s.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            MongoDB 聚合官方文档
+聚合管道是一个基于数据处理管道概念建模的数据聚合框架，文档进入一个多阶段的处理管道，该管道最终将其转换为聚合后的结果。
+下面的例子来源于官方文档。第一阶段，$match按status字段来过滤文档，并把status字段值为A的文档传递到下一阶段；第二阶段，$group将文档按cust_id进行分组，并针对每一组数据对amount进行求和。
+db.orders.aggregate([
+   { $match: { status: &amp;quot;A&amp;quot; } },
+   { $group: { _id: &amp;quot;$cust_id&amp;quot;, total: { $sum: &amp;quot;$amount&amp;quot; } } }
+])
+
+管道
+
+聚合管道包含很多步骤，每一步都会将输入的文档进行转换，但并不是每个阶段都一定需要对每个输入文档生成一个输出文档，比如某些阶段可能生成新的文档或者过滤掉文档。
+除了$out、$merge、$geoNear外，其它的阶段都可以在管道中多次出现，更加详细的内容可以查看 Aggregation Pipeline Stages。
+
+管道表达式
+一些管道阶段采用表达式作为操作元，管道表达式指定了要应用到输入文档的转换，表达式自己是一个文档结构（JSON），表达式也可以包含其它的表达式。
+表达式仅提供文档在内存中的转换，即管道表达式只能对管道中的当前文档进行操作，不能引用来自其他文档的数据。
+写聚合表达式式建议直接参考官方文档，下面列出一些我收集的案例，供深入理解使用。
+案例一：将对象数组转换为单个文档
+// 转换前
+{
+    &amp;quot;_id&amp;quot;: &amp;quot;10217941&amp;quot;,
+    &amp;quot;data&amp;quot;: [
+        {
+            &amp;quot;count&amp;quot;: 2,
+            &amp;quot;score&amp;quot;: &amp;quot;0.5&amp;quot;
+        },
+        {
+            &amp;quot;count&amp;quot;: 6,
+            &amp;quot;score&amp;quot;: &amp;quot;0.3&amp;quot;
+        },
+        {
+            &amp;quot;count&amp;quot;: 5,
+            &amp;quot;score&amp;quot;: &amp;quot;0.8&amp;quot;
+        }
+    ]
+}
+
+// 转换后
+{
+    &amp;quot;_id&amp;quot;: &amp;quot;10217941&amp;quot;,
+    &amp;quot;0.3&amp;quot;: 6,
+    &amp;quot;0.5&amp;quot;: 2,
+    &amp;quot;0.8&amp;quot;: 5
+}
+
+需要说明的是，如果上面data属性中的数据格式为{&amp;quot;k&amp;quot;: &amp;quot;0.6&amp;quot;, &amp;quot;v&amp;quot;: 5}，那么下面的聚合表达式就不需要$map，这一点可以查看 $arrayToObject。这个案例的难点在于score中有小数点，这个小数点会让聚合表达式懵逼的。
+db.collection.aggregate([
+    {
+        &amp;quot;$addFields&amp;quot;: {
+            &amp;quot;data&amp;quot;: {
+                &amp;quot;$arrayToObject&amp;quot;: {
+                    &amp;quot;$map&amp;quot;: {
+                        &amp;quot;input&amp;quot;: &amp;quot;$data&amp;quot;,
+                        &amp;quot;as&amp;quot;: &amp;quot;item&amp;quot;,
+                        &amp;quot;in&amp;quot;: {
+                            &amp;quot;k&amp;quot;: &amp;quot;$$item.score&amp;quot;,
+                            &amp;quot;v&amp;quot;: &amp;quot;$$item.count&amp;quot;
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        &amp;quot;$addFields&amp;quot;: {
+            &amp;quot;data._id&amp;quot;: &amp;quot;$_id&amp;quot;
+        }
+    },
+    {
+        &amp;quot;$replaceRoot&amp;quot;: {
+            &amp;quot;newRoot&amp;quot;: &amp;quot;$data&amp;quot;
+        }
+    }
+]);
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/G1rwEVR-s/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/_v3DmjUkj/">
+                        磁盘到底是怎样工作的？一文理解硬盘结构
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-10-01</time>
+                    
+                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-other_3">
+            #数据库
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-banana">
+            #操作系统
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/_v3DmjUkj/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/_v3DmjUkj.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            数据库系统总会涉及到辅助存储（大多都是磁盘），因为它们能够存储大量需要长期保存的数据，因此我们有必要先了解了解磁盘的相关知识。
+根据机械原理，存储器的容量越大其速度就越慢。但是速度越快的存储器，其单位字节的价格就越贵。现代计算机系统可以包含几个不同的可以存储数据的部件，就形成了存储器的层次结构，但是需要注意的是「虚拟内存」是操作系统与操作系统运用机器硬件的产物，它不是存储器的层次之一。
+磁盘结构
+传统的硬盘盘结构是像下面这个样子的，它有一个或多个盘片，用于存储数据。盘片多采用铝合金材料；中间有一个主轴，所有的盘片都绕着这个主轴转动。一个组合臂上面有多个磁头臂，每个磁头臂上面都有一个磁头，负责读写数据。
+
+磁盘一般有一个或多个盘片。每个盘片可以有两面，即第一个盘片的正面为0面，反面为 1 面；第二个盘片的正面为 2 面......依次类推。磁头的编号也和盘面的编号是一样的，因此有多少个盘面就有多少个磁头。盘面正视图如下图，磁头的传动臂只能在盘片的内外磁道之间移动。因此不管开机还是关机，磁头总是在盘片上面。关机时，磁头停在盘片上面，抖动容易划伤盘面造成数据损失，为了避免这样的情况，所以磁头都是停留在起停区的，起停区是没有数据的。
+
+每个盘片的盘面被划分成多个狭窄的同心圆环，数据就存储在这样的同心圆环上面，我们将这样的圆环称为磁道 (Track)。每个盘面可以划分多个磁道，最外圈的磁道是0号磁道，向圆心增长依次为1磁道、2磁道......磁盘的数据存放就是从最外圈开始的。
+
+根据硬盘的规格不同，磁道数可以从几百到成千上万不等。每个磁道可以存储数 Kb 的数据，但是计算机不必要每次都读写这么多数据。因此，再把每个磁道划分为若干个弧段，每个弧段就是一个扇区 (Sector)。扇区是硬盘上存储的物理单位，现在每个扇区可存储 512 字节数据已经成了业界的约定。也就是说，即使计算机只需要某一个字节的数据，但是也得把这个 512 个字节的数据全部读入内存，再选择所需要的那个字节。
+
+柱面是我们抽象出来的一个逻辑概念，简单来说就是处于同一个垂直区域的磁道称为柱面 ，即各盘面上面相同位置磁道的集合。需要注意的是，磁盘读写数据是按柱面进行的，磁头读写数据时首先在同一柱面内从 0 磁头开始进行操作，依次向下在同一柱面的不同盘面(即磁头上)进行操作，只有在同一柱面所有的磁头全部读写完毕后磁头才转移到下一柱面。因为选取磁头只需通过电子切换即可，而选取柱面则必须通过机械切换。数据的读写是按柱面进行的，而不是按盘面进行，所以把数据存到同一个柱面是很有价值的。
+磁盘被磁盘控制器所控制（可控制一个或多个），它是一个小处理器，可以完成一些特定的工作。比如将磁头定位到一个特定的半径位置；从磁头所在的柱面选择一个扇区；读取数据等。
+
+现代硬盘寻道都是采用CHS(Cylinder Head Sector)的方式，硬盘读取数据时，读写磁头沿径向移动，移到要读取的扇区所在磁道的上方，这段时间称为寻道时间(seek time)。因读写磁头的起始位置与目标位置之间的距离不同，寻道时间也不同。磁头到达指定磁道后，然后通过盘片的旋转，使得要读取的扇区转到读写磁头的下方，这段时间称为旋转延迟时间(rotational latencytime)。然后再读写数据，读写数据也需要时间，这段时间称为传输时间（transfer time）。
+根据上文的信息，我们可以得出磁盘容量的计算公式为：
+硬盘容量 = 盘面数 × 柱面数 × 扇区数 × 512字节
+
+笔试题实战
+下面的题目是腾讯某一年校招笔试中的一个题目，题干信息描述为：数据存储在磁盘上的排列方式会影响I/O服务的性能，一个圆环磁道上有10个物理块，10个数据记录R1~R10存放在这个磁道上，记录的安排顺序如下表所示。
+
+
+
+物理块
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+
+
+
+逻辑记录
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+
+
+
+假设磁盘的旋转速度为20ms，磁盘当前处在R1的开头处，若系统顺序扫描后将数据放入单缓冲区内，处理数据的时间为4ms（然后再读取下个记录），则处理这10个记录的最长时间是多少？
+
+答案：磁盘会一直朝某个方向旋转，不会因为处理数据而停止。本题要求顺序处理 R1 到 R10，起始位置在 R1，一周是 20ms，共 10 个记录，所以每个记录的读取时间为 2ms。首先读 R1 并处理 R1，读 R1 花 2ms，读好后磁盘处于 R1 的末尾或 R2 的开头，此时处理 R1，需要 4ms，因为磁盘一直旋转，所以 R1 处理好了后磁盘已经转到 R4 的开始了，这时花的时间为 2+4=6ms。这时候要处理 R2，需要等待磁盘从 R5 一直转到 R2 的开始才行，磁盘转动不可反向，所以要经过 8*2ms 才能转到 R1 的末尾，读取 R2 需要 2ms，再处理 R2 需要 4ms，处理结束后磁盘已经转到 R5 的开头了，这时花的时间为 2*8+2+4=22ms。等待磁盘再转到 R3 又要 8*2ms，加上 R3 自身 2ms 的读取时间和 4ms 的处理时间，花的时间也为 22ms，此时磁盘已经转到 R6 的开头了，写到这里，就可以看到规律了，读取并处理后序记录都为 22ms，所以总时间为 6+22*9=204ms。
+
+如何加速对磁盘的访问
+对于理解数据库系统系统特别重要的是磁盘被划分为磁盘块（或像操作系统一样称之为页），每个块的大小是 4~64KB。磁盘访问一个磁盘块平均要用 10ms，但是这并不表示某一应用程序将数据请求发送到磁盘控制器后，需要等 10ms 才能得到数据。如果只有一个磁盘，在最坏的情况下，磁盘访问请求的到达个数超过 10ms 一次，那么这些请求就会被无限的阻塞，调度延迟将会变的非常大。因此，我们有必要做一些事情来减少磁盘的平均访问时间。
+按柱面组织数据：前这一点在前文已经提到过了。因为寻道时间占平均块访问时间的一半，如果我们选择在一个柱面上连续的读取所有块，那么我们只需要考虑一次寻道时间，而忽略其它时间。这样，从磁盘上读写数据的速度就接近于理论上的传输速率。
+使用多个磁盘：如果我们使用多个磁盘来替代一个磁盘，只要磁盘控制器、总线和内存能以 n 倍速率处理数据传输，则使用 n 个磁盘的效果近似于 1 个磁盘执行了 n 次操作。因此使用多个磁盘可以提高系统的性能。
+磁盘调度：提高磁盘系统吞吐率的另一个有效方法是让磁盘控制器在若干个请求中选择一个来首先执行，调度大量块请求的一个简单而有效的方法就是电梯算法。回忆一下电梯的运行方式，它并不是严格按先来后到的顺序为乘客服务，而是从建筑物的底层到顶层，然后再返回来。同样，我们把磁盘看作是在做横跨磁盘的扫描，从柱面最内圈到最外圈，然后再返回来，正如电梯做垂直运动一样。
+预取数据：在一些应用中，我们是可以预测从磁盘请求块的顺序的。因此我们就可以在需要这些块之前就将它们装入主存。这样做的好处是我们能较好的调度磁盘，比如采用前文的电梯算法来减少访问块所需要的平均时间。
+磁盘故障
+如果事情都像我们一开始设计的那样进行，那世界肯定会变得特别无聊。磁盘偶尔也会耍耍小脾气，甚至是罢工不干了。比如在读写某个扇区一次尝试没有成功，但是反复尝试后有成功读写了，我们称之为间歇性故障。
+一种更为严重的故障形式是，一个或多个二进制位永久的损坏了，所以不管我们尝试多少次都不可能成功，这种故障称之为介质损坏。
+另一种相关的错误类型称之为写故障，当我们企图写一个扇区时，既不能正确的写，也不能检索先前写入的扇区，发生这种情况的一种可能原因就是在写过程中断电了。
+当然肯定最严重的就是磁盘崩溃，这种故障中，整个磁盘都变为永久不可读，这是多么可怕的事情。
+既然会出现上面所述的各种大小故障，那么我们就必须要采取各种措施去应对大大小小的变故，保证系统能正常运行。
+规避故障
+我们尝试读一个磁盘块，但是该磁盘块的正确内容没有被传送到磁盘控制器中，就是一个间歇性故障发生了。那么问题是控制器如何能判断传入的内容是否正确呢？答案就是使用校验和，即在每个扇区使用若干个附加位。在读出时如果我们发现校验和对数据位不合适，那么我们就知道有错误；如果校验和正确，磁盘读取仍然有很小的可能是不正确的，但是我们可以通过增加趣多校验位来降低读取不正确发生的概率。
+此处我们使用奇偶校验来举例，通过设置一个校验位使得二进制集合中 1 的个数总是偶数。比如某个扇区的二进制位序列是 01101000，那么就有奇数个 1，所以奇偶位是 1，这个序列加上它后面的奇偶位，就有 011010001；而如果所给的序列是 11101110，那么奇偶位就是 0。所以每一个加上了奇偶位构成的 9 位序列都有偶数奇偶性。
+尽管校验和几乎能正确检测出介质故障或读写故障的存在，但是它却不能帮助我们纠正错误。为了处理这个问题，我们可以在一个或多个磁盘中执行一个被称为稳定存储的策略。通常的思想是，扇区时成对的，每一对代表一个扇区内容 X。我们把代表 X 的扇区对分别称为左拷贝 XL和右拷贝XR。这样实际上就是每个扇区的内容都存储了两份，操作XL失败，那么去操作XR就可以了，更何况我们还在每个扇区中有校验和，把错误的概率就大大降低了。
+到现在为止，我们讨论的都是简单的故障，但是如果发生了磁盘崩溃，其中的数据被永久破坏。而且数据没有备份到另一种介质中，对于银行金融系统这将是巨大的灾难，遇到这种情况我们应该怎么办呢？
+数据恢复
+应对磁盘故障最简单的方式就是镜像磁盘，即我们常说的备份。回忆一下写毕业论文时的做法，那时候大部分同学还不会用版本控制器，所以基本采用每天备份一次数据，并且在文件名称中标注日期，以此来达到备份的效果。
+第二种方式是使用奇偶块，比如一个系统中有 3 个磁盘，那么我们再加一个磁盘作为冗余盘。在冗余盘中，第 i 块由所有数据盘的第 i 块奇偶校验位组成。也就是说，所有第 I 块的第 j 位，包括数据盘和冗余盘，在它们中间必须有偶数个 1，冗余盘的作用就是让这个条件为真。
+我们举个简单例子，假设快仅由一个字节组成，我们有三个数据盘和一个冗余盘，对应的位序列如下。其中 盘4 为冗余盘，它的位序列是根据前面三个盘计算出来的。
+盘 1：11110000
+盘 2：10101010
+盘 3：00111000
+盘 4：01100010
+
+假设现在某个盘崩溃了，那么我们就能根据上面的序列来恢复数据，只需要让每一列 1 的个数为偶数就可以了，但是这种冗余方式也存在很大的不足。
+第一个缺陷是，如果是两个盘同时崩溃了，那数据也恢复不出来了。第二个问题在于，虽然读数据只需要一次 I/O 操作即可，但是写数据时就不一样了，因为需要根据其他数据盘来计算冗余盘中的位序列，假设共有 n 个盘，其中一个为冗余盘，所以每次写数据时，都需要进行 n+1 次 I/O 操作（读不被写入的 n-1 个盘，被重写数据盘的一次写，冗余盘的一次写），而 I/O操作又是非常耗时的操作，所以这种方法会大大拖慢系统性能。
+另一种方案是没有明显的冗余盘，而是把每个磁盘作为某些块的冗余盘来处理。比如现在有 4 个盘，0 号磁盘将作为编号为 4、8、12 等柱面的冗余，而 1 号磁盘作为编号为 1、5、9 等块的冗余......
+一种更为先进的方式使用海明码来帮助从故障中恢复数据，它在多个磁盘崩溃的情况下也能恢复出数据，也是 RAID 的最高等级，由于本人水平有限，用文字表达不清楚，就不作介绍了，嘿嘿。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/_v3DmjUkj/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

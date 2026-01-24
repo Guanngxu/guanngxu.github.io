@@ -1,0 +1,544 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    算法 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        算法</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/esdygML9J/">
+                        为什么计算机处理排序数组比未排序数组快?
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-11-28</time>
+                    
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-other_3">
+            #操作系统
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-info">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/esdygML9J/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/esdygML9J.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            今天在群里看到一个有意思的问题——为什么处理排序数组比处理没有排序的数组要快，这个问题来源于 StackoverFlow，虽然我看到代码略微知道原因，但是模模糊糊不够清晰，搜了很多博客也讲的不够明白，所以就自己来总结了。
+首先来看一下问题，下面是很简单的一段代码，随机生成一些数字，对其中大于 128 的元素求和，记录并打印求和所用时间。
+import java.util.Arrays;
+import java.util.Random;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        // Generate data
+        int arraySize = 32768;
+        int data[] = new int[arraySize];
+
+        Random rnd = new Random(0);
+        for (int c = 0; c &amp;lt; arraySize; ++c)
+            data[c] = rnd.nextInt() % 256;
+
+        // !!! With this, the next loop runs faster
+        Arrays.sort(data);
+
+        // Test
+        long start = System.nanoTime();
+        long sum = 0;
+
+        for (int i = 0; i &amp;lt; 100000; ++i)
+        {
+            // Primary loop
+            for (int c = 0; c &amp;lt; arraySize; ++c)
+            {
+                if (data[c] &amp;gt;= 128)
+                    sum += data[c];
+            }
+        }
+
+        System.out.println((System.nanoTime() - start) / 1000000000.0);
+        System.out.println(&amp;quot;sum = &amp;quot; + sum);
+    }
+}
+
+我的运行结果：分别在对数组排序和不排序的前提下测试，在不排序时所用的时间比先排好序所用时间平均要多 10 ms。这不是巧合，而是必然的结果。
+问题就出在那个if判断上面，在旧文顺序、条件、循环语句的底层解释中其实已经提到了造成这种结果的原因，只是旧文中没有拿出具体的例子来说明。
+为了把这个问题搞明白，需要先对流水线有一定的了解。计算机是指令流驱动的，执行的是一个一个的指令，而执行一条指令，又要经过取指、译码、执行、访存、写回、更新六个阶段（不同的划分方式所包含的阶段不一样）。
+六个阶段使用的硬件基本是不一样的，如果一条指令执行完再去执行另一条指令，那么在这段时间里会有很多硬件处于空闲状态，要使计算机的速度变快，那么就不能让硬件停下来，所以有了流水线技术。
+流水线技术通过将指令重叠来实现几条指令并行处理，下图表示的是三阶段指令时序，即把一个指令分为三个阶段。在第一条指令的 B 阶段，A 阶段相关的硬件是空闲的，于是可以将第二条指令的 A 阶段提前操作。
+
+很明显，这种设计大幅提高了指令运行的效率，聪明的你可能发现问题了，要是不知道下一条指令是什么怎么办，那提前的阶段也就白干了，那样流水线不就失效了？没错，这就是导致开篇问题的原因。
+让流水线出问题的情况有三种：
+
+数据相关，后一条指令需要用到前一条指令的运算结果；
+控制相关，比如无条件跳转，跳转的地址需要在译码阶段才能知道，所以跳转之后已经被取出的指令流水就需要清空；
+结构相关，由于一些指令需要的时钟周期长（比如浮点运算等），长时间占用硬件，导致之后的指令无法进入译码等阶段，即它们在争用同一套硬件。
+
+代码中的if (data[c] &amp;gt;= 128)翻译成机器语言就是跳转指令，处理器事先并不知道要跳转到哪个分支，那难道就等知道了才开始下一条指令的取指工作吗？处理器选择了假装知道会跳转到哪个分支（不是谦虚，是真的假装知道），如果猜中了是运气好，而没有猜中那就浪费一点时间重新来干。
+没有排序的数组，元素是随机排列的，每次data[c] &amp;gt;= 128的结果也是随机的，前面的经验就不可参考，所以下一次执行到这里理论上还是会有 50% 的可能会猜错，猜错了肯定就需要花时间来修改犯下的错误，自然就会浪费更多的时间。
+对于排好序的数组，开始几次也需要靠猜，但是猜着猜着发现有规律啊，每次都是往同一个分支跳转，所以以后基本上每次都能猜中，当遍历到与 128 分界的地方，才会出现猜不中的情况，但是猜几次之后，发现这又有规律啊，每次都是朝着另外一个相同分支走的。
+虽然都会猜错，但是在排好序的情况下猜错的几率远远小于未排序时的几率，最终呈现的结果就是处理排序数组比未排序数组快，其原因就是流水线发生了大量的控制相关现象，下面通俗一点，加深一下理解。
+
+远在他方心仪多年的姑娘突然告诉你，其实她也喜欢你，激动的你三天三夜睡不着觉，决定开车前往她的城市，要和她待在一起，但是要去的路上有很多很多岔路，你只能使用的某某地图导航，作为老司机并且怀着立马要见到爱人心情的你，开车超快，什么样罚单都不在乎了。
+地图定位已经跟不上你的速度了，为了尽快到达，遇到岔路你都是随机选一条路前进，遗憾的是，自己的选择不一定对（我们假设高速可以回退），走错路了就要重新回到分岔点，这就对应着未排序的情况。
+现在岔路是有规律的，告诉你开始一直朝着一边走，到某个地点后会一直朝着另一边走，你只需要花点时间去探索一下开始朝左边还是右边，到了中间哪个地点会改变方向就可以了，相比之下就能节省不少时间了，尽快见到自己的爱人，这对应着排好序的情况。
+
+最后的故事改编自两个人的现实生活，一位是自己最好的朋友之一，谈恋爱开心的睡不着觉；另一位是微信上的一位好友，为了对方从北京裸辞飞到了深圳。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/esdygML9J/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/NrUpfcbXq/">
+                        动态规划算法优化实例——如何求解换钱的方法数
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-07-13</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-success">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/NrUpfcbXq/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/NrUpfcbXq.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            这是我的人生处女面遇到的一个面试题，是在去哪儿网二面遇到的，那时非常的紧张，还没有复习，所以第一次面试理所应当的挂了。文章对问题进行逐步的由简到难进行优化，基本上是代码，看懂代码才能理解，也为类似问题提供了基本的解决思路。
+题目描述：
+
+让你把一张整钱找零，即假设你拥有不同且不限量的小额钱币，你需要统计共有多少种方法可以用手中的小额钱币兑等额兑换一张大额钱币。
+即：给定一个元素为正数的集合（元素不重复）代表不同面值的钱币，再给一个整数，代表要找零的钱数，求共有多少种换钱方法？
+
+递归求解
+现在有1、5、10元三种面值的纸币，需要找零100元，那么可以做如下分析：
+用 0 张 5 元换，剩下的用 1、10 元换，最终方法数为 count0；
+用 1 张 5 元换，剩下的用 1、10 元换，最终方法数为 count1；
+......
+用 100 张 5 元换，剩下的用 1、10 元换，最终方法数为 count100；
+
+最终的换钱方法总数就为 count0 + count1 + ...... + count100。
+
+根据上面的分析可以写出下面的递归解决方案：
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }else {
+        return slove(money, 0, target);
+    }
+}
+
+// 用money[index, length-1]换钱，返回总的方法数
+private static int slove(int money[], int index, int target){
+    int res = 0;
+    if(index == money.length){
+        if (target == 0){
+            res = 1;
+        }else {
+            res = 0;
+        }
+    }else {
+        for (int i = 0; money[index] * i &amp;lt;= target; i++) {
+            res += slove(money, index+1, target-money[index]*i);
+        }
+    }
+    return res;
+}
+
+优化递归
+可以看到，上面的程序在运行时存在大量的重复过程，比如下面两种情况，其后所求结果是一样的。
+兑换 100 元，已经使用了 0 张 1 元、1 张 2 元，剩下的用 5 元和 10 元兑换；
+兑换 100 元，已经使用了 2 张 1 元、0 张 2 元，剩下的用 5 元和 10 元兑换；
+
+可以发现，这两种情况后面都是求解同一问题，重复的对同一个问题求解，就造成了时间的浪费，因此我们可以考虑将已经计算过的结果存下来，避免重复的计算，所以有下面的优化方案。
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }else {
+        /**
+         * map[i][j]表示p(i,j)递归回的值
+         * 其中-1表示该递归过程计算过，但是返回值为0
+         * 0表示该递归过程还为计算过
+         */
+
+        int map[][] = new int[money.length+1][target+1];
+        return slove(money, 0, target, map);
+    }
+}
+
+private static int slove(int money[], int index, int target, int map[][]){
+    int res = 0;
+    if(index == money.length){
+        if (target == 0){
+            res = 1;
+        }else {
+            res = 0;
+        }
+    }else {
+        int val = 0;
+        for (int i = 0; money[index] * i &amp;lt;= target; i++) {
+            val = map[index + 1][target - money[index]*i];
+            if (val != 0){
+                if (val == -1){
+                    res += 0;
+                }else {
+                    res += val;
+                }
+            }else {
+                res += slove(money, index+1, target-money[index]*i, map);
+            }
+        }
+    }
+
+    if (res == 0){
+        map[index][target] = -1;
+    }else {
+        map[index][target] = res;
+    }
+    return res;
+}
+
+动态规划
+上面对递归方法的优化已经能看到动态规划的影子了，这是一个二维的动态规划问题，我们定义dp[i][j]的含义为：使用money[0...i]的钱币组成钱数j的方法数。所以可以得出以下面的动态规划解法：
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }
+
+    int dp[][] = new int[money.length][target+1];
+
+    // 第一列表示组成钱数为0的方法数，所以为1
+    for (int i = 0; i &amp;lt; money.length; i++) {
+        dp[i][0] = 1;
+    }
+    // 第一行表示只使用money[0]一种钱币兑换钱数为i的方法数
+    // 所以是money[0]的倍数的位置为1，否则为0
+    for (int i = 1; money[0] * i &amp;lt;= target; i++) {
+        dp[0][money[0] * i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; dp.length; i++) {
+        for (int j = 1; j &amp;lt; dp[0].length; j++) {
+            for (int k = 0; j &amp;gt;= money[i] * k; k++) {
+                // dp[i][j]的值即为，用money[0...i-1]的钱
+                // 组成j减去money[i]的倍数的方法数
+                dp[i][j] += dp[i-1][j-money[i]*k];
+            }
+        }
+    }
+
+    return dp[money.length-1][target];
+}
+
+继续优化
+可以发现上面的动态规划解法有三层循环，因为是二维的动态规划问题，前两层没办法去掉，但是第三层依旧很耗时间，继续优化可以得到下面的结果。
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }
+
+    int dp[][] = new int[money.length][target+1];
+
+    for (int i = 0; i &amp;lt; money.length; i++) {
+        dp[i][0] = 1;
+    }
+    for (int i = 1; money[0] * i &amp;lt;= target; i++) {
+        dp[0][money[0] * i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; money.length; i++) {
+        for (int j = 1; j &amp;lt;= target; j++) {
+            /**
+             * 通过分析可以发现，dp[i][j]的值由两部分组成
+             * 1：用money[0...i-1]的钱组成钱数为j的方法数
+             * 2：用money[0...i]的钱组成钱数为j-money[i]*k（k=1,2,3....）的方法数
+             * 对于第2种情况，实际上累加的值就是dp[i][j-money[i]]
+             * 所以直接使用dp[i][j-money[i]]即可
+             */
+            dp[i][j] = dp[i-1][j];
+            if (j &amp;gt;= money[i]){
+                dp[i][j] += dp[i][j-money[i]];
+            }
+        }
+    }
+
+    return dp[money.length-1][target];
+}
+
+空间压缩
+可以看到每次更新dp[i][j]，dp[i][j]的值只与前一行和当前行前面的元素有关系，而我们只需要最后的一个结果就行了，那么前面存的元素实际上会造成空间的浪费，进一步可以在空间上进行优化。
+我们只需要定义一个一位数组，然后对该数组进行滚动更新就可以了，只要按照合适方向去更新数组，同样能达到上面的效果。
+public static int coin(int money[], int target){
+    if (money == null || money.length == 0 || target &amp;lt; 0){
+        return 0;
+    }
+
+    int dp[] = new int[target+1];
+
+    // 第一行，只用money[0]兑换钱
+    // 所以只能兑换为money[0]的倍数，将这些位置置为1
+    for (int i = 0; money[0]*i &amp;lt;= target; i++) {
+        dp[i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; money.length; i++) {
+        for (int j = 1; j &amp;lt;= target; j++) {
+
+            // 与前一步相比，少了dp[i][j] = dp[i-1][j];
+            // 因为这里在进行dp[j] += dp[j-money[i]];之前
+            // dp[j]的值就已经是dp[i-1][j]了
+            if (j &amp;gt;= money[i]){
+                dp[j] += dp[j-money[i]];
+            }
+        }
+    }
+
+    return dp[target];
+}
+
+到这一步就不再有优化空间了，这个问题很值得记录下来，很多笔试、面试题都可以按这个模子进行套，对于只需要最优解的动态规划问题也可以套用上面的空间压缩思路，多总结、多练习总是没有问题的！这个解题思路第一次看到是左程云在牛客网上讲解的，他也写了一本算法相关的书比较不错，叫做程序员代码面试指南，大四、研三、刚入职的新人建议可以买一本读读，对自己编码技能的提升绝对又很大的帮助。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/NrUpfcbXq/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+    <div class="pagination-container">
+        
+            <a href="https://www.guanngxu.com/krqSF7tYC" class="page-btn btn">上一页</a>
+            
+                
+    </div>
+    
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

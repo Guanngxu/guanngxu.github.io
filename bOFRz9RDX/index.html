@@ -1,0 +1,619 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    深入理解 JavaScript——变量提升与作用域 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            深入理解 JavaScript——变量提升与作用域
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-08-06</time>
+                            <span class="read-time">9 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-info">
+                            #前端
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-banana">
+                            #JavaScript
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/bOFRz9RDX.png')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：<br>
+<a href="https://www.crifan.com/lhs_rhs_meaning/">lhs rhs是啥意思</a><br>
+《Javasript 高级程序设计（第三版）》<br>
+《你不知道的 JavaScript（上卷）》</p>
+</blockquote>
+<p>几乎所有的编程语言都能够存储变量当中的值，并且可以在之后对该值进行访问或修改。很明显需要一套良好的规则来存储这些变量，并且之后可以方便的找到这些变量，这套规则我们称之为<strong>作用域</strong>。</p>
+<h2 id="编译原理">编译原理</h2>
+<p>我们一般把 js 归为「动态」或「解释执行」语言，但是它也会经历编译阶段，不过它不像传统语言那样是提前编译的，它的编译发生在代码执行前的几微秒内。</p>
+<p>传统语言在执行之前会经历三个步骤：<strong>分词/词法分析、解析/语法分析、代码生成</strong>，关于这三个步骤的具体工作，可以查看编译原理相关的文献，我们可以把这三个步骤统称为编译。不过 js 引擎要复杂的多，它会在编译的时候对代码进行性能优化，尽管给 js 引擎优化的时间非常少，但是它用尽了各种办法来保证性能最佳。</p>
+<p>我们需要先了解三个名词。<strong>引擎</strong>：从头到尾负责整个 js 程序的编译及执行过程；<strong>编译器</strong>：负责词法分析及代码生成；<strong>作用域</strong>：负责收集并维护由所有声明的标识符（变量）组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限。</p>
+<p><code>var a = 2;</code>，我们以这段程序为例，它首先声明了变量<code>a</code>，然后将<code>2</code>赋值给变量<code>a</code>。前一个阶段在编译器处理，后一个阶段由 js 引擎处理。</p>
+<p>变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对它赋值。</p>
+<h2 id="变量提升">变量提升</h2>
+<p>用过 js 的人都知道 js 存在变量提升，那么它到底是如何提升的呢？我们看下面的一段代码</p>
+<pre><code class="language-javascript">console.log(a);
+var a = 2;
+</code></pre>
+<p>上述代码在<code>a</code>声明之前访问了变量<code>a</code>，按我们的逻辑它应该会抛出 ReferenceError 异常；或是变量提升直接输出 2。但是这两种答案都不对，输出的是<code>undefined</code>。</p>
+<p>回顾一下前文的关于编译的内容，引擎会在解释 js 代码之前对其进行编译，编译阶段的一个重要工作就是找到所有的声明，并用合适的作用域将它们关联起来，<strong>包括变量和函数在内的所有声明都会在任何代码被执行之前首先被处理</strong>。所以我们前面列出来的代码实际上会变成下面这个样子。</p>
+<pre><code class="language-javascript">var a;
+console.log(a);
+a = 2;
+</code></pre>
+<p>这个过程就好像变量和函数声明会从它们的代码中出现的位置被移动到最上面一样，这个过程就是提升。但是需要注意的是，函数声明会首先被提升，然后才是变量提升。</p>
+<pre><code class="language-javascript">foo(); // 1
+var foo;
+
+function foo() {
+    console.info(1);
+}
+
+foo = function() {
+    console.info(2);
+}
+</code></pre>
+<p>这段代码输出 1 而不是 2 ，它会被引擎理解为下面的形式。</p>
+<pre><code class="language-javascript">function foo() {
+    console.log(1);
+}
+
+foo(); // 1
+
+foo = function() {
+    console.log(2);
+};
+</code></pre>
+<p>可以看到，虽然<code>var foo</code>出现在<code>function foo()</code>之前，但是它是重复的声明，因此会被忽略掉，因为函数函数声明会提升到普通变量前。所以在在同一个作用域中进行重复定义是一个很糟糕的做法，经常会导致各种奇怪的问题。</p>
+<h2 id="lhs-和-rhs-查询">LHS 和 RHS 查询</h2>
+<p>LHS 和 RHS 是数学领域内的概念，意为等式左边和等式右边的意思，在我们现在的场景下就是<strong>赋值操作符的左侧和右侧</strong>。当变量出现在赋值操作符的左边时，就进行 LHS 查询；反之进行 RHS 查询。</p>
+<p>RHS 查询与简单的查找某个变量的值没什么区别，它的意思是取得某某的值。而 LHS 查询则是试图找到变量容器的本身，从而可以对其进行赋值。</p>
+<p><code>console.info(a);</code>我们深入研究一下这句代码。这里对<code>a</code>的引用是 RHS 引用，因为这里<code>a</code>并没有赋予任何值，相应的需要查找并取得<code>a</code>的值，这样才能传递给<code>console.info()</code>。</p>
+<p><code>a = 2;</code>对<code>a</code>的引用则是一个 LHS 引用，因为实际上我们并关心<code>a</code>当前的值是什么，只是想为<code>= 2</code>这个赋值操作找到一个目标。</p>
+<pre><code class="language-javascript">function foo(a) {
+    console.info(a);
+}
+foo(2);
+</code></pre>
+<p>为了加深印象，我们再来分析一下上述代码中的 RHS 和 LHS 引用。最后一行<code>foo()</code>函数的调用需要对<code>foo</code>进行 RHS 引用。这里有一个很容易被忽略的细节，2 被当作参数传递给<code>foo()</code>函数时，2 会被分配给参数<code>a</code>，为了给参数<code>a</code>（隐式地）分配值，需要进行一次 LHS 查询，也就是说代码中隐含了<code>a = 2</code>的语句。</p>
+<p>前文已经说过了<code>console.info(a);</code>会对<code>a</code>进行一次 RHS 查询，需要注意的是<code>console.info()</code>本身也需要一个引用才能执行，因此会对<code>console</code>对象进行 RHS 查询，并检查得到的值中是否有一个<code>log</code>方法。</p>
+<h2 id="为什么区分-lhs-和-rhs">为什么区分 LHS 和 RHS</h2>
+<p>我们考虑下面的一段代码，就可以为什么要区分 LHS 和 RHS 查询了，而且区分它们是分厂有必要的。</p>
+<pre><code class="language-javascript">function foo(a) {
+    console.info(a + b);
+    b = a;
+}
+foo(2);
+</code></pre>
+<p>第一次对<code>b</code>进行 RHS 查询时是无法找到该变量的，这是一个未声明的变量，在任何相关的作用域中都无法找到它。如果 RHS 查询在所有嵌套作用域中都找不到该变量，引擎就会抛出 ReferenceError 异常。</p>
+<p>引擎在执行 LHS 查询时，如果在全局作用域中也无法找到目标变量，全局作用域就会创建一个具有该名称的变量，并将其返还给引擎。</p>
+<blockquote>
+<p>需要注意的是，在严格模式下是禁止自动或隐式地创建全局变量的，因此在严格模式中 LHS 查询失败时，引擎同样会抛出 ReferenceError 异常。</p>
+</blockquote>
+<p>接下来，如果 RHS 查询找到了一个变量，但是你尝试对这个值进行不合理的操作，比如对一个非函数类型的值进行函数调用，那么引擎就会抛出另一种叫做 TypeError 的异常。</p>
+<h2 id="作用域链">作用域链</h2>
+<p>执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中，在 Web 浏览器中，全局执行环境被认为是<code>window</code>对象，因此所有的全局变量和函数都是作为<code>window</code>对象的属性和方法创建的。</p>
+<p>每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，而函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境，这个函数调用的压栈出栈是一样的。</p>
+<p>当代码在环境中执行时，会创建变量对象的一个<strong>作用域链</strong>。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端始终都是当前执行的代码所在环境的变量对象，说的比较抽象，我们可以看下面的示例。</p>
+<pre><code class="language-javascript">var color = &quot;blue&quot;;
+
+function changeColor() {
+    var anotherColor = &quot;red&quot;;
+
+    function swapColors() {
+        var tempColor = anotherColor;
+        anotherColor = color;
+        color = tempColor;
+        // 这里可以访问 color、anotherColor 和 tempColor
+    }
+    // 这里可以访问 color 和 anotherColor，但不能访问 tempColor
+    swapColors();
+}
+// 这里只能访问 color
+changeColor();
+</code></pre>
+<p>下面的图形象的展示了上述代码的作用域链，内部环境可以通过作用域链访问所有的外部环境，但是外部环境不能访问内部环境中的任何变量和函数。函数参数也被当做变量来对待，因此其访问规则与执行环境中的其它变量相同。</p>
+<pre><code class="language-text">window
+  |-----color
+  |-----changeColor()
+            |----------anotherColor
+            |----------swapColors()
+                           |----------tempColor
+</code></pre>
+<p>作用域链还用于查询标识符，当某个环境中为了读取或写入而引入一个标识符时，必须通过搜索来确定该标识符实际代表什么。搜索过程从作用域链的前端开始，向上逐级查询与给定名字匹配的标识符，如果在局部环境中找到了该标识符，搜索过程就停止，变量就绪；如果在局部环境没有找到这个标识符，则继续沿作用域链向上搜索，如下所示：</p>
+<pre><code class="language-javascript">var color = &quot;blue&quot;;
+
+function getColor() {
+    var color = &quot;red&quot;;
+    return color;
+}
+
+console.info(getColor()); // &quot;red&quot;
+</code></pre>
+<p>在<code>getColor()</code>中沿着作用域链在局部环境中已经找到了<code>color</code>，所以搜索就停止了，也就是说任何位于局部变量<code>color</code>的声明之后的代码，如果不使用<code>window.color</code>都无法访问全局<code>color</code>变量。</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/1M5AYjF7f/">
+                                <h3 class="post-title">
+                                    JavaScript 性能优化——惰性载入函数
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86">编译原理</a></li>
+<li><a href="#%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87">变量提升</a></li>
+<li><a href="#lhs-%E5%92%8C-rhs-%E6%9F%A5%E8%AF%A2">LHS 和 RHS 查询</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%86-lhs-%E5%92%8C-rhs">为什么区分 LHS 和 RHS</a></li>
+<li><a href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE">作用域链</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

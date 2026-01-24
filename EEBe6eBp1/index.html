@@ -1,0 +1,604 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    爬虫 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        爬虫</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/c4hRhCBs7/">
+                        使用订阅号实现微信公众号历史文章爬虫
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-10-03</time>
+                    
+                        <a href="https://www.guanngxu.com/mVmVUsbMe/" class="post-tag i-tag
+                            i-tag-warning">
+            #工具教程
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
+                            i-tag-other_3">
+            #爬虫
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-banana">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/c4hRhCBs7/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/c4hRhCBs7.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            微信公众号已经成为生活的一部分了，虽然里面有很多作者只是为了蹭热点，撩读者的 G 点，自己从中获得一些收益；但是不乏好的订阅号，像刘大的码农翻身、Fenng的小道消息、曹大的caoz的梦呓等订阅号非常值得阅读。
+平时有时候看到一些好的公众号，也会不自觉去查看该公众号的历史文章，然而每次都看不完，下一次再从微信里面打开历史文章，又需要从头翻起。而且对于写了很多年的大号，每次还翻不到底。有一些平台提供了相关的服务，但是得收几十块钱的费用，倒不是缺几十块钱，主要是觉得这种没必要花的钱不值得去浪费。
+网上搜如何爬微信公众号历史文章，大致给了三种思路，第一是使用搜狗微信搜索文章，但是好像每次能搜到的不多；第二是使用抓包工具；第三种是使用个人订阅号进行抓取。
+简单来说就是使用程序来模拟人的操作，抓取公众号历史文章。首先登录微信公众号个人平台，期间需要管理员扫码才能登录成功。
+def __open_gzh(self):
+    self.driver.get(BASE_URL)
+    self.driver.maximize_window()
+    username_element = self.driver.find_element_by_name(&amp;quot;account&amp;quot;)
+    password_element = self.driver.find_element_by_name(&amp;quot;password&amp;quot;)
+    login_btn = self.driver.find_element_by_class_name(&amp;quot;btn_login&amp;quot;)
+    username_element.send_keys(USERNAME)
+    password_element.send_keys(PASSWORD)
+    login_btn.click()
+    WebDriverWait(driver=self.driver, timeout=200).until(
+        ec.url_contains(&amp;quot;cgi-bin/home?t=home/index&amp;quot;)
+    )
+    # 一定要设置这一步，不然公众平台菜单栏不会自动展开
+    self.driver.maximize_window()
+
+进入微信公众平台首页后，点击素材管理，然后点击新建图文素材，就会进入到文章写作页面，此时前面打开的微信公众平台首页就不需要了，可以将其关闭。
+
+def __open_write_page(self):
+    management = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-menu_management&amp;quot;)
+    material_manage = management.find_element_by_css_selector(&amp;quot;a[title=&#39;素材管理&#39;]&amp;quot;)
+    material_manage.click()
+    new_material = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-btn_main&amp;quot;)
+    new_material.click()
+    # 关闭公众平台首页
+    handles = self.driver.window_handles
+    self.driver.close()
+    self.driver.switch_to_window(handles[1])
+
+在文章写作页面的工具栏上面有一个超链接按钮，点击超链接即会弹出超链接编辑框，选择查找文章，输入自己喜欢的公众号进行查找，一般第一个就是自己想要的结果，点击对应的公众号，该公众号所有的文章就会通过列表的形式展现出来。
+
+
+
+def __open_official_list(self):
+    # 超链接
+    link_click = self.driver.find_element_by_class_name(&amp;quot;edui-for-link&amp;quot;)
+    link_click.click()
+    time.sleep(3)
+    # 查找文章
+    radio = self.driver.find_element_by_class_name(&amp;quot;frm_vertical_lh&amp;quot;).find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1]
+    radio.click()
+    # 输入查找关键字
+    search_input = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_input&amp;quot;)
+    search_input.send_keys(OFFICIAL_ACCOUNT)
+    search_btn = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_btn&amp;quot;)
+    search_btn.click()
+    # 等待5秒，待公众号列表加载完毕
+    time.sleep(5)
+    result_list = self.driver.find_element_by_class_name(&amp;quot;js_acc_list&amp;quot;).find_elements_by_tag_name(&amp;quot;div&amp;quot;)
+    result_list[0].click()
+
+文章列表已经展现出来了，直接抓取每条文章超链接的信息即可，每抓取完一页就进入下一页，继续抓取文章列表信息，直到所有文章信息都抓取完毕。
+
+def __get_article_list(self):
+    # 等待文章列表加载
+    time.sleep(5)
+    total_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
+        .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;)\
+        .find_element_by_class_name(&amp;quot;page_num&amp;quot;)\
+        .find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1].text
+    total_page = int(total_page)
+    articles = []
+    for i in range(0, total_page-1):
+        time.sleep(5)
+        next_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
+            .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;pagination&amp;quot;)\
+            .find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;).find_element_by_class_name(&amp;quot;page_next&amp;quot;)
+        article_list = self.driver.find_element_by_class_name(&amp;quot;js_article_list&amp;quot;)\
+            .find_element_by_class_name(&amp;quot; my_link_list&amp;quot;).find_elements_by_tag_name(&amp;quot;li&amp;quot;)
+        for article in article_list:
+            article_info = {
+                &amp;quot;date&amp;quot;: article.find_element_by_class_name(&amp;quot;date&amp;quot;).text,
+                &amp;quot;title&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).text,
+                &amp;quot;link&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).get_attribute(&amp;quot;href&amp;quot;)
+                }
+            articles.append(article_info)
+        next_page.click()
+    return articles
+
+至此，微信公众号历史文章的爬虫已经实现，其实整个过程只不过是用程序来模拟的了人类的操作。需要注意的是，程序不能设置太快，因为微信做了相关限制，所以设太快会在一段时间内无法使用文章查找功能；另外一点是使用选择器选择页面元素的时候，会有一些坑，而且我发现不同账号登录，有很少部分的页面元素虽然直观上是一样的，但是它的 html 代码有细微的差别。
+这个小程序会用到selenium库，和chromedriver，前者直接pip install即可，后者自行下载；另外你还需要一个订阅号才行，本文只实现了关键的文章信息抓取，并没有进行文章信息的持久化存储，完整代码在这里。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/c4hRhCBs7/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/uDVEq7OW-/">
+                        Scrapy 爬虫框架入门——抓取豆瓣电影 Top250
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-07-27</time>
+                    
+                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
+                            i-tag-other_4">
+            #爬虫
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-error">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/uDVEq7OW-/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/uDVEq7OW-.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            最好的学习方式就是输入之后再输出，分享一个自己学习scrapy框架的小案例，方便快速的掌握使用scrapy的基本方法。
+本想从零开始写一个用Scrapy爬取教程，但是官方已经有了样例，一想已经有了，还是不写了，尽量分享在网上不太容易找到的东西。自己近期在封闭培训，更文像蜗牛一样，抱歉。
+Scrapy简介
+Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
+其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。
+
+如果此前对scrapy没有了解，请先查看下面的官方教程链接。
+架构概览：https://docs.pythontab.com/scrapy/scrapy0.24/topics/architecture.html
+Scrapy入门教程：https://docs.pythontab.com/scrapy/scrapy0.24/intro/tutorial.html
+爬虫教程
+首先，我们看一下豆瓣TOP250页面，发现可以从中提取电影名称、排名、评分、评论人数、导演、年份、地区、类型、电影描述。
+
+Item对象是种简单的容器，保存了爬取到得数据。其提供了类似于词典的API以及用于声明可用字段的简单语法。所以可以声明Item为如下形式。
+class DoubanItem(scrapy.Item):
+    # 排名
+    ranking = scrapy.Field()
+    # 电影名称
+    title = scrapy.Field()
+    # 评分
+    score = scrapy.Field()
+    # 评论人数
+    pople_num = scrapy.Field()
+    # 导演
+    director = scrapy.Field()
+    # 年份
+    year = scrapy.Field()
+    # 地区
+    area = scrapy.Field()
+    # 类型
+    clazz = scrapy.Field()
+    # 电影描述
+    decsription = scrapy.Field()
+
+我们抓取到相应的网页后，需要从网页中提取自己需要的信息，可以使用xpath语法，我使用的是BeautifulSoup网页解析器，经过BeautifulSoup解析的网页，可以直接使用选择器筛选需要的信息。有一些说明写到代码注释里面去了，就不再赘述。
+Chrome 也可以直接复制选择器或者XPath，如下图所示。
+
+class douban_spider(Spider):
+
+    count = 1
+
+    # 爬虫启动命令
+    name = &#39;douban&#39;
+
+    # 头部信息，伪装自己不是爬虫程序
+    headers = {
+        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#39;,
+    }
+
+    # 爬虫启动链接
+    def start_requests(self):
+        url = &#39;https://movie.douban.com/top250&#39;
+        yield Request(url, headers=self.headers)
+
+    # 处理爬取的数据
+    def parse(self, response):
+
+        print(&#39;第&#39;, self.count, &#39;页&#39;)
+        self.count += 1
+
+        item = DoubanItem()
+        soup = BeautifulSoup(response.text, &#39;html.parser&#39;)
+
+        # 选出电影列表
+        movies = soup.select(&#39;#content div div.article ol li&#39;)
+
+        for movie in movies:
+            item[&#39;title&#39;] = movie.select(&#39;.title&#39;)[0].text
+            item[&#39;ranking&#39;] = movie.select(&#39;em&#39;)[0].text
+            item[&#39;score&#39;] = movie.select(&#39;.rating_num&#39;)[0].text
+            item[&#39;pople_num&#39;] = movie.select(&#39;.star span&#39;)[3].text
+
+            # 包含导演、年份、地区、类别
+            info = movie.select(&#39;.bd p&#39;)[0].text
+            director = info.strip().split(&#39;\n&#39;)[0].split(&#39;   &#39;)
+            yac = info.strip().split(&#39;\n&#39;)[1].strip().split(&#39; / &#39;)
+
+            item[&#39;director&#39;] = director[0].split(&#39;: &#39;)[1]
+            item[&#39;year&#39;] = yac[0]
+            item[&#39;area&#39;] = yac[1]
+            item[&#39;clazz&#39;] = yac[2]
+
+            # 电影描述有为空的，所以需要判断
+            if len(movie.select(&#39;.inq&#39;)) is not 0:
+                item[&#39;decsription&#39;] = movie.select(&#39;.inq&#39;)[0].text
+            else:
+                item[&#39;decsription&#39;] = &#39;None&#39;
+            yield item
+
+        # 下一页：
+        # 1，可以在页面中找到下一页的地址
+        # 2，自己根据url规律构造地址，这里使用的是第二种方法
+        next_url = soup.select(&#39;.paginator .next a&#39;)[0][&#39;href&#39;]
+        if next_url:
+            next_url = &#39;https://movie.douban.com/top250&#39; + next_url
+            yield Request(next_url, headers=self.headers)
+
+然后在项目文件夹内打开cmd命令，运行scrapy crawl douban -o movies.csv就会发现提取的信息就写入指定文件了，下面是爬取的结果，效果很理想。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/uDVEq7OW-/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/S8r7al_js/">
+                        如何抽取实体关系？——基于依存句法分析的事实三元组抽取
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-04-26</time>
+                    
+                        <a href="https://www.guanngxu.com/_9zQ4w6VQ/" class="post-tag i-tag
+                            i-tag-info">
+            #自然语言处理
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
+                            i-tag-other_1">
+            #Java
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
+                            i-tag-warning">
+            #爬虫
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-banana">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/S8r7al_js/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/S8r7al_js.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考：
+HanLP 自然语言处理
+基于依存分析的开放式中文实体关系抽取方法
+命名实体三元组抽取参考自fact_triple_extraction
+
+这一段时间一直在做知识图谱，卡在实体关系抽取这里几个月了，在 Github 上面看到有人使用卷积神经网络训练模型进行抽取，自己也尝试了一下，但是一直苦于没有像样数据去训练，而标注训练集又太费时间了，我不太愿意干体力活。另外自己也不会什么机器学习、深度学习之类的技术，而且毕业设计都是有时间要求的，所以采用了一个低档次的方法，基于依存句法分析的实体关系抽取，记录一下心得，方便日后忘记可以再找回来。
+论文给出了 8 种中文关系的表达方式，并且最后给出了一个采用正则表达式语法指出表达，核心就是谓语动词表示关系，即关系表述中一定得有动词。
+状语*动词+补语?宾语?
+
+我不太赞同把宾语也当作关系表述的一部分，论文指出“p4生于山西”应该抽出（p4，山西，生于山西），我认为关系不应该表述为“生于山西”，所以我把关系表述改为下面的样子了。
+状语*动词+补语?
+
+这篇文章只是作为一个方法介绍，我自己先看了一遍，能够保证我下次看到这篇文章，可以立马回忆起自己的实现方法，希望你看了也能了解方法，看不懂的话，我表示抱歉，浪费您的时间了，我已经尽可能写到简单了。
+先来看几个简单句子吧：
+主谓宾关系：刘小绪 生于 四川
+// 这个三元组很明显：（刘小绪，生于，四川）
+
+
+动补结构：刘小绪 洗 干净 了 衣服
+// 如果套用主谓宾关系就是：（刘小绪，洗，衣服）
+// 但是这里描述的是一个状态，是刘小绪把衣服洗干净了
+// “干净”是动词“洗”的补语，所以还应该提取出一个如下三元组
+// （刘小绪，洗干净了，衣服）
+
+状动结构：父亲 非常 喜欢 跑步
+// 这句和上面很像，主谓宾关系是：父亲喜欢跑步
+// “非常”用于修饰“喜欢”
+// （父亲，非常喜欢，跑步）
+
+介宾关系：刘小绪 就职 于 学校
+// 如果直接把这个三元组抽取为（刘小绪，就职，学校），很别扭
+// “于”和“学校”是介宾关系，它们的关系应该是：就职于
+// （刘小绪，就职于，学校）
+
+宾语前置：海洋 由 水 组成
+// “海洋”是“组成”的前置宾语
+// “由”是“组成”的状语
+// “水”和“由”是介宾关系
+// 所以上面的句子没有明确的主谓关系，需要我们判断
+// 抽出的三元组应该为：（水，组成，海洋）
+
+HanLP 提供了两种依存句法分析的器，默认采用的是基于神经网络的依存句法分析器。依存句法分析就是将句子分析成一棵依存句法树，描述各个词语之间的依存关系，即指出词语之间在句法上的搭配关系。
+有了上面所说的依存句法树，其实我们只需要进行各种判断就可以了。先做出下面的一点说明，就拿第一个例子来说。
+原文：刘小绪生于四川
+
+# 这是分词结果
+[刘小绪/nr, 生于/v, 四川/ns]
+
+#这是句法分析结果
+刘小绪 --(主谓关系)--&amp;gt; 生于
+生于 --(核心关系)--&amp;gt; ##核心##
+四川 --(动宾关系)--&amp;gt; 生于
+
+为了方便理解，也为了方便程序的编写，我把他们组织成了下面的形式，为每一个词语都建一个依存句法字典。
+刘小绪：{}
+生于：{主谓关系=[刘小绪], 动宾关系=[四川]}
+四川：{}
+
+然后只需要写出类似于下面的程序段就可以抽出关系了。
+// 主谓宾关系：刘小绪生于四川
+// dic是这个词语的依存句法字典
+if (dic.containsKey(&amp;quot;主谓关系&amp;quot;) &amp;amp;&amp;amp; dic.containsKey(&amp;quot;动宾关系&amp;quot;)){
+    
+    // 当前的词语，用上面的例子来说，relation=“生于”
+    String relation = curWord.LEMMA;
+
+
+    // 用循环遍历，是因为关系列表里面不一定只有一个词语
+    for (CoNLLWord entity1:
+            dic.get(&amp;quot;主谓关系&amp;quot;)) {
+
+        for (CoNLLWord entity2:
+                dic.get(&amp;quot;动宾关系&amp;quot;)) {
+
+            System.out.println(entity1.LEMMA + &amp;quot;,&amp;quot; + relation + &amp;quot;,&amp;quot; + entity2.LEMMA);
+        }
+
+    }
+}
+
+对于分词后的每个词语都进行上面程序段的操作。“刘小绪”和“四川”，关系字典都为空。而对于“生于”，关系列表里面既有主谓也有动宾，而自己本身就是动词，主谓宾就出来了。直接从主谓关系中拿出来词语作为 entity1，再拿上自己作为关系，最后拿出动宾关系中的词语作为 entity2。很明确的三元组（刘小绪，生于，四川）就出来了。
+最后给出一个程序运行结果图吧。
+
+我个人觉得效果还行，在简单句子上面表现的差强人意，在长句子上面表现的差劲。注意上文使用的第三方包随着时间的推移肯定会改一些接口，源码链接：entity_relation_extraction
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/S8r7al_js/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

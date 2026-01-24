@@ -1,0 +1,539 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    深入理解计算机系统——CPU 是怎样工作的？ | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            深入理解计算机系统——CPU 是怎样工作的？
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-04-27</time>
+                            <span class="read-time">6 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-warning">
+                            #操作系统
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/4jVVEgoF6.jpeg')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：<br>
+<a href="https://miketech.it/howcpuworks/">处理器是如何工作的</a><br>
+<a href="https://s.click.taobao.com/t?e=m%3D2%26s%3DI5voqlIKfT4cQipKwQzePOeEDrYVVa64K7Vc7tFgwiHjf2vlNIV67jgRnnJhwPx6JhSgLssdd1Z38moex6TPUAuhQCsPLgbilkQ6EQeTYPHKuIVoxsEFRsFw9NFjcVfgdZr7RBnLmJomXO35yxsacfHR4WL8UNVcK2pe%2FNxUtZ%2FFeO18vNRJL5N1yd2g1HZYomfkDJRs%2BhU%3D&amp;scm=null&amp;pvid=null&amp;app_pvid=59590_33.39.134.93_617_1607436172664&amp;ptl=floorId%3A17741&amp;originalFloorId%3A17741&amp;app_pvid%3A59590_33.39.134.93_617_1607436172664&amp;union_lens=lensId%3APUB%401607436136%400b1a25c1_7164_17642a8f092_53b8%400241IzQMoy45y2komuAfoEli">《编码：隐匿在计算机软硬件背后的语言》</a>——[美] Charles Petzold</p>
+</blockquote>
+<p>CPU 大家应该都不会陌生，日常用的手机、电脑中都有 CPU，CPU 作为一个设备的大脑，指挥着其它各种硬件的协同工作，芯片技术也是国内一直没有突破的技术。</p>
+<p>我们先来看看怎么让电路去运算呢？比如如何让电路运算<code>1 + 1</code>，直接使用下面这个装置就可以了。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1664022241978.png" alt="" loading="lazy"></figure>
+<p>作为一个比较好奇的人，总会想看看那个方框框里面是什么样子的，让我们慢慢解开加法器的外衣。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1664022264795.png" alt="" loading="lazy"></figure>
+<p>这个电路你应该不会陌生，它需要两个开关都闭合时灯泡才会发光，也就是说它有两个输入，开关闭合时我们认为输入为 1，未闭合状态视为 0；而灯泡是否发光就是我们的输出，发光为 1，否则为 0。于是就有了下面这张表。</p>
+<table>
+<thead>
+<tr>
+<th>and</th>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>这样的电路我们就把它称之为<strong>与(and)<strong>门，它接受两个逻辑输入，并会给出我们一个逻辑输出，与它相似的电路还有</strong>逻辑或(or)</strong>、**异或(xor)**等等，因为太多了，就不一一介绍了，如果感兴趣可以 Google 一下。</p>
+<p>为了方便我们把上面的电路做一个简化，抽象成下面这个样子，其它的电路也可以通过 Google 找到它们的样子。</p>
+<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1664022288385.png" alt="" loading="lazy"></figure>
+<p>现在直接给出一个可以运算加法的电路，它的样子长下面这样。</p>
+<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1664022309780.png" alt="" loading="lazy"></figure>
+<p>我们也可以给它列一个表，显得更清晰，表中之所以有两位是因为加法有可能会产生进位，而我们使用的是二进制表示，所以<code>10</code>表示的是十进制中的<code>2</code>。</p>
+<table>
+<thead>
+<tr>
+<th>+</th>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>00</td>
+<td>01</td>
+</tr>
+<tr>
+<td>1</td>
+<td>01</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>有加法就很好办了，减法实际上是加一个负数，除法可以改写成乘法，乘法又可以改写成加法，现在加法一统天下了。</p>
+<p>好了，上面说了那么多，还贴了那么多图，只是为了让你相信电路是可以实现我们数学上的运算的，下面就没有那么声情并茂了。</p>
+<p>我们可以把一个运算抽象为下面这个模型。</p>
+<pre><code>输入数据 --&gt; 运算 --&gt; 输出数据
+</code></pre>
+<p>计算机中把各种像上述加法器一样的运算器放在了同一个小盒子里面，组成成一个运算器集合，我们给它取个名字叫<strong>算术逻辑单元（ALU：Arithmetic Logical Unit）</strong>，它是 CPU 的核心组成部分。</p>
+<p>当然我们不可能只进行加法这种简单运算，一个很长很长的算式需要经过多步运算，小学我们就学过梯等式，它实际上有一大推输入，中间那么多梯子，都是临时步骤，临时步骤、数据一类的东西都需要有个东西给它存起来，所以在 CPU 就拿出一个小盒子当做<strong>存储器</strong>。</p>
+<pre><code># 梯等式
+485 - ( 6 × 4 + 32 )
+= 485 - ( 24 + 32 )
+= 485 - 56
+= 429
+</code></pre>
+<p>现在我们有了存储器和运算器两个干事的人，但是没有一个统筹兼顾的领导者，<strong>控制器</strong>就充当了这个角色，它需要把控制储存器中的数据发送到 ALU 去进行运算，然后再将运算的结果取出来存到储存器中。总的来说，控制器的工作就是完成协调和指挥整个计算机系统的操作。</p>
+<p>我们把上面的结构画出来，图中的虚线表示指令流，实线表示数据流，这个结构就是著名的<strong>冯 · 诺依曼体系结构</strong>，遵循这种结构的计算机都叫做冯诺依曼机，现在所有的机器都是冯诺依曼机。</p>
+<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1664022352273.png" alt="" loading="lazy"></figure>
+<p>请注意，我们现在实际上只有硬件，没有软件是什么事情都干不了了，我们这里所说的软件是一堆指令序列，比如加法指令、传送指令等等组成的序列，也就是我们常说的汇编语言。</p>
+<p>但是在早期并不是这样的，这台机器上编写的指令序列是无法运行在另一家公司生产的机器上的，即使是同一个公司的机器，如果不是同一代，那也不能运行，所以早期的编程是直接面向硬件的。</p>
+<p>这时就有人站出来研究如何实现一次编写多处运行了，IBM 首次在它的 360 系统上引入了<strong>ISA</strong>的概念，即指令集体系结构。</p>
+<p>指令集体系结构将编程所要了解的硬件信息从硬件系统中抽象了出来，这样开发人员就可以直接面向处理器的 ISA 进行编程了。</p>
+<p>为什么手机上的软件不能运行在电脑中呢？就是因为个人电脑所使用的 Intel 和 AMD 处理器都是基于 x86 指令集的，而手机大多数都使用的是基于 ARM 指令集的处理器。</p>
+<p>现在处理器被分为<strong>指令集体系结构、处理器微架构、处理器物理实现</strong>三个层次。体系结构相当于需求，微架构好比设计，物理实现则是具体的实现过程。</p>
+<p>比如我们规定指令集中必须有加法指令，这个指令你怎么设计、如何实现是你给的事，我只管给出两个加数你能给我输出一个正确的结果，简单来说就是抽象封装。</p>
+<figure data-type="image" tabindex="6"><img src="https://www.guanngxu.com/post-images/1664022379745.png" alt="" loading="lazy"></figure>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/S9me2CdAH/">
+                                <h3 class="post-title">
+                                    如何保证快速加载网页？——详解浏览器缓存机制
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,655 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    编译原理 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        编译原理</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/S4taTDbrM/">
+                        正则表达式是如何运行的？——浅析正则表达式原理
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-03</time>
+                    
+                        <a href="https://www.guanngxu.com/XcHzo7Nc6/" class="post-tag i-tag
+                            i-tag-other_3">
+            #正则表达式
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/UGoTtZqQ-y/" class="post-tag i-tag
+                            i-tag-warning">
+            #编译原理
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/S4taTDbrM/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/S4taTDbrM.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《编译原理》
+实现简单的正则表达式引擎
+正则表达式回溯原理
+浅谈正则表达式原理
+
+最近在一个业务问题中遇到了一个正则表达式性能问题，于是查了点资料去回顾了下正则表达式的原理，简单整理了一下就发到这里吧；另外也是想试试 Apple Pencil 的手感如何，画的太丑不要嫌弃哈。
+有穷自动机
+正则表达式的规则不是很多，这些规则也很容易就能理解，但是正则表达式并不能用来直接识别字符串，我们还需要引入一种适合转换为计算机程序的模型，我们引入的就是有穷自动机。
+在编译原理中通过构造有穷自动机把正则表达式编译成识别器，识别器以字符串x作为输入，当x是语言的句子时回答是，否则回答不是，这正是我们使用正则表达式时需要达到的效果。
+有穷自动机分为确定性有穷自动机（DFA）和非确定性有穷自动机（NFA），它们都能且仅能识别正则表达式所表示的语言。它们有着各自的优缺点，DFA 导出的识别器时间复杂度是多项式的，它比 NFA 导出的识别器要快的多，但是 DFA 导出的识别器要比与之对应的 NFA 导出的识别器大的多。
+大部分正则表达式引擎都是使用 NFA 实现的，也有少部分使用 DFA 实现。从我们写正则表达式的角度来讲，DFA 实现的引擎要比 NFA 实现的引擎快的多，但是 DFA 支持的功能没有 NFA 那么强大，比如没有捕获组一类的特性等等。
+我们可以用带标记的有向图来表示有穷自动机，称之为转换图，其节点是状态，有标记的边表示转换函数。同一个字符可以标记始于同一个状态的两个或多个转换，边可以由输入字符符号标记，其中 NFA 的边还可以用ε标记。
+之所以一个叫有确定和非确定之分，是因为对于同一个状态与同一个输入符号，NFA 可以到达不同的状态。下面看两张图就能明白上面那一长串的文字了。
+图中两个圈圈的状态表示接受状态，也就是说到达这个状态就表示匹配成功。细心的你应该发现了两张图所表示的正则表达式是一样的，这就是有穷自动机神奇的地方，每一个 NFA 我们都能通过算法将其转换为 DFA，所以我们先根据正则表达式构建 NFA，然后再转换成相应的 DFA，最后再进行识别。
+
+上图的画法在正则表达式很简单的时候还可以，如果遇到很复杂的正则表达式画起来还是挺费力的，如果想对自动机有更加深入的认识可以自行查阅相关资料。下面的图片是使用正则可视化工具生成的，对应的正则表达式是^-?\d+(,\d{3})*(\.\d{1,2})?$，它所匹配的字符串是数字/货币金额（支持负数、千分位分隔符）。
+
+回溯
+NFA 引擎在遇到多个合法的状态时，它会选择其中一个并记住它，当匹配失败时引擎就会回溯到之前记录的位置继续尝试匹配。这种回溯机制正是造成正则表达式性能问题的主要原因。下面我们通过具体的例子来看看什么是回溯。
+/ab{1,3}c/
+
+
+
+
+正则
+文本
+
+
+
+
+ab{1,3}c
+abbbc
+
+
+ab{1,3}c
+abbbc
+
+
+ab{1,3}c
+abbbc
+
+
+ab{1,3}c
+abbbc
+
+
+ab{1,3}c
+abbbc
+
+
+ab{1,3}c
+abbbc
+
+
+
+上表中展示的是使用ab{1,3}c匹配abbbc的过程，如果把匹配字符串换成abbc，在第五步就会出现匹配失败的情况，第六步会回到上一次匹配正确的位置，进而继续匹配。这里的第六步就是「回溯」
+
+
+
+正则
+文本
+备注
+
+
+
+
+ab{1,3}c
+abbc
+
+
+
+ab{1,3}c
+abbc
+
+
+
+ab{1,3}c
+abbc
+
+
+
+ab{1,3}c
+abbc
+
+
+
+ab{1,3}c
+abbc
+匹配失败
+
+
+ab{1,3}c
+abbc
+回溯
+
+
+ab{1,3}c
+abbc
+
+
+
+
+会出现上面这种情况的原因在于正则匹配采用了回溯法。回溯法采用试错的思想，它尝试分步的去解决一个问题。在分步解决问题的过程中，当它通过尝试发现现有的分步答案不能得到有效的正确的解答的时候，它将取消上一步甚至是上几步的计算，再通过其它的可能的分步解答再次尝试寻找问题的答案。它通常采用最简单的递归来实现，在反复重复上述的步骤后可能找到一个正确的答案，也可能尝试所有的步骤后发现该问题没有答案，回溯法在最坏的情况下会导致一次复杂度为指数时间的计算。
+上面一段的内容来源于维基百科，精简一下就是深度优先搜索算法。贪婪量词、惰性量词、分支结构等等都是可能产生回溯的地方，在写正则表达式时要注意会引起回溯的地方，避免导致性能问题。
+John Graham-Cumming 在他的博文 Details of the Cloudflare outage on July 2, 2019 中详细记录了因为一个正则表达式而导致线上事故的例子。该事故就是因为一个有性能问题的正则表达式，引起了灾难性的回溯，进而导致了 CPU 满载。
+(?:(?:\&amp;quot;|&#39;|\]|\}|\\|\d|(?:nan|infinity|true|false|null|undefined|symbol|math)|\`|\-|\+)+[)]*;?((?:\s|-|~|!|{}|\|\||\+)*.*(?:.*=.*)))
+
+上面是引起事故的正则表达式，出问题的关键部分在.*(?:.*=.*)中，就是它引起的灾难性回溯导致 CPU 满载。那么我们应该怎么减少或避免回溯呢？无非是提高警惕性，好好写正则表达式；或者使用 DFA 引擎的正则表达式。
+[0-9] 与 \d 的区别
+此问题来源于Stackoverflow，题主遇到的问题是\d比[0-9]的效率要低很多，并且给出了如下的测试结果，可以看到\d比[0-9]慢了差不多一倍。
+Regular expression \d           took 00:00:00.2141226 result: 5077/10000
+Regular expression [0-9]        took 00:00:00.1357972 result: 5077/10000  63.42 % of first
+Regular expression [0123456789] took 00:00:00.1388997 result: 5077/10000  64.87 % of first
+
+出现这个性能问题的原因在于\d匹配的不仅仅是0123456789，\d匹配的是所有的 Unicode 的数字，你可以从 Unicode Characters in the &#39;Number, Decimal Digit&#39; Category 中看到所有在 Unicode 中属于数字的字符。
+此处多提一嘴，[ -~]可以匹配 ASCII 码中所有的可打印字符，你可以查看 ASCII 码中的可显示字符，就是从&amp;quot; &amp;quot;（32）至&amp;quot;~&amp;quot;（126）的字符。
+工具/资源推荐
+正则表达式确实很强大，但是它那晦涩的语法也容易让人头疼抓狂，不论是自己还是别人写的正则表达式都挺头大，好的是已经有人整理了常用正则大全，也大神写了个叫做 VerbalExpressions 的小工具，主流开发语言的版本它都提供了，可以让你用类似于自然语言的方式来写正则表达式，下面是它给出的一个 JS 版示例。
+// Create an example of how to test for correctly formed URLs
+const tester = VerEx()
+    .startOfLine()
+    .then(&#39;http&#39;)
+    .maybe(&#39;s&#39;)
+    .then(&#39;://&#39;)
+    .maybe(&#39;www.&#39;)
+    .anythingBut(&#39; &#39;)
+    .endOfLine();
+
+// Create an example URL
+const testMe = &#39;https://www.google.com&#39;;
+
+// Use RegExp object&#39;s native test() function
+if (tester.test(testMe)) {
+    alert(&#39;We have a correct URL&#39;); // This output will fire
+} else {
+    alert(&#39;The URL is incorrect&#39;);
+}
+
+console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)(www\.)?([^\ ]*)$/
+
+文章大部分内容都是介绍的偏原理方面的知识，如果仅仅是想要学习如何使用正则表达式，可以看正则表达式语法或者 Learn-regex，更为详细的内容推荐看由老姚写的JavaScript 正则表达式迷你书
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/S4taTDbrM/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/X5KvKQqL-/">
+                        正则表达式入门，基础语法详解
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-03-29</time>
+                    
+                        <a href="https://www.guanngxu.com/XcHzo7Nc6/" class="post-tag i-tag
+                            i-tag-banana">
+            #正则表达式
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/UGoTtZqQ-y/" class="post-tag i-tag
+                            i-tag-other_2">
+            #编译原理
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/X5KvKQqL-/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/X5KvKQqL-.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            这两天一直在时不时的和 Neo4j 图数据库打交道。它的查询语句可以使用正则表达式，有一段时间没有自己写过正则表达式了，现在处于能看懂别人写的正则表达式，但是自己写不出来，语法规则都忘了。为了方便接下来的工作，所以特地复习复习正则表达式的语法。
+正则表达式简介
+正则表达式是用来匹配字符串的一系列匹配符，具备简介高效的特点，在很多语言中都有支持（java、python、javascript、php 等等）。在 windows 的 cmd 命令中也同样支持，例如使用命令 dir j*，那么只会罗列出所有以j开头的文件和文件夹。
+正则表达式基本语法
+正则表达式在在不同语言的支持语法略有不同，本文采用js的进行说明。js 中使用正则表达式的方法为str.match(/表达式/)，即需要加两个斜杠。以下所有的代码段第一行为代码，第二行为返回结果，实验是在 chrome 控制台进行的。
+一直认为最好的学习方式就是实际操作，理论谁都能讲一大堆，但是实际做没做出来还真不知道。一个奇葩现象就是教软件工程的老师可能并没有在软件行业待过。
+普通匹配符
+普通匹配符能匹配与之对应的字符，默认区分大小写。
+&amp;quot;Hello Regx&amp;quot;.match(/H/)
+[&amp;quot;H&amp;quot;, index: 0, input: &amp;quot;Hello Regx&amp;quot;, groups: undefined]
+
+正则标记符
+
+i ：不区分大小写
+g ：全局匹配
+m ：多行匹配（暂不管它，我用的少）
+
+参数直接加在最后一个斜杠的后面，比如&amp;quot;Hello Regx&amp;quot;.match(/regx/i)，可以加多个参数。
+&amp;quot;Hello Regx&amp;quot;.match(/regx/i)
+[&amp;quot;Regx&amp;quot;, index: 6, input: &amp;quot;Hello Regx&amp;quot;, groups: undefined]
+
+之前是表达式一旦匹配成功，就不再向字符串后面查找了，加上 g 后，表示进行全局查找。最后返回的是一个数组。
+&amp;quot;Hello Regx&amp;quot;.match(/e/g)
+(2) [&amp;quot;e&amp;quot;, &amp;quot;e&amp;quot;]
+
+多匹配符
+
+\d ：匹配数字，即 0~9
+\w ：匹配数字、字母、下划线
+. ：匹配除换行的所有字符
+
+需要注意的是，上面所有的匹配符都只能匹配一个字符。
+&amp;quot;Hello 2018&amp;quot;.match(/\d/g)
+// 使用\d,匹配字符串中的所有数字
+(4) [&amp;quot;2&amp;quot;, &amp;quot;0&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;8&amp;quot;]
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/\w/g)
+// 使用\w，匹配所有的数字和字母，需要注意没有匹配到空格
+(9) [&amp;quot;H&amp;quot;, &amp;quot;e&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;o&amp;quot;, &amp;quot;2&amp;quot;, &amp;quot;0&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;8&amp;quot;]
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/./g)
+// 使用.，匹配所有字符，包括空格
+(10) [&amp;quot;H&amp;quot;, &amp;quot;e&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;o&amp;quot;, &amp;quot; &amp;quot;, &amp;quot;2&amp;quot;, &amp;quot;0&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;8&amp;quot;]
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/\d\w./g)
+// 分析一下这个为什么匹配到的是201，
+// 首先\d找到第一个数字2，匹配成功，紧接着\w匹配到0，然后.匹配到1
+// 整个正则表达式匹配成功，返回201
+[&amp;quot;201&amp;quot;]
+
+
+&amp;quot;Hello 20\n18&amp;quot;.match(/\d\w./g)
+// 这里匹配不成功，因为.不能匹配换行符，所以返回null
+null
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/\w.\d/g)
+// 首先看这个正则式，\w.\d，它要求最后一个字符是数字
+// \w.能一直匹配到空格，但是因为得满足\d，所以第一个匹配成功的是0 2
+// 因为是全局匹配，所以会接着匹配后面的018，也匹配成功
+(2) [&amp;quot;o 2&amp;quot;, &amp;quot;018&amp;quot;]
+
+自定义匹配符
+比如中国的手机号都是以 1 开头，第二位只能是 3、4、5、7、8，第 3 位只要是数字就行。如何匹配这样的字符串？
+
+[] ：匹配[]中的任意一个字符
+
+&amp;quot;152&amp;quot;.match(/1[34578]\d/)
+// 第二个字符可以选择中括号中的任意一个
+[&amp;quot;152&amp;quot;, index: 0, input: &amp;quot;152&amp;quot;, groups: undefined]
+
+如果在 [] 添加了 ^,代表取反。即 [^] 表示除了中括号中的字符都满足。
+&amp;quot;152&amp;quot;.match(/1[^34578]\d/)
+
+null
+
+
+&amp;quot;1a2&amp;quot;.match(/1[^34578]\d/)
+// 只要不是[]中的字符，都满足，包括回车符
+[&amp;quot;1a2&amp;quot;, index: 0, input: &amp;quot;1a2&amp;quot;, groups: undefined]
+
+修饰匹配次数
+我们的手机号有 11 位，除了前 2 位有要求，其他9位度没有要求，那么是不是正则表达式就应该这样写呢？
+1[^34578]\d\d\d\d\d\d\d\d\d
+
+很明显，这样写太麻烦，肯定有更好的方式，这里就可以修饰一下匹配次数啦。
+
+? ：最多出现 1 次
++ ：至少出现 1 次
+* ：出现任意次数
+{} ：分下面四种情况
+
+{n}代表前面的匹配符出现 n 次
+{n, m}出现次数在 n~m 之间
+{n, }至少出现 n 次
+{, m}最多出现 m 次
+
+
+
+例子很简单，一看就懂，不浪费时间。
+&amp;quot;15284750845&amp;quot;.match(/1[34578]\d{9}/)
+[&amp;quot;15284750845&amp;quot;, index: 0, input: &amp;quot;15284750845&amp;quot;, groups: undefined]
+
+
+&amp;quot;15&amp;quot;.match(/1[34578]\d?/)
+[&amp;quot;15&amp;quot;, index: 0, input: &amp;quot;15&amp;quot;, groups: undefined]
+
+
+&amp;quot;152&amp;quot;.match(/1[34578]\d?/)
+[&amp;quot;152&amp;quot;, index: 0, input: &amp;quot;152&amp;quot;, groups: undefined]
+
+
+&amp;quot;152&amp;quot;.match(/1[34578]\d+/)
+[&amp;quot;152&amp;quot;, index: 0, input: &amp;quot;152&amp;quot;, groups: undefined]
+
+
+&amp;quot;15&amp;quot;.match(/1[34578]\d+/)
+null
+
+完整匹配
+按照上面的写法会出现下面的问题。
+&amp;quot;ya15284750845&amp;quot;.match(/1[34578]\d{9}/)
+// 不是电话号码，也能匹配成功，需要进一步改进
+[&amp;quot;15284750845&amp;quot;, index: 2, input: &amp;quot;ya15284750845&amp;quot;, groups: undefined]
+
+
+^ ：在 [] 中代表取反，但在外面代表从开始匹配
+
+&amp;quot;ya15284750845&amp;quot;.match(/^1[34578]\d{9}/)
+// 现在就能从一开始匹配而且还得符合正则式才算匹配成功
+null
+
+
+// 但是依旧会出现下面的问题
+&amp;quot;1528475084523255&amp;quot;.match(/^1[34578]\d{9}/)
+// 不是电话号码也能匹配成功，还要改进
+[&amp;quot;15284750845&amp;quot;, index: 0, input: &amp;quot;1528475084523255&amp;quot;, groups: undefined]
+
+
+$ ：代表持续匹配到结束
+
+&amp;quot;1528475084523255&amp;quot;.match(/^1[34578]\d{9}$/)
+// 现在就能保证正确了，有^表示从开始匹配；
+// 有$表示持续匹配到结束，即完全匹配
+null
+
+/*
+需要注意的是，一个字符串从开始匹配和从结束匹配都没问题，
+不代表整个字符串就没问题，比如 15284750845-15284750845
+这个字符串从开始和从结束匹配都能成功，但实际上是错的
+*/
+
+特殊符号
+到这里发现正则表达式确实很强大，仅仅几个简单的符号就能匹配字符串，但是如果我们要匹配的字符本身就是前面用到的符号怎么办呢？
+
+匹配像$、^等特殊符号时，需要加转义字符\
+
+&amp;quot;1.&amp;quot;.match(/./)
+//因为.能匹配除换行的所有字符，所以匹配到1
+//但实际上我们想匹配.这个字符
+[&amp;quot;1&amp;quot;, index: 0, input: &amp;quot;1.&amp;quot;, groups: undefined]
+
+
+&amp;quot;1.&amp;quot;.match(/\./)
+// 只需要加一个转义字符就可以了，其他类似
+[&amp;quot;.&amp;quot;, index: 1, input: &amp;quot;1.&amp;quot;, groups: undefined]
+
+条件分支
+比如现在想匹配图片的文件名，包括 jpg、png、jpeg、gif 等等，这是多个选项，所以需要像编程语言一样，应该具备条件分支结构。
+
+| ：条件分支
+() ：有两层含义
+
+括号中的内容成为一个独立的整体
+括号的内容可以进行分组，单独匹配，若不需要此功能，则( ?: )
+
+
+
+&amp;quot;1.jpg&amp;quot;.match(/.+\.jpe?g|gif|png/)
+// 这样就可以满足条件分支了,不过下面又出问题了
+[&amp;quot;1.jpg&amp;quot;, index: 0, input: &amp;quot;1.jpg&amp;quot;, groups: undefined]
+
+
+&amp;quot;1.png&amp;quot;.match(/.+\.jpe?g|gif|png/)
+// 这里没有匹配到.和前面的文件名
+[&amp;quot;png&amp;quot;, index: 2, input: &amp;quot;1.png&amp;quot;, groups: undefined]
+
+
+/*
+其实我们想告诉它的是，.和后面的每一个条件分支的值都是一个独立的整体
+但是它把.+\.jpe?g、gif、png当成了各自独立的整体
+我们并不想让它这样切分，所以我们来告诉它怎么分才是正确的
+*/
+
+
+&amp;quot;1.png&amp;quot;.match(/.+\.(jpe?g|gif|png)/)
+// 现在可以匹配成功了，但是它多匹配了一个
+// 因为括号的内容可以进行分组，单独匹配
+(2) [&amp;quot;1.png&amp;quot;, &amp;quot;png&amp;quot;, index: 0, input: &amp;quot;1.png&amp;quot;, groups: undefined]
+
+
+// 所以最终写法如下
+&amp;quot;1.png&amp;quot;.match(/.+\.(?:jpe?g|gif|png)/)
+[&amp;quot;1.png&amp;quot;, index: 0, input: &amp;quot;1.png&amp;quot;, groups: undefined]
+
+贪婪与懒惰
+// 首先看一个例子
+&amp;quot;aabab&amp;quot;.match(/a.*b/)
+[&amp;quot;aabab&amp;quot;, index: 0, input: &amp;quot;aabab&amp;quot;, groups: undefined]
+
+
+/*
+上面的匹配没有什么问题，但实际上aab也是可以的
+也就是aab也是符合条件的，那又是为什么呢？
+*/
+
+因为在正则表达式中，默认是贪婪模式，尽可能多的匹配，可以在修饰数量的匹配符后面添加 ?，则代表懒惰。
+// like this (^__^)
+&amp;quot;aabab&amp;quot;.match(/a.*?b/)
+[&amp;quot;aab&amp;quot;, index: 0, input: &amp;quot;aabab&amp;quot;, groups: undefined]
+
+到这里应该就差不多了，再深入的，就自我查询知识了。配一张正则表达式速查表。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/X5KvKQqL-/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

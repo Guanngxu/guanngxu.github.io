@@ -1,0 +1,637 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    一文搞懂 TCP 协议核心机制 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            一文搞懂 TCP 协议核心机制
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2026-01-12</time>
+                            <span class="read-time">10 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-success">
+                            #计算机网络
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/bXKpR9unB5.png')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：</p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc9293">Transmission Control Protocol (TCP)</a></p>
+<p><a href="https://www.youtube.com/watch?v=JFch3ctY6nE">TCP - 12 simple ideas to explain the Transmission Control Protocol</a></p>
+<p><a href="https://www.cloudns.net/blog/tcp-transmission-control-protocol-what-is-it-and-how-does-it-work/">TCP (Transmission Control Protocol) – What is it, and how does it work? </a></p>
+<p><a href="https://www.codequoi.com/en/internet-layered-network-architecture/">The Internet's Layered Network Architecture</a></p>
+<p>《计算机网络-自顶向下方法（第7版）》</p>
+</blockquote>
+<p>TCP (Transmission Control Protocol - 传输控制协议) 在过去 40 多年的时间里，一直是互联网通信的核心。在大学学习计算机网络时，大部分同学都只是简单机械的背诵 TCP 是面向连接的，是可靠的传输协议。本文借助 <a href="https://www.wireshark.org/">Wireshark</a> 抓包工具分析 TCP 报文头部，来详细的介绍它的工作原理。</p>
+<p>TCP 报文格式如下图所示，我们将重点关注 <code>Sequence Number</code>、<code>Acknowledgment Number</code>、<code>Window</code> 几个字段，以及 <code>TCP Flags</code> 中的 <code>ACK</code>、<code>PSH</code>、<code>RST</code>、<code>SYN</code>、<code>FIN</code>。后续的内容除了建立连接过程外，其它均与服务端客户端无关，即任何一方均可发起相关操作。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1768581870083.png" alt="" loading="lazy"></figure>
+<h3 id="建立连接">建立连接</h3>
+<p>在 TCP 建立连接时进行抓包，可以发现客户端首先向服务端发送了 <code>SYN</code> 包，服务端向客户端响应了 <code>SYN, ACK</code> 包，最后客户端向服务端发送了 <code>SYN</code> 包，这就是大名鼎鼎的<strong>三次握手</strong>。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1768622290335.png" alt="" loading="lazy"></figure>
+<p>TCP 建立连接的三次握手过程，有四个事件发生：</p>
+<ul>
+<li>客户端→服务端：<strong>SYN</strong>chronize（同步）我的初始序列号 <code>X</code>；</li>
+<li>服务端→客户端：我收到了你的 SYN，我 <strong>ACK</strong>nowledge（确认）我已经准备好接收 <code>[X+1]</code>；</li>
+<li>服务端→客户端：<strong>SYN</strong>chronize（同步）我的初始序列号 <code>Y</code>；</li>
+<li>客户端→服务端：我收到了你的 SYN，我 <strong>ACK</strong>nowledge（确认）我已经准备好接收 <code>[Y+1]</code>；</li>
+</ul>
+<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1768636172034.png" alt="" loading="lazy"></figure>
+<h4 id="为什么是三次握手而不是两次握手">为什么是三次握手而不是两次握手？</h4>
+<p>我们用打电话的场景来类比两次握手和三次握手的区别，可以发现在场景一中，B 以为通话已经建立，但其实可能 A 没有听到 B 的回复，而在场景二中双方都确认对方能够听到自己的声音，所以三次握手要更加可靠。</p>
+<pre><code class="language-txt">场景一：两次握手
+A：喂，听得到吗？（SYN）
+B：听得到，你听得到吗？（ACK）
+
+场景二：三次握手
+A：喂，听得到吗？（SYN）
+B：听得到，你听得到吗？（SYN + ACK）
+A：我也听得到！（ACK）
+</code></pre>
+<h3 id="发送数据">发送数据</h3>
+<p>TCP 连接建立后就可以发送数据了，数据发送过程主要关注  <code>Sequence Number</code>、<code>Acknowledgment Number</code>、<code>Window</code> 几个字段。</p>
+<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1768668203213.png" alt="" loading="lazy"></figure>
+<p><code>Sequence Number</code> 用于跟踪已经发送的数据，<code>Acknowledgment Number</code> 则用于跟踪已经接收的数据。比如客户端本次发送的数据包为 <code>seq=1001</code> 且数据长度为 200 字节，当服务端接收到这 200 个字节后，将回复 <code>ack=1201</code> 表示已经成功接收数据，下一次客户端发送数据的序列号将为 <code>1201</code>。</p>
+<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1768669790773.png" alt="" loading="lazy"></figure>
+<p>如果接收方为接收到的每段报文都发送确认信息，那就意味着在线路上传输的报文数量翻了一倍，为了减轻数据传输的负担，TCP 加入了<a href="https://zh.wikipedia.org/wiki/TCP%E5%BB%B6%E8%BF%9F%E7%A1%AE%E8%AE%A4">延迟确认机制</a>。延迟确认机制规定每收到两段报文，或者距离最后一段报文的时间不超过 500ms，至少要回应一次 ACK。</p>
+<figure data-type="image" tabindex="6"><img src="https://www.guanngxu.com/post-images/1768752861220.png" alt="" loading="lazy"></figure>
+<h4 id="超时重传">超时重传</h4>
+<p>TCP 是如何处理丢包情况的呢？实际上每次数据发送时，客户端都会保留一份已经发送的数据副本到缓存，并启动重传超时。如果客户端收到服务端发送的数据包确认，则将缓存中的数据删除即可，因为可以确认服务端已经正确接收了数据包。</p>
+<p>如果客户端一直没有收到已发送数据包的确认，重传超时时间一定会在某个时刻到期，此时客户端即会意识到服务端可能没有接收到数据，所以客户端会重新发送丢失的数据包，确保数据可以被服务端接收到。</p>
+<figure data-type="image" tabindex="7"><img src="https://www.guanngxu.com/post-images/1768671155947.png" alt="" loading="lazy"></figure>
+<p>超时重传机制的巧妙之处在于不管在哪个方向丢包，它都能正常工作。比如客户端正常发送了数据包，但是服务端的 ACK 包丢失了，当达到重传超时时间后，客户端会再次发送对应数据包，而对服务端来说即可猜出是 ACK 数据包丢了，服务端不会重复存储该数据包，只需要再次回应对应的 <code>ack</code> 即可。</p>
+<figure data-type="image" tabindex="8"><img src="https://www.guanngxu.com/post-images/1768672238333.png" alt="" loading="lazy"></figure>
+<h4 id="流量控制">流量控制</h4>
+<p>如果发送方一味的发送数据，而接收方可能正忙于其它事务，可能会读取数据相对缓慢，如此就会很容易地使接收缓存溢出。TCP 为应用程序提供了<strong>流量控制</strong>服务以消除发送方使接收方缓存溢出的可能性。流量控制因此是一个速度匹配服务，即发送方的发送速率与接收方应用程序的读取速率相匹配。</p>
+<figure data-type="image" tabindex="9"><img src="https://www.guanngxu.com/post-images/1768893394977.png" alt="" loading="lazy"></figure>
+<p>从上图可以看出 TCP 通过 <code>Window</code> 字段来进行流量控制，通过该字段告知发送方在必须等待接收确认之前可以发送多少数据。即通过控制窗口大小来达到流量控制的目的。</p>
+<h4 id="数据包解析">数据包解析</h4>
+<p>将 Wireshark 抓取的 TCP 数据包原始字节数据复制出来如下所示，会发现里面不止有 TCP 报文的头部，还有以太网和 IPv4 的头部。</p>
+<pre><code class="language-txt">0000   74 5a 01 b5 29 e4 90 65 84 0b 69 8b 08 00 45 00
+0010   00 32 1b bf 40 00 80 06 00 00 c0 a8 00 0a 08 9c
+0020   53 29 6a b8 1a 0a 06 6e 20 43 47 9e 92 37 50 18
+0030   00 ff 1c 9c 00 00 31 32 33 34 35 36 37 38 39 30
+
+
+
+数据链路层：以太网头部（14 Bytes）
+74 5a 01 b5 29 e4 90 65 84 0b 69 8b 08 00
+
+目标 MAC：74:5a:01:b5:29:e4
+源 MAC：90:65:84:0b:69:8b
+类型：08 00 = IPv4
+
+
+
+网络层：IPv4 头部 (20 Bytes)
+08 00 45 00 00 32 1b bf 40 00 80 06 00 00 c0 a8 00 0a 08 9c 53 29
+
+版本 + IHL：45 = IPv4，头长 20 字节
+差分服务字段 (DSCP/ECN)，通常为 0：00
+总长度：00 32 = 50 字节（IP 头 20 + TCP 头 20 + 数据 10 字节）
+标识符：1b bf，用于数据包分片重组
+标志 + 分片偏移：40 00 = DF (表示不分片)
+生存时间 TTL：80 = 128，表示数据包最多能经过 128 跳
+协议：06 = TCP，即上层协议是 TCP
+头部校验和：00 00，这里显示为 0，可能是抓包时未计算，或者故意置零
+源 IP：c0 a8 00 0a = 192.168.0.10
+目标 IP：08 9c 53 29 = 8.156.83.41
+
+
+
+传输层：TCP 头部 (20 Bytes)
+6a b8 1a 0a 06 6e 20 43 47 9e 92 37 50 18 00 ff 1c 9c 00 00
+
+源端口：6a b8 = 27320
+目标端口：1a 0a = 6666
+序列号：06 6e 20 43 = 107,661,379， wireshark 显示的是相对序列号，所以不一样
+确认号：47 9e 92 37 = 1,201,353,271，与序列号同理
+数据偏移 (4位) + 保留 (3位) + 标志 (9位) (2字节):  50 18 -&gt; 分解：
+    数据偏移: 5 -&gt; TCP 头部长度 5 个“32位字” (5 * 4 = 20 字节)。
+    标志位: 0x018（二进制 0000 0001 1000）：
+        ACK = 1 (确认有效)
+        PSH = 1 (推送数据，提示接收端应立即交给上层应用)
+        RST, SYN, FIN = 0
+窗口大小：00 ff = 65535
+校验和：1c 9c
+紧急指针：00 00 = 0，未使用
+
+
+
+应用层：TCP 载荷数据（10 Bytes）
+31 32 33 34 35 36 37 38 39 30
+
+都是 ASCII 码，数据内容为：&quot;1234567890&quot;
+</code></pre>
+<figure data-type="image" tabindex="10"><img src="https://www.guanngxu.com/post-images/1768753783533.png" alt="" loading="lazy"></figure>
+<p>从数据包的封装情况即可看出来对网络协议分层的好处，比如工作在链路层的交换机只需要解析出 MAC 地址即可进行数据转发，而不需要再解析网络层中的 IP 地址等信息。同理对工作在网络层的路由器来说，解析出 IP 地址即可转发数据，不需要对数据进行深度解析。</p>
+<h3 id="断开连接">断开连接</h3>
+<p>TCP 有两种关闭连接的方式，一种是通过 <code>FIN</code> 来优雅的关闭连接，另一种是通过 <code>RST</code> 来暴力的关闭连接。我们首先来看优雅的关闭方式。</p>
+<p>如果一切都进展的很顺利，客户端和服务端建立连接并成功的交换了彼此的数据，它们就可以关闭连接并继续进行各自的工作。与建立连接的过程类似，关闭连接的过程也会发生四个事件，即大家所说的<strong>四次挥手</strong>。</p>
+<figure data-type="image" tabindex="11"><img src="https://www.guanngxu.com/post-images/1768894332006.png" alt="" loading="lazy"></figure>
+<ul>
+<li>客户端→服务端：我已经<strong>FIN</strong>ished（完成）了数据发送，我最后的序列号是 <code>X</code>；</li>
+<li>服务端→客户端：我 <strong>ACK</strong>nowledge（确认）接收到了你的 FIN 且 <code>ack=[X+1]</code>；</li>
+<li>服务端→客户端：我已经<strong>FIN</strong>ished（完成）了数据发送，我最后的序列号是 <code>Y</code>；</li>
+<li>客户端→服务端：我 <strong>ACK</strong>nowledge（确认）接收到了你的 FIN 且 <code>ack=[Y+1]</code>；</li>
+</ul>
+<p>和三次握手一样，中间两个事件可能在同一个数据包中发生，比如下面使用 Wireshark 工具抓到的包。</p>
+<figure data-type="image" tabindex="12"><img src="https://www.guanngxu.com/post-images/1768895827506.png" alt="" loading="lazy"></figure>
+<p>实际情况不会每次都将两个事件合并，这是因为四个事件并不是严格要求必须按照上述顺序进行的，很有可能客户端已经发送完数据并断开连接，但是服务端仍然有数据需要向客户端发送，所以可以只关闭客户端向服务端发送数据的通道，而不关闭服务端向客户端发送数据的通道。请记住 TCP 是全双工通信，一个 FIN-ACK 组合事件只会关闭一个方向的连接。</p>
+<figure data-type="image" tabindex="13"><img src="https://www.guanngxu.com/post-images/1768897204753.png" alt="" loading="lazy"></figure>
+<p>非优雅的暴力关闭连接方式采用 <code>RST</code> Flag 实现，任何一方都可以发送该连接关闭数据包，使用该方式关闭连接意味着 TCP 连接出现了问题，发送方向接收方发送了 <code>RST</code> 数据包后，即将该 TCP 连接相关信息清空，接收方接收到该数据包后也即将该 TCP 连接相关信息清空。</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/4MWnuo8ufo/">
+                                <h3 class="post-title">
+                                    Python 使用 pygame 实现人机对战五子棋
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5">建立连接</a>
+<ul>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B">为什么是三次握手而不是两次握手？</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE">发送数据</a>
+<ul>
+<li><a href="#%E8%B6%85%E6%97%B6%E9%87%8D%E4%BC%A0">超时重传</a></li>
+<li><a href="#%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6">流量控制</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E8%A7%A3%E6%9E%90">数据包解析</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5">断开连接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

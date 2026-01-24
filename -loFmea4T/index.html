@@ -1,0 +1,588 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    电源 PCB 布局及其常见错误 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            电源 PCB 布局及其常见错误
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2024-07-09</time>
+                            <span class="read-time">12 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/COeYlWWen/" class="post-tag i-tag
+                            i-tag-primary">
+                            #PCB
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/ypjmBXLlm3/" class="post-tag i-tag
+                            i-tag-other_1">
+                            #Layout
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
+                            i-tag-banana">
+                            #电路基础
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/QbHW4oh0b/" class="post-tag i-tag
+                            i-tag-other_2">
+                            #开关电源
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/g-HWNOeTH/" class="post-tag i-tag
+                            i-tag-error">
+                            #BUCK
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/f2t0BU6fkn/" class="post-tag i-tag
+                            i-tag-info">
+                            #DC-DC
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/-loFmea4T.jpg')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：</p>
+<p><a href="https://edu.21ic.com/video/4090">电源 PCB 布局中的常见错误及避免方式</a></p>
+<p><a href="https://www.bilibili.com/video/BV1fM411Z7cW">嘉立创EDA-PCB设计零基础入门课程（54集全）</a></p>
+<p><a href="https://www.bilibili.com/video/BV1J14y1X7rm">硬件设计基础之PCB设计中的10条重要布线原则</a></p>
+</blockquote>
+<h2 id="pcb-基础">PCB 基础</h2>
+<p>我们先来看看在没有 PCB 之前的电路是如何连接的，阻容感和芯片等均通过导线连接，由此不可避免的就带来了混乱的问题。为了解决束线、混乱等问题就出现了 PCB。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1721100159378.png" alt="" loading="lazy"></figure>
+<p>PCB（Printed Circuit Board）即印制电路板，由保罗.爱斯勒发明。PCB 是元器件的支撑体，更是实现诸多电子元器件电气连接的载体。随着历史车轮的滚滚前进，为了在 PCB 上放置更多的元器件，由一层板逐渐发展为多层板。</p>
+<p>多层板可以看作是由多个两层板，加上一个芯板组成，不同层之间的切换通过过孔来实现，即钻孔并在孔的内壁覆上铜。由于制造 3 层板和制造 4 层板的工艺、成本等均基本一致，所以需要注意一般是没有单数层板的，只有偶数层的 PCB。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1721107206542.png" alt="" loading="lazy"></figure>
+<p>图中 1 属于盲孔，用于第一层和最后一层之间的切换；2 属于埋孔，用于内层之间的切换；3 属于通孔，用于第一层和除最后一层之间的切换。这些孔我们统一将其称之为过孔。</p>
+<h2 id="走线为什么要避免锐角-直角">走线为什么要避免锐角、直角</h2>
+<p>PCB 板上的铜线需要做到阻抗连续，那么什么情况下会导致其阻抗不连续呢？当线宽改变的时候阻抗就会变得不连续，同时寄生电容、电感的值也会发生变化，那么什么情况会导致线宽改变呢？自然是涉及到拐弯的时候。</p>
+<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1720962422341.png" alt="" loading="lazy"></figure>
+<p>除了线宽改变导致阻抗不连续外还有哪些影响呢？比如线宽改变会导致寄生容值变大，即相当于在传输导线上加了容性负载，当信号通过时即会涉及到充放电的过程，信号速度即会被减缓。</p>
+<p>另外还存在尖端放电的问题，导体上面很尖的点即表示面积非常小，相应即电荷密度很高，将产生巨大的电场强度，击穿空气释放电子，就会产生比较强的电磁干扰，因此布线拐角应该使用钝角或是圆角。</p>
+<h2 id="典型案例">典型案例</h2>
+<p>对于整体性能来说，电源的布局与挑选合适的半导体（芯片、阻容感）是一样重要的。一个糟糕的布局会在电路中产生额外的寄生阻容感，这会让电路在不同的地方产生更多的噪音。除此之外，如果没有注意布局还可能让功率元件无法有效散热。</p>
+<h3 id="输入电容太远导致寄生电感过大">输入电容太远导致寄生电感过大</h3>
+<p>如图所示是一个同步降压转换器上下两面的布局。这是一个将 12V 输入降低到 1.2V 输出，且能够承载 8A 电流的降压转换器。可以从图中左上角看到开关节点（SW）对 GND 的电压波形。可以发现振铃峰值已经到了 17V，这种高频的振荡几乎可以肯定会对 EMI 造成不利的影响。而且该开关电源元件建议的最高操作电压即为 17V，绝对额定值最高为 19V，这个振荡峰值已经很接近让电源芯片因超过电压应力而损坏的点。同时该振荡电压也导致了输出纹波超过 100mV。</p>
+<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1720533107134.png" alt="" loading="lazy"></figure>
+<p>在图中右边部分用绿色框起来的电容即为输入电容，它不止离集成开关电源芯片的 VIN 和 PGND 有一段距离，甚至还通过过孔连接到另外一面，造成额外的寄生电感。而改进方法也很简单，在原理图不变的前提下，直接在芯片的 VIN 和 PGND 引脚旁边放上输入电容器，如下图中绿色框中所示。需要注意的是较小的高频旁路电容要越靠近电源芯片才好。</p>
+<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1720534659279.png" alt="" loading="lazy"></figure>
+<p>从测试波形可以发现，当输入电容位置摆放正确后，振荡电压几乎就被消除了，这肯定会对 EMI 特性产生正面影响。开关电压峰值也远低于芯片所建议的操作范围之内。输出电压纹波同样有了极大的改善，峰峰值已经降到 10mV 以下。</p>
+<figure data-type="image" tabindex="6"><img src="https://www.guanngxu.com/post-images/1720602398229.png" alt="" loading="lazy"></figure>
+<p>方波的波形是由基本的开关频率加上各个奇次谐波所组成，越快的电压瞬间爬升或下降即表示会包含更高的频率，这就是可能导致振荡和 EMI 的原因。上图给出了不同容值（尺寸）的陶瓷电容的典型阻抗曲线，电容引起的阻抗会随着频率的增加减小，到某个频率点以上则由寄生电感所带来的阻抗影响占主导。图中红色虚线表示将不同尺寸的电容器并联时等效的阻抗，随着开关频率的不断增加，其 EMI 的要求也会变得更加严格，高频电容器和其摆放的位置也变得更加重要。</p>
+<figure data-type="image" tabindex="7"><img src="https://www.guanngxu.com/post-images/1720602338714.png" alt="" loading="lazy"></figure>
+<p>回过头来看为什么将输入电容仅靠输入引脚就可以减少解决上述问题呢？如上图所示表示了一个同步降压拓扑中，寄生电感影响最大的地方，以及可以容忍且影响相对小的地方。可以发现输入电容的环路对寄生电感最为敏感，上述案例中最开始的布局由于输入电容离芯片引脚过长，PCB 走线太长导致寄生电感过大，进一步导致高频振荡严重。</p>
+<h3 id="电感磁场扩散至外围">电感磁场扩散至外围</h3>
+<p>如下图是一个从 12V 输入转为 2.5V 输出，承载 2.5A 的一个拓扑结构。从右上角可以看到测量的输出波形中虽然纹波没有很大，但是可以看到里面包含可疑的方波分量。有意思的是当我们把电感解焊旋转 180 度后再装上，方波分量会随之反转，那么这个设计发生了什么呢？</p>
+<figure data-type="image" tabindex="8"><img src="https://www.guanngxu.com/post-images/1720603467518.png" alt="" loading="lazy"></figure>
+<p>此处的线索是电感器，仔细观察会发现这个是一个半屏蔽式的电感器。实际上半屏蔽式的电感器和非屏蔽式的电感器没有太大区别，这表示磁场没有得到适当的控制，而且还有可能扩散到电感器外面。如图所示可以发现输出电容 1 在靠近电感器的位置，这会导致电感器的磁场耦合到输出电容的等效串联电感中，这就像一个变压器一样。因此显示了除转换器本身的输出纹波外，还加上了被磁场耦合到的夹噪。</p>
+<figure data-type="image" tabindex="9"><img src="https://www.guanngxu.com/post-images/1720768938617.png" alt="" loading="lazy"></figure>
+<p>当把电感器旋转 180 度时，磁场也会跟着翻转，这就是波形完全反转的原因。要摆脱这种方波的方法是确保来自电感的磁场不会耦合到输出电容器的等效串联电感中，那么我们把输出电容移到电感磁场范围之外，比如图中 2 或另一侧 3 的地方。上图左侧就是改善后的布局，即将输出电容移到了另一侧，从波形可以看出方波分量即被消除了。</p>
+<figure data-type="image" tabindex="10"><img src="https://www.guanngxu.com/post-images/1720769861368.png" alt="" loading="lazy"></figure>
+<p>另一种减少电感器和输出电容之间耦合的方法是使用全屏蔽的电感器，这与上文移动输出电容位置的方法一样有效。上图右下角显示了非屏蔽、半屏蔽、全屏蔽电感器的磁幅射影，可以发现黑色线和红色线仅仅只是小了 5dB 左右，而蓝色线则少了 30dB 的以上。</p>
+<p>另一个小地方要注意的是绕组（电感）的起点用一个点或一条线来标记，这个端点应该要连接到电路里面的开关节点，即接到电压会有跳动方波的那一点。因为绕组的起点埋在电感器的中心，并且连接到直流输出的外绕组，会有一定的自我屏蔽的效应。在电感器下方有一个接地层也能屏蔽电场带来的干扰。</p>
+<p>回过头来看上文虽然将输出纹波中的方波分量消除了，但是开关瞬间产生的纹波尖峰并没有消失，这些尖峰的主要来源是通过电感器本身并联的寄生电容耦合到电压开关瞬间变化所造成的。电容本身很少出现在电感器的规格书中，但是我们还是可以通过自谐振频率推断出来，为了确保最小寄生电容和最小输出尖峰，我们应该选择具有高 SRF 的电感器。</p>
+<h3 id="高阻抗反馈电阻走线太长引入噪声">高阻抗反馈电阻走线太长引入噪声</h3>
+<p>如下是一个将 12V 输入转换为 1.05V 且输出为 5A 的拓扑，从右上角波形可以看出输出波形中大约有 70mV 的噪音纹波，另外开关波形上面也能看出有一些抖动，这会让输出瞬态响应的稳定性受到影响。</p>
+<figure data-type="image" tabindex="11"><img src="https://www.guanngxu.com/post-images/1720771316473.png" alt="" loading="lazy"></figure>
+<p>解决上述问题的线索是反馈电阻，可以发现绿色框出来的地方摆在板子的右上方，而红色框起来的地方为电源芯片摆在板子的正中央。反馈引脚是一个高阻抗的节点，因此对噪音会很敏感。在初版布局中反馈电阻摆放在输出连接器的附近，这会使敏感的反馈走线跨越了快整个电路板，而且还穿过了电感的下方，干扰源很容易就耦合到这种长的反馈走线上，还有可能会导致转换器运行不稳定。</p>
+<figure data-type="image" tabindex="12"><img src="https://www.guanngxu.com/post-images/1720880310266.png" alt="" loading="lazy"></figure>
+<p>右上角的第二版是改善后的布局，可以看出反馈电阻比上一版更靠近反馈引脚，同时输出电压反馈点放在远离电感和开关节点的另一侧，这样输出的波形会更加干净。右下角可以发现纹波也从大于 70mV 降低到 20mV，开关波形的抖动现象也大大减小。</p>
+<figure data-type="image" tabindex="13"><img src="https://www.guanngxu.com/post-images/1720880961880.png" alt="" loading="lazy"></figure>
+<p>尽量让敏感的信号拉线远离电感器或开关节点，如果负载端与反馈调节点有一段的距离，那就要考虑上图所示的差分接线，以此来提高噪音的抑制能力。另外在选择反馈电阻时，虽然阻值越高是可以减少一些损耗，但是也更容易受到噪音的影响，并且可能因为一点点的反馈偏置电流而改变输出电压，10kohm~100kohm 范围的总的反馈电阻通常是一个不错的折中方案。</p>
+<h3 id="大电流引起压降">大电流引起压降</h3>
+<p>下面是一个大电流同步降压转换器的负载调节案例，这是一个将 12V 转换为 0.85V 并承受 20A 负载的设计。其 PCB 布局如图左下角所示，控制器位于电路板右侧而输出是位于左上角。左上图显示了输出电压调节与负载的关系，可以看到随着电流的增加输出电压下降到低于规定值的两个百分点。</p>
+<figure data-type="image" tabindex="14"><img src="https://www.guanngxu.com/post-images/1720882983451.png" alt="" loading="lazy"></figure>
+<p>造成这个问题的原因是因为控制器直接检测输出电压，第一版设计中反馈与输出之间的连接点就在电感旁边，而且远离输出连接器。大的铜线会有一些寄生电阻，根据欧姆定律我们知道当电流流过电阻时会有一定的电压降，虽然铜的电阻相对较低，但是在高电流下可能还是会有影响。</p>
+<figure data-type="image" tabindex="15"><img src="https://www.guanngxu.com/post-images/1720883384103.png" alt="" loading="lazy"></figure>
+<p>通过将输出的反馈点移动到输出连接器旁边，控制器能够补偿寄生电阻带来的损失，并且更好的调节输出电压。左边的蓝线即改进后的输出电压调节与负载的关系。那么又如何计算铜的寄生电阻呢？</p>
+<figure data-type="image" tabindex="16"><img src="https://www.guanngxu.com/post-images/1720884635953.png" alt="" loading="lazy"></figure>
+<p>估计铜铂寄生电阻的快速方法是使用计数平方，通过将长宽设置为彼此相等，平面总电阻的方程简化为铜的电阻率除以厚度。表中给出了几个标准铜铂厚度的每平方电阻，在查看铜铂时串联的电阻相加，平行的相当于并联等效电阻更小。</p>
+<figure data-type="image" tabindex="17"><img src="https://www.guanngxu.com/post-images/1720885480737.png" alt="" loading="lazy"></figure>
+<p>再回过头来看这个案例，使用的 PCB 是 2 盎司的铜，从输出到回收点的距离有 4 个正方形这么长，每平方电阻为 0.25mohm，4 个即为 1mohm，再乘以 20A 的负载电流就可以解释最大负载下输出大约下降了 20mV 的现象。</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/asBsvJSki/">
+                                <h3 class="post-title">
+                                    电平转换器基础知识
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#pcb-%E5%9F%BA%E7%A1%80">PCB 基础</a></li>
+<li><a href="#%E8%B5%B0%E7%BA%BF%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%81%BF%E5%85%8D%E9%94%90%E8%A7%92-%E7%9B%B4%E8%A7%92">走线为什么要避免锐角、直角</a></li>
+<li><a href="#%E5%85%B8%E5%9E%8B%E6%A1%88%E4%BE%8B">典型案例</a>
+<ul>
+<li><a href="#%E8%BE%93%E5%85%A5%E7%94%B5%E5%AE%B9%E5%A4%AA%E8%BF%9C%E5%AF%BC%E8%87%B4%E5%AF%84%E7%94%9F%E7%94%B5%E6%84%9F%E8%BF%87%E5%A4%A7">输入电容太远导致寄生电感过大</a></li>
+<li><a href="#%E7%94%B5%E6%84%9F%E7%A3%81%E5%9C%BA%E6%89%A9%E6%95%A3%E8%87%B3%E5%A4%96%E5%9B%B4">电感磁场扩散至外围</a></li>
+<li><a href="#%E9%AB%98%E9%98%BB%E6%8A%97%E5%8F%8D%E9%A6%88%E7%94%B5%E9%98%BB%E8%B5%B0%E7%BA%BF%E5%A4%AA%E9%95%BF%E5%BC%95%E5%85%A5%E5%99%AA%E5%A3%B0">高阻抗反馈电阻走线太长引入噪声</a></li>
+<li><a href="#%E5%A4%A7%E7%94%B5%E6%B5%81%E5%BC%95%E8%B5%B7%E5%8E%8B%E9%99%8D">大电流引起压降</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

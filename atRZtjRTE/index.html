@@ -1,0 +1,685 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    使用 Git 工具进行项目管理 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            使用 Git 工具进行项目管理
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2022-06-28</time>
+                            <span class="read-time">10 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/wgJXq4UXE/" class="post-tag i-tag
+                            i-tag-other_2">
+                            #Git
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/atRZtjRTE.jpg')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：</p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.zhujian.life/posts/c7ee2f15.html">Git工作流实践</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.ruanyifeng.com/blog/2015/12/git-workflow.html">Git 工作流程</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_32452623/article/details/78905181">Git三大特色之WorkFlow(工作流)</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.ruanyifeng.com/blog/2012/07/git.html">Git分支管理策略</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://t.zoukankan.com/gufengchen-p-11153440.html">使用 Issue 管理软件项目详解</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/ab5897597d68">GitLab Issue 创建及使用说明</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/fd2025/article/details/124543690">Git 提交规范</a></p>
+</blockquote>
+<p><a href="https://git-scm.com/">Git</a> 是软件开发活动中非常流行的版本控制器类工具。随着项目时间的拉长、项目参与人员的更替、软件不同特性功能的发布，从开发人员角度看会发现工程的提交历史、分支管理等非常混乱，项目管理者会因为需求迭代、bug 修复、版本发布等活动无法与代码提交历史一一对应而头疼，混乱的管理常常导致故障泄漏给客户，所以一套规范的规范的 git 工作流程是非常有必要的。</p>
+<h2 id="git-workflow">Git WorkFlow</h2>
+<p>WorkFlow 的字面意思即<strong>工作流</strong>，比喻像水流那样顺畅、自然的向前流动，不会发生冲击、对撞、甚至漩涡。工作流不涉及任何命令，它就是团体成员需要自遵守的一套规则，完全由开发者自己定义。</p>
+<p>当下比较流行的三种工作流程分别为：<a href="https://nvie.com/posts/a-successful-git-branching-model/">Git Flow</a>、<a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a>、<a href="https://docs.gitlab.com/ee/topics/gitlab_flow.html">GitLab Flow</a>。它们有一个共同点：都采用<a href="https://en.wikipedia.org/wiki/Feature-driven_development">功能驱动开发</a>。其中 <a href="https://nvie.com/posts/a-successful-git-branching-model/">Git Flow</a> 出现的最早，<a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a> 对其做了一些优化，比较适用于持续的版版发布。<a href="https://docs.gitlab.com/ee/topics/gitlab_flow.html">GitLab Flow</a> 出现的时间比较晚，所以是综合了前面两个工作流的优点制定的。</p>
+<h3 id="git-flow">Git Flow</h3>
+<p><code>git-flow</code> 的思路非常简洁，通过 5 种分支来管理整个工程。</p>
+<table>
+<thead>
+<tr>
+<th>分支</th>
+<th>周期</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>master</td>
+<td>长期</td>
+<td>主分支，用于存放对外发布的版本，任何时候在这个分支拿到的，都是稳定的分布版</td>
+</tr>
+<tr>
+<td>develop</td>
+<td>长期</td>
+<td>开发分支，用于日常开发，存放最新的开发版</td>
+</tr>
+<tr>
+<td>feature</td>
+<td>短期</td>
+<td>功能分支，它是为了开发某种特定功能，从 develop 分支上面分出来的。开发完成后，要再并入 develop</td>
+</tr>
+<tr>
+<td>release</td>
+<td>短期</td>
+<td>预发分支，它是指发布正式版本之前（即合并到 master 分支之前），我们可能需要有一个预发布的版本进行测试。预发布分支是从 develop 分支上面分出来的，预发布结束以后，必须合并进 develop 和 master 分支</td>
+</tr>
+<tr>
+<td>hotfix</td>
+<td>短期</td>
+<td>bug 修补分支，从 master 分支上面分出来的。修补结束以后，再合并进 master 和 develop 分支</td>
+</tr>
+</tbody>
+</table>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1662135675136.jpg" alt="git-flow" loading="lazy"></figure>
+<h3 id="github-flow">Github Flow</h3>
+<p>github-flow 可以认为是 git-flow 的一个简化版，它适用于持续部署的工程，直接将最新的功能部署到 master 分支上，不再操作 develop 分支。同时通过 CI&amp;CD 的使用，不再需要额外的 release 和 hotfix 分支。github 还结合了推送请求（pull request）功能，在合并 feature 分支之前通过PR请求其他成员对代码进行检查。</p>
+<ol>
+<li>master分支中的任何东西都是可部署的</li>
+<li>要开发新的功能特性，从 master 分支中创建一个描述性命名的分支(比如：new-oauth2-scopes)</li>
+<li>在本地提交到该分支，并定期将您的工作推送到服务器上的同一个命名分支</li>
+<li>当您需要反馈或帮助，或者您认为分支已经准备好合并时，可以提交一个推送请求（PR）</li>
+<li>在其他人审阅并签署了该功能后，可以将其合并到 master 中，合并后原来拉出来的分支会被删除</li>
+<li>一旦它被合并到 master 分支中，就可以并且应该立即部署</li>
+</ol>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1662135913988.png" alt="github-flow" loading="lazy"></figure>
+<p>github-flow 最大的优点就是简单，非常适合需要持续发布的产品。但是它的问题也很明显，因为它假设 master 分支的更新与产品的发布是一致的，即 master 分支的最新代码，默认就是当前的线上代码。</p>
+<p>但实际可能并非如此，代码合入 master 分支并不代表着它立刻就能发布。比如小程序提交审核以后需要等待一段时间才能发布，如果在这期间还有新的代码提交，那么 master 分支就会与刚刚发布的版本不一致。另外还有一种情况就是，有的公司只有指定时间才会发布产品，这会导致线上版本严重落后于 master 分支。</p>
+<p>可以发现针对上述情况，一个 master 分支就不够用了，你可能需要在 master 分支之外新建一个 prodution 分支才能解决问题。</p>
+<h3 id="gitlab-flow">Gitlab Flow</h3>
+<p>因为 gitlab-flow 出现的比较晚，所以它同时具备前面两种工作流的优点，并且又摒弃了它们存在的一些缺点。它的最大原则叫做<strong>上游优先</strong>（upsteam first），即只存在一个主分支 master，它是所有其他分支的<strong>上游</strong>。只有上游分支采纳的代码变化，才能应用到其他分支。</p>
+<p>gitlab-flow 分为两种情况，分别适用于持续发布和版本发布项目。对于持续发布项目，它建议在 master 分支以外，再建立不同的环境分支。比如，开发环境的分支是 master，预发环境的分支是 pre-production，生产环境的分支是 production。</p>
+<p>开发分支是预发分支的上游，预发分支又是生产分支的上游。如果产环境出现了 bug，这时就要新建一个功能分支，先把它合并到 master，确认没有问题，再cherry-pick 到 pre-production，这一步也没有问题，才进入 production。</p>
+<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1662135934030.png" alt="gitlab-flow 持续发布项目" loading="lazy"></figure>
+<p>对于版本发布的项目，建议的做法是每一个稳定版本，都要从 master 分支拉出一个分支，比如 2-3-stable、2-4-stable 等等。发现问题，就从对应版本分支创建修复分支，完成之后要先合并到 master 分支，然后才能合并到 release 分支。版本记录可以通过 master 上的 tag 来记录。</p>
+<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1662135958844.png" alt="gitlab-flow 版本发布项目" loading="lazy"></figure>
+<h2 id="issue-使用">Issue 使用</h2>
+<p>Git WorkFlow 主要解决了开发人员的问题，但是对项目管理者问题的解决力度不够，比如客户需求的管理、bug 的跟踪等。Github 和 Gitlab 提供的 Issue 功能可以比较好的解决项目的管理问题。</p>
+<p>Issue 中文可以翻译为<strong>议题</strong>或<strong>事务</strong>，是指一项待完成的工作，比如一个 bug、一项功能建议、文档缺失报告等。每个 Issue 应该包含该问题的所有信息和历史，使得后来的人只看这个 Issue，就能了解问题的所有方面和过程。</p>
+<blockquote>
+<p>Issue 起源于客服部门。用户打电话反馈问题，客服就创建一个工单，后续的每一个处理步骤、每一次与用户的交流，都需要更新工单，全程记录所有信息。因此，Issue 的原始功能是问题追踪和工单管理，后来不断扩展，逐渐演变成全功能的项目管理工具，还可以用于制定和实施软件的开发计划。</p>
+</blockquote>
+<p>下面以可以免费使用的 <a href="https://docs.github.com/cn/Issues/tracking-your-work-with-Issues/about-Issues">Github Issues</a> 来介绍如何使用 Issue。</p>
+<h3 id="创建-issue">创建 Issue</h3>
+<p>每个 Github 仓库都有一个 Issue 面板，如下图所示是新建 Issue 的界面。左侧输入 Issue 的标题和内容，支持 markdown 语法。右侧分别对应四个配置项，将在下面一一进行介绍。</p>
+<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1662135976962.png" alt="创建issue" loading="lazy"></figure>
+<h3 id="assignees">Assignees</h3>
+<p>Assignee 选择框用于从当前仓库的所有成员之中，指派某个 Issue 的处理人员。</p>
+<figure data-type="image" tabindex="6"><img src="https://www.guanngxu.com/post-images/1662135993137.png" alt="Assignees" loading="lazy"></figure>
+<h3 id="labels">Labels</h3>
+<p>可以为每个 Issue 打上标签，这样方便分类查看和管理，并且能比较好的使用看板进行查看。一般来说一个 Issue 至少应该有两种类型的 Label，即 Issue 的类型和 Issue 的状态（根据需要可打第三种用于表示优先级的 Label），其中 Issue 的状态可以用来构建敏捷看板。</p>
+<figure data-type="image" tabindex="7"><img src="https://www.guanngxu.com/post-images/1662136031883.png" alt="labels" loading="lazy"></figure>
+<h3 id="milestone">Milestone</h3>
+<p>Milestone 翻译过来叫<strong>里程碑</strong>，它的概念和迭代（sprint）或版本（version）差不多。Milestone 是 Issue 的容器，可以很方便的用来规划一个迭代（版本）要做的事情，也能非常方便的统计进度。</p>
+<figure data-type="image" tabindex="8"><img src="https://www.guanngxu.com/post-images/1662136047560.png" alt="Milestone" loading="lazy"></figure>
+<h3 id="projects">Projects</h3>
+<p><a href="https://docs.github.com/cn/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards">Projects</a> 是 Github 2020 年 6 月份提供的功能，它就是项目看板的功能，Gitlab 所提供的类似功能为 <a href="https://docs.gitlab.com/ee/user/project/issue_board.html">Issue boards</a>，感兴趣读者可以自行阅读文档了解。</p>
+<figure data-type="image" tabindex="9"><img src="https://www.guanngxu.com/post-images/1662136101954.png" alt="Projects" loading="lazy"></figure>
+<h3 id="prmr">PR&amp;MR</h3>
+<p>至此，可以发现我们可以使用 Issue 管理需求、bug，Milestone 又提供了迭代（版本）的计划管理，通过 Projects 可以创建敏捷看板，用于关注整体项目的进度。前文 <a href="#git-flow">Git WorkFlow</a> 从开发者角度提供了项目管理的工作流程，可以思考一下还差什么问题没有解决？</p>
+<p>最后剩下的问题是：每一个 Issue 都需要提交代码/文档进行解决，那代码/文档如何与 Issue 进行关联呢？其实无论是 GitHub 还是 GitLab，都可以很方便地在 Issue 上创建分支，在该分支上解决完 Issue 所对应的问题后，提交远程分支即可发起合并请求，在 Github 中称为 <code>Pull request</code>（PR），在 Gitlab 中则叫做 <code>Merge request</code>（MR）。</p>
+<h2 id="git-提交规范">Git 提交规范</h2>
+<p>上文已经说了我们可以对每个 Issue 创建分支，既然是分支，那超过一个 commit 是再常见不过的事情了。一些开发人员所写的提交说明常常是<code>fixbug</code>或者是<code>update</code>等非常不规范的说明。</p>
+<p>不规范的说明很难让人明白这次代码提交究竟是为了什么。在实际工作中，一份清晰简洁规范的 commit message 能够让后续的代码审查、信息查找、版本回退都更加高效可靠，因为我们还需要对提交说明制定一套规范。</p>
+<p>那么什么样的 commit message 才算是符合规范的说明呢？不同团队可以制定不同的规范，此处推荐使用 <a href="https://zjdoc-gitguide.readthedocs.io/zh_CN/latest/message/angular-commit.html">Angular Git Commit Guide</a></p>
+<p>提交格式指定为提交类型(type)、作用域(scope，可选)和主题(subject)，<strong>提交类型</strong>指定为下面其中一个：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>build</td>
+<td>对构建系统或者外部依赖项进行了修改</td>
+</tr>
+<tr>
+<td>ci</td>
+<td>对 CI 配置文件或脚本进行了修改</td>
+</tr>
+<tr>
+<td>docs</td>
+<td>对文档进行了修改</td>
+</tr>
+<tr>
+<td>feat</td>
+<td>增加新的特征</td>
+</tr>
+<tr>
+<td>fix</td>
+<td>修复 bug</td>
+</tr>
+<tr>
+<td>pref</td>
+<td>提高性能的代码更改</td>
+</tr>
+<tr>
+<td>refactor</td>
+<td>既不是修复bug也不是添加特征的代码重构</td>
+</tr>
+<tr>
+<td>style</td>
+<td>不影响代码含义的修改，比如空格、格式化、缺失的分号等</td>
+</tr>
+<tr>
+<td>test</td>
+<td>增加确实的测试或者矫正已存在的测试</td>
+</tr>
+</tbody>
+</table>
+<p><strong>作用域</strong>即表示范围，可以是任何指定提交更改位置的内容。<strong>主题</strong>则包括了对本次修改的简洁描述，有以下三个准则:</p>
+<ol>
+<li>使用命令式，现在时态：“改变”不是“已改变”也不是“改变了”</li>
+<li>不要大写首字母</li>
+<li>不在末尾添加句号</li>
+</ol>
+<p>下图是 <a href="https://www.nocobase.com/">NocoBase</a> 的 commit message 截图，可供参考</p>
+<figure data-type="image" tabindex="10"><img src="https://www.guanngxu.com/post-images/1662136126088.png" alt="commit_message" loading="lazy"></figure>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/_4KYecN7b/">
+                                <h3 class="post-title">
+                                    牛客网 NC632 牛牛摆木棒、POJ 1037 美丽的栅栏题解
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#git-workflow">Git WorkFlow</a>
+<ul>
+<li><a href="#git-flow">Git Flow</a></li>
+<li><a href="#github-flow">Github Flow</a></li>
+<li><a href="#gitlab-flow">Gitlab Flow</a></li>
+</ul>
+</li>
+<li><a href="#issue-%E4%BD%BF%E7%94%A8">Issue 使用</a>
+<ul>
+<li><a href="#%E5%88%9B%E5%BB%BA-issue">创建 Issue</a></li>
+<li><a href="#assignees">Assignees</a></li>
+<li><a href="#labels">Labels</a></li>
+<li><a href="#milestone">Milestone</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#prmr">PR&amp;MR</a></li>
+</ul>
+</li>
+<li><a href="#git-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83">Git 提交规范</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

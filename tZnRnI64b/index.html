@@ -1,0 +1,696 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    《算法竞赛进阶指南》165 小猫爬山题解 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            《算法竞赛进阶指南》165 小猫爬山题解
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2023-08-20</time>
+                            <span class="read-time">6 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-warning">
+                            #算法
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/tZnRnI64b.jpeg')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：</p>
+<p><a href="https://blog.csdn.net/weixin_43910320/article/details/106739103">[洛谷][noip][算法竞赛进阶指南]小猫爬山</a></p>
+<p><a href="https://blog.csdn.net/qq_42635159/article/details/108694912">《算法竞赛进阶指南》小猫爬山</a></p>
+</blockquote>
+<h2 id="小猫爬山">小猫爬山</h2>
+<h3 id="题目描述">题目描述</h3>
+<p>题目链接：<code>https://www.acwing.com/problem/content/167/</code></p>
+<p>​Freda 和 Rainbow 饲养了 N 只小猫。这天，小猫们要去爬山。经历了千辛万苦，小猫们终于爬上了山顶，但是疲倦的它们再也不想徒步走下山了（呜咕&gt;_&lt;）。</p>
+<p>Freda 和 Rainbow 只好花钱让它们坐索道下山。索道上的缆车最大承重量为 W，而 N 只小猫的重量分别是C<sub>1</sub>、C<sub>2</sub>……C<sub>n</sub>。当然，每辆缆车上的小猫的重量之和不能超过 W。每租用一辆缆车，Freda 和 Rainbow 就要付 1 美元，所以他们想知道，最少需要付多少美元才能把这 N 只小猫都运送下山？</p>
+<h3 id="输入格式">输入格式</h3>
+<p>​第一行包含两个用空格隔开的整数，N 和 W。接下来 N 行每行一个整数，其中第 i+1 行的整数表示第 i 只小猫的重量 C<sub>i</sub>。</p>
+<h3 id="输出格式">输出格式</h3>
+<p>输出一个整数，最少需要多少美元，也就是最少需要多少辆缆车。</p>
+<h2 id="分析解答">分析解答</h2>
+<h3 id="贪心">贪心</h3>
+<p>经过思考发现，我们只需要尽可能的在每辆车上都放更多的小猫，就能以最经济的方式把所有小猫都送下山。所以是一个非常明显的贪心题目，我们将所有小猫按重量排序，尽可能把肥猫先送下山即可。具体实现代码如下：</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void cin_arr(int *num, int len)
+{
+	for(int i = 0; i &lt; len; i++){
+		cin&gt;&gt;num[i];
+	}
+}
+
+int slove(int *num, int n, int w)
+{
+	int ans = 0;
+	int remain = 0;
+	int load = 0;
+	
+	sort(num, num+n);
+	
+	while(true){
+		for(int i = 0; i &lt; n; i++){
+            // 连当前最小的猫都装不下，那么就新开一辆车
+			if(num[i] != -1 &amp;&amp; remain &lt; num[i]){
+				ans++;
+				remain = w;
+				break;
+			}
+		}
+		
+		for(int i = n-1; i &gt;= 0; i--){
+            // 从大到小查找，尽可能装肥猫
+			if(num[i] != -1 &amp;&amp; remain &gt;= num[i]){
+				remain -= num[i];
+                // 运送走的小猫重量以 -1 表示
+				num[i] = -1;
+				load++;
+				break;
+			}
+		}
+		
+		// 如果所有小猫都运走了，那么当前 ans 就是答案
+		if(load &gt;= n)
+			return ans;
+	}
+}
+
+int main()
+{
+    int n, w;
+	int cat[1000000];
+	
+	cin&gt;&gt;n&gt;&gt;w;
+	cin_arr(cat, n);
+
+	cout&lt;&lt;slove(cat, n, w)&lt;&lt;endl;
+}
+</code></pre>
+<p>经过实际测试发现，盲目使用贪心思想的算法并不正确，例如如下测试用例。</p>
+<pre><code class="language-txt">6 16
+9 5 5 5 4 3
+</code></pre>
+<p>贪心的结果是使用 <strong>3</strong> 辆车，分别为<code>9+5</code>、<code>5+5+4</code>、<code>3</code>；而正确的结果却是使用 <strong>2</strong> 辆车，分别为<code>9+4+3</code>和<code>5+5+5</code>。</p>
+<h3 id="深度优先搜索">深度优先搜索</h3>
+<p>既然贪心思想在这里行不通，那么我们就采用暴力搜索，即小猫可以放在现有任意一辆车上。具体实现代码如下：</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define N 2000
+
+int n, w;
+int cat[N];
+int sum[N] = {0}; // 第 i 辆车当前重量
+int ans = N;
+
+void cin_arr(int *num, int len)
+{
+	for(int i = 0; i &lt; len; i++){
+		cin&gt;&gt;num[i];
+	}
+}
+
+void dfs(int cur_cat, int cur_car)
+{
+	if(cur_car &gt; ans) // 求最小值，不符合直接返回
+        return ;
+
+    if(cur_cat == n) { // 所有小猫都上车了
+        ans = cur_car;
+        return ;
+    }
+
+    for(int i = 0; i &lt; cur_car; i++) {
+        if(sum[i] + cat[cur_cat] &lt;= w) { // 当前猫能放进去
+            sum[i] += cat[cur_cat]; // 当前猫占用重量
+            dfs(cur_cat+1, cur_car); // 继续放下一只猫
+            sum[i] -= cat[cur_cat]; // 把已经放进去的猫拿出来，因为是循环，所以放入下一辆车里面
+        }
+    }
+
+    // 新开一辆车，把当前这只猫放到新的车里面
+    sum[cur_car] = cat[cur_cat];
+    dfs(cur_cat+1, cur_car+1);
+    sum[cur_car] = 0; // 把猫拿出来
+}
+
+int main()
+{
+	cin&gt;&gt;n&gt;&gt;w;
+	cin_arr(cat, n);
+    dfs(0, 0);
+	cout&lt;&lt;ans&lt;&lt;endl;
+}
+</code></pre>
+<h3 id="搜索优化">搜索优化</h3>
+<p>考虑到每次都是在车数量固定的情况下进行搜索的，那么少满足一次<code>(sum[i] + cat[cur_cat] &lt;= w)</code>条件，就会少一次递归的调用，也即少一次搜索。那么如何能尽快使得程序尽快不满足该条件呢？</p>
+<p>让<code>sum[i]</code>减小的速度加快就会减少搜索分支，即每次放更重一点的猫进去，就能达到效果。所以我们可以在进行搜索前将小猫的重量进行降序排序，这样从肥猫开始搜索就会减少分支。</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define N 2000
+
+int n, w;
+int cat[N];
+int sum[N] = {0}; // 第 i 辆车当前重量
+int ans = N;
+
+void cin_arr(int *num, int len)
+{
+	for(int i = 0; i &lt; len; i++){
+		cin&gt;&gt;num[i];
+	}
+}
+
+bool cmp(int a, int b)
+{
+    return a &gt; b;
+}
+
+void dfs(int cur_cat, int cur_car)
+{
+	if(cur_car &gt; ans) // 求最小值，不符合直接返回
+        return ;
+
+    if(cur_cat == n) { // 所有小猫都上车了
+        ans = cur_car;
+        return ;
+    }
+
+    for(int i = 0; i &lt; cur_car; i++) {
+        if(sum[i] + cat[cur_cat] &lt;= w) { // 当前猫能放进去
+            sum[i] += cat[cur_cat]; // 当前猫占用重量
+            dfs(cur_cat+1, cur_car); // 继续放下一只猫
+            sum[i] -= cat[cur_cat]; // 把已经放进去的猫拿出来，因为是循环，所以放入下一辆车里面
+        }
+    }
+
+    // 新开一辆车，把当前这只猫放到新的车里面
+    sum[cur_car] = cat[cur_cat];
+    dfs(cur_cat+1, cur_car+1);
+    sum[cur_car] = 0; // 把猫拿出来
+}
+
+int main()
+{
+	cin&gt;&gt;n&gt;&gt;w;
+	cin_arr(cat, n);
+    sort(cat, cat+n, cmp); // 反排序优化搜索
+    dfs(0, 0);
+	cout&lt;&lt;ans&lt;&lt;endl;
+}
+</code></pre>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/8sxCrqU9f/">
+                                <h3 class="post-title">
+                                    二叉树的前序、中序、后序、层序遍历
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%B0%8F%E7%8C%AB%E7%88%AC%E5%B1%B1">小猫爬山</a>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述</a></li>
+<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F">输入格式</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">输出格式</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%86%E6%9E%90%E8%A7%A3%E7%AD%94">分析解答</a>
+<ul>
+<li><a href="#%E8%B4%AA%E5%BF%83">贪心</a></li>
+<li><a href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2">深度优先搜索</a></li>
+<li><a href="#%E6%90%9C%E7%B4%A2%E4%BC%98%E5%8C%96">搜索优化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

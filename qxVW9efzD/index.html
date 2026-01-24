@@ -1,0 +1,635 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Java 垃圾回收机制详解 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            Java 垃圾回收机制详解
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2020-10-15</time>
+                            <span class="read-time">12 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-info">
+                            #操作系统
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
+                            i-tag-other_3">
+                            #Java
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/qxVW9efzD.png')"></div>
+                            
+                                <div class="post-content">
+                                    <p>最近主要时间都放在知识图谱构建中，但是还是需要给自己充电。想在近段时间好好把 JVM 的垃圾回收好好看一下，学习然后输出，是我新找到的有效学习方法，希望你看了之后能有收获。</p>
+<h2 id="什么是垃圾">什么是垃圾</h2>
+<p>垃圾回收（常称做GC——Garbage Collection）诞生于1960年 MIT 的 Lisp 语言，垃圾回收机制也已经用在了很多编程语言中，比如 Java、Python、C# 等。我们这里主要说 Java 中的垃圾回收。</p>
+<p>在JVM中，程序计数器、虚拟机栈、本地方法栈都是随线程生而生，随线程灭而灭；栈帧随着方法的进入和退出做入栈和出栈操作，实现了自动的内存清理；常说的垃圾回收主要集中在<strong>堆和方法区</strong>，这部分内存是随着程序运行动态分配的。</p>
+<p>既然要回收垃圾，那么我们首先需要知道的就是，什么样的对象是垃圾。一般有两种方式：</p>
+<h3 id="引用计数">引用计数</h3>
+<p>每个对象有一个引用计数属性，新增一个引用时计数加 1，引用释放时计数减 1，当引用计数变为 0 的时候，这个对象就可以回收了。但是这个方法无法解决<strong>对象循环引用</strong>的问题。</p>
+<pre><code class="language-java">    // 对象循环引用示例
+    
+    Object objectA = new Object();
+    Object objectB = new Object();
+    
+    objectA.instance = objectB;
+    objectB.instance = objectA;
+    
+    objectA = null;
+    objectB = null;
+</code></pre>
+<p>假设我们有上面的代码。程序启动后，objectA和objectB两个对象被创建并在堆中分配内存，它们都相互持有对方的引用，但是除了它们相互持有的引用之外，再无别的引用。而实际上，引用已经被置空，这两个对象不可能再被访问了，但是因为它们相互引用着对方，导致它们的引用计数都不为 0，因此引用计数算法无法通知GC回收它们，造成了内存的浪费。如下图：对象之间的引用形成一个有环图。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1663990365198.png" alt="" loading="lazy"></figure>
+<h3 id="可达性分析">可达性分析</h3>
+<p>或者叫<strong>根搜索算法</strong>，在主流的JVM中，都是使用的这种方法来判断对象是否存活的。这个算法的思路很简单，它把内存中的每一个对象都看作一个结点，然后定义了一些可以作为根结点的对象，我们称之为「GC Roots」。果一个对象中有另一个对象的引用，那么就认这个对象有一条指向另一个对象的边。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1663990395811.png" alt="" loading="lazy"></figure>
+<p>像上面这张图，JVM会起一个线程从所有的GC Roots开始往下遍历，当遍历完之后如果发现有一些对象不可到达，那么就认为这些对象已经没有用了，需要被回收。（<em>这里多说一句，我们的JVM一起动，就至少有两个线程启动，一个是垃圾回收线程，一个是我们自己的主线程。</em>）</p>
+<p>那么现在问题就变成了——什么样的对象可以当作 GC Roots？共有四种对象可以作为 GC Roots。</p>
+<h4 id="虚拟机栈中的引用的对象">虚拟机栈中的引用的对象</h4>
+<p>们在程序中正常创建一个对象，对象会在堆上开辟一块空间，同时会将这块空间的地址作为引用保存到虚拟机栈中，如果对象生命周期结束了，那么引用就会从虚拟机栈中出栈，因此如果在虚拟机栈中有引用，就说明这个对象还是有用的，这种对象可以作为 GC Roots。</p>
+<h4 id="全局的静态的对象">全局的静态的对象</h4>
+<p>也就是使用了<code>static</code>关键字定义了的对象，这种对象的引用保存在共有的方法区中，因为虚拟机栈是线程私有的，如果保存在栈里，就不叫全局了，很显然，这种对象是要作为 GC Roots 的。</p>
+<h4 id="常量引用">常量引用</h4>
+<p>就是使用了static final关键字，由于这种引用初始化之后不会修改，所以方法区常量池里的引用的对象也作为GC Roots。</p>
+<h4 id="本地方法栈中jni引用的对象">本地方法栈中JNI引用的对象</h4>
+<p>有时候单纯的java代码不能满足我们的需求，就可能需要调用 C 或 C++ 代码（<em>Java 本身就是用 C 和 C++ 写的嘛</em>），因此会使用<code>native</code>方法，JVM 内存中专门有一块本地方法栈，用来保存这些对象的引用，所以本地方法栈中引用的对象也会被作为 GC Roots。</p>
+<h2 id="垃圾回收算法">垃圾回收算法</h2>
+<p>有意思的是在 JVM 规范中，并没有明确指明 GC 的运作方式，各个厂商可以采用不同的方式去实现垃圾收集器。这篇文章简单介绍常见的垃圾回收算法。</p>
+<h3 id="标记-清除算法">标记-清除算法</h3>
+<p>标记-清除算法分两个步骤，分别为「标记」和「清除」，字如其人。它是一个最基础的垃圾回收算法，更高级的垃圾回收算法都是基于它改进的。</p>
+<p>它的运行过程是这样的：首先标记出所有需要回收的对象，标记完成后，再统一回收掉所有被标记的对象。</p>
+<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1663990430357.png" alt="" loading="lazy"></figure>
+<p>标记-清除算法的缺点有两个，一个是空间问题，标记清除之后会产生大量的不连续内存碎片。内存碎片太多，程序在之后的运行过程中就有可能找不到足够的连续内存来分配较大的对象，进而不得不提前触发另一次垃圾回收，导致程序效率降低。标记-清除算法的另一个缺点是效率问题，标记和清除的效率都不高，两次扫描耗时严重。</p>
+<h3 id="复制算法">复制算法</h3>
+<p>复制算法把内存按容量划分为大小相等的两块，每次只使用其中的一块。如果正在用的这块没有足够的可使用空间了，那么就将还活着的对象复制到另一块去，再把使用过的内存一次性清掉。</p>
+<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1663990465917.png" alt="" loading="lazy"></figure>
+<p>这样就实现了简单高效的做法，每一次进行内存回收时，就不用再去考虑内存碎片这些复杂的情况，只需要移动堆顶指针就可以。但是缺点也很明显，可使用内存只有原来的一半了，而且持续复制生命力很旺盛的对象也会让效率降低哇。复制算法适用于存活对象少、垃圾对象多的情况，这种情况在新生代比较常见。</p>
+<h3 id="标记-压缩算法">标记-压缩算法</h3>
+<p>在老年代，大部分对象都是存活的对象，复制算法在这里就不靠谱了，所以有人提出了<strong>标记压缩算法</strong>，标记过程和标记清除算法一样，但是清理时不是简单的清理，而是让所有存活的对象都向一端移动，然后直接清理掉边界以外的内存，需要移动对象的成本。</p>
+<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1663990508216.png" alt="" loading="lazy"></figure>
+<h3 id="分代算法">分代算法</h3>
+<p>前面的几种垃圾回收算法中，没有一种可以完全替代其他算法，他们具备各自的特点与优势，因此更好的方法是根据垃圾对象的特性来选择合适的回收算法。</p>
+<p>分代算法的思想就是将内存空间根据对象的特点不同进行划分，选择合适的垃圾回收算法来提高回收效率。分代的思想已经被现有的虚拟机广泛采用。</p>
+<h3 id="分区算法">分区算法</h3>
+<p>分区算法就是将整个堆空间再划分为连续的不同小区间，每一个小区间独立使用，也独立回收。</p>
+<figure data-type="image" tabindex="6"><img src="https://www.guanngxu.com/post-images/1663990536519.png" alt="" loading="lazy"></figure>
+<p>一般在相同条件下，堆空间越大，那么一次GC的时间就越长，因此而产生的停顿时间也就越长。为了控制GC的停顿时间，根据目标停顿时间，每次合理回收若干个小区间，而不是整个堆空间，进而减少一个GC的停顿时间。</p>
+<h2 id="垃圾收集器">垃圾收集器</h2>
+<p>上面讲的是垃圾收集算法，讲的是理论，垃圾收集器就是这些理论的具体实现。下面介绍一些垃圾收集器</p>
+<h3 id="serial收集器">Serial收集器</h3>
+<p>串行收集器是高效率的、古老的收集器，它只用了一个线程去回收垃圾。新生代、老年代使用串行回收；新生代复制算法、老年代标记-压缩算法。串行是指 GC 过程和用户过程是串行的，在垃圾收集过程中会 stop the world，JVM在后台自动发起垃圾回收，会在用户不可见的情况下，把用户的线程全部停掉，就是 <strong>GC 停顿</strong>，给用户带来不良体验。</p>
+<p>红色代表 GC 线程，灰色代表用户线程，下同。</p>
+<figure data-type="image" tabindex="7"><img src="https://www.guanngxu.com/post-images/1663990567488.png" alt="" loading="lazy"></figure>
+<h3 id="parnew收集器">ParNew收集器</h3>
+<p>ParNew 收集器就是 Serial 收集器的多线程版本，除了多线程以外，其余行为都和 Serial 收集器一样。新生代并行收集，老年代串行收集；新生代使用复制算法、老年代使用标记-压缩算法。</p>
+<figure data-type="image" tabindex="8"><img src="https://www.guanngxu.com/post-images/1663990599041.png" alt="" loading="lazy"></figure>
+<h3 id="parallel-scavenge收集器">Parallel Scavenge收集器</h3>
+<p>Parallel Scavenge 收集器类似于 ParNew 收集器，因为与吞吐量密切，也称为吞吐量收集器。可以通过参数来打开自适应调节策略，虚拟机会根据当前系统的运行情况收集性能监控信息，动态调整这些参数以提供最合适的停顿时间或最大的吞吐量；也可以通过参数控制 GC 的时间不大于多少毫秒或者比例。Parallel Scavenge 收集器以高吞吐量为目标，减少垃圾收集时间，让用户代码获得更长的运行时间；GC 停顿时间的缩短，是用牺牲吞吐量和新生代空间来换取的。</p>
+<h3 id="parallel-old收集器">Parallel Old收集器</h3>
+<p>Parallel Old 收集器是 Parallel Scavenge 收集器的老年代版本，使用多线程和「标记-压缩」算法，在 JDK1.6 版本才开始提供。</p>
+<h3 id="cms收集器">CMS收集器</h3>
+<p>CMS（Concorrect mask sweep）收集器是一种以获取最短停顿时间为目标的收集器；也称为并发低停顿收集器。常用在 WEB、B/S 架构的服务系统中，因为这类应用很注重响应速度，尽可能减少系统停顿时间，给用户带来较好的体验。从名字上就可以看出来，它是基于「标记-清除」算法实现的，整个过程分为 4 步：</p>
+<h4 id="初始标记">初始标记</h4>
+<p>初始标记仅仅标记 GC Roots 能直接关联到的对象，所以速度很快，需要<strong>停止服务（Stop The World）</strong>。</p>
+<h4 id="并发标记">并发标记</h4>
+<p>并发标记是进行 GC Roots Tracing 的过程，为了标记上一步集合中的存活对象，因为用户程序这段时间也在运行，所以并不能保证可以标记出所有的存活对象。</p>
+<h4 id="重新标记">重新标记</h4>
+<p>重新标记阶段是为了修正并发标记阶段因用户程序继续运作而导致标记变动的那一部分对象，采用多线程并行来提升效率，会停止服务，时间上远比并发标记短，较初始标记稍长。</p>
+<h4 id="并发清除">并发清除</h4>
+<p>这个阶段即并发收集垃圾对象，可以与用户线程一起工作。</p>
+<p>虽然 CMS 收集器线程可以和用户线程一起进行，但是它肯定会占用 CPU 资源，拖慢应用程序是肯定的，总的吞吐量会降低。</p>
+<figure data-type="image" tabindex="9"><img src="https://www.guanngxu.com/post-images/1663990632007.png" alt="" loading="lazy"></figure>
+<h3 id="g1收集器">G1收集器</h3>
+<p>（看下垃圾回收算法中的分区算法）这是目前最新的前沿成果，它基于“标记-压缩”算法，可以进行空间整理，不会产生碎片。前面的垃圾收集器，收集范围都是整个新生代或老年代，但是 G1 收集器不是这样，使用 G1 收集器时，java堆的内存模型不同，它还保留有新生代和老年代的概念，它们都是一部分区域（可以不连续）的集合。除此之外，G1 收集器还能建立可预测的停顿时间模型，可以明确指定M毫秒时间片内，垃圾收集消耗的时间不超过N毫秒。G1 跟踪各个区域（Region）获得其收集价值大小，在后台维护一个优先列表，每次根据允许的收集时间，优先回收价值最大的 Region。G1 垃圾回收也分4步：</p>
+<h4 id="初始标记-2">初始标记</h4>
+<p>仅标记 GC Roots 能直接关联到的对象。</p>
+<h4 id="并发标记-2">并发标记</h4>
+<p>进行 GC Roots Tracing 的过程，并不能保证可以标记出所有的存活对象。这个阶段若发现区域对象中的所有对象都是垃圾，那个这个区域会被立即回收。</p>
+<h4 id="最终标记">最终标记</h4>
+<p>为了修正并发标记期间因用户程序继续运作而导致标记变动的那一部分对象的标记记录，G1 中采用了比 CMS 更快的初始快照算法: snapshot-at-the-beginning (SATB)。</p>
+<h4 id="筛选回收">筛选回收</h4>
+<p>首先排序各个 Region 的回收价值和成本，然后根据用户期望的 GC 停顿时间来制定回收计划，最后按计划回收一些价值高的 Region 中垃圾对象，回收时采用&quot;复制&quot;算法，从一个或多个 Region 复制存活对象到堆上的另一个空的 Region，并且在此过程中压缩和释放内存。</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/05lwXg0GQ/">
+                                <h3 class="post-title">
+                                    SEO 入门——你必须了解站长平台知识
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9E%83%E5%9C%BE">什么是垃圾</a>
+<ul>
+<li><a href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0">引用计数</a></li>
+<li><a href="#%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90">可达性分析</a>
+<ul>
+<li><a href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88%E4%B8%AD%E7%9A%84%E5%BC%95%E7%94%A8%E7%9A%84%E5%AF%B9%E8%B1%A1">虚拟机栈中的引用的对象</a></li>
+<li><a href="#%E5%85%A8%E5%B1%80%E7%9A%84%E9%9D%99%E6%80%81%E7%9A%84%E5%AF%B9%E8%B1%A1">全局的静态的对象</a></li>
+<li><a href="#%E5%B8%B8%E9%87%8F%E5%BC%95%E7%94%A8">常量引用</a></li>
+<li><a href="#%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88%E4%B8%ADjni%E5%BC%95%E7%94%A8%E7%9A%84%E5%AF%B9%E8%B1%A1">本地方法栈中JNI引用的对象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95">垃圾回收算法</a>
+<ul>
+<li><a href="#%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95">标记-清除算法</a></li>
+<li><a href="#%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95">复制算法</a></li>
+<li><a href="#%E6%A0%87%E8%AE%B0-%E5%8E%8B%E7%BC%A9%E7%AE%97%E6%B3%95">标记-压缩算法</a></li>
+<li><a href="#%E5%88%86%E4%BB%A3%E7%AE%97%E6%B3%95">分代算法</a></li>
+<li><a href="#%E5%88%86%E5%8C%BA%E7%AE%97%E6%B3%95">分区算法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8">垃圾收集器</a>
+<ul>
+<li><a href="#serial%E6%94%B6%E9%9B%86%E5%99%A8">Serial收集器</a></li>
+<li><a href="#parnew%E6%94%B6%E9%9B%86%E5%99%A8">ParNew收集器</a></li>
+<li><a href="#parallel-scavenge%E6%94%B6%E9%9B%86%E5%99%A8">Parallel Scavenge收集器</a></li>
+<li><a href="#parallel-old%E6%94%B6%E9%9B%86%E5%99%A8">Parallel Old收集器</a></li>
+<li><a href="#cms%E6%94%B6%E9%9B%86%E5%99%A8">CMS收集器</a>
+<ul>
+<li><a href="#%E5%88%9D%E5%A7%8B%E6%A0%87%E8%AE%B0">初始标记</a></li>
+<li><a href="#%E5%B9%B6%E5%8F%91%E6%A0%87%E8%AE%B0">并发标记</a></li>
+<li><a href="#%E9%87%8D%E6%96%B0%E6%A0%87%E8%AE%B0">重新标记</a></li>
+<li><a href="#%E5%B9%B6%E5%8F%91%E6%B8%85%E9%99%A4">并发清除</a></li>
+</ul>
+</li>
+<li><a href="#g1%E6%94%B6%E9%9B%86%E5%99%A8">G1收集器</a>
+<ul>
+<li><a href="#%E5%88%9D%E5%A7%8B%E6%A0%87%E8%AE%B0-2">初始标记</a></li>
+<li><a href="#%E5%B9%B6%E5%8F%91%E6%A0%87%E8%AE%B0-2">并发标记</a></li>
+<li><a href="#%E6%9C%80%E7%BB%88%E6%A0%87%E8%AE%B0">最终标记</a></li>
+<li><a href="#%E7%AD%9B%E9%80%89%E5%9B%9E%E6%94%B6">筛选回收</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

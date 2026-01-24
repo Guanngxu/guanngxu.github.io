@@ -1,0 +1,560 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Schema 与数据类型优化 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            Schema 与数据类型优化
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2020-11-03</time>
+                            <span class="read-time">6 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/wjM4wf9IE/" class="post-tag i-tag
+                            i-tag-primary">
+                            #MySQL
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-other_4">
+                            #数据库
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/wZWdqj3Rd.jpg')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：<br>
+《高性能 MySQL（第三版））》</p>
+</blockquote>
+<h2 id="选择优化的数据类型">选择优化的数据类型</h2>
+<p>世面上常见的数据库大多支持了多种多样的数据类型，选择正确的数据类型对于获得高性能至关重要，一般都需要遵循如下的几个原则：</p>
+<ol>
+<li>更小的通常更好：更小的通常更快，因为占用着更少的磁盘、内存和 CPU，并且处理时需要的 CPU 周期也更少；</li>
+<li>简单就好：简单数据类型的操作通常需要更少的 CPU 周期；</li>
+<li>尽量避免 NULL：如果查询中包含可为 NULL 的列，就会使得索引、索引统计和值比较变得复杂，因此在设计表是最好指定列为 NOT NULL。</li>
+</ol>
+<h3 id="整数类型">整数类型</h3>
+<p>在 MYSQL 中可以为整数类型指定宽度，例如<code>INT(11)</code>，但是这对大多数应用是没有意义的，它不会限制值的合法范围，只是规定了 MySQL 的一些交互工具（如 MySQL 命令行客户端）用来显示字符的个数。对于存储和计算来说<code>INT(1)</code>和<code>INT(20)</code>是相同的。</p>
+<h3 id="字符串类型">字符串类型</h3>
+<p>需要注意的是当 MySQL 存储 CHAR 值时，它会删掉所有的末尾空格，因为 CHAR 值会根据需要采用空格进行填充以方便比较，这导致的问题就是你使用 CHAR 存储的<code>string </code>会变成<code>string</code>。CHAR 的好处在于它是定长的，很适合存储像 MD5 值一样的定长值，定长值的 CHAR 类型不易产生碎片，而且对于非常短的列 CHAR 也会比 VERCHAR 好，比如<code>CHAR(1)</code>只需要一个字节，而<code>VERCHAR(1)</code>则需要两个字节，因为它还需要一个字节来存长度。</p>
+<p>VERCHAR 类型在存储可变长字符串时，会比 CHAR 更节省空间，它需要使用 1 或者 2 个额外的字节记录字符串的长度。但由于行是变长的，当一个行占用的空间增长，并且在页内没有更多的可用空间可以存储，就容易产生碎片。</p>
+<h3 id="使用枚举代替字符串">使用枚举代替字符串</h3>
+<p>有时候可以使用枚举列代替常用的字符串类型，枚举列可以把一些不重复的字符串存储成一个预定义的集合，而且 MySQL 在存储枚举时非常紧凑，会根据列的数量压缩到一个或两个字节。比如下面的例子：</p>
+<pre><code class="language-sql">CREATE TABLE enum_test(
+    e ENUM('fish', 'apple', 'dog') NOT NULL
+);
+
+INSERT INTO enum_test(e) VALUES('fish'), ('dog'), ('apple');
+
+SELECT e+0 FROM enum_test;
+
+# result
++-----+
+| e+0 |
++-----+
+|   1 |
+|   2 |
+|   3 |
++-----+
+</code></pre>
+<p>可以看到使用枚举类型后，上面三行数据实际上存储为了整数，而不是字符串，而且还有一个让人吃惊的地方：枚举字段是按照内部存储的整数而不是定义的字符串进行排序的，这一点需要特别注意，不然在写程序时容易中犯错。当然你也可以在查询时使用<code>FIELD()</code>函数显式地指定排序顺序。</p>
+<p>可以看到上面</p>
+<h2 id="范式和反范式">范式和反范式</h2>
+<p>关系型数据库有设计范式的概念，这一点在大学的数据库课程中肯定都会提及。因为有比较高的范式，那么就只有很少或者没有重复的数据，因此在 UPDATE 时只需要修改更少的数据；高范式的表通常也更小，因此占用的内存也会更小，操作起来也会更快......</p>
+<p>但是高范式也带来了另一个缺点，比较好的范式通常意味着需要关联，稍微复杂一点的查询就需要使用 JOIN，关联的代价是昂贵的，甚至让一些索引策略失效；而如果不需要关联，即使某个查询需要全表扫描，当数据比内存大时可能会比关联查询快的多。所以一般都会根据实际情况将范式与反范式混用，完全的范式化和完全的反范式化都是实验室才有的东西。</p>
+<h2 id="缓存表和汇总表">缓存表和汇总表</h2>
+<p>这里的「缓存表」和「汇总表」并没有什么标准的含义。我们用「缓存表」来存储那些可以从其他表获取，但是获取的速度很慢的数据；而「汇总表」则用来保存那些使用 GROUP BY 语句聚合数据的表。毫无疑问，我们存这些冗余数据也是为了性能。</p>
+<p>比如近两年各种应用流行的年终报告，每次网易云音乐的年终报告都会把朋友圈撑满，其它类似于缓存一个用户的朋友数、一个文件的下载次数等等。这些数据实时计算的开销是很大的，而且多数情况下用户也等不起实时计算的时间，一般的解决方案都是通过增加计数器表（缓存表）来解决这个问题。</p>
+<p>计算机科学中总是伴随着双面性，上面的计数器表带来性能提升的同时也带来了并发问题。网站的每一次点击都会导致对计数器的更新，对于任何想要更新这一行的事务来说，这条记录都有一个全局的互斥锁，这会使得这些事务只能串行的进行。每一次点击都会触发下面的语句，但大量的点击伴随着该行数据的互斥锁，想想性能也不会提升到哪里去吧。</p>
+<pre><code class="language-sql">UPDATE hit_counter SET cnt = cnt + 1;
+</code></pre>
+<p>大多数应用都是读查询居多，为了提升读查询的速度，经常会需要增加一些额外的索引，增加冗余列、汇总表、缓存表等等。但是不要忘了这些技巧也会增加写查询的负担，还会增加开发难度，因此应该根据实际应用场景来做权衡。</p>
+<h2 id="加快-alter-table-表的速度">加快 ALTER TABLE 表的速度</h2>
+<p>MySQL 执行大部分修改表结构的方法都是用新的结构创建一个空表，然后从旧表中查出所有数据插入到新表，然后删除旧表。在内存不足、表很大、索引多的情况下会花费很长的时间。一个很严重的缺点是大部分 ALTER TABLE 操作将导致 MySQL 服务中断。</p>
+<p>对于常见的场景我们有两种技巧避免服务中断。一种是先在一台不提供服务的机器上执行 ALTER TABLE 操作，然后和提供服务的主库进行切换；另一种技巧是「影子拷贝」，即用要求的表结构创建一张和源表无关的新表，然后通过重命名和删除表的操作交换两张表。</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/dDolfjfkM/">
+                                <h3 class="post-title">
+                                    转载——我的喜欢从误会开始｜最后的记忆
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%80%89%E6%8B%A9%E4%BC%98%E5%8C%96%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">选择优化的数据类型</a>
+<ul>
+<li><a href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B">整数类型</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B">字符串类型</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%9E%9A%E4%B8%BE%E4%BB%A3%E6%9B%BF%E5%AD%97%E7%AC%A6%E4%B8%B2">使用枚举代替字符串</a></li>
+</ul>
+</li>
+<li><a href="#%E8%8C%83%E5%BC%8F%E5%92%8C%E5%8F%8D%E8%8C%83%E5%BC%8F">范式和反范式</a></li>
+<li><a href="#%E7%BC%93%E5%AD%98%E8%A1%A8%E5%92%8C%E6%B1%87%E6%80%BB%E8%A1%A8">缓存表和汇总表</a></li>
+<li><a href="#%E5%8A%A0%E5%BF%AB-alter-table-%E8%A1%A8%E7%9A%84%E9%80%9F%E5%BA%A6">加快 ALTER TABLE 表的速度</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

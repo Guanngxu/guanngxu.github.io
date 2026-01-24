@@ -1,0 +1,740 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    正则表达式入门，基础语法详解 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            正则表达式入门，基础语法详解
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2018-03-29</time>
+                            <span class="read-time">10 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/XcHzo7Nc6/" class="post-tag i-tag
+                            i-tag-">
+                            #正则表达式
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/UGoTtZqQ-y/" class="post-tag i-tag
+                            i-tag-banana">
+                            #编译原理
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/X5KvKQqL-.jpeg')"></div>
+                            
+                                <div class="post-content">
+                                    <p>这两天一直在时不时的和 Neo4j 图数据库打交道。它的查询语句可以使用正则表达式，有一段时间没有自己写过正则表达式了，现在处于能看懂别人写的正则表达式，但是自己写不出来，语法规则都忘了。为了方便接下来的工作，所以特地复习复习正则表达式的语法。</p>
+<h2 id="正则表达式简介">正则表达式简介</h2>
+<p>正则表达式是用来匹配字符串的一系列匹配符，具备简介高效的特点，在很多语言中都有支持（java、python、javascript、php 等等）。在 windows 的 cmd 命令中也同样支持，例如使用命令 <em>dir j*</em>，那么只会罗列出所有以j开头的文件和文件夹。</p>
+<h2 id="正则表达式基本语法">正则表达式基本语法</h2>
+<p>正则表达式在在不同语言的支持语法略有不同，本文采用js的进行说明。js 中使用正则表达式的方法为<em>str.match(/表达式/)</em>，即需要加两个斜杠。以下所有的代码段第一行为代码，第二行为返回结果，实验是在 chrome 控制台进行的。</p>
+<p>一直认为最好的学习方式就是实际操作，理论谁都能讲一大堆，但是实际做没做出来还真不知道。一个奇葩现象就是教软件工程的老师可能并没有在软件行业待过。</p>
+<h3 id="普通匹配符">普通匹配符</h3>
+<p>普通匹配符能匹配与之对应的字符，默认区分大小写。</p>
+<pre><code class="language-javascript">&quot;Hello Regx&quot;.match(/H/)
+[&quot;H&quot;, index: 0, input: &quot;Hello Regx&quot;, groups: undefined]
+</code></pre>
+<h3 id="正则标记符">正则标记符</h3>
+<ul>
+<li>i ：不区分大小写</li>
+<li>g ：全局匹配</li>
+<li>m ：多行匹配（暂不管它，我用的少）</li>
+</ul>
+<p>参数直接加在最后一个斜杠的后面，比如&quot;Hello Regx&quot;.match(/regx/<mark>i</mark>)，可以加多个参数。</p>
+<pre><code class="language-javascript">&quot;Hello Regx&quot;.match(/regx/i)
+[&quot;Regx&quot;, index: 6, input: &quot;Hello Regx&quot;, groups: undefined]
+</code></pre>
+<p>之前是表达式一旦匹配成功，就不再向字符串后面查找了，加上 g 后，表示进行全局查找。最后返回的是一个数组。</p>
+<pre><code class="language-javascript">&quot;Hello Regx&quot;.match(/e/g)
+(2) [&quot;e&quot;, &quot;e&quot;]
+</code></pre>
+<h3 id="多匹配符">多匹配符</h3>
+<ul>
+<li>\d ：匹配数字，即 0~9</li>
+<li>\w ：匹配数字、字母、下划线</li>
+<li>. ：匹配除换行的所有字符</li>
+</ul>
+<p>需要注意的是，上面所有的匹配符都只能匹配一个字符。</p>
+<pre><code class="language-javascript">&quot;Hello 2018&quot;.match(/\d/g)
+// 使用\d,匹配字符串中的所有数字
+(4) [&quot;2&quot;, &quot;0&quot;, &quot;1&quot;, &quot;8&quot;]
+
+
+&quot;Hello 2018&quot;.match(/\w/g)
+// 使用\w，匹配所有的数字和字母，需要注意没有匹配到空格
+(9) [&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;, &quot;2&quot;, &quot;0&quot;, &quot;1&quot;, &quot;8&quot;]
+
+
+&quot;Hello 2018&quot;.match(/./g)
+// 使用.，匹配所有字符，包括空格
+(10) [&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;, &quot; &quot;, &quot;2&quot;, &quot;0&quot;, &quot;1&quot;, &quot;8&quot;]
+
+
+&quot;Hello 2018&quot;.match(/\d\w./g)
+// 分析一下这个为什么匹配到的是201，
+// 首先\d找到第一个数字2，匹配成功，紧接着\w匹配到0，然后.匹配到1
+// 整个正则表达式匹配成功，返回201
+[&quot;201&quot;]
+
+
+&quot;Hello 20\n18&quot;.match(/\d\w./g)
+// 这里匹配不成功，因为.不能匹配换行符，所以返回null
+null
+
+
+&quot;Hello 2018&quot;.match(/\w.\d/g)
+// 首先看这个正则式，\w.\d，它要求最后一个字符是数字
+// \w.能一直匹配到空格，但是因为得满足\d，所以第一个匹配成功的是0 2
+// 因为是全局匹配，所以会接着匹配后面的018，也匹配成功
+(2) [&quot;o 2&quot;, &quot;018&quot;]
+</code></pre>
+<h3 id="自定义匹配符">自定义匹配符</h3>
+<p>比如中国的手机号都是以 1 开头，第二位只能是 3、4、5、7、8，第 3 位只要是数字就行。如何匹配这样的字符串？</p>
+<ul>
+<li>[] ：匹配[]中的任意一个字符</li>
+</ul>
+<pre><code class="language-javascript">&quot;152&quot;.match(/1[34578]\d/)
+// 第二个字符可以选择中括号中的任意一个
+[&quot;152&quot;, index: 0, input: &quot;152&quot;, groups: undefined]
+</code></pre>
+<p>如果在 [] 添加了 ^,代表取反。即 [^] 表示除了中括号中的字符都满足。</p>
+<pre><code class="language-javascript">&quot;152&quot;.match(/1[^34578]\d/)
+
+null
+
+
+&quot;1a2&quot;.match(/1[^34578]\d/)
+// 只要不是[]中的字符，都满足，包括回车符
+[&quot;1a2&quot;, index: 0, input: &quot;1a2&quot;, groups: undefined]
+</code></pre>
+<h3 id="修饰匹配次数">修饰匹配次数</h3>
+<p>我们的手机号有 11 位，除了前 2 位有要求，其他9位度没有要求，那么是不是正则表达式就应该这样写呢？</p>
+<pre><code>1[^34578]\d\d\d\d\d\d\d\d\d
+</code></pre>
+<p>很明显，这样写太麻烦，肯定有更好的方式，这里就可以修饰一下匹配次数啦。</p>
+<ul>
+<li>? ：最多出现 1 次</li>
+<li>+ ：至少出现 1 次</li>
+<li>* ：出现任意次数</li>
+<li>{} ：分下面四种情况
+<ul>
+<li>{n}代表前面的匹配符出现 n 次</li>
+<li>{n, m}出现次数在 n~m 之间</li>
+<li>{n, }至少出现 n 次</li>
+<li>{, m}最多出现 m 次</li>
+</ul>
+</li>
+</ul>
+<p>例子很简单，一看就懂，不浪费时间。</p>
+<pre><code class="language-javascript">&quot;15284750845&quot;.match(/1[34578]\d{9}/)
+[&quot;15284750845&quot;, index: 0, input: &quot;15284750845&quot;, groups: undefined]
+
+
+&quot;15&quot;.match(/1[34578]\d?/)
+[&quot;15&quot;, index: 0, input: &quot;15&quot;, groups: undefined]
+
+
+&quot;152&quot;.match(/1[34578]\d?/)
+[&quot;152&quot;, index: 0, input: &quot;152&quot;, groups: undefined]
+
+
+&quot;152&quot;.match(/1[34578]\d+/)
+[&quot;152&quot;, index: 0, input: &quot;152&quot;, groups: undefined]
+
+
+&quot;15&quot;.match(/1[34578]\d+/)
+null
+</code></pre>
+<h3 id="完整匹配">完整匹配</h3>
+<p>按照上面的写法会出现下面的问题。</p>
+<pre><code class="language-javascript">&quot;ya15284750845&quot;.match(/1[34578]\d{9}/)
+// 不是电话号码，也能匹配成功，需要进一步改进
+[&quot;15284750845&quot;, index: 2, input: &quot;ya15284750845&quot;, groups: undefined]
+</code></pre>
+<ul>
+<li>^ ：在 [] 中代表取反，但在外面代表从开始匹配</li>
+</ul>
+<pre><code class="language-javascript">&quot;ya15284750845&quot;.match(/^1[34578]\d{9}/)
+// 现在就能从一开始匹配而且还得符合正则式才算匹配成功
+null
+
+
+// 但是依旧会出现下面的问题
+&quot;1528475084523255&quot;.match(/^1[34578]\d{9}/)
+// 不是电话号码也能匹配成功，还要改进
+[&quot;15284750845&quot;, index: 0, input: &quot;1528475084523255&quot;, groups: undefined]
+</code></pre>
+<ul>
+<li>$ ：代表持续匹配到结束</li>
+</ul>
+<pre><code class="language-javascript">&quot;1528475084523255&quot;.match(/^1[34578]\d{9}$/)
+// 现在就能保证正确了，有^表示从开始匹配；
+// 有$表示持续匹配到结束，即完全匹配
+null
+
+/*
+需要注意的是，一个字符串从开始匹配和从结束匹配都没问题，
+不代表整个字符串就没问题，比如 15284750845-15284750845
+这个字符串从开始和从结束匹配都能成功，但实际上是错的
+*/
+</code></pre>
+<h3 id="特殊符号">特殊符号</h3>
+<p>到这里发现正则表达式确实很强大，仅仅几个简单的符号就能匹配字符串，但是如果我们要匹配的字符本身就是前面用到的符号怎么办呢？</p>
+<ul>
+<li>匹配像$、^等特殊符号时，需要加转义字符\</li>
+</ul>
+<pre><code class="language-javascript">&quot;1.&quot;.match(/./)
+//因为.能匹配除换行的所有字符，所以匹配到1
+//但实际上我们想匹配.这个字符
+[&quot;1&quot;, index: 0, input: &quot;1.&quot;, groups: undefined]
+
+
+&quot;1.&quot;.match(/\./)
+// 只需要加一个转义字符就可以了，其他类似
+[&quot;.&quot;, index: 1, input: &quot;1.&quot;, groups: undefined]
+</code></pre>
+<h3 id="条件分支">条件分支</h3>
+<p>比如现在想匹配图片的文件名，包括 jpg、png、jpeg、gif 等等，这是多个选项，所以需要像编程语言一样，应该具备条件分支结构。</p>
+<ul>
+<li>| ：条件分支</li>
+<li>() ：有两层含义
+<ul>
+<li>括号中的内容成为一个独立的整体</li>
+<li>括号的内容可以进行分组，单独匹配，若不需要此功能，则( ?: )</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-javascript">&quot;1.jpg&quot;.match(/.+\.jpe?g|gif|png/)
+// 这样就可以满足条件分支了,不过下面又出问题了
+[&quot;1.jpg&quot;, index: 0, input: &quot;1.jpg&quot;, groups: undefined]
+
+
+&quot;1.png&quot;.match(/.+\.jpe?g|gif|png/)
+// 这里没有匹配到.和前面的文件名
+[&quot;png&quot;, index: 2, input: &quot;1.png&quot;, groups: undefined]
+
+
+/*
+其实我们想告诉它的是，.和后面的每一个条件分支的值都是一个独立的整体
+但是它把.+\.jpe?g、gif、png当成了各自独立的整体
+我们并不想让它这样切分，所以我们来告诉它怎么分才是正确的
+*/
+
+
+&quot;1.png&quot;.match(/.+\.(jpe?g|gif|png)/)
+// 现在可以匹配成功了，但是它多匹配了一个
+// 因为括号的内容可以进行分组，单独匹配
+(2) [&quot;1.png&quot;, &quot;png&quot;, index: 0, input: &quot;1.png&quot;, groups: undefined]
+
+
+// 所以最终写法如下
+&quot;1.png&quot;.match(/.+\.(?:jpe?g|gif|png)/)
+[&quot;1.png&quot;, index: 0, input: &quot;1.png&quot;, groups: undefined]
+</code></pre>
+<h3 id="贪婪与懒惰">贪婪与懒惰</h3>
+<pre><code class="language-javascript">// 首先看一个例子
+&quot;aabab&quot;.match(/a.*b/)
+[&quot;aabab&quot;, index: 0, input: &quot;aabab&quot;, groups: undefined]
+
+
+/*
+上面的匹配没有什么问题，但实际上aab也是可以的
+也就是aab也是符合条件的，那又是为什么呢？
+*/
+</code></pre>
+<p>因为在正则表达式中，默认是贪婪模式，尽可能多的匹配，可以在修饰数量的匹配符后面添加 ?，则代表懒惰。</p>
+<pre><code class="language-javascript">// like this (^__^)
+&quot;aabab&quot;.match(/a.*?b/)
+[&quot;aab&quot;, index: 0, input: &quot;aabab&quot;, groups: undefined]
+</code></pre>
+<p>到这里应该就差不多了，再深入的，就自我查询知识了。配一张正则表达式速查表。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1669816632950.png" alt="" loading="lazy"></figure>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/uHEHy2zPz/">
+                                <h3 class="post-title">
+                                    FastDFS 分布式文件系统简介
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AE%80%E4%BB%8B">正则表达式简介</a></li>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95">正则表达式基本语法</a>
+<ul>
+<li><a href="#%E6%99%AE%E9%80%9A%E5%8C%B9%E9%85%8D%E7%AC%A6">普通匹配符</a></li>
+<li><a href="#%E6%AD%A3%E5%88%99%E6%A0%87%E8%AE%B0%E7%AC%A6">正则标记符</a></li>
+<li><a href="#%E5%A4%9A%E5%8C%B9%E9%85%8D%E7%AC%A6">多匹配符</a></li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8C%B9%E9%85%8D%E7%AC%A6">自定义匹配符</a></li>
+<li><a href="#%E4%BF%AE%E9%A5%B0%E5%8C%B9%E9%85%8D%E6%AC%A1%E6%95%B0">修饰匹配次数</a></li>
+<li><a href="#%E5%AE%8C%E6%95%B4%E5%8C%B9%E9%85%8D">完整匹配</a></li>
+<li><a href="#%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7">特殊符号</a></li>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E5%88%86%E6%94%AF">条件分支</a></li>
+<li><a href="#%E8%B4%AA%E5%A9%AA%E4%B8%8E%E6%87%92%E6%83%B0">贪婪与懒惰</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

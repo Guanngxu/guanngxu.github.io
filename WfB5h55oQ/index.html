@@ -1,0 +1,811 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    动态规划实例——换零钱的方法数（C++详解版） | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            动态规划实例——换零钱的方法数（C++详解版）
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2023-02-26</time>
+                            <span class="read-time">11 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-banana">
+                            #算法
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/WfB5h55oQ.jpeg')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>原写了 Java 版本的<a href="https://www.guanngxu.com/NrUpfcbXq/">如何求解换钱的方法数</a>，近期进行了一些细节上的补充，以及部分错误更正，将语言换为了 C++ 语言。</p>
+</blockquote>
+<h3 id="基础题目">基础题目</h3>
+<p>假设你现在拥有不限量的 1 元、5 元、10 元面值纸币，路人甲希望找你换一些零钱，路人甲拿出的是一张 100 元面值的纸币，试求总共有多少种换零钱的方法？</p>
+<p><strong>分析</strong>：因为总共只有 3 种面值小额纸币，所以将所有可能进行枚举，直接暴力解决即可。</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int slove() {
+	int ans = 0;
+	// 10 元张数
+	for(int i = 0; i &lt;= 10; i++) {
+		// 5 元张数
+		for(int j = 0; j &lt;= 20; j++) {
+			// 1 元张数
+			for(int k = 0; k &lt;= 100; k++) {
+				int cur = i*10 + j*5 + k*1;
+				if(cur == 100) {
+					ans++;
+				}
+			}
+		}
+	}
+	return ans;
+}
+
+int main()
+{
+	cout&lt;&lt;slove();
+}
+</code></pre>
+<h3 id="递归求解">递归求解</h3>
+<p>基础题目中是拥有固定种类的小额纸币，即使再多几种小额纸币也没关系，大不了在嵌套几个循环就能解决。现在需要将题目的难度加大一点，改为<strong>小额纸币的种类和需要换零钱的总额由用户输入</strong>，即小额纸币种类和总额都不在固定，那么如何解决？</p>
+<p>输入共有三行：</p>
+<ul>
+<li>第一行：小额纸币种类数量</li>
+<li>第二行：不同小额纸币的面值</li>
+<li>第三行：需要换零钱的总额</li>
+</ul>
+<p><strong>分析</strong>：虽然现在种类和总额都是变量了，但是上文中的基础版本还是被包含在此问题中，所以我们还是以上文中的 1 元、5 元、10 元换 100 元进行分析，找一找除了枚举是否还有其他方法解决。</p>
+<p>我们先固定一种零钱的数量，剩下的钱用剩余零钱去兑换，即：</p>
+<ul>
+<li>用 0 张 1 元换，剩下的用 5、10 元换，最终方法数为 count0；</li>
+<li>用 1 张 1 元换，剩下的用 5、10 元换，最终方法数为 count1；</li>
+<li>......</li>
+<li>用 100 张 1 元换，剩下的用 5、10 元换，最终方法数为 count100；</li>
+</ul>
+<p>那么最终换钱的方法综述即为<code>count0 + count1 + count2 + ... + count100</code>。</p>
+<p>上面的分析中，我们把原来的大问题拆为了 101 个小问题，且每一个小问题都有很相似的地方，即：</p>
+<ul>
+<li>求用 5、10 元换 100 元的方法数</li>
+<li>求用 5、10 元换 95 元的方法数</li>
+<li>......</li>
+<li>求用 5、10 元换 0 元的方法数</li>
+</ul>
+<p>如果我们对这 101 个小问题再进行同样思路的分析，即再固定 5 元零钱的数量，那么就能把问题划分成了规模更小，但问题类型一样的小小问题。即<strong>递归</strong>的思路，可以写出如下代码。</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int money[1000]; // money 表示所有小额纸币的面值
+int len; // len 表示 money 数组的长度，即：小额纸币种类
+
+// index 表示上文分析中的当前固定第几张
+// target 表示现在要兑换的钱的总额
+int slove(int index, int target) {
+    int ans = 0;
+    if(index == len) {
+        ans = target == 0 ? 1 : 0;
+    } else {
+        for(int i = 0; i*money[index] &lt;= target; i++) {
+            // 剩余待换零钱的总额
+            int cur_total = target-(i * money[index]);
+            ans = ans + slove(index+1, cur_total);
+        }
+    }
+    return ans;
+}
+
+int main()
+{
+    int target;
+    cin&gt;&gt;len; // 零钱种类
+    for(int i = 0; i &lt; len; i++){
+        cin&gt;&gt;money[i];
+    }
+    cin&gt;&gt;target; // 兑换总额
+
+    cout&lt;&lt;slove(0, target);
+}
+</code></pre>
+<h3 id="优化递归">优化递归</h3>
+<p>可以发现上文所写的递归代码存在大量的重复过程，比如下面两种情况，后面所求的子问题是完全一样的，导致程序运行时间的浪费。</p>
+<ul>
+<li>已经使用了 5 张 1 元、0 张 5 元，剩下的 95 元用 5 元和 10 元兑换</li>
+<li>已经使用了 0 张 1 元、1 张 5 元，剩下的 95 元用 5 元 和 10 元兑换</li>
+</ul>
+<p>既然前面已经求解过相同的子问题了，那么我们是否可以在第一次求解的时候，将计算结果保存下来，这样下次遇到相同子问题的实际，直接查出来用就可以，省去再次求解的时间。</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int money[1000]; // money 表示所有小额纸币的面值
+int len; // len 表示 money 数组的长度，即：小额纸币种类
+
+// 用于存储子问题的解
+int val_map[1000][1000] = { 0 };
+
+// 0 表示该子问题没有算过
+// -1 表示算过，但该子问题无解
+// 其它值，即此子问题的方法数
+
+int slove(int index, int target) {
+    int ans = 0;
+    if(index == len) {
+        ans = target == 0 ? 1 : 0;
+    } else {
+        for(int i = 0; i*money[index] &lt;= target; i++) {
+            // 剩余待换零钱的总额
+            int cur_total = target-(i * money[index]);
+            int pre_val = val_map[index+1][cur_total];
+            // 如果 val 为 0，说明该子问题没有被计算过
+            if(pre_val == 0) {
+                ans = ans + slove(index+1, cur_total);
+            } else {
+                ans += pre_val == -1 ? 0 : pre_val;
+            }
+        }
+    }
+    // 存储计算结果
+    val_map[index][target] = ans == 0 ? -1 : ans;
+    return ans;
+}
+
+int main()
+{
+    int target; // 零钱种类
+    cin&gt;&gt;len;
+    for(int i = 0; i &lt; len; i++){
+        cin&gt;&gt;money[i];
+    }
+    cin&gt;&gt;target;
+
+    cout&lt;&lt;slove(0, target);
+}
+</code></pre>
+<h3 id="动态规划">动态规划</h3>
+<p>上面对递归的优化方案已经能看出来动态规划的影子了，沿着前文先计算再查表的思路继续思考，我们能否提前把所有子问题都计算出答案，对每个子问题都进行查表解决。也即将最初的递归方案改为循环的实现。</p>
+<blockquote>
+<p>所有的递归都能改为循环实现</p>
+</blockquote>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int money[1000]; // money 表示所有小额纸币的面值
+int len; // len 表示 money 数组的长度，即：小额纸币种类
+
+// 用于存储子问题的解
+// val_map[i][j] 表示用 money[0...i] 的小面额零钱组成 j 元的方法数
+int val_map[1000][1000] = { 0 };
+
+int slove(int target) {
+    
+    // 第一列表示组成 0 元的方法数，所以为 1
+    for (int i = 0; i &lt; len; i++) {
+        val_map[i][0] = 1;
+    }
+
+    // 第一行表示只使用 money[0] 一种钱币兑换钱数为i的方法数
+    // 所以是 money[0] 的倍数的位置为 1，否则为 0
+    for (int i = 1; money[0]*i &lt;= target; i++) {
+        val_map[0][money[0]*i] = 1;
+    }
+
+    for (int i = 1; i &lt; len; i++) {
+        for (int j = 1; j &lt;= target; j++) {
+            for (int k = 0; j &gt;= money[i]*k; k++) {
+                /* 
+                val_map[i][j] 的值为：
+                用 money[0...i-1] 的零钱组成 j 减去 money[i] 的倍数的方法数
+                因为相比 val_map[i-1][j]，只是多了一种零钱的可选项
+                */
+                val_map[i][j] += val_map[i-1][j-money[i]*k];
+            }
+        }
+    }
+
+    return val_map[len-1][target];
+}
+
+int main()
+{
+    int target;
+    cin&gt;&gt;len;
+    for(int i = 0; i &lt; len; i++){
+        cin&gt;&gt;money[i];
+    }
+    cin&gt;&gt;target;
+
+    cout&lt;&lt;slove(target);
+}
+</code></pre>
+<h3 id="动归优化">动归优化</h3>
+<p>在上文第一版动态规划代码的优化中已经能发现，其实<code>val_map[i][j]</code>的值由两部分组成，分别为：</p>
+<ul>
+<li>用 money[0...i-1] 的零钱组成换 j 元的方法数</li>
+<li>用 money[0...i-1] 的零钱换 j-money[i]*k（k=1,1,2,3....）元的方法数之和</li>
+</ul>
+<p>对于第二种情况来说，其累加值实际上就是<code>val_map[i][j-money[i]]</code>，即用<code>money[0...i]</code>的零钱换 <code>j-money[i]</code>元的方法数。至于具体为什么累加值与<code>val_map[i][j-money[i]]</code>相等，我们可以借助递归方法时的分析方式进行理解。</p>
+<p><strong>用 money[0...i-1] 的零钱组成换 j 元的方法数对应</strong>：</p>
+<ul>
+<li>用 0 张 money[i] 换，剩下的用 money[0...i-1] 换</li>
+</ul>
+<p><strong>用 money[0...i-1] 的零钱换 j-money[i]*k（k=1,1,2,3....）元的方法数之和对应</strong>：</p>
+<ul>
+<li>用 1 张 money[i] 换，剩下的用 money[0...i-1] 换</li>
+<li>用 2 张 money[i] 换，剩下的用 money[0...i-1] 换</li>
+<li>......</li>
+</ul>
+<p>所以第二部分的值即为<code>val_map[i][j-money[i]]</code>。依据此处的分析，我们可以在原有基础上去掉第三层循环，减少程序运行所花费的时间。</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int money[1000];
+int len;
+
+int val_map[1000][1000] = { 0 };
+
+int slove(int target) {
+    
+    for (int i = 0; i &lt; len; i++) {
+        val_map[i][0] = 1;
+    }
+
+    for (int i = 1; money[0]*i &lt;= target; i++) {
+        val_map[0][money[0]*i] = 1;
+    }
+
+    for (int i = 1; i &lt; len; i++) {
+        for (int j = 1; j &lt;= target; j++) {
+            val_map[i][j] = val_map[i-1][j];
+            // 此处需要比较 j 的大小，防止数组越界
+            // 注意条件时 &gt;= ，否则少计算 j 刚好为 money[i] 的情况
+            if(j &gt;= money[i]) {
+                val_map[i][j] += val_map[i][j-money[i]];
+            }
+        }
+    }
+
+    return val_map[len-1][target];
+}
+
+int main()
+{
+    int target;
+    cin&gt;&gt;len;
+    for(int i = 0; i &lt; len; i++){
+        cin&gt;&gt;money[i];
+    }
+    cin&gt;&gt;target;
+
+    cout&lt;&lt;slove(target);
+}
+</code></pre>
+<h3 id="空间压缩">空间压缩</h3>
+<p>仔细观察能发现，每一次更新<code>val_map[i][j]</code>的值时，它只依赖于上一行和当前这一行前面的元素。对于我们所求解的问题来说，它仅要求我们给出最终的答案即可，那么前面存储中间结果的那些元素实际上就会空间的浪费，因此我们可以思考一下如何在空间上进行压缩。</p>
+<p>实际上我们只需要定义一个一维的数组，采用一些技巧对该数组进行滚动更新，按照合适的方向去更新数组，同样可以达到上面使用二维数组的效果。</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int money[1000];
+int len;
+
+int val_map[1000] = { 0 };
+
+int slove(int target) {
+    
+    // 第一行，只用 money[0] 换零钱
+    // 所以只能换 money[0] 倍数的钱
+    for (int i = 0; money[0]*i &lt;= target; i++) {
+        val_map[money[0] * i] = 1;
+    }
+
+    for (int i = 1; i &lt; len; i++) {
+        for (int j = 1; j &lt;= target; j++) {
+            if(j &gt;= money[i]) {
+                // 在进行下面一步前 val_map[j] 的值就已经是 val_map[i-1][j] 了
+                val_map[j] += val_map[j-money[i]];
+            }
+        }
+    }
+
+    return val_map[target];
+}
+
+int main()
+{
+    int target;
+    cin&gt;&gt;len;
+    for(int i = 0; i &lt; len; i++){
+        cin&gt;&gt;money[i];
+    }
+    cin&gt;&gt;target;
+
+    cout&lt;&lt;slove(target);
+}
+</code></pre>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/RYkQYSFKV/">
+                                <h3 class="post-title">
+                                    linux-5.10.157 内核源码编译
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E7%A1%80%E9%A2%98%E7%9B%AE">基础题目</a></li>
+<li><a href="#%E9%80%92%E5%BD%92%E6%B1%82%E8%A7%A3">递归求解</a></li>
+<li><a href="#%E4%BC%98%E5%8C%96%E9%80%92%E5%BD%92">优化递归</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">动态规划</a></li>
+<li><a href="#%E5%8A%A8%E5%BD%92%E4%BC%98%E5%8C%96">动归优化</a></li>
+<li><a href="#%E7%A9%BA%E9%97%B4%E5%8E%8B%E7%BC%A9">空间压缩</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

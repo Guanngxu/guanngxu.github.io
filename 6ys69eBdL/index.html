@@ -1,0 +1,1842 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    前端 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        前端</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/qzip9Ct6U/">
+                        Vue 入门避坑——Vue + TypeScript 项目起手式
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-09</time>
+                    
+                        <a href="https://www.guanngxu.com/7QbLXmeen/" class="post-tag i-tag
+                            i-tag-primary">
+            #Vue
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-banana">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
+                            i-tag-success">
+            #TypeScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-warning">
+            #JavaScript
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/qzip9Ct6U/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/qzip9Ct6U.webp) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            在此前我使用的前端框架是 Angular，使用过 TypeScript 后你就会讨厌 JS 了，我学习 Vue 时的最新版本是 2.5，相信大部分同学都不会认为 Vue 那样又细又长的代码很美观吧，简单看了一些网络博客后，我毅然决然引入了 TypeScript 进行开发，本文仅整理记录我自己遇到的一些坑。
+使用 Cli
+脚手架是一个比较方便的工具，这里需要注意的是@vue/cli和vue-cli是不一样的，推荐使用npm i -g @vue/cli安装。
+安装完成后，可以直接使用vue create your-app创建项目，你可以选择使用默认配置亦或是自己手动选择配置，按提示一步一步向下走即可，它会根据你的选择自己创建比如tsconfig.json等等配置文件。这里推荐使用less开发样式，sass老是在安装的过程中出问题。
+当然你也可以使vue ui命令启动一个本地服务，它是一个 Vue 项目管理器，提供了一个可视化的页面供你管理自己的项目，它的样子如下图所示，还是比较清新的。
+
+使用 vue-property-decorator
+Vue 官方维护了 vue-class-component 装饰器，vue-property-decorator 则是在vue-class-component基础上增强了更多结合Vue特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。
+截止本文时间，vue-property-decorator共提供了 11 个装饰器和 1 个Mixins方法，下面用@Prop举个例子，是不是看起来引起极度舒适。
+import { Vue, Component, Prop } from &#39;vue-property-decorator&#39;
+
+@Component
+export default class YourComponent extends Vue {
+    @Prop(Number) readonly propA: number | undefined
+    @Prop({ default: &#39;default value&#39; }) readonly propB!: string
+    @Prop([String, Boolean]) readonly propC: string | boolean | undefined
+}
+
+
+// 上面的内容将会被解析成如下格式
+
+export default {
+    props: {
+        propA: {
+            type: Number
+        },
+        propB: {
+            default: &#39;default value&#39;
+        },
+        propC: {
+            type: [String, Boolean]
+        }
+    }
+}
+
+使用 Vuex
+关于怎么使用Vuex此处就不再做过多说明了，需要注意的一点是，如果你需要访问$store属性的话，那么你必须得继承Vue类，坑的地方是在某些情况下即使你没有继承Vue，它也能通过编译，只有在程序运行起来的时候才报错。
+class ExampleApi extends Vue {
+
+    public async getExampleData() {
+        if (!this.$store.state.exampleData) {
+            const res = await http.get(&#39;url/exampleData&#39;);
+            if (res.result) {
+                this.$store.commit(&#39;setExampleData&#39;, res.data);
+                return res.data;
+            } else {
+            promptUtil.showMessage(&#39;get exampleData failed&#39;, &#39;warning&#39;);
+            }
+        } else {
+            return this.$store.state.exampleData;
+        }
+    }
+}
+
+使用自己的配置（含代理）
+vue.config.js是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被@vue/cli-service自动加载，它的配置项说明可以查看配置参考。
+我们再开发过程中都会使用代理来转发请求，代理的配置也是在这个文件中，它的官方说明在devserver-proxy中，下面是一个简单的vue.config.js文件例子。
+module.exports = {
+    filenameHashing: true,
+    outputDir: &#39;dist&#39;,
+    assetsDir: &#39;asserts&#39;,
+    indexPath: &#39;index.html&#39;,
+    productionSourceMap: false,
+    transpileDependencies: [
+        &#39;vue-echarts&#39;,
+        &#39;resize-detector&#39;
+    ],
+    devServer: {
+        hotOnly: true,
+        https: false,
+        proxy: {
+            &amp;quot;/statistics&amp;quot;: {
+                target: &amp;quot;http://10.7.213.186:3889&amp;quot;,
+                secure: false,
+                pathRewrite: {
+                    &amp;quot;^/statistics&amp;quot;: &amp;quot;&amp;quot;,
+                },
+                changeOrigin: true
+            },
+            &amp;quot;/mail&amp;quot;: {
+                target: &amp;quot;http://10.7.213.186:8888&amp;quot;,
+                secure: false,
+                changeOrigin: true
+            }
+        }
+    }
+}
+
+让 Vue 识别全局方法和变量
+我们在项目中都会使用一些第三方 UI 组件，比如我自己就使用了 Element，但是在使用它的$message、$notify等方法时就直接报错了，究其原因就是$message等属性并没有在 Vue 实例中声明。
+官方对此给出了很明确的解决方案，使用的是 TypeScript 的 模块补充特性，可以查看增强类型以配合插件使用。既然知道是因为没有声明导致的错误，那我们就给它声明一下好了，在src/shims-vue.d.ts文件中添加如下代码即可，如果没有该文件请自行创建。
+
+看到网上也有一部分人说的是src/vue-shim.d.ts，反正不管是怎么命名这个文件的，它们的作用是一样的。
+
+declare module &#39;vue/types/vue&#39; {
+    interface Vue {
+        $message: any,
+        $confirm: any,
+        $prompt: any,
+        $notify: any
+    }
+}
+
+这里顺道提一下，src/shims-vue.d.ts文件中的如下代码是为了让你的 IDE 明白以.vue结尾的文件是什么玩意儿。
+declare module &#39;*.vue&#39; {
+    import Vue from &#39;vue&#39;;
+    export default Vue;
+}
+
+
+路由懒加载
+Vue Router 官方有关于路由懒加载的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用require.ensure()按需加载组件可以生效。
+// base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中
+const Home = (r: any) =&amp;gt; require.ensure([], () =&amp;gt; r(require(&#39;@/views/home.vue&#39;)), layzImportError, &#39;base-view&#39;);
+
+// 路由加载错误时的提示函数
+function layzImportError() {
+    alert(&#39;路由懒加载错误&#39;);
+}
+
+上面的方式会在编译的时候把文件自动分成多个小文件，编译后的文件会以你自己命名的模块名来命名，如果代码之间有相互依赖，依赖部分代码编译后的文件会以两个模块名相连后进行命名。
+但是需要注意的是，这样拆分小文件之后引入了另外一个新的问题，因为客户端会缓存这些编译后的 js 文件，如果功能 A 同时依赖了a.js和b.js两个文件，但用户在使用其它功能时已经把a.js缓存到本地了，使用功能 A 时需要请求b.js文件，这时程序就很容易报错，因为此时在客户端这两个文件不是同一个版本，所以可能导致a.js调用b.js中的方法已经被删了，进而导致客户端页面异常。
+关于引入第三方包
+项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。
+/*
+ 引入 jquery 等库可以尝试下面这种方式
+ 只需要把相应的 js 文件放到指定文件夹即可
+**/
+const $ = require(&#39;@/common/js/jquery.min.js&#39;);
+const md5 = require(&#39;@/common/js/md5.js&#39;);
+
+引入一些第三方样式文件、UI 组件等，如果引入不成功可以尝试建一个 js 文件，将导入语句都写在 js 文件中，然后再在main.ts文件中导入这个 js 文件，这个方法能解决大部分的问题。例如我先建了一个lib.js，然后在main.ts中引入lib.js就没有报错。
+// src/plugins/lib.js
+import Vue from &#39;vue&#39;;
+
+// 树形组件
+import &#39;vue-tree-halower/dist/halower-tree.min.css&#39;;
+import {VTree} from &#39;vue-tree-halower&#39;;
+// 饿了么组件
+import Element from &#39;element-ui&#39;;
+import &#39;element-ui/lib/theme-chalk/index.css&#39;;
+// font-awesome 图标
+import &#39;../../node_modules/font-awesome/css/font-awesome.css&#39;;
+import VueCookies from &#39;vue-cookies&#39;;
+import VueJWT from &#39;vuejs-jwt&#39;;
+
+Vue.use(VueJWT);
+Vue.use(VueCookies);
+Vue.use(VTree);
+Vue.use(Element);
+
+
+// src/main.ts
+import App from &#39;@/app.vue&#39;;
+import Vue from &#39;vue&#39;;
+import router from &#39;./router&#39;;
+import store from &#39;./store&#39;;
+import &#39;./registerServiceWorker&#39;;
+import &#39;./plugins/lib&#39;;
+
+Vue.config.productionTip = false;
+
+new Vue({
+    router,
+    store,
+    render: (h) =&amp;gt; h(App),
+}).$mount(&#39;#app&#39;);
+
+因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个index.d.ts文件，实在不行的话，那个特殊的组件不使用 TypeScript 来写也能解决，我目前还没有找一个可以完全解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/qzip9Ct6U/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/CJEg4Tlzw/">
+                        JavaScript 进阶知识、技巧
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-11</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-success">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-">
+            #JavaScript
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/CJEg4Tlzw/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/CJEg4Tlzw.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            对象
+Js 共有number、string、boolean、null、undefined、object六种主要类型，除了object的其它五中类型都属于基本类型，它们本身并不是对象。但是null有时会被当做对象处理，其原因在于不同的对象在底层都表示为二进制，在 js 中二进制前三位都为 0 的话就会被判定为object类型，而null的二进制表示全是 0， 所以使用typeof操作符会返回object，而后续的 Js 版本为了兼容前面埋下的坑，也就没有修复这个 bug。
+&amp;quot;I&#39;m a string&amp;quot;本身是一个字面量，并且是一个不可变的值，如果要在这个字面量上执行一些操作，比如获取长度、访问某个字符等，那就需要将其转换为String类型，在必要的时候 js 会自动帮我们完成这种转换，也就是说我们并不需要用new String(&#39;I&#39;m a string&#39;)来显示的创建一个对象。类似的像使用42.359.toFixed(2)时，引擎也会自动把数字转换为Number对象。
+null和undefined没有对应的构造形式，它们只有文字形式。相反，Date只有构造，没有文字形式。对于Object、Array、Function和RegExp（正则表达式）来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。
+Array 类型
+数组类型有一套更加结构化的值存储机制，但是要记住的是，数组也是对象，所以有趣的是你也可以给数组添加属性。
+var myArray = [&amp;quot;foo&amp;quot;, 42, &amp;quot;bar&amp;quot;];
+myArray.baz = &amp;quot;baz&amp;quot;;
+myArray.length; // 3
+myArray.baz; // &amp;quot;baz&amp;quot;
+
+数组类型的length属性是比较有特点的，它的特点在于不是只读的，也就是说你可以修改它的值。因此可以通过设置这个属性从数组末尾删除或添加新的项。
+var colors = [&amp;quot;red&amp;quot;, &amp;quot;blue&amp;quot;, &amp;quot;green&amp;quot;];
+colors.length = 2;
+console.info(colors[2]); // undefined
+colors.length = 4;
+console.info(colors[4]); // undefined
+// 向后面追加元素
+colors[colors.length] = &amp;quot;black&amp;quot;;
+
+数组还有一些很方便的迭代方法，比如every()、filter()、forEach()、map()、some()，这些方法都不会修改数组中包含的值，传入这些方法的函数会接收三个参数：数组项的值、该项在数组中的位置、和数组对象本身。
+Function 类型
+在 ECMAScript 中，每个函数都是Function类的实例，而且都与其它引用类型一样具有属性和方法。由于函数时对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
+在函数的内部有两个特殊的对象，this和arguments。arguments对象有callee和caller属性。caller用来指向调用它的function对象，若直接在全局环境下调用，则会返回null；callee用来指向当前执行函数，所以我们可以通过下面的方式来实现阶乘函数。
+function factorial(num) {
+    if (num &amp;lt;= 1) {
+        return 1;
+    } else {
+        return num * arguments.callee(num-1);
+    }
+}
+
+每个函数都包含两个非继承而来的方法，apply()和call()，这两个方法都是在特定作用域中调用函数，实际上等于设置函数体内this对象的值。首先，apply()方法接收两个参数，一个是在其中运行函数的作用域，另一个是参数数组，其中第二个参数可以是Array的实例，也可以是arguments对象。call()方法与apply()方法的作用相同，它们的区别仅仅在于接收参数的方式不同，在使用call()方法时必须逐个列举出来。
+window.color = &amp;quot;red&amp;quot;;
+var o = {color: &amp;quot;blue&amp;quot;};
+function sayColor() {
+    console.info(this.color);
+}
+sayColor(); // red
+sayColor.call(this); // red
+sayColor.call(window); // red
+sayColor.call(o); // blue
+sayColor.apply(o); // blue
+
+需要注意的是，在严格模式下未指定环境对象而调用函数，则this值不会转型为window，除非明确把函数添加到某个对象或者调用apply()或call()。
+安全的类型检查
+Js 内置的类型检查机制并不是完全可靠的，比如在 Safari（第5版前），对正则表达式应用typeof操作符会返回function；像instanceof在存在多个全局作用域（包含 frame）的情况下，也会返回不可靠的结果；前文提到的 Js 一开始埋下的坑也会导致类型检查出错。
+我们可以使用toString()方法来达到安全类型检查的目的，在任何值上调用Object原生的toString()方法都会返回一个[object NativeConstructorName]格式的字符串，下面以检查数组为例。
+Object.prototype.toString.call([]); // &amp;quot;[object Array]&amp;quot;
+function isArray(val) {
+    return Object.prototype.toString.call(val) == &amp;quot;[object Array]&amp;quot;;
+}
+
+
+作用域安全的构造函数
+构造函数其实就是一个使用new操作符调用的函数，当使用new操作符调用时，构造函数内用到的this对象会指向新创建的对象实例，比如我们有下面的构造函数。
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+现在的问题在于，要是我们不使用new操作符呢？会发生什么！
+let person = Person(&#39;name&#39;, 23);
+console.info(window.name); // name
+console.info(window.age); // 23
+
+很明显，这里污染了全局作用域，原因就在于没有使用new操作符调用构造函数，此时它就会被当作一个普通的函数被调用，this就被解析成了window对象。我们需要将构造函数修改为先确认this是否是正确类型的实例，如果不是则创建新的实例并返回。
+function Person(name, age) {
+    if (this instanceof Person) {
+        this.name = name;
+        this.age = age;
+    } else {
+        return new Person(name, age);
+    }
+}
+
+高级定时器
+大部分人都知道使用setTimeout()和setInterval()可以方便的创建定时任务，看起来好像 Js 也是多线程的一样，实际上定时器仅仅是计划代码在未来的某个时间执行，但是执行时机是不能保证的。因为在页面的生命周期中，不同时间可能有其它代码控制着 JavaScript 进程。
+这里需要注意一下setInterval()函数，仅当没有该定时器的任何其他代码实例时，Js 引起才会将定时器代码添加到队列中。这样可以避免定时器代码可能在代码再次被添加到队列之前还没有完成执行，进而导致定时器代码连续运行好几次的问题。但是这也导致了另外的问题：（1）某些间隔会被跳过；（2）多个定时器的代码执行之间的间隔可能会比预期小。
+假设某个click事件处理程序使用setInterval()设置了一个 200ms 间隔的重复定时器。如果这个事件处理程序花了 300ms 多的时间完成，同时定时器代码也花了差不多了的时间，就会同时出现跳过间隔切连续运行定时器代码的情况。
+为了避免setInterval()的重复定时器的这两个缺点，我们可以使用如下模式的链式setTimeout()，代码一看就懂什么意思了。
+setTimeout(function() {
+    // 处理中
+    setTimeout(arguements.callee, interval);
+}, interval)
+
+消息队列与事件循环
+如下图所示，左边的栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。
+
+右边的堆用来存储声明的变量、对象。下面的队列就是消息队列，一旦某个异步任务有了响应就会被推入队列中。如用户的点击事件、浏览器收到服务的响应和setTimeout中待执行的事件，每个异步任务都和回调函数相关联。
+JS引擎线程用来执行栈中的同步任务，当所有同步任务执行完毕后，栈被清空，然后读取消息队列中的一个待处理任务，并把相关回调函数压入栈中，单线程开始执行新的同步任务。
+来看个例子：执行下面这段代码，执行后，在 5s 内点击两下，过一段时间（&amp;gt; 5s）后，再点击两下，整个过程的输出结果是什么？
+setTimeout(function(){
+    for(var i = 0; i &amp;lt; 100000000; i++){}
+    console.log(&#39;timer a&#39;);
+}, 0)
+for(var j = 0; j &amp;lt; 5; j++){
+    console.log(j);
+}
+setTimeout(function(){
+    console.log(&#39;timer b&#39;);
+}, 0)
+function waitFiveSeconds(){
+    var now = (new Date()).getTime();
+    while(((new Date()).getTime() - now) &amp;lt; 5000){}
+    console.log(&#39;finished waiting&#39;);
+}
+document.addEventListener(&#39;click&#39;, function(){
+    console.log(&#39;click&#39;);
+})
+console.log(&#39;click begin&#39;);
+waitFiveSeconds();
+
+首先，先执行同步任务。其中waitFiveSeconds是耗时操作，持续执行长达 5s。然后，在 Js 引擎线程执行的时候，&#39;timer a&#39;对应的定时器产生的回调、&#39;timer b&#39;对应的定时器产生的回调和两次 click 对应的回调被先后放入消息队列。由于 Js 引擎线程空闲后，会先查看是否有事件可执行，接着再处理其他异步任务，最后，5s 后的两次 click 事件被放入消息队列，由于此时 Js 引擎线程空闲，便被立即执行了。因此会产生下面的输出顺序。
+0
+1
+2
+3
+4
+click begin
+finished waiting
+click
+click
+timer a
+timer b
+click
+click
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/CJEg4Tlzw/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/bOFRz9RDX/">
+                        深入理解 JavaScript——变量提升与作用域
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-08-06</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-other_1">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-other_4">
+            #JavaScript
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/bOFRz9RDX/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/bOFRz9RDX.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+lhs rhs是啥意思
+《Javasript 高级程序设计（第三版）》
+《你不知道的 JavaScript（上卷）》
+
+几乎所有的编程语言都能够存储变量当中的值，并且可以在之后对该值进行访问或修改。很明显需要一套良好的规则来存储这些变量，并且之后可以方便的找到这些变量，这套规则我们称之为作用域。
+编译原理
+我们一般把 js 归为「动态」或「解释执行」语言，但是它也会经历编译阶段，不过它不像传统语言那样是提前编译的，它的编译发生在代码执行前的几微秒内。
+传统语言在执行之前会经历三个步骤：分词/词法分析、解析/语法分析、代码生成，关于这三个步骤的具体工作，可以查看编译原理相关的文献，我们可以把这三个步骤统称为编译。不过 js 引擎要复杂的多，它会在编译的时候对代码进行性能优化，尽管给 js 引擎优化的时间非常少，但是它用尽了各种办法来保证性能最佳。
+我们需要先了解三个名词。引擎：从头到尾负责整个 js 程序的编译及执行过程；编译器：负责词法分析及代码生成；作用域：负责收集并维护由所有声明的标识符（变量）组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限。
+var a = 2;，我们以这段程序为例，它首先声明了变量a，然后将2赋值给变量a。前一个阶段在编译器处理，后一个阶段由 js 引擎处理。
+变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对它赋值。
+变量提升
+用过 js 的人都知道 js 存在变量提升，那么它到底是如何提升的呢？我们看下面的一段代码
+console.log(a);
+var a = 2;
+
+上述代码在a声明之前访问了变量a，按我们的逻辑它应该会抛出 ReferenceError 异常；或是变量提升直接输出 2。但是这两种答案都不对，输出的是undefined。
+回顾一下前文的关于编译的内容，引擎会在解释 js 代码之前对其进行编译，编译阶段的一个重要工作就是找到所有的声明，并用合适的作用域将它们关联起来，包括变量和函数在内的所有声明都会在任何代码被执行之前首先被处理。所以我们前面列出来的代码实际上会变成下面这个样子。
+var a;
+console.log(a);
+a = 2;
+
+这个过程就好像变量和函数声明会从它们的代码中出现的位置被移动到最上面一样，这个过程就是提升。但是需要注意的是，函数声明会首先被提升，然后才是变量提升。
+foo(); // 1
+var foo;
+
+function foo() {
+    console.info(1);
+}
+
+foo = function() {
+    console.info(2);
+}
+
+这段代码输出 1 而不是 2 ，它会被引擎理解为下面的形式。
+function foo() {
+    console.log(1);
+}
+
+foo(); // 1
+
+foo = function() {
+    console.log(2);
+};
+
+可以看到，虽然var foo出现在function foo()之前，但是它是重复的声明，因此会被忽略掉，因为函数函数声明会提升到普通变量前。所以在在同一个作用域中进行重复定义是一个很糟糕的做法，经常会导致各种奇怪的问题。
+LHS 和 RHS 查询
+LHS 和 RHS 是数学领域内的概念，意为等式左边和等式右边的意思，在我们现在的场景下就是赋值操作符的左侧和右侧。当变量出现在赋值操作符的左边时，就进行 LHS 查询；反之进行 RHS 查询。
+RHS 查询与简单的查找某个变量的值没什么区别，它的意思是取得某某的值。而 LHS 查询则是试图找到变量容器的本身，从而可以对其进行赋值。
+console.info(a);我们深入研究一下这句代码。这里对a的引用是 RHS 引用，因为这里a并没有赋予任何值，相应的需要查找并取得a的值，这样才能传递给console.info()。
+a = 2;对a的引用则是一个 LHS 引用，因为实际上我们并关心a当前的值是什么，只是想为= 2这个赋值操作找到一个目标。
+function foo(a) {
+    console.info(a);
+}
+foo(2);
+
+为了加深印象，我们再来分析一下上述代码中的 RHS 和 LHS 引用。最后一行foo()函数的调用需要对foo进行 RHS 引用。这里有一个很容易被忽略的细节，2 被当作参数传递给foo()函数时，2 会被分配给参数a，为了给参数a（隐式地）分配值，需要进行一次 LHS 查询，也就是说代码中隐含了a = 2的语句。
+前文已经说过了console.info(a);会对a进行一次 RHS 查询，需要注意的是console.info()本身也需要一个引用才能执行，因此会对console对象进行 RHS 查询，并检查得到的值中是否有一个log方法。
+为什么区分 LHS 和 RHS
+我们考虑下面的一段代码，就可以为什么要区分 LHS 和 RHS 查询了，而且区分它们是分厂有必要的。
+function foo(a) {
+    console.info(a + b);
+    b = a;
+}
+foo(2);
+
+第一次对b进行 RHS 查询时是无法找到该变量的，这是一个未声明的变量，在任何相关的作用域中都无法找到它。如果 RHS 查询在所有嵌套作用域中都找不到该变量，引擎就会抛出 ReferenceError 异常。
+引擎在执行 LHS 查询时，如果在全局作用域中也无法找到目标变量，全局作用域就会创建一个具有该名称的变量，并将其返还给引擎。
+
+需要注意的是，在严格模式下是禁止自动或隐式地创建全局变量的，因此在严格模式中 LHS 查询失败时，引擎同样会抛出 ReferenceError 异常。
+
+接下来，如果 RHS 查询找到了一个变量，但是你尝试对这个值进行不合理的操作，比如对一个非函数类型的值进行函数调用，那么引擎就会抛出另一种叫做 TypeError 的异常。
+作用域链
+执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中，在 Web 浏览器中，全局执行环境被认为是window对象，因此所有的全局变量和函数都是作为window对象的属性和方法创建的。
+每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，而函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境，这个函数调用的压栈出栈是一样的。
+当代码在环境中执行时，会创建变量对象的一个作用域链。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端始终都是当前执行的代码所在环境的变量对象，说的比较抽象，我们可以看下面的示例。
+var color = &amp;quot;blue&amp;quot;;
+
+function changeColor() {
+    var anotherColor = &amp;quot;red&amp;quot;;
+
+    function swapColors() {
+        var tempColor = anotherColor;
+        anotherColor = color;
+        color = tempColor;
+        // 这里可以访问 color、anotherColor 和 tempColor
+    }
+    // 这里可以访问 color 和 anotherColor，但不能访问 tempColor
+    swapColors();
+}
+// 这里只能访问 color
+changeColor();
+
+下面的图形象的展示了上述代码的作用域链，内部环境可以通过作用域链访问所有的外部环境，但是外部环境不能访问内部环境中的任何变量和函数。函数参数也被当做变量来对待，因此其访问规则与执行环境中的其它变量相同。
+window
+  |-----color
+  |-----changeColor()
+            |----------anotherColor
+            |----------swapColors()
+                           |----------tempColor
+
+作用域链还用于查询标识符，当某个环境中为了读取或写入而引入一个标识符时，必须通过搜索来确定该标识符实际代表什么。搜索过程从作用域链的前端开始，向上逐级查询与给定名字匹配的标识符，如果在局部环境中找到了该标识符，搜索过程就停止，变量就绪；如果在局部环境没有找到这个标识符，则继续沿作用域链向上搜索，如下所示：
+var color = &amp;quot;blue&amp;quot;;
+
+function getColor() {
+    var color = &amp;quot;red&amp;quot;;
+    return color;
+}
+
+console.info(getColor()); // &amp;quot;red&amp;quot;
+
+在getColor()中沿着作用域链在局部环境中已经找到了color，所以搜索就停止了，也就是说任何位于局部变量color的声明之后的代码，如果不使用window.color都无法访问全局color变量。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/bOFRz9RDX/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/1M5AYjF7f/">
+                        JavaScript 性能优化——惰性载入函数
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-08-04</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-error">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-error">
+            #JavaScript
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/1M5AYjF7f/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/1M5AYjF7f.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考资料：
+《JavaScript 高级程序设计（第三版）》
+JavaScript专题之惰性函数
+深入理解javascript函数进阶之惰性函数
+
+因为不同厂商的浏览器相互之间存在一些行为上的差异，很多 js 代码包含了大量的if语句，将执行引导到正确的分支代码中去，比如下面的例子。
+function createXHR() {
+    if (typeof XMLHttpRequest != &#39;undefined&#39;) {
+        return new XMLHttpRequest();
+    } else if (typeof ActiveXObject != &#39;undefined&#39;) {
+        if (typeof arguments.callee.activeXString != &#39;string&#39;) {
+            var versions = [&#39;MSXML2.XMLHttp.6.0&#39;, &#39;MSXML2.XMLHttp.3.0&#39;, &#39;MSXML2.XMLHttp&#39;];
+            var i, len;
+            for (i = 0, len = versions.length; i &amp;lt; len; i++) {
+                try {
+                    new ActiveXObject(versions[i]);
+                    arguments.callee.activeXString = versions[i];
+                } catch (e) {
+                    // skip
+                }
+            }
+        }
+        return new ActiveXObject(arguments.callee.activeXString);
+    } else {
+        throw new Error(&#39;No XHR object available.&#39;);
+    }
+}
+
+我们可以发现，在浏览器每次调用createXHR()的时候，它都要对浏览器所支持的能力仔细检查，但是很明显当第一次检查之后，我们就应该知道浏览器是否支持我们所需要的能力，因此除第一次之外的检查都是多余的。即使只有一个if语句也肯定要比没有if语句慢，所以if语句不必每次都执行，那么代码可以运行的更快一些，惰性载入就是用来解决这种问题的技巧。
+函数重写
+要理解惰性载入函数的原理，我们有必要先理解一下函数重写技术，由于一个函数可以返回另一个函数，因此可以在函数内部用新的函数来覆盖旧的函数。
+function sayHi() {
+    console.info(&#39;Hi&#39;);
+    sayHi = function() {
+        console.info(&#39;Hello&#39;);
+    }
+}
+
+我们第一次调用sayHi()函数时，控制台会打印出Hi，全局变量sayHi被重新定义，被赋予了新的函数，从第二次开始之后的调用都会打印出Hello。惰性载入函数的本质就是函数重写，惰性载入的意思就是函数执行的分支只会发生一次。
+惰性载入
+我们来看一个例子（例子来源于冴羽所写的JavaScript专题之惰性函数）。现在需要写一个foo函数，这个函数返回首次调用时的Date对象，注意是首次。
+方案一
+var t;
+function foo() {
+    if (t) return t;
+    t = new Date()
+    return t;
+}
+// 此方案存在两个问题，一是污染了全局变量
+// 二是每次调用都需要进行一次判断
+
+方案二
+var foo = (function() {
+    var t;
+    return function() {
+        if (t) return t;
+        t = new Date();
+        return t;
+    }
+})();
+// 使用闭包来避免污染全局变量，
+// 但是还是没有解决每次调用都需要进行一次判断的问题
+
+方案三
+function foo() {
+    if (foo.t) return foo.t;
+    foo.t = new Date();
+    return foo.t;
+}
+// 函数也是一种对象，利用这个特性也可以解决
+// 和方案二一样，还差一个问题没有解决
+
+方案四
+var foo = function() {
+    var t = new Date();
+    foo = function() {
+        return t;
+    };
+    return foo();
+};
+// 利用惰性载入技巧，即重写函数
+
+惰性载入函数有两种实现方式，第一种是在函数被调用时再处理函数。在第一次调用的过程中，该函数会被覆盖为另外一种按合适方式执行的函数，这样任何对原函数的调用都不用再经过执行分支了。
+第二种实现方式是在声明函数时就指定适当的函数。这样第一次调用时就不会损失性能了，而是在代码首次加载时会损失一点性能，即是利用闭包写一个自执行的函数。
+改进 createXHR
+有了上面的基础，我们就可以将createXHR()改进为下列形式，这样就不用每次调用都进行判断了。
+// 第一种实现方式
+function createXHR() {
+    if (typeof XMLHttpRequest != &#39;undefined&#39;) {
+        createXHR = function() {
+            return new XMLHttpRequest();
+        }
+    } else if (typeof ActiveXObject != &#39;undefined&#39;) {
+        createXHR = function() {
+            if (typeof arguments.callee.activeXString != &#39;string&#39;) {
+                var versions = [&#39;MSXML2.XMLHttp.6.0&#39;, &#39;MSXML2.XMLHttp.3.0&#39;, &#39;MSXML2.XMLHttp&#39;];
+                var i, len;
+                for (i = 0, len = versions.length; i &amp;lt; len; i++) {
+                    try {
+                        new ActiveXObject(versions[i]);
+                        arguments.callee.activeXString = versions[i];
+                    } catch (e) {
+                        // skip
+                    }
+                }
+            }
+            return new ActiveXObject(arguments.callee.activeXString);
+        };
+    } else {
+        createXHR = function() {
+            throw new Error(&#39;No XHR object available.&#39;);
+        }
+    }
+}
+
+// 第二种实现方式
+function createXHR() {
+    if (typeof XMLHttpRequest != &#39;undefined&#39;) {
+        return function() {
+            return new XMLHttpRequest();
+        }
+    } else if (typeof ActiveXObject != &#39;undefined&#39;) {
+        return function() {
+            if (typeof arguments.callee.activeXString != &#39;string&#39;) {
+                var versions = [&#39;MSXML2.XMLHttp.6.0&#39;, &#39;MSXML2.XMLHttp.3.0&#39;, &#39;MSXML2.XMLHttp&#39;];
+                var i, len;
+                for (i = 0, len = versions.length; i &amp;lt; len; i++) {
+                    try {
+                        new ActiveXObject(versions[i]);
+                        arguments.callee.activeXString = versions[i];
+                    } catch (e) {
+                        // skip
+                    }
+                }
+            }
+            return new ActiveXObject(arguments.callee.activeXString);
+        };
+    } else {
+        return function() {
+            throw new Error(&#39;No XHR object available.&#39;);
+        }
+    }
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/1M5AYjF7f/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/sPxxvjVav/">
+                        非设计师需要知道的四个设计原则
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-06-22</time>
+                    
+                        <a href="https://www.guanngxu.com/3pFNTYNB8/" class="post-tag i-tag
+                            i-tag-other_1">
+            #翻译摘录
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-">
+            #前端
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/sPxxvjVav/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/sPxxvjVav.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+作者：Anna 4erepawko Mészáros，UI/UX 设计师。
+关注作者： Medium、Twitter
+
+这篇文章是写给无力邀请专业设计师的所有内容创作者的，以及设计师异常忙碌的团队的非设计师们。如果您按照这些简单的步骤进行操作，我保证您的设计会变得更好。
+这些 Tips 来源于我对身边非设计朋友的多年观察，家人与同事在日常生活中也需要设计他们的东西。比如简历、作品集，Facebook 和 Instagram 上帖子要使用的图片，YouTube 视频的缩略图等。
+所有这些人都向我寻求帮助与建议，希望能让他们的东西看起来更好。我坚信「授人以鱼不如授人以渔」，所以我试图提供更有价值的建议，以便他们在未来也能解决类似的问题。
+随着时间的推移，我意识到我一直在给所有人提供相同的建议，虽然每次所使用的措辞不同，但我所有的建议都可以提炼为以下四个原则。
+这些 Tips 会帮您创造出美丽动人的设计吗？答案是不会！它们只会帮您创造出色、清晰且易于理解的设计。是每个人都可以轻松理解和互动吗？那当然，所以不多说废话，下面我就向您逐一展示。
+对比
+确保所有元素之间有足够的对比度。为什么？因为那些略有差异但是又不够不同东西，创造了一种恐怖谷。人类的眼睛会排斥它们，对它们感到厌恶、难以理解。我们不希望它们出现在我们的设计中，难道不是吗？
+
+恐怖谷理论，是一个关于人类对机器人和非人类物体的感觉的假设。如果一个非人类实体不够拟人，那么它身上的人类特征会很容易辨认；而当它足够拟人时，他身上的非人类特征则会变得很容易辨认。因此会在人类观察者眼中产生一种古怪的感觉，想想您看到病患者或者尸体时的感觉。
+
+因此您设计的元素要么完全相同，要么具有显著差异。
+您可以从下面四个方面来突出对比：
+1、颜色：浅色上使用暗色，反之亦然
+示例： 切勿在浅蓝色上使用浅灰色或浅粉红色等灰色组合，它们会造成阅读/互动上的极大困难。
+
+2、大小：相邻元素要么大小完全相同，要么大小区别很大
+示例： 不要将 32pt 和 36pt 的文本放在一起；18pt 和 36pt 放在一起会显得更加协调。
+
+3、粗细：与大小一样，相邻元素的粗细要么完全相同，要么有明显的区别
+示例： 不要将相同字体的粗体与黑体放在一起，因为它们看起来太相似了；将黑体与细体放在一起会显得很协调。
+
+4、风格：不要将一个斜体类型放在另一个斜体类型旁边，或者在一个衬线字体旁边放置另一个衬线字体。应该组合不同的东西。
+示例： 不要将 Times New Roman 与 Georgia 放在一起，它们看起来太相似了，应该组合完全不同的风格。
+
+一致性
+确保相似的元素以相似的方式出现。为什么呢？首先，通过确保确保事物一致性，您可以让用户将注意力集中在设计的重要方面，而不是被随时变化的元素分散注意力。
+其次，一致性也增加了用户对您的信任，使事物看起来实际上是设计的，而不是简单快速拼凑出来的。
+一旦你选择了具体的风格，就要毫不犹豫的坚持下去，这里所说的风格包括字体、颜色、阴影、栅格、对齐、装饰风格等等。
+
+当您处理许多相邻的不同部分时（比如 YouTube 的视频缩略图或是中型文章的封面），您应该为所有部分选择一种整体风格，并坚持使用。
+奥卡姆剃刀 减少视觉噪音
+在您的设计中，使用的元素越少越好。为什么呢？因为人类的大脑很难在输入过载的情况下处理信息并作出决策。您应该使用尽可能少的装饰元素（字体、颜色、阴影、图标等等）。
+将奥卡姆剃刀应用于所有内容。如果只需要两个元素就能满足需求，那么就不要使用 3 个元素；如果 10 个元素实现所需的功能，那么就不要用 20 个元素。
+
+如果您不喜欢古老的英国哲学家风格，更喜欢您在 Netflix（一家美国流媒体提供商）上看到的东西。请将怦然心动的人生整理魔法应用到您的设计中。
+
+《怦然心动的人生整理魔法》是美国流媒体提供商Netflix于2019年1月1日首播的一档真人实境秀节目。节目由日本“整理咨询顾问” 近藤麻理惠主创。她在每集节目中拜访一个家庭，帮助他们整理自己的房间。
+近藤麻理惠认为整理房间时应当将物品分为五类：衣物、书籍、纸张文件、杂物和情感纪念品；在整理时拿起每件物品，如果能使自己“怦然心动”则留下，如果不能则要感谢物品的贡献然后与其告别。
+
+间距
+元素的位置会发送关于其含义的元级别消息。为什么这很重要？因为了解如何放置元素以及在它们周围预留了多少空间有助于降低设计的复杂性，因此会使人更加愉悦，并且更容易交互。
+在您的设计中使用间距来传达下面 3 个方面的信息：
+1、接近度 = 相关性
+与其它元素相比，彼此更接近的事物被认为它们有更强的相关性。这是最重要的，因为我觉得它常常容易被忽视。
+它可以以很多不同的方式应用，比如行与行之间应该有一定的间距，而不是一行中每个单词之间的间距那么小；同样不同段落之间的空间也比段落内的行空间要大。
+
+元素之间的间距应该小于元素与组合边缘之间的间距。
+
+标签和支撑信息应该位于其相关元素附近。
+
+2、留白
+结合奥卡姆剃刀，给您的设计尽可能留白，去整理它们，使它们的意义更加明显。
+如果把太多元素放在有限的空间里，就像同时听三首不同的哥，很难理解别人在说什么。
+
+3、重要性与顺序
+这是一个很普通的常识，但是我还是要在这里提到它。
+最重要的事情放在第一位，使它们占据最大的空间，用一系列的事物来传达秩序。
+结束语
+恭喜您！如果您按照这些 Tips 进行设计，那么按照行业标准，它可能看起来非常好。
+For everything else, there is always a designer.
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/sPxxvjVav/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/S9me2CdAH/">
+                        如何保证快速加载网页？——详解浏览器缓存机制
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-04-23</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-other_1">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-other_4">
+            #计算机网络
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/S9me2CdAH/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/S9me2CdAH.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+彻底理解浏览器的缓存机制
+彻底弄懂HTTP缓存机制及原理
+
+前端开发人员有大部分时间都在调整页面样式，如果页面没有按照自己预期的样式显示，可能想到的第一个解决方案就是清一下浏览器缓存，HTTP 缓存机制作为 Web 性能优化的重要手段，也应该是 Web 开发人员必备的基础知识。我们常说的浏览器缓存机制也就是 HTTP 缓存机制，它是根据 HTTP 报文的缓存标识运行的，所以首先要对 HTTP 报文有一个简单的了解。
+HTTP 报文
+HTTP 报文是浏览器和服务器间进行通信时所发的响应数据，所以 HTTP 报文分为请求（Request）报文和响应（Response）报文两种，浏览器向服务器发送的是请求报文，而服务器向浏览器发送的是响应报文。HTTP 请求报文由请求行、请求头、请求体组成，响应报文则由状态行、响应头、响应正文组成，与缓存有关的规则信息则都包含在请求头和响应头中。
+缓存概述
+浏览器与服务器通过请求响应模式来通信，当浏览器第一次向服务器发送请求并拿到结果后，会根据响应报文中的缓存规则来决定是否缓存结果，其简单的流程如下图：
+
+浏览器每次发起请求都会先在浏览器缓存中查找该请求的结果和缓存标识，而且每次拿到响应数据后都会将该结果和缓存标识存入缓存中。HTTP 缓存的规则有多种，我们可以根据是否需要重新向服务器发起请求这一维度来分类，即有强制缓存和协商缓存两类，也有人把协商缓存叫对比缓存。
+强制缓存
+我们先自己想一下，使用缓存是不是会有下面几种情况出现。
+
+
+存在所需缓存并且未失效：直接走本地缓存即可；强制缓存生效；
+
+
+存在所需缓存但已失效：本地缓存失效，携带着缓存标识发起 HTTP 请求；强制缓存失效，使用协商缓存；
+
+
+不存在所需缓存：直接向服务器发起 HTTP 请求；强制缓存失效。
+
+
+控制强制缓存的字段分别是Expires和Cache-Control，并且Cache-Control的优先级高于Expires。
+Expires
+Expires是 HTTP/1.0 控制网页缓存的字段，其值为服务器返回的该缓存到期时间，即下一次请求时，请求时间小于Expires值，就直接使用缓存数据。到了 HTTP/1.1，Expires已经被Cache-Control替代了。
+Expires被替代的原因是因为服务端和客户端的时间可能有误差（比如时区不同或者客户端与服务端有一方时间不准确），这就会导致缓存命中误差，强制缓存就变得毫无意义。
+Cache-Control
+Cache-Control是 HTTP/1.1 中最重要的规则，主要取值为：
+
+
+
+取值
+规则
+
+
+
+
+public
+所有内容都可以被缓存，包括客户端和代理服务器，纯前端可认为与private一样。
+
+
+private
+所有内容只有客户端可以缓存，Cache-Control的默认值。
+
+
+no-cache
+客户端可以缓存，但是是否缓存需要与服务器协商决定（协商缓存）
+
+
+no-store
+所有内容都不会被缓存，既不是用强制缓存，也不使用协商缓存，为了速度快，实际上缓存越多越好，所以这个慎用
+
+
+max-age=xxx
+缓存内容将在 xxx 秒后失效
+
+
+
+我们可以看看下面这个例子，可以从截图中看到Expires是一个绝对值，而Cache-Control是一个相对值，此处为max-age=3600，即 1 小时后失效。在无法确定客户端的时间是否与服务端的时间同步的情况下，Cache-Control相比于Expires是更好的选择，所以同时存在时只有Cache-Control生效。
+
+协商缓存
+协商缓存，顾名思义就是需要双方通过协商来判断是否可以使用缓存。强制缓存失效后，浏览器带着缓存标识向服务器发起请求，由服务器根据缓存标识决定是否可以使用缓存，那自然而然就有协商缓存生效和协商缓存不生效两种情况了。
+
+上图是协商缓存生效的流程，如果协商缓存不生效则返回的状态码为 200。协商缓存的标识也是在响应报文的响应头中返回给浏览器的，控制协商缓存的字段有Last-Modified / If-Modified-Since和Etag / If-None-Match，其中Etag / If-None-Match的优先级比Last-Modified / If-Modified-Since高，所以同时存在时只有Etag / If-None-Match生效。
+Last-Modified / If-Modified-Since
+你可以往上翻一翻，看一下那张响应报文截图，其中有一个Last-Modified字段，它的值是该资源文件在服务器最后被修改的时间。
+If-Modified-Since则是客户端再次发起该请求时，携带上次请求返回的Last-Modified值。服务器收到该请求后，发现该请求头有If-Modified-Since字段，则会将If-Modified-Since与该资源在服务器的最后被修改时间做对比，若服务器的资源最后被修改时间大于If-Modified-Since的字段值，则重新返回资源，状态码为 200；否则则返回 304，代表资源无更新，可继续使用缓存文件。
+
+Etag / If-None-Match
+Etag是服务器响应请求时，返回当前资源文件的一个由服务器生成的唯一标识。
+If-None-Match则是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有If-None-Match，则会根据If-None-Match的字段值与该资源在服务器的Etag值做对比，如果一致则就返回 304，代表资源无更新，可以继续使用缓存文件；否则重新返回资源文件，状态码为200，
+
+disk cache 与 memory cache
+我们可以通过浏览器调试工具查看强制缓存是否生效，如下图所示，状态码为灰色的请求就代表使用了强制缓存，请求对应的 size 显示了该缓存存放的位置，那么什么时候用 disk 什么时候用 memory 呢？
+
+猜都能猜出来，肯定是优先使用内存（memory）中的缓存，然后才用硬盘（disk）中的缓存。
+内存缓存具有快速读取的特点，它会将编译解析后的文件直接存入该进程的内存中，但是一旦进程关闭了，该进程的内存就会被清空，所以如果你将一个网页关闭后再打开，那么缓存都会走硬盘缓存，而如果你只是刷新网页，那有部分缓存走的就是内存缓存。
+浏览器一般会再 js 和图片等文件解析执行后直接存入内存缓存中，当刷新页面时，这部分文件只需要从内存缓存中读取即可，而 css 文件则会存入硬盘中，所以每次渲染页面都需要从硬盘中读取文件。
+总结
+到这里偷懒一下子了，找到人家画的一张图，看图就行了。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/S9me2CdAH/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/M_3PVzDfm/">
+                        Bootstrap-table 如何合并相同单元格
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-01-26</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-warning">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
+                            i-tag-other_4">
+            #TypeScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-other_3">
+            #JavaScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-warning">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/M_3PVzDfm/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/M_3PVzDfm.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            Bootstrap-table 官方提供了合并单元格方法 mergeCells，它根据四个参数可以合并任意个单元格，我们要做的只是告诉它怎么合并。
+要合并同一列相同的单元格，无非两种办法，一种是一边遍历一边合并，遍历完了再合并。这里采用第二种办法，这里不需要遍历所有数据，因为用户只能看到当前页的数据，所以只遍历当前页的数据更省时间。
+下面是我实现的获取合并信息算法，最终返回的是一个哈希表，比如下面的这个表格，如果要对「性别」这一列进行合并，很明显前面两个“男”需要合并成一个单元格，再去看下 Bootstrap-table 提供的 API，它需要的是从哪个单元格开始，合并多少个单元格，也就是它需要的是两个数值类型的参数。
+
+
+
+姓名
+性别
+年龄
+
+
+
+
+张三
+男
+23
+
+
+李四
+男
+19
+
+
+王二
+女
+20
+
+
+麻子
+男
+21
+
+
+
+所以我把哈希表设置为，键存的是索引，值存的是从这个索引开始后面连续有多少个和它一样的单元格，那么上述表格性别这一列所得到的合并信息哈希表就为：
+{
+    0: 2,
+    2: 1,
+    3: 1
+}
+
+下面算法很简单，使用两个指针遍历指定的列，如果两个指针所指向的数据相同，那么就将键所对应的值进行加一操作，整个方法只会对该列数据遍历一边，所以时间复杂度为 O(n)。
+let getMergeMap = function (data, index: number) {
+    let preMergeMap = {};
+    // 第 0 项为表头，索引从 2 开始为了防止数组越界
+    for (let i = 2; i &amp;lt; data.length; i++) {
+        let preText = $(data[i-1]).find(&#39;td&#39;)[index].innerText;
+        let curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+        let key = i - 2;
+        preMergeMap[key] = 1;
+        while ((preText == curText) &amp;amp;&amp;amp; (i &amp;lt; data.length-1)) {
+            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
+            i++;
+            preText = $(data[i - 1]).find(&#39;td&#39;)[index].innerText;
+            curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+        }
+        // while循环跳出后，数组最后一项没有判断
+        if (preText == curText) {
+            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
+        }
+    }
+    return preMergeMap;
+}
+
+上述算法得到了单列数据的合并信息，下一步就是按照这个信息进行相同单元格的合并了，因此封装了下面的方法按照指定哈希表进行合并。
+let mergeCells = function (preMergeMap: Object, target, fieldName: string) {
+    for (let prop in preMergeMap) {
+        let count = preMergeMap[prop];
+        target.bootstrapTable(&#39;mergeCells&#39;, { index: parseInt(prop), field: fieldName, rowspan: count });
+    }
+}
+
+到目前为止，我们实现的都只是对单列数据进行合并，要实现对多列数据进行合并，那么只需要对所有列都进行相同的操作即可。
+export let mergeCellsByFields = function (data: Object[], target, fields) {
+    for (let i = 0; i &amp;lt; fields.length; i++) {
+        let field = fields[i];
+        // 保证 field 与 i 是相对应的
+        let preMergeMap = getMergeMap(data, i);
+        let table = target.bootstrapTable();
+        mergeCells(preMergeMap, table, field);
+    }
+}
+
+因为我在程序中做了一点处理，保证了fields中每个值得索引与对应表头的索引是一样的，因此不需要额外传入索引信息。简单来说就是我所实现的表格会根据fields的顺序，实现列之间的动态排序。你需要注意的是这一点很可能和你不一样。
+到现在已经能够合并所有的列了，查看 Bootstrap-table 的配置信息发现，它有个属性是 onPostBody 它会在 table body 加载完成是触发，所以把这个属性配置成我们的合并单元格方法即可。
+// groups 为要合并的哪些列
+onPostBody: function () {
+    mergeCellsByFields($(&#39;#table&#39; + &#39; tr&#39;), $(&#39;#table&#39;), groups);
+}
+
+再说一点不太相关的，我实现的是让用户可以自己选可以合并多少列，即用了一个可多选的下拉列表框供用户选择，根据用户选择的数量去合并，所以传入了一个groups参数。
+最后推荐一个排序插件 thenBy，你可以用它进行多字段排序，比如用在合并相同单元格的场景，在绘制表格前先对数据进行排序，那么最后合并的结果就是把所有相同的数据聚合到一起了，并且还将它们合并到一起了，起到了一个隐形的过滤查询功能。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/M_3PVzDfm/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/WnccL2rgJ/">
+                        学习 Angulr 容易忽略的知识点
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-25</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-info">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
+                            i-tag-other_4">
+            #TypeScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-error">
+            #JavaScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
+                            i-tag-error">
+            #Angular
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/WnccL2rgJ/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/WnccL2rgJ.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《Angulr5 高级编程（第二版）》
+
+函数声明式和表达式
+// 第一种：函数声明式
+myFunc();
+function myFunc(){
+    ...
+}
+
+// 第二种：函数表达式
+myFunc();
+let myFunc = function(){
+    ...
+}
+
+虽然上面两种函数声明方式在大部分情况下是一样的，第一种可执行，第二种却不可以执行，这是因为浏览器在解析 js 时找到函数声明，并在执行剩余语句之前设置好函数，此过程称为函数提升，但是函数表达式却不会受到提升，因此无法正常工作。
+js 不具备多态性
+js 重不能创建名称相同但参数不同的两个函数，它不具备这个多态性，比如你定义的函数中有两个形参，调用函数时只传一个参数，第二形参的值就是 undefined ，如果传的参数大于 3 个，那么会自动忽略多余的参数。可以使用下列方法来处理函数定义参数数量和用于调用函数实际参数数量之间不匹配的问题。
+// 使用默认参数
+let func = function(age, sex=&#39;男&#39;){
+    ...
+}
+func(23);
+
+// 使用可变长参数
+let func = function(age, sex, ...extraArgs){
+    ...
+}
+func(23, &#39;女&#39;, &#39;张三&#39;, &#39;深圳&#39;);
+// 最后一个参数是一个数组，任何额外的实参都会被赋给这个数组
+
+let 和 war 的区别
+使用 let 和 var 声明变量的区别，使用 let 声明变量会把变量的作用范围限定在它所在的代码区域内。而使用 var 所创建的变量的作用域是它所在的函数。
+function func(){
+    if(false){
+        var age = 23;
+    }
+}
+
+// 上面的代码会被解析成下面的形式，使用 let 则不会出现这样的结果
+
+function func(){
+    var age;
+    if(false){
+        age = 23;
+    }
+}
+
+相等 == 和恒等 === 以及 连接操作符 +
+相等操作符尝试将操作数强制转换为相同的类型，再评估是否相等，实质上相等操作符==是测试二者的值是否相等，而与二者的类型无关；如果要测试值和类型是否都相等则应该用恒等操作符===。
+5 == &#39;5&#39; // 结果为 true
+5 === &#39;5&#39; // 结果为 false
+
+在 js 中，连接操作符的优先级高于加法操作，也就是说5 + &#39;5&#39;的结果是55。
+不同的模块指定方式
+import { Name } from &amp;quot;./modules/NameUtil&amp;quot;;// 第一种
+import { Compont } from &amp;quot;@angular/core&amp;quot;;// 第二种
+
+上面两种导入模块的方式有所不同，第一种是相对模块，第二种是非相对导入。第一种告诉的 TypeScript 编译器，该模块所在的位置是相对于包含 import 语句的文件而言；第二种非相对导入，编译器会用 node_modules 文件夹中的 npm 包来解析它。
+如果在导入模块时，出现需要导入两个不同模块但是名字却相同的情况，可以使用as关键字给导入的模块取一个别名。
+import { Name as otherName } from &amp;quot;./modules/Name&amp;quot;;//取别名
+
+还有一种方法是将模块作为对象导入，如下 import 所示，导入 Name 模块的内容，并创建一个名为 otherName 的对象，然后就可以使用该对象的属性了。
+import * as otherName from &amp;quot;./modules/NameUtil&amp;quot;;
+let name = new otherName.Name(&amp;quot;Admin&amp;quot;, &amp;quot;China&amp;quot;);// Name 是 NameUtil 中的类
+
+多类型和类型断言
+在 ts 中允许指定多个类型，使用字符|进行分隔。看下面的的方法，其功能是把华氏温度转换为摄氏温度。
+// 使用多类型，该函数可以传入 number 和 string 类型的参数
+static convertFtoC(temp: number | string): string {
+    /*
+    尝试使用 &amp;lt;&amp;gt; 声明一个类型断言，将一个对象转换为指定类型，也可以使用 as 关键字实现下列相同的效果
+    let value: number = (temp as number).toPrecision ? temp as number : parseFloat(temp as string);
+    */
+    let value: number = (&amp;lt;number&amp;gt;temp).toPrecision ? &amp;lt;number&amp;gt;temp : parseFloat(&amp;lt;string&amp;gt;temp);
+    return ((parseFloat(value.toPrecision(2)) - 32) / 1.8).toFixed(1);
+}
+
+元组是固定长度的数组，数组的每一项都是指定的类型；可索引类型可以将键与值关联起来，创建类似于 map 的集合。
+// 元组
+let tuple: [string, string, string];
+tuple = [&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;];
+
+// 可索引类型
+let cities: {[index: string] : [string, string]} = {};
+cities[&amp;quot;Beijing&amp;quot;] = [&amp;quot;raining&amp;quot;, &amp;quot;2摄氏度&amp;quot;];
+
+数据绑定
+[target]=&amp;quot;expr&amp;quot;// 方括号表示单向绑定，数据从表达式流向目标；
+
+(target)=&amp;quot;expr&amp;quot;// 圆括号表示单向绑定，数据从目标流向表达式，用于处理事件的绑定；
+[(target)]=&amp;quot;expr&amp;quot;// 圆方括号组合表示双向绑定，数据在表达式与目标之间双向流动；
+{{ expression }}// 字符串插入绑定。
+
+[] 绑定有很多不同的形式，下面介绍不同表现形式的效果。
+&amp;lt;!-- 
+    标准属性绑定（dom对象有的属性），将 input 的 value 属性绑定到一个表达式的结果
+    因为 model.getProduct(1) 可能返回 null ，所以使用模板空条件操作符 ? 浏览返回结果
+    如果返回不为空，那么将读取 name 属性，否则由 null 合并操作符 || 将结果设置为 None
+    字符串插入绑定也可以使用这种表达式
+ --&amp;gt;
+&amp;lt;input [value]=&amp;quot;model.getProduct(1)?.name || &#39;None&#39;&amp;quot;&amp;gt;
+
+&amp;lt;!-- 
+    元素属性绑定，有时候我们需要绑定的属性在 DOMAPI 上面没有
+    可以使用通过在属性名称前加上 attr 前缀的方式来定义目标
+ --&amp;gt;
+&amp;lt;td [attr.colspan]=&amp;quot;model.getProducts().length&amp;quot;&amp;gt;
+    {{ model.getProduct(1)?.name || &#39;None&#39; }}
+&amp;lt;/td&amp;gt;
+
+&amp;lt;!-- 还有其他的 ngClass，ngStyle 等绑定，理解大体上和上面差不多 --&amp;gt;
+
+内置指令
+&amp;lt;!-- 
+    ngIf指令，如果表达式求值结果为 true ，那么 ngIf 将宿主元素机器内容包含在 html 文件中
+    指令前面的星号表示这是一条微模板指令
+    组要注意的是，ngIf 会向 html 中添加元素，也会从中删除元素，并非只是显示和隐藏
+    如果只是控制可见性，可以使用属性绑定挥着样式绑定
+ --&amp;gt;
+&amp;lt;div *ngIf=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;!-- 
+    ngSwitch指令，
+ --&amp;gt;
+&amp;lt;div [ngSwitch]=&amp;quot;expr&amp;quot;&amp;gt;
+    &amp;lt;span *ngSwitchCase=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span *ngSwitchDefault&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;!-- 
+    ngFor指令，见名知意，为数组中的每个对象生成同一组元素
+    ngFor 指令还支持其他的一系列可赋给变量的值，有如下局部模板变量
+    
+    index：当前对象的位置
+    odd：如果当前对象的位置为奇数，那么这个布尔值为 true
+    even：同上相反
+    first：如果为第一条记录，那么为 true
+    last：同上相反
+ --&amp;gt;
+&amp;lt;div *ngFor=&amp;quot;let item of expr; let i = index&amp;quot;&amp;gt;
+    {{ i }}
+&amp;lt;/div&amp;gt;
+
+&amp;lt;!-- 
+    ngTemplateOutlet指令，用于重复模板中的内容块
+    其用法如下所示，需要给源元素指定一个 id 值
+    
+    &amp;lt;ng-template #titleTemplate&amp;gt;
+        &amp;lt;h1&amp;gt;我是重复的元素哦&amp;lt;/h1&amp;gt;
+    &amp;lt;/ng-template&amp;gt;
+    &amp;lt;ng-template [ngTemplateOutlet]=&amp;quot;titleTemplate&amp;quot;&amp;gt;&amp;lt;/ng-template&amp;gt;
+    ...省略若万行 html 代码
+    &amp;lt;ng-template [ngTemplateOutlet]=&amp;quot;titleTemplate&amp;quot;&amp;gt;&amp;lt;/ng-template&amp;gt;
+ --&amp;gt;
+&amp;lt;ng-template [ngTemplateOutlet]=&amp;quot;myTempl&amp;quot;&amp;gt;&amp;lt;/ng-template&amp;gt;
+
+&amp;lt;!-- 
+    下面两个指令就是见名知意了，不解释
+ --&amp;gt;
+&amp;lt;div ngClass=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div ngStyle=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+事件绑定
+事件绑定使用 (target)=&amp;quot;expr&amp;quot;，是单向绑定，数据从目标流向表达式，用于响应宿主元素发送的事件。
+当浏览器触发一个时间时，它将提供一个对象来描述该事件，对于不同类型的事件有不同类型的事件对象，事件对象被赋给一个名为$event的模板变量，但是所有事件对象都有下面三个属性:
+type：返回一个 string 值，用于标识已触发事件类型；
+target：返回触发事件的对象，一般是 html元素对象。
+timeStamp：返回事件触发事件的 number 值，用 1970.1.1 毫秒数表示。
+
+下面举几个例子，作为理解帮助使用。
+&amp;lt;!-- 当数鼠标在上面移动时，就会触发 mouseover 事件 --&amp;gt;
+&amp;lt;td *ngFor=&amp;quot;let item of getProducts()&amp;quot; (mouseover)=&amp;quot;selectedProduct = item.name&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+
+&amp;lt;!-- 当用户编辑 input 元素的内容时就会触发 input 事件 --&amp;gt;
+&amp;lt;input (input)=&amp;quot;selectedProduct=$event.target.value&amp;quot; /&amp;gt;
+
+&amp;lt;input (keyup)=&amp;quot;selectedProduct=product.value&amp;quot; /&amp;gt;
+&amp;lt;!-- 使用事件过滤，上面的写法按下任何一个键都会触发事件，而下面的写法只有回车事件才会触发事件 --&amp;gt;
+&amp;lt;input (keyup.enter=&amp;quot;selectedProduct=product.value&amp;quot;) /&amp;gt;
+
+表单验证
+Angular 提供了一套可扩展的系统来验证表单元素的内容，总共可以向 input表元素中添加 4 个属性，每个属性定义一条验证规则，如下所示：
+required：用于指定必须填写值；
+minlength：用于指定最小字符数；
+maxlength：用于指定最大字符数，（不能在表单元素直接使用，因为它与同名的 H5 属性冲突）；
+pattern：该属性用于指定用户填写的值必须匹配正则表达式
+
+&amp;lt;!-- 
+    Angular 要求验证的元素必须定义 name 属性
+    由于 Angular 使用的验证属性和 H5 规范使用的验证属性相同，
+    所以向表单元素中添加 novalidate 属性，告诉浏览器不要使用原生验证功能
+    ngSubmit 绑定表单元素的 submit 事件
+ --&amp;gt;
+&amp;lt;form novalidate (ngSubmit)=&amp;quot;addProduct(newProduct)&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot;
+        name=&amp;quot;name&amp;quot;
+        [(ngModel)]=&amp;quot;newProduct.name&amp;quot;
+        required
+        minlength=&amp;quot;5&amp;quot;
+        pattern=&amp;quot;^[A-Za-z]+$&amp;quot; /&amp;gt;
+    &amp;lt;button type=&amp;quot;submit&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+Angular 提供了 3 对验证 CSS 类，这些类可以用于样式化表单元素，向用户提供验证反馈，具体说明如下所示。
+ng-untouched ng-touched：如果一个元素未被用户访问，就将其加入到 nguntouched 类中；一旦访问就加入到 ngtouched 类中。
+ng-prisstine ng-dirty：元素内容没有被改变被加入到 ng-prisstine 类中，否则将其加入到 ng-dirty 类中。
+ng-valid ng-invalid：如果满足验证规则定义的条件，就加入到 ng-valid 类中，否则加入到 ng-invalid 类中。
+
+在实际使用过程中，直接定义对应的样式即可，如下所示：
+&amp;lt;style&amp;gt;
+input.ng-dirty.ng-invalid{
+    border: 2px solid red;
+}
+input.ng-dirty.ng-valid{
+    border: 2px solid green;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;form novalidate (ngSubmit)=&amp;quot;addProduct(newProduct)&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot;
+        name=&amp;quot;name&amp;quot;
+        [(ngModel)]=&amp;quot;newProduct.name&amp;quot;
+        required
+        minlength=&amp;quot;5&amp;quot;
+        pattern=&amp;quot;^[A-Za-z]+$&amp;quot; /&amp;gt;
+    &amp;lt;button type=&amp;quot;submit&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+上面的验证方式无法给用户提供更加具体的信息，用户不知道应该做什么，可以使用 ngModel 指令来访问宿主元素的验证状态，当存在验证错误的时候，使用该指令向用户提供指导性信息。
+&amp;lt;form novalidate (ngSubmit)=&amp;quot;addProduct(newProduct)&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot;
+        #nameRef=&amp;quot;ngModel&amp;quot;
+        name=&amp;quot;name&amp;quot;
+        [(ngModel)]=&amp;quot;newProduct.name&amp;quot;
+        required
+        minlength=&amp;quot;5&amp;quot;
+        pattern=&amp;quot;^[A-Za-z]+$&amp;quot; /&amp;gt;
+    &amp;lt;ul class=&amp;quot;text-danger list-unstyled&amp;quot;
+        *ngIf=&amp;quot;name.dirty &amp;amp;&amp;amp; name.invalid&amp;quot;&amp;gt;
+        &amp;lt;li *ngIf=&amp;quot;name.errors?required&amp;quot;&amp;gt;
+            you must enter a product name
+        &amp;lt;/li&amp;gt;
+        &amp;lt;li *ngIf=&amp;quot;name.errors?.pattern&amp;quot;&amp;gt;
+            product name can only contain letters and spases
+        &amp;lt;/li&amp;gt;
+        &amp;lt;li *ngIf=&amp;quot;name.errors?minlength&amp;quot;&amp;gt;
+            &amp;lt;!-- 
+                Angular 表单验证错误描述属性
+                required：如果属性已被应用于 input 元素，此属性返回 true
+                minlength.requiredLength：返回满足 minlength 属性所需的字符数
+                minlength.actualLength：返回用户输入的字符数
+                pattern.requiredPattern：返回使用 pattern 属性指定的正则表达式
+                pattern.actualValue：返回元素的内容
+             --&amp;gt;
+            product name must be at least {{ name.errors.minlength.requiredLenth }} characters
+        &amp;lt;/li&amp;gt;
+    &amp;lt;/ul&amp;gt;
+    &amp;lt;button type=&amp;quot;submit&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+如果在用户尝试提交表单时就显示大量的错误信息，给人的体验感就会很差，所以可以让用户提交表单时再验证整个表单，示例代码如下所示。
+export class ProductionCompont {
+    // ...省略若万行代码
+    formSubmited: boolean = false;
+
+    submitForm(form: ngForm) {
+        this.formSubmited = true;
+        if(form.valid) {
+            this.addProduct(this.newProduct);
+            this.newProduct = new Product();
+            form.reset();
+            this.formSubmited = true;
+        }
+    }
+}
+
+&amp;lt;form novalidate #formRef=&amp;quot;ngForm&amp;quot; (ngSubmit)=&amp;quot;submitForm(formRef)&amp;quot;&amp;gt;
+    &amp;lt;div *ngIf=&amp;quot;formsubmited &amp;amp;&amp;amp; formRef.invalid&amp;quot;&amp;gt;
+        there are problems with the form
+    &amp;lt;/div&amp;gt;
+    &amp;lt;!-- 禁用提交按钮，验证成功提交按钮才可用 --&amp;gt;
+    &amp;lt;button [disabled]=&amp;quot;formSubmited &amp;amp;&amp;amp; formRef.valid&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+fromSubmited 属性用于指示表单是否已经提交，并将用于在用户提交整个表单之前阻止表单验证。当用户提交表单时，调用 submitForm 方法，并将 ngForm 对象作为实参传入，ngForm 提供了 reset 方法，该方法可以重置表单的验证状态，使其返回到最初的未访问状态。
+更高级的还有使用基于模型的表单验证，可以自行查阅相关资料。
+使用 json-server 模拟 web 服务
+因为json-server会经常用到，建议使用全局安装命令npm install -g json-server。因为开发后端的同学太慢了，而我们如果要等他们把接口都提供给我们的时候再开发程序的话，那效率就太低了，所以使用 json-server 来模拟后端服务。只需要建好一个 json 文件，比如下面的格式：
+{
+    &amp;quot;user&amp;quot; : [
+        {
+            &amp;quot;name&amp;quot; : &amp;quot;张三&amp;quot;,
+            &amp;quot;number&amp;quot; : &amp;quot;1234&amp;quot;,
+        },
+        {
+            &amp;quot;name&amp;quot; : &amp;quot;王二&amp;quot;,
+            &amp;quot;number&amp;quot; : &amp;quot;5678&amp;quot;,
+        }
+    ],
+    &amp;quot;praise&amp;quot;: [
+        {&amp;quot;info&amp;quot;:&amp;quot;我是一只小老虎呀！&amp;quot;},
+        {&amp;quot;info&amp;quot;:&amp;quot;我才是大老虎&amp;quot;}
+    ]
+}
+
+启动服务使用命令json-server [你的 json 文件路径]，然后就可以根据提示访问了，你甚至可以使用http://localhost:3000/user?number=5678去过滤数据。这样就能模拟 web 服务，而不必等后端同学的进度了。
+解决跨域请求问题
+Angular 跨域请求问题可以通过 Angular 自身的代理转发功能解决，在项目文件夹下新建一个 proxy.conf.json 并在其中添加如下内容。
+// 可以通过下列配置解决
+&amp;quot;/api&amp;quot;: {
+    &amp;quot;target&amp;quot;: &amp;quot;http://10.9.176.120:8888&amp;quot;,
+}
+
+在启动时使用npm start，或者使用ng serve  --proxy-config proxy.conf.json，Anular 中的/api请求就会被转发到 http://10.9.176.120:8888/api，从而解决跨域请求问题。
+使用第三方 js 插件
+共有三种方式引入第三方插件，第一种很简单，直接在 html 中引入插件就可以了；第二种在angular.json中进行配置；第三种在 ts 文件中使用 import 导入库即可。
+// 第一种(需要重启服务)
+&amp;quot;scripts&amp;quot;: [&amp;quot;src/assets/jquery-3.2.1.js&amp;quot;,&amp;quot;src/assets/jquery.nicescroll.js&amp;quot;,&amp;quot;src/assets/ion.rangeSlider.js&amp;quot;]
+
+// 第二种
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;assets/jquery-3.2.1.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;assets/jquery.nicescroll.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+// 第三种
+import &amp;quot;assets/jquery-3.2.1.js&amp;quot;;
+import &amp;quot;assets/jquery.nicescroll.js&amp;quot;;
+import &amp;quot;assets/ion.rangeSlider.js&amp;quot;;
+
+深拷贝与浅拷贝
+深拷贝与浅拷贝是围绕引用类型变量说的，其本质区别是不可变性，基本类型是不可变得，而引用类型是可变的。
+直接使用赋值操作符，就是浅拷贝，如果对拷贝源进行操作，会直接影响在拷贝目标上，因为这个赋值行为本质是内存地址的赋值，为了获得与拷贝源完全相同但又不会影响彼此的对象就要使用深拷贝。
+let objA = {
+    x: 1,
+    y: -1
+}
+let objB = objA;
+objA.x++;
+console.log(&amp;quot;objA.x:&amp;quot;+objA.x, &amp;quot;objB.x:&amp;quot;+objB.x);
+//打印结果如下：
+objA.x : 2 
+objB.x : 2
+
+Typescript 提供了一种方法来实现引用类型的深拷贝，即Object.assign(target, ...source)，此方法接受多个参数，第一个参数为拷贝目标，剩余参数为拷贝源，同名属性会进行覆盖。
+let objA = {
+    x: 1,
+    y: -1,
+    c: {
+        d: 1,
+    }
+}
+let objB = {};
+Object.assign(objB, objA);
+objA.x++;
+console.log(&amp;quot;objA.x:&amp;quot;+objA[&amp;quot;x&amp;quot;], &amp;quot;objB.x:&amp;quot;+objB[&amp;quot;x&amp;quot;]);
+//打印结果如下：
+objA.x : 2 
+objB.x : 1
+
+需要注意的是，Typescript 提供的深拷贝方法不能实现嵌套对象的深拷贝，会出现下面的情况。
+let objA = {
+    x: 1,
+    y: -1,
+    c: {
+        d: 1,
+    }
+}
+let objB = {};
+Object.assign(objB, objA);
+objA.c.d++;
+console.log(&amp;quot;objA.c.d:&amp;quot;+objA[&amp;quot;c&amp;quot;].d, &amp;quot;objB.c.d:&amp;quot;+objB[&amp;quot;c&amp;quot;].d);
+//打印结果如下：
+objA.c.d : 2 
+objB.c.d : 2
+
+要实现嵌套对象的深拷贝，可以使用 JSON 对象提供的方法，JSON 对象提供了两个方法，分别为：stringify()和parse()，前者将对象 JSON 化，后者将 JSON 对象化，使用这种方式可以实现嵌套深拷贝，但是也有缺点：破坏原型链，不能拷贝属性值为 function 的属性。
+let objA = {
+    a: 1,
+    b: {
+        c: 1
+    }
+}
+let objB = JSON.parse(JSON.stringify(objA));
+objA.b.c++;
+console.log(&amp;quot;objA.b.c:&amp;quot;+objA.b.c, &amp;quot;objB.b.c:&amp;quot;+objB.b.c);
+
+//打印结果如下：
+objA.b.c:2
+objB.b.c:1
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/WnccL2rgJ/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/5rUXZg3sM/">
+                        跨域请求是什么？如何解决？
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-18</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-success">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
+                            i-tag-primary">
+            #Angular
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-banana">
+            #计算机网络
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-other_3">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/5rUXZg3sM/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/5rUXZg3sM.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+JavaScript: Use a Web Proxy for Cross-Domain XMLHttpRequest Calls
+别慌，不就是跨域么!
+跨域资源共享 CORS 详解
+AJAX请求和跨域请求详解（原生JS、Jquery）
+JavaScript跨域总结与解决办法
+
+
+刚毕业入职，大部分时间还在培训，中间有一段时间的空闲时间，就学习了下 Angular，在学校都是编写的单体应用，所有代码都放在同一个工程下面，到公司使用的是前后端分离了，虽然后端程序也是我自己写的，但是有一些数据是从公司现有接口去拿的，然后就遇到让我纠结了两小时的跨域请求问题，在这里做一个简单的总结输出。
+什么是跨域请求
+跨域请求问题是浏览器的同源策略造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：协议、域名、端口。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。
+http://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 非跨域
+
+http://www.nealyang.cn/index.html 调用 http://www.neal.cn/server.php 跨域,主域不同
+
+http://abc.nealyang.cn/index.html 调用 http://def.neal.cn/server.php 跨域,子域名不同
+
+http://www.nealyang.cn:8080/index.html 调用 http://www.nealyang.cn/server.php 跨域,端口不同
+
+https://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 跨域,协议不同
+
+localhost 调用 127.0.0.1 跨域
+
+同源政策的目的是为了保护用户信息的安全，防止恶意网站窃取数据，随着互联网的发展，同源政策更加严格了，下面三种行为都会受到限制。
+（1） Cookie、LocalStorage 和 IndexDB 无法读取。
+（2） DOM 无法获得。
+（3） AJAX 请求不能发送。
+
+所有的现代浏览器都对网络连接进行了安全限制，包括 XMLHttpRequest，如果你的 web 应用程序和其使用的数据在同一个服务器，你不会遇到跨域请求问题。但是当你的 web 应用程序和 web 服务数据不在同一个服务器时，就会被浏览器限制连接了。
+常用解决方案
+    对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面设置代理。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。
+
+通俗易懂的说，你家的宠物狗不会吃别家的食物，因为它担心别人的食物会把自己给药死，所以你的狗狗只管找你要食物，你是它的主人，它绝对相信你，而你可以鉴别别人给的食物是不是安全的。类比，小狗就是浏览器，你就是代理。
+Angular 中的解决办法
+上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用angular-cli构建你的项目，我们可以创建一个代理配置文件proxy.conf.json（假设你的后端服务的访问地址为10.121.163.10:8080），代理配置文件如下：
+{
+  &amp;quot;/api&amp;quot;: {
+    &amp;quot;target&amp;quot;: &amp;quot;http://10.121.163.10:8080&amp;quot;,
+    &amp;quot;secure&amp;quot;: false
+  }
+}
+
+然后修改package.json文件中的启动命令为&amp;quot;start&amp;quot;: &amp;quot;ng serve --proxy-config proxy.conf.json&amp;quot;，启动项目时使用npm start即可解决跨域请求问题。
+上述解决方案仅在开发时使用，你当然可以使用 tomcat、nginx 配置代理，但是这很麻烦，需要打包代码部署，为了保证效率，我们想写完了立刻测试，同时也不想麻烦做后端的同学，在项目发布时，应该把代理配置到服务器中去；修改启动命令也不是必须的，你也可以选择每次使用 ng serve  --proxy-config proxy.conf.json命令启动项目；示例代理配置文件内容可以有更多的属性，可以通过网络查阅相关资料。
+后端解决办法
+我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。
+这时需要了解一下简单请求和非简单请求了，简单请求就是只发送一次请求的请求；非简单请求会发送数据之前先发一次请求做预检，通过预检后才能再发送一次请求用于数据传输。
+更清晰区别，满足下列两大条件的属于简单请求，而非简单请求就是请求方法为PUT或DELETE，或者 Content-Type字段是application/json的请求。
+
+1.请求方法为 GET、POST、HEAD之一
+2.HTTP头信息不超出字段：Accept、Accept-Language、Content-Language、Last-Event-ID、Content-Type，并且 Content-Type 的值仅限于 application/x-www-form-urlencoded、multipart/form-data、text/plain。
+
+对于简单请求，只需要设置一下响应头就可以了。
+class TestHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        # 可以把 * 写成具体的域名
+        self.write(&#39;cors get success&#39;)
+
+对于复杂请求，需要设置预检方法，如下所示：
+class CORSHandler(tornado.web.RequestHandler):
+    # 复杂请求方法put
+    def put(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        self.write(&#39;put success&#39;)
+    # 预检方法设置
+    def options(self, *args, **kwargs):
+        #设置预检方法接收源
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        #设置预复杂方法自定义请求头h1和h2
+        self.set_header(&#39;Access-Control-Allow-Headers&#39;, &amp;quot;h1,h2&amp;quot;)
+        #设置允许哪些复杂请求方法
+        self.set_header(&#39;Access-Control-Allow-Methods&#39;, &amp;quot;PUT,DELETE&amp;quot;)
+        #设置预检缓存时间秒,缓存时间内发送请求无需再预检
+        self.set_header(&#39;Access-Control-Max-Age&#39;, 10)
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/5rUXZg3sM/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

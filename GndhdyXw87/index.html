@@ -1,0 +1,559 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    哈夫曼树 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        哈夫曼树</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/LHd4yqncdM/">
+                        哈夫曼树实现文件压缩与解压缩
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2025-11-09</time>
+                    
+                        <a href="https://www.guanngxu.com/GndhdyXw87/" class="post-tag i-tag
+                            i-tag-primary">
+            #哈夫曼树
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-error">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/LHd4yqncdM/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/LHd4yqncdM.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+哈夫曼树和哈夫曼编码, 看完秒懂！
+哈夫曼实现文件压缩解压缩（c语言）
+
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+#define BUFFER_SIZE 1024
+#define CHAR_COUNT_LEN 256
+
+// 哈夫曼树的结点结构 
+struct huffman_node {
+	size_t times; // 本字符出现的次数 
+	unsigned char val; // 字符的值 
+	huffman_node *left; // 左孩子 
+	huffman_node *right; // 右孩子 
+};
+
+size_t char_count_info[CHAR_COUNT_LEN] = {}; // 统计出现字符频率
+vector&amp;lt;huffman_node *&amp;gt; huffman_tree_nodes; // 动态数组用于存储哈夫曼树的结点
+huffman_node *huffman_tree_root = NULL; // 哈夫曼树的根结点 
+map&amp;lt;unsigned char, string&amp;gt; huffman_codes_table; // 用于存储哈夫曼编码
+
+// 打印哈夫曼编码表
+void print_huffman_codes_table(map&amp;lt;unsigned char, string&amp;gt; huffman_codes_table) {
+    printf(&amp;quot;the huffman codes is:\n&amp;quot;);
+    for(map&amp;lt;unsigned char, string&amp;gt;::iterator it = huffman_codes_table.begin(); 
+		it != huffman_codes_table.end(); it++) {
+        printf(&amp;quot;character &#39;%c&#39;(%d) : %s\n&amp;quot;, 
+               (it-&amp;gt;first &amp;gt;= 32 &amp;amp;&amp;amp; it-&amp;gt;first &amp;lt;= 126) ? it-&amp;gt;first : &#39;?&#39;, 
+               it-&amp;gt;first, it-&amp;gt;second.c_str());
+    }
+    printf(&amp;quot;\n&amp;quot;);
+}
+
+// 生成哈夫曼编码表（递归函数）
+void generate_huffman_codes_table(huffman_node* root, string code) {
+    if(root == NULL) return;
+    
+    // 如果是叶子节点，保存编码
+    if(root-&amp;gt;left == NULL &amp;amp;&amp;amp; root-&amp;gt;right == NULL) {
+        huffman_codes_table[root-&amp;gt;val] = code;
+    } else {
+    	// 递归处理左右子树
+	    generate_huffman_codes_table(root-&amp;gt;left, code + &amp;quot;0&amp;quot;);
+	    generate_huffman_codes_table(root-&amp;gt;right, code + &amp;quot;1&amp;quot;);
+	}
+}
+
+// 排序辅助函数 
+bool cmp(huffman_node *a,huffman_node *b){
+	return a-&amp;gt;times &amp;gt; b-&amp;gt;times;
+}
+
+// 创建哈弗曼树 
+int generate_huffman_tree() {
+	printf(&amp;quot;begin generate huffman tree......\n&amp;quot;);
+	while(huffman_tree_nodes.size() &amp;gt; 1) {
+		// 按照字符出现频率进行降序排序 
+		sort(huffman_tree_nodes.begin(), huffman_tree_nodes.end(), cmp);
+		
+		// 取出字符出现频率最小的两个 
+		huffman_node *min1 = huffman_tree_nodes.back();
+		huffman_tree_nodes.pop_back();
+		huffman_node *min2 = huffman_tree_nodes.back();
+		huffman_tree_nodes.pop_back();
+		
+		// 生成新的父亲结点，频率最小的结点作为左孩子 
+		huffman_node *cur = (huffman_node *) malloc(sizeof(huffman_node));
+		cur-&amp;gt;times = min1-&amp;gt;times + min2-&amp;gt;times;
+		cur-&amp;gt;left = min1;
+		cur-&amp;gt;right = min2;
+		
+		huffman_tree_nodes.push_back(cur); 
+		huffman_tree_root = cur; 
+	}
+	printf(&amp;quot;success generate huffman tree\n\n&amp;quot;);
+	return 0;
+}
+
+
+
+// 逐一生成哈夫曼树结点，并存储于全局变量 tree_nodes 中 
+int generate_huffman_tree_nodes()
+{
+	printf(&amp;quot;begin generate huffman tree nodes......\n&amp;quot;);
+	
+	int nodes_count = 0; // 统计生成了多少个结点 
+	for(int i = 0; i &amp;lt; CHAR_COUNT_LEN; i++) {
+		// 出现次数为 0 的字符不需要生成结点 
+		if(char_count_info[i] &amp;gt; 0) {
+			nodes_count++;
+			huffman_node *cur = (huffman_node *) malloc(sizeof(huffman_node));
+			cur-&amp;gt;val = i;
+			cur-&amp;gt;times = char_count_info[i];
+			cur-&amp;gt;left = NULL;
+			cur-&amp;gt;right = NULL;
+			
+			huffman_tree_nodes.push_back(cur);
+		} 
+	}
+	printf(&amp;quot;success generate %d huffman tree nodes\n\n&amp;quot;, nodes_count);
+	return 0; 
+} 
+
+// 用于统计每个字符在文件出现的次数
+// 统计结果存储在全局变量 char_count_info 中 
+int count_char(unsigned char buffer[], size_t len)
+{
+	for(size_t i = 0; i &amp;lt; len; i++) {
+		char_count_info[buffer[i]]++;
+	}
+	return 0;
+}
+
+// 读取指定文件内容，并统计字符出现的次数 
+int count_file_char(char *file_name)
+{
+	FILE *file; // 打开文件句柄  
+    
+    file = fopen(file_name, &amp;quot;rb&amp;quot;);
+    if (file == NULL) {
+        printf(&amp;quot;can&#39;t open file [%s], please check file name!\n&amp;quot;, file_name);
+        return -1;
+    }
+    
+    unsigned char buffer[BUFFER_SIZE] = {}; // 读取文件时的缓冲区 
+    size_t bytes_read = 0; // 每次读了多少个字节 
+    size_t read_times_count = 1; // 总共读取了多少次了
+    
+    // 循环读取直到文件结束，1 表示每次读取的数据块大小，单位为字节 
+    while ((bytes_read = fread(buffer, 1, BUFFER_SIZE, file)) &amp;gt; 0) {
+        printf(&amp;quot;the %zu th read, read %zu byte! process......\n&amp;quot;, 
+				read_times_count, bytes_read);
+        count_char(buffer, bytes_read);
+        read_times_count++;
+    }
+    
+    fclose(file);
+    printf(&amp;quot;success read file: [%s] and count char\n\n&amp;quot;, file_name);
+    return 0;
+}
+
+int compress_file(char *input_file_name, char *output_file_name) {
+	printf(&amp;quot;begin cmpress [%s] -&amp;gt; [%s]\n&amp;quot;, input_file_name, output_file_name);
+    
+    FILE *input = fopen(input_file_name, &amp;quot;rb&amp;quot;);
+    FILE *output = fopen(output_file_name, &amp;quot;wb&amp;quot;);
+    
+    if(input == NULL || output == NULL) {
+    	printf(&amp;quot;can&#39;t open file [%s] or [%s], please check file name!\n&amp;quot;, 
+				input_file_name, output_file_name);
+        return -1;
+    }
+    
+    unsigned char buffer[BUFFER_SIZE]; // 文件读取缓冲区
+    size_t bytes_read; // 已经读取了多少字节 
+    unsigned char current_byte = 0; // 当前字节 
+    int bit_count = 0; // 已经处理了多少个二进制位 
+    
+    while((bytes_read = fread(buffer, 1, BUFFER_SIZE, input)) &amp;gt; 0) {
+    	for(size_t i = 0; i &amp;lt; bytes_read; i++) {
+            string code = huffman_codes_table[buffer[i]];
+            int code_length = code.length();
+            
+            for(int j = 0; j &amp;lt; code_length; j++) {
+            	char bit = code[j];
+            	current_byte &amp;lt;&amp;lt;= 1; // 左移 1 位
+				if(bit == &#39;1&#39;) {
+					current_byte |= 1;
+				} 
+            	
+            	bit_count++;
+				
+				if(bit_count == 8) { // 凑齐了 8 位（1 个字节） 
+					fputc(current_byte, output);
+					current_byte = 0; // 清零，继续下一个字节 
+					bit_count  = 0;
+				}
+			}
+		}
+	}
+	
+	// 处理最后一个不完整的字节
+	if(bit_count &amp;gt; 0) {
+		current_byte &amp;lt;&amp;lt;= (8 - bit_count); // 左移补齐 0
+		fputc(current_byte, output);
+        // 记录最后一个字节的有效位数
+        fputc(bit_count, output);
+	} else {
+		fputc(8, output); // 表示最后一个字节是完整的
+	}
+	
+	fclose(input);
+    fclose(output);
+    printf(&amp;quot;success compress file: [%s] to [%s]\n\n&amp;quot;, input_file_name, output_file_name);
+    return 0;
+}
+
+// 获取指定文件大小 
+size_t get_file_size(char *file_name) {
+	FILE *fp = fopen(file_name, &amp;quot;rb&amp;quot;);
+	if (fp == NULL) {
+		printf(&amp;quot;can&#39;t open file [%s], please check file name!\n&amp;quot;, file_name);
+		return -1;
+	}
+	fseek(fp, 0, SEEK_END);
+	size_t file_size = ftell(fp);
+	fclose(fp);
+	return file_size;
+}
+
+int uncompress_file(char *input_file_name, char *output_file_name) {
+	printf(&amp;quot;begin uncmpress [%s] -&amp;gt; [%s]\n&amp;quot;, input_file_name, output_file_name);
+    size_t input_file_size = get_file_size(input_file_name);
+    
+    FILE *input = fopen(input_file_name, &amp;quot;rb&amp;quot;);
+    FILE *output = fopen(output_file_name, &amp;quot;wb&amp;quot;);
+    
+    if(input == NULL || output == NULL) {
+    	printf(&amp;quot;can&#39;t open file [%s] or [%s], please check file name!\n&amp;quot;, 
+				input_file_name, output_file_name);
+        return -1;
+    }
+    
+    // 3. 解压数据
+    huffman_node *current_node = huffman_tree_root; // 用于记录当前在哪个结点 
+    unsigned char cur_byte; // 当前读取的字节 
+    int byte_bits = 8; // 默认最后一个字节完整
+    long bytes_decoded = 0; // 已经解码的字节
+    
+	while(bytes_decoded &amp;lt; input_file_size) {
+		cur_byte = fgetc(input);
+		bytes_decoded++;
+		
+		// 需要对最后一个字节处理，因为最后一个字节可能不满
+		if(bytes_decoded == input_file_size-1) {
+			int bit_count = fgetc(input); // 最后一个字节有效位数 
+			byte_bits = 8 - bit_count;
+		} 
+		
+		for(int i = 7; i &amp;gt;= 8 - byte_bits; i--) {
+			int bit = (cur_byte &amp;gt;&amp;gt; i) &amp;amp; 1;
+			if(bit) { // 1 往右走 
+				current_node = current_node-&amp;gt;right;
+			} else { // 0 往左走 
+				current_node = current_node-&amp;gt;left;
+			}
+			
+			// 如果到达叶子节点
+            if(!current_node-&amp;gt;left &amp;amp;&amp;amp; !current_node-&amp;gt;right) {
+            	// 将当前结点的 val 写入文件 
+                fputc(current_node-&amp;gt;val, output);  
+                current_node = huffman_tree_root; // 回到根节点 
+            }
+		}
+	}
+	printf(&amp;quot;success uncompress file: [%s] to [%s]\n\n&amp;quot;, input_file_name, output_file_name);
+    return 0;
+}
+
+// 释放哈夫曼树 
+void destroy_huffman_tree(huffman_node* root) {
+    if (root == NULL) return;
+    destroy_huffman_tree(root-&amp;gt;left);
+    destroy_huffman_tree(root-&amp;gt;right);
+    free(root);
+}
+
+// 哈夫曼函数 
+int huffman(char *file_name)
+{
+	// 压缩后的文件名 
+	char compress_file_name[strlen(file_name) + 8];
+	// 解压缩后的文件名 
+	char uncompress_file_name[strlen(file_name) + 11];
+	strcpy(compress_file_name, file_name);
+	strcat(compress_file_name, &amp;quot;.huffman&amp;quot;);
+	
+	strcpy(uncompress_file_name, &amp;quot;uncompress_&amp;quot;);
+	strcat(uncompress_file_name, file_name);
+
+	count_file_char(file_name);
+	generate_huffman_tree_nodes();
+	generate_huffman_tree();
+	
+    // 根据哈夫曼树生成哈夫曼编码表
+	huffman_node *root = huffman_tree_root; 
+	generate_huffman_codes_table(root, &amp;quot;&amp;quot;);
+	print_huffman_codes_table(huffman_codes_table);
+
+	compress_file(file_name, compress_file_name);
+	uncompress_file(compress_file_name, uncompress_file_name);
+	destroy_huffman_tree(huffman_tree_root);
+}
+
+int main(int argc, char** argv)
+{
+	if(argc &amp;lt; 2) {
+		printf(&amp;quot;usage: %s &amp;lt;filename&amp;gt;\n&amp;quot;, argv[0]);
+		return -1;
+	} else {
+		printf(&amp;quot;the file is [%s]\n&amp;quot;, argv[1]);
+		return huffman(argv[1]);
+	}
+	return 0;
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/LHd4yqncdM/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

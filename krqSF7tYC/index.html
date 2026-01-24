@@ -1,0 +1,2620 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    算法 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        算法</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/LHd4yqncdM/">
+                        哈夫曼树实现文件压缩与解压缩
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2025-11-09</time>
+                    
+                        <a href="https://www.guanngxu.com/GndhdyXw87/" class="post-tag i-tag
+                            i-tag-warning">
+            #哈夫曼树
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/LHd4yqncdM/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/LHd4yqncdM.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+哈夫曼树和哈夫曼编码, 看完秒懂！
+哈夫曼实现文件压缩解压缩（c语言）
+
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+#define BUFFER_SIZE 1024
+#define CHAR_COUNT_LEN 256
+
+// 哈夫曼树的结点结构 
+struct huffman_node {
+	size_t times; // 本字符出现的次数 
+	unsigned char val; // 字符的值 
+	huffman_node *left; // 左孩子 
+	huffman_node *right; // 右孩子 
+};
+
+size_t char_count_info[CHAR_COUNT_LEN] = {}; // 统计出现字符频率
+vector&amp;lt;huffman_node *&amp;gt; huffman_tree_nodes; // 动态数组用于存储哈夫曼树的结点
+huffman_node *huffman_tree_root = NULL; // 哈夫曼树的根结点 
+map&amp;lt;unsigned char, string&amp;gt; huffman_codes_table; // 用于存储哈夫曼编码
+
+// 打印哈夫曼编码表
+void print_huffman_codes_table(map&amp;lt;unsigned char, string&amp;gt; huffman_codes_table) {
+    printf(&amp;quot;the huffman codes is:\n&amp;quot;);
+    for(map&amp;lt;unsigned char, string&amp;gt;::iterator it = huffman_codes_table.begin(); 
+		it != huffman_codes_table.end(); it++) {
+        printf(&amp;quot;character &#39;%c&#39;(%d) : %s\n&amp;quot;, 
+               (it-&amp;gt;first &amp;gt;= 32 &amp;amp;&amp;amp; it-&amp;gt;first &amp;lt;= 126) ? it-&amp;gt;first : &#39;?&#39;, 
+               it-&amp;gt;first, it-&amp;gt;second.c_str());
+    }
+    printf(&amp;quot;\n&amp;quot;);
+}
+
+// 生成哈夫曼编码表（递归函数）
+void generate_huffman_codes_table(huffman_node* root, string code) {
+    if(root == NULL) return;
+    
+    // 如果是叶子节点，保存编码
+    if(root-&amp;gt;left == NULL &amp;amp;&amp;amp; root-&amp;gt;right == NULL) {
+        huffman_codes_table[root-&amp;gt;val] = code;
+    } else {
+    	// 递归处理左右子树
+	    generate_huffman_codes_table(root-&amp;gt;left, code + &amp;quot;0&amp;quot;);
+	    generate_huffman_codes_table(root-&amp;gt;right, code + &amp;quot;1&amp;quot;);
+	}
+}
+
+// 排序辅助函数 
+bool cmp(huffman_node *a,huffman_node *b){
+	return a-&amp;gt;times &amp;gt; b-&amp;gt;times;
+}
+
+// 创建哈弗曼树 
+int generate_huffman_tree() {
+	printf(&amp;quot;begin generate huffman tree......\n&amp;quot;);
+	while(huffman_tree_nodes.size() &amp;gt; 1) {
+		// 按照字符出现频率进行降序排序 
+		sort(huffman_tree_nodes.begin(), huffman_tree_nodes.end(), cmp);
+		
+		// 取出字符出现频率最小的两个 
+		huffman_node *min1 = huffman_tree_nodes.back();
+		huffman_tree_nodes.pop_back();
+		huffman_node *min2 = huffman_tree_nodes.back();
+		huffman_tree_nodes.pop_back();
+		
+		// 生成新的父亲结点，频率最小的结点作为左孩子 
+		huffman_node *cur = (huffman_node *) malloc(sizeof(huffman_node));
+		cur-&amp;gt;times = min1-&amp;gt;times + min2-&amp;gt;times;
+		cur-&amp;gt;left = min1;
+		cur-&amp;gt;right = min2;
+		
+		huffman_tree_nodes.push_back(cur); 
+		huffman_tree_root = cur; 
+	}
+	printf(&amp;quot;success generate huffman tree\n\n&amp;quot;);
+	return 0;
+}
+
+
+
+// 逐一生成哈夫曼树结点，并存储于全局变量 tree_nodes 中 
+int generate_huffman_tree_nodes()
+{
+	printf(&amp;quot;begin generate huffman tree nodes......\n&amp;quot;);
+	
+	int nodes_count = 0; // 统计生成了多少个结点 
+	for(int i = 0; i &amp;lt; CHAR_COUNT_LEN; i++) {
+		// 出现次数为 0 的字符不需要生成结点 
+		if(char_count_info[i] &amp;gt; 0) {
+			nodes_count++;
+			huffman_node *cur = (huffman_node *) malloc(sizeof(huffman_node));
+			cur-&amp;gt;val = i;
+			cur-&amp;gt;times = char_count_info[i];
+			cur-&amp;gt;left = NULL;
+			cur-&amp;gt;right = NULL;
+			
+			huffman_tree_nodes.push_back(cur);
+		} 
+	}
+	printf(&amp;quot;success generate %d huffman tree nodes\n\n&amp;quot;, nodes_count);
+	return 0; 
+} 
+
+// 用于统计每个字符在文件出现的次数
+// 统计结果存储在全局变量 char_count_info 中 
+int count_char(unsigned char buffer[], size_t len)
+{
+	for(size_t i = 0; i &amp;lt; len; i++) {
+		char_count_info[buffer[i]]++;
+	}
+	return 0;
+}
+
+// 读取指定文件内容，并统计字符出现的次数 
+int count_file_char(char *file_name)
+{
+	FILE *file; // 打开文件句柄  
+    
+    file = fopen(file_name, &amp;quot;rb&amp;quot;);
+    if (file == NULL) {
+        printf(&amp;quot;can&#39;t open file [%s], please check file name!\n&amp;quot;, file_name);
+        return -1;
+    }
+    
+    unsigned char buffer[BUFFER_SIZE] = {}; // 读取文件时的缓冲区 
+    size_t bytes_read = 0; // 每次读了多少个字节 
+    size_t read_times_count = 1; // 总共读取了多少次了
+    
+    // 循环读取直到文件结束，1 表示每次读取的数据块大小，单位为字节 
+    while ((bytes_read = fread(buffer, 1, BUFFER_SIZE, file)) &amp;gt; 0) {
+        printf(&amp;quot;the %zu th read, read %zu byte! process......\n&amp;quot;, 
+				read_times_count, bytes_read);
+        count_char(buffer, bytes_read);
+        read_times_count++;
+    }
+    
+    fclose(file);
+    printf(&amp;quot;success read file: [%s] and count char\n\n&amp;quot;, file_name);
+    return 0;
+}
+
+int compress_file(char *input_file_name, char *output_file_name) {
+	printf(&amp;quot;begin cmpress [%s] -&amp;gt; [%s]\n&amp;quot;, input_file_name, output_file_name);
+    
+    FILE *input = fopen(input_file_name, &amp;quot;rb&amp;quot;);
+    FILE *output = fopen(output_file_name, &amp;quot;wb&amp;quot;);
+    
+    if(input == NULL || output == NULL) {
+    	printf(&amp;quot;can&#39;t open file [%s] or [%s], please check file name!\n&amp;quot;, 
+				input_file_name, output_file_name);
+        return -1;
+    }
+    
+    unsigned char buffer[BUFFER_SIZE]; // 文件读取缓冲区
+    size_t bytes_read; // 已经读取了多少字节 
+    unsigned char current_byte = 0; // 当前字节 
+    int bit_count = 0; // 已经处理了多少个二进制位 
+    
+    while((bytes_read = fread(buffer, 1, BUFFER_SIZE, input)) &amp;gt; 0) {
+    	for(size_t i = 0; i &amp;lt; bytes_read; i++) {
+            string code = huffman_codes_table[buffer[i]];
+            int code_length = code.length();
+            
+            for(int j = 0; j &amp;lt; code_length; j++) {
+            	char bit = code[j];
+            	current_byte &amp;lt;&amp;lt;= 1; // 左移 1 位
+				if(bit == &#39;1&#39;) {
+					current_byte |= 1;
+				} 
+            	
+            	bit_count++;
+				
+				if(bit_count == 8) { // 凑齐了 8 位（1 个字节） 
+					fputc(current_byte, output);
+					current_byte = 0; // 清零，继续下一个字节 
+					bit_count  = 0;
+				}
+			}
+		}
+	}
+	
+	// 处理最后一个不完整的字节
+	if(bit_count &amp;gt; 0) {
+		current_byte &amp;lt;&amp;lt;= (8 - bit_count); // 左移补齐 0
+		fputc(current_byte, output);
+        // 记录最后一个字节的有效位数
+        fputc(bit_count, output);
+	} else {
+		fputc(8, output); // 表示最后一个字节是完整的
+	}
+	
+	fclose(input);
+    fclose(output);
+    printf(&amp;quot;success compress file: [%s] to [%s]\n\n&amp;quot;, input_file_name, output_file_name);
+    return 0;
+}
+
+// 获取指定文件大小 
+size_t get_file_size(char *file_name) {
+	FILE *fp = fopen(file_name, &amp;quot;rb&amp;quot;);
+	if (fp == NULL) {
+		printf(&amp;quot;can&#39;t open file [%s], please check file name!\n&amp;quot;, file_name);
+		return -1;
+	}
+	fseek(fp, 0, SEEK_END);
+	size_t file_size = ftell(fp);
+	fclose(fp);
+	return file_size;
+}
+
+int uncompress_file(char *input_file_name, char *output_file_name) {
+	printf(&amp;quot;begin uncmpress [%s] -&amp;gt; [%s]\n&amp;quot;, input_file_name, output_file_name);
+    size_t input_file_size = get_file_size(input_file_name);
+    
+    FILE *input = fopen(input_file_name, &amp;quot;rb&amp;quot;);
+    FILE *output = fopen(output_file_name, &amp;quot;wb&amp;quot;);
+    
+    if(input == NULL || output == NULL) {
+    	printf(&amp;quot;can&#39;t open file [%s] or [%s], please check file name!\n&amp;quot;, 
+				input_file_name, output_file_name);
+        return -1;
+    }
+    
+    // 3. 解压数据
+    huffman_node *current_node = huffman_tree_root; // 用于记录当前在哪个结点 
+    unsigned char cur_byte; // 当前读取的字节 
+    int byte_bits = 8; // 默认最后一个字节完整
+    long bytes_decoded = 0; // 已经解码的字节
+    
+	while(bytes_decoded &amp;lt; input_file_size) {
+		cur_byte = fgetc(input);
+		bytes_decoded++;
+		
+		// 需要对最后一个字节处理，因为最后一个字节可能不满
+		if(bytes_decoded == input_file_size-1) {
+			int bit_count = fgetc(input); // 最后一个字节有效位数 
+			byte_bits = 8 - bit_count;
+		} 
+		
+		for(int i = 7; i &amp;gt;= 8 - byte_bits; i--) {
+			int bit = (cur_byte &amp;gt;&amp;gt; i) &amp;amp; 1;
+			if(bit) { // 1 往右走 
+				current_node = current_node-&amp;gt;right;
+			} else { // 0 往左走 
+				current_node = current_node-&amp;gt;left;
+			}
+			
+			// 如果到达叶子节点
+            if(!current_node-&amp;gt;left &amp;amp;&amp;amp; !current_node-&amp;gt;right) {
+            	// 将当前结点的 val 写入文件 
+                fputc(current_node-&amp;gt;val, output);  
+                current_node = huffman_tree_root; // 回到根节点 
+            }
+		}
+	}
+	printf(&amp;quot;success uncompress file: [%s] to [%s]\n\n&amp;quot;, input_file_name, output_file_name);
+    return 0;
+}
+
+// 释放哈夫曼树 
+void destroy_huffman_tree(huffman_node* root) {
+    if (root == NULL) return;
+    destroy_huffman_tree(root-&amp;gt;left);
+    destroy_huffman_tree(root-&amp;gt;right);
+    free(root);
+}
+
+// 哈夫曼函数 
+int huffman(char *file_name)
+{
+	// 压缩后的文件名 
+	char compress_file_name[strlen(file_name) + 8];
+	// 解压缩后的文件名 
+	char uncompress_file_name[strlen(file_name) + 11];
+	strcpy(compress_file_name, file_name);
+	strcat(compress_file_name, &amp;quot;.huffman&amp;quot;);
+	
+	strcpy(uncompress_file_name, &amp;quot;uncompress_&amp;quot;);
+	strcat(uncompress_file_name, file_name);
+
+	count_file_char(file_name);
+	generate_huffman_tree_nodes();
+	generate_huffman_tree();
+	
+    // 根据哈夫曼树生成哈夫曼编码表
+	huffman_node *root = huffman_tree_root; 
+	generate_huffman_codes_table(root, &amp;quot;&amp;quot;);
+	print_huffman_codes_table(huffman_codes_table);
+
+	compress_file(file_name, compress_file_name);
+	uncompress_file(compress_file_name, uncompress_file_name);
+	destroy_huffman_tree(huffman_tree_root);
+}
+
+int main(int argc, char** argv)
+{
+	if(argc &amp;lt; 2) {
+		printf(&amp;quot;usage: %s &amp;lt;filename&amp;gt;\n&amp;quot;, argv[0]);
+		return -1;
+	} else {
+		printf(&amp;quot;the file is [%s]\n&amp;quot;, argv[1]);
+		return huffman(argv[1]);
+	}
+	return 0;
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/LHd4yqncdM/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/AOlj4J-Zw/">
+                        并查集详解及相关例题解析
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2023-11-06</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-other_3">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/AOlj4J-Zw/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/AOlj4J-Zw.webp) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+图论——并查集(详细版)
+
+并查集（Disjoint-set）是一种精巧的树形数据结构，它主要用于处理一些不相交集合的合并及查询问题。一些常见用途，比如求联通子图、求最小生成树的 Kruskal 算法和求最近公共祖先（LCA）等。
+并查集的理念是只关注个体属于哪个阵营，并不关心这个阵营中个体内部的关系，比如我们常说的张三是李家沟的，王二是王家坝的。同时并查集借助个体代表集体的思想，用一个元素代表整个群体，就像我们开学都会有学生代表、教师代表讲话一样，在台上讲话的那一个学生就代表了学校所有的学生。
+并查集基本操作
+并查集的基本操作主要有初始化 init、查询 find和合并 union操作。
+初始化
+在使用并查集的时候，常常使用一个数组fa来存储每个元素的父节点，在一开始的时候所有元素与其它元素都没有任何关系，即大家相互之间还不认识，所以我们把每个元素的父节点设为自己。
+#define ARR_LEN 6000
+
+int fa[ARR_LEN];
+
+void init(int n)
+{
+    for(int i = 1; i &amp;lt;= n; i++)
+        fa[i] = i;
+}
+
+查询
+查询即找到指定元素的祖先。需要注意的是，这里我们需要找到指定元素的根祖先，不能找到爸爸或者爷爷就停止了，而是要找到查找不下去了为止，所以要不断的去递归下去，直到找到父亲为自己的结点才结束。
+int find(int i)
+{
+    if(i == fa[i]) // 递归出口
+        return i;
+    else
+        return find(fa[i]); // 不断向上查找祖先
+}
+
+考虑下面的场景，假如第一次我们需要查询元素5的祖先，第二次需要查询元素4的祖先，会发现第一次查询包含了第二次查询的计算过程，但我们的程序却傻傻的计算了两次，有没有办法去来优化查询过程，让每一次查询都能利用到此前查询计算的便利？
+
+考虑到并查集并不关心某个元素的爸爸、爷爷是谁，只关心最终的祖先是谁，所以我们可以在查询的过程中顺便做一些修改，比如在查询5的过程中，顺便就把4和2的父亲给修改为1，即我们在查找过程中进行路经压缩
+int find(int i)
+{
+    if(i == fa[i]){
+        return i;
+    } else {
+        fa[i] = find(fa[i]); // 进行路径压缩
+        return fa[i];
+    }
+}
+
+合并
+合并操作即介绍两个人相互认识，将他们纳入同一个帮派，只需要将俩元素的父亲修改为同一个即可。
+void union(int i, int j)
+{
+    int fa_i = find(i);
+    int fa_j = find(j);
+    fa[fa_i] = fa_j;
+}
+
+相关练习题目
+洛谷 P1551 亲戚
+题目连接：https://www.luogu.com.cn/problem/P1551
+题目描述
+若某个家族人员过于庞大，要判断两个是否是亲戚，确实还很不容易，现在给出某个亲戚关系图，求任意给出的两个人是否具有亲戚关系。
+规定：xxx 和 yyy 是亲戚，yyy 和 zzz 是亲戚，那么 xxx 和 zzz 也是亲戚。如果 x，yx，yx，y 是亲戚，那么 xxx 的亲戚都是 yyy 的亲戚，yyy 的亲戚也都是 xxx 的亲戚。
+输入格式
+第一行：三个整数 n,m,p，(n,m,p≤5000)n,m,p，(n,m,p≤5000)n,m,p，(n,m,p≤5000) 分别表示有 nnn 个人，mmm 个亲戚关系，询问 ppp 对亲戚关系。
+以下 mmm 行：每行两个数 Mi，Mj，1≤Mi，Mj≤nM_i，M_j，1≤M_i，M_j≤nMi​，Mj​，1≤Mi​，Mj​≤n，表示 MiM_iMi​ 和 MjM_jMj​ 具有亲戚关系。
+接下来 ppp 行：每行两个数 Pi，PjP_i，P_jPi​，Pj​，询问 PiP_iPi​ 和 PjP_jPj​ 是否具有亲戚关系。
+输出格式
+ppp 行，每行一个Yes或No。表示第 iii 个询问的答案为“具有”或“不具有”亲戚关系。
+输入输出样例
+# 输入
+6 5 3
+1 2
+1 5
+3 4
+5 2
+1 3
+1 4
+2 3
+5 6
+
+# 输出
+Yes
+Yes
+No
+
+题目解析
+可以发现这是一个非常标准的并查集问题，简直和并查集模版如出一辙，因此直接将所有关系读取后进行合并，然后直接查询父亲是否为同一个即可。
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+#define ARR_LEN 6000
+
+int fa[ARR_LEN];
+
+void init(int n)
+{
+    for(int i = 1; i &amp;lt;= n; i++)
+        fa[i] = i;
+}
+
+int find(int i)
+{
+    if(i == fa[i]){
+        return i;
+    } else {
+        fa[i] = find(fa[i]);
+        return fa[i];
+    }
+}
+
+void union(int i, int j)
+{
+    int fa_i = find(i);
+    int fa_j = find(j);
+    fa[fa_i] = fa_j;
+}
+
+
+int main()
+{
+    int n, m, p;
+	int a, b;
+	
+	cin&amp;gt;&amp;gt; n &amp;gt;&amp;gt; m &amp;gt;&amp;gt; p;
+	
+	init(n);
+
+	for(int i = 0; i &amp;lt; m; i++){
+		cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b;
+		union(a, b);
+	}
+	
+	for(int i = 0; i &amp;lt; p; i++){
+		cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b;
+		int fa_a = find(a);
+		int fa_b = find(b);
+		
+		if(fa_a == fa_b)
+			cout&amp;lt;&amp;lt;&amp;quot;Yes&amp;quot;&amp;lt;&amp;lt;endl;
+		else
+			cout&amp;lt;&amp;lt;&amp;quot;No&amp;quot;&amp;lt;&amp;lt;endl;
+	}
+}
+
+杭电 OJ1213 How Many Tables
+题目连接：https://acm.hdu.edu.cn/showproblem.php?pid=1213
+题目描述
+Today is Ignatius&#39; birthday. He invites a lot of friends. Now it&#39;s dinner time. Ignatius wants to know how many tables he needs at least. You have to notice that not all the friends know each other, and all the friends do not want to stay with strangers.
+One important rule for this problem is that if I tell you A knows B, and B knows C, that means A, B, C know each other, so they can stay in one table.
+For example: If I tell you A knows B, B knows C, and D knows E, so A, B, C can stay in one table, and D, E have to stay in the other one. So Ignatius needs 2 tables at least.
+输入格式
+The input starts with an integer T(1&amp;lt;=T&amp;lt;=25)T(1&amp;lt;=T&amp;lt;=25)T(1&amp;lt;=T&amp;lt;=25) which indicate the number of test cases. Then TTT test cases follow. Each test case starts with two integers NNN and M(1&amp;lt;=N,M&amp;lt;=1000)M(1&amp;lt;=N,M&amp;lt;=1000)M(1&amp;lt;=N,M&amp;lt;=1000). NNN indicates the number of friends, the friends are marked from 111 to NNN. Then MMM lines follow. Each line consists of two integers AAA and B(A!=B)B(A!=B)B(A!=B), that means friend AAA and friend BBB know each other. There will be a blank line between two cases.
+输出格式
+For each test case, just output how many tables Ignatius needs at least. Do NOT print any blanks.
+输入输出样例
+# 输入
+2
+5 3
+1 2
+2 3
+4 5
+
+5 1
+2 5
+
+# 输出
+2
+4
+
+题目解析
+分析可以发现，这个问题要我们做的是统计在所有元素合并之后，统计总共有多个和集合。很轻松就能写出下面的 AC 代码。类似的问题还有杭电 OJ1232 畅通工程。
+读者大人可以在此基础上继续进行延伸，我们实际生活中每个桌子只能坐 8 个人，假设还需要考虑每桌人数的容量，又如何进行改进呢？
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+#define ARR_LEN 6000
+
+int fa[ARR_LEN];
+
+void init(int n)
+{
+    for(int i = 1; i &amp;lt;= n; i++)
+        fa[i] = i;
+}
+
+int find(int i)
+{
+    if(i == fa[i]){
+        return i;
+    } else {
+        fa[i] = find(fa[i]);
+        return fa[i];
+    }
+}
+
+void union(int i, int j)
+{
+    int fa_i = find(i);
+    int fa_j = find(j);
+    fa[fa_i] = fa_j;
+}
+
+
+int main()
+{
+    int n, m, a, b, t;
+
+    cin&amp;gt;&amp;gt;t;
+    for(int i = 0; i &amp;lt; t; i++){
+        cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m;
+        int ans = 0;
+        init(n);
+        for(int i = 0; i &amp;lt; m; i++) {
+            cin&amp;gt;&amp;gt;a&amp;gt;&amp;gt;b;
+            union(a, b);
+        }
+
+        for(int i = 1; i &amp;lt;= n; i++) {
+            // 如果父亲是自己，那么就表示一个独立的集合
+            if(find(i) == i)
+                ans++;
+        }
+
+        cout&amp;lt;&amp;lt;ans&amp;lt;&amp;lt;endl;
+    }
+    
+}
+
+杭电 OJ1272 小希的迷宫
+题目连接：https://acm.hdu.edu.cn/showproblem.php?pid=1272
+题目描述
+小希设计了一个迷宫让 Gardon 玩，首先她认为所有的通道都应该是双向连通的，就是说如果有一个通道连通了房间 A 和 B，那么既可以通过它从房间 A 走到房间 B，也可以通过它从房间 B 走到房间 A，为了提高难度，小希希望任意两个房间有且仅有一条路径可以相通（除非走了回头路）。小希现在把她的设计图给你，让你帮忙判断她的设计图是否符合她的设计思路。比如下面的例子，前两个是符合条件的，但是最后一个却有两种方法从 5 到达 8。
+
+输入格式
+输入包含多组数据，每组数据是一个以 0 0 结尾的整数对列表，表示了一条通道连接的两个房间的编号。房间的编号至少为 1，且不超过 100000。每两组数据之间有一个空行。整个文件以两个 -1 结尾。
+输出格式
+对于输入的每一组数据，输出仅包括一行。如果该迷宫符合小希的思路，那么输出Yes，否则输出No。
+输入输出样例
+# 输入
+6 8  5 3  5 2  6 4
+5 6  0 0
+
+8 1  7 3  6 2  8 9  7 5
+7 4  7 8  7 6  0 0
+
+3 8  6 8  6 4
+5 3  5 6  5 2  0 0
+
+-1 -1
+
+# 输出
+Yes
+Yes
+No
+
+题目解析
+其实这个问题就是让我们判断一个连通图中是否存在环，那么问题就转换为寻找出现环的条件。其实不难发现出现下面两种情况时，连通图即存在环。
+
+在查找过程中，发现两个不同元素的父亲是相同的；
+若不存在环，则边的数量一定比顶点数量少 1。
+
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+#define ARR_LEN 100010
+
+int fa[ARR_LEN];
+bool visited[ARR_LEN]; // 用于辅助记录顶点的数量
+int edges, points; // 记录顶点和边的数量
+bool hascycle; // 是否存在环
+
+void init()
+{
+    hascycle = false;
+    edges = 0;
+    points = 0;
+    for(int i = 1; i &amp;lt; ARR_LEN; i++)
+        fa[i] = i, visited[i] = false;
+}
+
+int find(int i)
+{
+    if(i == fa[i]){
+        return i;
+    } else {
+        fa[i] = find(fa[i]);
+        return fa[i];
+    }
+}
+
+void union(int i, int j)
+{
+    int fa_i = find(i);
+    int fa_j = find(j);
+
+    // 两个元素祖先相同，存在环
+    if(fa_i == fa_j) {
+        hascycle = true;
+    } else {
+        visited[i] = true;
+        visited[j] = true;
+        edges++;
+        fa[fa_i] = fa_j;
+    }
+}
+
+
+int main()
+{
+    int a, b;
+
+    init();
+    
+    while(cin&amp;gt;&amp;gt;a&amp;gt;&amp;gt;b) {
+        if(a == 0 &amp;amp;&amp;amp; b == 0) {
+            cout&amp;lt;&amp;lt;&amp;quot;Yes&amp;quot;&amp;lt;&amp;lt;endl;
+            continue;
+        }
+
+        if(a == -1 &amp;amp;&amp;amp; b == -1) {
+            return 0;
+        }
+
+        union(a, b);
+
+        while(cin&amp;gt;&amp;gt;a&amp;gt;&amp;gt;b){
+            if(a == 0 &amp;amp;&amp;amp; b == 0) {
+                break;
+            }
+            union(a, b);
+        }
+
+        if(hascycle) {
+            cout&amp;lt;&amp;lt;&amp;quot;No&amp;quot;&amp;lt;&amp;lt;endl;
+            continue;
+        }
+
+        for(int i = 1; i &amp;lt; ARR_LEN; i++){
+            if(visited[i]) {
+                points++;
+            }
+        }
+
+        if(points == edges + 1) {
+            cout&amp;lt;&amp;lt;&amp;quot;Yes&amp;quot;&amp;lt;&amp;lt;endl;
+        } else {
+            cout&amp;lt;&amp;lt;&amp;quot;No&amp;quot;&amp;lt;&amp;lt;endl;
+        }
+        init();
+    }
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/AOlj4J-Zw/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/kLV2cAImc/">
+                        KMP 算法详解
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2023-09-24</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-other_2">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/kLV2cAImc/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/kLV2cAImc.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+通俗易懂的 KMP 算法详解
+
+许许多多的软件都有搜索文本的功能，这个搜索的过程其实就是一个字符串匹配的过程。由此我们可以提出来一个问题。
+给你两个字符串s和p（p的长度不超过s的长度，并且p和s都不是空串），请问s中是否包含p，若包含请给出第一次包含的开始位置？比如：
+
+s=&amp;quot;hello, string&amp;quot;，p=&amp;quot;str&amp;quot;，那么s包含p；
+比如s=&amp;quot;github&amp;quot;，p=&amp;quot;str&amp;quot;，那么s不包含p。
+
+暴力求解
+分析题目我们很容易就能想到解决方法。设置两个指针，分别为i和j，并且将两个指针都初始化为0。对比s[i]和p[j]的值，如果两个值相等，那么同时将i和j移动到下一个位置。否则i回退到1，j回退到0，继续上述过程。如果在下一次匹配过程中还是出现了不想等的字符，那么i回退到2，j回退到0，继续......。直到某次匹配中，j达到越界位置，那么就可以判定s包含p，此时i的值即开始位置，否则s就不包含p。
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+int main()
+{
+	char p[300], s[300];
+	cin&amp;gt;&amp;gt;p&amp;gt;&amp;gt;s;
+	int len_p = strlen(p);
+	int len_s = strlen(s);
+	if(len_p &amp;gt; len_s){
+		cout&amp;lt;&amp;lt;-1&amp;lt;&amp;lt;endl;
+		return 0;
+	}
+	
+	int j = 0, ans = -1;
+	for(int i = 0; i &amp;lt; len_s; i++){
+		if(p[j] == s[i]){
+			if(j == 0){
+				ans = i;
+			}
+			if(j == len_p-1){
+				break;
+			}
+			j++;
+		} else {
+			j = 0;
+			ans = -1;
+		}
+	}
+	
+	if(j == len_p-1){
+		cout&amp;lt;&amp;lt;ans&amp;lt;&amp;lt;endl;
+	} else {
+		cout&amp;lt;&amp;lt;-1&amp;lt;&amp;lt;endl;
+	}
+	
+}
+
+当然，你也可以使用 C 语言所提供的库函数进行实现，比如strstr、strcmp、strncmp等，此处不再赘述相关实现。
+优化分析
+我们来看一下s=&amp;quot;aaaaaaaaab&amp;quot;和p=&amp;quot;aaab&amp;quot;的匹配过程。
+
+
+当我们发现第一次匹配失败时，我们只能选择下一个开头，重新从开头继续匹配。此时指向s的指针就会回退，并且此前已经匹配的部分将全部丢弃，因此暴力求解的方法是很低效的。
+我们肉眼可以直观的看到如果匹配失败了，并不需要全部回退，也就是我们可以借助此前匹配过程留下的信息，帮助我们加速匹配过程。很明显能加速匹配过程的办法就是尽量少回退甚至不回退指针，那么我们一起来探究一下如何在少回退指针的前提下，还能保证不错过正确答案。
+因为我们是在s中寻找是否存在p，即当前i指针前面的字符都已经对比过了，所以理论上我们是可以不回退i指针的，那么保证i指针不回退了，又如何调整回退j指针的规则呢？
+
+肯定j指针需要回退
+需要保证j指针回退后，s[i]和p[j]之前的所有字符都是匹配的
+指针j不能因为回退少了，导致我们错过正确答案
+
+下面我们举几个例子。
+
+那如果已经匹配的部分存在多个前缀和后缀匹配的情况怎么办呢？
+
+总结一下：在保证指向s的指针不回退的时候，我们需要找到前面已经匹配部分的前后缀最大匹配长度，而且这个前后缀最大匹配长度是可以直接通过p的值计算出来的（即next数组）。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/kLV2cAImc/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/tZnRnI64b/">
+                        《算法竞赛进阶指南》165 小猫爬山题解
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2023-08-20</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-warning">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/tZnRnI64b/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/tZnRnI64b.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+[洛谷][noip][算法竞赛进阶指南]小猫爬山
+《算法竞赛进阶指南》小猫爬山
+
+小猫爬山
+题目描述
+题目链接：https://www.acwing.com/problem/content/167/
+​Freda 和 Rainbow 饲养了 N 只小猫。这天，小猫们要去爬山。经历了千辛万苦，小猫们终于爬上了山顶，但是疲倦的它们再也不想徒步走下山了（呜咕&amp;gt;_&amp;lt;）。
+Freda 和 Rainbow 只好花钱让它们坐索道下山。索道上的缆车最大承重量为 W，而 N 只小猫的重量分别是C1、C2……Cn。当然，每辆缆车上的小猫的重量之和不能超过 W。每租用一辆缆车，Freda 和 Rainbow 就要付 1 美元，所以他们想知道，最少需要付多少美元才能把这 N 只小猫都运送下山？
+输入格式
+​第一行包含两个用空格隔开的整数，N 和 W。接下来 N 行每行一个整数，其中第 i+1 行的整数表示第 i 只小猫的重量 Ci。
+输出格式
+输出一个整数，最少需要多少美元，也就是最少需要多少辆缆车。
+分析解答
+贪心
+经过思考发现，我们只需要尽可能的在每辆车上都放更多的小猫，就能以最经济的方式把所有小猫都送下山。所以是一个非常明显的贪心题目，我们将所有小猫按重量排序，尽可能把肥猫先送下山即可。具体实现代码如下：
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+void cin_arr(int *num, int len)
+{
+	for(int i = 0; i &amp;lt; len; i++){
+		cin&amp;gt;&amp;gt;num[i];
+	}
+}
+
+int slove(int *num, int n, int w)
+{
+	int ans = 0;
+	int remain = 0;
+	int load = 0;
+	
+	sort(num, num+n);
+	
+	while(true){
+		for(int i = 0; i &amp;lt; n; i++){
+            // 连当前最小的猫都装不下，那么就新开一辆车
+			if(num[i] != -1 &amp;amp;&amp;amp; remain &amp;lt; num[i]){
+				ans++;
+				remain = w;
+				break;
+			}
+		}
+		
+		for(int i = n-1; i &amp;gt;= 0; i--){
+            // 从大到小查找，尽可能装肥猫
+			if(num[i] != -1 &amp;amp;&amp;amp; remain &amp;gt;= num[i]){
+				remain -= num[i];
+                // 运送走的小猫重量以 -1 表示
+				num[i] = -1;
+				load++;
+				break;
+			}
+		}
+		
+		// 如果所有小猫都运走了，那么当前 ans 就是答案
+		if(load &amp;gt;= n)
+			return ans;
+	}
+}
+
+int main()
+{
+    int n, w;
+	int cat[1000000];
+	
+	cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;w;
+	cin_arr(cat, n);
+
+	cout&amp;lt;&amp;lt;slove(cat, n, w)&amp;lt;&amp;lt;endl;
+}
+
+经过实际测试发现，盲目使用贪心思想的算法并不正确，例如如下测试用例。
+6 16
+9 5 5 5 4 3
+
+贪心的结果是使用 3 辆车，分别为9+5、5+5+4、3；而正确的结果却是使用 2 辆车，分别为9+4+3和5+5+5。
+深度优先搜索
+既然贪心思想在这里行不通，那么我们就采用暴力搜索，即小猫可以放在现有任意一辆车上。具体实现代码如下：
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+#define N 2000
+
+int n, w;
+int cat[N];
+int sum[N] = {0}; // 第 i 辆车当前重量
+int ans = N;
+
+void cin_arr(int *num, int len)
+{
+	for(int i = 0; i &amp;lt; len; i++){
+		cin&amp;gt;&amp;gt;num[i];
+	}
+}
+
+void dfs(int cur_cat, int cur_car)
+{
+	if(cur_car &amp;gt; ans) // 求最小值，不符合直接返回
+        return ;
+
+    if(cur_cat == n) { // 所有小猫都上车了
+        ans = cur_car;
+        return ;
+    }
+
+    for(int i = 0; i &amp;lt; cur_car; i++) {
+        if(sum[i] + cat[cur_cat] &amp;lt;= w) { // 当前猫能放进去
+            sum[i] += cat[cur_cat]; // 当前猫占用重量
+            dfs(cur_cat+1, cur_car); // 继续放下一只猫
+            sum[i] -= cat[cur_cat]; // 把已经放进去的猫拿出来，因为是循环，所以放入下一辆车里面
+        }
+    }
+
+    // 新开一辆车，把当前这只猫放到新的车里面
+    sum[cur_car] = cat[cur_cat];
+    dfs(cur_cat+1, cur_car+1);
+    sum[cur_car] = 0; // 把猫拿出来
+}
+
+int main()
+{
+	cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;w;
+	cin_arr(cat, n);
+    dfs(0, 0);
+	cout&amp;lt;&amp;lt;ans&amp;lt;&amp;lt;endl;
+}
+
+搜索优化
+考虑到每次都是在车数量固定的情况下进行搜索的，那么少满足一次(sum[i] + cat[cur_cat] &amp;lt;= w)条件，就会少一次递归的调用，也即少一次搜索。那么如何能尽快使得程序尽快不满足该条件呢？
+让sum[i]减小的速度加快就会减少搜索分支，即每次放更重一点的猫进去，就能达到效果。所以我们可以在进行搜索前将小猫的重量进行降序排序，这样从肥猫开始搜索就会减少分支。
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+#define N 2000
+
+int n, w;
+int cat[N];
+int sum[N] = {0}; // 第 i 辆车当前重量
+int ans = N;
+
+void cin_arr(int *num, int len)
+{
+	for(int i = 0; i &amp;lt; len; i++){
+		cin&amp;gt;&amp;gt;num[i];
+	}
+}
+
+bool cmp(int a, int b)
+{
+    return a &amp;gt; b;
+}
+
+void dfs(int cur_cat, int cur_car)
+{
+	if(cur_car &amp;gt; ans) // 求最小值，不符合直接返回
+        return ;
+
+    if(cur_cat == n) { // 所有小猫都上车了
+        ans = cur_car;
+        return ;
+    }
+
+    for(int i = 0; i &amp;lt; cur_car; i++) {
+        if(sum[i] + cat[cur_cat] &amp;lt;= w) { // 当前猫能放进去
+            sum[i] += cat[cur_cat]; // 当前猫占用重量
+            dfs(cur_cat+1, cur_car); // 继续放下一只猫
+            sum[i] -= cat[cur_cat]; // 把已经放进去的猫拿出来，因为是循环，所以放入下一辆车里面
+        }
+    }
+
+    // 新开一辆车，把当前这只猫放到新的车里面
+    sum[cur_car] = cat[cur_cat];
+    dfs(cur_cat+1, cur_car+1);
+    sum[cur_car] = 0; // 把猫拿出来
+}
+
+int main()
+{
+	cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;w;
+	cin_arr(cat, n);
+    sort(cat, cat+n, cmp); // 反排序优化搜索
+    dfs(0, 0);
+	cout&amp;lt;&amp;lt;ans&amp;lt;&amp;lt;endl;
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/tZnRnI64b/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/8sxCrqU9f/">
+                        二叉树的前序、中序、后序、层序遍历
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2023-08-19</time>
+                    
+                        <a href="https://www.guanngxu.com/umBdDP7Ll/" class="post-tag i-tag
+                            i-tag-primary">
+            #C
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-banana">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/8sxCrqU9f/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/8sxCrqU9f.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+五分钟让你彻底理解二叉树的非递归遍历
+Python实现二叉树的非递归遍历
+二叉树遍历——深度优先（前中后序）+广度优先（层序遍历）
+
+构造二叉树
+定义二叉树结构如下
+struct node
+{
+    int data;
+    node *left;
+    node *right;
+};
+
+构造如下形态二叉树
+
+node *init_tree()
+{
+    node *node1 = (node *)malloc(sizeof(node));
+    node *node2 = (node *)malloc(sizeof(node));
+    node *node3 = (node *)malloc(sizeof(node));
+    node *node4 = (node *)malloc(sizeof(node));
+    node *node5 = (node *)malloc(sizeof(node));
+    node *node6 = (node *)malloc(sizeof(node));
+    node *node7 = (node *)malloc(sizeof(node));
+    node *node8 = (node *)malloc(sizeof(node));
+    
+    node1-&amp;gt;data = 1;
+    node2-&amp;gt;data = 2;
+    node3-&amp;gt;data = 3;
+    node4-&amp;gt;data = 4;
+    node5-&amp;gt;data = 5;
+    node6-&amp;gt;data = 6;
+    node7-&amp;gt;data = 7;
+    node8-&amp;gt;data = 8;
+
+    node1-&amp;gt;left = node2;
+    node1-&amp;gt;right = node3;
+    
+    node2-&amp;gt;left = node4;
+    node2-&amp;gt;right = node5;
+    
+    node3-&amp;gt;right = node6;
+    
+    node5-&amp;gt;left = node7;
+    node5-&amp;gt;right= node8;
+
+    return node1;
+}
+
+前序遍历（递归）
+前序遍历顺序为根左右。要遍历整个二叉树我们就需要遍历二叉树的每一个子树，对于任何一个子树它的遍历方式均为根左右顺序遍历。即所有子问题均与父问题除规模大小不同外，其余均相同。所以可以采用递归方式实现前序遍历。
+// 前序遍历 根左右
+void pre_order_traversal(node *root)
+{
+    if(root) {
+        cout&amp;lt;&amp;lt;root-&amp;gt;data&amp;lt;&amp;lt;&amp;quot; &amp;quot;;
+        pre_order_traversal(root-&amp;gt;left);
+        pre_order_traversal(root-&amp;gt;right);
+    }
+}
+
+遍历结果为：1 2 4 5 7 8 3 6
+中序遍历（递归）
+中序遍历顺序为左根右。其与前序遍历仅顺序不同，其余均相同。
+// 中序遍历 左根右
+void in_order_traversal(node *root)
+{
+    if(root) {
+        in_order_traversal(root-&amp;gt;left);
+        cout&amp;lt;&amp;lt;root-&amp;gt;data&amp;lt;&amp;lt;&amp;quot; &amp;quot;;
+        in_order_traversal(root-&amp;gt;right);
+    }
+}
+
+遍历结果为：4 2 7 5 8 1 3 6
+后序遍历（递归）
+后序遍历顺序为左右根。其与前序、中序遍历仅顺序不同，其余均相同。
+// 后序遍历 左右根
+void post_order_traversal(node *root)
+{
+    if(root) {
+        post_order_traversal(root-&amp;gt;left);
+        post_order_traversal(root-&amp;gt;right);
+        cout&amp;lt;&amp;lt;root-&amp;gt;data&amp;lt;&amp;lt;&amp;quot; &amp;quot;;
+    }
+}
+
+遍历结果为：4 7 8 5 2 6 3 1
+前序遍历方法一（非递归）
+因为递归实际上是由系统帮我们进行压栈，所以理论上所有递归算法都可以改为循环+栈实现，那么我们先照着上述前序遍历的样子修改为循环+栈的形态。需要注意的是由于栈先进后出的特性，为了保证左孩子在右孩子前被访问，所以应该先右孩子入栈，再左孩子入栈。
+// 前序遍历 根左右
+void pre_order_traversal(node *root)
+{
+    stack&amp;lt;node *&amp;gt; s;
+    s.push(root);
+
+    while(!s.empty()) {
+
+        node *cur = s.top();
+        s.pop();
+
+        if(cur) {
+            cout&amp;lt;&amp;lt;cur-&amp;gt;data&amp;lt;&amp;lt;&amp;quot; &amp;quot;;
+            s.push(cur-&amp;gt;right);
+            s.push(cur-&amp;gt;left);
+        }
+    }
+}
+
+遍历结果为：1 2 4 5 7 8 3 6
+前序遍历方法二（非递归）
+现在我们换一种思路来实现前序非递归遍历，仔细观察前序遍历的递归调用过程。
+
+先把从根结点开始的所有左子树放入栈中；
+弹出栈顶元素
+如果栈顶元素有右子树，那么右子树入栈
+重复上述过程直到栈为空
+
+因此我们可以写出遍历代码
+// 前序遍历 根左右
+void pre_order_traversal(node *root)
+{
+    stack&amp;lt;node *&amp;gt; s;
+    node *cur = root;
+
+    while(cur || !s.empty()) {
+        // 将左子树全部入栈
+        while(cur) {
+            cout&amp;lt;&amp;lt;cur-&amp;gt;data&amp;lt;&amp;lt;&amp;quot; &amp;quot;;
+            s.push(cur);
+            cur = cur-&amp;gt;left;
+        }
+
+        if(!s.empty()) {
+            cur = s.top();
+            s.pop();
+            cur = cur-&amp;gt;right;
+        }
+    }
+}
+
+遍历结果为：1 2 4 5 7 8 3 6
+中序遍历（非递归）
+有了前面的基础，我们再来考虑中序遍历，会发现中序遍历与前序遍历只是打印结点的位置不一样。前序遍历是在结点入栈时打印，中序遍历只需要替换为在结点出栈时打印即可。
+// 中序遍历 左根右
+void in_order_traversal(node *root)
+{
+    stack&amp;lt;node *&amp;gt; s;
+    node *cur = root;
+
+    while(cur || !s.empty()) {
+        // 将左子树全部入栈
+        while(cur) {
+            s.push(cur);
+            cur = cur-&amp;gt;left;
+        }
+
+        if(!s.empty()) {
+            cur = s.top();
+            cout&amp;lt;&amp;lt;cur-&amp;gt;data&amp;lt;&amp;lt;&amp;quot; &amp;quot;;
+            s.pop();
+            cur = cur-&amp;gt;right;
+        }
+    }
+}
+
+遍历结果为：4 2 7 5 8 1 3 6
+后序遍历方法一（非递归）
+后序遍历相对来说显得更加复杂了。在前序和中序遍历中，只要左子树处理完毕实际上栈顶元素就可以出栈了，但后序遍历需要把左子树和右子树都处理完毕才能出栈，显然我们需要某种方法记录遍历的过程。
+实际上我们只需要记录下遍历的前一个结点就能解决问题，因为通过前一个结点我们可以做如下判断：
+
+如果前一个结点是当前结点的右子树，那么说明右子树已经遍历完毕可以出栈了
+如果前一个结点是当前结点的左子树而且当前结点没有右子树，那么说明可以出栈了
+如果当前结点即没有左子树也没有右子树，即为叶子结点，那么说明可以出栈了
+
+若不属于上述情况，则依次将当前结点的右孩子和做孩子入栈，这样就能保证每次取栈顶元素时，左孩子都在右孩子前面被访问，左孩子和右孩子都在父结点前面被访问。
+// 后序遍历 左右根
+void post_order_traversal(node *root)
+{
+    stack&amp;lt;node *&amp;gt; s;
+    node *pre = NULL;
+    node *cur = root;
+
+    s.push(cur);
+
+    while(!s.empty()) {
+        cur = s.top();
+        // 叶子结点
+        if((!cur-&amp;gt;left &amp;amp;&amp;amp; !cur-&amp;gt;right) // 叶子结点
+        || pre == cur-&amp;gt;right // 前一个结点为当前结点右子树
+        || (pre == cur-&amp;gt;left &amp;amp;&amp;amp; !cur-&amp;gt;right)) { // 前一个结点为当前结点左子树，且没有右子树
+            cout&amp;lt;&amp;lt;cur-&amp;gt;data&amp;lt;&amp;lt;&amp;quot; &amp;quot;;
+            pre = cur;
+            s.pop();
+        } else {
+            if(cur-&amp;gt;right)
+                s.push(cur-&amp;gt;right);
+
+            if(cur-&amp;gt;left)
+                s.push(cur-&amp;gt;left);
+        }
+    }
+}
+
+遍历结果为：4 7 8 5 2 6 3 1
+后序遍历方法二（非递归）
+后序遍历的顺序是左右根，如果把这个顺序倒过来就是根右左，是不是发现和前序遍历很像？那么我只需要按照根右左的方式遍历完，然后将遍历结果掉一个个儿就可以，而栈就具备掉个儿的功能，因此可写出如下代码。
+// 后序遍历 左右根
+void post_order_traversal(node *root)
+{
+    stack&amp;lt;node *&amp;gt; s;
+    stack&amp;lt;int&amp;gt; ans;
+    node *cur = root;
+
+    while(cur || !s.empty()) {
+        // 将左子树全部入栈
+        while(cur) {
+            ans.push(cur-&amp;gt;data);
+            s.push(cur);
+            cur = cur-&amp;gt;right;
+        }
+
+        if(!s.empty()) {
+            cur = s.top();
+            s.pop();
+            cur = cur-&amp;gt;left;
+        }
+    }
+
+    while(!ans.empty()) {
+        cout&amp;lt;&amp;lt;ans.top()&amp;lt;&amp;lt;&amp;quot; &amp;quot;;
+        ans.pop();
+    }
+}
+
+遍历结果为：4 7 8 5 2 6 3 1
+层序遍历
+层序遍历即广度优先遍历，使用队列即可实现。
+// 层序遍历
+void breadth_first_order_traversal(node *root)
+{
+    queue&amp;lt;node *&amp;gt; q;
+    q.push(root);
+	while(!q.empty()){
+		node *cur = q.front();
+		q.pop();
+		if(cur){
+			cout&amp;lt;&amp;lt;cur-&amp;gt;data&amp;lt;&amp;lt;&amp;quot; &amp;quot;;
+			q.push(cur-&amp;gt;left);
+			q.push(cur-&amp;gt;right);
+		}
+	}
+}
+
+遍历结果为：1 2 3 4 5 6 7 8
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/8sxCrqU9f/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/sBMrrNbs4/">
+                        动态规划实例——01 背包详解
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2023-04-01</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-other_2">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/sBMrrNbs4/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/sBMrrNbs4.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            题目描述
+有 n 件物品，每件物品有一个重量和一个价值，分别记为 w1，w2，…，wn 和 c1，c2，…，cn。现在有一个背包，其容量为 wk，要从 n 件物品种任取若干件。要求：（1）重量之和小于或等于 wk；（2）价值之和最大。
+输入：
+共 3 行，第一行 2 个整数，表示 n 和 wk；第二行 n 个整数表示每一个物品的重量，第三行 n 个整数表示每一个物品的价值。
+输出：
+一行一个整数，表示符合背包容量的最大价值。
+样例：
+8 200
+79 58 86 11 28 62 15 68
+83 14 54 79 72 52 48 62
+
+暴力枚举
+我们以只有 A、B、C 三件物品的情况为例，对于每一个物品都存在拿和不拿两种情况。以0表示不拿当前物品，以1表示拿当前物品，可以有如下分析结果。
+
+可能上面的图看起来不够清晰，我们从左至右逐一列举出来观察，一眼就可以看出来规律。其实就是十进制的 0、1、2、3、4、......可枚举的最大值即 2n-1。
+000
+001
+010
+011
+100
+101
+110
+111
+
+根据上面的分析，我们可以写出如下代码。
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+int main()
+{
+	int n, wk;
+	int w[10000], c[10000];
+	cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;wk;
+	for(int i = 0; i &amp;lt; n; i++){
+		cin&amp;gt;&amp;gt;w[i];
+	}
+	for(int i = 0; i &amp;lt; n; i++){
+		cin&amp;gt;&amp;gt;c[i];
+	}
+
+	int ans = 0;
+    int max_val = 1 &amp;lt;&amp;lt; n;
+    // 逐一枚举
+	for(int i = 0; i &amp;lt; max_val; i++){
+		int ww = 0, cc = 0;
+		int index = 0;
+		// 转二进制
+		int cur = i;
+		while(cur){
+			int bit = cur % 2;
+            // 若拿第 index 个物品，则累加其重量和价值
+			if(bit){
+				ww += w[index];
+				cc += c[index];
+			}
+			cur = cur &amp;gt;&amp;gt; 1;
+			index++;
+		}
+		//计算最大值
+		if(ww &amp;lt;= wk &amp;amp;&amp;amp; ans &amp;lt; cc){
+			ans = cc;
+		}
+	}
+	//输出最大值
+	cout&amp;lt;&amp;lt;ans&amp;lt;&amp;lt;endl;
+}
+
+递归求解
+我们把背包容量为wk，有n个物品可以选择的问题表示为slove(wk, n)。那么在背包剩余容量可以装下第 n 个物品时，该问题可以表示为求如下两个问题的最大值
+
+选第 n 个物品：c[n-1] + slove(wk-w[n-1], n-1)
+不选第 n 个物品：slove(wk, n-1)
+
+在背包剩余容量无法装下第 n 个物品时，问题直接变为
+
+不选第 n 个物品：slove(wk, n-1)
+
+可以发现上述三个子问题可以继续向下拆分为规模更小，但类型一致的子子问题。于是可以写出如下递归求解代码。
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+int w[30]={0}, c[30]={0};
+
+// wk 背包剩余重量
+// ch 可选项
+int slove(int wk, int ch)
+{
+	if(wk &amp;lt;= 0 || ch &amp;lt;= 0){
+		return 0;
+	}
+	
+    // 若背包剩余容量无法装下 w[ch-1]，则直接丢弃第 ch 个物品
+	if(w[ch-1] &amp;gt; wk){
+		return slove(wk, ch-1);
+	}
+	
+    // 若背包剩余容量能装下 w[ch-1]，则计算装和不装的最大值
+	int a = c[ch-1] + slove(wk-w[ch-1],ch-1);
+	int b = slove(wk, ch-1);
+	return a &amp;gt; b ? a : b;
+}
+
+int main()
+{
+	int n, wk;
+	cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;wk;
+	
+	for(int i = 0; i &amp;lt; n; i++){
+		cin&amp;gt;&amp;gt;w[i];
+	}
+	for(int i = 0; i &amp;lt; n; i++){
+		cin&amp;gt;&amp;gt;c[i];
+	}
+	cout&amp;lt;&amp;lt;slove(wk, n);
+}
+
+动态规划
+递归在执行过程中会存在重复计算相同子问题的情况，我们可以将其改为用循环实现，即动态规划的写法。dp[i][j]的含义即为：在背包容量为i，可选物品数量为j的情况下，符合背包容量的最大值。具体代码如下所示：
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+int w[30]={0}, c[30]={0};
+
+int main()
+{
+	int n, wk;
+	cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;wk;
+	
+	for(int i = 0; i &amp;lt; n; i++){
+		cin&amp;gt;&amp;gt;w[i];
+	}
+	for(int i = 0; i &amp;lt; n; i++){
+		cin&amp;gt;&amp;gt;c[i];
+	}
+
+    int dp[1000001][21] = { 0 };
+
+    for(int i = 1; i &amp;lt;= wk; i++) {
+        for(int j = 1; j &amp;lt;= n; j++) {
+            // 若背包剩余容量无法装下 w[j-1]，则直接丢弃第 j 个物品
+            if(w[j-1] &amp;gt; i) {
+                dp[i][j] = dp[i][j-1];
+            } else {
+                // 若背包剩余容量能装下 w[j-1]，则计算装和不装的最大值
+                int a = c[j-1] + dp[i-w[j-1]][j-1];
+                int b = dp[i][j-1];
+                dp[i][j] = a &amp;gt; b ? a : b;
+            }
+        }
+    }
+
+	cout&amp;lt;&amp;lt;dp[wk][n];
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/sBMrrNbs4/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/WfB5h55oQ/">
+                        动态规划实例——换零钱的方法数（C++详解版）
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2023-02-26</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-banana">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/WfB5h55oQ/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/WfB5h55oQ.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+原写了 Java 版本的如何求解换钱的方法数，近期进行了一些细节上的补充，以及部分错误更正，将语言换为了 C++ 语言。
+
+基础题目
+假设你现在拥有不限量的 1 元、5 元、10 元面值纸币，路人甲希望找你换一些零钱，路人甲拿出的是一张 100 元面值的纸币，试求总共有多少种换零钱的方法？
+分析：因为总共只有 3 种面值小额纸币，所以将所有可能进行枚举，直接暴力解决即可。
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+int slove() {
+	int ans = 0;
+	// 10 元张数
+	for(int i = 0; i &amp;lt;= 10; i++) {
+		// 5 元张数
+		for(int j = 0; j &amp;lt;= 20; j++) {
+			// 1 元张数
+			for(int k = 0; k &amp;lt;= 100; k++) {
+				int cur = i*10 + j*5 + k*1;
+				if(cur == 100) {
+					ans++;
+				}
+			}
+		}
+	}
+	return ans;
+}
+
+int main()
+{
+	cout&amp;lt;&amp;lt;slove();
+}
+
+递归求解
+基础题目中是拥有固定种类的小额纸币，即使再多几种小额纸币也没关系，大不了在嵌套几个循环就能解决。现在需要将题目的难度加大一点，改为小额纸币的种类和需要换零钱的总额由用户输入，即小额纸币种类和总额都不在固定，那么如何解决？
+输入共有三行：
+
+第一行：小额纸币种类数量
+第二行：不同小额纸币的面值
+第三行：需要换零钱的总额
+
+分析：虽然现在种类和总额都是变量了，但是上文中的基础版本还是被包含在此问题中，所以我们还是以上文中的 1 元、5 元、10 元换 100 元进行分析，找一找除了枚举是否还有其他方法解决。
+我们先固定一种零钱的数量，剩下的钱用剩余零钱去兑换，即：
+
+用 0 张 1 元换，剩下的用 5、10 元换，最终方法数为 count0；
+用 1 张 1 元换，剩下的用 5、10 元换，最终方法数为 count1；
+......
+用 100 张 1 元换，剩下的用 5、10 元换，最终方法数为 count100；
+
+那么最终换钱的方法综述即为count0 + count1 + count2 + ... + count100。
+上面的分析中，我们把原来的大问题拆为了 101 个小问题，且每一个小问题都有很相似的地方，即：
+
+求用 5、10 元换 100 元的方法数
+求用 5、10 元换 95 元的方法数
+......
+求用 5、10 元换 0 元的方法数
+
+如果我们对这 101 个小问题再进行同样思路的分析，即再固定 5 元零钱的数量，那么就能把问题划分成了规模更小，但问题类型一样的小小问题。即递归的思路，可以写出如下代码。
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+int money[1000]; // money 表示所有小额纸币的面值
+int len; // len 表示 money 数组的长度，即：小额纸币种类
+
+// index 表示上文分析中的当前固定第几张
+// target 表示现在要兑换的钱的总额
+int slove(int index, int target) {
+    int ans = 0;
+    if(index == len) {
+        ans = target == 0 ? 1 : 0;
+    } else {
+        for(int i = 0; i*money[index] &amp;lt;= target; i++) {
+            // 剩余待换零钱的总额
+            int cur_total = target-(i * money[index]);
+            ans = ans + slove(index+1, cur_total);
+        }
+    }
+    return ans;
+}
+
+int main()
+{
+    int target;
+    cin&amp;gt;&amp;gt;len; // 零钱种类
+    for(int i = 0; i &amp;lt; len; i++){
+        cin&amp;gt;&amp;gt;money[i];
+    }
+    cin&amp;gt;&amp;gt;target; // 兑换总额
+
+    cout&amp;lt;&amp;lt;slove(0, target);
+}
+
+优化递归
+可以发现上文所写的递归代码存在大量的重复过程，比如下面两种情况，后面所求的子问题是完全一样的，导致程序运行时间的浪费。
+
+已经使用了 5 张 1 元、0 张 5 元，剩下的 95 元用 5 元和 10 元兑换
+已经使用了 0 张 1 元、1 张 5 元，剩下的 95 元用 5 元 和 10 元兑换
+
+既然前面已经求解过相同的子问题了，那么我们是否可以在第一次求解的时候，将计算结果保存下来，这样下次遇到相同子问题的实际，直接查出来用就可以，省去再次求解的时间。
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+int money[1000]; // money 表示所有小额纸币的面值
+int len; // len 表示 money 数组的长度，即：小额纸币种类
+
+// 用于存储子问题的解
+int val_map[1000][1000] = { 0 };
+
+// 0 表示该子问题没有算过
+// -1 表示算过，但该子问题无解
+// 其它值，即此子问题的方法数
+
+int slove(int index, int target) {
+    int ans = 0;
+    if(index == len) {
+        ans = target == 0 ? 1 : 0;
+    } else {
+        for(int i = 0; i*money[index] &amp;lt;= target; i++) {
+            // 剩余待换零钱的总额
+            int cur_total = target-(i * money[index]);
+            int pre_val = val_map[index+1][cur_total];
+            // 如果 val 为 0，说明该子问题没有被计算过
+            if(pre_val == 0) {
+                ans = ans + slove(index+1, cur_total);
+            } else {
+                ans += pre_val == -1 ? 0 : pre_val;
+            }
+        }
+    }
+    // 存储计算结果
+    val_map[index][target] = ans == 0 ? -1 : ans;
+    return ans;
+}
+
+int main()
+{
+    int target; // 零钱种类
+    cin&amp;gt;&amp;gt;len;
+    for(int i = 0; i &amp;lt; len; i++){
+        cin&amp;gt;&amp;gt;money[i];
+    }
+    cin&amp;gt;&amp;gt;target;
+
+    cout&amp;lt;&amp;lt;slove(0, target);
+}
+
+动态规划
+上面对递归的优化方案已经能看出来动态规划的影子了，沿着前文先计算再查表的思路继续思考，我们能否提前把所有子问题都计算出答案，对每个子问题都进行查表解决。也即将最初的递归方案改为循环的实现。
+
+所有的递归都能改为循环实现
+
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+int money[1000]; // money 表示所有小额纸币的面值
+int len; // len 表示 money 数组的长度，即：小额纸币种类
+
+// 用于存储子问题的解
+// val_map[i][j] 表示用 money[0...i] 的小面额零钱组成 j 元的方法数
+int val_map[1000][1000] = { 0 };
+
+int slove(int target) {
+    
+    // 第一列表示组成 0 元的方法数，所以为 1
+    for (int i = 0; i &amp;lt; len; i++) {
+        val_map[i][0] = 1;
+    }
+
+    // 第一行表示只使用 money[0] 一种钱币兑换钱数为i的方法数
+    // 所以是 money[0] 的倍数的位置为 1，否则为 0
+    for (int i = 1; money[0]*i &amp;lt;= target; i++) {
+        val_map[0][money[0]*i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; len; i++) {
+        for (int j = 1; j &amp;lt;= target; j++) {
+            for (int k = 0; j &amp;gt;= money[i]*k; k++) {
+                /* 
+                val_map[i][j] 的值为：
+                用 money[0...i-1] 的零钱组成 j 减去 money[i] 的倍数的方法数
+                因为相比 val_map[i-1][j]，只是多了一种零钱的可选项
+                */
+                val_map[i][j] += val_map[i-1][j-money[i]*k];
+            }
+        }
+    }
+
+    return val_map[len-1][target];
+}
+
+int main()
+{
+    int target;
+    cin&amp;gt;&amp;gt;len;
+    for(int i = 0; i &amp;lt; len; i++){
+        cin&amp;gt;&amp;gt;money[i];
+    }
+    cin&amp;gt;&amp;gt;target;
+
+    cout&amp;lt;&amp;lt;slove(target);
+}
+
+动归优化
+在上文第一版动态规划代码的优化中已经能发现，其实val_map[i][j]的值由两部分组成，分别为：
+
+用 money[0...i-1] 的零钱组成换 j 元的方法数
+用 money[0...i-1] 的零钱换 j-money[i]*k（k=1,1,2,3....）元的方法数之和
+
+对于第二种情况来说，其累加值实际上就是val_map[i][j-money[i]]，即用money[0...i]的零钱换 j-money[i]元的方法数。至于具体为什么累加值与val_map[i][j-money[i]]相等，我们可以借助递归方法时的分析方式进行理解。
+用 money[0...i-1] 的零钱组成换 j 元的方法数对应：
+
+用 0 张 money[i] 换，剩下的用 money[0...i-1] 换
+
+用 money[0...i-1] 的零钱换 j-money[i]*k（k=1,1,2,3....）元的方法数之和对应：
+
+用 1 张 money[i] 换，剩下的用 money[0...i-1] 换
+用 2 张 money[i] 换，剩下的用 money[0...i-1] 换
+......
+
+所以第二部分的值即为val_map[i][j-money[i]]。依据此处的分析，我们可以在原有基础上去掉第三层循环，减少程序运行所花费的时间。
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+int money[1000];
+int len;
+
+int val_map[1000][1000] = { 0 };
+
+int slove(int target) {
+    
+    for (int i = 0; i &amp;lt; len; i++) {
+        val_map[i][0] = 1;
+    }
+
+    for (int i = 1; money[0]*i &amp;lt;= target; i++) {
+        val_map[0][money[0]*i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; len; i++) {
+        for (int j = 1; j &amp;lt;= target; j++) {
+            val_map[i][j] = val_map[i-1][j];
+            // 此处需要比较 j 的大小，防止数组越界
+            // 注意条件时 &amp;gt;= ，否则少计算 j 刚好为 money[i] 的情况
+            if(j &amp;gt;= money[i]) {
+                val_map[i][j] += val_map[i][j-money[i]];
+            }
+        }
+    }
+
+    return val_map[len-1][target];
+}
+
+int main()
+{
+    int target;
+    cin&amp;gt;&amp;gt;len;
+    for(int i = 0; i &amp;lt; len; i++){
+        cin&amp;gt;&amp;gt;money[i];
+    }
+    cin&amp;gt;&amp;gt;target;
+
+    cout&amp;lt;&amp;lt;slove(target);
+}
+
+空间压缩
+仔细观察能发现，每一次更新val_map[i][j]的值时，它只依赖于上一行和当前这一行前面的元素。对于我们所求解的问题来说，它仅要求我们给出最终的答案即可，那么前面存储中间结果的那些元素实际上就会空间的浪费，因此我们可以思考一下如何在空间上进行压缩。
+实际上我们只需要定义一个一维的数组，采用一些技巧对该数组进行滚动更新，按照合适的方向去更新数组，同样可以达到上面使用二维数组的效果。
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+int money[1000];
+int len;
+
+int val_map[1000] = { 0 };
+
+int slove(int target) {
+    
+    // 第一行，只用 money[0] 换零钱
+    // 所以只能换 money[0] 倍数的钱
+    for (int i = 0; money[0]*i &amp;lt;= target; i++) {
+        val_map[money[0] * i] = 1;
+    }
+
+    for (int i = 1; i &amp;lt; len; i++) {
+        for (int j = 1; j &amp;lt;= target; j++) {
+            if(j &amp;gt;= money[i]) {
+                // 在进行下面一步前 val_map[j] 的值就已经是 val_map[i-1][j] 了
+                val_map[j] += val_map[j-money[i]];
+            }
+        }
+    }
+
+    return val_map[target];
+}
+
+int main()
+{
+    int target;
+    cin&amp;gt;&amp;gt;len;
+    for(int i = 0; i &amp;lt; len; i++){
+        cin&amp;gt;&amp;gt;money[i];
+    }
+    cin&amp;gt;&amp;gt;target;
+
+    cout&amp;lt;&amp;lt;slove(target);
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/WfB5h55oQ/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/_4KYecN7b/">
+                        牛客网 NC632 牛牛摆木棒、POJ 1037 美丽的栅栏题解
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2021-09-20</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-banana">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/_4KYecN7b/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/_4KYecN7b.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容:
+OI题解 - A decorative fence[POJ 1037]
+poj1037（dP+排列计数）
+
+本文首发于牛客网：题解 | #牛牛摆木棒#
+题目
+牛客网 NC632 牛牛摆木棒、POJ1037-A decorative fence（美丽的栅栏）
+描述
+有n个木棒，长度为1到n，给定了一个摆放规则。规则是这样的：对于第 i (2≤i≤n−1)(2 \leq i \leq n-1)(2≤i≤n−1) 个木棒 aia_iai​，(ai&amp;gt;ai−1(a_i &amp;gt; a_{i-1}(ai​&amp;gt;ai−1​ &amp;amp;&amp;amp; ai&amp;gt;ai+1)a_i &amp;gt; a_{i+1})ai​&amp;gt;ai+1​) 或 (ai&amp;lt;ai−1(a_i &amp;lt; a_{i-1}(ai​&amp;lt;ai−1​ &amp;amp;&amp;amp; ai&amp;lt;ai+1)a_i &amp;lt; a_{i+1})ai​&amp;lt;ai+1​)。求满足规则的从小到大的第k个排列是什么呢。
+对于两个排列 s 和 t：如果存在 j 有任意 i&amp;lt;ji&amp;lt;ji&amp;lt;j 使得 si==tis_i == t_isi​==ti​ 且 sj&amp;lt;tjs_j &amp;lt; t_jsj​&amp;lt;tj​，视为排列 s 小于排列 t。
+示例
+输入：3,3
+返回值：[2,3,1]
+说明：第一小的排列为：[ 1 , 3 , 2 ]
+     第二小的排列为：[ 2 , 1 , 3 ]
+     第三小的排列为：[ 2 , 3 , 1 ]
+     第四小的排列为：[ 3 , 1 , 2 ]
+     所以答案为：[ 2 , 3 , 1 ]
+
+备注
+(1≤n≤20,1≤k≤(n−1)!)(1 \leq n \leq 20, 1 \leq k \leq (n-1)!)(1≤n≤20,1≤k≤(n−1)!)
+题意
+该问题让我们求：n 的字典序排列中第 k 个波浪形的排列。什么是波浪形排列呢？即对排列中任意一个数字（除开第一个和最后一个）aia_iai​，只能 aia_iai​ 比 ai−1a_{i-1}ai−1​ 和 ai+1a_{i+1}ai+1​ 都小或者都大。比如 2 1 3和1 3 2是波浪形排列，但1 2 3就不是波浪形排列。
+DFS 枚举
+最容易想到的解决方案是把 n 的所有排列按字典序列出来，然后再逐一检查是否是波浪形排列，直接取出第 k 个波浪形排列即可。
+我们以 3 的全排列为例画出如下树形图，非常容易的就能发现只要对这棵树进行深度优先遍历，就能够按字典序得到所有排列。但并不是所有排列都满足波浪形这个条件，所以我们每得到一个排列都需要检查该排列是否为波浪形，直到检查到第 k 个排列为止，返回该排列即可。
+
+class Solution {
+public:
+
+    // 记录当前已经有多少个波浪形排列
+    long long count = 0;
+    // 记录最后的结果
+    vector&amp;lt;int&amp;gt; res;
+    /**
+     * 
+     * @param n int整型 木棒的个数
+     * @param k long长整型 第k个排列
+     * @return int整型vector
+     */
+    vector&amp;lt;int&amp;gt; stick(int n, long long k) {
+        // 用于标记当前考虑的数字是否已经被选择
+        bool visited[25] = {false};
+        // 用于记录已经选了哪些数
+        vector&amp;lt;int&amp;gt; path;
+        dfs(n, 0, path, visited, k);
+        return res;
+    }
+
+    /**
+     * 
+     * @param n 可选的数字范围
+     * @param deep 递归到第几层了
+     * @param path 已经选的数字
+     * @param visited 记录哪些数已经被选了
+     * @param k 是否已经到第 k 个波浪形排列了
+     */
+    void dfs(int n, int deep, vector&amp;lt;int&amp;gt; path, bool visited[], long long k) {
+        // 递归层数和范围相等，说明所有的数字都考虑完了，因此得到一个排列
+        if(deep == n){
+            // 判断该排列是否为波浪形排列
+            bool flag = true;
+            for(int i = 1; i &amp;lt; n-1; i++){
+                if((path[i] &amp;gt; path[i-1] &amp;amp;&amp;amp; path[i] &amp;lt; path[i+1]) ||
+                   (path[i] &amp;lt; path[i-1] &amp;amp;&amp;amp; path[i] &amp;gt; path[i+1])){
+                    flag = false;
+                    break;
+                }
+            }
+            // 是波浪形排列，则统计一次
+            if(flag) {
+                count++;
+            }
+            // 判断是否已经到第 k 个排列
+            if(count == k) {
+                // 如果返回结果还没有被赋值，则将该排列赋值给 res
+                // 因为我们使用的是递归，所以 count==k 会被满足多次
+                // 只有第一次满足时才是真正的 k 值，所以必须判断 res 是否为空
+                // 如果不判空，则程序记录的不是正确结果
+                if(res.empty()){
+                    res = path;
+                }
+                // 到第 k 个波浪形排列了，递归返回
+                return ;
+            }
+            // 没有可以选择的数字了，回溯
+            return ;
+        }
+        // 还没有得出一个排列，则继续挑选数字组成排列
+        for(int i = 1; i &amp;lt;= n; i++) {
+            // 如果该数字已经被选择了，则终止本次循环
+            if(visited[i]){
+                continue;
+            }
+            // 选中当前数字加入到排列中
+            path.push_back(i);
+            visited[i] = true;
+            // 下一次递归所传的值不变，只有递归层数需要 +1
+            dfs(n, deep+1, path, visited, k);
+            // 回溯，需要撤销前面的操作
+            path.pop_back();
+            visited[i] = false;
+        }
+    }
+};
+
+在 C++ 的 algorithm 库中已经提供了一个全排列方法 next_permutation。按照STL文档的描述，next_permutation 函数将按字母表顺序生成给定序列的下一个较大的序列，直到整个序列为减序为止。因此我们可以偷个懒直接使用现有的函数。
+class Solution {
+public:
+    /**
+     * 
+     * @param n int整型 木棒的个数
+     * @param k long长整型 第k个排列
+     * @return int整型vector
+     */
+    vector&amp;lt;int&amp;gt; stick(int n, long long k) {
+        vector&amp;lt;int&amp;gt; res;
+        // 记录当前已经有多少个波浪形排列
+        long long count = 0;
+        // 构造初始化排列
+        for(int i = 1; i &amp;lt;= n; i++) {
+            res.push_back(i);
+        }
+        do {
+            // 判断当前排列是否为波浪形排列
+            bool flag = true;
+            for(int i = 1; i &amp;lt; n-1; i++) {
+                if((res[i] &amp;gt; res[i-1] &amp;amp;&amp;amp; res[i] &amp;lt; res[i+1]) ||
+                   (res[i] &amp;lt; res[i-1] &amp;amp;&amp;amp; res[i] &amp;gt; res[i+1])){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag) {
+                count++;
+            }
+            if(count == k) {
+                break;
+            }
+        } while (next_permutation(res.begin(), res.end()));
+        return res;
+    }
+};
+
+复杂度分析
+
+我们来看一下这个深度优先遍历的时间复杂度分析，该算法的时间复杂度主要由递归树的结点个数决定。因为程序在叶子结点和非叶子结点的行为时不一样的，所以我们先计算非叶子结点的个数，我们一层一层的去计算它。
+第 1 层因为只有一个空列表，所以我们不考虑它；
+第 2 层表示的意思是从 n 个数中找出 1 个数，即 An1A_n^1An1​；
+第 3 层表示的意思是从 n 个数中找出 2 个数，即 An2A_n^2An2​；
+以此类推，全部非叶子结点的总数为：
+An1+An2+⋯AnnA_n^1 + A_n^2 + \cdots A_n^nAn1​+An2​+⋯Ann​
+=n!(n−1)!+n!(n−2)!+⋯+n!= \frac{n!}{(n-1)!} + \frac{n!}{(n-2)!} + \cdots + n!=(n−1)!n!​+(n−2)!n!​+⋯+n!
+=n!(1(n−1)!+1(n−2)!+⋯+1)= n!\left(\frac{1}{(n-1)!} + \frac{1}{(n-2)!} + \cdots + 1\right)=n!((n−1)!1​+(n−2)!1​+⋯+1)
+≤n!(1+12+14+⋯+12n−1)\leq n!\left(1 + \frac{1}{2} + \frac{1}{4} + \cdots + \frac{1}{2^{n-1}}\right)≤n!(1+21​+41​+⋯+2n−11​)
+=n!×2（1−12n)= n! \times 2（1-\frac{1}{2^{n}})=n!×2（1−2n1​)
+&amp;lt;2n!&amp;lt; 2n!&amp;lt;2n!
+每个非叶子结点都在内部循环了 n 次，所以非叶子结点的时间复杂度为 O(2n×n!)O(2n \times n!)O(2n×n!)，去除系数后得到 O(n×n!)O(n \times n!)O(n×n!) 。
+最后一层叶子结点的个数就是 n!n!n! 个，但是我们对每个叶子结点都做了一次判断，因此叶子结点的时间复杂度依然是 O(n×n!)O(n \times n!)O(n×n!) 。
+该问题的 k 控制了遍历的次数，最好情况即 O(n!)O(n!)O(n!)，最差即 O(n×n!)O(n \times n!)O(n×n!)，平均一下也不过只加了个系数，因此总的时间复杂度为 O(n×n!)O(n \times n!)O(n×n!)。
+递归树的深度为 n，需要 O(n)O(n)O(n) 的空间；程序运行过程中保存了问题的最终答案，需要 O(n)O(n)O(n) 的空间，总共需要 O(2n)O(2n)O(2n) 的空间，因此该算法的空间复杂度为 O(n)O(n)O(n)。
+动态规划
+上述算法在运行过程中会超时，究其原因就是不论测试数据要求我们求第几个波浪形排列，我们都老老实实的从第一个开始数，当数据比较大时就会出现超时的情况。那么有没有办法能够减少一些不必要的过程呢？比如测试数据要求第 100 个波浪形排列，很明显前面 80 个排列肯定不满足情况，我们能否舍弃一部分搜索直接从第 80 个甚至第 90 个开始呢？
+我们先不考虑波浪形排列这个条件，如果是求第 k 个全排列的话是非常容易就能算出来的。还是以1 2 3的全排列为例，假设现在要求第 5 个全排列，可以发现只要第一个数确定了，排列数就由剩下数的排列方案决定，以1打头的排列有两个，以2打头的排列也有两个，而现在要求的是第 5 个排列，所以肯定不是以1或2打头的，这样我们就能直接跳过大部分不合法的排列，节省了时间。
+仔细想想发现理想是比较丰满，上述方法的问题在于无法确定前面跳过的那部分里面究竟有多少个波浪形排列，因此这种直接计算的方法行不通。但是这个思想我们是可以借用一下的，那我们把一部分数据计算出来，尝试一下能不能找到规律。
+当 n 为 1 时，总共有 1 个波浪形排列，1 打头的有 1 个；
+当 n 为 2 时，总共有 2 个波浪形排列，1 打头的有 1 个；
+当 n 为 3 时，总共有 4 个波浪形排列，1 打头的有 1 个；
+当 n 为 4 时，总共有 10 个波浪形排列，1 打头的有 2 个；
+当 n 为 5 时，总共有 32 个波浪形排列，1 打头的有 5 个；
+当 n 为 6 时，总共有 122 个波浪形排列，1 打头的有 16 个；
+列出来了 6 组数据都没有发现规律，这种方式基本得战略性放弃了。我们设置 A[i] 为 i 根木棒所组成的合法方案数，列数据找规律其实就是尝试找到 A[i] 和 A[i-1] 的规律，比如选定了某根木棒 x 作为第 1 根木棒的情况下，则剩下 i-1 根木棒的合法方案数为 A[i-1]。问题在于并不是这 A[i-1] 中每一种方案都能和 x 形成一种新的合法方案。
+我们把第 1 根木棒比第 2 根木棒长的方案称为 W 方案，第 1 根木棒比第 2 根木棒短的方案称为 M 方案。A[i-1] 中方案中只有第 1 根木棒比 x 要长的 W 方案，以及第 1 根木棒比 x 要短的 M 方案，才能进行组合构成 A[i] 中的合法方案。
+因此我们可以设A[i] = 0，先枚举 x，然后针对每一个 x 枚举它后面那根木棒 y，如果y &amp;gt; x（y &amp;lt; x同理）则有：A[i] = A[i] + 以 y 打头的 W 方案数，但是以 y 打头的 W 方案数，又和 y 的长短有关，因此只能继续将描述方式继续细化了。
+设 B[i][k] 是 A[i] 中以第 k 短的木棒打头的方案数，则有：
+A[i]=∑k=1iB[i][k]A[i] = \sum_{k=1}^i B[i][k]A[i]=∑k=1i​B[i][k]
+B[i][k]=∑j=ki−1B[i−1][j](W)+∑n=1k−1B[i−1][n](M)B[i][k] = \sum_{j=k}^{i-1} B[i-1][j](W)+ \sum_{n=1}^{k-1} B[i-1][n](M)B[i][k]=∑j=ki−1​B[i−1][j](W)+∑n=1k−1​B[i−1][n](M)
+公式中（W) 和 (M) 分别表示 W 方案和 M 方案，发现还是无法找出推导关系。设 C[i][k][0] 为 B[i][k] 中的 W 方案数，C[i][k][1] 为 B[i][k] 中的 M 方案数那么则有：
+B[i][k]=C[i][k][0]+C[i][k][1]B[i][k] = C[i][k][0] + C[i][k][1]B[i][k]=C[i][k][0]+C[i][k][1]
+C[i][k][1]=∑j=ki−1C[i−1][j][0]C[i][k][1] = \sum_{j=k}^{i-1} C[i-1][j][0]C[i][k][1]=∑j=ki−1​C[i−1][j][0]
+C[i][k][0]=∑n=1k−1C[i−1][n][1]C[i][k][0] = \sum_{n=1}^{k-1} C[i-1][n][1]C[i][k][0]=∑n=1k−1​C[i−1][n][1]
+至此状态转移方程就出来了，初始条件为：C[1][1][0]=C[1][1][1] = 1，下面就可以开始写代码了。
+class Solution {
+public:
+    /**
+     * 
+     * @param n int整型 木棒的个数
+     * @param k long长整型 第k个排列
+     * @return int整型vector
+     */
+    vector&amp;lt;int&amp;gt; stick(int n, long long s) {
+        long long dp[21][21][2];
+        memset(dp,0,sizeof(dp));
+        dp[1][1][0] = dp[1][1][1] = 1;
+        for (int i = 2; i &amp;lt;= n; i++){
+            // 枚举第一根木棒的长度
+            for (int k = 1; k &amp;lt;= i; k++){
+                // W 方案枚举第二根木棒的长度
+                for (int m = k; m &amp;lt; i; m++){
+                    dp[i][k][0] += dp[i-1][m][1];
+                }
+                // M 方案枚举第二根木棒的长度
+                for (int m = 1; m &amp;lt;= k-1; m++){
+                    dp[i][k][1] += dp[i-1][m][0];
+                }
+            }
+        }
+        // 标记是否已经使用
+        bool visited[21] = {false};
+        // 保存结果的排列
+        int a[21];
+        // 逐一确定第 i 位
+        for(int i = 1; i &amp;lt;= n; i++) {
+            int k = 0;
+            // 假设第 i 放 j
+            for(int j=1;j&amp;lt;=n;j++) {
+                long long tmp = s;
+                // 已经使用过的数不能再使用了
+                if(!visited[j]) {
+                    // j 是没有使用过的木棒中第 k 短的
+                    k++;
+                    if(i == 1) {
+                        // 确定第一根木棒的长度
+                        tmp -= dp[n][k][0] + dp[n][k][1];
+                    } else if(j &amp;lt; a[i-1] &amp;amp;&amp;amp; (i==2 || a[i-2]&amp;lt;a[i-1])) {
+                        // W 类型
+                        tmp -= dp[n-i+1][k][0];
+                    } else if(j &amp;gt; a[i-1] &amp;amp;&amp;amp; (i==2 || a[i-2]&amp;gt;a[i-1])) {
+                        // M 类型
+                        tmp -= dp[n-i+1][k][1];
+                    }
+                    if(tmp &amp;lt;= 0) { 
+                        visited[j]=true;
+                        a[i]=j; // 第 i 位为 j
+                        break;
+                    }
+                }
+                s = tmp;
+            }
+        }
+        // 将结果转换为指定格式
+        vector&amp;lt;int&amp;gt; res;
+        for(int i = 1; i &amp;lt;= n; i++) {
+            res.push_back(a[i]);
+        }
+        return res;
+    }
+};
+
+复杂度分析
+最开始初始化dp数组时用了 O(2n2)O(2n^2)O(2n2) 的时间，随后填写dp数组花的时间为 O(n3)O(n^3)O(n3)，计算最终答案的时间为 O(n2)O(n^2)O(n2)，将结果转为指定格式的时间为 O(n)O(n)O(n)，所以该算法的时间复杂度为 O(n3)O(n^3)O(n3)。
+dp数组占用了 O(2n2)O(2n^2)O(2n2) 的空间，标记数组visited、保存结果的数组a，以及最终转换为指定格式的path向量，各占用了 O(n)O(n)O(n) 的空间，取最大值即该算法的空间复杂度为 O(2n2)O(2n^2)O(2n2)，去掉系数得到最终空间复杂度 O(n2)O(n^2)O(n2)。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/_4KYecN7b/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/KRW8MVjMZ/">
+                        如何求两个数的最大公约数
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2021-01-04</time>
+                    
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-info">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/KRW8MVjMZ/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/KRW8MVjMZ.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            求几个整数的最大公约数大致有三种方法，求多个整数的最大公约数可以拆分为求两个整数的最大公约数，所以核心问题还是求两个整数的最大公约数。
+穷举法
+很直观就能想到穷举法，先找出两个数字中比较小的那一个min，然后逐个验证从2 ~ min的数字是否能被两个数整除，如果能同时被两个数字整除那就是公约数，找出其中最大的那个公约数就是所求的结果。
+int gcd(int a, int b){
+    int min = a;
+    if(b &amp;lt; a){
+        min = b;
+    }
+    for(int i = min; i &amp;gt; 2; i--){
+        if(a%i == 0 &amp;amp;&amp;amp; b%i == 0){
+            return i;
+        }
+    }
+    return 1;
+}
+
+辗转相除法
+辗转相除法是欧几里得想出来的，所以也叫做欧几里得算法。它的证明过程依赖于一个定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数，即gcd(a, b) = gcd(b, a mod b)，其中 gcd 表示最大公约数，此处假设 a &amp;gt; b。其证明过程如下所示：
+设 c = gcd(a, b)；
+则存在 m，n，使 a = mc，b = nc；
+令 r = a mod b；
+则存在 k，使 r = a - kb = mc - knc = (m - kn)c；
+所以 gcd(b, a mod b) = gcd(b, r) = gcd(nc, (m-kn)c) = gcd(n, m-kn)c；
+所以 c 为 b 与 a mod b 的公约数；
+
+设 d = gcd(n, m-kn)；
+则存在 x，y，使 n = xd，m-kn = yd；
+所以 m = yd + kn = yd + kxd = (y + kx)d；
+所以 a = mc = (y + kx)dc，b = nc = xdc；
+所以 gcd(a, b) = gcd((y+kx)dc, xdc) = gcd(y+kx, x)dc = dc；
+因为 gcd(a, b) = c，所以 d = 1；
+即 gcd(n, m-kn) = 1，所以  gcd(b, a mod b) = c；
+所以 gcd(a, b) = gcd(b, a mod b)；
+
+证明 gcd(y+kx, x)dc = dc，即 gcd(y+kx, x) = 1：
+前提条件：gcd(x, y) = 1；
+假设 gcd(y+kx, x) != 1，则肯定 gcd(y+kx, x) &amp;gt; 1，设 gcd(y+kx, x) = i；
+则 y+kx = ui，x = vi；
+则 y = ui - kx = ui - kvi = (u-kv)i
+则 gcd(x, y) = gcd(vi, (u-kv)i) = gcd(v, u-kv)i
+因为 gcd(y+kx, x) = i &amp;gt; 1，gcd(v, u-kv) &amp;gt;= 1；
+所以 gcd(x, y) &amp;gt; 1，与前提条件矛盾；
+所以 gcd(y+kx, x) = 1
+
+有了上面的基础之后，我们就可以总结出来一个算法实现的步骤了。设 r = a % b；如果 r 为 0 的话，那么 a 和 b 的最大公约数就是 b，否则就是求 b 和 a%b 的最大公约数。
+// 递归写法
+int gcd(int a, int b){
+    // 用 b 来存储 a%b 的值
+    if(b == 0){ 
+        return a;
+    }
+    return gcd(b, a%b);
+}
+
+// 迭代写法
+int gcd(int a, int b){
+    while(b != 0){
+        int t = b;
+        a = t;
+        b = a % b;
+    }
+    return a;
+}
+
+可以看到在算法实现过程中并没有先找出来最小的数字，这是因为程序会自动将最较大的那个数字放到 a 的位置，比如将gcd(75, 1000)带入我们的递归算法中则会变成gcd(1000, 75)。
+辗转相减法
+辗转相减法也叫更相减损术（尼考曼彻斯法），也是一种简便的求两个数的最大公约数的算法，它的特色是做一系列减法，从而求的最大公约数。比如两个自然数 36 和 27，用大数减去小数得 9 和 27，这时 9 小于 27，需要将两数交换即得 27 和 9，继续相减可得 18 和 9，然后 9 和 9，这时就可以得到两数的最大公约数为 9 了。其证明过程如下所示：
+设 gcd(a, b) = x，a &amp;gt; b；
+则有 a = mx，b = nx，m，n 均为正整数且 m &amp;gt; n；
+c = a - b = mx - nx = (m - n)x；
+因为 a 和 b 均为正整数，所以 c 也能被 x 整除；
+所以 gcd(a, b) = gcd(b, a-b)
+
+具体的算法实现步骤在第一段已经有一个比较清晰的例子了，这里可以直接给出实现代码。
+// 递归写法
+int gcd(int a, int b){
+    if(a == b){
+        return a;
+    }
+    return a &amp;gt; b ? gcd(a-b, b) : gcd(a, b-a);
+}
+
+// 迭代写法
+int gcd(int a, int b){
+    while(a != b){
+        a &amp;gt; b ? a = a - b : b = b - a;
+    }
+    return a;
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/KRW8MVjMZ/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/M_3PVzDfm/">
+                        Bootstrap-table 如何合并相同单元格
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-01-26</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-other_1">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
+                            i-tag-banana">
+            #TypeScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-error">
+            #JavaScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-other_1">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/M_3PVzDfm/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/M_3PVzDfm.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            Bootstrap-table 官方提供了合并单元格方法 mergeCells，它根据四个参数可以合并任意个单元格，我们要做的只是告诉它怎么合并。
+要合并同一列相同的单元格，无非两种办法，一种是一边遍历一边合并，遍历完了再合并。这里采用第二种办法，这里不需要遍历所有数据，因为用户只能看到当前页的数据，所以只遍历当前页的数据更省时间。
+下面是我实现的获取合并信息算法，最终返回的是一个哈希表，比如下面的这个表格，如果要对「性别」这一列进行合并，很明显前面两个“男”需要合并成一个单元格，再去看下 Bootstrap-table 提供的 API，它需要的是从哪个单元格开始，合并多少个单元格，也就是它需要的是两个数值类型的参数。
+
+
+
+姓名
+性别
+年龄
+
+
+
+
+张三
+男
+23
+
+
+李四
+男
+19
+
+
+王二
+女
+20
+
+
+麻子
+男
+21
+
+
+
+所以我把哈希表设置为，键存的是索引，值存的是从这个索引开始后面连续有多少个和它一样的单元格，那么上述表格性别这一列所得到的合并信息哈希表就为：
+{
+    0: 2,
+    2: 1,
+    3: 1
+}
+
+下面算法很简单，使用两个指针遍历指定的列，如果两个指针所指向的数据相同，那么就将键所对应的值进行加一操作，整个方法只会对该列数据遍历一边，所以时间复杂度为 O(n)。
+let getMergeMap = function (data, index: number) {
+    let preMergeMap = {};
+    // 第 0 项为表头，索引从 2 开始为了防止数组越界
+    for (let i = 2; i &amp;lt; data.length; i++) {
+        let preText = $(data[i-1]).find(&#39;td&#39;)[index].innerText;
+        let curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+        let key = i - 2;
+        preMergeMap[key] = 1;
+        while ((preText == curText) &amp;amp;&amp;amp; (i &amp;lt; data.length-1)) {
+            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
+            i++;
+            preText = $(data[i - 1]).find(&#39;td&#39;)[index].innerText;
+            curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+        }
+        // while循环跳出后，数组最后一项没有判断
+        if (preText == curText) {
+            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
+        }
+    }
+    return preMergeMap;
+}
+
+上述算法得到了单列数据的合并信息，下一步就是按照这个信息进行相同单元格的合并了，因此封装了下面的方法按照指定哈希表进行合并。
+let mergeCells = function (preMergeMap: Object, target, fieldName: string) {
+    for (let prop in preMergeMap) {
+        let count = preMergeMap[prop];
+        target.bootstrapTable(&#39;mergeCells&#39;, { index: parseInt(prop), field: fieldName, rowspan: count });
+    }
+}
+
+到目前为止，我们实现的都只是对单列数据进行合并，要实现对多列数据进行合并，那么只需要对所有列都进行相同的操作即可。
+export let mergeCellsByFields = function (data: Object[], target, fields) {
+    for (let i = 0; i &amp;lt; fields.length; i++) {
+        let field = fields[i];
+        // 保证 field 与 i 是相对应的
+        let preMergeMap = getMergeMap(data, i);
+        let table = target.bootstrapTable();
+        mergeCells(preMergeMap, table, field);
+    }
+}
+
+因为我在程序中做了一点处理，保证了fields中每个值得索引与对应表头的索引是一样的，因此不需要额外传入索引信息。简单来说就是我所实现的表格会根据fields的顺序，实现列之间的动态排序。你需要注意的是这一点很可能和你不一样。
+到现在已经能够合并所有的列了，查看 Bootstrap-table 的配置信息发现，它有个属性是 onPostBody 它会在 table body 加载完成是触发，所以把这个属性配置成我们的合并单元格方法即可。
+// groups 为要合并的哪些列
+onPostBody: function () {
+    mergeCellsByFields($(&#39;#table&#39; + &#39; tr&#39;), $(&#39;#table&#39;), groups);
+}
+
+再说一点不太相关的，我实现的是让用户可以自己选可以合并多少列，即用了一个可多选的下拉列表框供用户选择，根据用户选择的数量去合并，所以传入了一个groups参数。
+最后推荐一个排序插件 thenBy，你可以用它进行多字段排序，比如用在合并相同单元格的场景，在绘制表格前先对数据进行排序，那么最后合并的结果就是把所有相同的数据聚合到一起了，并且还将它们合并到一起了，起到了一个隐形的过滤查询功能。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/M_3PVzDfm/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+    <div class="pagination-container">
+        
+                
+                    <a href="https://www.guanngxu.com/krqSF7tYC/page/2" class="page-btn btn">下一页</a>
+                    
+    </div>
+    
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

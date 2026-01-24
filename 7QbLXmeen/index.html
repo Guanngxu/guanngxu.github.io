@@ -1,0 +1,429 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Vue | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        Vue</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/qzip9Ct6U/">
+                        Vue 入门避坑——Vue + TypeScript 项目起手式
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-09</time>
+                    
+                        <a href="https://www.guanngxu.com/7QbLXmeen/" class="post-tag i-tag
+                            i-tag-primary">
+            #Vue
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-other_3">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
+                            i-tag-other_3">
+            #TypeScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-other_3">
+            #JavaScript
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/qzip9Ct6U/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/qzip9Ct6U.webp) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            在此前我使用的前端框架是 Angular，使用过 TypeScript 后你就会讨厌 JS 了，我学习 Vue 时的最新版本是 2.5，相信大部分同学都不会认为 Vue 那样又细又长的代码很美观吧，简单看了一些网络博客后，我毅然决然引入了 TypeScript 进行开发，本文仅整理记录我自己遇到的一些坑。
+使用 Cli
+脚手架是一个比较方便的工具，这里需要注意的是@vue/cli和vue-cli是不一样的，推荐使用npm i -g @vue/cli安装。
+安装完成后，可以直接使用vue create your-app创建项目，你可以选择使用默认配置亦或是自己手动选择配置，按提示一步一步向下走即可，它会根据你的选择自己创建比如tsconfig.json等等配置文件。这里推荐使用less开发样式，sass老是在安装的过程中出问题。
+当然你也可以使vue ui命令启动一个本地服务，它是一个 Vue 项目管理器，提供了一个可视化的页面供你管理自己的项目，它的样子如下图所示，还是比较清新的。
+
+使用 vue-property-decorator
+Vue 官方维护了 vue-class-component 装饰器，vue-property-decorator 则是在vue-class-component基础上增强了更多结合Vue特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。
+截止本文时间，vue-property-decorator共提供了 11 个装饰器和 1 个Mixins方法，下面用@Prop举个例子，是不是看起来引起极度舒适。
+import { Vue, Component, Prop } from &#39;vue-property-decorator&#39;
+
+@Component
+export default class YourComponent extends Vue {
+    @Prop(Number) readonly propA: number | undefined
+    @Prop({ default: &#39;default value&#39; }) readonly propB!: string
+    @Prop([String, Boolean]) readonly propC: string | boolean | undefined
+}
+
+
+// 上面的内容将会被解析成如下格式
+
+export default {
+    props: {
+        propA: {
+            type: Number
+        },
+        propB: {
+            default: &#39;default value&#39;
+        },
+        propC: {
+            type: [String, Boolean]
+        }
+    }
+}
+
+使用 Vuex
+关于怎么使用Vuex此处就不再做过多说明了，需要注意的一点是，如果你需要访问$store属性的话，那么你必须得继承Vue类，坑的地方是在某些情况下即使你没有继承Vue，它也能通过编译，只有在程序运行起来的时候才报错。
+class ExampleApi extends Vue {
+
+    public async getExampleData() {
+        if (!this.$store.state.exampleData) {
+            const res = await http.get(&#39;url/exampleData&#39;);
+            if (res.result) {
+                this.$store.commit(&#39;setExampleData&#39;, res.data);
+                return res.data;
+            } else {
+            promptUtil.showMessage(&#39;get exampleData failed&#39;, &#39;warning&#39;);
+            }
+        } else {
+            return this.$store.state.exampleData;
+        }
+    }
+}
+
+使用自己的配置（含代理）
+vue.config.js是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被@vue/cli-service自动加载，它的配置项说明可以查看配置参考。
+我们再开发过程中都会使用代理来转发请求，代理的配置也是在这个文件中，它的官方说明在devserver-proxy中，下面是一个简单的vue.config.js文件例子。
+module.exports = {
+    filenameHashing: true,
+    outputDir: &#39;dist&#39;,
+    assetsDir: &#39;asserts&#39;,
+    indexPath: &#39;index.html&#39;,
+    productionSourceMap: false,
+    transpileDependencies: [
+        &#39;vue-echarts&#39;,
+        &#39;resize-detector&#39;
+    ],
+    devServer: {
+        hotOnly: true,
+        https: false,
+        proxy: {
+            &amp;quot;/statistics&amp;quot;: {
+                target: &amp;quot;http://10.7.213.186:3889&amp;quot;,
+                secure: false,
+                pathRewrite: {
+                    &amp;quot;^/statistics&amp;quot;: &amp;quot;&amp;quot;,
+                },
+                changeOrigin: true
+            },
+            &amp;quot;/mail&amp;quot;: {
+                target: &amp;quot;http://10.7.213.186:8888&amp;quot;,
+                secure: false,
+                changeOrigin: true
+            }
+        }
+    }
+}
+
+让 Vue 识别全局方法和变量
+我们在项目中都会使用一些第三方 UI 组件，比如我自己就使用了 Element，但是在使用它的$message、$notify等方法时就直接报错了，究其原因就是$message等属性并没有在 Vue 实例中声明。
+官方对此给出了很明确的解决方案，使用的是 TypeScript 的 模块补充特性，可以查看增强类型以配合插件使用。既然知道是因为没有声明导致的错误，那我们就给它声明一下好了，在src/shims-vue.d.ts文件中添加如下代码即可，如果没有该文件请自行创建。
+
+看到网上也有一部分人说的是src/vue-shim.d.ts，反正不管是怎么命名这个文件的，它们的作用是一样的。
+
+declare module &#39;vue/types/vue&#39; {
+    interface Vue {
+        $message: any,
+        $confirm: any,
+        $prompt: any,
+        $notify: any
+    }
+}
+
+这里顺道提一下，src/shims-vue.d.ts文件中的如下代码是为了让你的 IDE 明白以.vue结尾的文件是什么玩意儿。
+declare module &#39;*.vue&#39; {
+    import Vue from &#39;vue&#39;;
+    export default Vue;
+}
+
+
+路由懒加载
+Vue Router 官方有关于路由懒加载的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用require.ensure()按需加载组件可以生效。
+// base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中
+const Home = (r: any) =&amp;gt; require.ensure([], () =&amp;gt; r(require(&#39;@/views/home.vue&#39;)), layzImportError, &#39;base-view&#39;);
+
+// 路由加载错误时的提示函数
+function layzImportError() {
+    alert(&#39;路由懒加载错误&#39;);
+}
+
+上面的方式会在编译的时候把文件自动分成多个小文件，编译后的文件会以你自己命名的模块名来命名，如果代码之间有相互依赖，依赖部分代码编译后的文件会以两个模块名相连后进行命名。
+但是需要注意的是，这样拆分小文件之后引入了另外一个新的问题，因为客户端会缓存这些编译后的 js 文件，如果功能 A 同时依赖了a.js和b.js两个文件，但用户在使用其它功能时已经把a.js缓存到本地了，使用功能 A 时需要请求b.js文件，这时程序就很容易报错，因为此时在客户端这两个文件不是同一个版本，所以可能导致a.js调用b.js中的方法已经被删了，进而导致客户端页面异常。
+关于引入第三方包
+项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。
+/*
+ 引入 jquery 等库可以尝试下面这种方式
+ 只需要把相应的 js 文件放到指定文件夹即可
+**/
+const $ = require(&#39;@/common/js/jquery.min.js&#39;);
+const md5 = require(&#39;@/common/js/md5.js&#39;);
+
+引入一些第三方样式文件、UI 组件等，如果引入不成功可以尝试建一个 js 文件，将导入语句都写在 js 文件中，然后再在main.ts文件中导入这个 js 文件，这个方法能解决大部分的问题。例如我先建了一个lib.js，然后在main.ts中引入lib.js就没有报错。
+// src/plugins/lib.js
+import Vue from &#39;vue&#39;;
+
+// 树形组件
+import &#39;vue-tree-halower/dist/halower-tree.min.css&#39;;
+import {VTree} from &#39;vue-tree-halower&#39;;
+// 饿了么组件
+import Element from &#39;element-ui&#39;;
+import &#39;element-ui/lib/theme-chalk/index.css&#39;;
+// font-awesome 图标
+import &#39;../../node_modules/font-awesome/css/font-awesome.css&#39;;
+import VueCookies from &#39;vue-cookies&#39;;
+import VueJWT from &#39;vuejs-jwt&#39;;
+
+Vue.use(VueJWT);
+Vue.use(VueCookies);
+Vue.use(VTree);
+Vue.use(Element);
+
+
+// src/main.ts
+import App from &#39;@/app.vue&#39;;
+import Vue from &#39;vue&#39;;
+import router from &#39;./router&#39;;
+import store from &#39;./store&#39;;
+import &#39;./registerServiceWorker&#39;;
+import &#39;./plugins/lib&#39;;
+
+Vue.config.productionTip = false;
+
+new Vue({
+    router,
+    store,
+    render: (h) =&amp;gt; h(App),
+}).$mount(&#39;#app&#39;);
+
+因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个index.d.ts文件，实在不行的话，那个特殊的组件不使用 TypeScript 来写也能解决，我目前还没有找一个可以完全解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/qzip9Ct6U/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

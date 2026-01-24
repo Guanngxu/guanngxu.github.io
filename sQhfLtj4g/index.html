@@ -1,0 +1,811 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    计算机网络 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        计算机网络</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/bXKpR9unB5/">
+                        一文搞懂 TCP 协议核心机制
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2026-01-12</time>
+                    
+                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-other_4">
+            #计算机网络
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/bXKpR9unB5/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/bXKpR9unB5.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+Transmission Control Protocol (TCP)
+TCP - 12 simple ideas to explain the Transmission Control Protocol
+TCP (Transmission Control Protocol) – What is it, and how does it work? 
+The Internet&#39;s Layered Network Architecture
+《计算机网络-自顶向下方法（第7版）》
+
+TCP (Transmission Control Protocol - 传输控制协议) 在过去 40 多年的时间里，一直是互联网通信的核心。在大学学习计算机网络时，大部分同学都只是简单机械的背诵 TCP 是面向连接的，是可靠的传输协议。本文借助 Wireshark 抓包工具分析 TCP 报文头部，来详细的介绍它的工作原理。
+TCP 报文格式如下图所示，我们将重点关注 Sequence Number、Acknowledgment Number、Window 几个字段，以及 TCP Flags 中的 ACK、PSH、RST、SYN、FIN。后续的内容除了建立连接过程外，其它均与服务端客户端无关，即任何一方均可发起相关操作。
+
+建立连接
+在 TCP 建立连接时进行抓包，可以发现客户端首先向服务端发送了 SYN 包，服务端向客户端响应了 SYN, ACK 包，最后客户端向服务端发送了 SYN 包，这就是大名鼎鼎的三次握手。
+
+TCP 建立连接的三次握手过程，有四个事件发生：
+
+客户端→服务端：SYNchronize（同步）我的初始序列号 X；
+服务端→客户端：我收到了你的 SYN，我 ACKnowledge（确认）我已经准备好接收 [X+1]；
+服务端→客户端：SYNchronize（同步）我的初始序列号 Y；
+客户端→服务端：我收到了你的 SYN，我 ACKnowledge（确认）我已经准备好接收 [Y+1]；
+
+
+为什么是三次握手而不是两次握手？
+我们用打电话的场景来类比两次握手和三次握手的区别，可以发现在场景一中，B 以为通话已经建立，但其实可能 A 没有听到 B 的回复，而在场景二中双方都确认对方能够听到自己的声音，所以三次握手要更加可靠。
+场景一：两次握手
+A：喂，听得到吗？（SYN）
+B：听得到，你听得到吗？（ACK）
+
+场景二：三次握手
+A：喂，听得到吗？（SYN）
+B：听得到，你听得到吗？（SYN + ACK）
+A：我也听得到！（ACK）
+
+发送数据
+TCP 连接建立后就可以发送数据了，数据发送过程主要关注  Sequence Number、Acknowledgment Number、Window 几个字段。
+
+Sequence Number 用于跟踪已经发送的数据，Acknowledgment Number 则用于跟踪已经接收的数据。比如客户端本次发送的数据包为 seq=1001 且数据长度为 200 字节，当服务端接收到这 200 个字节后，将回复 ack=1201 表示已经成功接收数据，下一次客户端发送数据的序列号将为 1201。
+
+如果接收方为接收到的每段报文都发送确认信息，那就意味着在线路上传输的报文数量翻了一倍，为了减轻数据传输的负担，TCP 加入了延迟确认机制。延迟确认机制规定每收到两段报文，或者距离最后一段报文的时间不超过 500ms，至少要回应一次 ACK。
+
+超时重传
+TCP 是如何处理丢包情况的呢？实际上每次数据发送时，客户端都会保留一份已经发送的数据副本到缓存，并启动重传超时。如果客户端收到服务端发送的数据包确认，则将缓存中的数据删除即可，因为可以确认服务端已经正确接收了数据包。
+如果客户端一直没有收到已发送数据包的确认，重传超时时间一定会在某个时刻到期，此时客户端即会意识到服务端可能没有接收到数据，所以客户端会重新发送丢失的数据包，确保数据可以被服务端接收到。
+
+超时重传机制的巧妙之处在于不管在哪个方向丢包，它都能正常工作。比如客户端正常发送了数据包，但是服务端的 ACK 包丢失了，当达到重传超时时间后，客户端会再次发送对应数据包，而对服务端来说即可猜出是 ACK 数据包丢了，服务端不会重复存储该数据包，只需要再次回应对应的 ack 即可。
+
+流量控制
+如果发送方一味的发送数据，而接收方可能正忙于其它事务，可能会读取数据相对缓慢，如此就会很容易地使接收缓存溢出。TCP 为应用程序提供了流量控制服务以消除发送方使接收方缓存溢出的可能性。流量控制因此是一个速度匹配服务，即发送方的发送速率与接收方应用程序的读取速率相匹配。
+
+从上图可以看出 TCP 通过 Window 字段来进行流量控制，通过该字段告知发送方在必须等待接收确认之前可以发送多少数据。即通过控制窗口大小来达到流量控制的目的。
+数据包解析
+将 Wireshark 抓取的 TCP 数据包原始字节数据复制出来如下所示，会发现里面不止有 TCP 报文的头部，还有以太网和 IPv4 的头部。
+0000   74 5a 01 b5 29 e4 90 65 84 0b 69 8b 08 00 45 00
+0010   00 32 1b bf 40 00 80 06 00 00 c0 a8 00 0a 08 9c
+0020   53 29 6a b8 1a 0a 06 6e 20 43 47 9e 92 37 50 18
+0030   00 ff 1c 9c 00 00 31 32 33 34 35 36 37 38 39 30
+
+
+
+数据链路层：以太网头部（14 Bytes）
+74 5a 01 b5 29 e4 90 65 84 0b 69 8b 08 00
+
+目标 MAC：74:5a:01:b5:29:e4
+源 MAC：90:65:84:0b:69:8b
+类型：08 00 = IPv4
+
+
+
+网络层：IPv4 头部 (20 Bytes)
+08 00 45 00 00 32 1b bf 40 00 80 06 00 00 c0 a8 00 0a 08 9c 53 29
+
+版本 + IHL：45 = IPv4，头长 20 字节
+差分服务字段 (DSCP/ECN)，通常为 0：00
+总长度：00 32 = 50 字节（IP 头 20 + TCP 头 20 + 数据 10 字节）
+标识符：1b bf，用于数据包分片重组
+标志 + 分片偏移：40 00 = DF (表示不分片)
+生存时间 TTL：80 = 128，表示数据包最多能经过 128 跳
+协议：06 = TCP，即上层协议是 TCP
+头部校验和：00 00，这里显示为 0，可能是抓包时未计算，或者故意置零
+源 IP：c0 a8 00 0a = 192.168.0.10
+目标 IP：08 9c 53 29 = 8.156.83.41
+
+
+
+传输层：TCP 头部 (20 Bytes)
+6a b8 1a 0a 06 6e 20 43 47 9e 92 37 50 18 00 ff 1c 9c 00 00
+
+源端口：6a b8 = 27320
+目标端口：1a 0a = 6666
+序列号：06 6e 20 43 = 107,661,379， wireshark 显示的是相对序列号，所以不一样
+确认号：47 9e 92 37 = 1,201,353,271，与序列号同理
+数据偏移 (4位) + 保留 (3位) + 标志 (9位) (2字节):  50 18 -&amp;gt; 分解：
+    数据偏移: 5 -&amp;gt; TCP 头部长度 5 个“32位字” (5 * 4 = 20 字节)。
+    标志位: 0x018（二进制 0000 0001 1000）：
+        ACK = 1 (确认有效)
+        PSH = 1 (推送数据，提示接收端应立即交给上层应用)
+        RST, SYN, FIN = 0
+窗口大小：00 ff = 65535
+校验和：1c 9c
+紧急指针：00 00 = 0，未使用
+
+
+
+应用层：TCP 载荷数据（10 Bytes）
+31 32 33 34 35 36 37 38 39 30
+
+都是 ASCII 码，数据内容为：&amp;quot;1234567890&amp;quot;
+
+
+从数据包的封装情况即可看出来对网络协议分层的好处，比如工作在链路层的交换机只需要解析出 MAC 地址即可进行数据转发，而不需要再解析网络层中的 IP 地址等信息。同理对工作在网络层的路由器来说，解析出 IP 地址即可转发数据，不需要对数据进行深度解析。
+断开连接
+TCP 有两种关闭连接的方式，一种是通过 FIN 来优雅的关闭连接，另一种是通过 RST 来暴力的关闭连接。我们首先来看优雅的关闭方式。
+如果一切都进展的很顺利，客户端和服务端建立连接并成功的交换了彼此的数据，它们就可以关闭连接并继续进行各自的工作。与建立连接的过程类似，关闭连接的过程也会发生四个事件，即大家所说的四次挥手。
+
+
+客户端→服务端：我已经FINished（完成）了数据发送，我最后的序列号是 X；
+服务端→客户端：我 ACKnowledge（确认）接收到了你的 FIN 且 ack=[X+1]；
+服务端→客户端：我已经FINished（完成）了数据发送，我最后的序列号是 Y；
+客户端→服务端：我 ACKnowledge（确认）接收到了你的 FIN 且 ack=[Y+1]；
+
+和三次握手一样，中间两个事件可能在同一个数据包中发生，比如下面使用 Wireshark 工具抓到的包。
+
+实际情况不会每次都将两个事件合并，这是因为四个事件并不是严格要求必须按照上述顺序进行的，很有可能客户端已经发送完数据并断开连接，但是服务端仍然有数据需要向客户端发送，所以可以只关闭客户端向服务端发送数据的通道，而不关闭服务端向客户端发送数据的通道。请记住 TCP 是全双工通信，一个 FIN-ACK 组合事件只会关闭一个方向的连接。
+
+非优雅的暴力关闭连接方式采用 RST Flag 实现，任何一方都可以发送该连接关闭数据包，使用该方式关闭连接意味着 TCP 连接出现了问题，发送方向接收方发送了 RST 数据包后，即将该 TCP 连接相关信息清空，接收方接收到该数据包后也即将该 TCP 连接相关信息清空。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/bXKpR9unB5/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/25MtObxIW/">
+                        如何加快 Nginx 的文件传输？——Linux 中的零拷贝技术
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-18</time>
+                    
+                        <a href="https://www.guanngxu.com/j7DVou3EA/" class="post-tag i-tag
+                            i-tag-other_3">
+            #Nginx
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-other_1">
+            #操作系统
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-other_2">
+            #计算机网络
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/25MtObxIW/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/25MtObxIW.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+Two new system calls: splice() and sync_file_range()
+Linux 中的零拷贝技术1
+Linux 中的零拷贝技术2
+Zero Copy I: User-Mode Perspective
+Linux man-pages splice()
+Nginx AIO 机制与 sendfile 机制
+sendfile 适用场景
+扯淡 Nginx 的 sendfile 零拷贝的概念
+浅析 Linux 中的零拷贝技术
+Linux man-pages sendfile
+
+今天在看 Nginx 配置的时候，看到了一个sendfile配置项，它可以配置在http、server、location三个块中，出于好奇就去查了一下sendfile的作用。
+文件下载是服务器的基本功能，其基本流程就是循环的从磁盘读取文件内容到缓冲区，再将缓冲区内容发送到socket文件，程序员基本都会写出类似下面看起来比较高效的程序。
+while((n = read(diskfd, buf, BUF_SIZE)) &amp;gt; 0)
+    write(sockfd, buf , n);
+
+上面程序中我们使用了read和write两个系统调用，看起来也已经没有什么优化空间了。这里的read和write屏蔽了系统内部的操作，我们并不知道操作系统做了什么，现实情况却是由于 Linux 的 I/O 操作默认是缓冲 I/O，上面的程序发生了多次不必要的数据拷贝与上下文切换。
+上述两行代码执行流程大致可以描述如下：
+
+系统调用read产生一个上下文切换，从用户态切换到内核态；
+DMA 执行拷贝（现在都是 DMA 了吧！），把文件数据拷贝到内核缓冲区；
+文件数据从内核缓冲区拷贝到用户缓冲区；
+read调用返回，从内核态切换为用户态；
+系统调用write产生一个上下文切换，从用户态切换到内核态；
+把步骤 3 读到的数据从用户缓冲区拷贝到 Socket 缓冲区；
+系统调用write返回，从内核态切换到用户态；
+DMA 从 Socket 缓冲区把数据拷贝到协议栈。
+
+
+可以看到两行程序共发生了 4 次拷贝和 4 次上下文切换，其中 DMA 进行的数据拷贝不需要 CPU 访问数据，所以整个过程需要 CPU 访问两次数据。很明显中间有些拷贝和上下文切换是不需要的，sendfile就是来解决这个问题的，它是从 2.1 版本内核开始引入的，这里放个 2.6 版本的源码。
+系统调用sendfile是将in_fd的内容发送到out_fd，描述符out_fd在 Linux 2.6.33 之前，必须指向套接字文件，自 2.6.33 开始，out_fd可以是任何文件；in_fd只能是支持mmap的文件（mmap是一种内存映射方法，在被调用进程的虚拟地址空间中创建一个新的指定文件的映射）。
+所以当 Nginx 是一个静态服务器时，开启sendfile配置项是可以大大提高 Nginx 性能的，但是当把 Nginx 作为一个反向代理服务器时，sendfile则没有什么用，因为当 Nginx 时反向代理服务器时，in_fd就是一个套接字，这不符合sendfile的参数要求。
+
+可以看到现在我们只需要一次拷贝就可以完成功能了，但是能否把这一次拷贝也省略掉呢？我们可以借助硬件来实现，仅仅需要把缓冲区描述符和文件长度传过去，这样 DMA 直接将缓冲区的数据打包发送到网络中就可以了。
+这样就实现了零拷贝技术，需要注意的是这里所说的零拷贝是相对操作系统而言的，即在内核空间不存在冗余数据。数据的实际走向是从硬盘到内存，再从内存到设备。
+Nginx 中还有一个aio配置，它的作用是启用内核级别的异步 I/O 功能，要使aio生效需要将directio开启（directio对大文件的读取速度有优化作用），aio很适合大文件的传送。需要注意的是sendfile和aio是互斥的，不可同时兼得二者，因此我们可以设置一个文件大小限制，超过该阀值使用aio，低于该阀值使用sendfile。
+location /video/ {
+    sendfile on;
+    sendfile_max_chunk 256k; 
+    aio threads;
+    directio 512k;
+    output_buffers 1 128k;
+}
+
+上面已经提到了零拷贝技术，它可以有效的改善数据传输的性能，但是由于存储体系结构非常复杂，而且网络协议栈有时需要对数据进行必要的处理，所以零拷贝技术有可能会产生很多负面影响，甚至会导致零拷贝技术自身的优点完全丧失。
+零拷贝就是一种避免 CPU 将一块存储拷贝到另一块存储的技术。它可以减少数据拷贝和共享总线操作的次数，消除传输数据在存储器之间不必要的中间拷贝次数，从而有效的提高数据传输效率，而且零拷贝技术也减少了内核态与用户态之间切换所带来的开销。进行大量的数据拷贝操作是一件简单的任务，从操作系统的角度来看，如果 CPU 一直被占用着去执行这项简单的任务，是极其浪费资源的。如果是高速网络环境下，很可能就出现这样的场景。
+零拷贝技术分类
+现在的零拷贝技术种类很多，也并没有一个适合于所有场景的零拷贝零拷贝技术，概括起来总共有下面几种：
+
+
+直接 I/O：对于这种数据传输方式来说，应用程序可以直接访问硬件存储，操作系统只是辅助数据传输，这类零拷贝技术可以让数据在应用程序空间和磁盘之间直接传输，不需要操作系统提供的页缓存支持。关于直接 I/O 可以参看Linux 中直接 I/O 机制的介绍。
+
+
+避免数据在内核态与用户态之间传输：在一些场景中，应用程序在数据进行传输的过程中不需要对数据进行访问，那么将数据从页缓存拷贝到用户进程的缓冲区是完全没有必要的，Linux 中提供的类似系统调用主要有mmap()、sendfile()和splice()。
+
+
+对数据在页缓存和用户进程之间的传输进行优化：这类零拷贝技术侧重于灵活地处理数据在用户进程的缓冲区和操作系统页缓存之间的拷贝操作，此类方法延续了传统的通信方式，但是更加灵活。在 Linux 中主要利用了「写时复制」技术。
+
+
+前两类方法的目的主要是为了避免在用户态和内核态的缓冲区间拷贝数据，第三类方法则是对数据传输本身进行优化。我们知道硬件和软件之间可以通过 DMA 来解放 CPU，但是在用户空间和内核空间并没有这种工具，所以此类方法主要是改善数据在用户地址空间和操作系统内核地址空间之间传递的效率。
+避免在内核与用户空间拷贝
+Linux 主要提供了mmap()、sendfile()、splice()三个系统调用来避免数据在内核空间与用户空间进行不必要的拷贝，在Nginx 文件操作优化对sendfile()已经做了比较详细的介绍了，这里就不再赘述了，下面主要介绍mmap()和splice()。
+mmap()
+当调用mmap()之后，数据会先通过 DMA 拷贝到操作系统的缓冲区，然后应用程序和操作系统共享这个缓冲区，这样用户空间与内核空间就不需要任何数据拷贝了，当大量数据需要传输的时候，这样做就会有一个比较好的效率。
+但是这种改进是需要代价的，当对文件进行了内存映射，然后调用write()系统调用，如果此时其它进程截断了这个文件，那么write()系统调用将会被总线错误信号SIGBUG中断，因为此时正在存储的是一个错误的存储访问，这个信号将会导致进程被杀死。
+一般可以通过文件租借锁来解决这个问题，我们可以通过内核给文件加读或者写的租借锁，当另外一个进程尝试对用户正在进行传输的文件进行截断时，内核会给用户发一个实时RT_SIGNAL_LEASE信号，这个信号会告诉用户内核破坏了用户加在那个文件上的写或者读租借锁，write()系统调用就会被中断，并且进程会被SIGBUS信号杀死。需要注意的是文件租借锁需要在对文件进行内存映射之前设置。
+splice()
+和sendfile()类似，splice()也需要两个已经打开的文件描述符，并且其中的一个描述符必须是表示管道设备的描述符，它可以在操作系统地址空间中整块地移动数据，从而减少大多数数据拷贝操作。适用于可以确定数据传输路径的用户应用程序，不需要利用用户地址空间的缓冲区进行显示的数据传输操作。
+splice()不局限于sendfile()的功能，也就是说sendfile()是splice()的一个子集，在 Linux 2.6.23 中，sendfile()这种机制的实现已经没有了，但是这个 API 以及相应的功能还存在，只不过内部已经使用了splice()这种机制来实现了。
+写时复制
+在某些情况下，Linux 操作系统内核中的页缓存可能会被多个应用程序所共享，操作系统有可能会将用户应用程序地址空间缓冲区中的页面映射到操作系统内核地址空间中去。如果某个应用程序想要对这共享的数据调用write()系统调用，那么它就可能破坏内核缓冲区中的共享数据，传统的write()系统调用并没有提供任何显示的加锁操作，Linux 中引入了写时复制这样一种技术用来保护数据。
+写时复制的基本思想是如果有多个应用程序需要同时访问同一块数据，那么可以为这些应用程序分配指向这块数据的指针，在每一个应用程序看来，它们都拥有这块数据的一份数据拷贝，当其中一个应用程序需要对自己的这份数据拷贝进行修改的时候，就需要将数据真正地拷贝到该应用程序的地址空间中去，也就是说，该应用程序拥有了一份真正的私有数据拷贝，这样做是为了避免该应用程序对这块数据做的更改被其他应用程序看到。这个过程对于应用程序来说是透明的，如果应用程序永远不会对所访问的这块数据进行任何更改，那么就永远不需要将数据拷贝到应用程序自己的地址空间中去。这也是写时复制的最主要的优点。
+写时复制的实现需要 MMU 的支持，MMU 需要知晓进程地址空间中哪些特殊的页面是只读的，当需要往这些页面中写数据的时候，MMU 就会发出一个异常给操作系统内核，操作系统内核就会分配新的物理存储空间，即将被写入数据的页面需要与新的物理存储位置相对应。它最大好处就是可以节约内存，不过对于操作系统内核来说，写时复制增加了其处理过程的复杂性。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/25MtObxIW/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/S9me2CdAH/">
+                        如何保证快速加载网页？——详解浏览器缓存机制
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-04-23</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-other_2">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-success">
+            #计算机网络
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/S9me2CdAH/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/S9me2CdAH.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+彻底理解浏览器的缓存机制
+彻底弄懂HTTP缓存机制及原理
+
+前端开发人员有大部分时间都在调整页面样式，如果页面没有按照自己预期的样式显示，可能想到的第一个解决方案就是清一下浏览器缓存，HTTP 缓存机制作为 Web 性能优化的重要手段，也应该是 Web 开发人员必备的基础知识。我们常说的浏览器缓存机制也就是 HTTP 缓存机制，它是根据 HTTP 报文的缓存标识运行的，所以首先要对 HTTP 报文有一个简单的了解。
+HTTP 报文
+HTTP 报文是浏览器和服务器间进行通信时所发的响应数据，所以 HTTP 报文分为请求（Request）报文和响应（Response）报文两种，浏览器向服务器发送的是请求报文，而服务器向浏览器发送的是响应报文。HTTP 请求报文由请求行、请求头、请求体组成，响应报文则由状态行、响应头、响应正文组成，与缓存有关的规则信息则都包含在请求头和响应头中。
+缓存概述
+浏览器与服务器通过请求响应模式来通信，当浏览器第一次向服务器发送请求并拿到结果后，会根据响应报文中的缓存规则来决定是否缓存结果，其简单的流程如下图：
+
+浏览器每次发起请求都会先在浏览器缓存中查找该请求的结果和缓存标识，而且每次拿到响应数据后都会将该结果和缓存标识存入缓存中。HTTP 缓存的规则有多种，我们可以根据是否需要重新向服务器发起请求这一维度来分类，即有强制缓存和协商缓存两类，也有人把协商缓存叫对比缓存。
+强制缓存
+我们先自己想一下，使用缓存是不是会有下面几种情况出现。
+
+
+存在所需缓存并且未失效：直接走本地缓存即可；强制缓存生效；
+
+
+存在所需缓存但已失效：本地缓存失效，携带着缓存标识发起 HTTP 请求；强制缓存失效，使用协商缓存；
+
+
+不存在所需缓存：直接向服务器发起 HTTP 请求；强制缓存失效。
+
+
+控制强制缓存的字段分别是Expires和Cache-Control，并且Cache-Control的优先级高于Expires。
+Expires
+Expires是 HTTP/1.0 控制网页缓存的字段，其值为服务器返回的该缓存到期时间，即下一次请求时，请求时间小于Expires值，就直接使用缓存数据。到了 HTTP/1.1，Expires已经被Cache-Control替代了。
+Expires被替代的原因是因为服务端和客户端的时间可能有误差（比如时区不同或者客户端与服务端有一方时间不准确），这就会导致缓存命中误差，强制缓存就变得毫无意义。
+Cache-Control
+Cache-Control是 HTTP/1.1 中最重要的规则，主要取值为：
+
+
+
+取值
+规则
+
+
+
+
+public
+所有内容都可以被缓存，包括客户端和代理服务器，纯前端可认为与private一样。
+
+
+private
+所有内容只有客户端可以缓存，Cache-Control的默认值。
+
+
+no-cache
+客户端可以缓存，但是是否缓存需要与服务器协商决定（协商缓存）
+
+
+no-store
+所有内容都不会被缓存，既不是用强制缓存，也不使用协商缓存，为了速度快，实际上缓存越多越好，所以这个慎用
+
+
+max-age=xxx
+缓存内容将在 xxx 秒后失效
+
+
+
+我们可以看看下面这个例子，可以从截图中看到Expires是一个绝对值，而Cache-Control是一个相对值，此处为max-age=3600，即 1 小时后失效。在无法确定客户端的时间是否与服务端的时间同步的情况下，Cache-Control相比于Expires是更好的选择，所以同时存在时只有Cache-Control生效。
+
+协商缓存
+协商缓存，顾名思义就是需要双方通过协商来判断是否可以使用缓存。强制缓存失效后，浏览器带着缓存标识向服务器发起请求，由服务器根据缓存标识决定是否可以使用缓存，那自然而然就有协商缓存生效和协商缓存不生效两种情况了。
+
+上图是协商缓存生效的流程，如果协商缓存不生效则返回的状态码为 200。协商缓存的标识也是在响应报文的响应头中返回给浏览器的，控制协商缓存的字段有Last-Modified / If-Modified-Since和Etag / If-None-Match，其中Etag / If-None-Match的优先级比Last-Modified / If-Modified-Since高，所以同时存在时只有Etag / If-None-Match生效。
+Last-Modified / If-Modified-Since
+你可以往上翻一翻，看一下那张响应报文截图，其中有一个Last-Modified字段，它的值是该资源文件在服务器最后被修改的时间。
+If-Modified-Since则是客户端再次发起该请求时，携带上次请求返回的Last-Modified值。服务器收到该请求后，发现该请求头有If-Modified-Since字段，则会将If-Modified-Since与该资源在服务器的最后被修改时间做对比，若服务器的资源最后被修改时间大于If-Modified-Since的字段值，则重新返回资源，状态码为 200；否则则返回 304，代表资源无更新，可继续使用缓存文件。
+
+Etag / If-None-Match
+Etag是服务器响应请求时，返回当前资源文件的一个由服务器生成的唯一标识。
+If-None-Match则是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有If-None-Match，则会根据If-None-Match的字段值与该资源在服务器的Etag值做对比，如果一致则就返回 304，代表资源无更新，可以继续使用缓存文件；否则重新返回资源文件，状态码为200，
+
+disk cache 与 memory cache
+我们可以通过浏览器调试工具查看强制缓存是否生效，如下图所示，状态码为灰色的请求就代表使用了强制缓存，请求对应的 size 显示了该缓存存放的位置，那么什么时候用 disk 什么时候用 memory 呢？
+
+猜都能猜出来，肯定是优先使用内存（memory）中的缓存，然后才用硬盘（disk）中的缓存。
+内存缓存具有快速读取的特点，它会将编译解析后的文件直接存入该进程的内存中，但是一旦进程关闭了，该进程的内存就会被清空，所以如果你将一个网页关闭后再打开，那么缓存都会走硬盘缓存，而如果你只是刷新网页，那有部分缓存走的就是内存缓存。
+浏览器一般会再 js 和图片等文件解析执行后直接存入内存缓存中，当刷新页面时，这部分文件只需要从内存缓存中读取即可，而 css 文件则会存入硬盘中，所以每次渲染页面都需要从硬盘中读取文件。
+总结
+到这里偷懒一下子了，找到人家画的一张图，看图就行了。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/S9me2CdAH/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/5rUXZg3sM/">
+                        跨域请求是什么？如何解决？
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-18</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-other_3">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
+                            i-tag-other_1">
+            #Angular
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-other_4">
+            #计算机网络
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-primary">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/5rUXZg3sM/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/5rUXZg3sM.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+JavaScript: Use a Web Proxy for Cross-Domain XMLHttpRequest Calls
+别慌，不就是跨域么!
+跨域资源共享 CORS 详解
+AJAX请求和跨域请求详解（原生JS、Jquery）
+JavaScript跨域总结与解决办法
+
+
+刚毕业入职，大部分时间还在培训，中间有一段时间的空闲时间，就学习了下 Angular，在学校都是编写的单体应用，所有代码都放在同一个工程下面，到公司使用的是前后端分离了，虽然后端程序也是我自己写的，但是有一些数据是从公司现有接口去拿的，然后就遇到让我纠结了两小时的跨域请求问题，在这里做一个简单的总结输出。
+什么是跨域请求
+跨域请求问题是浏览器的同源策略造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：协议、域名、端口。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。
+http://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 非跨域
+
+http://www.nealyang.cn/index.html 调用 http://www.neal.cn/server.php 跨域,主域不同
+
+http://abc.nealyang.cn/index.html 调用 http://def.neal.cn/server.php 跨域,子域名不同
+
+http://www.nealyang.cn:8080/index.html 调用 http://www.nealyang.cn/server.php 跨域,端口不同
+
+https://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 跨域,协议不同
+
+localhost 调用 127.0.0.1 跨域
+
+同源政策的目的是为了保护用户信息的安全，防止恶意网站窃取数据，随着互联网的发展，同源政策更加严格了，下面三种行为都会受到限制。
+（1） Cookie、LocalStorage 和 IndexDB 无法读取。
+（2） DOM 无法获得。
+（3） AJAX 请求不能发送。
+
+所有的现代浏览器都对网络连接进行了安全限制，包括 XMLHttpRequest，如果你的 web 应用程序和其使用的数据在同一个服务器，你不会遇到跨域请求问题。但是当你的 web 应用程序和 web 服务数据不在同一个服务器时，就会被浏览器限制连接了。
+常用解决方案
+    对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面设置代理。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。
+
+通俗易懂的说，你家的宠物狗不会吃别家的食物，因为它担心别人的食物会把自己给药死，所以你的狗狗只管找你要食物，你是它的主人，它绝对相信你，而你可以鉴别别人给的食物是不是安全的。类比，小狗就是浏览器，你就是代理。
+Angular 中的解决办法
+上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用angular-cli构建你的项目，我们可以创建一个代理配置文件proxy.conf.json（假设你的后端服务的访问地址为10.121.163.10:8080），代理配置文件如下：
+{
+  &amp;quot;/api&amp;quot;: {
+    &amp;quot;target&amp;quot;: &amp;quot;http://10.121.163.10:8080&amp;quot;,
+    &amp;quot;secure&amp;quot;: false
+  }
+}
+
+然后修改package.json文件中的启动命令为&amp;quot;start&amp;quot;: &amp;quot;ng serve --proxy-config proxy.conf.json&amp;quot;，启动项目时使用npm start即可解决跨域请求问题。
+上述解决方案仅在开发时使用，你当然可以使用 tomcat、nginx 配置代理，但是这很麻烦，需要打包代码部署，为了保证效率，我们想写完了立刻测试，同时也不想麻烦做后端的同学，在项目发布时，应该把代理配置到服务器中去；修改启动命令也不是必须的，你也可以选择每次使用 ng serve  --proxy-config proxy.conf.json命令启动项目；示例代理配置文件内容可以有更多的属性，可以通过网络查阅相关资料。
+后端解决办法
+我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。
+这时需要了解一下简单请求和非简单请求了，简单请求就是只发送一次请求的请求；非简单请求会发送数据之前先发一次请求做预检，通过预检后才能再发送一次请求用于数据传输。
+更清晰区别，满足下列两大条件的属于简单请求，而非简单请求就是请求方法为PUT或DELETE，或者 Content-Type字段是application/json的请求。
+
+1.请求方法为 GET、POST、HEAD之一
+2.HTTP头信息不超出字段：Accept、Accept-Language、Content-Language、Last-Event-ID、Content-Type，并且 Content-Type 的值仅限于 application/x-www-form-urlencoded、multipart/form-data、text/plain。
+
+对于简单请求，只需要设置一下响应头就可以了。
+class TestHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        # 可以把 * 写成具体的域名
+        self.write(&#39;cors get success&#39;)
+
+对于复杂请求，需要设置预检方法，如下所示：
+class CORSHandler(tornado.web.RequestHandler):
+    # 复杂请求方法put
+    def put(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        self.write(&#39;put success&#39;)
+    # 预检方法设置
+    def options(self, *args, **kwargs):
+        #设置预检方法接收源
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        #设置预复杂方法自定义请求头h1和h2
+        self.set_header(&#39;Access-Control-Allow-Headers&#39;, &amp;quot;h1,h2&amp;quot;)
+        #设置允许哪些复杂请求方法
+        self.set_header(&#39;Access-Control-Allow-Methods&#39;, &amp;quot;PUT,DELETE&amp;quot;)
+        #设置预检缓存时间秒,缓存时间内发送请求无需再预检
+        self.set_header(&#39;Access-Control-Max-Age&#39;, 10)
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/5rUXZg3sM/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/ORLDJnyfZ/">
+                        讲一个爱情故事，让 HTTPS 简单易懂
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-08-26</time>
+                    
+                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-info">
+            #计算机网络
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/ORLDJnyfZ/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/ORLDJnyfZ.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容
+HTTPS explained with carrier pigeons
+
+充满各种数学证明的密码学是令人头疼的，一听到密码、黑客、攻击等词的时候，就给人一种神秘又高大上的感觉，但除非你真的从事密码学相关工作，否则你并不需要对密码学有多么深刻的理解。
+这是一篇适合在饭后的品茶时光中阅读的文章，咱们虚构一个故事来讲解，虽然故事看起来很随性，但是 HTTPS 也是这么工作的。里面有一些术语你也应该听过，因为它们经常出现在技术文献里面。
+故事背景
+一天，一个男子到河边抓鱼给母亲吃，而河岸的另一头是一大户人家的小姐和她的丫鬟在散步。突然，一个不小心，对面小姐不慎跌入水中，而丫鬟又不会游泳，这可把小丫鬟急的呀！！！正在抓鱼的男子见此状况，来不及脱掉身上的衣物，就像箭一样窜入水中.....想必看客已经猜到了，小姐被救起，男子抱着迷迷糊糊小姐走上岸的过程中，小姐感觉自己像触电了一样，觉得这个男人很安全，只要靠着他，就算天塌下来也不怕，而男子把小姐放下的那一刻，也很不舍，好像把她放下就失去了活下去的希望。
+小姐回到家中，给父亲大人说了这件事，父亲很高兴，就叫下人去把这位男子请到家中表示感谢，结果一问，这小伙幼年丧父，现在家中还有病弱的老母亲，连一间屋子都没有，一直和母亲寄住在城外的破庙里面，不过他毕竟救了自己的女儿，父亲让下人拿出了五十两黄金以表谢意，但不允许他和小姐再有任何来往。
+.....此处省略五千字。
+我们姑且称小姐为小花，称男子为小明，他们不能相见了，但是又备受相思之苦，因此只能通过写信的方式来传达彼此的思念了。
+最简单的通信方式
+如果小花想给小明写信，那么她可以把写好的信让信鸽给小明送去，小明也可以通过信鸽给小花回信，这样他们就能知道彼此的感情了。
+但是很快这种方式出问题了，因为他们都隐约感觉到收到的来信不是对方写的，因为从信件上看，双方都表示不再喜欢彼此。凭借着对彼此的信任，他们才知道是小花的父亲从中阻挠他们。每次他们写的信都被父亲的下人拦下了，然后换上他们事先准备好的信件，目的就是为了让小花和小明断了感情。
+HTTP 就是这样的工作方式。
+对称加密
+小花是博冠古今的人，这怎么能难倒她呢。他们彼此约定，每次写信都加上密码，让信鸽传送的信件是用密文书写的。他们约定的密码是把每个字母的位置向后移动三位，比如 A → D 、 B → E ，如果他们要给对方写一句 &amp;quot;I love you&amp;quot; ，那么实际上信件上面写的就是 &amp;quot;L oryh brx&amp;quot; 。现在就算父亲把信件拦截了，他也不知道里面的内容是什么，而且也没办法修改为有效的内容，因为他不知道密码，现在小花和小明又能给对方写情书了。
+这就是对称加密，因为如果你知道如何加密信息，那也能知道如何解密信息。上面所说的加密常称为凯撒密码，在现实生活中，我们使用的密码肯定会更复杂，但是主要思想是一样的。
+如何确定密钥
+显然对称加密是比较安全的（只有两个人知道密码的情况下）。在凯撒密码中，密码通常是偏移指定位数的字母，我们使用的是偏移三位。
+可能你已经发现问题了，在小花和小明开始写信之前，他们就已经没办法相见了，那他们怎么确定密钥呢，如果一开始通过信鸽告诉对方密钥，那父亲就能把信鸽拦下，也能知道他们的密钥，那么父亲也就可以查看他们信件的内容，同时也能修改信件了。
+这就是典型的中间人攻击，唯一能解决这个问题的办法就是改变现有的加密方式。
+非对称加密
+小花想出了更好的办法，当小花想给小明写情书的时候，她将会按照下面的步骤来进行：
+
+小花给小明送一只没有携带任何信件的鸽子；
+小明让信鸽带一个没有上锁的空箱子回去，钥匙由小明保管；
+小花把写好的情书放到箱子里面，并锁上箱子
+小明收到箱子后，用钥匙打开箱子就可以了。
+
+使用这种方式，父亲大人就没办法拦截信鸽了，因为他没有箱子的钥匙。同样如果小明想给小花写情书，也采用这种方式。
+这就是非对称加密，之所以称之为非对称加密，是因为即使你能加密信息（锁箱子），但是你却无法解密信息（开箱子），因为箱子的钥匙在对方那里。在技术领域，把这里的箱子称作公钥，把钥匙称作私钥。
+认证机构
+细心的你可能发现问题了，当小明收到箱子后，他如何确定这个箱子的主人是谁呢，因为父亲也可以让信鸽带箱子给小明啊，所以父亲如果想知道他们的信件内容，那只需要把箱子偷换掉就好了。
+小花决定在箱子上面签上自己的名字，因为笔迹是不能模仿的，这样父亲就没办法伪造箱子了。但是依旧有问题，小花和小明在不能相见之前并没有见过彼此写的字，那么小明又如何识别出小花的字迹呢？所以他们的解决办法是，找张三丰替小花签名。
+众所周知，张三丰是当世的得道高人，他的品德是世人都认可的，大家都把他奉为圣人，而且天下肯定不止一对有情人遇到小花和小红这样的问题。张三丰只会为合法居民签名。
+张三丰会在小花的盒子上签名，前提是他确定了要签名的是小花。所以父亲大人是无法得到张三丰代表小花签名的盒子，否则小明就会知道这是一个骗局，因为张三丰只在验证了人们的身份后才会代表他们给盒子签名。
+张三丰在技术领域的角色就是认证机构，你现在阅读这篇文章所使用的浏览器是附带了各种认证机构的签名的。所以当你第一次访问某个网站时，你相信这不是一个钓鱼网站，是因为你相信第三方认证机构，因为他们告诉你这个箱子是合法的。
+箱子太重了
+虽然现在小花和小明有了一个可靠的通信系统，但是信鸽带个箱子飞的慢啊，热恋中的人是“一日不见如隔三秋”，信鸽飞慢了怎么行呢。
+所以他们决定还是采用对称加密的方式来写情书，但是对称加密的密钥要用箱子来传递，也就是用非对称加密方式来传递对称加密密钥，这样就可以同时获得对称加密和非对称加密的优点了，还能避免彼此的缺点。
+需要注意的是，在网络世界中，信息不会像鸽子传送的那么慢，只不过只用非对称加密技术加密信息要比对称加密慢，所以只用它来交换密钥。
+以上就是 HTTPS 的工作过程。
+一个故事
+
+这个故事你可能早就知道了，我只是在写文章的过程中突然想起了它，就是笛卡尔的爱情故事。
+
+
+具体细节你可以网上去查，笛卡尔每天给自己喜欢的公主写信，但是信都被国王拦截了，笛卡尔给公主写的第十三封信中只有一个数学方程，但是这个方程国王看不懂，所以就把这封信交给了公主，公主一看方程，立刻着手把方程的图形画了出来，发现这是一颗心的形状。
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/ORLDJnyfZ/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

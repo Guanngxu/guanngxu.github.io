@@ -1,0 +1,774 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Angular | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        Angular</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/WnccL2rgJ/">
+                        学习 Angulr 容易忽略的知识点
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-25</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-warning">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
+                            i-tag-other_1">
+            #TypeScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-other_3">
+            #JavaScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
+                            i-tag-other_2">
+            #Angular
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/WnccL2rgJ/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/WnccL2rgJ.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《Angulr5 高级编程（第二版）》
+
+函数声明式和表达式
+// 第一种：函数声明式
+myFunc();
+function myFunc(){
+    ...
+}
+
+// 第二种：函数表达式
+myFunc();
+let myFunc = function(){
+    ...
+}
+
+虽然上面两种函数声明方式在大部分情况下是一样的，第一种可执行，第二种却不可以执行，这是因为浏览器在解析 js 时找到函数声明，并在执行剩余语句之前设置好函数，此过程称为函数提升，但是函数表达式却不会受到提升，因此无法正常工作。
+js 不具备多态性
+js 重不能创建名称相同但参数不同的两个函数，它不具备这个多态性，比如你定义的函数中有两个形参，调用函数时只传一个参数，第二形参的值就是 undefined ，如果传的参数大于 3 个，那么会自动忽略多余的参数。可以使用下列方法来处理函数定义参数数量和用于调用函数实际参数数量之间不匹配的问题。
+// 使用默认参数
+let func = function(age, sex=&#39;男&#39;){
+    ...
+}
+func(23);
+
+// 使用可变长参数
+let func = function(age, sex, ...extraArgs){
+    ...
+}
+func(23, &#39;女&#39;, &#39;张三&#39;, &#39;深圳&#39;);
+// 最后一个参数是一个数组，任何额外的实参都会被赋给这个数组
+
+let 和 war 的区别
+使用 let 和 var 声明变量的区别，使用 let 声明变量会把变量的作用范围限定在它所在的代码区域内。而使用 var 所创建的变量的作用域是它所在的函数。
+function func(){
+    if(false){
+        var age = 23;
+    }
+}
+
+// 上面的代码会被解析成下面的形式，使用 let 则不会出现这样的结果
+
+function func(){
+    var age;
+    if(false){
+        age = 23;
+    }
+}
+
+相等 == 和恒等 === 以及 连接操作符 +
+相等操作符尝试将操作数强制转换为相同的类型，再评估是否相等，实质上相等操作符==是测试二者的值是否相等，而与二者的类型无关；如果要测试值和类型是否都相等则应该用恒等操作符===。
+5 == &#39;5&#39; // 结果为 true
+5 === &#39;5&#39; // 结果为 false
+
+在 js 中，连接操作符的优先级高于加法操作，也就是说5 + &#39;5&#39;的结果是55。
+不同的模块指定方式
+import { Name } from &amp;quot;./modules/NameUtil&amp;quot;;// 第一种
+import { Compont } from &amp;quot;@angular/core&amp;quot;;// 第二种
+
+上面两种导入模块的方式有所不同，第一种是相对模块，第二种是非相对导入。第一种告诉的 TypeScript 编译器，该模块所在的位置是相对于包含 import 语句的文件而言；第二种非相对导入，编译器会用 node_modules 文件夹中的 npm 包来解析它。
+如果在导入模块时，出现需要导入两个不同模块但是名字却相同的情况，可以使用as关键字给导入的模块取一个别名。
+import { Name as otherName } from &amp;quot;./modules/Name&amp;quot;;//取别名
+
+还有一种方法是将模块作为对象导入，如下 import 所示，导入 Name 模块的内容，并创建一个名为 otherName 的对象，然后就可以使用该对象的属性了。
+import * as otherName from &amp;quot;./modules/NameUtil&amp;quot;;
+let name = new otherName.Name(&amp;quot;Admin&amp;quot;, &amp;quot;China&amp;quot;);// Name 是 NameUtil 中的类
+
+多类型和类型断言
+在 ts 中允许指定多个类型，使用字符|进行分隔。看下面的的方法，其功能是把华氏温度转换为摄氏温度。
+// 使用多类型，该函数可以传入 number 和 string 类型的参数
+static convertFtoC(temp: number | string): string {
+    /*
+    尝试使用 &amp;lt;&amp;gt; 声明一个类型断言，将一个对象转换为指定类型，也可以使用 as 关键字实现下列相同的效果
+    let value: number = (temp as number).toPrecision ? temp as number : parseFloat(temp as string);
+    */
+    let value: number = (&amp;lt;number&amp;gt;temp).toPrecision ? &amp;lt;number&amp;gt;temp : parseFloat(&amp;lt;string&amp;gt;temp);
+    return ((parseFloat(value.toPrecision(2)) - 32) / 1.8).toFixed(1);
+}
+
+元组是固定长度的数组，数组的每一项都是指定的类型；可索引类型可以将键与值关联起来，创建类似于 map 的集合。
+// 元组
+let tuple: [string, string, string];
+tuple = [&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;];
+
+// 可索引类型
+let cities: {[index: string] : [string, string]} = {};
+cities[&amp;quot;Beijing&amp;quot;] = [&amp;quot;raining&amp;quot;, &amp;quot;2摄氏度&amp;quot;];
+
+数据绑定
+[target]=&amp;quot;expr&amp;quot;// 方括号表示单向绑定，数据从表达式流向目标；
+
+(target)=&amp;quot;expr&amp;quot;// 圆括号表示单向绑定，数据从目标流向表达式，用于处理事件的绑定；
+[(target)]=&amp;quot;expr&amp;quot;// 圆方括号组合表示双向绑定，数据在表达式与目标之间双向流动；
+{{ expression }}// 字符串插入绑定。
+
+[] 绑定有很多不同的形式，下面介绍不同表现形式的效果。
+&amp;lt;!-- 
+    标准属性绑定（dom对象有的属性），将 input 的 value 属性绑定到一个表达式的结果
+    因为 model.getProduct(1) 可能返回 null ，所以使用模板空条件操作符 ? 浏览返回结果
+    如果返回不为空，那么将读取 name 属性，否则由 null 合并操作符 || 将结果设置为 None
+    字符串插入绑定也可以使用这种表达式
+ --&amp;gt;
+&amp;lt;input [value]=&amp;quot;model.getProduct(1)?.name || &#39;None&#39;&amp;quot;&amp;gt;
+
+&amp;lt;!-- 
+    元素属性绑定，有时候我们需要绑定的属性在 DOMAPI 上面没有
+    可以使用通过在属性名称前加上 attr 前缀的方式来定义目标
+ --&amp;gt;
+&amp;lt;td [attr.colspan]=&amp;quot;model.getProducts().length&amp;quot;&amp;gt;
+    {{ model.getProduct(1)?.name || &#39;None&#39; }}
+&amp;lt;/td&amp;gt;
+
+&amp;lt;!-- 还有其他的 ngClass，ngStyle 等绑定，理解大体上和上面差不多 --&amp;gt;
+
+内置指令
+&amp;lt;!-- 
+    ngIf指令，如果表达式求值结果为 true ，那么 ngIf 将宿主元素机器内容包含在 html 文件中
+    指令前面的星号表示这是一条微模板指令
+    组要注意的是，ngIf 会向 html 中添加元素，也会从中删除元素，并非只是显示和隐藏
+    如果只是控制可见性，可以使用属性绑定挥着样式绑定
+ --&amp;gt;
+&amp;lt;div *ngIf=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;!-- 
+    ngSwitch指令，
+ --&amp;gt;
+&amp;lt;div [ngSwitch]=&amp;quot;expr&amp;quot;&amp;gt;
+    &amp;lt;span *ngSwitchCase=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;span *ngSwitchDefault&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;!-- 
+    ngFor指令，见名知意，为数组中的每个对象生成同一组元素
+    ngFor 指令还支持其他的一系列可赋给变量的值，有如下局部模板变量
+    
+    index：当前对象的位置
+    odd：如果当前对象的位置为奇数，那么这个布尔值为 true
+    even：同上相反
+    first：如果为第一条记录，那么为 true
+    last：同上相反
+ --&amp;gt;
+&amp;lt;div *ngFor=&amp;quot;let item of expr; let i = index&amp;quot;&amp;gt;
+    {{ i }}
+&amp;lt;/div&amp;gt;
+
+&amp;lt;!-- 
+    ngTemplateOutlet指令，用于重复模板中的内容块
+    其用法如下所示，需要给源元素指定一个 id 值
+    
+    &amp;lt;ng-template #titleTemplate&amp;gt;
+        &amp;lt;h1&amp;gt;我是重复的元素哦&amp;lt;/h1&amp;gt;
+    &amp;lt;/ng-template&amp;gt;
+    &amp;lt;ng-template [ngTemplateOutlet]=&amp;quot;titleTemplate&amp;quot;&amp;gt;&amp;lt;/ng-template&amp;gt;
+    ...省略若万行 html 代码
+    &amp;lt;ng-template [ngTemplateOutlet]=&amp;quot;titleTemplate&amp;quot;&amp;gt;&amp;lt;/ng-template&amp;gt;
+ --&amp;gt;
+&amp;lt;ng-template [ngTemplateOutlet]=&amp;quot;myTempl&amp;quot;&amp;gt;&amp;lt;/ng-template&amp;gt;
+
+&amp;lt;!-- 
+    下面两个指令就是见名知意了，不解释
+ --&amp;gt;
+&amp;lt;div ngClass=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div ngStyle=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+事件绑定
+事件绑定使用 (target)=&amp;quot;expr&amp;quot;，是单向绑定，数据从目标流向表达式，用于响应宿主元素发送的事件。
+当浏览器触发一个时间时，它将提供一个对象来描述该事件，对于不同类型的事件有不同类型的事件对象，事件对象被赋给一个名为$event的模板变量，但是所有事件对象都有下面三个属性:
+type：返回一个 string 值，用于标识已触发事件类型；
+target：返回触发事件的对象，一般是 html元素对象。
+timeStamp：返回事件触发事件的 number 值，用 1970.1.1 毫秒数表示。
+
+下面举几个例子，作为理解帮助使用。
+&amp;lt;!-- 当数鼠标在上面移动时，就会触发 mouseover 事件 --&amp;gt;
+&amp;lt;td *ngFor=&amp;quot;let item of getProducts()&amp;quot; (mouseover)=&amp;quot;selectedProduct = item.name&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+
+&amp;lt;!-- 当用户编辑 input 元素的内容时就会触发 input 事件 --&amp;gt;
+&amp;lt;input (input)=&amp;quot;selectedProduct=$event.target.value&amp;quot; /&amp;gt;
+
+&amp;lt;input (keyup)=&amp;quot;selectedProduct=product.value&amp;quot; /&amp;gt;
+&amp;lt;!-- 使用事件过滤，上面的写法按下任何一个键都会触发事件，而下面的写法只有回车事件才会触发事件 --&amp;gt;
+&amp;lt;input (keyup.enter=&amp;quot;selectedProduct=product.value&amp;quot;) /&amp;gt;
+
+表单验证
+Angular 提供了一套可扩展的系统来验证表单元素的内容，总共可以向 input表元素中添加 4 个属性，每个属性定义一条验证规则，如下所示：
+required：用于指定必须填写值；
+minlength：用于指定最小字符数；
+maxlength：用于指定最大字符数，（不能在表单元素直接使用，因为它与同名的 H5 属性冲突）；
+pattern：该属性用于指定用户填写的值必须匹配正则表达式
+
+&amp;lt;!-- 
+    Angular 要求验证的元素必须定义 name 属性
+    由于 Angular 使用的验证属性和 H5 规范使用的验证属性相同，
+    所以向表单元素中添加 novalidate 属性，告诉浏览器不要使用原生验证功能
+    ngSubmit 绑定表单元素的 submit 事件
+ --&amp;gt;
+&amp;lt;form novalidate (ngSubmit)=&amp;quot;addProduct(newProduct)&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot;
+        name=&amp;quot;name&amp;quot;
+        [(ngModel)]=&amp;quot;newProduct.name&amp;quot;
+        required
+        minlength=&amp;quot;5&amp;quot;
+        pattern=&amp;quot;^[A-Za-z]+$&amp;quot; /&amp;gt;
+    &amp;lt;button type=&amp;quot;submit&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+Angular 提供了 3 对验证 CSS 类，这些类可以用于样式化表单元素，向用户提供验证反馈，具体说明如下所示。
+ng-untouched ng-touched：如果一个元素未被用户访问，就将其加入到 nguntouched 类中；一旦访问就加入到 ngtouched 类中。
+ng-prisstine ng-dirty：元素内容没有被改变被加入到 ng-prisstine 类中，否则将其加入到 ng-dirty 类中。
+ng-valid ng-invalid：如果满足验证规则定义的条件，就加入到 ng-valid 类中，否则加入到 ng-invalid 类中。
+
+在实际使用过程中，直接定义对应的样式即可，如下所示：
+&amp;lt;style&amp;gt;
+input.ng-dirty.ng-invalid{
+    border: 2px solid red;
+}
+input.ng-dirty.ng-valid{
+    border: 2px solid green;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;form novalidate (ngSubmit)=&amp;quot;addProduct(newProduct)&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot;
+        name=&amp;quot;name&amp;quot;
+        [(ngModel)]=&amp;quot;newProduct.name&amp;quot;
+        required
+        minlength=&amp;quot;5&amp;quot;
+        pattern=&amp;quot;^[A-Za-z]+$&amp;quot; /&amp;gt;
+    &amp;lt;button type=&amp;quot;submit&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+上面的验证方式无法给用户提供更加具体的信息，用户不知道应该做什么，可以使用 ngModel 指令来访问宿主元素的验证状态，当存在验证错误的时候，使用该指令向用户提供指导性信息。
+&amp;lt;form novalidate (ngSubmit)=&amp;quot;addProduct(newProduct)&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot;
+        #nameRef=&amp;quot;ngModel&amp;quot;
+        name=&amp;quot;name&amp;quot;
+        [(ngModel)]=&amp;quot;newProduct.name&amp;quot;
+        required
+        minlength=&amp;quot;5&amp;quot;
+        pattern=&amp;quot;^[A-Za-z]+$&amp;quot; /&amp;gt;
+    &amp;lt;ul class=&amp;quot;text-danger list-unstyled&amp;quot;
+        *ngIf=&amp;quot;name.dirty &amp;amp;&amp;amp; name.invalid&amp;quot;&amp;gt;
+        &amp;lt;li *ngIf=&amp;quot;name.errors?required&amp;quot;&amp;gt;
+            you must enter a product name
+        &amp;lt;/li&amp;gt;
+        &amp;lt;li *ngIf=&amp;quot;name.errors?.pattern&amp;quot;&amp;gt;
+            product name can only contain letters and spases
+        &amp;lt;/li&amp;gt;
+        &amp;lt;li *ngIf=&amp;quot;name.errors?minlength&amp;quot;&amp;gt;
+            &amp;lt;!-- 
+                Angular 表单验证错误描述属性
+                required：如果属性已被应用于 input 元素，此属性返回 true
+                minlength.requiredLength：返回满足 minlength 属性所需的字符数
+                minlength.actualLength：返回用户输入的字符数
+                pattern.requiredPattern：返回使用 pattern 属性指定的正则表达式
+                pattern.actualValue：返回元素的内容
+             --&amp;gt;
+            product name must be at least {{ name.errors.minlength.requiredLenth }} characters
+        &amp;lt;/li&amp;gt;
+    &amp;lt;/ul&amp;gt;
+    &amp;lt;button type=&amp;quot;submit&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+如果在用户尝试提交表单时就显示大量的错误信息，给人的体验感就会很差，所以可以让用户提交表单时再验证整个表单，示例代码如下所示。
+export class ProductionCompont {
+    // ...省略若万行代码
+    formSubmited: boolean = false;
+
+    submitForm(form: ngForm) {
+        this.formSubmited = true;
+        if(form.valid) {
+            this.addProduct(this.newProduct);
+            this.newProduct = new Product();
+            form.reset();
+            this.formSubmited = true;
+        }
+    }
+}
+
+&amp;lt;form novalidate #formRef=&amp;quot;ngForm&amp;quot; (ngSubmit)=&amp;quot;submitForm(formRef)&amp;quot;&amp;gt;
+    &amp;lt;div *ngIf=&amp;quot;formsubmited &amp;amp;&amp;amp; formRef.invalid&amp;quot;&amp;gt;
+        there are problems with the form
+    &amp;lt;/div&amp;gt;
+    &amp;lt;!-- 禁用提交按钮，验证成功提交按钮才可用 --&amp;gt;
+    &amp;lt;button [disabled]=&amp;quot;formSubmited &amp;amp;&amp;amp; formRef.valid&amp;quot;&amp;gt;提交&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+
+fromSubmited 属性用于指示表单是否已经提交，并将用于在用户提交整个表单之前阻止表单验证。当用户提交表单时，调用 submitForm 方法，并将 ngForm 对象作为实参传入，ngForm 提供了 reset 方法，该方法可以重置表单的验证状态，使其返回到最初的未访问状态。
+更高级的还有使用基于模型的表单验证，可以自行查阅相关资料。
+使用 json-server 模拟 web 服务
+因为json-server会经常用到，建议使用全局安装命令npm install -g json-server。因为开发后端的同学太慢了，而我们如果要等他们把接口都提供给我们的时候再开发程序的话，那效率就太低了，所以使用 json-server 来模拟后端服务。只需要建好一个 json 文件，比如下面的格式：
+{
+    &amp;quot;user&amp;quot; : [
+        {
+            &amp;quot;name&amp;quot; : &amp;quot;张三&amp;quot;,
+            &amp;quot;number&amp;quot; : &amp;quot;1234&amp;quot;,
+        },
+        {
+            &amp;quot;name&amp;quot; : &amp;quot;王二&amp;quot;,
+            &amp;quot;number&amp;quot; : &amp;quot;5678&amp;quot;,
+        }
+    ],
+    &amp;quot;praise&amp;quot;: [
+        {&amp;quot;info&amp;quot;:&amp;quot;我是一只小老虎呀！&amp;quot;},
+        {&amp;quot;info&amp;quot;:&amp;quot;我才是大老虎&amp;quot;}
+    ]
+}
+
+启动服务使用命令json-server [你的 json 文件路径]，然后就可以根据提示访问了，你甚至可以使用http://localhost:3000/user?number=5678去过滤数据。这样就能模拟 web 服务，而不必等后端同学的进度了。
+解决跨域请求问题
+Angular 跨域请求问题可以通过 Angular 自身的代理转发功能解决，在项目文件夹下新建一个 proxy.conf.json 并在其中添加如下内容。
+// 可以通过下列配置解决
+&amp;quot;/api&amp;quot;: {
+    &amp;quot;target&amp;quot;: &amp;quot;http://10.9.176.120:8888&amp;quot;,
+}
+
+在启动时使用npm start，或者使用ng serve  --proxy-config proxy.conf.json，Anular 中的/api请求就会被转发到 http://10.9.176.120:8888/api，从而解决跨域请求问题。
+使用第三方 js 插件
+共有三种方式引入第三方插件，第一种很简单，直接在 html 中引入插件就可以了；第二种在angular.json中进行配置；第三种在 ts 文件中使用 import 导入库即可。
+// 第一种(需要重启服务)
+&amp;quot;scripts&amp;quot;: [&amp;quot;src/assets/jquery-3.2.1.js&amp;quot;,&amp;quot;src/assets/jquery.nicescroll.js&amp;quot;,&amp;quot;src/assets/ion.rangeSlider.js&amp;quot;]
+
+// 第二种
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;assets/jquery-3.2.1.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;assets/jquery.nicescroll.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+// 第三种
+import &amp;quot;assets/jquery-3.2.1.js&amp;quot;;
+import &amp;quot;assets/jquery.nicescroll.js&amp;quot;;
+import &amp;quot;assets/ion.rangeSlider.js&amp;quot;;
+
+深拷贝与浅拷贝
+深拷贝与浅拷贝是围绕引用类型变量说的，其本质区别是不可变性，基本类型是不可变得，而引用类型是可变的。
+直接使用赋值操作符，就是浅拷贝，如果对拷贝源进行操作，会直接影响在拷贝目标上，因为这个赋值行为本质是内存地址的赋值，为了获得与拷贝源完全相同但又不会影响彼此的对象就要使用深拷贝。
+let objA = {
+    x: 1,
+    y: -1
+}
+let objB = objA;
+objA.x++;
+console.log(&amp;quot;objA.x:&amp;quot;+objA.x, &amp;quot;objB.x:&amp;quot;+objB.x);
+//打印结果如下：
+objA.x : 2 
+objB.x : 2
+
+Typescript 提供了一种方法来实现引用类型的深拷贝，即Object.assign(target, ...source)，此方法接受多个参数，第一个参数为拷贝目标，剩余参数为拷贝源，同名属性会进行覆盖。
+let objA = {
+    x: 1,
+    y: -1,
+    c: {
+        d: 1,
+    }
+}
+let objB = {};
+Object.assign(objB, objA);
+objA.x++;
+console.log(&amp;quot;objA.x:&amp;quot;+objA[&amp;quot;x&amp;quot;], &amp;quot;objB.x:&amp;quot;+objB[&amp;quot;x&amp;quot;]);
+//打印结果如下：
+objA.x : 2 
+objB.x : 1
+
+需要注意的是，Typescript 提供的深拷贝方法不能实现嵌套对象的深拷贝，会出现下面的情况。
+let objA = {
+    x: 1,
+    y: -1,
+    c: {
+        d: 1,
+    }
+}
+let objB = {};
+Object.assign(objB, objA);
+objA.c.d++;
+console.log(&amp;quot;objA.c.d:&amp;quot;+objA[&amp;quot;c&amp;quot;].d, &amp;quot;objB.c.d:&amp;quot;+objB[&amp;quot;c&amp;quot;].d);
+//打印结果如下：
+objA.c.d : 2 
+objB.c.d : 2
+
+要实现嵌套对象的深拷贝，可以使用 JSON 对象提供的方法，JSON 对象提供了两个方法，分别为：stringify()和parse()，前者将对象 JSON 化，后者将 JSON 对象化，使用这种方式可以实现嵌套深拷贝，但是也有缺点：破坏原型链，不能拷贝属性值为 function 的属性。
+let objA = {
+    a: 1,
+    b: {
+        c: 1
+    }
+}
+let objB = JSON.parse(JSON.stringify(objA));
+objA.b.c++;
+console.log(&amp;quot;objA.b.c:&amp;quot;+objA.b.c, &amp;quot;objB.b.c:&amp;quot;+objB.b.c);
+
+//打印结果如下：
+objA.b.c:2
+objB.b.c:1
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/WnccL2rgJ/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://www.guanngxu.com/5rUXZg3sM/">
+                        跨域请求是什么？如何解决？
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-18</time>
+                    
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-error">
+            #前端
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
+                            i-tag-success">
+            #Angular
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-info">
+            #计算机网络
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-warning">
+            #Python
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://www.guanngxu.com/5rUXZg3sM/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/5rUXZg3sM.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+JavaScript: Use a Web Proxy for Cross-Domain XMLHttpRequest Calls
+别慌，不就是跨域么!
+跨域资源共享 CORS 详解
+AJAX请求和跨域请求详解（原生JS、Jquery）
+JavaScript跨域总结与解决办法
+
+
+刚毕业入职，大部分时间还在培训，中间有一段时间的空闲时间，就学习了下 Angular，在学校都是编写的单体应用，所有代码都放在同一个工程下面，到公司使用的是前后端分离了，虽然后端程序也是我自己写的，但是有一些数据是从公司现有接口去拿的，然后就遇到让我纠结了两小时的跨域请求问题，在这里做一个简单的总结输出。
+什么是跨域请求
+跨域请求问题是浏览器的同源策略造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：协议、域名、端口。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。
+http://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 非跨域
+
+http://www.nealyang.cn/index.html 调用 http://www.neal.cn/server.php 跨域,主域不同
+
+http://abc.nealyang.cn/index.html 调用 http://def.neal.cn/server.php 跨域,子域名不同
+
+http://www.nealyang.cn:8080/index.html 调用 http://www.nealyang.cn/server.php 跨域,端口不同
+
+https://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 跨域,协议不同
+
+localhost 调用 127.0.0.1 跨域
+
+同源政策的目的是为了保护用户信息的安全，防止恶意网站窃取数据，随着互联网的发展，同源政策更加严格了，下面三种行为都会受到限制。
+（1） Cookie、LocalStorage 和 IndexDB 无法读取。
+（2） DOM 无法获得。
+（3） AJAX 请求不能发送。
+
+所有的现代浏览器都对网络连接进行了安全限制，包括 XMLHttpRequest，如果你的 web 应用程序和其使用的数据在同一个服务器，你不会遇到跨域请求问题。但是当你的 web 应用程序和 web 服务数据不在同一个服务器时，就会被浏览器限制连接了。
+常用解决方案
+    对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面设置代理。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。
+
+通俗易懂的说，你家的宠物狗不会吃别家的食物，因为它担心别人的食物会把自己给药死，所以你的狗狗只管找你要食物，你是它的主人，它绝对相信你，而你可以鉴别别人给的食物是不是安全的。类比，小狗就是浏览器，你就是代理。
+Angular 中的解决办法
+上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用angular-cli构建你的项目，我们可以创建一个代理配置文件proxy.conf.json（假设你的后端服务的访问地址为10.121.163.10:8080），代理配置文件如下：
+{
+  &amp;quot;/api&amp;quot;: {
+    &amp;quot;target&amp;quot;: &amp;quot;http://10.121.163.10:8080&amp;quot;,
+    &amp;quot;secure&amp;quot;: false
+  }
+}
+
+然后修改package.json文件中的启动命令为&amp;quot;start&amp;quot;: &amp;quot;ng serve --proxy-config proxy.conf.json&amp;quot;，启动项目时使用npm start即可解决跨域请求问题。
+上述解决方案仅在开发时使用，你当然可以使用 tomcat、nginx 配置代理，但是这很麻烦，需要打包代码部署，为了保证效率，我们想写完了立刻测试，同时也不想麻烦做后端的同学，在项目发布时，应该把代理配置到服务器中去；修改启动命令也不是必须的，你也可以选择每次使用 ng serve  --proxy-config proxy.conf.json命令启动项目；示例代理配置文件内容可以有更多的属性，可以通过网络查阅相关资料。
+后端解决办法
+我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。
+这时需要了解一下简单请求和非简单请求了，简单请求就是只发送一次请求的请求；非简单请求会发送数据之前先发一次请求做预检，通过预检后才能再发送一次请求用于数据传输。
+更清晰区别，满足下列两大条件的属于简单请求，而非简单请求就是请求方法为PUT或DELETE，或者 Content-Type字段是application/json的请求。
+
+1.请求方法为 GET、POST、HEAD之一
+2.HTTP头信息不超出字段：Accept、Accept-Language、Content-Language、Last-Event-ID、Content-Type，并且 Content-Type 的值仅限于 application/x-www-form-urlencoded、multipart/form-data、text/plain。
+
+对于简单请求，只需要设置一下响应头就可以了。
+class TestHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        # 可以把 * 写成具体的域名
+        self.write(&#39;cors get success&#39;)
+
+对于复杂请求，需要设置预检方法，如下所示：
+class CORSHandler(tornado.web.RequestHandler):
+    # 复杂请求方法put
+    def put(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        self.write(&#39;put success&#39;)
+    # 预检方法设置
+    def options(self, *args, **kwargs):
+        #设置预检方法接收源
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        #设置预复杂方法自定义请求头h1和h2
+        self.set_header(&#39;Access-Control-Allow-Headers&#39;, &amp;quot;h1,h2&amp;quot;)
+        #设置允许哪些复杂请求方法
+        self.set_header(&#39;Access-Control-Allow-Methods&#39;, &amp;quot;PUT,DELETE&amp;quot;)
+        #设置预检缓存时间秒,缓存时间内发送请求无需再预检
+        self.set_header(&#39;Access-Control-Max-Age&#39;, 10)
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://www.guanngxu.com/5rUXZg3sM/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+
+                <!-- 金山词霸 -->
+                <!-- <script>
+                    const date = new Date();
+                    const today = date.toISOString().substring(0, 10);
+                    console.info(today)
+                    $.ajax({
+                        url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+                        type: "GET",
+                        dataType: "jsonp", //指定服务器返回的数据类型
+                        success: function (data) {
+                            $(".null-feature-image").css("background-image", `url(${data.picture2})`);
+                            console.log(data);
+                        }
+                    });
+                </script> -->
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

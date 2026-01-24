@@ -1,0 +1,686 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Vue 入门避坑——Vue + TypeScript 项目起手式 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            Vue 入门避坑——Vue + TypeScript 项目起手式
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2020-01-09</time>
+                            <span class="read-time">8 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/7QbLXmeen/" class="post-tag i-tag
+                            i-tag-other_1">
+                            #Vue
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-info">
+                            #前端
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
+                            i-tag-banana">
+                            #TypeScript
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-other_3">
+                            #JavaScript
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/qzip9Ct6U.webp')"></div>
+                            
+                                <div class="post-content">
+                                    <p>在此前我使用的前端框架是 <a href="https://angular.io/">Angular</a>，使用过 <a href="https://www.typescriptlang.org/">TypeScript</a> 后你就会讨厌 JS 了，我学习 <a href="https://vuejs.org/">Vue</a> 时的最新版本是 2.5，相信大部分同学都不会认为 Vue 那样又细又长的代码很美观吧，简单看了一些网络博客后，我毅然决然引入了 TypeScript 进行开发，本文仅整理记录我自己遇到的一些坑。</p>
+<h2 id="使用-cli">使用 Cli</h2>
+<p><a href="https://cli.vuejs.org/zh/guide/">脚手架</a>是一个比较方便的工具，这里需要注意的是<code>@vue/cli</code>和<code>vue-cli</code>是不一样的，推荐使用<code>npm i -g @vue/cli</code>安装。</p>
+<p>安装完成后，可以直接使用<code>vue create your-app</code>创建项目，你可以选择使用默认配置亦或是自己手动选择配置，按提示一步一步向下走即可，它会根据你的选择自己创建比如<code>tsconfig.json</code>等等配置文件。这里推荐使用<code>less</code>开发样式，<code>sass</code>老是在安装的过程中出问题。</p>
+<p>当然你也可以使<code>vue ui</code>命令启动一个本地服务，它是一个 Vue 项目管理器，提供了一个可视化的页面供你管理自己的项目，它的样子如下图所示，还是比较清新的。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1663991930709.png" alt="" loading="lazy"></figure>
+<h2 id="使用-vue-property-decorator">使用 vue-property-decorator</h2>
+<p>Vue 官方维护了 <a href="https://github.com/vuejs/vue-class-component">vue-class-component</a> 装饰器，<a href="https://github.com/kaorun343/vue-property-decorator">vue-property-decorator</a> 则是在<code>vue-class-component</code>基础上增强了更多结合<code>Vue</code>特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。</p>
+<p>截止本文时间，<code>vue-property-decorator</code>共提供了 11 个装饰器和 1 个<code>Mixins</code>方法，下面用<code>@Prop</code>举个例子，是不是看起来引起极度舒适。</p>
+<pre><code class="language-typescript">import { Vue, Component, Prop } from 'vue-property-decorator'
+
+@Component
+export default class YourComponent extends Vue {
+    @Prop(Number) readonly propA: number | undefined
+    @Prop({ default: 'default value' }) readonly propB!: string
+    @Prop([String, Boolean]) readonly propC: string | boolean | undefined
+}
+
+
+// 上面的内容将会被解析成如下格式
+
+export default {
+    props: {
+        propA: {
+            type: Number
+        },
+        propB: {
+            default: 'default value'
+        },
+        propC: {
+            type: [String, Boolean]
+        }
+    }
+}
+</code></pre>
+<h2 id="使用-vuex">使用 Vuex</h2>
+<p>关于怎么使用<a href="https://vuex.vuejs.org/">Vuex</a>此处就不再做过多说明了，需要注意的一点是，如果你需要访问<code>$store</code>属性的话，那么你必须得继承<code>Vue</code>类，坑的地方是在某些情况下即使你没有继承<code>Vue</code>，它也能通过编译，只有在程序运行起来的时候才报错。</p>
+<pre><code class="language-typescript">class ExampleApi extends Vue {
+
+    public async getExampleData() {
+        if (!this.$store.state.exampleData) {
+            const res = await http.get('url/exampleData');
+            if (res.result) {
+                this.$store.commit('setExampleData', res.data);
+                return res.data;
+            } else {
+            promptUtil.showMessage('get exampleData failed', 'warning');
+            }
+        } else {
+            return this.$store.state.exampleData;
+        }
+    }
+}
+</code></pre>
+<h2 id="使用自己的配置含代理">使用自己的配置（含代理）</h2>
+<p><code>vue.config.js</code>是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被<code>@vue/cli-service</code>自动加载，它的配置项说明可以查看<a href="https://cli.vuejs.org/zh/config/">配置参考</a>。</p>
+<p>我们再开发过程中都会使用代理来转发请求，代理的配置也是在这个文件中，它的官方说明在<a href="https://cli.vuejs.org/zh/config/#devserver-proxy">devserver-proxy</a>中，下面是一个简单的<code>vue.config.js</code>文件例子。</p>
+<pre><code class="language-typescript">module.exports = {
+    filenameHashing: true,
+    outputDir: 'dist',
+    assetsDir: 'asserts',
+    indexPath: 'index.html',
+    productionSourceMap: false,
+    transpileDependencies: [
+        'vue-echarts',
+        'resize-detector'
+    ],
+    devServer: {
+        hotOnly: true,
+        https: false,
+        proxy: {
+            &quot;/statistics&quot;: {
+                target: &quot;http://10.7.213.186:3889&quot;,
+                secure: false,
+                pathRewrite: {
+                    &quot;^/statistics&quot;: &quot;&quot;,
+                },
+                changeOrigin: true
+            },
+            &quot;/mail&quot;: {
+                target: &quot;http://10.7.213.186:8888&quot;,
+                secure: false,
+                changeOrigin: true
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="让-vue-识别全局方法和变量">让 Vue 识别全局方法和变量</h2>
+<p>我们在项目中都会使用一些第三方 UI 组件，比如我自己就使用了 <a href="https://element.eleme.io/">Element</a>，但是在使用它的<code>$message</code>、<code>$notify</code>等方法时就直接报错了，究其原因就是<code>$message</code>等属性并没有在 Vue 实例中声明。</p>
+<p>官方对此给出了很明确的解决方案，使用的是 TypeScript 的<a href="https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation"> 模块补充特性</a>，可以查看<a href="https://cn.vuejs.org/v2/guide/typescript.html#%E5%A2%9E%E5%BC%BA%E7%B1%BB%E5%9E%8B%E4%BB%A5%E9%85%8D%E5%90%88%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8">增强类型以配合插件使用</a>。既然知道是因为没有声明导致的错误，那我们就给它声明一下好了，在<code>src/shims-vue.d.ts</code>文件中添加如下代码即可，如果没有该文件请自行创建。</p>
+<blockquote>
+<p>看到网上也有一部分人说的是<code>src/vue-shim.d.ts</code>，反正不管是怎么命名这个文件的，它们的作用是一样的。</p>
+</blockquote>
+<pre><code class="language-typescript">declare module 'vue/types/vue' {
+    interface Vue {
+        $message: any,
+        $confirm: any,
+        $prompt: any,
+        $notify: any
+    }
+}
+</code></pre>
+<p>这里顺道提一下，<code>src/shims-vue.d.ts</code>文件中的如下代码是为了让你的 IDE 明白以<code>.vue</code>结尾的文件是什么玩意儿。</p>
+<pre><code class="language-typescript">declare module '*.vue' {
+    import Vue from 'vue';
+    export default Vue;
+}
+
+</code></pre>
+<h2 id="路由懒加载">路由懒加载</h2>
+<p>Vue Router 官方有关于<a href="https://router.vuejs.org/zh/guide/advanced/lazy-loading.html">路由懒加载</a>的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用<code>require.ensure()</code>按需加载组件可以生效。</p>
+<pre><code class="language-typescript">// base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中
+const Home = (r: any) =&gt; require.ensure([], () =&gt; r(require('@/views/home.vue')), layzImportError, 'base-view');
+
+// 路由加载错误时的提示函数
+function layzImportError() {
+    alert('路由懒加载错误');
+}
+</code></pre>
+<p>上面的方式会在编译的时候把文件自动分成多个小文件，编译后的文件会以你自己命名的模块名来命名，如果代码之间有相互依赖，依赖部分代码编译后的文件会以两个模块名相连后进行命名。</p>
+<p>但是需要注意的是，这样拆分小文件之后引入了另外一个新的问题，因为客户端会缓存这些编译后的 js 文件，如果功能 A 同时依赖了<code>a.js</code>和<code>b.js</code>两个文件，但用户在使用其它功能时已经把<code>a.js</code>缓存到本地了，使用功能 A 时需要请求<code>b.js</code>文件，这时程序就很容易报错，因为此时在客户端这两个文件不是同一个版本，所以可能导致<code>a.js</code>调用<code>b.js</code>中的方法已经被删了，进而导致客户端页面异常。</p>
+<h2 id="关于引入第三方包">关于引入第三方包</h2>
+<p>项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。</p>
+<pre><code class="language-typescript">/*
+ 引入 jquery 等库可以尝试下面这种方式
+ 只需要把相应的 js 文件放到指定文件夹即可
+**/
+const $ = require('@/common/js/jquery.min.js');
+const md5 = require('@/common/js/md5.js');
+</code></pre>
+<p>引入一些第三方样式文件、UI 组件等，如果引入不成功可以尝试建一个 js 文件，将导入语句都写在 js 文件中，然后再在<code>main.ts</code>文件中导入这个 js 文件，这个方法能解决大部分的问题。例如我先建了一个<code>lib.js</code>，然后在<code>main.ts</code>中引入<code>lib.js</code>就没有报错。</p>
+<pre><code class="language-typescript">// src/plugins/lib.js
+import Vue from 'vue';
+
+// 树形组件
+import 'vue-tree-halower/dist/halower-tree.min.css';
+import {VTree} from 'vue-tree-halower';
+// 饿了么组件
+import Element from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+// font-awesome 图标
+import '../../node_modules/font-awesome/css/font-awesome.css';
+import VueCookies from 'vue-cookies';
+import VueJWT from 'vuejs-jwt';
+
+Vue.use(VueJWT);
+Vue.use(VueCookies);
+Vue.use(VTree);
+Vue.use(Element);
+
+
+// src/main.ts
+import App from '@/app.vue';
+import Vue from 'vue';
+import router from './router';
+import store from './store';
+import './registerServiceWorker';
+import './plugins/lib';
+
+Vue.config.productionTip = false;
+
+new Vue({
+    router,
+    store,
+    render: (h) =&gt; h(App),
+}).$mount('#app');
+</code></pre>
+<p>因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个<code>index.d.ts</code>文件，实在不行的话，那个特殊的组件不使用 TypeScript 来写也能解决，我目前还没有找一个可以完全解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/lSehulG6w/">
+                                <h3 class="post-title">
+                                    2019 年个人总结
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8-cli">使用 Cli</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-vue-property-decorator">使用 vue-property-decorator</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-vuex">使用 Vuex</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E9%85%8D%E7%BD%AE%E5%90%AB%E4%BB%A3%E7%90%86">使用自己的配置（含代理）</a></li>
+<li><a href="#%E8%AE%A9-vue-%E8%AF%86%E5%88%AB%E5%85%A8%E5%B1%80%E6%96%B9%E6%B3%95%E5%92%8C%E5%8F%98%E9%87%8F">让 Vue 识别全局方法和变量</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E6%87%92%E5%8A%A0%E8%BD%BD">路由懒加载</a></li>
+<li><a href="#%E5%85%B3%E4%BA%8E%E5%BC%95%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85">关于引入第三方包</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,771 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    二叉树的前序、中序、后序、层序遍历 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1769266443907">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1769266443907" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+                    
+                            <li>
+                                <a href="https://guanngxu.com/uAv93EeJY" class="menu">
+                                    工具
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            二叉树的前序、中序、后序、层序遍历
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2023-08-19</time>
+                            <span class="read-time">8 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/umBdDP7Ll/" class="post-tag i-tag
+                            i-tag-">
+                            #C
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-banana">
+                            #算法
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/8sxCrqU9f.png')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/340321671">五分钟让你彻底理解二叉树的非递归遍历</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/261024283">Python实现二叉树的非递归遍历</a></p>
+<p><a href="https://blog.csdn.net/qq_39583450/article/details/109277244">二叉树遍历——深度优先（前中后序）+广度优先（层序遍历）</a></p>
+</blockquote>
+<h3 id="构造二叉树">构造二叉树</h3>
+<p>定义二叉树结构如下</p>
+<pre><code class="language-cpp">struct node
+{
+    int data;
+    node *left;
+    node *right;
+};
+</code></pre>
+<p>构造如下形态二叉树</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1692412832905.png" alt="" loading="lazy"></figure>
+<pre><code class="language-cpp">node *init_tree()
+{
+    node *node1 = (node *)malloc(sizeof(node));
+    node *node2 = (node *)malloc(sizeof(node));
+    node *node3 = (node *)malloc(sizeof(node));
+    node *node4 = (node *)malloc(sizeof(node));
+    node *node5 = (node *)malloc(sizeof(node));
+    node *node6 = (node *)malloc(sizeof(node));
+    node *node7 = (node *)malloc(sizeof(node));
+    node *node8 = (node *)malloc(sizeof(node));
+    
+    node1-&gt;data = 1;
+    node2-&gt;data = 2;
+    node3-&gt;data = 3;
+    node4-&gt;data = 4;
+    node5-&gt;data = 5;
+    node6-&gt;data = 6;
+    node7-&gt;data = 7;
+    node8-&gt;data = 8;
+
+    node1-&gt;left = node2;
+    node1-&gt;right = node3;
+    
+    node2-&gt;left = node4;
+    node2-&gt;right = node5;
+    
+    node3-&gt;right = node6;
+    
+    node5-&gt;left = node7;
+    node5-&gt;right= node8;
+
+    return node1;
+}
+</code></pre>
+<h3 id="前序遍历递归">前序遍历（递归）</h3>
+<p>前序遍历顺序为<strong>根左右</strong>。要遍历整个二叉树我们就需要遍历二叉树的每一个子树，对于任何一个子树它的遍历方式均为根左右顺序遍历。即所有子问题均与父问题除规模大小不同外，其余均相同。所以可以采用递归方式实现前序遍历。</p>
+<pre><code class="language-cpp">// 前序遍历 根左右
+void pre_order_traversal(node *root)
+{
+    if(root) {
+        cout&lt;&lt;root-&gt;data&lt;&lt;&quot; &quot;;
+        pre_order_traversal(root-&gt;left);
+        pre_order_traversal(root-&gt;right);
+    }
+}
+</code></pre>
+<p>遍历结果为：<code>1 2 4 5 7 8 3 6</code></p>
+<h3 id="中序遍历递归">中序遍历（递归）</h3>
+<p>中序遍历顺序为<strong>左根右</strong>。其与前序遍历仅顺序不同，其余均相同。</p>
+<pre><code class="language-cpp">// 中序遍历 左根右
+void in_order_traversal(node *root)
+{
+    if(root) {
+        in_order_traversal(root-&gt;left);
+        cout&lt;&lt;root-&gt;data&lt;&lt;&quot; &quot;;
+        in_order_traversal(root-&gt;right);
+    }
+}
+</code></pre>
+<p>遍历结果为：<code>4 2 7 5 8 1 3 6</code></p>
+<h3 id="后序遍历递归">后序遍历（递归）</h3>
+<p>后序遍历顺序为<strong>左右根</strong>。其与前序、中序遍历仅顺序不同，其余均相同。</p>
+<pre><code class="language-cpp">// 后序遍历 左右根
+void post_order_traversal(node *root)
+{
+    if(root) {
+        post_order_traversal(root-&gt;left);
+        post_order_traversal(root-&gt;right);
+        cout&lt;&lt;root-&gt;data&lt;&lt;&quot; &quot;;
+    }
+}
+</code></pre>
+<p>遍历结果为：<code>4 7 8 5 2 6 3 1</code></p>
+<h3 id="前序遍历方法一非递归">前序遍历方法一（非递归）</h3>
+<p>因为递归实际上是由系统帮我们进行压栈，所以理论上所有递归算法都可以改为循环+栈实现，那么我们先照着上述<strong>前序遍历</strong>的样子修改为循环+栈的形态。需要注意的是由于栈先进后出的特性，为了保证左孩子在右孩子前被访问，所以应该先右孩子入栈，再左孩子入栈。</p>
+<pre><code class="language-cpp">// 前序遍历 根左右
+void pre_order_traversal(node *root)
+{
+    stack&lt;node *&gt; s;
+    s.push(root);
+
+    while(!s.empty()) {
+
+        node *cur = s.top();
+        s.pop();
+
+        if(cur) {
+            cout&lt;&lt;cur-&gt;data&lt;&lt;&quot; &quot;;
+            s.push(cur-&gt;right);
+            s.push(cur-&gt;left);
+        }
+    }
+}
+</code></pre>
+<p>遍历结果为：<code>1 2 4 5 7 8 3 6</code></p>
+<h3 id="前序遍历方法二非递归">前序遍历方法二（非递归）</h3>
+<p>现在我们换一种思路来实现前序非递归遍历，仔细观察前序遍历的递归调用过程。</p>
+<ol>
+<li>先把从根结点开始的所有左子树放入栈中；</li>
+<li>弹出栈顶元素</li>
+<li>如果栈顶元素有右子树，那么右子树入栈</li>
+<li>重复上述过程直到栈为空</li>
+</ol>
+<p>因此我们可以写出遍历代码</p>
+<pre><code class="language-cpp">// 前序遍历 根左右
+void pre_order_traversal(node *root)
+{
+    stack&lt;node *&gt; s;
+    node *cur = root;
+
+    while(cur || !s.empty()) {
+        // 将左子树全部入栈
+        while(cur) {
+            cout&lt;&lt;cur-&gt;data&lt;&lt;&quot; &quot;;
+            s.push(cur);
+            cur = cur-&gt;left;
+        }
+
+        if(!s.empty()) {
+            cur = s.top();
+            s.pop();
+            cur = cur-&gt;right;
+        }
+    }
+}
+</code></pre>
+<p>遍历结果为：<code>1 2 4 5 7 8 3 6</code></p>
+<h3 id="中序遍历非递归">中序遍历（非递归）</h3>
+<p>有了前面的基础，我们再来考虑中序遍历，会发现中序遍历与前序遍历只是打印结点的位置不一样。前序遍历是在结点入栈时打印，中序遍历只需要替换为在结点出栈时打印即可。</p>
+<pre><code class="language-cpp">// 中序遍历 左根右
+void in_order_traversal(node *root)
+{
+    stack&lt;node *&gt; s;
+    node *cur = root;
+
+    while(cur || !s.empty()) {
+        // 将左子树全部入栈
+        while(cur) {
+            s.push(cur);
+            cur = cur-&gt;left;
+        }
+
+        if(!s.empty()) {
+            cur = s.top();
+            cout&lt;&lt;cur-&gt;data&lt;&lt;&quot; &quot;;
+            s.pop();
+            cur = cur-&gt;right;
+        }
+    }
+}
+</code></pre>
+<p>遍历结果为：<code>4 2 7 5 8 1 3 6</code></p>
+<h3 id="后序遍历方法一非递归">后序遍历方法一（非递归）</h3>
+<p>后序遍历相对来说显得更加复杂了。在前序和中序遍历中，只要左子树处理完毕实际上栈顶元素就可以出栈了，但后序遍历需要把左子树和右子树都处理完毕才能出栈，显然我们需要某种方法记录遍历的过程。</p>
+<p>实际上我们只需要记录下遍历的前一个结点就能解决问题，因为通过前一个结点我们可以做如下判断：</p>
+<ol>
+<li>如果前一个结点是当前结点的右子树，那么说明右子树已经遍历完毕可以出栈了</li>
+<li>如果前一个结点是当前结点的左子树而且当前结点没有右子树，那么说明可以出栈了</li>
+<li>如果当前结点即没有左子树也没有右子树，即为叶子结点，那么说明可以出栈了</li>
+</ol>
+<p>若不属于上述情况，则依次将当前结点的右孩子和做孩子入栈，这样就能保证每次取栈顶元素时，左孩子都在右孩子前面被访问，左孩子和右孩子都在父结点前面被访问。</p>
+<pre><code class="language-cpp">// 后序遍历 左右根
+void post_order_traversal(node *root)
+{
+    stack&lt;node *&gt; s;
+    node *pre = NULL;
+    node *cur = root;
+
+    s.push(cur);
+
+    while(!s.empty()) {
+        cur = s.top();
+        // 叶子结点
+        if((!cur-&gt;left &amp;&amp; !cur-&gt;right) // 叶子结点
+        || pre == cur-&gt;right // 前一个结点为当前结点右子树
+        || (pre == cur-&gt;left &amp;&amp; !cur-&gt;right)) { // 前一个结点为当前结点左子树，且没有右子树
+            cout&lt;&lt;cur-&gt;data&lt;&lt;&quot; &quot;;
+            pre = cur;
+            s.pop();
+        } else {
+            if(cur-&gt;right)
+                s.push(cur-&gt;right);
+
+            if(cur-&gt;left)
+                s.push(cur-&gt;left);
+        }
+    }
+}
+</code></pre>
+<p>遍历结果为：<code>4 7 8 5 2 6 3 1</code></p>
+<h3 id="后序遍历方法二非递归">后序遍历方法二（非递归）</h3>
+<p>后序遍历的顺序是<strong>左右根</strong>，如果把这个顺序倒过来就是<strong>根右左</strong>，是不是发现和前序遍历很像？那么我只需要按照根右左的方式遍历完，然后将遍历结果掉一个个儿就可以，而栈就具备掉个儿的功能，因此可写出如下代码。</p>
+<pre><code class="language-cpp">// 后序遍历 左右根
+void post_order_traversal(node *root)
+{
+    stack&lt;node *&gt; s;
+    stack&lt;int&gt; ans;
+    node *cur = root;
+
+    while(cur || !s.empty()) {
+        // 将左子树全部入栈
+        while(cur) {
+            ans.push(cur-&gt;data);
+            s.push(cur);
+            cur = cur-&gt;right;
+        }
+
+        if(!s.empty()) {
+            cur = s.top();
+            s.pop();
+            cur = cur-&gt;left;
+        }
+    }
+
+    while(!ans.empty()) {
+        cout&lt;&lt;ans.top()&lt;&lt;&quot; &quot;;
+        ans.pop();
+    }
+}
+</code></pre>
+<p>遍历结果为：<code>4 7 8 5 2 6 3 1</code></p>
+<h3 id="层序遍历">层序遍历</h3>
+<p>层序遍历即广度优先遍历，使用队列即可实现。</p>
+<pre><code class="language-cpp">// 层序遍历
+void breadth_first_order_traversal(node *root)
+{
+    queue&lt;node *&gt; q;
+    q.push(root);
+	while(!q.empty()){
+		node *cur = q.front();
+		q.pop();
+		if(cur){
+			cout&lt;&lt;cur-&gt;data&lt;&lt;&quot; &quot;;
+			q.push(cur-&gt;left);
+			q.push(cur-&gt;right);
+		}
+	}
+}
+</code></pre>
+<p>遍历结果为：<code>1 2 3 4 5 6 7 8</code></p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://www.guanngxu.com/sBMrrNbs4/">
+                                <h3 class="post-title">
+                                    动态规划实例——01 背包详解
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1769266443907">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91">构造二叉树</a></li>
+<li><a href="#%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E9%80%92%E5%BD%92">前序遍历（递归）</a></li>
+<li><a href="#%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E9%80%92%E5%BD%92">中序遍历（递归）</a></li>
+<li><a href="#%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E9%80%92%E5%BD%92">后序遍历（递归）</a></li>
+<li><a href="#%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%E4%B8%80%E9%9D%9E%E9%80%92%E5%BD%92">前序遍历方法一（非递归）</a></li>
+<li><a href="#%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%E4%BA%8C%E9%9D%9E%E9%80%92%E5%BD%92">前序遍历方法二（非递归）</a></li>
+<li><a href="#%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E9%9D%9E%E9%80%92%E5%BD%92">中序遍历（非递归）</a></li>
+<li><a href="#%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%E4%B8%80%E9%9D%9E%E9%80%92%E5%BD%92">后序遍历方法一（非递归）</a></li>
+<li><a href="#%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%E4%BA%8C%E9%9D%9E%E9%80%92%E5%BD%92">后序遍历方法二（非递归）</a></li>
+<li><a href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86">层序遍历</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>
