@@ -1,0 +1,538 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    C 语言 TCP Socket（套接字） 编程 | Guanngxu
+</title>
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.guanngxu.com/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://www.guanngxu.com">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+            </a>
+            <a href="https://www.guanngxu.com">
+                <div class="site-title">
+                    <h1>
+                        Guanngxu
+                    </h1>
+                </div>
+            </a>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="/about" class="menu" target="_blank">
+                                关于
+                            </a>
+                        </li>
+                        
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            C 语言 TCP Socket（套接字） 编程
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2026-01-24</time>
+                            <span class="read-time">4 min read</span>
+                            
+                                <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
+                            i-tag-warning">
+                            #操作系统
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
+                            i-tag-primary">
+                            #计算机网络
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/kR49avQHp1.webp')"></div>
+                            
+                                <div class="post-content">
+                                    <blockquote>
+<p>参考内容：</p>
+<p><a href="https://www.scaler.com/topics/socket-programming-in-c/">What is Socket Programming in C?)</a></p>
+<p><a href="https://www.codequoi.com/en/sockets-and-network-programming-in-c/">Sockets and Network Programming in C</a></p>
+<p><a href="https://www.geeksforgeeks.org/computer-networks/socket-in-computer-network/">Socket in Computer Network </a></p>
+<p><a href="https://man7.org/linux/man-pages/man2/socket.2.html">socket(2)</a>、<a href="https://man7.org/linux/man-pages/man2/bind.2.html">bind(2)</a>、<a href="https://man7.org/linux/man-pages/man2/listen.2.html">listen(2) </a>、<a href="https://man7.org/linux/man-pages/man2/accept.2.html">accept(2)</a>、<a href="https://man7.org/linux/man-pages/man2/recv.2.html">recv(2)</a>、<a href="https://man7.org/linux/man-pages/man2/send.2.html">send(2)</a>、<a href="https://man7.org/linux/man-pages/man3/sockaddr.3type.html">sockaddr(3type)</a></p>
+</blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E5%A5%97%E6%8E%A5%E5%AD%97">Socket</a> 是现代网络编程的基石。不论是网页浏览（HTTP）、即时通讯（QQ/微信）还是在线游戏，底层都是通过 Socket 机制来实现跨网络的进程间通信。它将复杂的底层网络协议封装成简单易用的编程接口，让开发者能够专注于应用逻辑，而不必从零开始处理复杂的网络包传输细节。</p>
+<p>Socket 让运行在不同机器（或同一台机器）上的两个进程可以相互交换数据。我们可以把 Socket 想象成一个电话机，通话双方都必须各有一个电话（Socket），并通特定的号码（地址）建立连接。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1769314977821.webp" alt="" loading="lazy"></figure>
+<p>Socket 由 IP 地址和端口号组成，其中 IP 地址标识网络中的具体主机（确定去哪台电脑），端口号用于标识该主机上的具体进程或服务（确定去哪个程序），简单说就是<code>socket = ip + port</code>。</p>
+<p>通过下面的服务器客户端模型状态图，我们可以理解 Socket 在网络上两个节点之间建立连接的作用，下文将逐一讲解其中的每一个步骤和涉及到的函数原型。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1769317106494.webp" alt="" loading="lazy"></figure>
+<h2 id="函数原型">函数原型</h2>
+<pre><code class="language-C">#include &lt;sys/socket.h&gt;
+
+int socket(int domain, int type, int protocol);
+</code></pre>
+<p><code>socket()</code> 用于创建一个用于通信的节点并返回一个指向该节点的文件描述符。需要注意的是 <code>socket()</code> 函数创建的是主动套接字（客户端用于主动发起连接），所以服务端后续需要使用 <code>listen()</code> 将其变为被动套接字。</p>
+<ul>
+<li><code>domain</code> 用于指定通信域，说人话就是使用哪个用于通信的协议族，比如 <code>AF_INET</code> 表示 IPv4 互联网协议，<code>AF_INET6</code> 表示 IPv6 互联网协议，<code>AF_UNIX</code> 表示本地通信协议，<code>AF_BLUETOOTH</code> 表示蓝牙底层套接字协议；</li>
+<li><code>type</code> 用于指定套接字中使用的通信类型，常用的比如 <code>SOCK_STREAM</code> 提供按顺序、可靠的双向连接字节流传输机制，即 TCP，<code>SOCK_DGRAM</code> 支持数据报（无连接、不可靠的消息），即 UDP；</li>
+<li><code>protocol</code> 表示套接字中使用的协议，用一个数字表示。如果协议族中只有一个协议，则协议编号为 0；否则，必须指定协议的具体编号。</li>
+</ul>
+<pre><code class="language-C">#include &lt;sys/socket.h&gt;
+#include &lt;netinet/in.h&gt;
+
+// IPv4 only
+struct sockaddr_in {
+    sa_family_t    sin_family;
+    in_port_t      sin_port;
+    struct in_addr sin_addr;
+};
+struct in_addr {
+    uint32_t       s_addr;
+};
+
+int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+</code></pre>
+<p>前面使用 <code>socket()</code> 创建的套接字并没有为其分配地址，<code>bind()</code> 函数则用于给创建的套接字分配地址，它允许我们将套接字连接到本地地址和端口。</p>
+<ul>
+<li><code>sockfd</code> 即我们通过调用  <code>socket()</code> 获取的套接字文件描述符；</li>
+<li><code>addr</code> 的实际结构取决于所使用的协议，对于 IPv4 它是 <code>sockaddr_in</code>，对于 IPv6 它是 <code>sockaddr_in6</code>；</li>
+<li><code>addrlen</code> 表示前一个结构体 <code>addr</code> 的大小（以字节为单位）。</li>
+</ul>
+<pre><code class="language-C">#include &lt;sys/socket.h&gt;
+
+int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
+</code></pre>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    <!-- id-card -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+        </div>
+        <h1 class="id_card-title">
+            Guanngxu
+        </h1>
+        <h2 class="id_card-description">
+            Keep trying
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/Guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/guanngxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/5288280194" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+                                            <a href="https://www.douban.com/people/Guanngxu" target="_blank" rel="noopener noreferrer">
+                                                <svg t="1660751300927" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2563" width="200" height="200"><path d="M1023.979 862.827A161.152 161.152 0 0 1 862.805 1024H161.173A161.152 161.152 0 0 1 0 862.827V161.195A161.195 161.195 0 0 1 161.173 0.02h701.632a161.195 161.195 0 0 1 161.174 161.174v701.632z" fill="#515151" p-id="2564" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M218.56 208.064h586.816v66.09H218.56z m535.83 393.493v-258.41h-484.8v258.41h484.8zM339.882 409.173H684.8v126.358H339.883V409.173z m309.61 341.334c21.099-32.299 41.003-69.739 59.435-112.256l-70.507-25.707c-18.346 50.368-39.701 96.427-64 137.941H451.712c-20.373-53.802-43.328-99.818-69.077-137.941l-64.854 25.707c26.752 40.128 48.32 77.482 64.854 112.256H201.94v65.386h620.054v-65.386H649.493z" fill="#FFFFFF" p-id="2565" data-spm-anchor-id="a313x.7781069.0.i3" class=""></path></svg>
+                                            </a>
+                                        
+
+        </div>
+    </div>
+    
+    <script>
+        // const date = new Date();
+        // const today = date.toISOString().substring(0, 10);
+        // console.info(today)
+        // $.ajax({
+        //     url: `http://sentence.iciba.com/index.php?c=dailysentence&m=getdetail&title=${today}`,
+        //     type: "GET",
+        //     dataType: "jsonp", //指定服务器返回的数据类型
+        //     success: function (data) {
+        //         $(".id_card-description").text(data.content)
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B">函数原型</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top - 50; // 因为 header 占了 50
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                    
+                    <!-- 标签云 -->
+                    <div class="tags_card i-card">
+    <h2 class="tags_card-title">
+        标签云
+    </h2>
+    <div class="tags-card-container">
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+    </div>
+</div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  <a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备2022021904号</a> | 
+  <a class="rss" href="https://www.guanngxu.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 0,
+            bottomSpacing: 0
+        });
+    </script>
+    
+</body>
+
+</html>
