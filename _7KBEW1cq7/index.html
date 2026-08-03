@@ -7,7 +7,7 @@
 <title>
     Python | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -127,12 +127,12 @@
                     <time class="post-time">2026-03-24</time>
                     
                         <a href="https://www.guanngxu.com/1qL6ZUU_c5/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_4">
             #领域驱动设计
         </a>
                         
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-warning">
             #Python
         </a>
                         
@@ -150,8 +150,7 @@
 在游戏主角向上攀升的过程中，偶尔会运气好遇到一些加速神器，帮助玩家更快的获得分数，这些加速神器包括弹簧、竹蜻蜓、火箭喷气背包。
 当游戏主角踩到弹簧时会发出清脆的「叮」的声音，并让游戏主角获得比自主跳跃要更高的跳跃高度。如果游戏主角踩到竹蜻蜓，竹蜻蜓会戴在游戏主角头顶，并像直升机一样拖着游戏主角飞行一段距离，期间会发出直升机螺旋桨转动的声音。若游戏主角有幸遇到了火箭喷气背包，它可以获得比竹蜻蜓更快的飞行速度，并且会带着游戏主角飞行更久的时间，自然也会获得更多的分数。
 整个游戏没有终点，只有不断增加的分数。在游戏主角跳跃过程中始终都会有重力存在，因此若游戏主角下落过程中没有遇到平台便会一直下坠，直到坠落超过底部则 Game Over。
-领域建模
-前文是对 Doodle Jump 游戏的场景及玩法描述，虽然相比各大游戏平台的版本，我的这个描述简化了许多，但请不要在意这些细节。在编辑前文描述的过程中我已经将其中的名词做了特殊标记，下面我们把前文出现的名词去重后列举出来。
+领域建模前文是对 Doodle Jump 游戏的场景及玩法描述，虽然相比各大游戏平台的版本，我的这个描述简化了许多，但请不要在意这些细节。在编辑前文描述的过程中我已经将其中的名词做了特殊标记，下面我们把前文出现的名词去重后列举出来。
 
 游戏主角、外星生物、平台、加速神器、玩家、弹簧、竹蜻蜓、火箭喷气背包
 
@@ -162,8 +161,7 @@
 道具：可以改变玩家物理状态，比如跳跃的初始速度、赋予飞行的能力等，弹簧、竹蜻蜓、火箭喷气背包均为某一具体的道具。
 
 当然仅仅只有上面的名词表还不够，每个名词仅仅只是一个演员而已，我们还需要一个优秀的导演来指导才能演一出好戏，这个导演在领域驱动设计（DDD）里面叫做聚合根（Aggregate Root）。
-代码实现
-有了前文的分析我们就可以开始写代码了，首先可以搭建出下面的框架结构。
+代码实现有了前文的分析我们就可以开始写代码了，首先可以搭建出下面的框架结构。
 class Player: # 玩家
     pass
 
@@ -1134,8 +1132,7 @@ class GameSession:
             rocket = Rocket(platform)
             platform.item = rocket # 将火箭作为平台的一个属性，方便后续碰撞检测和更新
 
-程序打包
-程序完成后需要进行打包方可给到用户使用，我们打包工具使用 Pyinstaller。当 PyInstaller 把所有东西打包进一个.exe时，运行时它会把资源解压到一个临时的文件夹（通常叫_MEIPASS）。但我们的代码里写的是死路径./images/，程序会去.exe所在的文件夹找，而不是去临时文件夹找，会导致报错。
+程序打包程序完成后需要进行打包方可给到用户使用，我们打包工具使用 Pyinstaller。当 PyInstaller 把所有东西打包进一个.exe时，运行时它会把资源解压到一个临时的文件夹（通常叫_MEIPASS）。但我们的代码里写的是死路径./images/，程序会去.exe所在的文件夹找，而不是去临时文件夹找，会导致报错。
 我们需要修改Utils类，添加一个路径转换函数，之后方可进行打包。
 
 class Utils:
@@ -1627,7 +1624,7 @@ if __name__ == &amp;quot;__main__&amp;quot;:
                     <time class="post-time">2026-01-04</time>
                     
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-other_4">
             #Python
         </a>
                         
@@ -2759,17 +2756,17 @@ if __name__ == &amp;quot;__main__&amp;quot;:
                     <time class="post-time">2018-10-03</time>
                     
                         <a href="https://www.guanngxu.com/mVmVUsbMe/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-primary">
             #工具教程
         </a>
                         
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_4">
             #Python
         </a>
                         
                         <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_1">
             #爬虫
         </a>
                         
@@ -2884,22 +2881,22 @@ def __get_article_list(self):
                     <time class="post-time">2018-09-18</time>
                     
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-error">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_1">
             #Angular
         </a>
                         
                         <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_2">
             #计算机网络
         </a>
                         
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-banana">
             #Python
         </a>
                         
@@ -2922,8 +2919,7 @@ JavaScript跨域总结与解决办法
 
 
 刚毕业入职，大部分时间还在培训，中间有一段时间的空闲时间，就学习了下 Angular，在学校都是编写的单体应用，所有代码都放在同一个工程下面，到公司使用的是前后端分离了，虽然后端程序也是我自己写的，但是有一些数据是从公司现有接口去拿的，然后就遇到让我纠结了两小时的跨域请求问题，在这里做一个简单的总结输出。
-什么是跨域请求
-跨域请求问题是浏览器的同源策略造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：协议、域名、端口。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。
+什么是跨域请求跨域请求问题是浏览器的同源策略造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：协议、域名、端口。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。
 http://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 非跨域
 
 http://www.nealyang.cn/index.html 调用 http://www.neal.cn/server.php 跨域,主域不同
@@ -2942,12 +2938,10 @@ localhost 调用 127.0.0.1 跨域
 （3） AJAX 请求不能发送。
 
 所有的现代浏览器都对网络连接进行了安全限制，包括 XMLHttpRequest，如果你的 web 应用程序和其使用的数据在同一个服务器，你不会遇到跨域请求问题。但是当你的 web 应用程序和 web 服务数据不在同一个服务器时，就会被浏览器限制连接了。
-常用解决方案
-    对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面设置代理。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。
+常用解决方案    对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面设置代理。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。
 
 通俗易懂的说，你家的宠物狗不会吃别家的食物，因为它担心别人的食物会把自己给药死，所以你的狗狗只管找你要食物，你是它的主人，它绝对相信你，而你可以鉴别别人给的食物是不是安全的。类比，小狗就是浏览器，你就是代理。
-Angular 中的解决办法
-上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用angular-cli构建你的项目，我们可以创建一个代理配置文件proxy.conf.json（假设你的后端服务的访问地址为10.121.163.10:8080），代理配置文件如下：
+Angular 中的解决办法上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用angular-cli构建你的项目，我们可以创建一个代理配置文件proxy.conf.json（假设你的后端服务的访问地址为10.121.163.10:8080），代理配置文件如下：
 {
   &amp;quot;/api&amp;quot;: {
     &amp;quot;target&amp;quot;: &amp;quot;http://10.121.163.10:8080&amp;quot;,
@@ -2957,8 +2951,7 @@ Angular 中的解决办法
 
 然后修改package.json文件中的启动命令为&amp;quot;start&amp;quot;: &amp;quot;ng serve --proxy-config proxy.conf.json&amp;quot;，启动项目时使用npm start即可解决跨域请求问题。
 上述解决方案仅在开发时使用，你当然可以使用 tomcat、nginx 配置代理，但是这很麻烦，需要打包代码部署，为了保证效率，我们想写完了立刻测试，同时也不想麻烦做后端的同学，在项目发布时，应该把代理配置到服务器中去；修改启动命令也不是必须的，你也可以选择每次使用 ng serve  --proxy-config proxy.conf.json命令启动项目；示例代理配置文件内容可以有更多的属性，可以通过网络查阅相关资料。
-后端解决办法
-我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。
+后端解决办法我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。
 这时需要了解一下简单请求和非简单请求了，简单请求就是只发送一次请求的请求；非简单请求会发送数据之前先发一次请求做预检，通过预检后才能再发送一次请求用于数据传输。
 更清晰区别，满足下列两大条件的属于简单请求，而非简单请求就是请求方法为PUT或DELETE，或者 Content-Type字段是application/json的请求。
 
@@ -3007,12 +3000,12 @@ class CORSHandler(tornado.web.RequestHandler):
                     <time class="post-time">2018-07-27</time>
                     
                         <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-primary">
             #爬虫
         </a>
                         
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-primary">
             #Python
         </a>
                         
@@ -3027,15 +3020,13 @@ class CORSHandler(tornado.web.RequestHandler):
                                         <div class="post-content-content">
                                             最好的学习方式就是输入之后再输出，分享一个自己学习scrapy框架的小案例，方便快速的掌握使用scrapy的基本方法。
 本想从零开始写一个用Scrapy爬取教程，但是官方已经有了样例，一想已经有了，还是不写了，尽量分享在网上不太容易找到的东西。自己近期在封闭培训，更文像蜗牛一样，抱歉。
-Scrapy简介
-Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
+Scrapy简介Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
 其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。
 
 如果此前对scrapy没有了解，请先查看下面的官方教程链接。
 架构概览：https://docs.pythontab.com/scrapy/scrapy0.24/topics/architecture.html
 Scrapy入门教程：https://docs.pythontab.com/scrapy/scrapy0.24/intro/tutorial.html
-爬虫教程
-首先，我们看一下豆瓣TOP250页面，发现可以从中提取电影名称、排名、评分、评论人数、导演、年份、地区、类型、电影描述。
+爬虫教程首先，我们看一下豆瓣TOP250页面，发现可以从中提取电影名称、排名、评分、评论人数、导演、年份、地区、类型、电影描述。
 
 Item对象是种简单的容器，保存了爬取到得数据。其提供了类似于词典的API以及用于声明可用字段的简单语法。所以可以声明Item为如下形式。
 class DoubanItem(scrapy.Item):
@@ -3141,12 +3132,12 @@ class douban_spider(Spider):
                     <time class="post-time">2018-05-06</time>
                     
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-">
             #Python
         </a>
                         
                         <a href="https://www.guanngxu.com/_9zQ4w6VQ/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_3">
             #自然语言处理
         </a>
                         
@@ -3174,26 +3165,20 @@ class douban_spider(Spider):
 本文只相当于以经济责任审计这一特定领域构建了一个知识图谱，仅仅是走了一遍流程，当作入门项目，构建过程中参考甚至抄袭了别人的很多方法与代码，末尾都会给出参考的项目等等。
 
 上图是我构建经济责任审计知识图谱的流程，看起来很繁琐，但只要静下心看，个人觉得相对还算清晰，箭头都有指向。下面就一步一步进行说明。
-数据获取
-数据获取主要分为两部分数据，一部分是新闻类数据，我把它用作文本分类模型的训练集；另一部分是实体数据，为了方便，我直接把互动百科抓取的词条文件作为实体，省了属性抽取这一环节。
+数据获取数据获取主要分为两部分数据，一部分是新闻类数据，我把它用作文本分类模型的训练集；另一部分是实体数据，为了方便，我直接把互动百科抓取的词条文件作为实体，省了属性抽取这一环节。
 因为本文构建的是一个经济责任审计领域的知识图谱，所以作为文本分类模型训练集的数据也应该是经济责任审计领域的。这里主要抓取了审计署、纪检委、新浪网的部分新闻。
 
 像上面的图一样，新闻类网站一般都有搜索框，为了简单，所以我直接用搜索框搜索“经济责任审计”，然后从搜索结果中抓取新闻数据，即认为是经济责任审计相关的文本。抓取新闻类网站使用了 chrome 模拟用户进行访问。最终获得了 3500 多条新闻文本。
-领域词汇判定
-领域词汇判定，本文构建的不是开放领域的知识图谱，所以需要采用一种方法来判定所抓取的内容是否属于经济责任审计领域。领域词汇本文的方法实际上是领域句子判定，直接使用了大神的项目。CNN-RNN中文文本分类，基于tensorflow。也看到有人通过改进逻辑回归算法，在进行领域词汇的判定。
+领域词汇判定领域词汇判定，本文构建的不是开放领域的知识图谱，所以需要采用一种方法来判定所抓取的内容是否属于经济责任审计领域。领域词汇本文的方法实际上是领域句子判定，直接使用了大神的项目。CNN-RNN中文文本分类，基于tensorflow。也看到有人通过改进逻辑回归算法，在进行领域词汇的判定。
 我判定领域词汇的逻辑是这样的，一个词语即使是人类也不一定能确定它是否属于经济责任审计领域，但是每个词语都会有它的含义解释对不对，一个词语的解释就是一段话。我用网上的新闻训练出一个判断一段话属于哪个领域的模型，然后把词语的解释放到模型了里面去，如果模型给出的结果是属于经济责任审计领域，那则认为这个词语属于经济责任审计领域。
-实体关系抽取
-知识图谱的基本单位为（实体1，关系，实体2）这样的三元组，实体是直接从互动百科获取的词条，关系由两部分组成，一部分来自 wikidata 所提供的关系，这一部分直接从 wikidata 爬取即可得到，另一部分使用的是基于依存句法分析的开放式中文实体关系抽取，已经在前面的文章发过了。
-知识存储
-有了实体和实体关系，那么把这些数据进行筛选，然后入库，通过直观的页面展示，就可以了。这里使用的数据库是 neo4j，它作为图形数据库，用于知识图谱的存储非常方便。知识的展示使用了别人的项目，仅仅是把里面的数据换掉了而已，感谢大神的无私。
+实体关系抽取知识图谱的基本单位为（实体1，关系，实体2）这样的三元组，实体是直接从互动百科获取的词条，关系由两部分组成，一部分来自 wikidata 所提供的关系，这一部分直接从 wikidata 爬取即可得到，另一部分使用的是基于依存句法分析的开放式中文实体关系抽取，已经在前面的文章发过了。
+知识存储有了实体和实体关系，那么把这些数据进行筛选，然后入库，通过直观的页面展示，就可以了。这里使用的数据库是 neo4j，它作为图形数据库，用于知识图谱的存储非常方便。知识的展示使用了别人的项目，仅仅是把里面的数据换掉了而已，感谢大神的无私。
 当然你也可以选择使用关系型数据库，因为我做的经济责任审计知识图谱不够深入，所以做到最后展示的时候，发现其实用我比较熟悉的 MySql 更好，相比 NOSql 我更熟悉关系型数据库，而且 MySql 有更大的社区在维护，它的 Bug 少、性能也更好。
 最后放几张效果图
 
-
 下面是以“职业”为关系查询条件所得出的结果。
 
-总结一下
-只是对几个月工作的梳理，大多数核心代码都改自现有的代码，所有的数据都来自于网络，与知识图谱相关的公开技术较少，我也只是尝试着做了一下，虽然很菜，也可以对大致的技术路线、流程有一个简单的了解，主要工作都是自然语言处理的内容。后期可以利用现在的知识图谱构建智能问答系统，实现从 what 到 why 的转换。
+总结一下只是对几个月工作的梳理，大多数核心代码都改自现有的代码，所有的数据都来自于网络，与知识图谱相关的公开技术较少，我也只是尝试着做了一下，虽然很菜，也可以对大致的技术路线、流程有一个简单的了解，主要工作都是自然语言处理的内容。后期可以利用现在的知识图谱构建智能问答系统，实现从 what 到 why 的转换。
 以下内容更新于 2020 年 3 月。
 在毕业前收到了电子工业出版社和另一家出版社的写书邀请，我和电子工业出版社签订了写书合同，从还未毕业开始断断续续写作了一年的时间，因为自己的懒惰，加上内容中涉及到大量爬虫，而且爬目标网站是政府网站（不允许爬），另外 19 年网上时不时曝出某某程序员因爬虫而入狱的故事，出版社和我难免不会恐惧，我也正好找到了不再继续写下去的理由。
 花了点时间把以前的程序，书籍已经写成的内容整理了一下，放在了 economic_audit_knowledge_graph 中，所有资料都在里面，希望能帮助到自然语言入门的小伙伴，我自己已经不做这个领域了！
@@ -3215,22 +3200,22 @@ class douban_spider(Spider):
                     <time class="post-time">2018-04-26</time>
                     
                         <a href="https://www.guanngxu.com/_9zQ4w6VQ/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-success">
             #自然语言处理
         </a>
                         
                         <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_3">
             #爬虫
         </a>
                         
                         <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-banana">
             #Java
         </a>
                         
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-success">
             #Python
         </a>
                         
@@ -3364,11 +3349,11 @@ if (dic.containsKey(&amp;quot;主谓关系&amp;quot;) &amp;amp;&amp;amp; dic.con
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>

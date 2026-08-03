@@ -7,7 +7,7 @@
 <title>
     算法 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -127,7 +127,7 @@
                     <time class="post-time">2018-07-13</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_3">
             #算法
         </a>
                         
@@ -146,8 +146,7 @@
 让你把一张整钱找零，即假设你拥有不同且不限量的小额钱币，你需要统计共有多少种方法可以用手中的小额钱币兑等额兑换一张大额钱币。
 即：给定一个元素为正数的集合（元素不重复）代表不同面值的钱币，再给一个整数，代表要找零的钱数，求共有多少种换钱方法？
 
-递归求解
-现在有1、5、10元三种面值的纸币，需要找零100元，那么可以做如下分析：
+递归求解现在有1、5、10元三种面值的纸币，需要找零100元，那么可以做如下分析：
 用 0 张 5 元换，剩下的用 1、10 元换，最终方法数为 count0；
 用 1 张 5 元换，剩下的用 1、10 元换，最终方法数为 count1；
 ......
@@ -181,8 +180,7 @@ private static int slove(int money[], int index, int target){
     return res;
 }
 
-优化递归
-可以看到，上面的程序在运行时存在大量的重复过程，比如下面两种情况，其后所求结果是一样的。
+优化递归可以看到，上面的程序在运行时存在大量的重复过程，比如下面两种情况，其后所求结果是一样的。
 兑换 100 元，已经使用了 0 张 1 元、1 张 2 元，剩下的用 5 元和 10 元兑换；
 兑换 100 元，已经使用了 2 张 1 元、0 张 2 元，剩下的用 5 元和 10 元兑换；
 
@@ -234,8 +232,7 @@ private static int slove(int money[], int index, int target, int map[][]){
     return res;
 }
 
-动态规划
-上面对递归方法的优化已经能看到动态规划的影子了，这是一个二维的动态规划问题，我们定义dp[i][j]的含义为：使用money[0...i]的钱币组成钱数j的方法数。所以可以得出以下面的动态规划解法：
+动态规划上面对递归方法的优化已经能看到动态规划的影子了，这是一个二维的动态规划问题，我们定义dp[i][j]的含义为：使用money[0...i]的钱币组成钱数j的方法数。所以可以得出以下面的动态规划解法：
 public static int coin(int money[], int target){
     if (money == null || money.length == 0 || target &amp;lt; 0){
         return 0;
@@ -266,8 +263,7 @@ public static int coin(int money[], int target){
     return dp[money.length-1][target];
 }
 
-继续优化
-可以发现上面的动态规划解法有三层循环，因为是二维的动态规划问题，前两层没办法去掉，但是第三层依旧很耗时间，继续优化可以得到下面的结果。
+继续优化可以发现上面的动态规划解法有三层循环，因为是二维的动态规划问题，前两层没办法去掉，但是第三层依旧很耗时间，继续优化可以得到下面的结果。
 public static int coin(int money[], int target){
     if (money == null || money.length == 0 || target &amp;lt; 0){
         return 0;
@@ -301,8 +297,7 @@ public static int coin(int money[], int target){
     return dp[money.length-1][target];
 }
 
-空间压缩
-可以看到每次更新dp[i][j]，dp[i][j]的值只与前一行和当前行前面的元素有关系，而我们只需要最后的一个结果就行了，那么前面存的元素实际上会造成空间的浪费，进一步可以在空间上进行优化。
+空间压缩可以看到每次更新dp[i][j]，dp[i][j]的值只与前一行和当前行前面的元素有关系，而我们只需要最后的一个结果就行了，那么前面存的元素实际上会造成空间的浪费，进一步可以在空间上进行优化。
 我们只需要定义一个一位数组，然后对该数组进行滚动更新就可以了，只要按照合适方向去更新数组，同样能达到上面的效果。
 public static int coin(int money[], int target){
     if (money == null || money.length == 0 || target &amp;lt; 0){
@@ -376,11 +371,11 @@ public static int coin(int money[], int target){
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>

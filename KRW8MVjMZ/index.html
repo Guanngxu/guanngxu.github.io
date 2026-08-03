@@ -7,7 +7,7 @@
 <title>
     如何求两个数的最大公约数 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,9 +113,9 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             如何求两个数的最大公约数
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2021-01-04</time>
                             <span class="read-time">5 min read</span>
@@ -131,8 +131,7 @@
                             
                                 <div class="post-content">
                                     <p>求几个整数的最大公约数大致有三种方法，求多个整数的最大公约数可以拆分为求两个整数的最大公约数，所以核心问题还是求两个整数的最大公约数。</p>
-<h2 id="穷举法">穷举法</h2>
-<p>很直观就能想到穷举法，先找出两个数字中比较小的那一个<code>min</code>，然后逐个验证从<code>2 ~ min</code>的数字是否能被两个数整除，如果能同时被两个数字整除那就是公约数，找出其中最大的那个公约数就是所求的结果。</p>
+<h3 id="穷举法">穷举法</h3><p>很直观就能想到穷举法，先找出两个数字中比较小的那一个<code>min</code>，然后逐个验证从<code>2 ~ min</code>的数字是否能被两个数整除，如果能同时被两个数字整除那就是公约数，找出其中最大的那个公约数就是所求的结果。</p>
 <pre class="hljs"><code><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{
     <span class="hljs-type">int</span> min = a;
     <span class="hljs-keyword">if</span>(b &lt; a){
@@ -146,8 +145,7 @@
     <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
 }
 </code></pre>
-<h2 id="辗转相除法">辗转相除法</h2>
-<p>辗转相除法是欧几里得想出来的，所以也叫做欧几里得算法。它的证明过程依赖于一个定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数，即<code>gcd(a, b) = gcd(b, a mod b)</code>，其中 gcd 表示最大公约数，此处假设 a &gt; b。其证明过程如下所示：</p>
+<h3 id="辗转相除法">辗转相除法</h3><p>辗转相除法是欧几里得想出来的，所以也叫做欧几里得算法。它的证明过程依赖于一个定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数，即<code>gcd(a, b) = gcd(b, a mod b)</code>，其中 gcd 表示最大公约数，此处假设 a &gt; b。其证明过程如下所示：</p>
 <pre class="hljs"><code>设 c = gcd(a, b)；
 则存在 m，n，使 a = mc，b = nc；
 令 r = a mod b；
@@ -195,8 +193,7 @@
 }
 </code></pre>
 <p>可以看到在算法实现过程中并没有先找出来最小的数字，这是因为程序会自动将最较大的那个数字放到 a 的位置，比如将<code>gcd(75, 1000)</code>带入我们的递归算法中则会变成<code>gcd(1000, 75)</code>。</p>
-<h2 id="辗转相减法">辗转相减法</h2>
-<p>辗转相减法也叫更相减损术（尼考曼彻斯法），也是一种简便的求两个数的最大公约数的算法，它的特色是做一系列减法，从而求的最大公约数。比如两个自然数 36 和 27，用大数减去小数得 9 和 27，这时 9 小于 27，需要将两数交换即得 27 和 9，继续相减可得 18 和 9，然后 9 和 9，这时就可以得到两数的最大公约数为 9 了。其证明过程如下所示：</p>
+<h3 id="辗转相减法">辗转相减法</h3><p>辗转相减法也叫更相减损术（尼考曼彻斯法），也是一种简便的求两个数的最大公约数的算法，它的特色是做一系列减法，从而求的最大公约数。比如两个自然数 36 和 27，用大数减去小数得 9 和 27，这时 9 小于 27，需要将两数交换即得 27 和 9，继续相减可得 18 和 9，然后 9 和 9，这时就可以得到两数的最大公约数为 9 了。其证明过程如下所示：</p>
 <pre class="hljs"><code>设 gcd(a, b) = x，a &gt; b；
 则有 a = mx，b = nx，m，n 均为正整数且 m &gt; n；
 c = a - b = mx - nx = (m - n)x；
@@ -245,11 +242,11 @@ c = a - b = mx - nx = (m - n)x；
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -304,9 +301,11 @@ c = a - b = mx - nx = (m - n)x；
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#穷举法">穷举法</a></li>
 <li><a href="#辗转相除法">辗转相除法</a></li>
 <li><a href="#辗转相减法">辗转相减法</a></li>
+</ul>
 </ul>
 </div>
 
@@ -345,12 +344,12 @@ c = a - b = mx - nx = (m - n)x；
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-other_1" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-banana" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
@@ -360,27 +359,27 @@ c = a - b = mx - nx = (m - n)x；
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-other_2" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-other_4" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
@@ -395,32 +394,32 @@ c = a - b = mx - nx = (m - n)x；
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-success" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-other_4" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-other_2" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-warning" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
@@ -430,67 +429,67 @@ c = a - b = mx - nx = (m - n)x；
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-success" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-other_1" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-other_2" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_1" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-other_3" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-other_1" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-banana" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-info" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-error" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
@@ -500,72 +499,72 @@ c = a - b = mx - nx = (m - n)x；
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-error" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-info" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-other_1" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-banana" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-error" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-info" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-other_4" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-warning" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-other_4" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-info" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

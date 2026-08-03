@@ -7,7 +7,7 @@
 <title>
     嵌入式 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -127,12 +127,12 @@
                     <time class="post-time">2022-12-08</time>
                     
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-other_1">
             #操作系统
         </a>
                         
                         <a href="https://www.guanngxu.com/vnEfA3xxL/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_1">
             #嵌入式
         </a>
                         
@@ -241,17 +241,17 @@ vim .config
                     <time class="post-time">2022-10-16</time>
                     
                         <a href="https://www.guanngxu.com/umBdDP7Ll/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-error">
             #C
         </a>
                         
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_4">
             #操作系统
         </a>
                         
                         <a href="https://www.guanngxu.com/vnEfA3xxL/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_3">
             #嵌入式
         </a>
                         
@@ -267,8 +267,7 @@ vim .config
                                             
 约定：本文所说的标准均为 ANSI (C89) 标准
 
-三字母词
-标准定义了几个三字母词，三字母词就是三个字符的序列，合起来表示另一个字符。三字母词使得 C 环境可以在某些缺少一些必需字符的字符集上实现，它使用两个问号开头再尾随一个字符，这种形式一般不会出现在其它表达形式中，这样就不容易引起误解了，下面是一些三字母词的对应关系：
+三字母词标准定义了几个三字母词，三字母词就是三个字符的序列，合起来表示另一个字符。三字母词使得 C 环境可以在某些缺少一些必需字符的字符集上实现，它使用两个问号开头再尾随一个字符，这种形式一般不会出现在其它表达形式中，这样就不容易引起误解了，下面是一些三字母词的对应关系：
 ??(   [
 ??)   ]
 ??!   |
@@ -284,18 +283,15 @@ printf(&amp;quot;Delete file (are you really sure??): &amp;quot;);
 
 // result is: Delete file (are you really sure]: 
 
-字符
-直接操作字符会降低代码的可移植性，应该尽可能使用库函数完成。比如下面的代码试图测试ch是否为一个大写字符，它在使用ASCII字符集的机器上能够运行，但是在使用EBCDIC字符集的机器上将会失败。
+字符直接操作字符会降低代码的可移植性，应该尽可能使用库函数完成。比如下面的代码试图测试ch是否为一个大写字符，它在使用ASCII字符集的机器上能够运行，但是在使用EBCDIC字符集的机器上将会失败。
 if( ch &amp;gt;= &amp;#x27;A&amp;#x27; &amp;amp;&amp;amp; ch &amp;lt;= &amp;#x27;Z&amp;#x27;)
 
 使用if(isupper(ch))语句则能保证无论在哪种机器上都能正常运行。
-字符串比较
-库函数提供了int strcmp(const char *s1, const char *s2)函数用于比较两个字符串是否相等，需要注意的是在标准中并没有规定用于提示不相等的具体值。它只是说如果第 1 个字符串大于第 2 个字符串就返回一个大于零的值，如果第 1 个字符串小于第 2 个字符串就返回一个小于零的值。一个常见的错误是以为返回值是1和-1，分别代表大于和小于。
+字符串比较库函数提供了int strcmp(const char *s1, const char *s2)函数用于比较两个字符串是否相等，需要注意的是在标准中并没有规定用于提示不相等的具体值。它只是说如果第 1 个字符串大于第 2 个字符串就返回一个大于零的值，如果第 1 个字符串小于第 2 个字符串就返回一个小于零的值。一个常见的错误是以为返回值是1和-1，分别代表大于和小于。
 初学者常常会编写下面的表达式。认为如果两个字符串相等，那么它返回的结果将为真。但是这个结果恰好相反，两个字符串相等的情况下返回值是零（假）。
 if(strcmp(a, b))
 
-strlen
-strlen的返回值是一个size_t类型的值，这个类型是在头文件stddef.h中定义的，它是一个无符号整数类型，所以会导致下面表达式的条件永远为真。
+strlenstrlen的返回值是一个size_t类型的值，这个类型是在头文件stddef.h中定义的，它是一个无符号整数类型，所以会导致下面表达式的条件永远为真。
 if(strlen(x) - strlen(y) &amp;gt;= 0) {
     // do something
 }
@@ -309,8 +305,7 @@ strcpy(cpy, str);
 char *cpy = malloc(strlen(str) + 1);
 strcpy(cpy, str);
 
-赋值截断
-表达式a = x = y + 3;中x和a被赋予相同值的说法是错误的，因为如果x是一个字符型变量，那么y+3的值就会被截去一段，以便容纳于字符型的变量中，那么a所赋的值就是这个被截短后的值。下面也是一个非常常见的错误。
+赋值截断表达式a = x = y + 3;中x和a被赋予相同值的说法是错误的，因为如果x是一个字符型变量，那么y+3的值就会被截去一段，以便容纳于字符型的变量中，那么a所赋的值就是这个被截短后的值。下面也是一个非常常见的错误。
 char ch;
 // do something
 while((ch = getchar()) != EOF) {
@@ -318,17 +313,14 @@ while((ch = getchar()) != EOF) {
 }
 
 EOF所需要的位数比字符型值所能提供的位数要多，这也是getchar返回一个整型值而不是字符值的原因。例子中把getchar的返回值存储于字符型变量会导致被截短，然后再把这个被截短的值提升为整型与EOF进行比较，在某些机器的特定场景下就会导致问题。比如在使用有符号字符集的机器上，如果读取了一个的值为\377的字节，上述循环就将终止，因为这个值截短再提升之后与EOF相等。而当这段代码在使用无符号字符集的机器上运行时，这个循环将永远不会终止。
-指针与数组
-因为数组和指针都具有指针值，都可以进行间接访问和下标操作，所以很多同学都想当然的将它们认为是一样的，为了说明它们是不相等的，我们可以考虑下面的两个声明：
+指针与数组因为数组和指针都具有指针值，都可以进行间接访问和下标操作，所以很多同学都想当然的将它们认为是一样的，为了说明它们是不相等的，我们可以考虑下面的两个声明：
 int a[5];
 int *b;
 
 声明一个数组时，编译器将根据声明所指定的元素数量为数组保留空间，然后再创建数组名，它的值是一个常量，指向这段空间的起始位置。声明一个指针变量时，编译器只为指针本身保留内存空间，它并不为任何整型值分配内存空间。而且，指针变量并未被初始化为任何指向现有的内存空间。所以在上述声明之后，表达式*a是完全合法的，但是表达式*b将访问内存中某个不确定的位置，或者导致程序终止。
-硬件操作
-我们知道其实表示就是内存中一个地址，所以理论上*100 = 25是一种可行的操作，即让内存中位置为100的地方存储25。但实际上这条语句是非法的，因为字面值100的类型是整型，而间接访问操作只能用于指针类型表达式，所以合法的写法必须使用强制转换，即*(int *)100 = 25。
+硬件操作我们知道其实表示就是内存中一个地址，所以理论上*100 = 25是一种可行的操作，即让内存中位置为100的地方存储25。但实际上这条语句是非法的，因为字面值100的类型是整型，而间接访问操作只能用于指针类型表达式，所以合法的写法必须使用强制转换，即*(int *)100 = 25。
 需要说明的是使用这种技巧的机会是绝无仅有的，只有偶尔需要通过地址访问内存中某个特定的位置才可使用，它并不是访问某个变量，而是访问硬件本身。比如在某些机器上，操作系统需要与输入输出设备控制器通信，启动 I/O 操作并从前面的操作中获得结果，此时这些地址是预先已知的。
-+= 与 ?: 操作符
-我们在这里讨论一下+=操作符，它的用法为a += expr，读作把 expr 加到 a，其实际功能相当于表达式a = a + expr的作用，唯一不同的是+=操作符的左操作数a只会求值一次。可能到目前为止没有感觉到设计两种增加一个变量值的方法有什么意义？下面给出代码示例：
++= 与 ?: 操作符我们在这里讨论一下+=操作符，它的用法为a += expr，读作把 expr 加到 a，其实际功能相当于表达式a = a + expr的作用，唯一不同的是+=操作符的左操作数a只会求值一次。可能到目前为止没有感觉到设计两种增加一个变量值的方法有什么意义？下面给出代码示例：
 // 形式 1
 a[ 2 * (y - 6*f(x)) ] = a[ 2 * (y - 6*f(x)) ] + 1;
 
@@ -347,8 +339,7 @@ if(a &amp;gt; 5) {
 // 形式 2
 b[ 2 * c + d * (e / 5) ] = a &amp;gt; 5 ? 3 : -20;
 
-逗号操作符
-逗号操作符可以将多个表达式分隔开来。这些表达式自左向右逐个进行求值，整个表达式的值就是最后那个表达式的值。例如：
+逗号操作符逗号操作符可以将多个表达式分隔开来。这些表达式自左向右逐个进行求值，整个表达式的值就是最后那个表达式的值。例如：
 if(b + 1, c / 2, d &amp;gt; 0) { // do something}
 
 当然，正常人不会编写这样的代码，因为对前两个表达式的求值毫无意义，它们的值只是被简单的丢弃了。但是我们可以看看下面的代码：
@@ -366,8 +357,7 @@ while(a = get_value(), count_value(), a &amp;gt; 0) {
     // do something
 }
 
-指针
-int* a, b, c;
+指针int* a, b, c;
 
 人们会很自然的认为上述语句是把所有三个变量都声明为指向整型的指针，但事实上并非如此，星号实际上只是表达式*a的一部分，只对这个标识符有作用。如果要声明三个指针，那么应该使用下面的形式进行初始化。
 int *a, *b, *c;
@@ -380,8 +370,7 @@ char *msg;
 msg = &amp;quot;Hello World!&amp;quot;;
 
 指针常量： int *pi中pi是一个普通的指向整型的指针， 而变量int const *pci则是一个指向整型常量的指针，你可以修改指针的值，但是不能修改它所指向的值。相比之下int * const cpi则声明cpi为一个指向整型的常量指针。此时指针是常量，它的值无法修改，但是可以修改它所指向的整型的值。在int const * const cpci中，无论是指针本身还是它所指向的值都是常量，无法修改。
-枚举类型
-枚举（enumerated） 类型就是指它的的值为符号常量而不是字面值的类型，比如下面的语句声明了Jar_Type类型：
+枚举类型枚举（enumerated） 类型就是指它的的值为符号常量而不是字面值的类型，比如下面的语句声明了Jar_Type类型：
 enum Jar_Type {
     CUP,
     PINT,
@@ -403,13 +392,11 @@ enum Jar_Type {
 
 符号名被当作整型处理，这意味着可以把HALF_GALLON这样的值赋给任何整型变量，但是在编程活动中应该避免这种方式使用枚举，因为这样会削弱它们的含义。
 
-typedef 与 define
-在实际应用过程中应该使用typedef而不是#define来创建新的类型名，因为#define无法正确的处理指针类型，比如下面的代码段正确的声明了a，但是b却被声明为了一个字符。
+typedef 与 define在实际应用过程中应该使用typedef而不是#define来创建新的类型名，因为#define无法正确的处理指针类型，比如下面的代码段正确的声明了a，但是b却被声明为了一个字符。
 #define ptr_to_char char *
 ptr_to_char a, b;
 
-联合（union）
-联合看起来很像结构体，与结构体不同的是联合的所有成员共用同一块内存，所以在同一时刻联合中的有效成员永远只有一个。我们可以看下面一个例子，当一个variable类型的变量被创建时，解释器就创建一个这样的结构并记录变量类型。然后根据变量类型，把变量的值存储在这三个值字段的其中一个。
+联合（union）联合看起来很像结构体，与结构体不同的是联合的所有成员共用同一块内存，所以在同一时刻联合中的有效成员永远只有一个。我们可以看下面一个例子，当一个variable类型的变量被创建时，解释器就创建一个这样的结构并记录变量类型。然后根据变量类型，把变量的值存储在这三个值字段的其中一个。
 struct variable {
     enum { INT, FLOAT, STRING } type;
     int int_val;
@@ -435,8 +422,7 @@ union {
     chat c[4];
 } x = { 5 };
 
-结构体
-在实际编程活动中，存在链表、二叉树等结点自引用的情况，那么结构体的自引用如何编写呢？
+结构体在实际编程活动中，存在链表、二叉树等结点自引用的情况，那么结构体的自引用如何编写呢？
 struct node {
     int data;
     struct node next;
@@ -514,8 +500,7 @@ c
 当程序创建几百个甚至几千个结构时，减少内存浪费的要求就比程序的可读性更为急迫。我们可以使用sizeof操作符来得出一个结构的整体长度。如果必须要确定结构某个成员的实际位置，则可以使用offsetof(type, member)宏，例如：
 offset(struct align, b);
 
-一句话
-标识符：标识符就是变量、函数、类型等的名字，标识符的长度没有限制，但是 ANSI 标准允许编译器忽略第 31 个字符以后的字符，并且允许编译器对用于表示外部名字（由链接器操作的名字）的标识符进行限制，只识别前 6 位不区分大小写的字符。
+一句话标识符：标识符就是变量、函数、类型等的名字，标识符的长度没有限制，但是 ANSI 标准允许编译器忽略第 31 个字符以后的字符，并且允许编译器对用于表示外部名字（由链接器操作的名字）的标识符进行限制，只识别前 6 位不区分大小写的字符。
 注释：代码中所有的注释都会被预处理器拿掉，取而代之的是一个空格。因此，注释可以出现在任何空格可以出现的地方。
 类型：C 语言中仅有 4 种基本数据类型，即整型、浮点型、指针和聚合类型（数组、结构等），所有其它的类型都是从这 4 中基本类型的某种组合派生而来。
 类型长度：标准只规定了short int至少是 16 位，long int至少是 32 位，至于缺省的int是多少位则直接由编译器设计者决定。并且标准也没有规定这 2 个值必须不一样。如果某种机器的环境字长是 32 位，而且也没有什么指令能够更有效的处理更短的整型值，那它很可能把这 3 个整型值都设定为 32 位。
@@ -539,12 +524,12 @@ offset(struct align, b);
                     <time class="post-time">2022-09-15</time>
                     
                         <a href="https://www.guanngxu.com/umBdDP7Ll/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-primary">
             #C
         </a>
                         
                         <a href="https://www.guanngxu.com/vnEfA3xxL/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_2">
             #嵌入式
         </a>
                         
@@ -702,11 +687,11 @@ int main()
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>

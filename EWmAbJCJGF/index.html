@@ -7,7 +7,7 @@
 <title>
     TypeScript | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -127,17 +127,17 @@
                     <time class="post-time">2020-01-09</time>
                     
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-success">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-primary">
             #TypeScript
         </a>
                         
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-banana">
             #JavaScript
         </a>
                         
@@ -156,13 +156,11 @@
                                 
                                         <div class="post-content-content">
                                             在此前我使用的前端框架是 Angular，使用过 TypeScript 后你就会讨厌 JS 了，我学习 Vue 时的最新版本是 2.5，相信大部分同学都不会认为 Vue 那样又细又长的代码很美观吧，简单看了一些网络博客后，我毅然决然引入了 TypeScript 进行开发，本文仅整理记录我自己遇到的一些坑。
-使用 Cli
-脚手架是一个比较方便的工具，这里需要注意的是@vue/cli和vue-cli是不一样的，推荐使用npm i -g @vue/cli安装。
+使用 Cli脚手架是一个比较方便的工具，这里需要注意的是@vue/cli和vue-cli是不一样的，推荐使用npm i -g @vue/cli安装。
 安装完成后，可以直接使用vue create your-app创建项目，你可以选择使用默认配置亦或是自己手动选择配置，按提示一步一步向下走即可，它会根据你的选择自己创建比如tsconfig.json等等配置文件。这里推荐使用less开发样式，sass老是在安装的过程中出问题。
 当然你也可以使vue ui命令启动一个本地服务，它是一个 Vue 项目管理器，提供了一个可视化的页面供你管理自己的项目，它的样子如下图所示，还是比较清新的。
 
-使用 vue-property-decorator
-Vue 官方维护了 vue-class-component 装饰器，vue-property-decorator 则是在vue-class-component基础上增强了更多结合Vue特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。
+使用 vue-property-decoratorVue 官方维护了 vue-class-component 装饰器，vue-property-decorator 则是在vue-class-component基础上增强了更多结合Vue特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。
 截止本文时间，vue-property-decorator共提供了 11 个装饰器和 1 个Mixins方法，下面用@Prop举个例子，是不是看起来引起极度舒适。
 import { Vue, Component, Prop } from &amp;#x27;vue-property-decorator&amp;#x27;
 
@@ -190,8 +188,7 @@ export default {
     }
 }
 
-使用 Vuex
-关于怎么使用Vuex此处就不再做过多说明了，需要注意的一点是，如果你需要访问$store属性的话，那么你必须得继承Vue类，坑的地方是在某些情况下即使你没有继承Vue，它也能通过编译，只有在程序运行起来的时候才报错。
+使用 Vuex关于怎么使用Vuex此处就不再做过多说明了，需要注意的一点是，如果你需要访问$store属性的话，那么你必须得继承Vue类，坑的地方是在某些情况下即使你没有继承Vue，它也能通过编译，只有在程序运行起来的时候才报错。
 class ExampleApi extends Vue {
 
     public async getExampleData() {
@@ -209,8 +206,7 @@ class ExampleApi extends Vue {
     }
 }
 
-使用自己的配置（含代理）
-vue.config.js是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被@vue/cli-service自动加载，它的配置项说明可以查看配置参考。
+使用自己的配置（含代理）vue.config.js是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被@vue/cli-service自动加载，它的配置项说明可以查看配置参考。
 我们再开发过程中都会使用代理来转发请求，代理的配置也是在这个文件中，它的官方说明在devserver-proxy中，下面是一个简单的vue.config.js文件例子。
 module.exports = {
     filenameHashing: true,
@@ -243,8 +239,7 @@ module.exports = {
     }
 }
 
-让 Vue 识别全局方法和变量
-我们在项目中都会使用一些第三方 UI 组件，比如我自己就使用了 Element，但是在使用它的$message、$notify等方法时就直接报错了，究其原因就是$message等属性并没有在 Vue 实例中声明。
+让 Vue 识别全局方法和变量我们在项目中都会使用一些第三方 UI 组件，比如我自己就使用了 Element，但是在使用它的$message、$notify等方法时就直接报错了，究其原因就是$message等属性并没有在 Vue 实例中声明。
 官方对此给出了很明确的解决方案，使用的是 TypeScript 的 模块补充特性，可以查看增强类型以配合插件使用。既然知道是因为没有声明导致的错误，那我们就给它声明一下好了，在src/shims-vue.d.ts文件中添加如下代码即可，如果没有该文件请自行创建。
 
 看到网上也有一部分人说的是src/vue-shim.d.ts，反正不管是怎么命名这个文件的，它们的作用是一样的。
@@ -265,8 +260,7 @@ declare module &amp;#x27;*.vue&amp;#x27; {
 }
 
 
-路由懒加载
-Vue Router 官方有关于路由懒加载的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用require.ensure()按需加载组件可以生效。
+路由懒加载Vue Router 官方有关于路由懒加载的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用require.ensure()按需加载组件可以生效。
 // base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中
 const Home = (r: any) =&amp;gt; require.ensure([], () =&amp;gt; r(require(&amp;#x27;@/views/home.vue&amp;#x27;)), layzImportError, &amp;#x27;base-view&amp;#x27;);
 
@@ -277,8 +271,7 @@ function layzImportError() {
 
 上面的方式会在编译的时候把文件自动分成多个小文件，编译后的文件会以你自己命名的模块名来命名，如果代码之间有相互依赖，依赖部分代码编译后的文件会以两个模块名相连后进行命名。
 但是需要注意的是，这样拆分小文件之后引入了另外一个新的问题，因为客户端会缓存这些编译后的 js 文件，如果功能 A 同时依赖了a.js和b.js两个文件，但用户在使用其它功能时已经把a.js缓存到本地了，使用功能 A 时需要请求b.js文件，这时程序就很容易报错，因为此时在客户端这两个文件不是同一个版本，所以可能导致a.js调用b.js中的方法已经被删了，进而导致客户端页面异常。
-关于引入第三方包
-项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。
+关于引入第三方包项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。
 /*
  引入 jquery 等库可以尝试下面这种方式
  只需要把相应的 js 文件放到指定文件夹即可
@@ -342,22 +335,22 @@ new Vue({
                     <time class="post-time">2019-01-26</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-info">
             #算法
         </a>
                         
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-success">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-info">
             #TypeScript
         </a>
                         
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_3">
             #JavaScript
         </a>
                         
@@ -480,22 +473,22 @@ onPostBody: function () {
                     <time class="post-time">2018-09-25</time>
                     
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_2">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-banana">
             #TypeScript
         </a>
                         
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-success">
             #JavaScript
         </a>
                         
                         <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-">
             #Angular
         </a>
                         
@@ -512,8 +505,7 @@ onPostBody: function () {
 参考内容：
 《Angulr5 高级编程（第二版）》
 
-函数声明式和表达式
-// 第一种：函数声明式
+函数声明式和表达式// 第一种：函数声明式
 myFunc();
 function myFunc(){
     ...
@@ -526,8 +518,7 @@ let myFunc = function(){
 }
 
 虽然上面两种函数声明方式在大部分情况下是一样的，第一种可执行，第二种却不可以执行，这是因为浏览器在解析 js 时找到函数声明，并在执行剩余语句之前设置好函数，此过程称为函数提升，但是函数表达式却不会受到提升，因此无法正常工作。
-js 不具备多态性
-js 重不能创建名称相同但参数不同的两个函数，它不具备这个多态性，比如你定义的函数中有两个形参，调用函数时只传一个参数，第二形参的值就是 undefined ，如果传的参数大于 3 个，那么会自动忽略多余的参数。可以使用下列方法来处理函数定义参数数量和用于调用函数实际参数数量之间不匹配的问题。
+js 不具备多态性js 重不能创建名称相同但参数不同的两个函数，它不具备这个多态性，比如你定义的函数中有两个形参，调用函数时只传一个参数，第二形参的值就是 undefined ，如果传的参数大于 3 个，那么会自动忽略多余的参数。可以使用下列方法来处理函数定义参数数量和用于调用函数实际参数数量之间不匹配的问题。
 // 使用默认参数
 let func = function(age, sex=&amp;#x27;男&amp;#x27;){
     ...
@@ -541,8 +532,7 @@ let func = function(age, sex, ...extraArgs){
 func(23, &amp;#x27;女&amp;#x27;, &amp;#x27;张三&amp;#x27;, &amp;#x27;深圳&amp;#x27;);
 // 最后一个参数是一个数组，任何额外的实参都会被赋给这个数组
 
-let 和 war 的区别
-使用 let 和 var 声明变量的区别，使用 let 声明变量会把变量的作用范围限定在它所在的代码区域内。而使用 var 所创建的变量的作用域是它所在的函数。
+let 和 war 的区别使用 let 和 var 声明变量的区别，使用 let 声明变量会把变量的作用范围限定在它所在的代码区域内。而使用 var 所创建的变量的作用域是它所在的函数。
 function func(){
     if(false){
         var age = 23;
@@ -558,14 +548,12 @@ function func(){
     }
 }
 
-相等 == 和恒等 === 以及 连接操作符 +
-相等操作符尝试将操作数强制转换为相同的类型，再评估是否相等，实质上相等操作符==是测试二者的值是否相等，而与二者的类型无关；如果要测试值和类型是否都相等则应该用恒等操作符===。
+相等 == 和恒等 === 以及 连接操作符 +相等操作符尝试将操作数强制转换为相同的类型，再评估是否相等，实质上相等操作符==是测试二者的值是否相等，而与二者的类型无关；如果要测试值和类型是否都相等则应该用恒等操作符===。
 5 == &amp;#x27;5&amp;#x27; // 结果为 true
 5 === &amp;#x27;5&amp;#x27; // 结果为 false
 
 在 js 中，连接操作符的优先级高于加法操作，也就是说5 + &#39;5&#39;的结果是55。
-不同的模块指定方式
-import { Name } from &amp;quot;./modules/NameUtil&amp;quot;;// 第一种
+不同的模块指定方式import { Name } from &amp;quot;./modules/NameUtil&amp;quot;;// 第一种
 import { Compont } from &amp;quot;@angular/core&amp;quot;;// 第二种
 
 上面两种导入模块的方式有所不同，第一种是相对模块，第二种是非相对导入。第一种告诉的 TypeScript 编译器，该模块所在的位置是相对于包含 import 语句的文件而言；第二种非相对导入，编译器会用 node_modules 文件夹中的 npm 包来解析它。
@@ -576,8 +564,7 @@ import { Name as otherName } from &amp;quot;./modules/Name&amp;quot;;//取别名
 import * as otherName from &amp;quot;./modules/NameUtil&amp;quot;;
 let name = new otherName.Name(&amp;quot;Admin&amp;quot;, &amp;quot;China&amp;quot;);// Name 是 NameUtil 中的类
 
-多类型和类型断言
-在 ts 中允许指定多个类型，使用字符|进行分隔。看下面的的方法，其功能是把华氏温度转换为摄氏温度。
+多类型和类型断言在 ts 中允许指定多个类型，使用字符|进行分隔。看下面的的方法，其功能是把华氏温度转换为摄氏温度。
 // 使用多类型，该函数可以传入 number 和 string 类型的参数
 static convertFtoC(temp: number | string): string {
     /*
@@ -597,8 +584,7 @@ tuple = [&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;];
 let cities: {[index: string] : [string, string]} = {};
 cities[&amp;quot;Beijing&amp;quot;] = [&amp;quot;raining&amp;quot;, &amp;quot;2摄氏度&amp;quot;];
 
-数据绑定
-[target]=&amp;quot;expr&amp;quot;// 方括号表示单向绑定，数据从表达式流向目标；
+数据绑定[target]=&amp;quot;expr&amp;quot;// 方括号表示单向绑定，数据从表达式流向目标；
 
 (target)=&amp;quot;expr&amp;quot;// 圆括号表示单向绑定，数据从目标流向表达式，用于处理事件的绑定；
 [(target)]=&amp;quot;expr&amp;quot;// 圆方括号组合表示双向绑定，数据在表达式与目标之间双向流动；
@@ -623,8 +609,7 @@ cities[&amp;quot;Beijing&amp;quot;] = [&amp;quot;raining&amp;quot;, &amp;quot;2�
 
 &amp;lt;!-- 还有其他的 ngClass，ngStyle 等绑定，理解大体上和上面差不多 --&amp;gt;
 
-内置指令
-&amp;lt;!-- 
+内置指令&amp;lt;!-- 
     ngIf指令，如果表达式求值结果为 true ，那么 ngIf 将宿主元素机器内容包含在 html 文件中
     指令前面的星号表示这是一条微模板指令
     组要注意的是，ngIf 会向 html 中添加元素，也会从中删除元素，并非只是显示和隐藏
@@ -673,8 +658,7 @@ cities[&amp;quot;Beijing&amp;quot;] = [&amp;quot;raining&amp;quot;, &amp;quot;2�
 &amp;lt;div ngClass=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 &amp;lt;div ngStyle=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 
-事件绑定
-事件绑定使用 (target)=&amp;quot;expr&amp;quot;，是单向绑定，数据从目标流向表达式，用于响应宿主元素发送的事件。
+事件绑定事件绑定使用 (target)=&amp;quot;expr&amp;quot;，是单向绑定，数据从目标流向表达式，用于响应宿主元素发送的事件。
 当浏览器触发一个时间时，它将提供一个对象来描述该事件，对于不同类型的事件有不同类型的事件对象，事件对象被赋给一个名为$event的模板变量，但是所有事件对象都有下面三个属性:
 type：返回一个 string 值，用于标识已触发事件类型；
 target：返回触发事件的对象，一般是 html元素对象。
@@ -691,8 +675,7 @@ timeStamp：返回事件触发事件的 number 值，用 1970.1.1 毫秒数表�
 &amp;lt;!-- 使用事件过滤，上面的写法按下任何一个键都会触发事件，而下面的写法只有回车事件才会触发事件 --&amp;gt;
 &amp;lt;input (keyup.enter=&amp;quot;selectedProduct=product.value&amp;quot;) /&amp;gt;
 
-表单验证
-Angular 提供了一套可扩展的系统来验证表单元素的内容，总共可以向 input表元素中添加 4 个属性，每个属性定义一条验证规则，如下所示：
+表单验证Angular 提供了一套可扩展的系统来验证表单元素的内容，总共可以向 input表元素中添加 4 个属性，每个属性定义一条验证规则，如下所示：
 required：用于指定必须填写值；
 minlength：用于指定最小字符数；
 maxlength：用于指定最大字符数，（不能在表单元素直接使用，因为它与同名的 H5 属性冲突）；
@@ -796,8 +779,7 @@ export class ProductionCompont {
 
 fromSubmited 属性用于指示表单是否已经提交，并将用于在用户提交整个表单之前阻止表单验证。当用户提交表单时，调用 submitForm 方法，并将 ngForm 对象作为实参传入，ngForm 提供了 reset 方法，该方法可以重置表单的验证状态，使其返回到最初的未访问状态。
 更高级的还有使用基于模型的表单验证，可以自行查阅相关资料。
-使用 json-server 模拟 web 服务
-因为json-server会经常用到，建议使用全局安装命令npm install -g json-server。因为开发后端的同学太慢了，而我们如果要等他们把接口都提供给我们的时候再开发程序的话，那效率就太低了，所以使用 json-server 来模拟后端服务。只需要建好一个 json 文件，比如下面的格式：
+使用 json-server 模拟 web 服务因为json-server会经常用到，建议使用全局安装命令npm install -g json-server。因为开发后端的同学太慢了，而我们如果要等他们把接口都提供给我们的时候再开发程序的话，那效率就太低了，所以使用 json-server 来模拟后端服务。只需要建好一个 json 文件，比如下面的格式：
 {
     &amp;quot;user&amp;quot; : [
         {
@@ -816,16 +798,14 @@ fromSubmited 属性用于指示表单是否已经提交，并将用于在用户�
 }
 
 启动服务使用命令json-server [你的 json 文件路径]，然后就可以根据提示访问了，你甚至可以使用http://localhost:3000/user?number=5678去过滤数据。这样就能模拟 web 服务，而不必等后端同学的进度了。
-解决跨域请求问题
-Angular 跨域请求问题可以通过 Angular 自身的代理转发功能解决，在项目文件夹下新建一个 proxy.conf.json 并在其中添加如下内容。
+解决跨域请求问题Angular 跨域请求问题可以通过 Angular 自身的代理转发功能解决，在项目文件夹下新建一个 proxy.conf.json 并在其中添加如下内容。
 // 可以通过下列配置解决
 &amp;quot;/api&amp;quot;: {
     &amp;quot;target&amp;quot;: &amp;quot;http://10.9.176.120:8888&amp;quot;,
 }
 
 在启动时使用npm start，或者使用ng serve  --proxy-config proxy.conf.json，Anular 中的/api请求就会被转发到 http://10.9.176.120:8888/api，从而解决跨域请求问题。
-使用第三方 js 插件
-共有三种方式引入第三方插件，第一种很简单，直接在 html 中引入插件就可以了；第二种在angular.json中进行配置；第三种在 ts 文件中使用 import 导入库即可。
+使用第三方 js 插件共有三种方式引入第三方插件，第一种很简单，直接在 html 中引入插件就可以了；第二种在angular.json中进行配置；第三种在 ts 文件中使用 import 导入库即可。
 // 第一种(需要重启服务)
 &amp;quot;scripts&amp;quot;: [&amp;quot;src/assets/jquery-3.2.1.js&amp;quot;,&amp;quot;src/assets/jquery.nicescroll.js&amp;quot;,&amp;quot;src/assets/ion.rangeSlider.js&amp;quot;]
 
@@ -838,8 +818,7 @@ import &amp;quot;assets/jquery-3.2.1.js&amp;quot;;
 import &amp;quot;assets/jquery.nicescroll.js&amp;quot;;
 import &amp;quot;assets/ion.rangeSlider.js&amp;quot;;
 
-深拷贝与浅拷贝
-深拷贝与浅拷贝是围绕引用类型变量说的，其本质区别是不可变性，基本类型是不可变得，而引用类型是可变的。
+深拷贝与浅拷贝深拷贝与浅拷贝是围绕引用类型变量说的，其本质区别是不可变性，基本类型是不可变得，而引用类型是可变的。
 直接使用赋值操作符，就是浅拷贝，如果对拷贝源进行操作，会直接影响在拷贝目标上，因为这个赋值行为本质是内存地址的赋值，为了获得与拷贝源完全相同但又不会影响彼此的对象就要使用深拷贝。
 let objA = {
     x: 1,
@@ -935,11 +914,11 @@ objB.b.c:1
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>

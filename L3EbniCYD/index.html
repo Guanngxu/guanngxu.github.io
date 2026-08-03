@@ -7,7 +7,7 @@
 <title>
     LDO 基础知识 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,25 +113,25 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             LDO 基础知识
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2024-05-09</time>
                             <span class="read-time">5 min read</span>
                             
                                 <a href="https://www.guanngxu.com/HoPoXlgLN/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-error">
                             #线性稳压器
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/jSM-A51qWd/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_3">
                             #LDO
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_2">
                             #电路基础
                         </a>
                                 
@@ -147,26 +147,21 @@
 </blockquote>
 <p><a href="https://www.guanngxu.com/br0hmOiiG/">BUCK 电路</a>通过控制占空比来达到降压的目的，添加 LC 二阶低通滤波器将高频部分滤除，即可达到稳定输出直流的目的。但是滤波不能完全滤除高频分量，BUCK 从原理上就决定了其纹波不容易做到很小，其固有的开关频率会导致电源噪声很大，用来给噪声敏感的元器件供电就不合适。</p>
 <p>相比 BUCK 来说，LDO（Low Dropout Regulaor：低压差线性稳压器）输出的电压会更加平稳，可以弥补 BUCK 输出纹波大的缺点。</p>
-<h2 id="总体框图">总体框图</h2>
-<p>线性稳压器主要由四部分组成，基准源用于提供精准的电压基准、导通器件用于控制从 VIN 到 VOUT 的电流大小、误差放大器将强制反馈节点与基准电压匹配、反馈电阻用于调整以改变输出电压。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1715221368832.jpg" alt="" loading="lazy"></figure>
+<h3 id="总体框图">总体框图</h3><p>线性稳压器主要由四部分组成，基准源用于提供精准的电压基准、导通器件用于控制从 VIN 到 VOUT 的电流大小、误差放大器将强制反馈节点与基准电压匹配、反馈电阻用于调整以改变输出电压。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1715221368832.jpg" alt=""></figure>
 <p>从框图中也可以看到线性稳压器只能用于降压，因此输入电压必须高于输出电压。当然其名字中本身带了<code>低压差</code>的，低压差就意味着少的发热，意味着电源转化效率的提升。<code>线性</code>则是指器件的工作状态，器件的内部模块工作在放大区，放大状态呈线性关系。</p>
-<h2 id="工作原理">工作原理</h2>
-<p>线性稳压器的工作可以模拟为两个电阻器和一个用于 VIN 的电源，其中电源用于给负载供电，通过调整可变电阻（导通器件）的阻值来控制负载电阻所获得的电压，整个系统中唯一不变的恒定的参数就是输出电压 VOUT。</p>
-<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1715224425238.jpg" alt="" loading="lazy"></figure>
+<h3 id="工作原理">工作原理</h3><p>线性稳压器的工作可以模拟为两个电阻器和一个用于 VIN 的电源，其中电源用于给负载供电，通过调整可变电阻（导通器件）的阻值来控制负载电阻所获得的电压，整个系统中唯一不变的恒定的参数就是输出电压 VOUT。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1715224425238.jpg" alt=""></figure>
 <p>其稳压过程如下图所示，当负载电压升高/降低时，采样电路所采到的电压就跟着升高/降低，传递给误差放大器后通过调节导通器件的导通程度来调节输出电压。</p>
-<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1715224847762.jpg" alt="" loading="lazy"></figure>
-<h2 id="导通器件">导通器件</h2>
-<p>导通器件常见的有 PMOS、NMOS、BJT 等。BJT 应用于大电流的场景。PMOS 不需要额外的电源轨即可控制其导通程度，但是相比 NMOS 其 RDSon 更大，即 PMOS 架构的 LDO 在芯片本身所消耗的能量会更大。</p>
-<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1715330662896.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1715224847762.jpg" alt=""></figure>
+<h3 id="导通器件">导通器件</h3><p>导通器件常见的有 PMOS、NMOS、BJT 等。BJT 应用于大电流的场景。PMOS 不需要额外的电源轨即可控制其导通程度，但是相比 NMOS 其 RDSon 更大，即 PMOS 架构的 LDO 在芯片本身所消耗的能量会更大。</p>
+<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1715330662896.png" alt=""></figure>
 <p>使用 NMOS 作为导通器件时，需要添加辅助电源轨或者使用电荷泵才能将 NMOS 打开。当然电荷泵也有其缺点，虽然电荷泵可以提升 VIN，但是也带来了额外的噪声影响。若采用辅助电源轨时则需要注意，VBIAS 会影响 NMOS 的导通程度，进而影响输出电压的大小。</p>
-<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1715309697553.png" alt="" loading="lazy"></figure>
-<h2 id="psrr">PSRR</h2>
-<p>PSRR（Power Supply Rejection Ratio）量化了 LDO 抑制任何电源变化传递到其输出信号的能力，也就是 PSRR 决定了输入耦合到输出的噪声有多少。除了 LDO 本身的设计影响 PSRR 外，也可以通过调整 VIN 与 VOUT 之间的差值、输出电容来提高在特定应用（频率）下的 PSRR。</p>
-<figure data-type="image" tabindex="6"><img src="https://www.guanngxu.com/post-images/1715242112851.jpg" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="7"><img src="https://www.guanngxu.com/post-images/1715242122909.jpg" alt="" loading="lazy"></figure>
-<h2 id="输入输出电容">输入输出电容</h2>
-<p>为了确保 LDO 稳定工作，会在 LDO 输入输出端增加旁路电容，并且旁路电容的 ESR 需要很小，即在符合最小电容和最大 ESR 的要求下，使用任何质量良好的电容都可采用。在选择电容时还需要注意由于直流电压偏置、温度变化、制造商容差等需要对电容进行一定的降额。</p>
+<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1715309697553.png" alt=""></figure>
+<h3 id="psrr">PSRR</h3><p>PSRR（Power Supply Rejection Ratio）量化了 LDO 抑制任何电源变化传递到其输出信号的能力，也就是 PSRR 决定了输入耦合到输出的噪声有多少。除了 LDO 本身的设计影响 PSRR 外，也可以通过调整 VIN 与 VOUT 之间的差值、输出电容来提高在特定应用（频率）下的 PSRR。</p>
+<figure data-type="image" tabindex="6"><img src="https://www.guanngxu.com/post-images/1715242112851.jpg" alt=""></figure>
+<figure data-type="image" tabindex="7"><img src="https://www.guanngxu.com/post-images/1715242122909.jpg" alt=""></figure>
+<h3 id="输入输出电容">输入输出电容</h3><p>为了确保 LDO 稳定工作，会在 LDO 输入输出端增加旁路电容，并且旁路电容的 ESR 需要很小，即在符合最小电容和最大 ESR 的要求下，使用任何质量良好的电容都可采用。在选择电容时还需要注意由于直流电压偏置、温度变化、制造商容差等需要对电容进行一定的降额。</p>
 <p>输出电容除了可以进行滤波外，还会影响负载电流的变化的瞬态响应，采用较大的输出电容可以改善 LDO 对大负载电流变化的瞬态响应。输入电容则可以降低电路对 PCB 布局的敏感性，尤其是在长输入走线或者高源阻抗的情况下。</p>
 <p>多层陶瓷电容、固态钽点解电容、铝电解电容通常用作输入和输出旁路电容。多层陶瓷电容具备 ESR 和 ESL 低、工作温度范围宽的优点，但是陶瓷电容中的介质材料具备压电性，振动或机械冲击可能会转化为电容上的交流噪声电压，在极端情况下可能会产生 mV 级的噪声。</p>
 <blockquote>
@@ -199,11 +194,11 @@
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -258,11 +253,13 @@
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#总体框图">总体框图</a></li>
 <li><a href="#工作原理">工作原理</a></li>
 <li><a href="#导通器件">导通器件</a></li>
 <li><a href="#psrr">PSRR</a></li>
 <li><a href="#输入输出电容">输入输出电容</a></li>
+</ul>
 </ul>
 </div>
 
@@ -301,227 +298,227 @@
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-warning" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-success" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-primary" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-banana" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-error" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-info" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-error" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-primary" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-primary" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-warning" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-other_4" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-error" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-error" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-success" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-other_2" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-other_3" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-success" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-other_4" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-other_3" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-other_2" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-other_1" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-warning" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-primary" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-banana" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-primary" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-other_1" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-warning" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-success" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-other_3" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-other_3" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-primary" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

@@ -7,7 +7,7 @@
 <title>
     正则表达式入门，基础语法详解 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,15 +113,15 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             正则表达式入门，基础语法详解
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2018-03-29</time>
                             <span class="read-time">10 min read</span>
                             
                                 <a href="https://www.guanngxu.com/XcHzo7Nc6/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-success">
                             #正则表达式
                         </a>
                                 
@@ -136,18 +136,14 @@
                             
                                 <div class="post-content">
                                     <p>这两天一直在时不时的和 Neo4j 图数据库打交道。它的查询语句可以使用正则表达式，有一段时间没有自己写过正则表达式了，现在处于能看懂别人写的正则表达式，但是自己写不出来，语法规则都忘了。为了方便接下来的工作，所以特地复习复习正则表达式的语法。</p>
-<h2 id="正则表达式简介">正则表达式简介</h2>
-<p>正则表达式是用来匹配字符串的一系列匹配符，具备简介高效的特点，在很多语言中都有支持（java、python、javascript、php 等等）。在 windows 的 cmd 命令中也同样支持，例如使用命令 <em>dir j*</em>，那么只会罗列出所有以j开头的文件和文件夹。</p>
-<h2 id="正则表达式基本语法">正则表达式基本语法</h2>
-<p>正则表达式在在不同语言的支持语法略有不同，本文采用js的进行说明。js 中使用正则表达式的方法为<em>str.match(/表达式/)</em>，即需要加两个斜杠。以下所有的代码段第一行为代码，第二行为返回结果，实验是在 chrome 控制台进行的。</p>
+<h3 id="正则表达式简介">正则表达式简介</h3><p>正则表达式是用来匹配字符串的一系列匹配符，具备简介高效的特点，在很多语言中都有支持（java、python、javascript、php 等等）。在 windows 的 cmd 命令中也同样支持，例如使用命令 <em>dir j*</em>，那么只会罗列出所有以j开头的文件和文件夹。</p>
+<h3 id="正则表达式基本语法">正则表达式基本语法</h3><p>正则表达式在在不同语言的支持语法略有不同，本文采用js的进行说明。js 中使用正则表达式的方法为<em>str.match(/表达式/)</em>，即需要加两个斜杠。以下所有的代码段第一行为代码，第二行为返回结果，实验是在 chrome 控制台进行的。</p>
 <p>一直认为最好的学习方式就是实际操作，理论谁都能讲一大堆，但是实际做没做出来还真不知道。一个奇葩现象就是教软件工程的老师可能并没有在软件行业待过。</p>
-<h3 id="普通匹配符">普通匹配符</h3>
-<p>普通匹配符能匹配与之对应的字符，默认区分大小写。</p>
+<h4 id="普通匹配符">普通匹配符</h4><p>普通匹配符能匹配与之对应的字符，默认区分大小写。</p>
 <pre class="hljs"><code><span class="hljs-string">&quot;Hello Regx&quot;</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/H/</span>)
 [<span class="hljs-string">&quot;H&quot;</span>, <span class="hljs-attr">index</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">input</span>: <span class="hljs-string">&quot;Hello Regx&quot;</span>, <span class="hljs-attr">groups</span>: <span class="hljs-literal">undefined</span>]
 </code></pre>
-<h3 id="正则标记符">正则标记符</h3>
-<ul>
+<h4 id="正则标记符">正则标记符</h4><ul>
 <li>i ：不区分大小写</li>
 <li>g ：全局匹配</li>
 <li>m ：多行匹配（暂不管它，我用的少）</li>
@@ -160,8 +156,7 @@
 <pre class="hljs"><code><span class="hljs-string">&quot;Hello Regx&quot;</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/e/g</span>)
 (<span class="hljs-number">2</span>) [<span class="hljs-string">&quot;e&quot;</span>, <span class="hljs-string">&quot;e&quot;</span>]
 </code></pre>
-<h3 id="多匹配符">多匹配符</h3>
-<ul>
+<h4 id="多匹配符">多匹配符</h4><ul>
 <li>\d ：匹配数字，即 0~9</li>
 <li>\w ：匹配数字、字母、下划线</li>
 <li>. ：匹配除换行的所有字符</li>
@@ -200,8 +195,7 @@
 <span class="hljs-comment">// 因为是全局匹配，所以会接着匹配后面的018，也匹配成功</span>
 (<span class="hljs-number">2</span>) [<span class="hljs-string">&quot;o 2&quot;</span>, <span class="hljs-string">&quot;018&quot;</span>]
 </code></pre>
-<h3 id="自定义匹配符">自定义匹配符</h3>
-<p>比如中国的手机号都是以 1 开头，第二位只能是 3、4、5、7、8，第 3 位只要是数字就行。如何匹配这样的字符串？</p>
+<h4 id="自定义匹配符">自定义匹配符</h4><p>比如中国的手机号都是以 1 开头，第二位只能是 3、4、5、7、8，第 3 位只要是数字就行。如何匹配这样的字符串？</p>
 <ul>
 <li>[] ：匹配[]中的任意一个字符</li>
 </ul>
@@ -219,8 +213,7 @@
 <span class="hljs-comment">// 只要不是[]中的字符，都满足，包括回车符</span>
 [<span class="hljs-string">&quot;1a2&quot;</span>, <span class="hljs-attr">index</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">input</span>: <span class="hljs-string">&quot;1a2&quot;</span>, <span class="hljs-attr">groups</span>: <span class="hljs-literal">undefined</span>]
 </code></pre>
-<h3 id="修饰匹配次数">修饰匹配次数</h3>
-<p>我们的手机号有 11 位，除了前 2 位有要求，其他9位度没有要求，那么是不是正则表达式就应该这样写呢？</p>
+<h4 id="修饰匹配次数">修饰匹配次数</h4><p>我们的手机号有 11 位，除了前 2 位有要求，其他9位度没有要求，那么是不是正则表达式就应该这样写呢？</p>
 <pre class="hljs"><code><span class="hljs-number">1</span>[^<span class="hljs-number">34578</span>]\d\d\d\d\d\d\d\d\d
 </code></pre>
 <p>很明显，这样写太麻烦，肯定有更好的方式，这里就可以修饰一下匹配次数啦。</p>
@@ -257,8 +250,7 @@
 <span class="hljs-string">&quot;15&quot;</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/1[34578]\d+/</span>)
 <span class="hljs-literal">null</span>
 </code></pre>
-<h3 id="完整匹配">完整匹配</h3>
-<p>按照上面的写法会出现下面的问题。</p>
+<h4 id="完整匹配">完整匹配</h4><p>按照上面的写法会出现下面的问题。</p>
 <pre class="hljs"><code><span class="hljs-string">&quot;ya15284750845&quot;</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/1[34578]\d{9}/</span>)
 <span class="hljs-comment">// 不是电话号码，也能匹配成功，需要进一步改进</span>
 [<span class="hljs-string">&quot;15284750845&quot;</span>, <span class="hljs-attr">index</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">input</span>: <span class="hljs-string">&quot;ya15284750845&quot;</span>, <span class="hljs-attr">groups</span>: <span class="hljs-literal">undefined</span>]
@@ -290,8 +282,7 @@
 这个字符串从开始和从结束匹配都能成功，但实际上是错的
 */</span>
 </code></pre>
-<h3 id="特殊符号">特殊符号</h3>
-<p>到这里发现正则表达式确实很强大，仅仅几个简单的符号就能匹配字符串，但是如果我们要匹配的字符本身就是前面用到的符号怎么办呢？</p>
+<h4 id="特殊符号">特殊符号</h4><p>到这里发现正则表达式确实很强大，仅仅几个简单的符号就能匹配字符串，但是如果我们要匹配的字符本身就是前面用到的符号怎么办呢？</p>
 <ul>
 <li>匹配像$、^等特殊符号时，需要加转义字符\</li>
 </ul>
@@ -305,8 +296,7 @@
 <span class="hljs-comment">// 只需要加一个转义字符就可以了，其他类似</span>
 [<span class="hljs-string">&quot;.&quot;</span>, <span class="hljs-attr">index</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">input</span>: <span class="hljs-string">&quot;1.&quot;</span>, <span class="hljs-attr">groups</span>: <span class="hljs-literal">undefined</span>]
 </code></pre>
-<h3 id="条件分支">条件分支</h3>
-<p>比如现在想匹配图片的文件名，包括 jpg、png、jpeg、gif 等等，这是多个选项，所以需要像编程语言一样，应该具备条件分支结构。</p>
+<h4 id="条件分支">条件分支</h4><p>比如现在想匹配图片的文件名，包括 jpg、png、jpeg、gif 等等，这是多个选项，所以需要像编程语言一样，应该具备条件分支结构。</p>
 <ul>
 <li>| ：条件分支</li>
 <li>() ：有两层含义
@@ -343,8 +333,7 @@
 <span class="hljs-string">&quot;1.png&quot;</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/.+\.(?:jpe?g|gif|png)/</span>)
 [<span class="hljs-string">&quot;1.png&quot;</span>, <span class="hljs-attr">index</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">input</span>: <span class="hljs-string">&quot;1.png&quot;</span>, <span class="hljs-attr">groups</span>: <span class="hljs-literal">undefined</span>]
 </code></pre>
-<h3 id="贪婪与懒惰">贪婪与懒惰</h3>
-<pre class="hljs"><code><span class="hljs-comment">// 首先看一个例子</span>
+<h4 id="贪婪与懒惰">贪婪与懒惰</h4><pre class="hljs"><code><span class="hljs-comment">// 首先看一个例子</span>
 <span class="hljs-string">&quot;aabab&quot;</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/a.*b/</span>)
 [<span class="hljs-string">&quot;aabab&quot;</span>, <span class="hljs-attr">index</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">input</span>: <span class="hljs-string">&quot;aabab&quot;</span>, <span class="hljs-attr">groups</span>: <span class="hljs-literal">undefined</span>]
 
@@ -360,7 +349,7 @@
 [<span class="hljs-string">&quot;aab&quot;</span>, <span class="hljs-attr">index</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">input</span>: <span class="hljs-string">&quot;aabab&quot;</span>, <span class="hljs-attr">groups</span>: <span class="hljs-literal">undefined</span>]
 </code></pre>
 <p>到这里应该就差不多了，再深入的，就自我查询知识了。配一张正则表达式速查表。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1669816632950.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1669816632950.png" alt=""></figure>
 
                                 </div>
                     </article>
@@ -386,11 +375,11 @@
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -445,6 +434,7 @@
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#正则表达式简介">正则表达式简介</a></li>
 <li><a href="#正则表达式基本语法">正则表达式基本语法</a></li>
 <ul>
@@ -457,6 +447,7 @@
 <li><a href="#特殊符号">特殊符号</a></li>
 <li><a href="#条件分支">条件分支</a></li>
 <li><a href="#贪婪与懒惰">贪婪与懒惰</a></li>
+</ul>
 </ul>
 </ul>
 </div>
@@ -496,32 +487,32 @@
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-banana" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-warning" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-info" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-other_1" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-banana" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
@@ -531,32 +522,32 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-other_4" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-error" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-other_1" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-primary" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-banana" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
@@ -571,72 +562,72 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-warning" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-success" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-other_2" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-banana" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_2" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-primary" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-primary" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-success" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-primary" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-primary" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
@@ -651,62 +642,62 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-info" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-other_4" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-warning" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-primary" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-info" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-other_1" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-banana" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-banana" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
@@ -716,7 +707,7 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

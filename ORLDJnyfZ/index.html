@@ -7,7 +7,7 @@
 <title>
     讲一个爱情故事，让 HTTPS 简单易懂 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,15 +113,15 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             讲一个爱情故事，让 HTTPS 简单易懂
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2018-08-26</time>
                             <span class="read-time">8 min read</span>
                             
                                 <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-primary">
                             #计算机网络
                         </a>
                                 
@@ -136,24 +136,19 @@
 </blockquote>
 <p>充满各种数学证明的密码学是令人头疼的，一听到密码、黑客、攻击等词的时候，就给人一种神秘又高大上的感觉，但除非你真的从事密码学相关工作，否则你并不需要对密码学有多么深刻的理解。</p>
 <p>这是一篇适合在饭后的品茶时光中阅读的文章，咱们虚构一个故事来讲解，虽然故事看起来很随性，但是 HTTPS 也是这么工作的。里面有一些术语你也应该听过，因为它们经常出现在技术文献里面。</p>
-<h2 id="故事背景">故事背景</h2>
-<p>一天，一个男子到河边抓鱼给母亲吃，而河岸的另一头是一大户人家的小姐和她的丫鬟在散步。突然，一个不小心，对面小姐不慎跌入水中，而丫鬟又不会游泳，这可把小丫鬟急的呀！！！正在抓鱼的男子见此状况，来不及脱掉身上的衣物，就像箭一样窜入水中.....想必看客已经猜到了，小姐被救起，男子抱着迷迷糊糊小姐走上岸的过程中，小姐感觉自己像触电了一样，觉得这个男人很安全，只要靠着他，就算天塌下来也不怕，而男子把小姐放下的那一刻，也很不舍，好像把她放下就失去了活下去的希望。</p>
+<h3 id="故事背景">故事背景</h3><p>一天，一个男子到河边抓鱼给母亲吃，而河岸的另一头是一大户人家的小姐和她的丫鬟在散步。突然，一个不小心，对面小姐不慎跌入水中，而丫鬟又不会游泳，这可把小丫鬟急的呀！！！正在抓鱼的男子见此状况，来不及脱掉身上的衣物，就像箭一样窜入水中.....想必看客已经猜到了，小姐被救起，男子抱着迷迷糊糊小姐走上岸的过程中，小姐感觉自己像触电了一样，觉得这个男人很安全，只要靠着他，就算天塌下来也不怕，而男子把小姐放下的那一刻，也很不舍，好像把她放下就失去了活下去的希望。</p>
 <p>小姐回到家中，给父亲大人说了这件事，父亲很高兴，就叫下人去把这位男子请到家中表示感谢，结果一问，这小伙幼年丧父，现在家中还有病弱的老母亲，连一间屋子都没有，一直和母亲寄住在城外的破庙里面，不过他毕竟救了自己的女儿，父亲让下人拿出了五十两黄金以表谢意，但不允许他和小姐再有任何来往。</p>
 <p>.....此处省略五千字。</p>
 <p>我们姑且称小姐为小花，称男子为小明，他们不能相见了，但是又备受相思之苦，因此只能通过写信的方式来传达彼此的思念了。</p>
-<h2 id="最简单的通信方式">最简单的通信方式</h2>
-<p>如果小花想给小明写信，那么她可以把写好的信让信鸽给小明送去，小明也可以通过信鸽给小花回信，这样他们就能知道彼此的感情了。</p>
+<h3 id="最简单的通信方式">最简单的通信方式</h3><p>如果小花想给小明写信，那么她可以把写好的信让信鸽给小明送去，小明也可以通过信鸽给小花回信，这样他们就能知道彼此的感情了。</p>
 <p>但是很快这种方式出问题了，因为他们都隐约感觉到收到的来信不是对方写的，因为从信件上看，双方都表示不再喜欢彼此。凭借着对彼此的信任，他们才知道是小花的父亲从中阻挠他们。每次他们写的信都被父亲的下人拦下了，然后换上他们事先准备好的信件，目的就是为了让小花和小明断了感情。</p>
 <p>HTTP 就是这样的工作方式。</p>
-<h2 id="对称加密">对称加密</h2>
-<p>小花是博冠古今的人，这怎么能难倒她呢。他们彼此约定，每次写信都加上密码，让信鸽传送的信件是用密文书写的。他们约定的密码是把每个字母的位置向后移动三位，比如 A → D 、 B → E ，如果他们要给对方写一句 &quot;I love you&quot; ，那么实际上信件上面写的就是 &quot;L oryh brx&quot; 。现在就算父亲把信件拦截了，他也不知道里面的内容是什么，而且也没办法修改为有效的内容，因为他不知道密码，现在小花和小明又能给对方写情书了。</p>
+<h3 id="对称加密">对称加密</h3><p>小花是博冠古今的人，这怎么能难倒她呢。他们彼此约定，每次写信都加上密码，让信鸽传送的信件是用密文书写的。他们约定的密码是把每个字母的位置向后移动三位，比如 A → D 、 B → E ，如果他们要给对方写一句 &quot;I love you&quot; ，那么实际上信件上面写的就是 &quot;L oryh brx&quot; 。现在就算父亲把信件拦截了，他也不知道里面的内容是什么，而且也没办法修改为有效的内容，因为他不知道密码，现在小花和小明又能给对方写情书了。</p>
 <p>这就是<strong>对称加密</strong>，因为如果你知道如何加密信息，那也能知道如何解密信息。上面所说的加密常称为<strong>凯撒密码</strong>，在现实生活中，我们使用的密码肯定会更复杂，但是主要思想是一样的。</p>
-<h2 id="如何确定密钥">如何确定密钥</h2>
-<p>显然对称加密是比较安全的（只有两个人知道密码的情况下）。在凯撒密码中，密码通常是偏移指定位数的字母，我们使用的是偏移三位。</p>
+<h3 id="如何确定密钥">如何确定密钥</h3><p>显然对称加密是比较安全的（只有两个人知道密码的情况下）。在凯撒密码中，密码通常是偏移指定位数的字母，我们使用的是偏移三位。</p>
 <p>可能你已经发现问题了，在小花和小明开始写信之前，他们就已经没办法相见了，那他们怎么确定密钥呢，如果一开始通过信鸽告诉对方密钥，那父亲就能把信鸽拦下，也能知道他们的密钥，那么父亲也就可以查看他们信件的内容，同时也能修改信件了。</p>
 <p>这就是典型的<strong>中间人攻击</strong>，唯一能解决这个问题的办法就是改变现有的加密方式。</p>
-<h2 id="非对称加密">非对称加密</h2>
-<p>小花想出了更好的办法，当小花想给小明写情书的时候，她将会按照下面的步骤来进行：</p>
+<h3 id="非对称加密">非对称加密</h3><p>小花想出了更好的办法，当小花想给小明写情书的时候，她将会按照下面的步骤来进行：</p>
 <ul>
 <li>小花给小明送一只没有携带任何信件的鸽子；</li>
 <li>小明让信鸽带一个没有上锁的空箱子回去，钥匙由小明保管；</li>
@@ -162,25 +157,22 @@
 </ul>
 <p>使用这种方式，父亲大人就没办法拦截信鸽了，因为他没有箱子的钥匙。同样如果小明想给小花写情书，也采用这种方式。</p>
 <p>这就是<strong>非对称加密</strong>，之所以称之为非对称加密，是因为即使你能加密信息（锁箱子），但是你却无法解密信息（开箱子），因为箱子的钥匙在对方那里。在技术领域，把这里的箱子称作<strong>公钥</strong>，把钥匙称作<strong>私钥</strong>。</p>
-<h2 id="认证机构">认证机构</h2>
-<p>细心的你可能发现问题了，当小明收到箱子后，他如何确定这个箱子的主人是谁呢，因为父亲也可以让信鸽带箱子给小明啊，所以父亲如果想知道他们的信件内容，那只需要把箱子偷换掉就好了。</p>
+<h3 id="认证机构">认证机构</h3><p>细心的你可能发现问题了，当小明收到箱子后，他如何确定这个箱子的主人是谁呢，因为父亲也可以让信鸽带箱子给小明啊，所以父亲如果想知道他们的信件内容，那只需要把箱子偷换掉就好了。</p>
 <p>小花决定在箱子上面签上自己的名字，因为笔迹是不能模仿的，这样父亲就没办法伪造箱子了。但是依旧有问题，小花和小明在不能相见之前并没有见过彼此写的字，那么小明又如何识别出小花的字迹呢？所以他们的解决办法是，找张三丰替小花签名。</p>
 <p>众所周知，张三丰是当世的得道高人，他的品德是世人都认可的，大家都把他奉为圣人，而且天下肯定不止一对有情人遇到小花和小红这样的问题。张三丰只会为合法居民签名。</p>
 <p>张三丰会在小花的盒子上签名，前提是他确定了要签名的是小花。所以父亲大人是无法得到张三丰代表小花签名的盒子，否则小明就会知道这是一个骗局，因为张三丰只在验证了人们的身份后才会代表他们给盒子签名。</p>
 <p>张三丰在技术领域的角色就是<strong>认证机构</strong>，你现在阅读这篇文章所使用的浏览器是附带了各种认证机构的签名的。所以当你第一次访问某个网站时，你相信这不是一个钓鱼网站，是因为你相信第三方认证机构，因为他们告诉你这个箱子是合法的。</p>
-<h2 id="箱子太重了">箱子太重了</h2>
-<p>虽然现在小花和小明有了一个可靠的通信系统，但是信鸽带个箱子飞的慢啊，热恋中的人是“一日不见如隔三秋”，信鸽飞慢了怎么行呢。</p>
+<h3 id="箱子太重了">箱子太重了</h3><p>虽然现在小花和小明有了一个可靠的通信系统，但是信鸽带个箱子飞的慢啊，热恋中的人是“一日不见如隔三秋”，信鸽飞慢了怎么行呢。</p>
 <p>所以他们决定还是采用对称加密的方式来写情书，但是对称加密的密钥要用箱子来传递，也就是用非对称加密方式来传递对称加密密钥，这样就可以同时获得对称加密和非对称加密的优点了，还能避免彼此的缺点。</p>
 <p>需要注意的是，在网络世界中，信息不会像鸽子传送的那么慢，只不过只用非对称加密技术加密信息要比对称加密慢，所以只用它来交换密钥。</p>
 <p>以上就是 HTTPS 的工作过程。</p>
-<h2 id="一个故事">一个故事</h2>
-<blockquote>
+<h3 id="一个故事">一个故事</h3><blockquote>
 <p>这个故事你可能早就知道了，我只是在写文章的过程中突然想起了它，就是笛卡尔的爱情故事。</p>
 </blockquote>
 <blockquote>
 <p>具体细节你可以网上去查，笛卡尔每天给自己喜欢的公主写信，但是信都被国王拦截了，笛卡尔给公主写的第十三封信中只有一个数学方程，但是这个方程国王看不懂，所以就把这封信交给了公主，公主一看方程，立刻着手把方程的图形画了出来，发现这是一颗心的形状。</p>
 </blockquote>
-<figure data-type="image" tabindex="1"><img src="/post-images/1662967841826.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="/post-images/1662967841826.png" alt=""></figure>
 
                                 </div>
                     </article>
@@ -206,11 +198,11 @@
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -265,6 +257,7 @@
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#故事背景">故事背景</a></li>
 <li><a href="#最简单的通信方式">最简单的通信方式</a></li>
 <li><a href="#对称加密">对称加密</a></li>
@@ -273,6 +266,7 @@
 <li><a href="#认证机构">认证机构</a></li>
 <li><a href="#箱子太重了">箱子太重了</a></li>
 <li><a href="#一个故事">一个故事</a></li>
+</ul>
 </ul>
 </div>
 
@@ -311,132 +305,132 @@
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-success" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-other_3" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-info" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-other_3" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-banana" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-primary" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-warning" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-success" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-info" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-success" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-other_3" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-info" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-warning" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-banana" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-other_1" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-info" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-warning" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
@@ -446,92 +440,92 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-other_4" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-warning" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-warning" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-other_2" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-other_3" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-other_4" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-warning" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-other_3" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-other_3" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-other_3" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-other_3" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-banana" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-other_2" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-other_4" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-other_2" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-error" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

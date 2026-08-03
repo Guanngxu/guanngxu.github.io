@@ -7,7 +7,7 @@
 <title>
     涂鸦跳跃（Doodle Jump）从设计到实现（Python 版） | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,20 +113,20 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             涂鸦跳跃（Doodle Jump）从设计到实现（Python 版）
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2026-03-24</time>
                             <span class="read-time">70 min read</span>
                             
                                 <a href="https://www.guanngxu.com/1qL6ZUU_c5/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-primary">
                             #领域驱动设计
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-banana">
                             #Python
                         </a>
                                 
@@ -140,8 +140,7 @@
 <p>在<code>游戏主角</code>向上攀升的过程中，偶尔会运气好遇到一些<code>加速神器</code>，帮助<code>玩家</code>更快的获得分数，这些<code>加速神器</code>包括<code>弹簧</code>、<code>竹蜻蜓</code>、<code>火箭喷气背包</code>。</p>
 <p>当<code>游戏主角</code>踩到<code>弹簧</code>时会发出清脆的「叮」的声音，并让<code>游戏主角</code>获得比自主跳跃要更高的跳跃高度。如果<code>游戏主角</code>踩到<code>竹蜻蜓</code>，<code>竹蜻蜓</code>会戴在<code>游戏主角</code>头顶，并像<code>直升机</code>一样拖着<code>游戏主角</code>飞行一段距离，期间会发出直升机螺旋桨转动的声音。若<code>游戏主角</code>有幸遇到了<code>火箭喷气背包</code>，它可以获得比<code>竹蜻蜓</code>更快的飞行速度，并且会带着<code>游戏主角</code>飞行更久的时间，自然也会获得更多的分数。</p>
 <p>整个游戏没有终点，只有不断增加的分数。在<code>游戏主角</code>跳跃过程中始终都会有重力存在，因此若<code>游戏主角</code>下落过程中没有遇到<code>平台</code>便会一直下坠，直到坠落超过底部则 Game Over。</p>
-<h2 id="领域建模">领域建模</h2>
-<p>前文是对 Doodle Jump 游戏的场景及玩法描述，虽然相比各大游戏平台的版本，我的这个描述简化了许多，但请不要在意这些细节。在编辑前文描述的过程中我已经将其中的名词做了特殊标记，下面我们把前文出现的名词去重后列举出来。</p>
+<h3 id="领域建模">领域建模</h3><p>前文是对 Doodle Jump 游戏的场景及玩法描述，虽然相比各大游戏平台的版本，我的这个描述简化了许多，但请不要在意这些细节。在编辑前文描述的过程中我已经将其中的名词做了特殊标记，下面我们把前文出现的名词去重后列举出来。</p>
 <blockquote>
 <p>游戏主角、外星生物、平台、加速神器、玩家、弹簧、竹蜻蜓、火箭喷气背包</p>
 </blockquote>
@@ -152,8 +151,7 @@
 <li>道具：可以改变玩家物理状态，比如跳跃的初始速度、赋予飞行的能力等，弹簧、竹蜻蜓、火箭喷气背包均为某一具体的道具。</li>
 </ul>
 <p>当然仅仅只有上面的名词表还不够，每个名词仅仅只是一个演员而已，我们还需要一个优秀的导演来指导才能演一出好戏，这个导演在领域驱动设计（DDD）里面叫做<strong>聚合根（Aggregate Root）</strong>。</p>
-<h2 id="代码实现">代码实现</h2>
-<p>有了前文的分析我们就可以开始写代码了，首先可以搭建出下面的框架结构。</p>
+<h3 id="代码实现">代码实现</h3><p>有了前文的分析我们就可以开始写代码了，首先可以搭建出下面的框架结构。</p>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Player</span>: <span class="hljs-comment"># 玩家</span>
     <span class="hljs-keyword">pass</span>
 
@@ -227,7 +225,7 @@ FPS = <span class="hljs-number">60</span>                                <span c
             <span class="hljs-keyword">return</span> surf
 </code></pre>
 <p>有了<code>Utils</code>工具类后，就像导演搭建舞台一样，即可对<code>GameSession</code>进行修改，增加<code>bg</code>属性和<code>update</code>、<code>draw</code>方法，分别用以存储背景图片和更新游戏数据以及绘制游戏界面，直观效果即游戏界面可加载背景图片显示的更好看了。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1774410068998.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1774410068998.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">GameSession</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
         pygame.init()
@@ -279,7 +277,7 @@ FPS = <span class="hljs-number">60</span>                                <span c
         screen.blit(<span class="hljs-variable language_">self</span>.image, <span class="hljs-variable language_">self</span>.rect) <span class="hljs-comment"># 将平台图片绘制在屏幕上</span>
 </code></pre>
 <p>为了让玩家能够有地方停留住，我们将第一个平台固定在屏幕底部正中央，其它平台则随机生成铺满即可，更新后的<code>GameSession</code>类如下。</p>
-<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1774410812240.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1774410812240.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">import</span> random
 
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">GameSession</span>:
@@ -316,10 +314,10 @@ FPS = <span class="hljs-number">60</span>                                <span c
         <span class="hljs-variable language_">self</span>.player.draw(<span class="hljs-variable language_">self</span>.screen) <span class="hljs-comment"># 绘制玩家</span>
 </code></pre>
 <p>运行代码后的效果如下。</p>
-<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1774410989205.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1774410989205.png" alt=""></figure>
 <p>可以发现平台生成的位置也太随意了，我们理应控制平台生成的高度间距以确保玩家可以跳上去，因此把<code>Platform</code>类的初始化函数做修改，将生成坐标改外外部传参以方便指定位置，待后续调整时方便修改。同时玩家还需要调整位置站在第一个平台上面。</p>
-<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1774411428368.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1774452332350.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1774411428368.png" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1774452332350.png" alt=""></figure>
 <pre class="hljs"><code>
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">Player</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
@@ -344,8 +342,8 @@ FPS = <span class="hljs-number">60</span>                                <span c
             <span class="hljs-variable language_">self</span>.platforms.append(platform)
 </code></pre>
 <p>接下来需要加入动作效果了，还记得前文描述说整个过程都有重力作用在玩家身上，下面我们加入重力让玩家不断下坠。同时也需要引入碰撞检测以确保玩家在平台上时可以跳起来。</p>
-<figure data-type="image" tabindex="6"><img src="https://www.guanngxu.com/post-images/1774412289814.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="7"><img src="https://www.guanngxu.com/post-images/1774412294703.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://www.guanngxu.com/post-images/1774412289814.png" alt=""></figure>
+<figure data-type="image" tabindex="7"><img src="https://www.guanngxu.com/post-images/1774412294703.png" alt=""></figure>
 <pre class="hljs"><code>GRAVITY = <span class="hljs-number">0.7</span>                           <span class="hljs-comment"># 模拟物理重力，每帧给玩家增加的向下速度</span>
 
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">Player</span>:
@@ -373,8 +371,8 @@ FPS = <span class="hljs-number">60</span>                                <span c
 <p>仔细观察后会发现玩家在跳跃的过程中，小脚有可能会嵌入到平台中间，为了解决这个不符合逻辑的问题，我们需要在检测到碰撞后调整玩家和平台的相对位置，让玩家的底部坐标与平台的顶部坐标相同。</p>
 <p>回顾前文描述，我们的初始设计是玩家站在平台上时若按下空格键，此时就可以跳跃起来。因此我们需要监听键盘事件，同时玩家还可以左右移动的逻辑也一并加入。</p>
 <p>考虑到跳跃动作需要检测玩家是否站在平台上，跳跃的触发逻辑放在<code>GameSession</code>类的<code>update</code>方法中应会更方便，玩家左右移动的逻辑不涉及其它对象，则可尤其自身的<code>update</code>处理即可。</p>
-<figure data-type="image" tabindex="8"><img src="https://www.guanngxu.com/post-images/1774451318792.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="9"><img src="https://www.guanngxu.com/post-images/1774451324756.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://www.guanngxu.com/post-images/1774451318792.png" alt=""></figure>
+<figure data-type="image" tabindex="9"><img src="https://www.guanngxu.com/post-images/1774451324756.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Player</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">self</span>): <span class="hljs-comment"># 更新游戏数据</span>
         <span class="hljs-keyword">for</span> platform <span class="hljs-keyword">in</span> <span class="hljs-variable language_">self</span>.platforms:
@@ -391,7 +389,7 @@ FPS = <span class="hljs-number">60</span>                                <span c
                     <span class="hljs-variable language_">self</span>.player.jump() <span class="hljs-comment"># 调用玩家的 jump 方法，执行跳跃逻辑</span>
 </code></pre>
 <p>继续运行发现玩家如果头部碰到平台，玩家就会被那一个平台给「吸」上去，这种现象我们是不允许发生的，因此需要对玩家与平台的碰撞检测逻辑做一些修整，确保只有玩家的小脚碰到平台才会站住。</p>
-<figure data-type="image" tabindex="10"><img src="https://www.guanngxu.com/post-images/1774451878019.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://www.guanngxu.com/post-images/1774451878019.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">GameSession</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">self</span>): <span class="hljs-comment"># 更新游戏数据</span>
         <span class="hljs-keyword">for</span> platform <span class="hljs-keyword">in</span> <span class="hljs-variable language_">self</span>.platforms:
@@ -411,8 +409,8 @@ FPS = <span class="hljs-number">60</span>                                <span c
 </code></pre>
 <p>再运行代码会发现玩家不会被平台「吸」上去了，但是如果玩家左右移动超过边界时就看不见了，也不知道玩家到底移动到哪里去了，此处我们加入一个「穿墙」的效果，即如果玩家从右边移出了边界就让玩家从左边出现，反之亦然。</p>
 <p>为了让游戏更加生动，当玩家跳跃时播放一个动效声音。声音文件与图片文件类似，将其存放在代码同目录下的<code>sounds</code>文件夹下，自然在工具类中需要增加加载音频文件的方法。</p>
-<figure data-type="image" tabindex="11"><img src="https://www.guanngxu.com/post-images/1774453660293.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="12"><img src="https://www.guanngxu.com/post-images/1774453667205.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://www.guanngxu.com/post-images/1774453660293.png" alt=""></figure>
+<figure data-type="image" tabindex="12"><img src="https://www.guanngxu.com/post-images/1774453667205.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Utils</span>:
 <span class="hljs-meta">    @staticmethod</span>
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">load_sound</span>(<span class="hljs-params">name</span>):
@@ -460,8 +458,8 @@ FPS = <span class="hljs-number">60</span>                                <span c
 <p>有了声音之后的程序是不是交互感更加强烈了，有木有？但是玩家跳到顶部后就没办法再往上跳了，所以我们要增加屏幕滚动的逻辑，确保玩家可以一直向上跳跃。我们可以设定一个高度阈值，如果玩家跳跃超过了这个高度阈值，就让整个屏幕向下滚动，需要注意的是屏幕向下滚动后需要在顶部区域生成新的平台才能保证游戏可继续下去。</p>
 <p>所谓的屏幕滚动其实就是把除了背景的所有元素全部往下移动，人眼看起来就是屏幕在整体向下滚动，因此我们可以看玩家超过高度阈值多少，就让所有元素向下移动多少距离。</p>
 <p>别忘了此时可以引入游戏计分的逻辑了，此处我们根据滚动距离增加分数。对于分数的显示借助<code>pygame.font</code>模块渲染文字即可。</p>
-<figure data-type="image" tabindex="13"><img src="https://www.guanngxu.com/post-images/1774454320620.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="14"><img src="https://www.guanngxu.com/post-images/1774454327686.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="13"><img src="https://www.guanngxu.com/post-images/1774454320620.png" alt=""></figure>
+<figure data-type="image" tabindex="14"><img src="https://www.guanngxu.com/post-images/1774454327686.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">GameSession</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
         pygame.init()
@@ -504,9 +502,9 @@ FPS = <span class="hljs-number">60</span>                                <span c
 </code></pre>
 <p>确保玩家的相关逻辑都完善后，我们开始引入道具助力玩家获得更多的分数。道具是对弹簧、竹蜻蜓、火箭喷气背包等的统称，即我们可以实现一个道具父类<code>Item</code>，所有道具共性的部分由<code>Item</code>类来实现，具体道具个性化的部分则自行实现。</p>
 <p>道具在未生效前应该和平台绑定，因为道具始终停留在平台之上，这样也可以在平台更新时顺便就更新了道具。考虑到生成道具还需要一定的概率，所以我们在工具类中再添加一个计算概率的方法。我们先加入弹簧类看看效果。</p>
-<figure data-type="image" tabindex="15"><img src="https://www.guanngxu.com/post-images/1774483380926.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="16"><img src="https://www.guanngxu.com/post-images/1774483386558.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="17"><img src="https://www.guanngxu.com/post-images/1774483392920.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="15"><img src="https://www.guanngxu.com/post-images/1774483380926.png" alt=""></figure>
+<figure data-type="image" tabindex="16"><img src="https://www.guanngxu.com/post-images/1774483386558.png" alt=""></figure>
+<figure data-type="image" tabindex="17"><img src="https://www.guanngxu.com/post-images/1774483392920.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Utils</span>:
 <span class="hljs-meta">    @staticmethod</span>
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">hit_probability</span>(<span class="hljs-params">prob</span>):
@@ -566,9 +564,9 @@ FPS = <span class="hljs-number">60</span>                                <span c
 <p>现在程序运行过程中会出现弹簧道具了，但是玩家碰到弹簧道具并没有相应的效果生效，下面就来完善弹簧触发后的效果逻辑。</p>
 <p>若玩家触碰到弹簧，则首先弹簧会「弹开」，即涉及到弹簧的动画播放。其实对于弹簧弹开的动画，我们只需要快速切换不同的弹簧图片即可，这样看起来就是弹簧弹开一样，这个过程由<code>animate</code>方法实现。</p>
 <p>弹簧弹开后，玩家会被弹簧作用一个更强的向上的速度，以此来模拟更高的跳跃效果，所有道具对玩家的作用我们都通过<code>apply_effect</code>方法实现。</p>
-<figure data-type="image" tabindex="18"><img src="https://www.guanngxu.com/post-images/1774484650014.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="19"><img src="https://www.guanngxu.com/post-images/1774484655630.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="20"><img src="https://www.guanngxu.com/post-images/1774484661471.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="18"><img src="https://www.guanngxu.com/post-images/1774484650014.png" alt=""></figure>
+<figure data-type="image" tabindex="19"><img src="https://www.guanngxu.com/post-images/1774484655630.png" alt=""></figure>
+<figure data-type="image" tabindex="20"><img src="https://www.guanngxu.com/post-images/1774484661471.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Platform</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">self</span>):
         <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.item:
@@ -646,9 +644,9 @@ FPS = <span class="hljs-number">60</span>                                <span c
 </code></pre>
 <p>运行之后发现此前实现的<code>animate</code>方法不适用于弹簧道具，玩家触碰到弹簧道具后应是弹簧弹开一次即可，现在的效果是弹簧会一直不停的切换状态，且切换的速度太快了，需要重新实现<code>animate</code>方法，并调整一下动画的播放速度。</p>
 <p>除了弹簧弹开动画不适用外，还存在的问题是玩家在跳跃过程中，如果脑袋先触碰到弹簧也会直接触发效果，这和现实世界逻辑是不对应的，弹簧应该是跌落过程踩到才可生效，因此需要对玩家与道具的碰撞检测进行条件限制，限制在向下移动的过程中。</p>
-<figure data-type="image" tabindex="21"><img src="https://www.guanngxu.com/post-images/1774857629948.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="22"><img src="https://www.guanngxu.com/post-images/1774857635246.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="23"><img src="https://www.guanngxu.com/post-images/1774857639603.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="21"><img src="https://www.guanngxu.com/post-images/1774857629948.png" alt=""></figure>
+<figure data-type="image" tabindex="22"><img src="https://www.guanngxu.com/post-images/1774857635246.png" alt=""></figure>
+<figure data-type="image" tabindex="23"><img src="https://www.guanngxu.com/post-images/1774857639603.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Item</span>:
     probability = <span class="hljs-number">0.3</span> <span class="hljs-comment"># 物品生成的概率，默认30%</span>
     animate_speed = <span class="hljs-number">0.2</span> <span class="hljs-comment"># 物品动画的速度，经验值，表示每帧切换动画的概率</span>
@@ -702,8 +700,8 @@ FPS = <span class="hljs-number">60</span>                                <span c
                     <span class="hljs-variable language_">self</span>.item_colliderect(platform.item)
 </code></pre>
 <p>确认弹簧道具没有问题后，我们继续补充竹蜻蜓道具的逻辑，并在生成新的平台时引入竹蜻蜓道具。</p>
-<figure data-type="image" tabindex="24"><img src="https://www.guanngxu.com/post-images/1774858250656.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="25"><img src="https://www.guanngxu.com/post-images/1774858255457.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="24"><img src="https://www.guanngxu.com/post-images/1774858250656.png" alt=""></figure>
+<figure data-type="image" tabindex="25"><img src="https://www.guanngxu.com/post-images/1774858255457.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Propeller</span>(<span class="hljs-title class_ inherited__">Item</span>):
     probability = <span class="hljs-number">0.8</span> <span class="hljs-comment"># 螺旋桨生成的概率，10%</span>
     animate_speed = <span class="hljs-number">0.1</span> <span class="hljs-comment"># 螺旋桨动画的速度，经验值，表示每帧切换动画的概率</span>
@@ -759,9 +757,9 @@ FPS = <span class="hljs-number">60</span>                                <span c
             <span class="hljs-variable language_">self</span>.platforms.append(new_platform)
 </code></pre>
 <p>现在当玩家碰到竹蜻蜓道具后，即会触发飞行效果，但是生效的时间并不符合我们的预期，分析之后确认原因在于道具始终和平台绑定，当平台被移除后道具则跟着消失，因此对于竹蜻蜓这样的道具需要在玩家碰到它后，让其和玩家绑定才不会消失。</p>
-<figure data-type="image" tabindex="26"><img src="https://www.guanngxu.com/post-images/1774858915697.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="27"><img src="https://www.guanngxu.com/post-images/1774858920932.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="28"><img src="https://www.guanngxu.com/post-images/1774858926069.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="26"><img src="https://www.guanngxu.com/post-images/1774858915697.png" alt=""></figure>
+<figure data-type="image" tabindex="27"><img src="https://www.guanngxu.com/post-images/1774858920932.png" alt=""></figure>
+<figure data-type="image" tabindex="28"><img src="https://www.guanngxu.com/post-images/1774858926069.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Player</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
         <span class="hljs-comment"># 省略部分代码</span>
@@ -809,12 +807,12 @@ FPS = <span class="hljs-number">60</span>                                <span c
             <span class="hljs-variable language_">self</span>.sound.play() <span class="hljs-comment"># 播放螺旋桨音效</span>
 </code></pre>
 <p>考虑到后续可能还有火箭喷气背包等道具也需要做同样的处理，需要一直跟随着玩家，并且也需要一直循环播放动画，因此我们可以抽出来<code>follow_player</code>和<code>animate</code>方法。另外我们本次更新考虑将代码进行极小部分重构，以及修复可能存在的 bug。</p>
-<figure data-type="image" tabindex="29"><img src="https://www.guanngxu.com/post-images/1774860270773.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="30"><img src="https://www.guanngxu.com/post-images/1774860280275.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="31"><img src="https://www.guanngxu.com/post-images/1774860284478.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="32"><img src="https://www.guanngxu.com/post-images/1774860288903.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="33"><img src="https://www.guanngxu.com/post-images/1774860293170.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="34"><img src="https://www.guanngxu.com/post-images/1774860297752.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="29"><img src="https://www.guanngxu.com/post-images/1774860270773.png" alt=""></figure>
+<figure data-type="image" tabindex="30"><img src="https://www.guanngxu.com/post-images/1774860280275.png" alt=""></figure>
+<figure data-type="image" tabindex="31"><img src="https://www.guanngxu.com/post-images/1774860284478.png" alt=""></figure>
+<figure data-type="image" tabindex="32"><img src="https://www.guanngxu.com/post-images/1774860288903.png" alt=""></figure>
+<figure data-type="image" tabindex="33"><img src="https://www.guanngxu.com/post-images/1774860293170.png" alt=""></figure>
+<figure data-type="image" tabindex="34"><img src="https://www.guanngxu.com/post-images/1774860297752.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Player</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">self</span>):
         <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.active_item:
@@ -893,10 +891,10 @@ FPS = <span class="hljs-number">60</span>                                <span c
         <span class="hljs-variable language_">self</span>.screen.blit(scrore_text, (<span class="hljs-number">10</span>, <span class="hljs-number">10</span>)) <span class="hljs-comment"># 在屏幕左</span>
 </code></pre>
 <p>下面我们引入菜单页面，用于提示玩家玩法，标注作者信息。</p>
-<figure data-type="image" tabindex="35"><img src="https://www.guanngxu.com/post-images/1774861074289.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="36"><img src="https://www.guanngxu.com/post-images/1774861078903.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="37"><img src="https://www.guanngxu.com/post-images/1774861083587.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="38"><img src="https://www.guanngxu.com/post-images/1774861087357.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="35"><img src="https://www.guanngxu.com/post-images/1774861074289.png" alt=""></figure>
+<figure data-type="image" tabindex="36"><img src="https://www.guanngxu.com/post-images/1774861078903.png" alt=""></figure>
+<figure data-type="image" tabindex="37"><img src="https://www.guanngxu.com/post-images/1774861083587.png" alt=""></figure>
+<figure data-type="image" tabindex="38"><img src="https://www.guanngxu.com/post-images/1774861087357.png" alt=""></figure>
 <pre class="hljs"><code>WHITE, BLACK, GRAY = (<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>), (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), (<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>) <span class="hljs-comment"># 颜色常量（RGB）</span>
 TITLE_COLOR = (<span class="hljs-number">255</span>, <span class="hljs-number">120</span>, <span class="hljs-number">0</span>)             <span class="hljs-comment"># 主界面标题的颜色</span>
 
@@ -969,10 +967,10 @@ TITLE_COLOR = (<span class="hljs-number">255</span>, <span class="hljs-number">1
             pygame.display.flip()  <span class="hljs-comment"># 更新屏幕显示</span>
 </code></pre>
 <p>运行后确认效果如预期，继续引入背景白云朵朵，只需要加入<code>Cloud</code>类后，在合适的地方实例化并调用其更新方法即可。</p>
-<figure data-type="image" tabindex="39"><img src="https://www.guanngxu.com/post-images/1774862062574.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="40"><img src="https://www.guanngxu.com/post-images/1774862067655.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="41"><img src="https://www.guanngxu.com/post-images/1774862071647.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="42"><img src="https://www.guanngxu.com/post-images/1774862076458.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="39"><img src="https://www.guanngxu.com/post-images/1774862062574.png" alt=""></figure>
+<figure data-type="image" tabindex="40"><img src="https://www.guanngxu.com/post-images/1774862067655.png" alt=""></figure>
+<figure data-type="image" tabindex="41"><img src="https://www.guanngxu.com/post-images/1774862071647.png" alt=""></figure>
+<figure data-type="image" tabindex="42"><img src="https://www.guanngxu.com/post-images/1774862076458.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Cloud</span>():
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
         size = random.randint(<span class="hljs-number">50</span>, <span class="hljs-number">100</span>) <span class="hljs-comment"># 云朵的随机大小</span>
@@ -1026,8 +1024,8 @@ TITLE_COLOR = (<span class="hljs-number">255</span>, <span class="hljs-number">1
         <span class="hljs-comment"># 省略部分代码......</span>
 </code></pre>
 <p>考虑到当玩家掉到屏幕外时直接调用<code>__init__</code>方法可能存在一些风险，比如重复初始化 Pygame 导致系统资源分配异常或某些模块状态错乱；每次都会重新创建<code>pygame.display.set_mode</code>和多个<code>pygame.font.SysFont</code>对象，旧的对象如果没有被 Python 的垃圾回收机制及时清理，会导致内存占用不断上升。所以单独抽取出来<code>reset_game</code>方法，只初始化游戏内的对象数据。</p>
-<figure data-type="image" tabindex="43"><img src="https://www.guanngxu.com/post-images/1774862905256.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="44"><img src="https://www.guanngxu.com/post-images/1774862911305.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="43"><img src="https://www.guanngxu.com/post-images/1774862905256.png" alt=""></figure>
+<figure data-type="image" tabindex="44"><img src="https://www.guanngxu.com/post-images/1774862911305.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Cloud</span>():
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">self</span>):
         <span class="hljs-comment"># 省略部分代码......</span>
@@ -1050,10 +1048,10 @@ TITLE_COLOR = (<span class="hljs-number">255</span>, <span class="hljs-number">1
             <span class="hljs-variable language_">self</span>.reset_game() <span class="hljs-comment"># 重新初始化游戏状态，回到菜单界面</span>
 </code></pre>
 <p>潜在问题都解决后，最后我们引入火箭喷气背包道具，它的大部分代码应是和竹蜻蜓道具一样。需要注意的是由于素材问题，需要将玩家进行翻转，以确保火箭喷气背包可以背在玩家右侧。</p>
-<figure data-type="image" tabindex="45"><img src="https://www.guanngxu.com/post-images/1774863445730.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="46"><img src="https://www.guanngxu.com/post-images/1774863451089.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="47"><img src="https://www.guanngxu.com/post-images/1774863455519.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="48"><img src="https://www.guanngxu.com/post-images/1774863505337.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="45"><img src="https://www.guanngxu.com/post-images/1774863445730.png" alt=""></figure>
+<figure data-type="image" tabindex="46"><img src="https://www.guanngxu.com/post-images/1774863451089.png" alt=""></figure>
+<figure data-type="image" tabindex="47"><img src="https://www.guanngxu.com/post-images/1774863455519.png" alt=""></figure>
+<figure data-type="image" tabindex="48"><img src="https://www.guanngxu.com/post-images/1774863505337.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Player</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
         <span class="hljs-variable language_">self</span>.image = Utils.load_img(<span class="hljs-string">&quot;player.png&quot;</span>, (<span class="hljs-number">40</span>, <span class="hljs-number">40</span>)) <span class="hljs-comment"># 加载玩家图片并缩放到40x40像素</span>
@@ -1124,10 +1122,9 @@ TITLE_COLOR = (<span class="hljs-number">255</span>, <span class="hljs-number">1
             rocket = Rocket(platform)
             platform.item = rocket <span class="hljs-comment"># 将火箭作为平台的一个属性，方便后续碰撞检测和更新</span>
 </code></pre>
-<h2 id="程序打包">程序打包</h2>
-<p>程序完成后需要进行打包方可给到用户使用，我们打包工具使用 <a href="https://pyinstaller.org/en/stable/">Pyinstaller</a>。当 PyInstaller 把所有东西打包进一个<code>.exe</code>时，运行时它会把资源解压到一个临时的文件夹（通常叫<code>_MEIPASS</code>）。但我们的代码里写的是死路径<code>./images/</code>，程序会去<code>.exe</code>所在的文件夹找，而不是去临时文件夹找，会导致报错。</p>
+<h3 id="程序打包">程序打包</h3><p>程序完成后需要进行打包方可给到用户使用，我们打包工具使用 <a href="https://pyinstaller.org/en/stable/">Pyinstaller</a>。当 PyInstaller 把所有东西打包进一个<code>.exe</code>时，运行时它会把资源解压到一个临时的文件夹（通常叫<code>_MEIPASS</code>）。但我们的代码里写的是死路径<code>./images/</code>，程序会去<code>.exe</code>所在的文件夹找，而不是去临时文件夹找，会导致报错。</p>
 <p>我们需要修改<code>Utils</code>类，添加一个路径转换函数，之后方可进行打包。</p>
-<figure data-type="image" tabindex="49"><img src="https://www.guanngxu.com/post-images/1774864124668.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="49"><img src="https://www.guanngxu.com/post-images/1774864124668.png" alt=""></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Utils</span>:
     <span class="hljs-comment"># --- 资源加载助手函数 ---</span>
 <span class="hljs-meta">    @staticmethod</span>
@@ -1624,11 +1621,11 @@ TITLE_COLOR = (<span class="hljs-number">255</span>, <span class="hljs-number">1
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -1683,9 +1680,11 @@ TITLE_COLOR = (<span class="hljs-number">255</span>, <span class="hljs-number">1
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#领域建模">领域建模</a></li>
 <li><a href="#代码实现">代码实现</a></li>
 <li><a href="#程序打包">程序打包</a></li>
+</ul>
 </ul>
 </div>
 
@@ -1724,72 +1723,72 @@ TITLE_COLOR = (<span class="hljs-number">255</span>, <span class="hljs-number">1
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-warning" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-error" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-info" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-other_1" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-warning" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-other_2" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-error" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-success" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-error" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-other_4" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-warning" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-other_3" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
@@ -1799,62 +1798,62 @@ TITLE_COLOR = (<span class="hljs-number">255</span>, <span class="hljs-number">1
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-success" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-other_1" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-error" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-other_4" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-success" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-warning" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-other_1" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-other_1" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-primary" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-info" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-banana" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
@@ -1864,52 +1863,52 @@ TITLE_COLOR = (<span class="hljs-number">255</span>, <span class="hljs-number">1
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-success" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-other_1" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-banana" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-other_3" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-other_1" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-primary" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
@@ -1919,32 +1918,32 @@ TITLE_COLOR = (<span class="hljs-number">255</span>, <span class="hljs-number">1
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-success" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-other_3" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-other_1" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

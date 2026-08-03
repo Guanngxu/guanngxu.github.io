@@ -7,7 +7,7 @@
 <title>
     线性稳压器 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -127,27 +127,27 @@
                     <time class="post-time">2025-06-18</time>
                     
                         <a href="https://www.guanngxu.com/HoPoXlgLN/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-banana">
             #线性稳压器
         </a>
                         
                         <a href="https://www.guanngxu.com/QbHW4oh0b/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_2">
             #开关电源
         </a>
                         
                         <a href="https://www.guanngxu.com/jSM-A51qWd/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_2">
             #LDO
         </a>
                         
                         <a href="https://www.guanngxu.com/g-HWNOeTH/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_1">
             #BUCK
         </a>
                         
                         <a href="https://www.guanngxu.com/f2t0BU6fkn/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-primary">
             #DC-DC
         </a>
                         
@@ -168,15 +168,13 @@ How to Dynamically Adjust Power Module Output Voltage
 
 诸如音频放大器供电等应用中需要动态电压。虽然有许多线性稳压器或开关电源 IC 可以允许通过固定的分压电阻设置其输出电压，但却很少有实现动态电压调整的，并且设置的输出电压也必须大于内部参考电压。
 那么如何实现能够将输出变化到小于参考电压值的电源，或者如何实现一个输出电压可动态调整的稳压器。
-固定输出电压反馈网络
-下面这张图展示了线性稳压器的反馈网络，其包含一个误差放大器，放大器将外部电压（通过分压电阻网络从输出电压采样得到）与内部固定的电压基准源进行比较。误差放大器的输出驱动导通器件的导通程度，导通器件将电流运送到输出端。通过设置外部电阻 Rf1 和 Rf2，可以将线性稳压器的输出电压设置为大于或等于内部基准的任何电压。
+固定输出电压反馈网络下面这张图展示了线性稳压器的反馈网络，其包含一个误差放大器，放大器将外部电压（通过分压电阻网络从输出电压采样得到）与内部固定的电压基准源进行比较。误差放大器的输出驱动导通器件的导通程度，导通器件将电流运送到输出端。通过设置外部电阻 Rf1 和 Rf2，可以将线性稳压器的输出电压设置为大于或等于内部基准的任何电压。
 
 接下来的这张图展示的是降压型开关稳压器的典型电路。与线性放大器类似，同样具有误差放大器和内部基准电压。不同的是导通器件通过 PWM 或者脉冲频率调制方式实现快速打开或关闭，功率波形经过滤波器以产生恒定的直流电压输出。
 
 可以发现不论是 LDO，还是降压型开关电源，它们都可以用下面的模型简化。即通过分压电阻网络对输出进行采样，将采样结果反馈至内部误差放大器，与内部基准源进行比较，从而调节输出电压使之稳定在设定值。
 
-动态调节输出电压
-很容易能想到只需要将反馈网络的上分压电阻或下分压电阻替换为滑动电阻，通过改变不同的阻值即可达到动态调节电压的目的。
+动态调节输出电压很容易能想到只需要将反馈网络的上分压电阻或下分压电阻替换为滑动电阻，通过改变不同的阻值即可达到动态调节电压的目的。
 当然在实际应用中不太可能使用滑动电阻那么笨拙的东西，我们可以通过向反馈网络中注入少量电流，以此来改变反馈网络的有效增益$\frac{V_{FB}}{V_{OUT}}$。当在反馈节点注入正电流时，上分压电阻表现为变小，因此输出电压会降低；当电流被拉出时，下分压电阻表现为变小，因此输出电压表现为增加。
 
 上文提到的电流源我们可以通过外部对一个电阻施加电压来实现，用下面图中简化模型来进行理论计算。芯片正常工作时，FB 引脚电压始终为芯片内部基准电压，利用这一特点我们可以推导出 Vout 与外部施加电压 Vs 之间的关系。
@@ -187,13 +185,11 @@ $$V_{out} = R_{1} \bullet (\frac{V_{ref}}{R_{2}} + \frac{V_{ref} - V_{s}}{R_{3}}
 $$V_{out} = -V_{s}\frac{R_{1}}{R_{3}} + V_{ref}\bullet (1 + \frac{R_{1}}{R_{3}} + \frac{R_{1}}{R_{2}})$$
 通过理论计算可以得出$V_{out}$与$V_{s}$是负相关关系。R3 的值越大，曲线就越缓，意味着可调的精度越高。当 Vs 为 0 时，即 R3 与 R2 并联后的等效阻值为下分压电阻。
 
-能否实现负压输出？
-上文中曲线看出可以通过调节 Vs 的值，实现输出负压的效果，那是否真的能输出负压呢？
+能否实现负压输出？上文中曲线看出可以通过调节 Vs 的值，实现输出负压的效果，那是否真的能输出负压呢？
 以前在BUCK 电路基础知识中提到过电感电流是个三角波，电感电流上升阶段的斜率为$\frac{V_{i}-V_{o}}{L}$，电感电流下降阶段斜率为$-\frac{V_{o}}{L}$。若通过上述方式输出负压，则电感电流将一直处于上升阶段，系统是不稳定的，因此无法输出负压。
 
 BUCK 电路不能输出负压，那如果换成 LDO 芯片能否输出负压呢？答案也是不能输出负压，原因在于从 GND 至 VOUT 都放了 ESD 二极管，如果 VOUT 为负压，那么二极管就会被导通钳位。
-Buck-Boost 实现正转负
-虽然 Buck 不能实现正转负的功能，但是我们可以通过改变 Buck 芯片外围电路，使其工作在 Buck-Boost 模式下，以此来达到正转负的目的。而对外围电路的修改也很简单，只需要将原来的的 Vout 改为 GND，那么原来的 GND 即输出负压。
+Buck-Boost 实现正转负虽然 Buck 不能实现正转负的功能，但是我们可以通过改变 Buck 芯片外围电路，使其工作在 Buck-Boost 模式下，以此来达到正转负的目的。而对外围电路的修改也很简单，只需要将原来的的 Vout 改为 GND，那么原来的 GND 即输出负压。
 与上文同理，我们可以通过外部施加一个电流源来实现对负压进行动态调节的目的。用下面图中简化模型来进行理论计算。芯片正常工作时，FB 引脚电压始终为芯片内部基准电压，利用这一特点我们可以推导出 Vout 与外部施加电压 Vs 之间的关系。
 
 $$I_{2} = I_{1} + I_{3}$$
@@ -202,8 +198,7 @@ $$V_{out} = V_{ref} + \frac{R_{2}}{R_{1}}V_{ref} - \frac{R_{2}}{R_{3}}(V_{s} - V
 $$V_{out} = V_{ref} \bullet (1 + \frac{R_{2}}{R_{1}} + \frac{R_{2}}{R_{3}}) -  \frac{R_{2}}{R_{3}} V_{s}$$
 考虑到此处的 Vout 是负压，Vout 与 Vs 为正相关关系，所以画出 Vout 与 Vs 的曲线关系如下图所示。
 
-输出最大值最小值由什么决定？
-由于 BUCK 上下管打开关断始终需要一定时间，因此最小值由最小占空比决定，即由 min-on time 决定。
+输出最大值最小值由什么决定？由于 BUCK 上下管打开关断始终需要一定时间，因此最小值由最小占空比决定，即由 min-on time 决定。
 同理最大值则由 min-off time 决定。
 
                                         </div>
@@ -223,12 +218,12 @@ $$V_{out} = V_{ref} \bullet (1 + \frac{R_{2}}{R_{1}} + \frac{R_{2}}{R_{3}}) -  \
                     <time class="post-time">2024-05-09</time>
                     
                         <a href="https://www.guanngxu.com/HoPoXlgLN/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-">
             #线性稳压器
         </a>
                         
                         <a href="https://www.guanngxu.com/jSM-A51qWd/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_3">
             #LDO
         </a>
                         
@@ -253,26 +248,21 @@ ADI 公司 LDO 电容选型指南
 
 BUCK 电路通过控制占空比来达到降压的目的，添加 LC 二阶低通滤波器将高频部分滤除，即可达到稳定输出直流的目的。但是滤波不能完全滤除高频分量，BUCK 从原理上就决定了其纹波不容易做到很小，其固有的开关频率会导致电源噪声很大，用来给噪声敏感的元器件供电就不合适。
 相比 BUCK 来说，LDO（Low Dropout Regulaor：低压差线性稳压器）输出的电压会更加平稳，可以弥补 BUCK 输出纹波大的缺点。
-总体框图
-线性稳压器主要由四部分组成，基准源用于提供精准的电压基准、导通器件用于控制从 VIN 到 VOUT 的电流大小、误差放大器将强制反馈节点与基准电压匹配、反馈电阻用于调整以改变输出电压。
+总体框图线性稳压器主要由四部分组成，基准源用于提供精准的电压基准、导通器件用于控制从 VIN 到 VOUT 的电流大小、误差放大器将强制反馈节点与基准电压匹配、反馈电阻用于调整以改变输出电压。
 
 从框图中也可以看到线性稳压器只能用于降压，因此输入电压必须高于输出电压。当然其名字中本身带了低压差的，低压差就意味着少的发热，意味着电源转化效率的提升。线性则是指器件的工作状态，器件的内部模块工作在放大区，放大状态呈线性关系。
-工作原理
-线性稳压器的工作可以模拟为两个电阻器和一个用于 VIN 的电源，其中电源用于给负载供电，通过调整可变电阻（导通器件）的阻值来控制负载电阻所获得的电压，整个系统中唯一不变的恒定的参数就是输出电压 VOUT。
+工作原理线性稳压器的工作可以模拟为两个电阻器和一个用于 VIN 的电源，其中电源用于给负载供电，通过调整可变电阻（导通器件）的阻值来控制负载电阻所获得的电压，整个系统中唯一不变的恒定的参数就是输出电压 VOUT。
 
 其稳压过程如下图所示，当负载电压升高/降低时，采样电路所采到的电压就跟着升高/降低，传递给误差放大器后通过调节导通器件的导通程度来调节输出电压。
 
-导通器件
-导通器件常见的有 PMOS、NMOS、BJT 等。BJT 应用于大电流的场景。PMOS 不需要额外的电源轨即可控制其导通程度，但是相比 NMOS 其 RDSon 更大，即 PMOS 架构的 LDO 在芯片本身所消耗的能量会更大。
+导通器件导通器件常见的有 PMOS、NMOS、BJT 等。BJT 应用于大电流的场景。PMOS 不需要额外的电源轨即可控制其导通程度，但是相比 NMOS 其 RDSon 更大，即 PMOS 架构的 LDO 在芯片本身所消耗的能量会更大。
 
 使用 NMOS 作为导通器件时，需要添加辅助电源轨或者使用电荷泵才能将 NMOS 打开。当然电荷泵也有其缺点，虽然电荷泵可以提升 VIN，但是也带来了额外的噪声影响。若采用辅助电源轨时则需要注意，VBIAS 会影响 NMOS 的导通程度，进而影响输出电压的大小。
 
-PSRR
-PSRR（Power Supply Rejection Ratio）量化了 LDO 抑制任何电源变化传递到其输出信号的能力，也就是 PSRR 决定了输入耦合到输出的噪声有多少。除了 LDO 本身的设计影响 PSRR 外，也可以通过调整 VIN 与 VOUT 之间的差值、输出电容来提高在特定应用（频率）下的 PSRR。
+PSRRPSRR（Power Supply Rejection Ratio）量化了 LDO 抑制任何电源变化传递到其输出信号的能力，也就是 PSRR 决定了输入耦合到输出的噪声有多少。除了 LDO 本身的设计影响 PSRR 外，也可以通过调整 VIN 与 VOUT 之间的差值、输出电容来提高在特定应用（频率）下的 PSRR。
 
 
-输入输出电容
-为了确保 LDO 稳定工作，会在 LDO 输入输出端增加旁路电容，并且旁路电容的 ESR 需要很小，即在符合最小电容和最大 ESR 的要求下，使用任何质量良好的电容都可采用。在选择电容时还需要注意由于直流电压偏置、温度变化、制造商容差等需要对电容进行一定的降额。
+输入输出电容为了确保 LDO 稳定工作，会在 LDO 输入输出端增加旁路电容，并且旁路电容的 ESR 需要很小，即在符合最小电容和最大 ESR 的要求下，使用任何质量良好的电容都可采用。在选择电容时还需要注意由于直流电压偏置、温度变化、制造商容差等需要对电容进行一定的降额。
 输出电容除了可以进行滤波外，还会影响负载电流的变化的瞬态响应，采用较大的输出电容可以改善 LDO 对大负载电流变化的瞬态响应。输入电容则可以降低电路对 PCB 布局的敏感性，尤其是在长输入走线或者高源阻抗的情况下。
 多层陶瓷电容、固态钽点解电容、铝电解电容通常用作输入和输出旁路电容。多层陶瓷电容具备 ESR 和 ESL 低、工作温度范围宽的优点，但是陶瓷电容中的介质材料具备压电性，振动或机械冲击可能会转化为电容上的交流噪声电压，在极端情况下可能会产生 mV 级的噪声。
 
@@ -316,11 +306,11 @@ PSRR（Power Supply Rejection Ratio）量化了 LDO 抑制任何电源变化传�
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>

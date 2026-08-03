@@ -7,7 +7,7 @@
 <title>
     Guanngxu - Keep trying
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -122,12 +122,12 @@
                     <time class="post-time">2019-10-11</time>
                     
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_4">
             #JavaScript
         </a>
                         
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-info">
             #前端
         </a>
                         
@@ -140,12 +140,10 @@
                             <div class="post-content">
                                 
                                         <div class="post-content-content">
-                                            对象
-Js 共有number、string、boolean、null、undefined、object六种主要类型，除了object的其它五中类型都属于基本类型，它们本身并不是对象。但是null有时会被当做对象处理，其原因在于不同的对象在底层都表示为二进制，在 js 中二进制前三位都为 0 的话就会被判定为object类型，而null的二进制表示全是 0， 所以使用typeof操作符会返回object，而后续的 Js 版本为了兼容前面埋下的坑，也就没有修复这个 bug。
+                                            对象Js 共有number、string、boolean、null、undefined、object六种主要类型，除了object的其它五中类型都属于基本类型，它们本身并不是对象。但是null有时会被当做对象处理，其原因在于不同的对象在底层都表示为二进制，在 js 中二进制前三位都为 0 的话就会被判定为object类型，而null的二进制表示全是 0， 所以使用typeof操作符会返回object，而后续的 Js 版本为了兼容前面埋下的坑，也就没有修复这个 bug。
 &amp;quot;I&#39;m a string&amp;quot;本身是一个字面量，并且是一个不可变的值，如果要在这个字面量上执行一些操作，比如获取长度、访问某个字符等，那就需要将其转换为String类型，在必要的时候 js 会自动帮我们完成这种转换，也就是说我们并不需要用new String(&#39;I&#39;m a string&#39;)来显示的创建一个对象。类似的像使用42.359.toFixed(2)时，引擎也会自动把数字转换为Number对象。
 null和undefined没有对应的构造形式，它们只有文字形式。相反，Date只有构造，没有文字形式。对于Object、Array、Function和RegExp（正则表达式）来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。
-Array 类型
-数组类型有一套更加结构化的值存储机制，但是要记住的是，数组也是对象，所以有趣的是你也可以给数组添加属性。
+Array 类型数组类型有一套更加结构化的值存储机制，但是要记住的是，数组也是对象，所以有趣的是你也可以给数组添加属性。
 var myArray = [&amp;quot;foo&amp;quot;, 42, &amp;quot;bar&amp;quot;];
 myArray.baz = &amp;quot;baz&amp;quot;;
 myArray.length; // 3
@@ -161,8 +159,7 @@ console.info(colors[4]); // undefined
 colors[colors.length] = &amp;quot;black&amp;quot;;
 
 数组还有一些很方便的迭代方法，比如every()、filter()、forEach()、map()、some()，这些方法都不会修改数组中包含的值，传入这些方法的函数会接收三个参数：数组项的值、该项在数组中的位置、和数组对象本身。
-Function 类型
-在 ECMAScript 中，每个函数都是Function类的实例，而且都与其它引用类型一样具有属性和方法。由于函数时对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
+Function 类型在 ECMAScript 中，每个函数都是Function类的实例，而且都与其它引用类型一样具有属性和方法。由于函数时对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
 在函数的内部有两个特殊的对象，this和arguments。arguments对象有callee和caller属性。caller用来指向调用它的function对象，若直接在全局环境下调用，则会返回null；callee用来指向当前执行函数，所以我们可以通过下面的方式来实现阶乘函数。
 function factorial(num) {
     if (num &amp;lt;= 1) {
@@ -185,8 +182,7 @@ sayColor.call(o); // blue
 sayColor.apply(o); // blue
 
 需要注意的是，在严格模式下未指定环境对象而调用函数，则this值不会转型为window，除非明确把函数添加到某个对象或者调用apply()或call()。
-安全的类型检查
-Js 内置的类型检查机制并不是完全可靠的，比如在 Safari（第5版前），对正则表达式应用typeof操作符会返回function；像instanceof在存在多个全局作用域（包含 frame）的情况下，也会返回不可靠的结果；前文提到的 Js 一开始埋下的坑也会导致类型检查出错。
+安全的类型检查Js 内置的类型检查机制并不是完全可靠的，比如在 Safari（第5版前），对正则表达式应用typeof操作符会返回function；像instanceof在存在多个全局作用域（包含 frame）的情况下，也会返回不可靠的结果；前文提到的 Js 一开始埋下的坑也会导致类型检查出错。
 我们可以使用toString()方法来达到安全类型检查的目的，在任何值上调用Object原生的toString()方法都会返回一个[object NativeConstructorName]格式的字符串，下面以检查数组为例。
 Object.prototype.toString.call([]); // &amp;quot;[object Array]&amp;quot;
 function isArray(val) {
@@ -194,8 +190,7 @@ function isArray(val) {
 }
 
 
-作用域安全的构造函数
-构造函数其实就是一个使用new操作符调用的函数，当使用new操作符调用时，构造函数内用到的this对象会指向新创建的对象实例，比如我们有下面的构造函数。
+作用域安全的构造函数构造函数其实就是一个使用new操作符调用的函数，当使用new操作符调用时，构造函数内用到的this对象会指向新创建的对象实例，比如我们有下面的构造函数。
 function Person(name, age) {
     this.name = name;
     this.age = age;
@@ -216,8 +211,7 @@ function Person(name, age) {
     }
 }
 
-高级定时器
-大部分人都知道使用setTimeout()和setInterval()可以方便的创建定时任务，看起来好像 Js 也是多线程的一样，实际上定时器仅仅是计划代码在未来的某个时间执行，但是执行时机是不能保证的。因为在页面的生命周期中，不同时间可能有其它代码控制着 JavaScript 进程。
+高级定时器大部分人都知道使用setTimeout()和setInterval()可以方便的创建定时任务，看起来好像 Js 也是多线程的一样，实际上定时器仅仅是计划代码在未来的某个时间执行，但是执行时机是不能保证的。因为在页面的生命周期中，不同时间可能有其它代码控制着 JavaScript 进程。
 这里需要注意一下setInterval()函数，仅当没有该定时器的任何其他代码实例时，Js 引起才会将定时器代码添加到队列中。这样可以避免定时器代码可能在代码再次被添加到队列之前还没有完成执行，进而导致定时器代码连续运行好几次的问题。但是这也导致了另外的问题：（1）某些间隔会被跳过；（2）多个定时器的代码执行之间的间隔可能会比预期小。
 假设某个click事件处理程序使用setInterval()设置了一个 200ms 间隔的重复定时器。如果这个事件处理程序花了 300ms 多的时间完成，同时定时器代码也花了差不多了的时间，就会同时出现跳过间隔切连续运行定时器代码的情况。
 为了避免setInterval()的重复定时器的这两个缺点，我们可以使用如下模式的链式setTimeout()，代码一看就懂什么意思了。
@@ -226,8 +220,7 @@ setTimeout(function() {
     setTimeout(arguements.callee, interval);
 }, interval)
 
-消息队列与事件循环
-如下图所示，左边的栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。
+消息队列与事件循环如下图所示，左边的栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。
 
 右边的堆用来存储声明的变量、对象。下面的队列就是消息队列，一旦某个异步任务有了响应就会被推入队列中。如用户的点击事件、浏览器收到服务的响应和setTimeout中待执行的事件，每个异步任务都和回调函数相关联。
 JS引擎线程用来执行栈中的同步任务，当所有同步任务执行完毕后，栈被清空，然后读取消息队列中的一个待处理任务，并把相关回调函数压入栈中，单线程开始执行新的同步任务。
@@ -286,7 +279,7 @@ click
                     <time class="post-time">2019-09-08</time>
                     
                         <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_3">
             #随笔思考
         </a>
                         
@@ -343,12 +336,12 @@ click
                     <time class="post-time">2019-08-06</time>
                     
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_2">
             #JavaScript
         </a>
                         
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-banana">
             #前端
         </a>
                         
@@ -368,14 +361,12 @@ lhs rhs是啥意思
 《你不知道的 JavaScript（上卷）》
 
 几乎所有的编程语言都能够存储变量当中的值，并且可以在之后对该值进行访问或修改。很明显需要一套良好的规则来存储这些变量，并且之后可以方便的找到这些变量，这套规则我们称之为作用域。
-编译原理
-我们一般把 js 归为「动态」或「解释执行」语言，但是它也会经历编译阶段，不过它不像传统语言那样是提前编译的，它的编译发生在代码执行前的几微秒内。
+编译原理我们一般把 js 归为「动态」或「解释执行」语言，但是它也会经历编译阶段，不过它不像传统语言那样是提前编译的，它的编译发生在代码执行前的几微秒内。
 传统语言在执行之前会经历三个步骤：分词/词法分析、解析/语法分析、代码生成，关于这三个步骤的具体工作，可以查看编译原理相关的文献，我们可以把这三个步骤统称为编译。不过 js 引擎要复杂的多，它会在编译的时候对代码进行性能优化，尽管给 js 引擎优化的时间非常少，但是它用尽了各种办法来保证性能最佳。
 我们需要先了解三个名词。引擎：从头到尾负责整个 js 程序的编译及执行过程；编译器：负责词法分析及代码生成；作用域：负责收集并维护由所有声明的标识符（变量）组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限。
 var a = 2;，我们以这段程序为例，它首先声明了变量a，然后将2赋值给变量a。前一个阶段在编译器处理，后一个阶段由 js 引擎处理。
 变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对它赋值。
-变量提升
-用过 js 的人都知道 js 存在变量提升，那么它到底是如何提升的呢？我们看下面的一段代码
+变量提升用过 js 的人都知道 js 存在变量提升，那么它到底是如何提升的呢？我们看下面的一段代码
 console.log(a);
 var a = 2;
 
@@ -409,8 +400,7 @@ foo = function() {
 };
 
 可以看到，虽然var foo出现在function foo()之前，但是它是重复的声明，因此会被忽略掉，因为函数函数声明会提升到普通变量前。所以在在同一个作用域中进行重复定义是一个很糟糕的做法，经常会导致各种奇怪的问题。
-LHS 和 RHS 查询
-LHS 和 RHS 是数学领域内的概念，意为等式左边和等式右边的意思，在我们现在的场景下就是赋值操作符的左侧和右侧。当变量出现在赋值操作符的左边时，就进行 LHS 查询；反之进行 RHS 查询。
+LHS 和 RHS 查询LHS 和 RHS 是数学领域内的概念，意为等式左边和等式右边的意思，在我们现在的场景下就是赋值操作符的左侧和右侧。当变量出现在赋值操作符的左边时，就进行 LHS 查询；反之进行 RHS 查询。
 RHS 查询与简单的查找某个变量的值没什么区别，它的意思是取得某某的值。而 LHS 查询则是试图找到变量容器的本身，从而可以对其进行赋值。
 console.info(a);我们深入研究一下这句代码。这里对a的引用是 RHS 引用，因为这里a并没有赋予任何值，相应的需要查找并取得a的值，这样才能传递给console.info()。
 a = 2;对a的引用则是一个 LHS 引用，因为实际上我们并关心a当前的值是什么，只是想为= 2这个赋值操作找到一个目标。
@@ -421,8 +411,7 @@ foo(2);
 
 为了加深印象，我们再来分析一下上述代码中的 RHS 和 LHS 引用。最后一行foo()函数的调用需要对foo进行 RHS 引用。这里有一个很容易被忽略的细节，2 被当作参数传递给foo()函数时，2 会被分配给参数a，为了给参数a（隐式地）分配值，需要进行一次 LHS 查询，也就是说代码中隐含了a = 2的语句。
 前文已经说过了console.info(a);会对a进行一次 RHS 查询，需要注意的是console.info()本身也需要一个引用才能执行，因此会对console对象进行 RHS 查询，并检查得到的值中是否有一个log方法。
-为什么区分 LHS 和 RHS
-我们考虑下面的一段代码，就可以为什么要区分 LHS 和 RHS 查询了，而且区分它们是分厂有必要的。
+为什么区分 LHS 和 RHS我们考虑下面的一段代码，就可以为什么要区分 LHS 和 RHS 查询了，而且区分它们是分厂有必要的。
 function foo(a) {
     console.info(a + b);
     b = a;
@@ -435,8 +424,7 @@ foo(2);
 需要注意的是，在严格模式下是禁止自动或隐式地创建全局变量的，因此在严格模式中 LHS 查询失败时，引擎同样会抛出 ReferenceError 异常。
 
 接下来，如果 RHS 查询找到了一个变量，但是你尝试对这个值进行不合理的操作，比如对一个非函数类型的值进行函数调用，那么引擎就会抛出另一种叫做 TypeError 的异常。
-作用域链
-执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中，在 Web 浏览器中，全局执行环境被认为是window对象，因此所有的全局变量和函数都是作为window对象的属性和方法创建的。
+作用域链执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中，在 Web 浏览器中，全局执行环境被认为是window对象，因此所有的全局变量和函数都是作为window对象的属性和方法创建的。
 每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，而函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境，这个函数调用的压栈出栈是一样的。
 当代码在环境中执行时，会创建变量对象的一个作用域链。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端始终都是当前执行的代码所在环境的变量对象，说的比较抽象，我们可以看下面的示例。
 var color = &amp;quot;blue&amp;quot;;
@@ -493,7 +481,7 @@ console.info(getColor()); // &amp;quot;red&amp;quot;
                     <time class="post-time">2019-08-04</time>
                     
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_4">
             #JavaScript
         </a>
                         
@@ -541,8 +529,7 @@ function createXHR() {
 }
 
 我们可以发现，在浏览器每次调用createXHR()的时候，它都要对浏览器所支持的能力仔细检查，但是很明显当第一次检查之后，我们就应该知道浏览器是否支持我们所需要的能力，因此除第一次之外的检查都是多余的。即使只有一个if语句也肯定要比没有if语句慢，所以if语句不必每次都执行，那么代码可以运行的更快一些，惰性载入就是用来解决这种问题的技巧。
-函数重写
-要理解惰性载入函数的原理，我们有必要先理解一下函数重写技术，由于一个函数可以返回另一个函数，因此可以在函数内部用新的函数来覆盖旧的函数。
+函数重写要理解惰性载入函数的原理，我们有必要先理解一下函数重写技术，由于一个函数可以返回另一个函数，因此可以在函数内部用新的函数来覆盖旧的函数。
 function sayHi() {
     console.info(&amp;#x27;Hi&amp;#x27;);
     sayHi = function() {
@@ -551,10 +538,8 @@ function sayHi() {
 }
 
 我们第一次调用sayHi()函数时，控制台会打印出Hi，全局变量sayHi被重新定义，被赋予了新的函数，从第二次开始之后的调用都会打印出Hello。惰性载入函数的本质就是函数重写，惰性载入的意思就是函数执行的分支只会发生一次。
-惰性载入
-我们来看一个例子（例子来源于冴羽所写的JavaScript专题之惰性函数）。现在需要写一个foo函数，这个函数返回首次调用时的Date对象，注意是首次。
-方案一
-var t;
+惰性载入我们来看一个例子（例子来源于冴羽所写的JavaScript专题之惰性函数）。现在需要写一个foo函数，这个函数返回首次调用时的Date对象，注意是首次。
+方案一var t;
 function foo() {
     if (t) return t;
     t = new Date()
@@ -563,8 +548,7 @@ function foo() {
 // 此方案存在两个问题，一是污染了全局变量
 // 二是每次调用都需要进行一次判断
 
-方案二
-var foo = (function() {
+方案二var foo = (function() {
     var t;
     return function() {
         if (t) return t;
@@ -575,8 +559,7 @@ var foo = (function() {
 // 使用闭包来避免污染全局变量，
 // 但是还是没有解决每次调用都需要进行一次判断的问题
 
-方案三
-function foo() {
+方案三function foo() {
     if (foo.t) return foo.t;
     foo.t = new Date();
     return foo.t;
@@ -584,8 +567,7 @@ function foo() {
 // 函数也是一种对象，利用这个特性也可以解决
 // 和方案二一样，还差一个问题没有解决
 
-方案四
-var foo = function() {
+方案四var foo = function() {
     var t = new Date();
     foo = function() {
         return t;
@@ -596,8 +578,7 @@ var foo = function() {
 
 惰性载入函数有两种实现方式，第一种是在函数被调用时再处理函数。在第一次调用的过程中，该函数会被覆盖为另外一种按合适方式执行的函数，这样任何对原函数的调用都不用再经过执行分支了。
 第二种实现方式是在声明函数时就指定适当的函数。这样第一次调用时就不会损失性能了，而是在代码首次加载时会损失一点性能，即是利用闭包写一个自执行的函数。
-改进 createXHR
-有了上面的基础，我们就可以将createXHR()改进为下列形式，这样就不用每次调用都进行判断了。
+改进 createXHR有了上面的基础，我们就可以将createXHR()改进为下列形式，这样就不用每次调用都进行判断了。
 // 第一种实现方式
 function createXHR() {
     if (typeof XMLHttpRequest != &amp;#x27;undefined&amp;#x27;) {
@@ -674,12 +655,12 @@ function createXHR() {
                     <time class="post-time">2019-06-22</time>
                     
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-info">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/3pFNTYNB8/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-banana">
             #翻译摘录
         </a>
                         
@@ -701,8 +682,7 @@ function createXHR() {
 所有这些人都向我寻求帮助与建议，希望能让他们的东西看起来更好。我坚信「授人以鱼不如授人以渔」，所以我试图提供更有价值的建议，以便他们在未来也能解决类似的问题。
 随着时间的推移，我意识到我一直在给所有人提供相同的建议，虽然每次所使用的措辞不同，但我所有的建议都可以提炼为以下四个原则。
 这些 Tips 会帮您创造出美丽动人的设计吗？答案是不会！它们只会帮您创造出色、清晰且易于理解的设计。是每个人都可以轻松理解和互动吗？那当然，所以不多说废话，下面我就向您逐一展示。
-对比
-确保所有元素之间有足够的对比度。为什么？因为那些略有差异但是又不够不同东西，创造了一种恐怖谷。人类的眼睛会排斥它们，对它们感到厌恶、难以理解。我们不希望它们出现在我们的设计中，难道不是吗？
+对比确保所有元素之间有足够的对比度。为什么？因为那些略有差异但是又不够不同东西，创造了一种恐怖谷。人类的眼睛会排斥它们，对它们感到厌恶、难以理解。我们不希望它们出现在我们的设计中，难道不是吗？
 
 恐怖谷理论，是一个关于人类对机器人和非人类物体的感觉的假设。如果一个非人类实体不够拟人，那么它身上的人类特征会很容易辨认；而当它足够拟人时，他身上的非人类特征则会变得很容易辨认。因此会在人类观察者眼中产生一种古怪的感觉，想想您看到病患者或者尸体时的感觉。
 
@@ -720,14 +700,12 @@ function createXHR() {
 4、风格：不要将一个斜体类型放在另一个斜体类型旁边，或者在一个衬线字体旁边放置另一个衬线字体。应该组合不同的东西。
 示例： 不要将 Times New Roman 与 Georgia 放在一起，它们看起来太相似了，应该组合完全不同的风格。
 
-一致性
-确保相似的元素以相似的方式出现。为什么呢？首先，通过确保确保事物一致性，您可以让用户将注意力集中在设计的重要方面，而不是被随时变化的元素分散注意力。
+一致性确保相似的元素以相似的方式出现。为什么呢？首先，通过确保确保事物一致性，您可以让用户将注意力集中在设计的重要方面，而不是被随时变化的元素分散注意力。
 其次，一致性也增加了用户对您的信任，使事物看起来实际上是设计的，而不是简单快速拼凑出来的。
 一旦你选择了具体的风格，就要毫不犹豫的坚持下去，这里所说的风格包括字体、颜色、阴影、栅格、对齐、装饰风格等等。
 
 当您处理许多相邻的不同部分时（比如 YouTube 的视频缩略图或是中型文章的封面），您应该为所有部分选择一种整体风格，并坚持使用。
-奥卡姆剃刀 减少视觉噪音
-在您的设计中，使用的元素越少越好。为什么呢？因为人类的大脑很难在输入过载的情况下处理信息并作出决策。您应该使用尽可能少的装饰元素（字体、颜色、阴影、图标等等）。
+奥卡姆剃刀 减少视觉噪音在您的设计中，使用的元素越少越好。为什么呢？因为人类的大脑很难在输入过载的情况下处理信息并作出决策。您应该使用尽可能少的装饰元素（字体、颜色、阴影、图标等等）。
 将奥卡姆剃刀应用于所有内容。如果只需要两个元素就能满足需求，那么就不要使用 3 个元素；如果 10 个元素实现所需的功能，那么就不要用 20 个元素。
 
 如果您不喜欢古老的英国哲学家风格，更喜欢您在 Netflix（一家美国流媒体提供商）上看到的东西。请将怦然心动的人生整理魔法应用到您的设计中。
@@ -735,8 +713,7 @@ function createXHR() {
 《怦然心动的人生整理魔法》是美国流媒体提供商Netflix于2019年1月1日首播的一档真人实境秀节目。节目由日本“整理咨询顾问” 近藤麻理惠主创。她在每集节目中拜访一个家庭，帮助他们整理自己的房间。
 近藤麻理惠认为整理房间时应当将物品分为五类：衣物、书籍、纸张文件、杂物和情感纪念品；在整理时拿起每件物品，如果能使自己“怦然心动”则留下，如果不能则要感谢物品的贡献然后与其告别。
 
-间距
-元素的位置会发送关于其含义的元级别消息。为什么这很重要？因为了解如何放置元素以及在它们周围预留了多少空间有助于降低设计的复杂性，因此会使人更加愉悦，并且更容易交互。
+间距元素的位置会发送关于其含义的元级别消息。为什么这很重要？因为了解如何放置元素以及在它们周围预留了多少空间有助于降低设计的复杂性，因此会使人更加愉悦，并且更容易交互。
 在您的设计中使用间距来传达下面 3 个方面的信息：
 1、接近度 = 相关性
 与其它元素相比，彼此更接近的事物被认为它们有更强的相关性。这是最重要的，因为我觉得它常常容易被忽视。
@@ -753,8 +730,7 @@ function createXHR() {
 3、重要性与顺序
 这是一个很普通的常识，但是我还是要在这里提到它。
 最重要的事情放在第一位，使它们占据最大的空间，用一系列的事物来传达秩序。
-结束语
-恭喜您！如果您按照这些 Tips 进行设计，那么按照行业标准，它可能看起来非常好。
+结束语恭喜您！如果您按照这些 Tips 进行设计，那么按照行业标准，它可能看起来非常好。
 For everything else, there is always a designer.
 
                                         </div>
@@ -774,7 +750,7 @@ For everything else, there is always a designer.
                     <time class="post-time">2019-04-27</time>
                     
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-info">
             #操作系统
         </a>
                         
@@ -888,12 +864,12 @@ and
                     <time class="post-time">2019-04-23</time>
                     
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_1">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-warning">
             #计算机网络
         </a>
                         
@@ -912,14 +888,11 @@ and
 彻底弄懂HTTP缓存机制及原理
 
 前端开发人员有大部分时间都在调整页面样式，如果页面没有按照自己预期的样式显示，可能想到的第一个解决方案就是清一下浏览器缓存，HTTP 缓存机制作为 Web 性能优化的重要手段，也应该是 Web 开发人员必备的基础知识。我们常说的浏览器缓存机制也就是 HTTP 缓存机制，它是根据 HTTP 报文的缓存标识运行的，所以首先要对 HTTP 报文有一个简单的了解。
-HTTP 报文
-HTTP 报文是浏览器和服务器间进行通信时所发的响应数据，所以 HTTP 报文分为请求（Request）报文和响应（Response）报文两种，浏览器向服务器发送的是请求报文，而服务器向浏览器发送的是响应报文。HTTP 请求报文由请求行、请求头、请求体组成，响应报文则由状态行、响应头、响应正文组成，与缓存有关的规则信息则都包含在请求头和响应头中。
-缓存概述
-浏览器与服务器通过请求响应模式来通信，当浏览器第一次向服务器发送请求并拿到结果后，会根据响应报文中的缓存规则来决定是否缓存结果，其简单的流程如下图：
+HTTP 报文HTTP 报文是浏览器和服务器间进行通信时所发的响应数据，所以 HTTP 报文分为请求（Request）报文和响应（Response）报文两种，浏览器向服务器发送的是请求报文，而服务器向浏览器发送的是响应报文。HTTP 请求报文由请求行、请求头、请求体组成，响应报文则由状态行、响应头、响应正文组成，与缓存有关的规则信息则都包含在请求头和响应头中。
+缓存概述浏览器与服务器通过请求响应模式来通信，当浏览器第一次向服务器发送请求并拿到结果后，会根据响应报文中的缓存规则来决定是否缓存结果，其简单的流程如下图：
 
 浏览器每次发起请求都会先在浏览器缓存中查找该请求的结果和缓存标识，而且每次拿到响应数据后都会将该结果和缓存标识存入缓存中。HTTP 缓存的规则有多种，我们可以根据是否需要重新向服务器发起请求这一维度来分类，即有强制缓存和协商缓存两类，也有人把协商缓存叫对比缓存。
-强制缓存
-我们先自己想一下，使用缓存是不是会有下面几种情况出现。
+强制缓存我们先自己想一下，使用缓存是不是会有下面几种情况出现。
 
 
 存在所需缓存并且未失效：直接走本地缓存即可；强制缓存生效；
@@ -932,11 +905,9 @@ HTTP 报文是浏览器和服务器间进行通信时所发的响应数据，所
 
 
 控制强制缓存的字段分别是Expires和Cache-Control，并且Cache-Control的优先级高于Expires。
-Expires
-Expires是 HTTP/1.0 控制网页缓存的字段，其值为服务器返回的该缓存到期时间，即下一次请求时，请求时间小于Expires值，就直接使用缓存数据。到了 HTTP/1.1，Expires已经被Cache-Control替代了。
+ExpiresExpires是 HTTP/1.0 控制网页缓存的字段，其值为服务器返回的该缓存到期时间，即下一次请求时，请求时间小于Expires值，就直接使用缓存数据。到了 HTTP/1.1，Expires已经被Cache-Control替代了。
 Expires被替代的原因是因为服务端和客户端的时间可能有误差（比如时区不同或者客户端与服务端有一方时间不准确），这就会导致缓存命中误差，强制缓存就变得毫无意义。
-Cache-Control
-Cache-Control是 HTTP/1.1 中最重要的规则，主要取值为：
+Cache-ControlCache-Control是 HTTP/1.1 中最重要的规则，主要取值为：
 
 
 
@@ -969,26 +940,21 @@ max-age=xxx
 
 我们可以看看下面这个例子，可以从截图中看到Expires是一个绝对值，而Cache-Control是一个相对值，此处为max-age=3600，即 1 小时后失效。在无法确定客户端的时间是否与服务端的时间同步的情况下，Cache-Control相比于Expires是更好的选择，所以同时存在时只有Cache-Control生效。
 
-协商缓存
-协商缓存，顾名思义就是需要双方通过协商来判断是否可以使用缓存。强制缓存失效后，浏览器带着缓存标识向服务器发起请求，由服务器根据缓存标识决定是否可以使用缓存，那自然而然就有协商缓存生效和协商缓存不生效两种情况了。
+协商缓存协商缓存，顾名思义就是需要双方通过协商来判断是否可以使用缓存。强制缓存失效后，浏览器带着缓存标识向服务器发起请求，由服务器根据缓存标识决定是否可以使用缓存，那自然而然就有协商缓存生效和协商缓存不生效两种情况了。
 
 上图是协商缓存生效的流程，如果协商缓存不生效则返回的状态码为 200。协商缓存的标识也是在响应报文的响应头中返回给浏览器的，控制协商缓存的字段有Last-Modified / If-Modified-Since和Etag / If-None-Match，其中Etag / If-None-Match的优先级比Last-Modified / If-Modified-Since高，所以同时存在时只有Etag / If-None-Match生效。
-Last-Modified / If-Modified-Since
-你可以往上翻一翻，看一下那张响应报文截图，其中有一个Last-Modified字段，它的值是该资源文件在服务器最后被修改的时间。
+Last-Modified / If-Modified-Since你可以往上翻一翻，看一下那张响应报文截图，其中有一个Last-Modified字段，它的值是该资源文件在服务器最后被修改的时间。
 If-Modified-Since则是客户端再次发起该请求时，携带上次请求返回的Last-Modified值。服务器收到该请求后，发现该请求头有If-Modified-Since字段，则会将If-Modified-Since与该资源在服务器的最后被修改时间做对比，若服务器的资源最后被修改时间大于If-Modified-Since的字段值，则重新返回资源，状态码为 200；否则则返回 304，代表资源无更新，可继续使用缓存文件。
 
-Etag / If-None-Match
-Etag是服务器响应请求时，返回当前资源文件的一个由服务器生成的唯一标识。
+Etag / If-None-MatchEtag是服务器响应请求时，返回当前资源文件的一个由服务器生成的唯一标识。
 If-None-Match则是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有If-None-Match，则会根据If-None-Match的字段值与该资源在服务器的Etag值做对比，如果一致则就返回 304，代表资源无更新，可以继续使用缓存文件；否则重新返回资源文件，状态码为200，
 
-disk cache 与 memory cache
-我们可以通过浏览器调试工具查看强制缓存是否生效，如下图所示，状态码为灰色的请求就代表使用了强制缓存，请求对应的 size 显示了该缓存存放的位置，那么什么时候用 disk 什么时候用 memory 呢？
+disk cache 与 memory cache我们可以通过浏览器调试工具查看强制缓存是否生效，如下图所示，状态码为灰色的请求就代表使用了强制缓存，请求对应的 size 显示了该缓存存放的位置，那么什么时候用 disk 什么时候用 memory 呢？
 
 猜都能猜出来，肯定是优先使用内存（memory）中的缓存，然后才用硬盘（disk）中的缓存。
 内存缓存具有快速读取的特点，它会将编译解析后的文件直接存入该进程的内存中，但是一旦进程关闭了，该进程的内存就会被清空，所以如果你将一个网页关闭后再打开，那么缓存都会走硬盘缓存，而如果你只是刷新网页，那有部分缓存走的就是内存缓存。
 浏览器一般会再 js 和图片等文件解析执行后直接存入内存缓存中，当刷新页面时，这部分文件只需要从内存缓存中读取即可，而 css 文件则会存入硬盘中，所以每次渲染页面都需要从硬盘中读取文件。
-总结
-到这里偷懒一下子了，找到人家画的一张图，看图就行了。
+总结到这里偷懒一下子了，找到人家画的一张图，看图就行了。
 
 
                                         </div>
@@ -1008,7 +974,7 @@ disk cache 与 memory cache
                     <time class="post-time">2019-04-10</time>
                     
                         <a href="https://www.guanngxu.com/9WeHlVlqK9/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-success">
             #软件测试
         </a>
                         
@@ -1067,12 +1033,12 @@ API 调用者（消费者）对服务提供方（生产者）的更改是通过�
                     <time class="post-time">2019-02-07</time>
                     
                         <a href="https://www.guanngxu.com/u3bra3rlo/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-primary">
             #健康生活
         </a>
                         
                         <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-info">
             #随笔思考
         </a>
                         
@@ -1123,22 +1089,22 @@ API 调用者（消费者）对服务提供方（生产者）的更改是通过�
                     <time class="post-time">2019-01-26</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_1">
             #算法
         </a>
                         
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-info">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-success">
             #TypeScript
         </a>
                         
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-">
             #JavaScript
         </a>
                         
@@ -1288,11 +1254,11 @@ onPostBody: function () {
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -1568,142 +1534,142 @@ onPostBody: function () {
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-info" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-other_3" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-banana" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-other_4" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-warning" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-warning" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-error" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-other_3" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-other_2" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-error" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-other_3" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-other_2" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-other_1" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-success" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-other_3" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-other_2" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-other_1" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-primary" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-other_1" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
@@ -1713,22 +1679,22 @@ onPostBody: function () {
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-warning" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-other_2" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-warning" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
@@ -1738,57 +1704,57 @@ onPostBody: function () {
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-other_3" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-error" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-error" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-other_1" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-other_1" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-primary" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-other_3" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

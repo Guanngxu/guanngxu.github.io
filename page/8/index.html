@@ -7,7 +7,7 @@
 <title>
     Guanngxu - Keep trying
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -122,12 +122,12 @@
                     <time class="post-time">2019-01-13</time>
                     
                         <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_1">
             #随笔思考
         </a>
                         
                         <a href="https://www.guanngxu.com/6ZjSGnvm9/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-primary">
             #年度总结
         </a>
                         
@@ -178,12 +178,12 @@
                     <time class="post-time">2019-01-01</time>
                     
                         <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-success">
             #随笔思考
         </a>
                         
                         <a href="https://www.guanngxu.com/6ZjSGnvm9/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-warning">
             #年度总结
         </a>
                         
@@ -240,7 +240,7 @@
                     <time class="post-time">2018-12-15</time>
                     
                         <a href="https://www.guanngxu.com/KCICs8Iip/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-">
             #记录回忆
         </a>
                         
@@ -294,12 +294,12 @@
                     <time class="post-time">2018-12-12</time>
                     
                         <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_2">
             #随笔思考
         </a>
                         
                         <a href="https://www.guanngxu.com/KCICs8Iip/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-">
             #记录回忆
         </a>
                         
@@ -355,12 +355,12 @@
                     <time class="post-time">2018-11-28</time>
                     
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-success">
             #操作系统
         </a>
                         
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-success">
             #算法
         </a>
                         
@@ -454,7 +454,7 @@ public class Main
                     <time class="post-time">2018-11-10</time>
                     
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-success">
             #操作系统
         </a>
                         
@@ -468,14 +468,11 @@ public class Main
                                 
                                         <div class="post-content-content">
                                             初级程序员讲究的是术，只知道如何用关键字去拼凑出领导想要的功能；高级程序员脸的是道，理解了底层的逻辑，不仅把功能做的漂漂亮亮，心法也更上一层楼。
-顺序结构
-数据传送指令
-我们都清楚，绝大多数编译器都把汇编语言作为中间语言，把汇编语言程序变成可运行的二进制文件早就解决了，所以现在的高级语言基本上只需要把自己翻译成汇编语言就可以了。
+顺序结构数据传送指令我们都清楚，绝大多数编译器都把汇编语言作为中间语言，把汇编语言程序变成可运行的二进制文件早就解决了，所以现在的高级语言基本上只需要把自己翻译成汇编语言就可以了。
 汇编指令总共只有那么多，大多数指令都是对数据进行操作，比如常见的数据传送指令mov。不难理解，被操作数据无非有三种形式，立即数，即用来表示常数值；寄存器，此时的数据即存放在指定寄存器中的内容；内存引用，它会根据计算出来的地址访问某个内存位置。
 需要注意的是，到了汇编层级，就不像高级语言那样随随便便int就能和long类型的数据相加减，他们在底层所占有的字节是不一样的，汇编指令是区分操作数据大小的，比如数据传送指令，就有下面这些品种（x86-64 对数据传送指令加了一条限制：两个操作数不能都指向内存位置）。
 
-压栈与弹栈
-对于栈，我想不必多讲，IT 行业的同学都清楚，它是一种线性数据结构，其中的数据遵循“先进后出”原则，寄存器%rsp保存着栈顶元素的地址，即栈顶指针。一个程序要运行起来，离不开栈这种数据结构。
+压栈与弹栈对于栈，我想不必多讲，IT 行业的同学都清楚，它是一种线性数据结构，其中的数据遵循“先进后出”原则，寄存器%rsp保存着栈顶元素的地址，即栈顶指针。一个程序要运行起来，离不开栈这种数据结构。
 栈使用最多的就是弹栈popq和压栈pushq操作。比如将一个四字值压入栈中，栈顶指针首先要减 8（栈向下增长），然后将值写到新的栈顶地址；而弹栈则需要先将栈顶数据读出，然后再将栈指针加 8。所以pushq和popq指令就可以表示为下面的形式。
 // 压栈
 subq $8, %rsp
@@ -486,11 +483,9 @@ movq (%rsp), %rax
 addq $8, %rsp
 
 其他还有算术、逻辑、加载有效地址、移位等等指令，可以查阅相关文档了解，不作过多介绍，汇编看起来确实枯燥乏味。
-条件结构
-前面讲的都是顺序结构，我们的程序中不可能只有顺序结构，条件结构是必不可缺的元素，那么汇编又是如何实现条件结构的呢？
+条件结构前面讲的都是顺序结构，我们的程序中不可能只有顺序结构，条件结构是必不可缺的元素，那么汇编又是如何实现条件结构的呢？
 首先你需要知道，除了整数寄存器，CPU 还维护着一组条件码寄存器，我们主要是了解如何把高级语言的条件结构转换为汇编语言，不去关注这些条件码寄存器，只需要知道汇编可以通过检测这些寄存器来执行条件分支指令。
-if-else 语句
-下面是 C 语言中的if-else语句的通用形式。
+if-else 语句下面是 C 语言中的if-else语句的通用形式。
 if(test-expr){
     then-statement
 }else{
@@ -524,8 +519,7 @@ if(!t){
 }
 
 这样改写，就能提高程序的性能了，但是并不是所有的条件表达式都可以使用条件传送来编译，一般只有当两个表达式都很容易计算时，编译器才会采用条件数据传送的方式，大部分都还是使用条件控制转移方式编译。
-switch 语句
-switch语句可以根据一个整数索引值进行多重分支，在处理具有多种可能结果的测试时，这种语句特别有用。为了让switch的实现更加高效，使用了一种叫做跳转表的数据结构（Radis 也是用的跳表）。跳转表是一个数组，表项 i 是一个代码段的地址，当开关情况数量比较多的时候，就会使用跳转表。
+switch 语句switch语句可以根据一个整数索引值进行多重分支，在处理具有多种可能结果的测试时，这种语句特别有用。为了让switch的实现更加高效，使用了一种叫做跳转表的数据结构（Radis 也是用的跳表）。跳转表是一个数组，表项 i 是一个代码段的地址，当开关情况数量比较多的时候，就会使用跳转表。
 我们举个例子，还是采用 C 语言的形式表是控制流，要理解的是执行switch语句的关键步骤就是通过跳转表来访问代码的位置。
 void switch_eg(long x, long n, long *dest){
     long val = x;
@@ -578,8 +572,7 @@ void switch_eg(long x, long n, long *dest){
         *dest = val;
 }
 
-循环结构
-C 语言中有do-while、while和for三种循环结构，它们的通用形式一般都长下面那样。
+循环结构C 语言中有do-while、while和for三种循环结构，它们的通用形式一般都长下面那样。
 // do-while
 do
     body-statement
@@ -631,8 +624,7 @@ while(test-expr){
 }
 
 有了这种形式的for循环，我们只需要将其中的while部分再翻译一下就好了，前文给出了两种while翻译的方式，而具体采用哪种方式，取决于编译器优化的等级。
-总结
-计算机就是用那么几条简简单单的指令就完成了各种复杂的操作，不得不折服于计算机科学家们的魅力。现在人工智能被炒的很火热，然后人是事件、情感驱动的，而计算机是控制流驱动的，所以从架构上就决定了，冯诺依曼体系计算机实现的都是弱人工智能。
+总结计算机就是用那么几条简简单单的指令就完成了各种复杂的操作，不得不折服于计算机科学家们的魅力。现在人工智能被炒的很火热，然后人是事件、情感驱动的，而计算机是控制流驱动的，所以从架构上就决定了，冯诺依曼体系计算机实现的都是弱人工智能。
 
                                         </div>
                                         
@@ -651,7 +643,7 @@ while(test-expr){
                     <time class="post-time">2018-11-08</time>
                     
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
             #操作系统
         </a>
                         
@@ -729,7 +721,7 @@ int main(int argc, char *argv[]){
                     <time class="post-time">2018-10-25</time>
                     
                         <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-banana">
             #随笔思考
         </a>
                         
@@ -778,7 +770,7 @@ int main(int argc, char *argv[]){
                     <time class="post-time">2018-10-19</time>
                     
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_1">
             #操作系统
         </a>
                         
@@ -795,8 +787,7 @@ int main(int argc, char *argv[]){
 参考内容：
 《深入理解计算机系统》（第三版）
 
-字数据大小
-前面已经提到过信息=位+上下文，但是基本上的计算机都没有将位作为最小的可寻址单位，而是将字节作为了最小的可寻址单位，内存就是一个非常大的字节数组，它的的每个字节都由一个唯一的数字来标识（这个数字是不需要存的），所有可能的地址集合就是虚拟地址空间。
+字数据大小前面已经提到过信息=位+上下文，但是基本上的计算机都没有将位作为最小的可寻址单位，而是将字节作为了最小的可寻址单位，内存就是一个非常大的字节数组，它的的每个字节都由一个唯一的数字来标识（这个数字是不需要存的），所有可能的地址集合就是虚拟地址空间。
 我们常说的 32 位、64 位指的是一台计算机的字长，用于指明指针数据的的标称大小。有的面试官在面试的时候会问这样一个问题：在 C/C++ 中指针的大小是多少？如果你一下就回答出来时多少个字节了，那基本上不必再问了，因为一个指针的大小取决于计算机的字长，所以应该分 32 位机还是 64 位机的情况。
 字长还会决定一个极为重要的系统参数——虚拟地址空间。比如现在有一个 32 位机，每一位可以取值 1 或 总共 32 位，能组合的出局就有 232 个，所以它能访问 232 个地址，其大小也就是 4G，因此你如果给 32 位机装上 8G 的内存条，是起不了多大作用的。
 我们平时所说的 32 位程序和 64 位程序并不是指机器的字长，它们的区别在于程序时如何编译的，而不是其运行的机器类型，高版本都应该做到向后兼容，所以 32 位程序一般都能运行在 64 位机器上，而 64 位程序时不能运行在 32 位机上面的。下面两种伪指令就分别用于编译 32 位程序和 64 位程序。
@@ -807,12 +798,10 @@ C 语言在 32 位机和 64 位机上所表现的差别在于long数据类型，
 
 曾经某运营商的一个基站版本因为数据范围的不同而造成了巨大的损失，在编程环境中使用的是 32 位机，而基站所使用的处理器没有 32 位，最后表现的效果就是大概每隔 40 天，基站就自动复位了。定位到这个问题都花费了巨大的财力和人力资源。
 
-寻址及字节顺序
-上文已经提到，有很多的对象实际上不止占用一个字节，而是占用了多个字节，此时就涉及到如何排列这些字节了，以及如何存储这些字节。以11001100 11001100为例，它占用了两个字节，我们可以选择将这两个字节放在连续的内存中，也可以将两个字节分开放在不连续的内存中；另外我们可以将左边的字节当做起始位置，也可以将右边的字节当做起始位置（更专业的称为大端法和小端法）。
+寻址及字节顺序上文已经提到，有很多的对象实际上不止占用一个字节，而是占用了多个字节，此时就涉及到如何排列这些字节了，以及如何存储这些字节。以11001100 11001100为例，它占用了两个字节，我们可以选择将这两个字节放在连续的内存中，也可以将两个字节分开放在不连续的内存中；另外我们可以将左边的字节当做起始位置，也可以将右边的字节当做起始位置（更专业的称为大端法和小端法）。
 对于字节的排列，到底是用大端法还是小端法，没有技术上的争论，只有社会政治论题的争论，而且机器它对程序员是完全不可见的。几乎所有的机器都将多字节对象存储为连续的字节序列，所使用字节中最小的地址作为对象的地址。
 那么什么时候需要注意字节的顺序规则呢，那就是编写网络应用程序的时候，试想你传输的数据是用大端法表示的，而用户的计算机采用的是小端法，那还会有用户使用你的产品吗。所以编写网络程序时需要遵循已经建立的关于字节顺序的规则。
-整数表示
-程序员对二进制不会不知道，比如 11111111表示的是 255（不考虑补码），很容易就能转换为我们所熟悉的 10 进制数据。这种方式我们默认它是无符号数，如果要加入有符号数就开始变得有趣了。
+整数表示程序员对二进制不会不知道，比如 11111111表示的是 255（不考虑补码），很容易就能转换为我们所熟悉的 10 进制数据。这种方式我们默认它是无符号数，如果要加入有符号数就开始变得有趣了。
 几乎所有的计算机都是采用有补码来表示有符号整数的，它与无符号整数的区别在于最高位被解释为负权，举个例子：将1111看做补码的话，它的值就为：-23 + 22 + 21 + 20 = -1。
 在程序中不可避免的会使用强制类型转换，C 语言中强制类型转换并没有改变数据的位值，只是改变了解释这些位的方式。比如将无符号数（unsigned） 53191 转换为有符号数的结果为 -12345，它们的位值是完全没有相同的。
 最容易入坑的地方是，对两个不同类型的数据进行运算时，C 语言将会隐式的将有符号数转换为无符号数，所以就有下面这样一个神奇的结果。
@@ -823,28 +812,22 @@ C 语言在 32 位机和 64 位机上所表现的差别在于long数据类型，
 // 转换为无符号数后就是范围内最大的数
 
 如果需要扩展一个数的位表示，那么放心的扩展就好了，小的数据类型都能安全的向大的数据类型转换，补码表示的数会在前面补上符号位，原码表示的直接在前面补上 0 即可，而需要注意的是从大往小转，这会不可避免的截断位，造成信息的丢失，所以千万不要这么干。
-加法、乘法运算
-在编程入门的时候可能都知道两个正数相加的结果可能为负数，还有一个更奇怪的现象就是：x &amp;lt; y和 x - y &amp;lt; 0两个表达式可能会得出不一样的结果，这些神奇的结果都和计算机整数的底层表示和运算有着密切的关系。
+加法、乘法运算在编程入门的时候可能都知道两个正数相加的结果可能为负数，还有一个更奇怪的现象就是：x &amp;lt; y和 x - y &amp;lt; 0两个表达式可能会得出不一样的结果，这些神奇的结果都和计算机整数的底层表示和运算有着密切的关系。
 C 语言中有无符号数与有符号数之分，而在 Java 中只有有符号数，下面的内容还是基于 C 语言进行说明，毕竟更 C 比 Java 更接近底层嘛。
-无符号加法
-假设我们使用 w 位来表示无符号数，那么两个加数取值范围即为：0 ≤ x, y ＜2w，理论上它们的和的范围为：0 ≤ sum ＜ 2w+1，因为只有 w 位表示无符号数（要把和表示出来就需要 w+1 位），所以超过 zw的部分就会造成溢出，如下图所示。
+无符号加法假设我们使用 w 位来表示无符号数，那么两个加数取值范围即为：0 ≤ x, y ＜2w，理论上它们的和的范围为：0 ≤ sum ＜ 2w+1，因为只有 w 位表示无符号数（要把和表示出来就需要 w+1 位），所以超过 zw的部分就会造成溢出，如下图所示。
 
 对于无符号数的溢出，计算机采用的处理方式是丢掉最高位，直观的结果就是，当发生溢出了，就将采用取模运算（或者说是减去 2w），举个例子。
 只用 4 为来表示无符号数，即 w = 4，现在有 x [1001] 和 y [1100] 相加，其结果应为：[10101] ，但是没有 5 位用来表示，所以丢掉最高位的1，剩下的值为 5 [0101]，也就是 21 mod 16 = 5。
 那么如何检测是否发生溢出呢？设求和结果为 s，对于加法有 x + y ≥ x 恒成立，即只要没有发生溢出，肯定有 s ≥ x。另一方面，如果确实发生溢出了，就有 s = x + y - 2w，又有 y - 2w ＜ 0，因此 s = x + y - 2w ＜ x。
-补码加法
-和前面一样，对于两个给定范围的加数 - 2w-1 ≤ x, y ≤ 2w-1 - 1，它们的和的范围就在 - 2w ≤ sum ≤ 2w - 2。要想把整个和的范围表示出来，依旧需要 w+1 位才行，而现在只有 w 位，因此还是需要采用将溢出部分截断。
+补码加法和前面一样，对于两个给定范围的加数 - 2w-1 ≤ x, y ≤ 2w-1 - 1，它们的和的范围就在 - 2w ≤ sum ≤ 2w - 2。要想把整个和的范围表示出来，依旧需要 w+1 位才行，而现在只有 w 位，因此还是需要采用将溢出部分截断。
 
 可以发现，当发生正溢出时，截断的结果是从和数中减去了 2w；而当发生负溢出时，截断结果是把和数加上 2w。
 那么对于补码加法如何检测溢出结果呢？通过分析可以发现，当且仅当 x ＞ 0, y ＞ 0，但和 s ≤ 0 时为正溢出；当且仅当 x ＜ 0, y ＜ 0，但 s ≥ 0 时发生负溢出。
-无符号乘法
-有了前面的基础，乘法就变得简单一些了，对于溢出情况，计算机仍然采用的是求模，比如 0 ≤ x, y ≤ 2w - 1，它们乘积的范围为 0 到 22w - 2w+1 + 1 之间，这可能需要 2w 位来表示，溢出部分直接截掉，如下所示。
+无符号乘法有了前面的基础，乘法就变得简单一些了，对于溢出情况，计算机仍然采用的是求模，比如 0 ≤ x, y ≤ 2w - 1，它们乘积的范围为 0 到 22w - 2w+1 + 1 之间，这可能需要 2w 位来表示，溢出部分直接截掉，如下所示。
 
-补码乘法
-对于补码，两个乘数的范围为：- 2w-1 ≤ x, y ≤ 2w-1 + 1，那么其乘积表示范围就为 - 22w-2 + 2w-1 到 22w-2 之间，补码乘法和无符号乘法基本是一样的，只是在无符号基础上多加了一步转换，即将无符号数转换为补码。
+补码乘法对于补码，两个乘数的范围为：- 2w-1 ≤ x, y ≤ 2w-1 + 1，那么其乘积表示范围就为 - 22w-2 + 2w-1 到 22w-2 之间，补码乘法和无符号乘法基本是一样的，只是在无符号基础上多加了一步转换，即将无符号数转换为补码。
 
-乘以常数
-我们知道，计算机做加减法、位级运算的速度最快（1 个指令周期），而做乘除法很慢（10 个甚至更多指令周期），平时编写的程序中常常会乘以一个常数，为了使程序运行的更快，编译器可能会帮我们做一些处理。
+乘以常数我们知道，计算机做加减法、位级运算的速度最快（1 个指令周期），而做乘除法很慢（10 个甚至更多指令周期），平时编写的程序中常常会乘以一个常数，为了使程序运行的更快，编译器可能会帮我们做一些处理。
 首先我们考虑常数是 2 的幂。x * 21 可以表示为 x &amp;lt;&amp;lt; 1，x * 22 可以表示为 x &amp;lt;&amp;lt; 2，依次类推即可。
 对于不是 2 的幂的常数，比如 x * 14 可以表示为：(x&amp;lt;&amp;lt;3) + (x&amp;lt;&amp;lt;2) + (x&amp;lt;&amp;lt;1)，因为 14 = 23 + 22 + 21；聪明的你可能发现 14 还有另一种表示方法，即 14 = 24 - 21，这种表示比前一种表示方法又少了运算量，所以 x * 14 还可以表示为：(x&amp;lt;&amp;lt;4) - (x&amp;lt;&amp;lt;1)。
 实际上，这里有一个通用的解决方案，对于任何一个常数 K，其二进制可以表示为一组 0 和 1 交替的序列：[(0...0)(1...1)(0...0)(1...1)]，14可以表示为：[(0...0)(111)(0)]，考虑一组从位位置 n 到位位置 m 的连续的 1 （n ≥ m），（对于 14 有 n = 3，m = 1）可以有两种形式来计算位对乘积的影响。
@@ -868,17 +851,17 @@ C 语言中有无符号数与有符号数之分，而在 Java 中只有有符号
                     <time class="post-time">2018-10-03</time>
                     
                         <a href="https://www.guanngxu.com/mVmVUsbMe/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_2">
             #工具教程
         </a>
                         
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-banana">
             #Python
         </a>
                         
                         <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-">
             #爬虫
         </a>
                         
@@ -1020,11 +1003,11 @@ def __get_article_list(self):
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -1300,22 +1283,22 @@ def __get_article_list(self):
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-banana" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-other_4" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
@@ -1325,102 +1308,102 @@ def __get_article_list(self):
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-error" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-info" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-other_3" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-banana" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-other_1" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-other_3" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-other_3" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-other_4" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-other_2" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-success" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-success" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-primary" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-info" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-info" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-other_2" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
@@ -1435,52 +1418,52 @@ def __get_article_list(self):
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-info" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-other_2" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-success" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-other_1" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-other_2" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
@@ -1490,32 +1473,32 @@ def __get_article_list(self):
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-error" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-info" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-success" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-banana" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-other_2" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         

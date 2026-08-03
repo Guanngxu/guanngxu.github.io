@@ -7,7 +7,7 @@
 <title>
     深入理解 JavaScript——变量提升与作用域 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,20 +113,20 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             深入理解 JavaScript——变量提升与作用域
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2019-08-06</time>
                             <span class="read-time">9 min read</span>
                             
                                 <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-banana">
                             #JavaScript
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-success">
                             #前端
                         </a>
                                 
@@ -142,14 +142,12 @@
 《你不知道的 JavaScript（上卷）》</p>
 </blockquote>
 <p>几乎所有的编程语言都能够存储变量当中的值，并且可以在之后对该值进行访问或修改。很明显需要一套良好的规则来存储这些变量，并且之后可以方便的找到这些变量，这套规则我们称之为<strong>作用域</strong>。</p>
-<h2 id="编译原理">编译原理</h2>
-<p>我们一般把 js 归为「动态」或「解释执行」语言，但是它也会经历编译阶段，不过它不像传统语言那样是提前编译的，它的编译发生在代码执行前的几微秒内。</p>
+<h3 id="编译原理">编译原理</h3><p>我们一般把 js 归为「动态」或「解释执行」语言，但是它也会经历编译阶段，不过它不像传统语言那样是提前编译的，它的编译发生在代码执行前的几微秒内。</p>
 <p>传统语言在执行之前会经历三个步骤：<strong>分词/词法分析、解析/语法分析、代码生成</strong>，关于这三个步骤的具体工作，可以查看编译原理相关的文献，我们可以把这三个步骤统称为编译。不过 js 引擎要复杂的多，它会在编译的时候对代码进行性能优化，尽管给 js 引擎优化的时间非常少，但是它用尽了各种办法来保证性能最佳。</p>
 <p>我们需要先了解三个名词。<strong>引擎</strong>：从头到尾负责整个 js 程序的编译及执行过程；<strong>编译器</strong>：负责词法分析及代码生成；<strong>作用域</strong>：负责收集并维护由所有声明的标识符（变量）组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限。</p>
 <p><code>var a = 2;</code>，我们以这段程序为例，它首先声明了变量<code>a</code>，然后将<code>2</code>赋值给变量<code>a</code>。前一个阶段在编译器处理，后一个阶段由 js 引擎处理。</p>
 <p>变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对它赋值。</p>
-<h2 id="变量提升">变量提升</h2>
-<p>用过 js 的人都知道 js 存在变量提升，那么它到底是如何提升的呢？我们看下面的一段代码</p>
+<h3 id="变量提升">变量提升</h3><p>用过 js 的人都知道 js 存在变量提升，那么它到底是如何提升的呢？我们看下面的一段代码</p>
 <pre class="hljs"><code><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);
 <span class="hljs-keyword">var</span> a = <span class="hljs-number">2</span>;
 </code></pre>
@@ -183,8 +181,7 @@ foo = <span class="hljs-keyword">function</span>(<span class="hljs-params"></spa
 };
 </code></pre>
 <p>可以看到，虽然<code>var foo</code>出现在<code>function foo()</code>之前，但是它是重复的声明，因此会被忽略掉，因为函数函数声明会提升到普通变量前。所以在在同一个作用域中进行重复定义是一个很糟糕的做法，经常会导致各种奇怪的问题。</p>
-<h2 id="lhs-和-rhs-查询">LHS 和 RHS 查询</h2>
-<p>LHS 和 RHS 是数学领域内的概念，意为等式左边和等式右边的意思，在我们现在的场景下就是<strong>赋值操作符的左侧和右侧</strong>。当变量出现在赋值操作符的左边时，就进行 LHS 查询；反之进行 RHS 查询。</p>
+<h3 id="lhs-和-rhs-查询">LHS 和 RHS 查询</h3><p>LHS 和 RHS 是数学领域内的概念，意为等式左边和等式右边的意思，在我们现在的场景下就是<strong>赋值操作符的左侧和右侧</strong>。当变量出现在赋值操作符的左边时，就进行 LHS 查询；反之进行 RHS 查询。</p>
 <p>RHS 查询与简单的查找某个变量的值没什么区别，它的意思是取得某某的值。而 LHS 查询则是试图找到变量容器的本身，从而可以对其进行赋值。</p>
 <p><code>console.info(a);</code>我们深入研究一下这句代码。这里对<code>a</code>的引用是 RHS 引用，因为这里<code>a</code>并没有赋予任何值，相应的需要查找并取得<code>a</code>的值，这样才能传递给<code>console.info()</code>。</p>
 <p><code>a = 2;</code>对<code>a</code>的引用则是一个 LHS 引用，因为实际上我们并关心<code>a</code>当前的值是什么，只是想为<code>= 2</code>这个赋值操作找到一个目标。</p>
@@ -195,8 +192,7 @@ foo = <span class="hljs-keyword">function</span>(<span class="hljs-params"></spa
 </code></pre>
 <p>为了加深印象，我们再来分析一下上述代码中的 RHS 和 LHS 引用。最后一行<code>foo()</code>函数的调用需要对<code>foo</code>进行 RHS 引用。这里有一个很容易被忽略的细节，2 被当作参数传递给<code>foo()</code>函数时，2 会被分配给参数<code>a</code>，为了给参数<code>a</code>（隐式地）分配值，需要进行一次 LHS 查询，也就是说代码中隐含了<code>a = 2</code>的语句。</p>
 <p>前文已经说过了<code>console.info(a);</code>会对<code>a</code>进行一次 RHS 查询，需要注意的是<code>console.info()</code>本身也需要一个引用才能执行，因此会对<code>console</code>对象进行 RHS 查询，并检查得到的值中是否有一个<code>log</code>方法。</p>
-<h2 id="为什么区分-lhs-和-rhs">为什么区分 LHS 和 RHS</h2>
-<p>我们考虑下面的一段代码，就可以为什么要区分 LHS 和 RHS 查询了，而且区分它们是分厂有必要的。</p>
+<h3 id="为什么区分-lhs-和-rhs">为什么区分 LHS 和 RHS</h3><p>我们考虑下面的一段代码，就可以为什么要区分 LHS 和 RHS 查询了，而且区分它们是分厂有必要的。</p>
 <pre class="hljs"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params">a</span>) {
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">info</span>(a + b);
     b = a;
@@ -209,8 +205,7 @@ foo = <span class="hljs-keyword">function</span>(<span class="hljs-params"></spa
 <p>需要注意的是，在严格模式下是禁止自动或隐式地创建全局变量的，因此在严格模式中 LHS 查询失败时，引擎同样会抛出 ReferenceError 异常。</p>
 </blockquote>
 <p>接下来，如果 RHS 查询找到了一个变量，但是你尝试对这个值进行不合理的操作，比如对一个非函数类型的值进行函数调用，那么引擎就会抛出另一种叫做 TypeError 的异常。</p>
-<h2 id="作用域链">作用域链</h2>
-<p>执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中，在 Web 浏览器中，全局执行环境被认为是<code>window</code>对象，因此所有的全局变量和函数都是作为<code>window</code>对象的属性和方法创建的。</p>
+<h3 id="作用域链">作用域链</h3><p>执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中，在 Web 浏览器中，全局执行环境被认为是<code>window</code>对象，因此所有的全局变量和函数都是作为<code>window</code>对象的属性和方法创建的。</p>
 <p>每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，而函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境，这个函数调用的压栈出栈是一样的。</p>
 <p>当代码在环境中执行时，会创建变量对象的一个<strong>作用域链</strong>。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端始终都是当前执行的代码所在环境的变量对象，说的比较抽象，我们可以看下面的示例。</p>
 <pre class="hljs"><code><span class="hljs-keyword">var</span> color = <span class="hljs-string">&quot;blue&quot;</span>;
@@ -274,11 +269,11 @@ foo = <span class="hljs-keyword">function</span>(<span class="hljs-params"></spa
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -333,11 +328,13 @@ foo = <span class="hljs-keyword">function</span>(<span class="hljs-params"></spa
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#编译原理">编译原理</a></li>
 <li><a href="#变量提升">变量提升</a></li>
 <li><a href="#lhs-和-rhs-查询">LHS 和 RHS 查询</a></li>
 <li><a href="#为什么区分-lhs-和-rhs">为什么区分 LHS 和 RHS</a></li>
 <li><a href="#作用域链">作用域链</a></li>
+</ul>
 </ul>
 </div>
 
@@ -376,27 +373,27 @@ foo = <span class="hljs-keyword">function</span>(<span class="hljs-params"></spa
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-primary" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-primary" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-other_1" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-banana" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
@@ -406,22 +403,22 @@ foo = <span class="hljs-keyword">function</span>(<span class="hljs-params"></spa
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-primary" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-other_2" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-warning" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
@@ -431,7 +428,7 @@ foo = <span class="hljs-keyword">function</span>(<span class="hljs-params"></spa
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-error" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
@@ -441,57 +438,57 @@ foo = <span class="hljs-keyword">function</span>(<span class="hljs-params"></spa
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-other_2" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-info" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-info" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-success" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_1" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-other_3" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-other_1" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
@@ -501,52 +498,52 @@ foo = <span class="hljs-keyword">function</span>(<span class="hljs-params"></spa
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-banana" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-other_1" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-primary" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-other_2" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-banana" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-banana" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
@@ -556,47 +553,47 @@ foo = <span class="hljs-keyword">function</span>(<span class="hljs-params"></spa
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-info" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-warning" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-banana" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-other_1" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-warning" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

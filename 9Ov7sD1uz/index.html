@@ -7,7 +7,7 @@
 <title>
     Oracle 安装及 Spring 使用 Oracle | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,9 +113,9 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             Oracle 安装及 Spring 使用 Oracle
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2023-03-30</time>
                             <span class="read-time">7 min read</span>
@@ -126,12 +126,12 @@
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-warning">
                             #Java
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/M4PlaWNdk/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-">
                             #Oracle
                         </a>
                                 
@@ -148,8 +148,7 @@
 <p><a href="https://www.php.cn/docker/493662.html">docker能安装oracle吗</a></p>
 <p><a href="https://stackoverflow.com/questions/16782626/batch-script-for-add-a-auto-increased-primary-key-for-exist-table-with-records">Batch script for add a auto-increased primary key for exist table with records</a></p>
 </blockquote>
-<h3 id="docker-安装-oracle11g">Docker 安装 Oracle11g</h3>
-<p><strong>注意：下列安装方式仅适用于<code>x86</code>架构服务器，不适用于<code>arm</code>架构服务器</strong>。</p>
+<h4 id="docker-安装-oracle11g">Docker 安装 Oracle11g</h4><p><strong>注意：下列安装方式仅适用于<code>x86</code>架构服务器，不适用于<code>arm</code>架构服务器</strong>。</p>
 <pre class="hljs"><code><span class="hljs-comment"># 拉取 oracle11，镜像有点大，需要花一些时间</span>
 docker pull registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g
 
@@ -218,11 +217,9 @@ startup;
 <span class="hljs-comment"># 退出软链接</span>
 <span class="hljs-built_in">exit</span>;
 </code></pre>
-<h3 id="客户端连接-oracle">客户端连接 Oracle</h3>
-<p>以 Navicat 客户端为例，新建连接时按下图方式填写连接信息即可，密码即为<code>system</code>。需要注意的是，在 Windows 下选择 SID 或是服务名均可连接成功，但是在 Mac 下需要选择 SID 方式才能连接成功。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1680320187761.png" alt="" loading="lazy"></figure>
-<h3 id="oracle-实现主键自增">Oracle 实现主键自增</h3>
-<p>Oracle 在创建表的时候，不能像 MySQL 那样选择主键直接自增，但是我们可以通过给表创建序列和触发器去实现自增。下文以创建 USER 表为例。</p>
+<h4 id="客户端连接-oracle">客户端连接 Oracle</h4><p>以 Navicat 客户端为例，新建连接时按下图方式填写连接信息即可，密码即为<code>system</code>。需要注意的是，在 Windows 下选择 SID 或是服务名均可连接成功，但是在 Mac 下需要选择 SID 方式才能连接成功。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1680320187761.png" alt=""></figure>
+<h4 id="oracle-实现主键自增">Oracle 实现主键自增</h4><p>Oracle 在创建表的时候，不能像 MySQL 那样选择主键直接自增，但是我们可以通过给表创建序列和触发器去实现自增。下文以创建 USER 表为例。</p>
 <pre class="hljs"><code><span class="hljs-comment">-- 删除原有 USER 表</span>
 <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> &quot;TEST&quot;.&quot;USER&quot;;
 <span class="hljs-comment">-- 创建 USER 表</span>
@@ -270,8 +267,7 @@ BEFORE <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</s
 <p>需要注意的是，上面的<code>/</code>符号不能少。执行插入语句时可以发现，<code>id</code>会自动增加。</p>
 <pre class="hljs"><code><span class="hljs-keyword">INSERT INTO</span> &quot;TEST&quot;.&quot;USER&quot; (&quot;gmt_create&quot;, &quot;gmt_modified&quot;, &quot;is_deleted&quot;, &quot;login&quot;, &quot;passwd&quot;, &quot;nick&quot;, &quot;phone&quot;, &quot;head_img&quot;, &quot;status&quot;, &quot;remark&quot;) <span class="hljs-keyword">VALUES</span> (TO_DATE(<span class="hljs-string">&#x27;2023-04-01 00:00:00&#x27;</span>, <span class="hljs-string">&#x27;SYYYY-MM-DD HH24:MI:SS&#x27;</span>), TO_DATE(<span class="hljs-string">&#x27;2023-04-01 17:04:30&#x27;</span>, <span class="hljs-string">&#x27;SYYYY-MM-DD HH24:MI:SS&#x27;</span>), <span class="hljs-string">&#x27;0&#x27;</span>, <span class="hljs-string">&#x27;user&#x27;</span>, <span class="hljs-string">&#x27;123&#x27;</span>, <span class="hljs-string">&#x27;Jack&#x27;</span>, <span class="hljs-string">&#x27;1111&#x27;</span>, <span class="hljs-string">&#x27;head.jpg&#x27;</span>, <span class="hljs-string">&#x27;激活&#x27;</span>, <span class="hljs-string">&#x27;测试&#x27;</span>);
 </code></pre>
-<h3 id="java-springmybatis-使用-oracle-及配置分页">Java Spring+Mybatis 使用 Oracle 及配置分页</h3>
-<p><code>application.properties</code>文件配置信息：</p>
+<h4 id="java-springmybatis-使用-oracle-及配置分页">Java Spring+Mybatis 使用 Oracle 及配置分页</h4><p><code>application.properties</code>文件配置信息：</p>
 <pre class="hljs"><code># mybatis
 spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
 spring.datasource.url=jdbc:oracle:thin:@8127.0.0.1:1521:helowin
@@ -362,11 +358,11 @@ pagehelper.params=count=countSql
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -422,10 +418,12 @@ pagehelper.params=count=countSql
             <div class="markdownIt-TOC">
 <ul>
 <ul>
+<ul>
 <li><a href="#docker-安装-oracle11g">Docker 安装 Oracle11g</a></li>
 <li><a href="#客户端连接-oracle">客户端连接 Oracle</a></li>
 <li><a href="#oracle-实现主键自增">Oracle 实现主键自增</a></li>
 <li><a href="#java-springmybatis-使用-oracle-及配置分页">Java Spring+Mybatis 使用 Oracle 及配置分页</a></li>
+</ul>
 </ul>
 </ul>
 </div>
@@ -465,107 +463,107 @@ pagehelper.params=count=countSql
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-other_1" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-error" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-banana" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-other_3" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-info" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-primary" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-other_2" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-other_2" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-info" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-other_3" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-warning" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-other_4" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-other_4" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-info" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_4" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
@@ -575,72 +573,72 @@ pagehelper.params=count=countSql
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-primary" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-success" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-other_3" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-primary" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-success" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-warning" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-success" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-warning" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-primary" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-other_1" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
@@ -650,42 +648,42 @@ pagehelper.params=count=countSql
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-error" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-other_3" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-success" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-other_1" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-other_2" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-warning" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

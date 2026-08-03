@@ -7,7 +7,7 @@
 <title>
     C 语言拾遗 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,9 +113,9 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             C 语言拾遗
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2022-10-16</time>
                             <span class="read-time">15 min read</span>
@@ -126,7 +126,7 @@
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-error">
                             #操作系统
                         </a>
                                 
@@ -143,8 +143,7 @@
                                     <blockquote>
 <p>约定：本文所说的标准均为 <strong>ANSI (C89) 标准</strong></p>
 </blockquote>
-<h3 id="三字母词">三字母词</h3>
-<p>标准定义了几个<strong>三字母词</strong>，三字母词就是三个字符的序列，合起来表示另一个字符。三字母词使得 C 环境可以在某些缺少一些必需字符的字符集上实现，它使用两个问号开头再尾随一个字符，这种形式一般不会出现在其它表达形式中，这样就不容易引起误解了，下面是一些三字母词的对应关系：</p>
+<h4 id="三字母词">三字母词</h4><p>标准定义了几个<strong>三字母词</strong>，三字母词就是三个字符的序列，合起来表示另一个字符。三字母词使得 C 环境可以在某些缺少一些必需字符的字符集上实现，它使用两个问号开头再尾随一个字符，这种形式一般不会出现在其它表达形式中，这样就不容易引起误解了，下面是一些三字母词的对应关系：</p>
 <pre class="hljs"><code>??(   [
 ??)   ]
 ??!   |
@@ -160,18 +159,15 @@
 
 <span class="hljs-comment">// result is: Delete file (are you really sure]: </span>
 </code></pre>
-<h3 id="字符">字符</h3>
-<p>直接操作字符会降低代码的可移植性，应该尽可能使用库函数完成。比如下面的代码试图测试<code>ch</code>是否为一个大写字符，它在使用<strong>ASCII</strong>字符集的机器上能够运行，但是在使用<strong>EBCDIC</strong>字符集的机器上将会失败。</p>
+<h4 id="字符">字符</h4><p>直接操作字符会降低代码的可移植性，应该尽可能使用库函数完成。比如下面的代码试图测试<code>ch</code>是否为一个大写字符，它在使用<strong>ASCII</strong>字符集的机器上能够运行，但是在使用<strong>EBCDIC</strong>字符集的机器上将会失败。</p>
 <pre class="hljs"><code><span class="hljs-keyword">if</span>( ch &gt;= <span class="hljs-string">&#x27;A&#x27;</span> &amp;&amp; ch &lt;= <span class="hljs-string">&#x27;Z&#x27;</span>)
 </code></pre>
 <p>使用<code>if(isupper(ch))</code>语句则能保证无论在哪种机器上都能正常运行。</p>
-<h3 id="字符串比较">字符串比较</h3>
-<p>库函数提供了<code>int strcmp(const char *s1, const char *s2)</code>函数用于比较两个字符串是否相等，需要注意的是在标准中并没有规定用于提示不相等的具体值。它只是说如果第 1 个字符串大于第 2 个字符串就返回一个大于零的值，如果第 1 个字符串小于第 2 个字符串就返回一个小于零的值。一个常见的错误是以为返回值是<code>1</code>和<code>-1</code>，分别代表大于和小于。</p>
+<h4 id="字符串比较">字符串比较</h4><p>库函数提供了<code>int strcmp(const char *s1, const char *s2)</code>函数用于比较两个字符串是否相等，需要注意的是在标准中并没有规定用于提示不相等的具体值。它只是说如果第 1 个字符串大于第 2 个字符串就返回一个大于零的值，如果第 1 个字符串小于第 2 个字符串就返回一个小于零的值。一个常见的错误是以为返回值是<code>1</code>和<code>-1</code>，分别代表大于和小于。</p>
 <p>初学者常常会编写下面的表达式。认为如果两个字符串相等，那么它返回的结果将为真。但是这个结果恰好相反，两个字符串相等的情况下返回值是零（假）。</p>
 <pre class="hljs"><code><span class="hljs-keyword">if</span>(<span class="hljs-built_in">strcmp</span>(a, b))
 </code></pre>
-<h3 id="strlen">strlen</h3>
-<p><code>strlen</code>的返回值是一个<code>size_t</code>类型的值，这个类型是在头文件<code>stddef.h</code>中定义的，它是一个无符号整数类型，所以会导致下面表达式的条件永远为真。</p>
+<h4 id="strlen">strlen</h4><p><code>strlen</code>的返回值是一个<code>size_t</code>类型的值，这个类型是在头文件<code>stddef.h</code>中定义的，它是一个无符号整数类型，所以会导致下面表达式的条件永远为真。</p>
 <pre class="hljs"><code><span class="hljs-keyword">if</span>(<span class="hljs-built_in">strlen</span>(x) - <span class="hljs-built_in">strlen</span>(y) &gt;= <span class="hljs-number">0</span>) {
     <span class="hljs-comment">// do something</span>
 }
@@ -185,8 +181,7 @@
 <span class="hljs-type">char</span> *cpy = <span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">strlen</span>(str) + <span class="hljs-number">1</span>);
 <span class="hljs-built_in">strcpy</span>(cpy, str);
 </code></pre>
-<h3 id="赋值截断">赋值截断</h3>
-<p>表达式<code>a = x = y + 3;</code>中<code>x</code>和<code>a</code>被赋予相同值的说法是错误的，因为如果<code>x</code>是一个字符型变量，那么<code>y+3</code>的值就会被截去一段，以便容纳于字符型的变量中，那么<code>a</code>所赋的值就是这个被截短后的值。下面也是一个非常常见的错误。</p>
+<h4 id="赋值截断">赋值截断</h4><p>表达式<code>a = x = y + 3;</code>中<code>x</code>和<code>a</code>被赋予相同值的说法是错误的，因为如果<code>x</code>是一个字符型变量，那么<code>y+3</code>的值就会被截去一段，以便容纳于字符型的变量中，那么<code>a</code>所赋的值就是这个被截短后的值。下面也是一个非常常见的错误。</p>
 <pre class="hljs"><code><span class="hljs-type">char</span> ch;
 <span class="hljs-comment">// do something</span>
 <span class="hljs-keyword">while</span>((ch = getchar()) != EOF) {
@@ -194,17 +189,14 @@
 }
 </code></pre>
 <p><code>EOF</code>所需要的位数比字符型值所能提供的位数要多，这也是<code>getchar</code>返回一个整型值而不是字符值的原因。例子中把<code>getchar</code>的返回值存储于字符型变量会导致被截短，然后再把这个被截短的值提升为整型与<code>EOF</code>进行比较，在某些机器的特定场景下就会导致问题。比如在使用有符号字符集的机器上，如果读取了一个的值为<code>\377</code>的字节，上述循环就将终止，因为这个值截短再提升之后与<code>EOF</code>相等。而当这段代码在使用无符号字符集的机器上运行时，这个循环将永远不会终止。</p>
-<h3 id="指针与数组">指针与数组</h3>
-<p>因为数组和指针都具有指针值，都可以进行间接访问和下标操作，所以很多同学都想当然的将它们认为是一样的，为了说明它们是不相等的，我们可以考虑下面的两个声明：</p>
+<h4 id="指针与数组">指针与数组</h4><p>因为数组和指针都具有指针值，都可以进行间接访问和下标操作，所以很多同学都想当然的将它们认为是一样的，为了说明它们是不相等的，我们可以考虑下面的两个声明：</p>
 <pre class="hljs"><code><span class="hljs-type">int</span> a[<span class="hljs-number">5</span>];
 <span class="hljs-type">int</span> *b;
 </code></pre>
 <p>声明一个数组时，编译器将根据声明所指定的元素数量为数组保留空间，然后再创建数组名，它的值是一个常量，指向这段空间的起始位置。声明一个指针变量时，编译器只为指针本身保留内存空间，它并不为任何整型值分配内存空间。而且，指针变量并未被初始化为任何指向现有的内存空间。所以在上述声明之后，表达式<code>*a</code>是完全合法的，但是表达式<code>*b</code>将访问内存中某个不确定的位置，或者导致程序终止。</p>
-<h3 id="硬件操作">硬件操作</h3>
-<p>我们知道其实表示就是内存中一个地址，所以理论上<code>*100 = 25</code>是一种可行的操作，即让内存中位置为<code>100</code>的地方存储<code>25</code>。但实际上这条语句是非法的，因为字面值<code>100</code>的类型是整型，而间接访问操作只能用于指针类型表达式，所以合法的写法必须使用强制转换，即<code>*(int *)100 = 25</code>。</p>
+<h4 id="硬件操作">硬件操作</h4><p>我们知道其实表示就是内存中一个地址，所以理论上<code>*100 = 25</code>是一种可行的操作，即让内存中位置为<code>100</code>的地方存储<code>25</code>。但实际上这条语句是非法的，因为字面值<code>100</code>的类型是整型，而间接访问操作只能用于指针类型表达式，所以合法的写法必须使用强制转换，即<code>*(int *)100 = 25</code>。</p>
 <p>需要说明的是使用这种技巧的机会是绝无仅有的，只有偶尔需要通过地址访问内存中某个特定的位置才可使用，它并不是访问某个变量，而是访问硬件本身。比如在某些机器上，操作系统需要与输入输出设备控制器通信，启动 I/O 操作并从前面的操作中获得结果，此时这些地址是预先已知的。</p>
-<h3 id="与-操作符">+= 与 ?: 操作符</h3>
-<p>我们在这里讨论一下<code>+=</code>操作符，它的用法为<code>a += expr</code>，读作<strong>把 expr 加到 a</strong>，其实际功能相当于表达式<code>a = a + expr</code>的作用，唯一不同的是<code>+=</code>操作符的左操作数<code>a</code>只会求值一次。可能到目前为止没有感觉到设计两种增加一个变量值的方法有什么意义？下面给出代码示例：</p>
+<h4 id="与-操作符">+= 与 ?: 操作符</h4><p>我们在这里讨论一下<code>+=</code>操作符，它的用法为<code>a += expr</code>，读作<strong>把 expr 加到 a</strong>，其实际功能相当于表达式<code>a = a + expr</code>的作用，唯一不同的是<code>+=</code>操作符的左操作数<code>a</code>只会求值一次。可能到目前为止没有感觉到设计两种增加一个变量值的方法有什么意义？下面给出代码示例：</p>
 <pre class="hljs"><code><span class="hljs-comment">// 形式 1</span>
 a[ <span class="hljs-number">2</span> * (y - <span class="hljs-number">6</span>*f(x)) ] = a[ <span class="hljs-number">2</span> * (y - <span class="hljs-number">6</span>*f(x)) ] + <span class="hljs-number">1</span>;
 
@@ -223,8 +215,7 @@ a[ <span class="hljs-number">2</span> * (y - <span class="hljs-number">6</span>*
 <span class="hljs-comment">// 形式 2</span>
 b[ <span class="hljs-number">2</span> * c + d * (e / <span class="hljs-number">5</span>) ] = a &gt; <span class="hljs-number">5</span> ? <span class="hljs-number">3</span> : <span class="hljs-number">-20</span>;
 </code></pre>
-<h3 id="逗号操作符">逗号操作符</h3>
-<p>逗号操作符可以将多个表达式分隔开来。这些表达式自左向右逐个进行求值，整个表达式的值就是最后那个表达式的值。例如：</p>
+<h4 id="逗号操作符">逗号操作符</h4><p>逗号操作符可以将多个表达式分隔开来。这些表达式自左向右逐个进行求值，整个表达式的值就是最后那个表达式的值。例如：</p>
 <pre class="hljs"><code><span class="hljs-keyword">if</span>(b + <span class="hljs-number">1</span>, c / <span class="hljs-number">2</span>, d &gt; <span class="hljs-number">0</span>) { <span class="hljs-comment">// do something}</span>
 </code></pre>
 <p>当然，正常人不会编写这样的代码，因为对前两个表达式的求值毫无意义，它们的值只是被简单的丢弃了。但是我们可以看看下面的代码：</p>
@@ -242,8 +233,7 @@ count_value(a);
     <span class="hljs-comment">// do something</span>
 }
 </code></pre>
-<h3 id="指针">指针</h3>
-<pre class="hljs"><code><span class="hljs-type">int</span>* a, b, c;
+<h4 id="指针">指针</h4><pre class="hljs"><code><span class="hljs-type">int</span>* a, b, c;
 </code></pre>
 <p>人们会很自然的认为上述语句是把所有三个变量都声明为指向整型的指针，但事实上并非如此，星号实际上只是表达式<code>*a</code>的一部分，只对这个标识符有作用。如果要声明三个指针，那么应该使用下面的形式进行初始化。</p>
 <pre class="hljs"><code><span class="hljs-type">int</span> *a, *b, *c;
@@ -256,8 +246,7 @@ count_value(a);
 msg = <span class="hljs-string">&quot;Hello World!&quot;</span>;
 </code></pre>
 <p><strong>指针常量：</strong> <code>int *pi</code>中<code>pi</code>是一个普通的指向整型的指针， 而变量<code>int const *pci</code>则是一个指向整型常量的指针，你可以修改指针的值，但是不能修改它所指向的值。相比之下<code>int * const cpi</code>则声明<code>cpi</code>为一个指向整型的常量指针。此时指针是常量，它的值无法修改，但是可以修改它所指向的整型的值。在<code>int const * const cpci</code>中，无论是指针本身还是它所指向的值都是常量，无法修改。</p>
-<h3 id="枚举类型">枚举类型</h3>
-<p><strong>枚举（enumerated）</strong> 类型就是指它的的值为符号常量而不是字面值的类型，比如下面的语句声明了<code>Jar_Type</code>类型：</p>
+<h4 id="枚举类型">枚举类型</h4><p><strong>枚举（enumerated）</strong> 类型就是指它的的值为符号常量而不是字面值的类型，比如下面的语句声明了<code>Jar_Type</code>类型：</p>
 <pre class="hljs"><code><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Jar_Type</span> {</span>
     CUP,
     PINT,
@@ -279,13 +268,11 @@ msg = <span class="hljs-string">&quot;Hello World!&quot;</span>;
 <blockquote>
 <p>符号名被当作整型处理，这意味着可以把<code>HALF_GALLON</code>这样的值赋给任何整型变量，但是在编程活动中应该避免这种方式使用枚举，因为这样会削弱它们的含义。</p>
 </blockquote>
-<h3 id="typedef-与-define">typedef 与 define</h3>
-<p>在实际应用过程中应该使用<code>typedef</code>而不是<code>#define</code>来创建新的类型名，因为<code>#define</code>无法正确的处理指针类型，比如下面的代码段正确的声明了<code>a</code>，但是<code>b</code>却被声明为了一个字符。</p>
+<h4 id="typedef-与-define">typedef 与 define</h4><p>在实际应用过程中应该使用<code>typedef</code>而不是<code>#define</code>来创建新的类型名，因为<code>#define</code>无法正确的处理指针类型，比如下面的代码段正确的声明了<code>a</code>，但是<code>b</code>却被声明为了一个字符。</p>
 <pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">define</span> ptr_to_char char *</span>
 ptr_to_char a, b;
 </code></pre>
-<h3 id="联合union">联合（union）</h3>
-<p>联合看起来很像结构体，与结构体不同的是联合的所有成员共用同一块内存，所以在同一时刻联合中的有效成员永远只有一个。我们可以看下面一个例子，当一个<code>variable</code>类型的变量被创建时，解释器就创建一个这样的结构并记录变量类型。然后根据变量类型，把变量的值存储在这三个值字段的其中一个。</p>
+<h4 id="联合union">联合（union）</h4><p>联合看起来很像结构体，与结构体不同的是联合的所有成员共用同一块内存，所以在同一时刻联合中的有效成员永远只有一个。我们可以看下面一个例子，当一个<code>variable</code>类型的变量被创建时，解释器就创建一个这样的结构并记录变量类型。然后根据变量类型，把变量的值存储在这三个值字段的其中一个。</p>
 <pre class="hljs"><code><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">variable</span> {</span>
     <span class="hljs-class"><span class="hljs-keyword">enum</span> {</span> INT, FLOAT, STRING } type;
     <span class="hljs-type">int</span> int_val;
@@ -311,8 +298,7 @@ ptr_to_char a, b;
     chat c[<span class="hljs-number">4</span>];
 } x = { <span class="hljs-number">5</span> };
 </code></pre>
-<h3 id="结构体">结构体</h3>
-<p>在实际编程活动中，存在链表、二叉树等结点自引用的情况，那么结构体的自引用如何编写呢？</p>
+<h4 id="结构体">结构体</h4><p>在实际编程活动中，存在链表、二叉树等结点自引用的情况，那么结构体的自引用如何编写呢？</p>
 <pre class="hljs"><code><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span> {</span>
     <span class="hljs-type">int</span> data;
     <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span> <span class="hljs-title">next</span>;</span>
@@ -390,8 +376,7 @@ ptr_to_char a, b;
 <p>当程序创建几百个甚至几千个结构时，减少内存浪费的要求就比程序的可读性更为急迫。我们可以使用<code>sizeof</code>操作符来得出一个结构的整体长度。如果必须要确定结构某个成员的实际位置，则可以使用<code>offsetof(type, member)</code>宏，例如：</p>
 <pre class="hljs"><code>offset(<span class="hljs-keyword">struct</span> align, b);
 </code></pre>
-<h3 id="一句话">一句话</h3>
-<p><strong>标识符</strong>：标识符就是变量、函数、类型等的名字，标识符的长度没有限制，但是 ANSI 标准允许编译器忽略第 31 个字符以后的字符，并且允许编译器对用于表示外部名字（由链接器操作的名字）的标识符进行限制，只识别前 6 位不区分大小写的字符。</p>
+<h4 id="一句话">一句话</h4><p><strong>标识符</strong>：标识符就是变量、函数、类型等的名字，标识符的长度没有限制，但是 ANSI 标准允许编译器忽略第 31 个字符以后的字符，并且允许编译器对用于表示外部名字（由链接器操作的名字）的标识符进行限制，只识别前 6 位不区分大小写的字符。</p>
 <p><strong>注释</strong>：代码中所有的注释都会被预处理器拿掉，取而代之的是一个<strong>空格</strong>。因此，注释可以出现在任何空格可以出现的地方。</p>
 <p><strong>类型</strong>：C 语言中仅有 4 种基本数据类型，即整型、浮点型、指针和聚合类型（数组、结构等），所有其它的类型都是从这 4 中基本类型的某种组合派生而来。</p>
 <p><strong>类型长度</strong>：标准只规定了<code>short int</code>至少是 16 位，<code>long int</code>至少是 32 位，至于缺省的<code>int</code>是多少位则直接由编译器设计者决定。并且标准也没有规定这 2 个值必须不一样。如果某种机器的环境字长是 32 位，而且也没有什么指令能够更有效的处理更短的整型值，那它很可能把这 3 个整型值都设定为 32 位。</p>
@@ -422,11 +407,11 @@ ptr_to_char a, b;
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -482,6 +467,7 @@ ptr_to_char a, b;
             <div class="markdownIt-TOC">
 <ul>
 <ul>
+<ul>
 <li><a href="#三字母词">三字母词</a></li>
 <li><a href="#字符">字符</a></li>
 <li><a href="#字符串比较">字符串比较</a></li>
@@ -497,6 +483,7 @@ ptr_to_char a, b;
 <li><a href="#联合union">联合（union）</a></li>
 <li><a href="#结构体">结构体</a></li>
 <li><a href="#一句话">一句话</a></li>
+</ul>
 </ul>
 </ul>
 </div>
@@ -536,72 +523,72 @@ ptr_to_char a, b;
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-info" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-other_2" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-success" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-other_1" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-other_4" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-banana" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-other_4" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-error" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-other_1" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
@@ -611,107 +598,107 @@ ptr_to_char a, b;
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-other_2" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-success" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-banana" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-other_1" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-warning" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-error" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-success" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-other_2" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-error" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-error" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-success" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-other_2" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-other_3" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-other_4" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-other_4" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-warning" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
@@ -721,22 +708,22 @@ ptr_to_char a, b;
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-warning" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-error" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
@@ -746,17 +733,17 @@ ptr_to_char a, b;
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-banana" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-primary" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

@@ -7,7 +7,7 @@
 <title>
     牛客网 NC632 牛牛摆木棒、POJ 1037 美丽的栅栏题解 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,15 +113,15 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             牛客网 NC632 牛牛摆木棒、POJ 1037 美丽的栅栏题解
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2021-09-20</time>
                             <span class="read-time">14 min read</span>
                             
                                 <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-primary">
                             #算法
                         </a>
                                 
@@ -136,13 +136,10 @@
 <p><a href="https://blog.csdn.net/u014236804/article/details/38373729">poj1037（dP+排列计数）</a></p>
 </blockquote>
 <p>本文首发于牛客网：<a href="https://blog.nowcoder.net/n/ff8acdac051542a3b969bef728d914bb">题解 | #牛牛摆木棒#</a></p>
-<h2 id="题目">题目</h2>
-<p><a href="https://www.nowcoder.com/practice/a8db7bce8a4e48029bda368a0bc61345">牛客网 NC632 牛牛摆木棒</a>、<a href="http://poj.org/problem?id=1037">POJ1037-A decorative fence（美丽的栅栏）</a></p>
-<h3 id="描述">描述</h3>
-<p>有n个木棒，长度为1到n，给定了一个摆放规则。规则是这样的：对于第 i $(2 \leq i \leq n-1)$ 个木棒 $a_i$，$(a_i &gt; a_{i-1}$ &amp;&amp; $a_i &gt; a_{i+1})$ 或 $(a_i &lt; a_{i-1}$ &amp;&amp; $a_i &lt; a_{i+1})$。求满足规则的从小到大的第k个排列是什么呢。</p>
+<h3 id="题目">题目</h3><p><a href="https://www.nowcoder.com/practice/a8db7bce8a4e48029bda368a0bc61345">牛客网 NC632 牛牛摆木棒</a>、<a href="http://poj.org/problem?id=1037">POJ1037-A decorative fence（美丽的栅栏）</a></p>
+<h4 id="描述">描述</h4><p>有n个木棒，长度为1到n，给定了一个摆放规则。规则是这样的：对于第 i $(2 \leq i \leq n-1)$ 个木棒 $a_i$，$(a_i &gt; a_{i-1}$ &amp;&amp; $a_i &gt; a_{i+1})$ 或 $(a_i &lt; a_{i-1}$ &amp;&amp; $a_i &lt; a_{i+1})$。求满足规则的从小到大的第k个排列是什么呢。</p>
 <p>对于两个排列 s 和 t：如果存在 j 有任意 $i&lt;j$ 使得 $s_i == t_i$ 且 $s_j &lt; t_j$，视为排列 s 小于排列 t。</p>
-<h3 id="示例">示例</h3>
-<pre class="hljs"><code>输入：3,3
+<h4 id="示例">示例</h4><pre class="hljs"><code>输入：3,3
 返回值：[2,3,1]
 说明：第一小的排列为：[ 1 , 3 , 2 ]
      第二小的排列为：[ 2 , 1 , 3 ]
@@ -150,14 +147,11 @@
      第四小的排列为：[ 3 , 1 , 2 ]
      所以答案为：[ 2 , 3 , 1 ]
 </code></pre>
-<h3 id="备注">备注</h3>
-<p>$(1 \leq n \leq 20, 1 \leq k \leq (n-1)!)$</p>
-<h2 id="题意">题意</h2>
-<p>该问题让我们求：n 的字典序排列中第 k 个波浪形的排列。什么是波浪形排列呢？即对排列中任意一个数字（除开第一个和最后一个）$a_i$，只能 $a_i$ 比 $a_{i-1}$ 和 $a_{i+1}$ 都小或者都大。比如<code> 2 1 3</code>和<code>1 3 2</code>是波浪形排列，但<code>1 2 3</code>就不是波浪形排列。</p>
-<h2 id="dfs-枚举">DFS 枚举</h2>
-<p>最容易想到的解决方案是把 n 的所有排列按字典序列出来，然后再逐一检查是否是波浪形排列，直接取出第 k 个波浪形排列即可。</p>
+<h4 id="备注">备注</h4><p>$(1 \leq n \leq 20, 1 \leq k \leq (n-1)!)$</p>
+<h3 id="题意">题意</h3><p>该问题让我们求：n 的字典序排列中第 k 个波浪形的排列。什么是波浪形排列呢？即对排列中任意一个数字（除开第一个和最后一个）$a_i$，只能 $a_i$ 比 $a_{i-1}$ 和 $a_{i+1}$ 都小或者都大。比如<code> 2 1 3</code>和<code>1 3 2</code>是波浪形排列，但<code>1 2 3</code>就不是波浪形排列。</p>
+<h3 id="dfs-枚举">DFS 枚举</h3><p>最容易想到的解决方案是把 n 的所有排列按字典序列出来，然后再逐一检查是否是波浪形排列，直接取出第 k 个波浪形排列即可。</p>
 <p>我们以 3 的全排列为例画出如下树形图，非常容易的就能发现只要对这棵树进行深度优先遍历，就能够按字典序得到所有排列。但并不是所有排列都满足波浪形这个条件，所以我们每得到一个排列都需要检查该排列是否为波浪形，直到检查到第 k 个排列为止，返回该排列即可。</p>
-<figure data-type="image" tabindex="1"><img src="https://uploadfiles.nowcoder.com/images/20210922/5114437_1632303538644/48D75415B67651764C113EB82F6853D4" alt="" title="深度优先遍历" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://uploadfiles.nowcoder.com/images/20210922/5114437_1632303538644/48D75415B67651764C113EB82F6853D4" alt="" title="深度优先遍历"></figure>
 <pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {
 <span class="hljs-keyword">public</span>:
 
@@ -275,8 +269,7 @@
     }
 };
 </code></pre>
-<h3 id="复杂度分析">复杂度分析</h3>
-<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1662138223900.png" alt="深度优先遍历" loading="lazy"></figure>
+<h4 id="复杂度分析">复杂度分析</h4><figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1662138223900.png" alt=""></figure>
 <p>我们来看一下这个深度优先遍历的时间复杂度分析，该算法的时间复杂度主要由递归树的结点个数决定。因为程序在叶子结点和非叶子结点的行为时不一样的，所以我们先计算非叶子结点的个数，我们一层一层的去计算它。</p>
 <p>第 1 层因为只有一个空列表，所以我们不考虑它；<br>
 第 2 层表示的意思是从 n 个数中找出 1 个数，即 $A_n^1$；<br>
@@ -292,8 +285,7 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
 <p>最后一层叶子结点的个数就是 $n!$ 个，但是我们对每个叶子结点都做了一次判断，因此叶子结点的时间复杂度依然是 $O(n \times n!)$ 。</p>
 <p>该问题的 k 控制了遍历的次数，最好情况即 $O(n!)$，最差即 $O(n \times n!)$，平均一下也不过只加了个系数，因此总的时间复杂度为 $O(n \times n!)$。</p>
 <p>递归树的深度为 n，需要 $O(n)$ 的空间；程序运行过程中保存了问题的最终答案，需要 $O(n)$ 的空间，总共需要 $O(2n)$ 的空间，因此该算法的空间复杂度为 $O(n)$。</p>
-<h2 id="动态规划">动态规划</h2>
-<p>上述算法在运行过程中会超时，究其原因就是不论测试数据要求我们求第几个波浪形排列，我们都老老实实的从第一个开始数，当数据比较大时就会出现超时的情况。那么有没有办法能够减少一些不必要的过程呢？比如测试数据要求第 100 个波浪形排列，很明显前面 80 个排列肯定不满足情况，我们能否舍弃一部分搜索直接从第 80 个甚至第 90 个开始呢？</p>
+<h3 id="动态规划">动态规划</h3><p>上述算法在运行过程中会超时，究其原因就是不论测试数据要求我们求第几个波浪形排列，我们都老老实实的从第一个开始数，当数据比较大时就会出现超时的情况。那么有没有办法能够减少一些不必要的过程呢？比如测试数据要求第 100 个波浪形排列，很明显前面 80 个排列肯定不满足情况，我们能否舍弃一部分搜索直接从第 80 个甚至第 90 个开始呢？</p>
 <p>我们先不考虑波浪形排列这个条件，如果是求第 k 个全排列的话是非常容易就能算出来的。还是以<code>1 2 3</code>的全排列为例，假设现在要求第 5 个全排列，可以发现只要第一个数确定了，排列数就由剩下数的排列方案决定，以<code>1</code>打头的排列有两个，以<code>2</code>打头的排列也有两个，而现在要求的是第 5 个排列，所以肯定不是以<code>1</code>或<code>2</code>打头的，这样我们就能直接跳过大部分不合法的排列，节省了时间。</p>
 <p>仔细想想发现理想是比较丰满，上述方法的问题在于无法确定前面跳过的那部分里面究竟有多少个波浪形排列，因此这种直接计算的方法行不通。但是这个思想我们是可以借用一下的，那我们把一部分数据计算出来，尝试一下能不能找到规律。</p>
 <p>当 n 为 1 时，总共有 1 个波浪形排列，1 打头的有 1 个；<br>
@@ -380,8 +372,7 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
     }
 };
 </code></pre>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p>最开始初始化<code>dp</code>数组时用了 $O(2n^2)$ 的时间，随后填写<code>dp</code>数组花的时间为 $O(n^3)$，计算最终答案的时间为 $O(n^2)$，将结果转为指定格式的时间为 $O(n)$，所以该算法的时间复杂度为 $O(n^3)$。</p>
+<h4 id="复杂度分析">复杂度分析</h4><p>最开始初始化<code>dp</code>数组时用了 $O(2n^2)$ 的时间，随后填写<code>dp</code>数组花的时间为 $O(n^3)$，计算最终答案的时间为 $O(n^2)$，将结果转为指定格式的时间为 $O(n)$，所以该算法的时间复杂度为 $O(n^3)$。</p>
 <p><code>dp</code>数组占用了 $O(2n^2)$ 的空间，标记数组<code>visited</code>、保存结果的数组<code>a</code>，以及最终转换为指定格式的<code>path</code>向量，各占用了 $O(n)$ 的空间，取最大值即该算法的空间复杂度为 $O(2n^2)$，去掉系数得到最终空间复杂度 $O(n^2)$。</p>
 
                                 </div>
@@ -408,11 +399,11 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -467,6 +458,7 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#题目">题目</a></li>
 <ul>
 <li><a href="#描述">描述</a></li>
@@ -481,6 +473,7 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
 <li><a href="#动态规划">动态规划</a></li>
 <ul>
 <li><a href="#复杂度分析">复杂度分析</a></li>
+</ul>
 </ul>
 </ul>
 </div>
@@ -520,67 +513,67 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-other_4" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-primary" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-other_2" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-info" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-error" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-success" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-warning" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-success" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-other_4" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-error" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-other_2" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-error" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
@@ -590,17 +583,17 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-other_2" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-info" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-error" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
@@ -610,12 +603,12 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-other_2" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-success" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
@@ -630,12 +623,12 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-info" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-info" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
@@ -645,22 +638,22 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-info" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-primary" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-warning" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-other_1" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
@@ -670,32 +663,32 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-info" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-primary" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-warning" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-other_2" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
@@ -705,42 +698,42 @@ $A_n^1 + A_n^2 + \cdots A_n^n$</p>
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-error" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-primary" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-other_4" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-info" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

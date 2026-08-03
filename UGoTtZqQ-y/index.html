@@ -7,7 +7,7 @@
 <title>
     编译原理 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -127,12 +127,12 @@
                     <time class="post-time">2020-01-03</time>
                     
                         <a href="https://www.guanngxu.com/UGoTtZqQ-y/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-">
             #编译原理
         </a>
                         
                         <a href="https://www.guanngxu.com/XcHzo7Nc6/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-error">
             #正则表达式
         </a>
                         
@@ -153,8 +153,7 @@
 浅谈正则表达式原理
 
 最近在一个业务问题中遇到了一个正则表达式性能问题，于是查了点资料去回顾了下正则表达式的原理，简单整理了一下就发到这里吧；另外也是想试试 Apple Pencil 的手感如何，画的太丑不要嫌弃哈。
-有穷自动机
-正则表达式的规则不是很多，这些规则也很容易就能理解，但是正则表达式并不能用来直接识别字符串，我们还需要引入一种适合转换为计算机程序的模型，我们引入的就是有穷自动机。
+有穷自动机正则表达式的规则不是很多，这些规则也很容易就能理解，但是正则表达式并不能用来直接识别字符串，我们还需要引入一种适合转换为计算机程序的模型，我们引入的就是有穷自动机。
 在编译原理中通过构造有穷自动机把正则表达式编译成识别器，识别器以字符串x作为输入，当x是语言的句子时回答是，否则回答不是，这正是我们使用正则表达式时需要达到的效果。
 有穷自动机分为确定性有穷自动机（DFA）和非确定性有穷自动机（NFA），它们都能且仅能识别正则表达式所表示的语言。它们有着各自的优缺点，DFA 导出的识别器时间复杂度是多项式的，它比 NFA 导出的识别器要快的多，但是 DFA 导出的识别器要比与之对应的 NFA 导出的识别器大的多。
 大部分正则表达式引擎都是使用 NFA 实现的，也有少部分使用 DFA 实现。从我们写正则表达式的角度来讲，DFA 实现的引擎要比 NFA 实现的引擎快的多，但是 DFA 支持的功能没有 NFA 那么强大，比如没有捕获组一类的特性等等。
@@ -164,8 +163,7 @@
 
 上图的画法在正则表达式很简单的时候还可以，如果遇到很复杂的正则表达式画起来还是挺费力的，如果想对自动机有更加深入的认识可以自行查阅相关资料。下面的图片是使用正则可视化工具生成的，对应的正则表达式是^-?\d+(,\d{3})*(\.\d{1,2})?$，它所匹配的字符串是数字/货币金额（支持负数、千分位分隔符）。
 
-回溯
-NFA 引擎在遇到多个合法的状态时，它会选择其中一个并记住它，当匹配失败时引擎就会回溯到之前记录的位置继续尝试匹配。这种回溯机制正是造成正则表达式性能问题的主要原因。下面我们通过具体的例子来看看什么是回溯。
+回溯NFA 引擎在遇到多个合法的状态时，它会选择其中一个并记住它，当匹配失败时引擎就会回溯到之前记录的位置继续尝试匹配。这种回溯机制正是造成正则表达式性能问题的主要原因。下面我们通过具体的例子来看看什么是回溯。
 /ab{1,3}c/
 
 
@@ -255,16 +253,14 @@ John Graham-Cumming 在他的博文 Details of the Cloudflare outage on July 2, 
 (?:(?:\&amp;quot;|&amp;#x27;|\]|\}|\\|\d|(?:nan|infinity|true|false|null|undefined|symbol|math)|\`|\-|\+)+[)]*;?((?:\s|-|~|!|{}|\|\||\+)*.*(?:.*=.*)))
 
 上面是引起事故的正则表达式，出问题的关键部分在.*(?:.*=.*)中，就是它引起的灾难性回溯导致 CPU 满载。那么我们应该怎么减少或避免回溯呢？无非是提高警惕性，好好写正则表达式；或者使用 DFA 引擎的正则表达式。
-[0-9] 与 \d 的区别
-此问题来源于Stackoverflow，题主遇到的问题是\d比[0-9]的效率要低很多，并且给出了如下的测试结果，可以看到\d比[0-9]慢了差不多一倍。
+[0-9] 与 \d 的区别此问题来源于Stackoverflow，题主遇到的问题是\d比[0-9]的效率要低很多，并且给出了如下的测试结果，可以看到\d比[0-9]慢了差不多一倍。
 Regular expression \d           took 00:00:00.2141226 result: 5077/10000
 Regular expression [0-9]        took 00:00:00.1357972 result: 5077/10000  63.42 % of first
 Regular expression [0123456789] took 00:00:00.1388997 result: 5077/10000  64.87 % of first
 
 出现这个性能问题的原因在于\d匹配的不仅仅是0123456789，\d匹配的是所有的 Unicode 的数字，你可以从 Unicode Characters in the &#39;Number, Decimal Digit&#39; Category 中看到所有在 Unicode 中属于数字的字符。
 此处多提一嘴，[ -~]可以匹配 ASCII 码中所有的可打印字符，你可以查看 ASCII 码中的可显示字符，就是从&amp;quot; &amp;quot;（32）至&amp;quot;~&amp;quot;（126）的字符。
-工具/资源推荐
-正则表达式确实很强大，但是它那晦涩的语法也容易让人头疼抓狂，不论是自己还是别人写的正则表达式都挺头大，好的是已经有人整理了常用正则大全，也大神写了个叫做 VerbalExpressions 的小工具，主流开发语言的版本它都提供了，可以让你用类似于自然语言的方式来写正则表达式，下面是它给出的一个 JS 版示例。
+工具/资源推荐正则表达式确实很强大，但是它那晦涩的语法也容易让人头疼抓狂，不论是自己还是别人写的正则表达式都挺头大，好的是已经有人整理了常用正则大全，也大神写了个叫做 VerbalExpressions 的小工具，主流开发语言的版本它都提供了，可以让你用类似于自然语言的方式来写正则表达式，下面是它给出的一个 JS 版示例。
 // Create an example of how to test for correctly formed URLs
 const tester = VerEx()
     .startOfLine()
@@ -306,12 +302,12 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
                     <time class="post-time">2018-03-29</time>
                     
                         <a href="https://www.guanngxu.com/XcHzo7Nc6/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-info">
             #正则表达式
         </a>
                         
                         <a href="https://www.guanngxu.com/UGoTtZqQ-y/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_4">
             #编译原理
         </a>
                         
@@ -325,18 +321,14 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
                                 
                                         <div class="post-content-content">
                                             这两天一直在时不时的和 Neo4j 图数据库打交道。它的查询语句可以使用正则表达式，有一段时间没有自己写过正则表达式了，现在处于能看懂别人写的正则表达式，但是自己写不出来，语法规则都忘了。为了方便接下来的工作，所以特地复习复习正则表达式的语法。
-正则表达式简介
-正则表达式是用来匹配字符串的一系列匹配符，具备简介高效的特点，在很多语言中都有支持（java、python、javascript、php 等等）。在 windows 的 cmd 命令中也同样支持，例如使用命令 dir j*，那么只会罗列出所有以j开头的文件和文件夹。
-正则表达式基本语法
-正则表达式在在不同语言的支持语法略有不同，本文采用js的进行说明。js 中使用正则表达式的方法为str.match(/表达式/)，即需要加两个斜杠。以下所有的代码段第一行为代码，第二行为返回结果，实验是在 chrome 控制台进行的。
+正则表达式简介正则表达式是用来匹配字符串的一系列匹配符，具备简介高效的特点，在很多语言中都有支持（java、python、javascript、php 等等）。在 windows 的 cmd 命令中也同样支持，例如使用命令 dir j*，那么只会罗列出所有以j开头的文件和文件夹。
+正则表达式基本语法正则表达式在在不同语言的支持语法略有不同，本文采用js的进行说明。js 中使用正则表达式的方法为str.match(/表达式/)，即需要加两个斜杠。以下所有的代码段第一行为代码，第二行为返回结果，实验是在 chrome 控制台进行的。
 一直认为最好的学习方式就是实际操作，理论谁都能讲一大堆，但是实际做没做出来还真不知道。一个奇葩现象就是教软件工程的老师可能并没有在软件行业待过。
-普通匹配符
-普通匹配符能匹配与之对应的字符，默认区分大小写。
+普通匹配符普通匹配符能匹配与之对应的字符，默认区分大小写。
 &amp;quot;Hello Regx&amp;quot;.match(/H/)
 [&amp;quot;H&amp;quot;, index: 0, input: &amp;quot;Hello Regx&amp;quot;, groups: undefined]
 
 正则标记符
-
 i ：不区分大小写
 g ：全局匹配
 m ：多行匹配（暂不管它，我用的少）
@@ -350,7 +342,6 @@ m ：多行匹配（暂不管它，我用的少）
 (2) [&amp;quot;e&amp;quot;, &amp;quot;e&amp;quot;]
 
 多匹配符
-
 \d ：匹配数字，即 0~9
 \w ：匹配数字、字母、下划线
 . ：匹配除换行的所有字符
@@ -389,8 +380,7 @@ null
 // 因为是全局匹配，所以会接着匹配后面的018，也匹配成功
 (2) [&amp;quot;o 2&amp;quot;, &amp;quot;018&amp;quot;]
 
-自定义匹配符
-比如中国的手机号都是以 1 开头，第二位只能是 3、4、5、7、8，第 3 位只要是数字就行。如何匹配这样的字符串？
+自定义匹配符比如中国的手机号都是以 1 开头，第二位只能是 3、4、5、7、8，第 3 位只要是数字就行。如何匹配这样的字符串？
 
 [] ：匹配[]中的任意一个字符
 
@@ -408,8 +398,7 @@ null
 // 只要不是[]中的字符，都满足，包括回车符
 [&amp;quot;1a2&amp;quot;, index: 0, input: &amp;quot;1a2&amp;quot;, groups: undefined]
 
-修饰匹配次数
-我们的手机号有 11 位，除了前 2 位有要求，其他9位度没有要求，那么是不是正则表达式就应该这样写呢？
+修饰匹配次数我们的手机号有 11 位，除了前 2 位有要求，其他9位度没有要求，那么是不是正则表达式就应该这样写呢？
 1[^34578]\d\d\d\d\d\d\d\d\d
 
 很明显，这样写太麻烦，肯定有更好的方式，这里就可以修饰一下匹配次数啦。
@@ -446,8 +435,7 @@ null
 &amp;quot;15&amp;quot;.match(/1[34578]\d+/)
 null
 
-完整匹配
-按照上面的写法会出现下面的问题。
+完整匹配按照上面的写法会出现下面的问题。
 &amp;quot;ya15284750845&amp;quot;.match(/1[34578]\d{9}/)
 // 不是电话号码，也能匹配成功，需要进一步改进
 [&amp;quot;15284750845&amp;quot;, index: 2, input: &amp;quot;ya15284750845&amp;quot;, groups: undefined]
@@ -479,8 +467,7 @@ null
 这个字符串从开始和从结束匹配都能成功，但实际上是错的
 */
 
-特殊符号
-到这里发现正则表达式确实很强大，仅仅几个简单的符号就能匹配字符串，但是如果我们要匹配的字符本身就是前面用到的符号怎么办呢？
+特殊符号到这里发现正则表达式确实很强大，仅仅几个简单的符号就能匹配字符串，但是如果我们要匹配的字符本身就是前面用到的符号怎么办呢？
 
 匹配像$、^等特殊符号时，需要加转义字符\
 
@@ -494,8 +481,7 @@ null
 // 只需要加一个转义字符就可以了，其他类似
 [&amp;quot;.&amp;quot;, index: 1, input: &amp;quot;1.&amp;quot;, groups: undefined]
 
-条件分支
-比如现在想匹配图片的文件名，包括 jpg、png、jpeg、gif 等等，这是多个选项，所以需要像编程语言一样，应该具备条件分支结构。
+条件分支比如现在想匹配图片的文件名，包括 jpg、png、jpeg、gif 等等，这是多个选项，所以需要像编程语言一样，应该具备条件分支结构。
 
 | ：条件分支
 () ：有两层含义
@@ -532,8 +518,7 @@ null
 &amp;quot;1.png&amp;quot;.match(/.+\.(?:jpe?g|gif|png)/)
 [&amp;quot;1.png&amp;quot;, index: 0, input: &amp;quot;1.png&amp;quot;, groups: undefined]
 
-贪婪与懒惰
-// 首先看一个例子
+贪婪与懒惰// 首先看一个例子
 &amp;quot;aabab&amp;quot;.match(/a.*b/)
 [&amp;quot;aabab&amp;quot;, index: 0, input: &amp;quot;aabab&amp;quot;, groups: undefined]
 
@@ -586,11 +571,11 @@ null
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>

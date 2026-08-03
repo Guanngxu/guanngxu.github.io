@@ -7,7 +7,7 @@
 <title>
     MongoDB | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -127,12 +127,12 @@
                     <time class="post-time">2020-01-04</time>
                     
                         <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_4">
             #数据库
         </a>
                         
                         <a href="https://www.guanngxu.com/iqW8DWbw7/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_1">
             #MongoDB
         </a>
                         
@@ -154,16 +154,13 @@ db.orders.aggregate([
 ])
 
 管道
-
 聚合管道包含很多步骤，每一步都会将输入的文档进行转换，但并不是每个阶段都一定需要对每个输入文档生成一个输出文档，比如某些阶段可能生成新的文档或者过滤掉文档。
 除了$out、$merge、$geoNear外，其它的阶段都可以在管道中多次出现，更加详细的内容可以查看 Aggregation Pipeline Stages。
 
-管道表达式
-一些管道阶段采用表达式作为操作元，管道表达式指定了要应用到输入文档的转换，表达式自己是一个文档结构（JSON），表达式也可以包含其它的表达式。
+管道表达式一些管道阶段采用表达式作为操作元，管道表达式指定了要应用到输入文档的转换，表达式自己是一个文档结构（JSON），表达式也可以包含其它的表达式。
 表达式仅提供文档在内存中的转换，即管道表达式只能对管道中的当前文档进行操作，不能引用来自其他文档的数据。
 写聚合表达式式建议直接参考官方文档，下面列出一些我收集的案例，供深入理解使用。
-案例一：将对象数组转换为单个文档
-// 转换前
+案例一：将对象数组转换为单个文档// 转换前
 {
     &amp;quot;_id&amp;quot;: &amp;quot;10217941&amp;quot;,
     &amp;quot;data&amp;quot;: [
@@ -256,11 +253,11 @@ db.collection.aggregate([
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>

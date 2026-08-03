@@ -7,7 +7,7 @@
 <title>
     预处理器 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,20 +113,20 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             预处理器
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2022-11-06</time>
                             <span class="read-time">8 min read</span>
                             
                                 <a href="https://www.guanngxu.com/umBdDP7Ll/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-success">
                             #C
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-error">
                             #操作系统
                         </a>
                                 
@@ -136,8 +136,7 @@
                             
                                 <div class="post-content">
                                     <p>C 语言的编译需要经过很多步骤，其中第一个步骤称为预处理阶段。这个阶段的主要任务包括删除注释、插入被<code>#include</code>指令包含的文件的内容、定义和替换<code>#define</code>指令定义的符号以及确定代码的部分内容是否应该跟绝一些条件编译指令进行编译。</p>
-<h3 id="define">#define</h3>
-<p><code>#define</code>指令就是为数值命名一个符号。比如<code>#define name stuff</code>指令，有了它之后，每当有符号<code>name</code>出现在这条指令后面时，预处理器就会把它替换成<code>stuff</code>，比如下面几个例子：</p>
+<h4 id="define">#define</h4><p><code>#define</code>指令就是为数值命名一个符号。比如<code>#define name stuff</code>指令，有了它之后，每当有符号<code>name</code>出现在这条指令后面时，预处理器就会把它替换成<code>stuff</code>，比如下面几个例子：</p>
 <pre class="hljs"><code><span class="hljs-comment">// 为关键字 register 创建了一个简短的别名</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> reg             register</span>
 <span class="hljs-comment">// 声明了一个更具描述性的符号用来替代实现无限循环的 for 语句</span>
@@ -195,8 +194,7 @@ a = <span class="hljs-number">5</span>;
 <p>所以我们需要在整个表达式两边加上一对括号。所有用于对数值表达式进行求值的宏定义都应该使用下面这种方式加上括号，避免在使用宏时，由于参数中的操作符或邻近的操作符之间不可预料的相互作用。</p>
 <pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">define</span> DOUBLE(x)   ((x) + (x))</span>
 </code></pre>
-<h3 id="宏与函数">宏与函数</h3>
-<p>宏非常频繁的用于执行简单的计算，比如在两个表达式中寻找其中较大（小）的一个：</p>
+<h4 id="宏与函数">宏与函数</h4><p>宏非常频繁的用于执行简单的计算，比如在两个表达式中寻找其中较大（小）的一个：</p>
 <pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX(a, b)   ((a) &gt; (b) ? (a) : (b))</span>
 </code></pre>
 <p>那么为什么不使用函数来完成这个任务呢？首先用于调用和从函数返回的代码很可能比实际执行这个小型计算工作的代码更大，所以使用宏比使用函数在程序的规模和速度方面都更胜一筹。</p>
@@ -249,8 +247,7 @@ z = MAX(x++, y++);
 </tr>
 </tbody>
 </table>
-<h3 id="文件包含">文件包含</h3>
-<p>我们知道<code>#include</code>指令可以使另一个文件的内容被编译，就像它实际出现于<code>#include</code>指令出现的位置一样。这种替换的执行方式很简单：预处理器删除这条指令，并用包含头文件的内容取而代之。这样一个头文件如果被包含到 10 个源文件中，它实际上被编译了 10 次。</p>
+<h4 id="文件包含">文件包含</h4><p>我们知道<code>#include</code>指令可以使另一个文件的内容被编译，就像它实际出现于<code>#include</code>指令出现的位置一样。这种替换的执行方式很简单：预处理器删除这条指令，并用包含头文件的内容取而代之。这样一个头文件如果被包含到 10 个源文件中，它实际上被编译了 10 次。</p>
 <p>基于这种替换的方式，当出现嵌套<code>#include</code>文件被多次包含时，就会出现问题：</p>
 <pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;a.h&quot;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;b.h&quot;</span></span>
@@ -293,11 +290,11 @@ z = MAX(x++, y++);
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -353,9 +350,11 @@ z = MAX(x++, y++);
             <div class="markdownIt-TOC">
 <ul>
 <ul>
+<ul>
 <li><a href="#define">#define</a></li>
 <li><a href="#宏与函数">宏与函数</a></li>
 <li><a href="#文件包含">文件包含</a></li>
+</ul>
 </ul>
 </ul>
 </div>
@@ -400,57 +399,57 @@ z = MAX(x++, y++);
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-other_4" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-other_4" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-other_4" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-other_3" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-warning" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-error" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-other_1" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-success" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
@@ -460,32 +459,32 @@ z = MAX(x++, y++);
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-other_2" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-success" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-other_1" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-info" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-other_3" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
@@ -495,47 +494,47 @@ z = MAX(x++, y++);
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-warning" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-info" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-other_2" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-banana" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
@@ -545,7 +544,7 @@ z = MAX(x++, y++);
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-info" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
@@ -555,17 +554,17 @@ z = MAX(x++, y++);
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-other_1" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-other_1" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-primary" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
@@ -575,47 +574,47 @@ z = MAX(x++, y++);
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-error" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-other_2" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-success" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-other_2" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-other_2" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-error" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-other_2" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

@@ -7,7 +7,7 @@
 <title>
     领域驱动设计 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -132,7 +132,7 @@
         </a>
                         
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-">
             #Python
         </a>
                         
@@ -150,8 +150,7 @@
 在游戏主角向上攀升的过程中，偶尔会运气好遇到一些加速神器，帮助玩家更快的获得分数，这些加速神器包括弹簧、竹蜻蜓、火箭喷气背包。
 当游戏主角踩到弹簧时会发出清脆的「叮」的声音，并让游戏主角获得比自主跳跃要更高的跳跃高度。如果游戏主角踩到竹蜻蜓，竹蜻蜓会戴在游戏主角头顶，并像直升机一样拖着游戏主角飞行一段距离，期间会发出直升机螺旋桨转动的声音。若游戏主角有幸遇到了火箭喷气背包，它可以获得比竹蜻蜓更快的飞行速度，并且会带着游戏主角飞行更久的时间，自然也会获得更多的分数。
 整个游戏没有终点，只有不断增加的分数。在游戏主角跳跃过程中始终都会有重力存在，因此若游戏主角下落过程中没有遇到平台便会一直下坠，直到坠落超过底部则 Game Over。
-领域建模
-前文是对 Doodle Jump 游戏的场景及玩法描述，虽然相比各大游戏平台的版本，我的这个描述简化了许多，但请不要在意这些细节。在编辑前文描述的过程中我已经将其中的名词做了特殊标记，下面我们把前文出现的名词去重后列举出来。
+领域建模前文是对 Doodle Jump 游戏的场景及玩法描述，虽然相比各大游戏平台的版本，我的这个描述简化了许多，但请不要在意这些细节。在编辑前文描述的过程中我已经将其中的名词做了特殊标记，下面我们把前文出现的名词去重后列举出来。
 
 游戏主角、外星生物、平台、加速神器、玩家、弹簧、竹蜻蜓、火箭喷气背包
 
@@ -162,8 +161,7 @@
 道具：可以改变玩家物理状态，比如跳跃的初始速度、赋予飞行的能力等，弹簧、竹蜻蜓、火箭喷气背包均为某一具体的道具。
 
 当然仅仅只有上面的名词表还不够，每个名词仅仅只是一个演员而已，我们还需要一个优秀的导演来指导才能演一出好戏，这个导演在领域驱动设计（DDD）里面叫做聚合根（Aggregate Root）。
-代码实现
-有了前文的分析我们就可以开始写代码了，首先可以搭建出下面的框架结构。
+代码实现有了前文的分析我们就可以开始写代码了，首先可以搭建出下面的框架结构。
 class Player: # 玩家
     pass
 
@@ -1134,8 +1132,7 @@ class GameSession:
             rocket = Rocket(platform)
             platform.item = rocket # 将火箭作为平台的一个属性，方便后续碰撞检测和更新
 
-程序打包
-程序完成后需要进行打包方可给到用户使用，我们打包工具使用 Pyinstaller。当 PyInstaller 把所有东西打包进一个.exe时，运行时它会把资源解压到一个临时的文件夹（通常叫_MEIPASS）。但我们的代码里写的是死路径./images/，程序会去.exe所在的文件夹找，而不是去临时文件夹找，会导致报错。
+程序打包程序完成后需要进行打包方可给到用户使用，我们打包工具使用 Pyinstaller。当 PyInstaller 把所有东西打包进一个.exe时，运行时它会把资源解压到一个临时的文件夹（通常叫_MEIPASS）。但我们的代码里写的是死路径./images/，程序会去.exe所在的文件夹找，而不是去临时文件夹找，会导致报错。
 我们需要修改Utils类，添加一个路径转换函数，之后方可进行打包。
 
 class Utils:
@@ -1645,11 +1642,11 @@ if __name__ == &amp;quot;__main__&amp;quot;:
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>

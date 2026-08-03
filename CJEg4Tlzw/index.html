@@ -7,7 +7,7 @@
 <title>
     JavaScript 进阶知识、技巧 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,9 +113,9 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             JavaScript 进阶知识、技巧
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2019-10-11</time>
                             <span class="read-time">10 min read</span>
@@ -126,7 +126,7 @@
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-success">
                             #前端
                         </a>
                                 
@@ -135,12 +135,10 @@
                             <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/CJEg4Tlzw.png')"></div>
                             
                                 <div class="post-content">
-                                    <h2 id="对象">对象</h2>
-<p>Js 共有<code>number、string、boolean、null、undefined、object</code>六种主要类型，除了<code>object</code>的其它五中类型都属于基本类型，它们本身并不是对象。但是<code>null</code>有时会被当做对象处理，其原因在于不同的对象在底层都表示为二进制，在 js 中二进制前三位都为 0 的话就会被判定为<code>object</code>类型，而<code>null</code>的二进制表示全是 0， 所以使用<code>typeof</code>操作符会返回<code>object</code>，而后续的 Js 版本为了兼容前面埋下的坑，也就没有修复这个 bug。</p>
+                                    <h3 id="对象">对象</h3><p>Js 共有<code>number、string、boolean、null、undefined、object</code>六种主要类型，除了<code>object</code>的其它五中类型都属于基本类型，它们本身并不是对象。但是<code>null</code>有时会被当做对象处理，其原因在于不同的对象在底层都表示为二进制，在 js 中二进制前三位都为 0 的话就会被判定为<code>object</code>类型，而<code>null</code>的二进制表示全是 0， 所以使用<code>typeof</code>操作符会返回<code>object</code>，而后续的 Js 版本为了兼容前面埋下的坑，也就没有修复这个 bug。</p>
 <p><code>&quot;I'm a string&quot;</code>本身是一个字面量，并且是一个不可变的值，如果要在这个字面量上执行一些操作，比如获取长度、访问某个字符等，那就需要将其转换为<code>String</code>类型，在必要的时候 js 会自动帮我们完成这种转换，也就是说我们并不需要用<code>new String('I'm a string')</code>来显示的创建一个对象。类似的像使用<code>42.359.toFixed(2)</code>时，引擎也会自动把数字转换为<code>Number</code>对象。</p>
 <p><code>null</code>和<code>undefined</code>没有对应的构造形式，它们只有文字形式。相反，<code>Date</code>只有构造，没有文字形式。对于<code>Object、Array、Function</code>和<code>RegExp</code>（正则表达式）来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。</p>
-<h2 id="array-类型">Array 类型</h2>
-<p>数组类型有一套更加结构化的值存储机制，但是要记住的是，数组也是对象，所以有趣的是你也可以给数组添加属性。</p>
+<h3 id="array-类型">Array 类型</h3><p>数组类型有一套更加结构化的值存储机制，但是要记住的是，数组也是对象，所以有趣的是你也可以给数组添加属性。</p>
 <pre class="hljs"><code><span class="hljs-keyword">var</span> myArray = [<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-number">42</span>, <span class="hljs-string">&quot;bar&quot;</span>];
 myArray.<span class="hljs-property">baz</span> = <span class="hljs-string">&quot;baz&quot;</span>;
 myArray.<span class="hljs-property">length</span>; <span class="hljs-comment">// 3</span>
@@ -156,8 +154,7 @@ colors.<span class="hljs-property">length</span> = <span class="hljs-number">4</
 colors[colors.<span class="hljs-property">length</span>] = <span class="hljs-string">&quot;black&quot;</span>;
 </code></pre>
 <p>数组还有一些很方便的迭代方法，比如every()、filter()、forEach()、map()、some()，这些方法都不会修改数组中包含的值，传入这些方法的函数会接收三个参数：数组项的值、该项在数组中的位置、和数组对象本身。</p>
-<h2 id="function-类型">Function 类型</h2>
-<p>在 ECMAScript 中，每个函数都是<code>Function</code>类的实例，而且都与其它引用类型一样具有属性和方法。由于函数时对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。</p>
+<h3 id="function-类型">Function 类型</h3><p>在 ECMAScript 中，每个函数都是<code>Function</code>类的实例，而且都与其它引用类型一样具有属性和方法。由于函数时对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。</p>
 <p>在函数的内部有两个特殊的对象，<code>this</code>和<code>arguments</code>。<code>arguments</code>对象有<code>callee</code>和<code>caller</code>属性。<code>caller</code>用来指向调用它的<code>function</code>对象，若直接在全局环境下调用，则会返回<code>null</code>；<code>callee</code>用来指向当前执行函数，所以我们可以通过下面的方式来实现阶乘函数。</p>
 <pre class="hljs"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">factorial</span>(<span class="hljs-params">num</span>) {
     <span class="hljs-keyword">if</span> (num &lt;= <span class="hljs-number">1</span>) {
@@ -180,8 +177,7 @@ sayColor.<span class="hljs-title function_">call</span>(o); <span class="hljs-co
 sayColor.<span class="hljs-title function_">apply</span>(o); <span class="hljs-comment">// blue</span>
 </code></pre>
 <p>需要注意的是，在严格模式下未指定环境对象而调用函数，则<code>this</code>值不会转型为<code>window</code>，除非明确把函数添加到某个对象或者调用<code>apply()</code>或<code>call()</code>。</p>
-<h2 id="安全的类型检查">安全的类型检查</h2>
-<p>Js 内置的类型检查机制并不是完全可靠的，比如在 Safari（第5版前），对正则表达式应用<code>typeof</code>操作符会返回<code>function</code>；像<code>instanceof</code>在存在多个全局作用域（包含 frame）的情况下，也会返回不可靠的结果；前文提到的 Js 一开始埋下的坑也会导致类型检查出错。</p>
+<h3 id="安全的类型检查">安全的类型检查</h3><p>Js 内置的类型检查机制并不是完全可靠的，比如在 Safari（第5版前），对正则表达式应用<code>typeof</code>操作符会返回<code>function</code>；像<code>instanceof</code>在存在多个全局作用域（包含 frame）的情况下，也会返回不可靠的结果；前文提到的 Js 一开始埋下的坑也会导致类型检查出错。</p>
 <p>我们可以使用<code>toString()</code>方法来达到安全类型检查的目的，在任何值上调用<code>Object</code>原生的<code>toString()</code>方法都会返回一个<code>[object NativeConstructorName]</code>格式的字符串，下面以检查数组为例。</p>
 <pre class="hljs"><code><span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>([]); <span class="hljs-comment">// &quot;[object Array]&quot;</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">isArray</span>(<span class="hljs-params">val</span>) {
@@ -189,8 +185,7 @@ sayColor.<span class="hljs-title function_">apply</span>(o); <span class="hljs-c
 }
 
 </code></pre>
-<h2 id="作用域安全的构造函数">作用域安全的构造函数</h2>
-<p>构造函数其实就是一个使用<code>new</code>操作符调用的函数，当使用<code>new</code>操作符调用时，构造函数内用到的<code>this</code>对象会指向新创建的对象实例，比如我们有下面的构造函数。</p>
+<h3 id="作用域安全的构造函数">作用域安全的构造函数</h3><p>构造函数其实就是一个使用<code>new</code>操作符调用的函数，当使用<code>new</code>操作符调用时，构造函数内用到的<code>this</code>对象会指向新创建的对象实例，比如我们有下面的构造函数。</p>
 <pre class="hljs"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">Person</span>(<span class="hljs-params">name, age</span>) {
     <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
     <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> = age;
@@ -211,8 +206,7 @@ sayColor.<span class="hljs-title function_">apply</span>(o); <span class="hljs-c
     }
 }
 </code></pre>
-<h2 id="高级定时器">高级定时器</h2>
-<p>大部分人都知道使用<code>setTimeout()</code>和<code>setInterval()</code>可以方便的创建定时任务，看起来好像 Js 也是多线程的一样，实际上定时器仅仅是计划代码在未来的某个时间执行，但是执行时机是不能保证的。因为在页面的生命周期中，不同时间可能有其它代码控制着 JavaScript 进程。</p>
+<h3 id="高级定时器">高级定时器</h3><p>大部分人都知道使用<code>setTimeout()</code>和<code>setInterval()</code>可以方便的创建定时任务，看起来好像 Js 也是多线程的一样，实际上定时器仅仅是计划代码在未来的某个时间执行，但是执行时机是不能保证的。因为在页面的生命周期中，不同时间可能有其它代码控制着 JavaScript 进程。</p>
 <p>这里需要注意一下<code>setInterval()</code>函数，仅当没有该定时器的任何其他代码实例时，Js 引起才会将定时器代码添加到队列中。这样可以避免定时器代码可能在代码再次被添加到队列之前还没有完成执行，进而导致定时器代码连续运行好几次的问题。但是这也导致了另外的问题：（1）某些间隔会被跳过；（2）多个定时器的代码执行之间的间隔可能会比预期小。</p>
 <p>假设某个<code>click</code>事件处理程序使用<code>setInterval()</code>设置了一个 200ms 间隔的重复定时器。如果这个事件处理程序花了 300ms 多的时间完成，同时定时器代码也花了差不多了的时间，就会同时出现跳过间隔切连续运行定时器代码的情况。</p>
 <p>为了避免<code>setInterval()</code>的重复定时器的这两个缺点，我们可以使用如下模式的链式<code>setTimeout()</code>，代码一看就懂什么意思了。</p>
@@ -221,9 +215,8 @@ sayColor.<span class="hljs-title function_">apply</span>(o); <span class="hljs-c
     <span class="hljs-built_in">setTimeout</span>(arguements.<span class="hljs-property">callee</span>, interval);
 }, interval)
 </code></pre>
-<h2 id="消息队列与事件循环">消息队列与事件循环</h2>
-<p>如下图所示，左边的栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。</p>
-<figure data-type="image" tabindex="1"><img src="/post-images/1664022914272.png" alt="" loading="lazy"></figure>
+<h3 id="消息队列与事件循环">消息队列与事件循环</h3><p>如下图所示，左边的栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。</p>
+<figure data-type="image" tabindex="1"><img src="/post-images/1664022914272.png" alt=""></figure>
 <p>右边的堆用来存储声明的变量、对象。下面的队列就是消息队列，一旦某个异步任务有了响应就会被推入队列中。如用户的点击事件、浏览器收到服务的响应和setTimeout中待执行的事件，每个异步任务都和回调函数相关联。<br>
 JS引擎线程用来执行栈中的同步任务，当所有同步任务执行完毕后，栈被清空，然后读取消息队列中的一个待处理任务，并把相关回调函数压入栈中，单线程开始执行新的同步任务。</p>
 <p>来看个例子：执行下面这段代码，执行后，在 5s 内点击两下，过一段时间（&gt; 5s）后，再点击两下，整个过程的输出结果是什么？</p>
@@ -288,11 +281,11 @@ click
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -347,6 +340,7 @@ click
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#对象">对象</a></li>
 <li><a href="#array-类型">Array 类型</a></li>
 <li><a href="#function-类型">Function 类型</a></li>
@@ -354,6 +348,7 @@ click
 <li><a href="#作用域安全的构造函数">作用域安全的构造函数</a></li>
 <li><a href="#高级定时器">高级定时器</a></li>
 <li><a href="#消息队列与事件循环">消息队列与事件循环</a></li>
+</ul>
 </ul>
 </div>
 
@@ -392,72 +387,72 @@ click
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-warning" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-banana" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-primary" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-other_3" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-other_1" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-warning" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-other_3" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-other_4" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
@@ -472,7 +467,7 @@ click
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
@@ -482,27 +477,27 @@ click
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-banana" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-error" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
@@ -512,57 +507,57 @@ click
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-info" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-other_4" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-error" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-other_3" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-banana" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-other_2" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-warning" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-success" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-other_3" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
@@ -572,32 +567,32 @@ click
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-success" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-error" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-success" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
@@ -607,12 +602,12 @@ click
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

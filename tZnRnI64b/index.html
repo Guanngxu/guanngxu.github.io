@@ -7,7 +7,7 @@
 <title>
     《算法竞赛进阶指南》165 小猫爬山题解 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,15 +113,15 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             《算法竞赛进阶指南》165 小猫爬山题解
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2023-08-20</time>
                             <span class="read-time">6 min read</span>
                             
                                 <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-error">
                             #算法
                         </a>
                                 
@@ -135,18 +135,12 @@
 <p><a href="https://blog.csdn.net/weixin_43910320/article/details/106739103">[洛谷][noip][算法竞赛进阶指南]小猫爬山</a></p>
 <p><a href="https://blog.csdn.net/qq_42635159/article/details/108694912">《算法竞赛进阶指南》小猫爬山</a></p>
 </blockquote>
-<h2 id="小猫爬山">小猫爬山</h2>
-<h3 id="题目描述">题目描述</h3>
-<p>题目链接：<code>https://www.acwing.com/problem/content/167/</code></p>
+<h3 id="小猫爬山">小猫爬山</h3><h4 id="题目描述">题目描述</h4><p>题目链接：<code>https://www.acwing.com/problem/content/167/</code></p>
 <p>​Freda 和 Rainbow 饲养了 N 只小猫。这天，小猫们要去爬山。经历了千辛万苦，小猫们终于爬上了山顶，但是疲倦的它们再也不想徒步走下山了（呜咕&gt;_&lt;）。</p>
 <p>Freda 和 Rainbow 只好花钱让它们坐索道下山。索道上的缆车最大承重量为 W，而 N 只小猫的重量分别是C<sub>1</sub>、C<sub>2</sub>……C<sub>n</sub>。当然，每辆缆车上的小猫的重量之和不能超过 W。每租用一辆缆车，Freda 和 Rainbow 就要付 1 美元，所以他们想知道，最少需要付多少美元才能把这 N 只小猫都运送下山？</p>
-<h3 id="输入格式">输入格式</h3>
-<p>​第一行包含两个用空格隔开的整数，N 和 W。接下来 N 行每行一个整数，其中第 i+1 行的整数表示第 i 只小猫的重量 C<sub>i</sub>。</p>
-<h3 id="输出格式">输出格式</h3>
-<p>输出一个整数，最少需要多少美元，也就是最少需要多少辆缆车。</p>
-<h2 id="分析解答">分析解答</h2>
-<h3 id="贪心">贪心</h3>
-<p>经过思考发现，我们只需要尽可能的在每辆车上都放更多的小猫，就能以最经济的方式把所有小猫都送下山。所以是一个非常明显的贪心题目，我们将所有小猫按重量排序，尽可能把肥猫先送下山即可。具体实现代码如下：</p>
+<h4 id="输入格式">输入格式</h4><p>​第一行包含两个用空格隔开的整数，N 和 W。接下来 N 行每行一个整数，其中第 i+1 行的整数表示第 i 只小猫的重量 C<sub>i</sub>。</p>
+<h4 id="输出格式">输出格式</h4><p>输出一个整数，最少需要多少美元，也就是最少需要多少辆缆车。</p>
+<h3 id="分析解答">分析解答</h3><h4 id="贪心">贪心</h4><p>经过思考发现，我们只需要尽可能的在每辆车上都放更多的小猫，就能以最经济的方式把所有小猫都送下山。所以是一个非常明显的贪心题目，我们将所有小猫按重量排序，尽可能把肥猫先送下山即可。具体实现代码如下：</p>
 <pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
@@ -208,8 +202,7 @@
 9 5 5 5 4 3
 </code></pre>
 <p>贪心的结果是使用 <strong>3</strong> 辆车，分别为<code>9+5</code>、<code>5+5+4</code>、<code>3</code>；而正确的结果却是使用 <strong>2</strong> 辆车，分别为<code>9+4+3</code>和<code>5+5+5</code>。</p>
-<h3 id="深度优先搜索">深度优先搜索</h3>
-<p>既然贪心思想在这里行不通，那么我们就采用暴力搜索，即小猫可以放在现有任意一辆车上。具体实现代码如下：</p>
+<h4 id="深度优先搜索">深度优先搜索</h4><p>既然贪心思想在这里行不通，那么我们就采用暴力搜索，即小猫可以放在现有任意一辆车上。具体实现代码如下：</p>
 <pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
@@ -259,8 +252,7 @@
 	cout&lt;&lt;ans&lt;&lt;endl;
 }
 </code></pre>
-<h3 id="搜索优化">搜索优化</h3>
-<p>考虑到每次都是在车数量固定的情况下进行搜索的，那么少满足一次<code>(sum[i] + cat[cur_cat] &lt;= w)</code>条件，就会少一次递归的调用，也即少一次搜索。那么如何能尽快使得程序尽快不满足该条件呢？</p>
+<h4 id="搜索优化">搜索优化</h4><p>考虑到每次都是在车数量固定的情况下进行搜索的，那么少满足一次<code>(sum[i] + cat[cur_cat] &lt;= w)</code>条件，就会少一次递归的调用，也即少一次搜索。那么如何能尽快使得程序尽快不满足该条件呢？</p>
 <p>让<code>sum[i]</code>减小的速度加快就会减少搜索分支，即每次放更重一点的猫进去，就能达到效果。所以我们可以在进行搜索前将小猫的重量进行降序排序，这样从肥猫开始搜索就会减少分支。</p>
 <pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
@@ -342,11 +334,11 @@
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -401,6 +393,7 @@
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#小猫爬山">小猫爬山</a></li>
 <ul>
 <li><a href="#题目描述">题目描述</a></li>
@@ -412,6 +405,7 @@
 <li><a href="#贪心">贪心</a></li>
 <li><a href="#深度优先搜索">深度优先搜索</a></li>
 <li><a href="#搜索优化">搜索优化</a></li>
+</ul>
 </ul>
 </ul>
 </div>
@@ -451,32 +445,32 @@
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-other_1" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-banana" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-banana" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-banana" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-other_2" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
@@ -486,47 +480,47 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-error" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-other_1" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-other_4" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-warning" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-primary" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-banana" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-info" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-warning" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
@@ -536,7 +530,7 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-banana" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
@@ -546,52 +540,52 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-banana" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-warning" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-other_1" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-other_3" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-other_4" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-other_1" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-other_4" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
@@ -601,12 +595,12 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-error" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-banana" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
@@ -616,27 +610,27 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-banana" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-info" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
@@ -646,7 +640,7 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
@@ -661,17 +655,17 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-info" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-info" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

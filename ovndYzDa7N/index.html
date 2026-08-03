@@ -7,7 +7,7 @@
 <title>
     JavaScript | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -132,7 +132,7 @@
         </a>
                         
                         <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_4">
             #TypeScript
         </a>
                         
@@ -142,7 +142,7 @@
         </a>
                         
                         <a href="https://www.guanngxu.com/7QbLXmeen/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_2">
             #Vue
         </a>
                         
@@ -156,13 +156,11 @@
                                 
                                         <div class="post-content-content">
                                             在此前我使用的前端框架是 Angular，使用过 TypeScript 后你就会讨厌 JS 了，我学习 Vue 时的最新版本是 2.5，相信大部分同学都不会认为 Vue 那样又细又长的代码很美观吧，简单看了一些网络博客后，我毅然决然引入了 TypeScript 进行开发，本文仅整理记录我自己遇到的一些坑。
-使用 Cli
-脚手架是一个比较方便的工具，这里需要注意的是@vue/cli和vue-cli是不一样的，推荐使用npm i -g @vue/cli安装。
+使用 Cli脚手架是一个比较方便的工具，这里需要注意的是@vue/cli和vue-cli是不一样的，推荐使用npm i -g @vue/cli安装。
 安装完成后，可以直接使用vue create your-app创建项目，你可以选择使用默认配置亦或是自己手动选择配置，按提示一步一步向下走即可，它会根据你的选择自己创建比如tsconfig.json等等配置文件。这里推荐使用less开发样式，sass老是在安装的过程中出问题。
 当然你也可以使vue ui命令启动一个本地服务，它是一个 Vue 项目管理器，提供了一个可视化的页面供你管理自己的项目，它的样子如下图所示，还是比较清新的。
 
-使用 vue-property-decorator
-Vue 官方维护了 vue-class-component 装饰器，vue-property-decorator 则是在vue-class-component基础上增强了更多结合Vue特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。
+使用 vue-property-decoratorVue 官方维护了 vue-class-component 装饰器，vue-property-decorator 则是在vue-class-component基础上增强了更多结合Vue特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。
 截止本文时间，vue-property-decorator共提供了 11 个装饰器和 1 个Mixins方法，下面用@Prop举个例子，是不是看起来引起极度舒适。
 import { Vue, Component, Prop } from &amp;#x27;vue-property-decorator&amp;#x27;
 
@@ -190,8 +188,7 @@ export default {
     }
 }
 
-使用 Vuex
-关于怎么使用Vuex此处就不再做过多说明了，需要注意的一点是，如果你需要访问$store属性的话，那么你必须得继承Vue类，坑的地方是在某些情况下即使你没有继承Vue，它也能通过编译，只有在程序运行起来的时候才报错。
+使用 Vuex关于怎么使用Vuex此处就不再做过多说明了，需要注意的一点是，如果你需要访问$store属性的话，那么你必须得继承Vue类，坑的地方是在某些情况下即使你没有继承Vue，它也能通过编译，只有在程序运行起来的时候才报错。
 class ExampleApi extends Vue {
 
     public async getExampleData() {
@@ -209,8 +206,7 @@ class ExampleApi extends Vue {
     }
 }
 
-使用自己的配置（含代理）
-vue.config.js是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被@vue/cli-service自动加载，它的配置项说明可以查看配置参考。
+使用自己的配置（含代理）vue.config.js是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被@vue/cli-service自动加载，它的配置项说明可以查看配置参考。
 我们再开发过程中都会使用代理来转发请求，代理的配置也是在这个文件中，它的官方说明在devserver-proxy中，下面是一个简单的vue.config.js文件例子。
 module.exports = {
     filenameHashing: true,
@@ -243,8 +239,7 @@ module.exports = {
     }
 }
 
-让 Vue 识别全局方法和变量
-我们在项目中都会使用一些第三方 UI 组件，比如我自己就使用了 Element，但是在使用它的$message、$notify等方法时就直接报错了，究其原因就是$message等属性并没有在 Vue 实例中声明。
+让 Vue 识别全局方法和变量我们在项目中都会使用一些第三方 UI 组件，比如我自己就使用了 Element，但是在使用它的$message、$notify等方法时就直接报错了，究其原因就是$message等属性并没有在 Vue 实例中声明。
 官方对此给出了很明确的解决方案，使用的是 TypeScript 的 模块补充特性，可以查看增强类型以配合插件使用。既然知道是因为没有声明导致的错误，那我们就给它声明一下好了，在src/shims-vue.d.ts文件中添加如下代码即可，如果没有该文件请自行创建。
 
 看到网上也有一部分人说的是src/vue-shim.d.ts，反正不管是怎么命名这个文件的，它们的作用是一样的。
@@ -265,8 +260,7 @@ declare module &amp;#x27;*.vue&amp;#x27; {
 }
 
 
-路由懒加载
-Vue Router 官方有关于路由懒加载的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用require.ensure()按需加载组件可以生效。
+路由懒加载Vue Router 官方有关于路由懒加载的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用require.ensure()按需加载组件可以生效。
 // base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中
 const Home = (r: any) =&amp;gt; require.ensure([], () =&amp;gt; r(require(&amp;#x27;@/views/home.vue&amp;#x27;)), layzImportError, &amp;#x27;base-view&amp;#x27;);
 
@@ -277,8 +271,7 @@ function layzImportError() {
 
 上面的方式会在编译的时候把文件自动分成多个小文件，编译后的文件会以你自己命名的模块名来命名，如果代码之间有相互依赖，依赖部分代码编译后的文件会以两个模块名相连后进行命名。
 但是需要注意的是，这样拆分小文件之后引入了另外一个新的问题，因为客户端会缓存这些编译后的 js 文件，如果功能 A 同时依赖了a.js和b.js两个文件，但用户在使用其它功能时已经把a.js缓存到本地了，使用功能 A 时需要请求b.js文件，这时程序就很容易报错，因为此时在客户端这两个文件不是同一个版本，所以可能导致a.js调用b.js中的方法已经被删了，进而导致客户端页面异常。
-关于引入第三方包
-项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。
+关于引入第三方包项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。
 /*
  引入 jquery 等库可以尝试下面这种方式
  只需要把相应的 js 文件放到指定文件夹即可
@@ -342,12 +335,12 @@ new Vue({
                     <time class="post-time">2019-10-11</time>
                     
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_4">
             #JavaScript
         </a>
                         
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-error">
             #前端
         </a>
                         
@@ -360,12 +353,10 @@ new Vue({
                             <div class="post-content">
                                 
                                         <div class="post-content-content">
-                                            对象
-Js 共有number、string、boolean、null、undefined、object六种主要类型，除了object的其它五中类型都属于基本类型，它们本身并不是对象。但是null有时会被当做对象处理，其原因在于不同的对象在底层都表示为二进制，在 js 中二进制前三位都为 0 的话就会被判定为object类型，而null的二进制表示全是 0， 所以使用typeof操作符会返回object，而后续的 Js 版本为了兼容前面埋下的坑，也就没有修复这个 bug。
+                                            对象Js 共有number、string、boolean、null、undefined、object六种主要类型，除了object的其它五中类型都属于基本类型，它们本身并不是对象。但是null有时会被当做对象处理，其原因在于不同的对象在底层都表示为二进制，在 js 中二进制前三位都为 0 的话就会被判定为object类型，而null的二进制表示全是 0， 所以使用typeof操作符会返回object，而后续的 Js 版本为了兼容前面埋下的坑，也就没有修复这个 bug。
 &amp;quot;I&#39;m a string&amp;quot;本身是一个字面量，并且是一个不可变的值，如果要在这个字面量上执行一些操作，比如获取长度、访问某个字符等，那就需要将其转换为String类型，在必要的时候 js 会自动帮我们完成这种转换，也就是说我们并不需要用new String(&#39;I&#39;m a string&#39;)来显示的创建一个对象。类似的像使用42.359.toFixed(2)时，引擎也会自动把数字转换为Number对象。
 null和undefined没有对应的构造形式，它们只有文字形式。相反，Date只有构造，没有文字形式。对于Object、Array、Function和RegExp（正则表达式）来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。
-Array 类型
-数组类型有一套更加结构化的值存储机制，但是要记住的是，数组也是对象，所以有趣的是你也可以给数组添加属性。
+Array 类型数组类型有一套更加结构化的值存储机制，但是要记住的是，数组也是对象，所以有趣的是你也可以给数组添加属性。
 var myArray = [&amp;quot;foo&amp;quot;, 42, &amp;quot;bar&amp;quot;];
 myArray.baz = &amp;quot;baz&amp;quot;;
 myArray.length; // 3
@@ -381,8 +372,7 @@ console.info(colors[4]); // undefined
 colors[colors.length] = &amp;quot;black&amp;quot;;
 
 数组还有一些很方便的迭代方法，比如every()、filter()、forEach()、map()、some()，这些方法都不会修改数组中包含的值，传入这些方法的函数会接收三个参数：数组项的值、该项在数组中的位置、和数组对象本身。
-Function 类型
-在 ECMAScript 中，每个函数都是Function类的实例，而且都与其它引用类型一样具有属性和方法。由于函数时对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
+Function 类型在 ECMAScript 中，每个函数都是Function类的实例，而且都与其它引用类型一样具有属性和方法。由于函数时对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
 在函数的内部有两个特殊的对象，this和arguments。arguments对象有callee和caller属性。caller用来指向调用它的function对象，若直接在全局环境下调用，则会返回null；callee用来指向当前执行函数，所以我们可以通过下面的方式来实现阶乘函数。
 function factorial(num) {
     if (num &amp;lt;= 1) {
@@ -405,8 +395,7 @@ sayColor.call(o); // blue
 sayColor.apply(o); // blue
 
 需要注意的是，在严格模式下未指定环境对象而调用函数，则this值不会转型为window，除非明确把函数添加到某个对象或者调用apply()或call()。
-安全的类型检查
-Js 内置的类型检查机制并不是完全可靠的，比如在 Safari（第5版前），对正则表达式应用typeof操作符会返回function；像instanceof在存在多个全局作用域（包含 frame）的情况下，也会返回不可靠的结果；前文提到的 Js 一开始埋下的坑也会导致类型检查出错。
+安全的类型检查Js 内置的类型检查机制并不是完全可靠的，比如在 Safari（第5版前），对正则表达式应用typeof操作符会返回function；像instanceof在存在多个全局作用域（包含 frame）的情况下，也会返回不可靠的结果；前文提到的 Js 一开始埋下的坑也会导致类型检查出错。
 我们可以使用toString()方法来达到安全类型检查的目的，在任何值上调用Object原生的toString()方法都会返回一个[object NativeConstructorName]格式的字符串，下面以检查数组为例。
 Object.prototype.toString.call([]); // &amp;quot;[object Array]&amp;quot;
 function isArray(val) {
@@ -414,8 +403,7 @@ function isArray(val) {
 }
 
 
-作用域安全的构造函数
-构造函数其实就是一个使用new操作符调用的函数，当使用new操作符调用时，构造函数内用到的this对象会指向新创建的对象实例，比如我们有下面的构造函数。
+作用域安全的构造函数构造函数其实就是一个使用new操作符调用的函数，当使用new操作符调用时，构造函数内用到的this对象会指向新创建的对象实例，比如我们有下面的构造函数。
 function Person(name, age) {
     this.name = name;
     this.age = age;
@@ -436,8 +424,7 @@ function Person(name, age) {
     }
 }
 
-高级定时器
-大部分人都知道使用setTimeout()和setInterval()可以方便的创建定时任务，看起来好像 Js 也是多线程的一样，实际上定时器仅仅是计划代码在未来的某个时间执行，但是执行时机是不能保证的。因为在页面的生命周期中，不同时间可能有其它代码控制着 JavaScript 进程。
+高级定时器大部分人都知道使用setTimeout()和setInterval()可以方便的创建定时任务，看起来好像 Js 也是多线程的一样，实际上定时器仅仅是计划代码在未来的某个时间执行，但是执行时机是不能保证的。因为在页面的生命周期中，不同时间可能有其它代码控制着 JavaScript 进程。
 这里需要注意一下setInterval()函数，仅当没有该定时器的任何其他代码实例时，Js 引起才会将定时器代码添加到队列中。这样可以避免定时器代码可能在代码再次被添加到队列之前还没有完成执行，进而导致定时器代码连续运行好几次的问题。但是这也导致了另外的问题：（1）某些间隔会被跳过；（2）多个定时器的代码执行之间的间隔可能会比预期小。
 假设某个click事件处理程序使用setInterval()设置了一个 200ms 间隔的重复定时器。如果这个事件处理程序花了 300ms 多的时间完成，同时定时器代码也花了差不多了的时间，就会同时出现跳过间隔切连续运行定时器代码的情况。
 为了避免setInterval()的重复定时器的这两个缺点，我们可以使用如下模式的链式setTimeout()，代码一看就懂什么意思了。
@@ -446,8 +433,7 @@ setTimeout(function() {
     setTimeout(arguements.callee, interval);
 }, interval)
 
-消息队列与事件循环
-如下图所示，左边的栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。
+消息队列与事件循环如下图所示，左边的栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。
 
 右边的堆用来存储声明的变量、对象。下面的队列就是消息队列，一旦某个异步任务有了响应就会被推入队列中。如用户的点击事件、浏览器收到服务的响应和setTimeout中待执行的事件，每个异步任务都和回调函数相关联。
 JS引擎线程用来执行栈中的同步任务，当所有同步任务执行完毕后，栈被清空，然后读取消息队列中的一个待处理任务，并把相关回调函数压入栈中，单线程开始执行新的同步任务。
@@ -506,12 +492,12 @@ click
                     <time class="post-time">2019-08-06</time>
                     
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-success">
             #JavaScript
         </a>
                         
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-">
             #前端
         </a>
                         
@@ -531,14 +517,12 @@ lhs rhs是啥意思
 《你不知道的 JavaScript（上卷）》
 
 几乎所有的编程语言都能够存储变量当中的值，并且可以在之后对该值进行访问或修改。很明显需要一套良好的规则来存储这些变量，并且之后可以方便的找到这些变量，这套规则我们称之为作用域。
-编译原理
-我们一般把 js 归为「动态」或「解释执行」语言，但是它也会经历编译阶段，不过它不像传统语言那样是提前编译的，它的编译发生在代码执行前的几微秒内。
+编译原理我们一般把 js 归为「动态」或「解释执行」语言，但是它也会经历编译阶段，不过它不像传统语言那样是提前编译的，它的编译发生在代码执行前的几微秒内。
 传统语言在执行之前会经历三个步骤：分词/词法分析、解析/语法分析、代码生成，关于这三个步骤的具体工作，可以查看编译原理相关的文献，我们可以把这三个步骤统称为编译。不过 js 引擎要复杂的多，它会在编译的时候对代码进行性能优化，尽管给 js 引擎优化的时间非常少，但是它用尽了各种办法来保证性能最佳。
 我们需要先了解三个名词。引擎：从头到尾负责整个 js 程序的编译及执行过程；编译器：负责词法分析及代码生成；作用域：负责收集并维护由所有声明的标识符（变量）组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限。
 var a = 2;，我们以这段程序为例，它首先声明了变量a，然后将2赋值给变量a。前一个阶段在编译器处理，后一个阶段由 js 引擎处理。
 变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对它赋值。
-变量提升
-用过 js 的人都知道 js 存在变量提升，那么它到底是如何提升的呢？我们看下面的一段代码
+变量提升用过 js 的人都知道 js 存在变量提升，那么它到底是如何提升的呢？我们看下面的一段代码
 console.log(a);
 var a = 2;
 
@@ -572,8 +556,7 @@ foo = function() {
 };
 
 可以看到，虽然var foo出现在function foo()之前，但是它是重复的声明，因此会被忽略掉，因为函数函数声明会提升到普通变量前。所以在在同一个作用域中进行重复定义是一个很糟糕的做法，经常会导致各种奇怪的问题。
-LHS 和 RHS 查询
-LHS 和 RHS 是数学领域内的概念，意为等式左边和等式右边的意思，在我们现在的场景下就是赋值操作符的左侧和右侧。当变量出现在赋值操作符的左边时，就进行 LHS 查询；反之进行 RHS 查询。
+LHS 和 RHS 查询LHS 和 RHS 是数学领域内的概念，意为等式左边和等式右边的意思，在我们现在的场景下就是赋值操作符的左侧和右侧。当变量出现在赋值操作符的左边时，就进行 LHS 查询；反之进行 RHS 查询。
 RHS 查询与简单的查找某个变量的值没什么区别，它的意思是取得某某的值。而 LHS 查询则是试图找到变量容器的本身，从而可以对其进行赋值。
 console.info(a);我们深入研究一下这句代码。这里对a的引用是 RHS 引用，因为这里a并没有赋予任何值，相应的需要查找并取得a的值，这样才能传递给console.info()。
 a = 2;对a的引用则是一个 LHS 引用，因为实际上我们并关心a当前的值是什么，只是想为= 2这个赋值操作找到一个目标。
@@ -584,8 +567,7 @@ foo(2);
 
 为了加深印象，我们再来分析一下上述代码中的 RHS 和 LHS 引用。最后一行foo()函数的调用需要对foo进行 RHS 引用。这里有一个很容易被忽略的细节，2 被当作参数传递给foo()函数时，2 会被分配给参数a，为了给参数a（隐式地）分配值，需要进行一次 LHS 查询，也就是说代码中隐含了a = 2的语句。
 前文已经说过了console.info(a);会对a进行一次 RHS 查询，需要注意的是console.info()本身也需要一个引用才能执行，因此会对console对象进行 RHS 查询，并检查得到的值中是否有一个log方法。
-为什么区分 LHS 和 RHS
-我们考虑下面的一段代码，就可以为什么要区分 LHS 和 RHS 查询了，而且区分它们是分厂有必要的。
+为什么区分 LHS 和 RHS我们考虑下面的一段代码，就可以为什么要区分 LHS 和 RHS 查询了，而且区分它们是分厂有必要的。
 function foo(a) {
     console.info(a + b);
     b = a;
@@ -598,8 +580,7 @@ foo(2);
 需要注意的是，在严格模式下是禁止自动或隐式地创建全局变量的，因此在严格模式中 LHS 查询失败时，引擎同样会抛出 ReferenceError 异常。
 
 接下来，如果 RHS 查询找到了一个变量，但是你尝试对这个值进行不合理的操作，比如对一个非函数类型的值进行函数调用，那么引擎就会抛出另一种叫做 TypeError 的异常。
-作用域链
-执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中，在 Web 浏览器中，全局执行环境被认为是window对象，因此所有的全局变量和函数都是作为window对象的属性和方法创建的。
+作用域链执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中，在 Web 浏览器中，全局执行环境被认为是window对象，因此所有的全局变量和函数都是作为window对象的属性和方法创建的。
 每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，而函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境，这个函数调用的压栈出栈是一样的。
 当代码在环境中执行时，会创建变量对象的一个作用域链。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端始终都是当前执行的代码所在环境的变量对象，说的比较抽象，我们可以看下面的示例。
 var color = &amp;quot;blue&amp;quot;;
@@ -656,12 +637,12 @@ console.info(getColor()); // &amp;quot;red&amp;quot;
                     <time class="post-time">2019-08-04</time>
                     
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_1">
             #JavaScript
         </a>
                         
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-info">
             #前端
         </a>
                         
@@ -704,8 +685,7 @@ function createXHR() {
 }
 
 我们可以发现，在浏览器每次调用createXHR()的时候，它都要对浏览器所支持的能力仔细检查，但是很明显当第一次检查之后，我们就应该知道浏览器是否支持我们所需要的能力，因此除第一次之外的检查都是多余的。即使只有一个if语句也肯定要比没有if语句慢，所以if语句不必每次都执行，那么代码可以运行的更快一些，惰性载入就是用来解决这种问题的技巧。
-函数重写
-要理解惰性载入函数的原理，我们有必要先理解一下函数重写技术，由于一个函数可以返回另一个函数，因此可以在函数内部用新的函数来覆盖旧的函数。
+函数重写要理解惰性载入函数的原理，我们有必要先理解一下函数重写技术，由于一个函数可以返回另一个函数，因此可以在函数内部用新的函数来覆盖旧的函数。
 function sayHi() {
     console.info(&amp;#x27;Hi&amp;#x27;);
     sayHi = function() {
@@ -714,10 +694,8 @@ function sayHi() {
 }
 
 我们第一次调用sayHi()函数时，控制台会打印出Hi，全局变量sayHi被重新定义，被赋予了新的函数，从第二次开始之后的调用都会打印出Hello。惰性载入函数的本质就是函数重写，惰性载入的意思就是函数执行的分支只会发生一次。
-惰性载入
-我们来看一个例子（例子来源于冴羽所写的JavaScript专题之惰性函数）。现在需要写一个foo函数，这个函数返回首次调用时的Date对象，注意是首次。
-方案一
-var t;
+惰性载入我们来看一个例子（例子来源于冴羽所写的JavaScript专题之惰性函数）。现在需要写一个foo函数，这个函数返回首次调用时的Date对象，注意是首次。
+方案一var t;
 function foo() {
     if (t) return t;
     t = new Date()
@@ -726,8 +704,7 @@ function foo() {
 // 此方案存在两个问题，一是污染了全局变量
 // 二是每次调用都需要进行一次判断
 
-方案二
-var foo = (function() {
+方案二var foo = (function() {
     var t;
     return function() {
         if (t) return t;
@@ -738,8 +715,7 @@ var foo = (function() {
 // 使用闭包来避免污染全局变量，
 // 但是还是没有解决每次调用都需要进行一次判断的问题
 
-方案三
-function foo() {
+方案三function foo() {
     if (foo.t) return foo.t;
     foo.t = new Date();
     return foo.t;
@@ -747,8 +723,7 @@ function foo() {
 // 函数也是一种对象，利用这个特性也可以解决
 // 和方案二一样，还差一个问题没有解决
 
-方案四
-var foo = function() {
+方案四var foo = function() {
     var t = new Date();
     foo = function() {
         return t;
@@ -759,8 +734,7 @@ var foo = function() {
 
 惰性载入函数有两种实现方式，第一种是在函数被调用时再处理函数。在第一次调用的过程中，该函数会被覆盖为另外一种按合适方式执行的函数，这样任何对原函数的调用都不用再经过执行分支了。
 第二种实现方式是在声明函数时就指定适当的函数。这样第一次调用时就不会损失性能了，而是在代码首次加载时会损失一点性能，即是利用闭包写一个自执行的函数。
-改进 createXHR
-有了上面的基础，我们就可以将createXHR()改进为下列形式，这样就不用每次调用都进行判断了。
+改进 createXHR有了上面的基础，我们就可以将createXHR()改进为下列形式，这样就不用每次调用都进行判断了。
 // 第一种实现方式
 function createXHR() {
     if (typeof XMLHttpRequest != &amp;#x27;undefined&amp;#x27;) {
@@ -842,12 +816,12 @@ function createXHR() {
         </a>
                         
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-primary">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-warning">
             #TypeScript
         </a>
                         
@@ -975,17 +949,17 @@ onPostBody: function () {
                     <time class="post-time">2018-09-25</time>
                     
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-banana">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-success">
             #TypeScript
         </a>
                         
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_1">
             #JavaScript
         </a>
                         
@@ -1007,8 +981,7 @@ onPostBody: function () {
 参考内容：
 《Angulr5 高级编程（第二版）》
 
-函数声明式和表达式
-// 第一种：函数声明式
+函数声明式和表达式// 第一种：函数声明式
 myFunc();
 function myFunc(){
     ...
@@ -1021,8 +994,7 @@ let myFunc = function(){
 }
 
 虽然上面两种函数声明方式在大部分情况下是一样的，第一种可执行，第二种却不可以执行，这是因为浏览器在解析 js 时找到函数声明，并在执行剩余语句之前设置好函数，此过程称为函数提升，但是函数表达式却不会受到提升，因此无法正常工作。
-js 不具备多态性
-js 重不能创建名称相同但参数不同的两个函数，它不具备这个多态性，比如你定义的函数中有两个形参，调用函数时只传一个参数，第二形参的值就是 undefined ，如果传的参数大于 3 个，那么会自动忽略多余的参数。可以使用下列方法来处理函数定义参数数量和用于调用函数实际参数数量之间不匹配的问题。
+js 不具备多态性js 重不能创建名称相同但参数不同的两个函数，它不具备这个多态性，比如你定义的函数中有两个形参，调用函数时只传一个参数，第二形参的值就是 undefined ，如果传的参数大于 3 个，那么会自动忽略多余的参数。可以使用下列方法来处理函数定义参数数量和用于调用函数实际参数数量之间不匹配的问题。
 // 使用默认参数
 let func = function(age, sex=&amp;#x27;男&amp;#x27;){
     ...
@@ -1036,8 +1008,7 @@ let func = function(age, sex, ...extraArgs){
 func(23, &amp;#x27;女&amp;#x27;, &amp;#x27;张三&amp;#x27;, &amp;#x27;深圳&amp;#x27;);
 // 最后一个参数是一个数组，任何额外的实参都会被赋给这个数组
 
-let 和 war 的区别
-使用 let 和 var 声明变量的区别，使用 let 声明变量会把变量的作用范围限定在它所在的代码区域内。而使用 var 所创建的变量的作用域是它所在的函数。
+let 和 war 的区别使用 let 和 var 声明变量的区别，使用 let 声明变量会把变量的作用范围限定在它所在的代码区域内。而使用 var 所创建的变量的作用域是它所在的函数。
 function func(){
     if(false){
         var age = 23;
@@ -1053,14 +1024,12 @@ function func(){
     }
 }
 
-相等 == 和恒等 === 以及 连接操作符 +
-相等操作符尝试将操作数强制转换为相同的类型，再评估是否相等，实质上相等操作符==是测试二者的值是否相等，而与二者的类型无关；如果要测试值和类型是否都相等则应该用恒等操作符===。
+相等 == 和恒等 === 以及 连接操作符 +相等操作符尝试将操作数强制转换为相同的类型，再评估是否相等，实质上相等操作符==是测试二者的值是否相等，而与二者的类型无关；如果要测试值和类型是否都相等则应该用恒等操作符===。
 5 == &amp;#x27;5&amp;#x27; // 结果为 true
 5 === &amp;#x27;5&amp;#x27; // 结果为 false
 
 在 js 中，连接操作符的优先级高于加法操作，也就是说5 + &#39;5&#39;的结果是55。
-不同的模块指定方式
-import { Name } from &amp;quot;./modules/NameUtil&amp;quot;;// 第一种
+不同的模块指定方式import { Name } from &amp;quot;./modules/NameUtil&amp;quot;;// 第一种
 import { Compont } from &amp;quot;@angular/core&amp;quot;;// 第二种
 
 上面两种导入模块的方式有所不同，第一种是相对模块，第二种是非相对导入。第一种告诉的 TypeScript 编译器，该模块所在的位置是相对于包含 import 语句的文件而言；第二种非相对导入，编译器会用 node_modules 文件夹中的 npm 包来解析它。
@@ -1071,8 +1040,7 @@ import { Name as otherName } from &amp;quot;./modules/Name&amp;quot;;//取别名
 import * as otherName from &amp;quot;./modules/NameUtil&amp;quot;;
 let name = new otherName.Name(&amp;quot;Admin&amp;quot;, &amp;quot;China&amp;quot;);// Name 是 NameUtil 中的类
 
-多类型和类型断言
-在 ts 中允许指定多个类型，使用字符|进行分隔。看下面的的方法，其功能是把华氏温度转换为摄氏温度。
+多类型和类型断言在 ts 中允许指定多个类型，使用字符|进行分隔。看下面的的方法，其功能是把华氏温度转换为摄氏温度。
 // 使用多类型，该函数可以传入 number 和 string 类型的参数
 static convertFtoC(temp: number | string): string {
     /*
@@ -1092,8 +1060,7 @@ tuple = [&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;];
 let cities: {[index: string] : [string, string]} = {};
 cities[&amp;quot;Beijing&amp;quot;] = [&amp;quot;raining&amp;quot;, &amp;quot;2摄氏度&amp;quot;];
 
-数据绑定
-[target]=&amp;quot;expr&amp;quot;// 方括号表示单向绑定，数据从表达式流向目标；
+数据绑定[target]=&amp;quot;expr&amp;quot;// 方括号表示单向绑定，数据从表达式流向目标；
 
 (target)=&amp;quot;expr&amp;quot;// 圆括号表示单向绑定，数据从目标流向表达式，用于处理事件的绑定；
 [(target)]=&amp;quot;expr&amp;quot;// 圆方括号组合表示双向绑定，数据在表达式与目标之间双向流动；
@@ -1118,8 +1085,7 @@ cities[&amp;quot;Beijing&amp;quot;] = [&amp;quot;raining&amp;quot;, &amp;quot;2�
 
 &amp;lt;!-- 还有其他的 ngClass，ngStyle 等绑定，理解大体上和上面差不多 --&amp;gt;
 
-内置指令
-&amp;lt;!-- 
+内置指令&amp;lt;!-- 
     ngIf指令，如果表达式求值结果为 true ，那么 ngIf 将宿主元素机器内容包含在 html 文件中
     指令前面的星号表示这是一条微模板指令
     组要注意的是，ngIf 会向 html 中添加元素，也会从中删除元素，并非只是显示和隐藏
@@ -1168,8 +1134,7 @@ cities[&amp;quot;Beijing&amp;quot;] = [&amp;quot;raining&amp;quot;, &amp;quot;2�
 &amp;lt;div ngClass=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 &amp;lt;div ngStyle=&amp;quot;expr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 
-事件绑定
-事件绑定使用 (target)=&amp;quot;expr&amp;quot;，是单向绑定，数据从目标流向表达式，用于响应宿主元素发送的事件。
+事件绑定事件绑定使用 (target)=&amp;quot;expr&amp;quot;，是单向绑定，数据从目标流向表达式，用于响应宿主元素发送的事件。
 当浏览器触发一个时间时，它将提供一个对象来描述该事件，对于不同类型的事件有不同类型的事件对象，事件对象被赋给一个名为$event的模板变量，但是所有事件对象都有下面三个属性:
 type：返回一个 string 值，用于标识已触发事件类型；
 target：返回触发事件的对象，一般是 html元素对象。
@@ -1186,8 +1151,7 @@ timeStamp：返回事件触发事件的 number 值，用 1970.1.1 毫秒数表�
 &amp;lt;!-- 使用事件过滤，上面的写法按下任何一个键都会触发事件，而下面的写法只有回车事件才会触发事件 --&amp;gt;
 &amp;lt;input (keyup.enter=&amp;quot;selectedProduct=product.value&amp;quot;) /&amp;gt;
 
-表单验证
-Angular 提供了一套可扩展的系统来验证表单元素的内容，总共可以向 input表元素中添加 4 个属性，每个属性定义一条验证规则，如下所示：
+表单验证Angular 提供了一套可扩展的系统来验证表单元素的内容，总共可以向 input表元素中添加 4 个属性，每个属性定义一条验证规则，如下所示：
 required：用于指定必须填写值；
 minlength：用于指定最小字符数；
 maxlength：用于指定最大字符数，（不能在表单元素直接使用，因为它与同名的 H5 属性冲突）；
@@ -1291,8 +1255,7 @@ export class ProductionCompont {
 
 fromSubmited 属性用于指示表单是否已经提交，并将用于在用户提交整个表单之前阻止表单验证。当用户提交表单时，调用 submitForm 方法，并将 ngForm 对象作为实参传入，ngForm 提供了 reset 方法，该方法可以重置表单的验证状态，使其返回到最初的未访问状态。
 更高级的还有使用基于模型的表单验证，可以自行查阅相关资料。
-使用 json-server 模拟 web 服务
-因为json-server会经常用到，建议使用全局安装命令npm install -g json-server。因为开发后端的同学太慢了，而我们如果要等他们把接口都提供给我们的时候再开发程序的话，那效率就太低了，所以使用 json-server 来模拟后端服务。只需要建好一个 json 文件，比如下面的格式：
+使用 json-server 模拟 web 服务因为json-server会经常用到，建议使用全局安装命令npm install -g json-server。因为开发后端的同学太慢了，而我们如果要等他们把接口都提供给我们的时候再开发程序的话，那效率就太低了，所以使用 json-server 来模拟后端服务。只需要建好一个 json 文件，比如下面的格式：
 {
     &amp;quot;user&amp;quot; : [
         {
@@ -1311,16 +1274,14 @@ fromSubmited 属性用于指示表单是否已经提交，并将用于在用户�
 }
 
 启动服务使用命令json-server [你的 json 文件路径]，然后就可以根据提示访问了，你甚至可以使用http://localhost:3000/user?number=5678去过滤数据。这样就能模拟 web 服务，而不必等后端同学的进度了。
-解决跨域请求问题
-Angular 跨域请求问题可以通过 Angular 自身的代理转发功能解决，在项目文件夹下新建一个 proxy.conf.json 并在其中添加如下内容。
+解决跨域请求问题Angular 跨域请求问题可以通过 Angular 自身的代理转发功能解决，在项目文件夹下新建一个 proxy.conf.json 并在其中添加如下内容。
 // 可以通过下列配置解决
 &amp;quot;/api&amp;quot;: {
     &amp;quot;target&amp;quot;: &amp;quot;http://10.9.176.120:8888&amp;quot;,
 }
 
 在启动时使用npm start，或者使用ng serve  --proxy-config proxy.conf.json，Anular 中的/api请求就会被转发到 http://10.9.176.120:8888/api，从而解决跨域请求问题。
-使用第三方 js 插件
-共有三种方式引入第三方插件，第一种很简单，直接在 html 中引入插件就可以了；第二种在angular.json中进行配置；第三种在 ts 文件中使用 import 导入库即可。
+使用第三方 js 插件共有三种方式引入第三方插件，第一种很简单，直接在 html 中引入插件就可以了；第二种在angular.json中进行配置；第三种在 ts 文件中使用 import 导入库即可。
 // 第一种(需要重启服务)
 &amp;quot;scripts&amp;quot;: [&amp;quot;src/assets/jquery-3.2.1.js&amp;quot;,&amp;quot;src/assets/jquery.nicescroll.js&amp;quot;,&amp;quot;src/assets/ion.rangeSlider.js&amp;quot;]
 
@@ -1333,8 +1294,7 @@ import &amp;quot;assets/jquery-3.2.1.js&amp;quot;;
 import &amp;quot;assets/jquery.nicescroll.js&amp;quot;;
 import &amp;quot;assets/ion.rangeSlider.js&amp;quot;;
 
-深拷贝与浅拷贝
-深拷贝与浅拷贝是围绕引用类型变量说的，其本质区别是不可变性，基本类型是不可变得，而引用类型是可变的。
+深拷贝与浅拷贝深拷贝与浅拷贝是围绕引用类型变量说的，其本质区别是不可变性，基本类型是不可变得，而引用类型是可变的。
 直接使用赋值操作符，就是浅拷贝，如果对拷贝源进行操作，会直接影响在拷贝目标上，因为这个赋值行为本质是内存地址的赋值，为了获得与拷贝源完全相同但又不会影响彼此的对象就要使用深拷贝。
 let objA = {
     x: 1,
@@ -1430,11 +1390,11 @@ objB.b.c:1
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>

@@ -7,7 +7,7 @@
 <title>
     顺序、条件、循环语句的底层解释（机器语言级解释） | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,15 +113,15 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             顺序、条件、循环语句的底层解释（机器语言级解释）
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2018-11-10</time>
                             <span class="read-time">8 min read</span>
                             
                                 <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-error">
                             #操作系统
                         </a>
                                 
@@ -131,14 +131,11 @@
                             
                                 <div class="post-content">
                                     <p>初级程序员讲究的是术，只知道如何用关键字去拼凑出领导想要的功能；高级程序员脸的是道，理解了底层的逻辑，不仅把功能做的漂漂亮亮，心法也更上一层楼。</p>
-<h2 id="顺序结构">顺序结构</h2>
-<h3 id="数据传送指令">数据传送指令</h3>
-<p>我们都清楚，绝大多数编译器都把汇编语言作为中间语言，把汇编语言程序变成可运行的二进制文件早就解决了，所以现在的高级语言基本上只需要把自己翻译成汇编语言就可以了。</p>
+<h3 id="顺序结构">顺序结构</h3><h4 id="数据传送指令">数据传送指令</h4><p>我们都清楚，绝大多数编译器都把汇编语言作为中间语言，把汇编语言程序变成可运行的二进制文件早就解决了，所以现在的高级语言基本上只需要把自己翻译成汇编语言就可以了。</p>
 <p>汇编指令总共只有那么多，大多数指令都是对数据进行操作，比如常见的数据传送指令<code>mov</code>。不难理解，被操作数据无非有三种形式，<strong>立即数</strong>，即用来表示常数值；<strong>寄存器</strong>，此时的数据即存放在指定寄存器中的内容；<strong>内存引用</strong>，它会根据计算出来的地址访问某个内存位置。</p>
 <p>需要注意的是，到了汇编层级，就不像高级语言那样随随便便<code>int</code>就能和<code>long</code>类型的数据相加减，他们在底层所占有的字节是不一样的，汇编指令是区分操作数据大小的，比如数据传送指令，就有下面这些品种（x86-64 对数据传送指令加了一条限制：两个操作数不能都指向内存位置）。</p>
-<figure data-type="image" tabindex="1"><img src="/post-images/1664023037004.png" alt="" loading="lazy"></figure>
-<h3 id="压栈与弹栈">压栈与弹栈</h3>
-<p>对于栈，我想不必多讲，IT 行业的同学都清楚，它是一种线性数据结构，其中的数据遵循“先进后出”原则，寄存器<code>%rsp</code>保存着栈顶元素的地址，即栈顶指针。一个程序要运行起来，离不开栈这种数据结构。</p>
+<figure data-type="image" tabindex="1"><img src="/post-images/1664023037004.png" alt=""></figure>
+<h4 id="压栈与弹栈">压栈与弹栈</h4><p>对于栈，我想不必多讲，IT 行业的同学都清楚，它是一种线性数据结构，其中的数据遵循“先进后出”原则，寄存器<code>%rsp</code>保存着栈顶元素的地址，即栈顶指针。一个程序要运行起来，离不开栈这种数据结构。</p>
 <p>栈使用最多的就是弹栈<code>popq</code>和压栈<code>pushq</code>操作。比如将一个四字值压入栈中，栈顶指针首先要减 8（栈向下增长），然后将值写到新的栈顶地址；而弹栈则需要先将栈顶数据读出，然后再将栈指针加 8。所以<code>pushq</code>和<code>popq</code>指令就可以表示为下面的形式。</p>
 <pre class="hljs"><code><span class="hljs-comment">// 压栈</span>
 subq $<span class="hljs-number">8</span>, %rsp
@@ -149,11 +146,9 @@ movq (%rsp), %rax
 addq $<span class="hljs-number">8</span>, %rsp
 </code></pre>
 <p>其他还有算术、逻辑、加载有效地址、移位等等指令，可以查阅相关文档了解，不作过多介绍，汇编看起来确实枯燥乏味。</p>
-<h2 id="条件结构">条件结构</h2>
-<p>前面讲的都是顺序结构，我们的程序中不可能只有顺序结构，条件结构是必不可缺的元素，那么汇编又是如何实现条件结构的呢？</p>
+<h3 id="条件结构">条件结构</h3><p>前面讲的都是顺序结构，我们的程序中不可能只有顺序结构，条件结构是必不可缺的元素，那么汇编又是如何实现条件结构的呢？</p>
 <p>首先你需要知道，除了整数寄存器，CPU 还维护着一组<strong>条件码寄存器</strong>，我们主要是了解如何把高级语言的条件结构转换为汇编语言，不去关注这些条件码寄存器，只需要知道汇编可以通过检测这些寄存器来执行条件分支指令。</p>
-<h3 id="if-else-语句">if-else 语句</h3>
-<p>下面是 C 语言中的<code>if-else</code>语句的通用形式。</p>
+<h4 id="if-else-语句">if-else 语句</h4><p>下面是 C 语言中的<code>if-else</code>语句的通用形式。</p>
 <pre class="hljs"><code><span class="hljs-keyword">if</span>(test-expr){
     then-statement
 }<span class="hljs-keyword">else</span>{
@@ -187,8 +182,7 @@ t = test-expr;
 }
 </code></pre>
 <p>这样改写，就能提高程序的性能了，但是并不是所有的条件表达式都可以使用条件传送来编译，一般只有当两个表达式都很容易计算时，编译器才会采用条件数据传送的方式，大部分都还是使用条件控制转移方式编译。</p>
-<h3 id="switch-语句">switch 语句</h3>
-<p><code>switch</code>语句可以根据一个整数索引值进行多重分支，在处理具有多种可能结果的测试时，这种语句特别有用。为了让<code>switch</code>的实现更加高效，使用了一种叫做<strong>跳转表</strong>的数据结构（Radis 也是用的跳表）。跳转表是一个数组，表项 i 是一个代码段的地址，当开关情况数量比较多的时候，就会使用跳转表。</p>
+<h4 id="switch-语句">switch 语句</h4><p><code>switch</code>语句可以根据一个整数索引值进行多重分支，在处理具有多种可能结果的测试时，这种语句特别有用。为了让<code>switch</code>的实现更加高效，使用了一种叫做<strong>跳转表</strong>的数据结构（Radis 也是用的跳表）。跳转表是一个数组，表项 i 是一个代码段的地址，当开关情况数量比较多的时候，就会使用跳转表。</p>
 <p>我们举个例子，还是采用 C 语言的形式表是控制流，要理解的是执行<code>switch</code>语句的关键步骤就是通过跳转表来访问代码的位置。</p>
 <pre class="hljs"><code><span class="hljs-type">void</span> <span class="hljs-title function_">switch_eg</span><span class="hljs-params">(<span class="hljs-type">long</span> x, <span class="hljs-type">long</span> n, <span class="hljs-type">long</span> *dest)</span>{
     <span class="hljs-type">long</span> val = x;
@@ -241,8 +235,7 @@ t = test-expr;
         *dest = val;
 }
 </code></pre>
-<h2 id="循环结构">循环结构</h2>
-<p>C 语言中有<code>do-while</code>、<code>while</code>和<code>for</code>三种循环结构，它们的通用形式一般都长下面那样。</p>
+<h3 id="循环结构">循环结构</h3><p>C 语言中有<code>do-while</code>、<code>while</code>和<code>for</code>三种循环结构，它们的通用形式一般都长下面那样。</p>
 <pre class="hljs"><code><span class="hljs-comment">// do-while</span>
 <span class="hljs-keyword">do</span>
     body-statement
@@ -294,8 +287,7 @@ test:
 }
 </code></pre>
 <p>有了这种形式的<code>for</code>循环，我们只需要将其中的<code>while</code>部分再翻译一下就好了，前文给出了两种<code>while</code>翻译的方式，而具体采用哪种方式，取决于编译器优化的等级。</p>
-<h2 id="总结">总结</h2>
-<p>计算机就是用那么几条简简单单的指令就完成了各种复杂的操作，不得不折服于计算机科学家们的魅力。现在人工智能被炒的很火热，然后人是事件、情感驱动的，而计算机是控制流驱动的，所以从架构上就决定了，冯诺依曼体系计算机实现的都是弱人工智能。</p>
+<h3 id="总结">总结</h3><p>计算机就是用那么几条简简单单的指令就完成了各种复杂的操作，不得不折服于计算机科学家们的魅力。现在人工智能被炒的很火热，然后人是事件、情感驱动的，而计算机是控制流驱动的，所以从架构上就决定了，冯诺依曼体系计算机实现的都是弱人工智能。</p>
 
                                 </div>
                     </article>
@@ -321,11 +313,11 @@ test:
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -380,6 +372,7 @@ test:
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#顺序结构">顺序结构</a></li>
 <ul>
 <li><a href="#数据传送指令">数据传送指令</a></li>
@@ -392,6 +385,7 @@ test:
 </ul>
 <li><a href="#循环结构">循环结构</a></li>
 <li><a href="#总结">总结</a></li>
+</ul>
 </ul>
 </div>
 
@@ -430,72 +424,72 @@ test:
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-other_2" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-info" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-info" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-other_1" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-other_1" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-error" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-error" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-warning" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-warning" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-success" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
@@ -505,107 +499,107 @@ test:
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-warning" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-other_2" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-other_2" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-other_1" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-primary" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-error" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-warning" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-error" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-warning" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-other_1" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-success" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-primary" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-other_3" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-other_2" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-banana" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
@@ -615,27 +609,27 @@ test:
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-info" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-other_1" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-info" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
@@ -645,12 +639,12 @@ test:
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-info" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-warning" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

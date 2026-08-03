@@ -7,7 +7,7 @@
 <title>
     动态规划实例——01 背包详解 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,15 +113,15 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             动态规划实例——01 背包详解
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2023-04-01</time>
                             <span class="read-time">5 min read</span>
                             
                                 <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-info">
                             #算法
                         </a>
                                 
@@ -130,8 +130,7 @@
                             <div class="post-feature-image" style="background-image: url('https://www.guanngxu.com/post-images/sBMrrNbs4.jpeg')"></div>
                             
                                 <div class="post-content">
-                                    <h3 id="题目描述">题目描述</h3>
-<p>有 n 件物品，每件物品有一个重量和一个价值，分别记为 w1，w2，…，wn 和 c1，c2，…，cn。现在有一个背包，其容量为 wk，要从 n 件物品种任取若干件。要求：（1）重量之和小于或等于 wk；（2）价值之和最大。</p>
+                                    <h4 id="题目描述">题目描述</h4><p>有 n 件物品，每件物品有一个重量和一个价值，分别记为 w1，w2，…，wn 和 c1，c2，…，cn。现在有一个背包，其容量为 wk，要从 n 件物品种任取若干件。要求：（1）重量之和小于或等于 wk；（2）价值之和最大。</p>
 <p><em>输入</em>：</p>
 <p>共 3 行，第一行 2 个整数，表示 n 和 wk；第二行 n 个整数表示每一个物品的重量，第三行 n 个整数表示每一个物品的价值。</p>
 <p><em>输出</em>：</p>
@@ -141,9 +140,8 @@
 79 58 86 11 28 62 15 68
 83 14 54 79 72 52 48 62
 </code></pre>
-<h3 id="暴力枚举">暴力枚举</h3>
-<p>我们以只有 A、B、C 三件物品的情况为例，对于每一个物品都存在<code>拿</code>和<code>不拿</code>两种情况。以<code>0</code>表示不拿当前物品，以<code>1</code>表示拿当前物品，可以有如下分析结果。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1680354878357.png" alt="" loading="lazy"></figure>
+<h4 id="暴力枚举">暴力枚举</h4><p>我们以只有 A、B、C 三件物品的情况为例，对于每一个物品都存在<code>拿</code>和<code>不拿</code>两种情况。以<code>0</code>表示不拿当前物品，以<code>1</code>表示拿当前物品，可以有如下分析结果。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1680354878357.png" alt=""></figure>
 <p>可能上面的图看起来不够清晰，我们从左至右逐一列举出来观察，一眼就可以看出来规律。其实就是十进制的 0、1、2、3、4、......可枚举的最大值即 <strong>2<sup>n</sup>-1</strong>。</p>
 <pre class="hljs"><code>000
 001
@@ -197,8 +195,7 @@
 	cout&lt;&lt;ans&lt;&lt;endl;
 }
 </code></pre>
-<h3 id="递归求解">递归求解</h3>
-<p>我们把背包容量为<code>wk</code>，有<code>n</code>个物品可以选择的问题表示为<code>slove(wk, n)</code>。那么在背包剩余容量可以装下第 n 个物品时，该问题可以表示为求如下两个问题的最大值</p>
+<h4 id="递归求解">递归求解</h4><p>我们把背包容量为<code>wk</code>，有<code>n</code>个物品可以选择的问题表示为<code>slove(wk, n)</code>。那么在背包剩余容量可以装下第 n 个物品时，该问题可以表示为求如下两个问题的最大值</p>
 <ul>
 <li>选第 n 个物品：<code>c[n-1] + slove(wk-w[n-1], n-1)</code></li>
 <li>不选第 n 个物品：<code>slove(wk, n-1)</code></li>
@@ -246,8 +243,7 @@
 	cout&lt;&lt;<span class="hljs-built_in">slove</span>(wk, n);
 }
 </code></pre>
-<h3 id="动态规划">动态规划</h3>
-<p>递归在执行过程中会存在重复计算相同子问题的情况，我们可以将其改为用循环实现，即动态规划的写法。<code>dp[i][j]</code>的含义即为：在背包容量为<code>i</code>，可选物品数量为<code>j</code>的情况下，符合背包容量的最大值。具体代码如下所示：</p>
+<h4 id="动态规划">动态规划</h4><p>递归在执行过程中会存在重复计算相同子问题的情况，我们可以将其改为用循环实现，即动态规划的写法。<code>dp[i][j]</code>的含义即为：在背包容量为<code>i</code>，可选物品数量为<code>j</code>的情况下，符合背包容量的最大值。具体代码如下所示：</p>
 <pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
@@ -309,11 +305,11 @@
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -369,10 +365,12 @@
             <div class="markdownIt-TOC">
 <ul>
 <ul>
+<ul>
 <li><a href="#题目描述">题目描述</a></li>
 <li><a href="#暴力枚举">暴力枚举</a></li>
 <li><a href="#递归求解">递归求解</a></li>
 <li><a href="#动态规划">动态规划</a></li>
+</ul>
 </ul>
 </ul>
 </div>
@@ -417,162 +415,162 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-info" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-other_4" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-other_4" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-other_3" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-error" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-error" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-error" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-banana" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-other_4" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-other_3" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-other_1" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-error" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_2" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-other_2" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-info" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-banana" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-other_3" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-error" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-error" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-banana" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-warning" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
@@ -587,27 +585,27 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-success" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-other_1" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-success" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
@@ -617,22 +615,22 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-other_3" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-success" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-other_2" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-banana" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

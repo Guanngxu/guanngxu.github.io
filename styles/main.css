@@ -521,7 +521,7 @@ body {
   height: 50px;
   border-radius: 25px;
 }
-.header .nav .logo .site-title h1 {
+.header .nav .logo .site-title .site-title-text {
   margin-right: 25px;
   color: #17233d;
   font-weight: 100;

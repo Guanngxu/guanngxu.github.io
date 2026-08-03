@@ -7,7 +7,7 @@
 <title>
     如何保证快速加载网页？——详解浏览器缓存机制 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,20 +113,20 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             如何保证快速加载网页？——详解浏览器缓存机制
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2019-04-23</time>
                             <span class="read-time">7 min read</span>
                             
                                 <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-primary">
                             #前端
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-info">
                             #计算机网络
                         </a>
                                 
@@ -141,14 +141,11 @@
 <a href="https://www.cnblogs.com/chenqf/p/6386163.html">彻底弄懂HTTP缓存机制及原理</a></p>
 </blockquote>
 <p>前端开发人员有大部分时间都在调整页面样式，如果页面没有按照自己预期的样式显示，可能想到的第一个解决方案就是清一下浏览器缓存，HTTP 缓存机制作为 Web 性能优化的重要手段，也应该是 Web 开发人员必备的基础知识。我们常说的浏览器缓存机制也就是 HTTP 缓存机制，它是根据 HTTP 报文的缓存标识运行的，所以首先要对 HTTP 报文有一个简单的了解。</p>
-<h2 id="http-报文">HTTP 报文</h2>
-<p>HTTP 报文是浏览器和服务器间进行通信时所发的响应数据，所以 HTTP 报文分为请求（Request）报文和响应（Response）报文两种，浏览器向服务器发送的是请求报文，而服务器向浏览器发送的是响应报文。HTTP 请求报文由请求行、请求头、请求体组成，响应报文则由状态行、响应头、响应正文组成，与缓存有关的规则信息则都包含在请求头和响应头中。</p>
-<h2 id="缓存概述">缓存概述</h2>
-<p>浏览器与服务器通过请求响应模式来通信，当浏览器第一次向服务器发送请求并拿到结果后，会根据响应报文中的缓存规则来决定是否缓存结果，其简单的流程如下图：</p>
-<figure data-type="image" tabindex="1"><img src="/post-images/1664021341303.png" alt="" loading="lazy"></figure>
+<h3 id="http-报文">HTTP 报文</h3><p>HTTP 报文是浏览器和服务器间进行通信时所发的响应数据，所以 HTTP 报文分为请求（Request）报文和响应（Response）报文两种，浏览器向服务器发送的是请求报文，而服务器向浏览器发送的是响应报文。HTTP 请求报文由请求行、请求头、请求体组成，响应报文则由状态行、响应头、响应正文组成，与缓存有关的规则信息则都包含在请求头和响应头中。</p>
+<h3 id="缓存概述">缓存概述</h3><p>浏览器与服务器通过请求响应模式来通信，当浏览器第一次向服务器发送请求并拿到结果后，会根据响应报文中的缓存规则来决定是否缓存结果，其简单的流程如下图：</p>
+<figure data-type="image" tabindex="1"><img src="/post-images/1664021341303.png" alt=""></figure>
 <p>浏览器每次发起请求都会先在浏览器缓存中查找该请求的结果和缓存标识，而且每次拿到响应数据后都会将该结果和缓存标识存入缓存中。HTTP 缓存的规则有多种，我们可以根据是否需要重新向服务器发起请求这一维度来分类，即有<strong>强制缓存</strong>和<strong>协商缓存</strong>两类，也有人把协商缓存叫对比缓存。</p>
-<h2 id="强制缓存">强制缓存</h2>
-<p>我们先自己想一下，使用缓存是不是会有下面几种情况出现。</p>
+<h3 id="强制缓存">强制缓存</h3><p>我们先自己想一下，使用缓存是不是会有下面几种情况出现。</p>
 <ul>
 <li>
 <p>存在所需缓存并且未失效：直接走本地缓存即可；强制缓存生效；</p>
@@ -161,11 +158,9 @@
 </li>
 </ul>
 <p>控制强制缓存的字段分别是<code>Expires</code>和<code>Cache-Control</code>，并且<code>Cache-Control</code>的优先级高于<code>Expires</code>。</p>
-<h3 id="expires">Expires</h3>
-<p><code>Expires</code>是 HTTP/1.0 控制网页缓存的字段，其值为服务器返回的该缓存到期时间，即下一次请求时，请求时间小于<code>Expires</code>值，就直接使用缓存数据。到了 HTTP/1.1，<code>Expires</code>已经被<code>Cache-Control</code>替代了。</p>
+<h4 id="expires">Expires</h4><p><code>Expires</code>是 HTTP/1.0 控制网页缓存的字段，其值为服务器返回的该缓存到期时间，即下一次请求时，请求时间小于<code>Expires</code>值，就直接使用缓存数据。到了 HTTP/1.1，<code>Expires</code>已经被<code>Cache-Control</code>替代了。</p>
 <p><code>Expires</code>被替代的原因是因为服务端和客户端的时间可能有误差（比如时区不同或者客户端与服务端有一方时间不准确），这就会导致缓存命中误差，强制缓存就变得毫无意义。</p>
-<h3 id="cache-control">Cache-Control</h3>
-<p><code>Cache-Control</code>是 HTTP/1.1 中最重要的规则，主要取值为：</p>
+<h4 id="cache-control">Cache-Control</h4><p><code>Cache-Control</code>是 HTTP/1.1 中最重要的规则，主要取值为：</p>
 <table>
 <thead>
 <tr>
@@ -197,28 +192,23 @@
 </tbody>
 </table>
 <p>我们可以看看下面这个例子，可以从截图中看到<code>Expires</code>是一个绝对值，而<code>Cache-Control</code>是一个相对值，此处为<code>max-age=3600</code>，即 1 小时后失效。在无法确定客户端的时间是否与服务端的时间同步的情况下，<code>Cache-Control</code>相比于<code>Expires</code>是更好的选择，所以同时存在时只有<code>Cache-Control</code>生效。</p>
-<figure data-type="image" tabindex="2"><img src="/post-images/1664021406357.png" alt="" loading="lazy"></figure>
-<h2 id="协商缓存">协商缓存</h2>
-<p>协商缓存，顾名思义就是需要双方通过协商来判断是否可以使用缓存。强制缓存失效后，浏览器带着缓存标识向服务器发起请求，由服务器根据缓存标识决定是否可以使用缓存，那自然而然就有协商缓存生效和协商缓存不生效两种情况了。</p>
-<figure data-type="image" tabindex="3"><img src="/post-images/1664021417426.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="/post-images/1664021406357.png" alt=""></figure>
+<h3 id="协商缓存">协商缓存</h3><p>协商缓存，顾名思义就是需要双方通过协商来判断是否可以使用缓存。强制缓存失效后，浏览器带着缓存标识向服务器发起请求，由服务器根据缓存标识决定是否可以使用缓存，那自然而然就有协商缓存生效和协商缓存不生效两种情况了。</p>
+<figure data-type="image" tabindex="3"><img src="/post-images/1664021417426.png" alt=""></figure>
 <p>上图是协商缓存生效的流程，如果协商缓存不生效则返回的状态码为 200。协商缓存的标识也是在响应报文的响应头中返回给浏览器的，控制协商缓存的字段有<code>Last-Modified / If-Modified-Since</code>和<code>Etag / If-None-Match</code>，其中<code>Etag / If-None-Match</code>的优先级比<code>Last-Modified / If-Modified-Since</code>高，所以同时存在时只有<code>Etag / If-None-Match</code>生效。</p>
-<h3 id="last-modified-if-modified-since">Last-Modified / If-Modified-Since</h3>
-<p>你可以往上翻一翻，看一下那张响应报文截图，其中有一个<code>Last-Modified</code>字段，它的值是该资源文件在服务器最后被修改的时间。</p>
+<h4 id="last-modified-if-modified-since">Last-Modified / If-Modified-Since</h4><p>你可以往上翻一翻，看一下那张响应报文截图，其中有一个<code>Last-Modified</code>字段，它的值是该资源文件在服务器最后被修改的时间。</p>
 <p><code>If-Modified-Since</code>则是客户端再次发起该请求时，携带上次请求返回的<code>Last-Modified</code>值。服务器收到该请求后，发现该请求头有<code>If-Modified-Since</code>字段，则会将<code>If-Modified-Since</code>与该资源在服务器的最后被修改时间做对比，若服务器的资源最后被修改时间大于<code>If-Modified-Since</code>的字段值，则重新返回资源，状态码为 200；否则则返回 304，代表资源无更新，可继续使用缓存文件。</p>
-<figure data-type="image" tabindex="4"><img src="/post-images/1664021445583.png" alt="" loading="lazy"></figure>
-<h3 id="etag-if-none-match">Etag / If-None-Match</h3>
-<p><code>Etag</code>是服务器响应请求时，返回当前资源文件的一个由服务器生成的唯一标识。</p>
+<figure data-type="image" tabindex="4"><img src="/post-images/1664021445583.png" alt=""></figure>
+<h4 id="etag-if-none-match">Etag / If-None-Match</h4><p><code>Etag</code>是服务器响应请求时，返回当前资源文件的一个由服务器生成的唯一标识。</p>
 <p><code>If-None-Match</code>则是客户端再次发起该请求时，携带上次请求返回的唯一标识<code>Etag</code>值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有<code>If-None-Match</code>，则会根据<code>If-None-Match</code>的字段值与该资源在服务器的<code>Etag</code>值做对比，如果一致则就返回 304，代表资源无更新，可以继续使用缓存文件；否则重新返回资源文件，状态码为200，</p>
-<figure data-type="image" tabindex="5"><img src="/post-images/1664021473144.png" alt="" loading="lazy"></figure>
-<h2 id="disk-cache-与-memory-cache">disk cache 与 memory cache</h2>
-<p>我们可以通过浏览器调试工具查看强制缓存是否生效，如下图所示，状态码为灰色的请求就代表使用了强制缓存，请求对应的 size 显示了该缓存存放的位置，那么什么时候用 disk 什么时候用 memory 呢？</p>
-<figure data-type="image" tabindex="6"><img src="/post-images/1664021485061.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="/post-images/1664021473144.png" alt=""></figure>
+<h3 id="disk-cache-与-memory-cache">disk cache 与 memory cache</h3><p>我们可以通过浏览器调试工具查看强制缓存是否生效，如下图所示，状态码为灰色的请求就代表使用了强制缓存，请求对应的 size 显示了该缓存存放的位置，那么什么时候用 disk 什么时候用 memory 呢？</p>
+<figure data-type="image" tabindex="6"><img src="/post-images/1664021485061.png" alt=""></figure>
 <p>猜都能猜出来，肯定是优先使用内存（memory）中的缓存，然后才用硬盘（disk）中的缓存。</p>
 <p>内存缓存具有快速读取的特点，它会将编译解析后的文件直接存入该进程的内存中，但是一旦进程关闭了，该进程的内存就会被清空，所以如果你将一个网页关闭后再打开，那么缓存都会走硬盘缓存，而如果你只是刷新网页，那有部分缓存走的就是内存缓存。</p>
 <p>浏览器一般会再 js 和图片等文件解析执行后直接存入内存缓存中，当刷新页面时，这部分文件只需要从内存缓存中读取即可，而 css 文件则会存入硬盘中，所以每次渲染页面都需要从硬盘中读取文件。</p>
-<h2 id="总结">总结</h2>
-<p>到这里偷懒一下子了，找到人家画的一张图，看图就行了。</p>
-<figure data-type="image" tabindex="7"><img src="/post-images/1664021653704.png" alt="" loading="lazy"></figure>
+<h3 id="总结">总结</h3><p>到这里偷懒一下子了，找到人家画的一张图，看图就行了。</p>
+<figure data-type="image" tabindex="7"><img src="/post-images/1664021653704.png" alt=""></figure>
 
                                 </div>
                     </article>
@@ -244,11 +234,11 @@
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -303,6 +293,7 @@
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#http-报文">HTTP 报文</a></li>
 <li><a href="#缓存概述">缓存概述</a></li>
 <li><a href="#强制缓存">强制缓存</a></li>
@@ -317,6 +308,7 @@
 </ul>
 <li><a href="#disk-cache-与-memory-cache">disk cache 与 memory cache</a></li>
 <li><a href="#总结">总结</a></li>
+</ul>
 </ul>
 </div>
 
@@ -355,7 +347,7 @@
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
@@ -365,42 +357,42 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-warning" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-error" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-other_3" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-other_1" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
@@ -410,7 +402,7 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-banana" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
@@ -420,162 +412,162 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-primary" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-banana" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-other_1" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-other_4" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-error" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-success" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-info" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-other_2" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-other_4" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-other_4" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-other_3" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-warning" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-primary" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-other_4" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-other_4" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-banana" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-banana" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-other_3" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-other_4" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-success" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

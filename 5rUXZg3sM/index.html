@@ -7,7 +7,7 @@
 <title>
     跨域请求是什么？如何解决？ | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,30 +113,30 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             跨域请求是什么？如何解决？
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2018-09-18</time>
                             <span class="read-time">7 min read</span>
                             
                                 <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-info">
                             #前端
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-success">
                             #Angular
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-banana">
                             #计算机网络
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-">
                             #Python
                         </a>
                                 
@@ -153,10 +153,9 @@
 <a href="http://www.cnblogs.com/tkqasn/p/5869175.html">AJAX请求和跨域请求详解（原生JS、Jquery）</a><br>
 <a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html">JavaScript跨域总结与解决办法</a></p>
 </blockquote>
-<figure data-type="image" tabindex="1"><img src="/post-images/1662968391191.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="/post-images/1662968391191.png" alt=""></figure>
 <p>刚毕业入职，大部分时间还在培训，中间有一段时间的空闲时间，就学习了下 Angular，在学校都是编写的单体应用，所有代码都放在同一个工程下面，到公司使用的是前后端分离了，虽然后端程序也是我自己写的，但是有一些数据是从公司现有接口去拿的，然后就遇到让我纠结了两小时的<strong>跨域请求问题</strong>，在这里做一个简单的总结输出。</p>
-<h2 id="什么是跨域请求">什么是跨域请求</h2>
-<p>跨域请求问题是浏览器的<strong>同源策略</strong>造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：<strong>协议、域名、端口</strong>。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。</p>
+<h3 id="什么是跨域请求">什么是跨域请求</h3><p>跨域请求问题是浏览器的<strong>同源策略</strong>造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：<strong>协议、域名、端口</strong>。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。</p>
 <pre class="hljs"><code>http:<span class="hljs-regexp">//</span>www.nealyang.cn<span class="hljs-regexp">/index.html 调用 http:/</span><span class="hljs-regexp">/www.nealyang.cn/</span>server.php 非跨域
 
 http:<span class="hljs-regexp">//</span>www.nealyang.cn<span class="hljs-regexp">/index.html 调用 http:/</span><span class="hljs-regexp">/www.neal.cn/</span>server.php 跨域,主域不同
@@ -175,12 +174,10 @@ localhost 调用 <span class="hljs-number">127.0</span>.<span class="hljs-number
 （3） AJAX 请求不能发送。
 </code></pre>
 <p>所有的现代浏览器都对网络连接进行了安全限制，包括 XMLHttpRequest，如果你的 web 应用程序和其使用的数据在同一个服务器，你不会遇到跨域请求问题。但是当你的 web 应用程序和 web 服务数据不在同一个服务器时，就会被浏览器限制连接了。</p>
-<h2 id="常用解决方案">常用解决方案</h2>
-<p>    对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面设置代理。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。</p>
-<figure data-type="image" tabindex="2"><img src="/post-images/1662968421298.png" alt="" loading="lazy"></figure>
+<h3 id="常用解决方案">常用解决方案</h3><p>    对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面设置代理。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。</p>
+<figure data-type="image" tabindex="2"><img src="/post-images/1662968421298.png" alt=""></figure>
 <p>通俗易懂的说，你家的宠物狗不会吃别家的食物，因为它担心别人的食物会把自己给药死，所以你的狗狗只管找你要食物，你是它的主人，它绝对相信你，而你可以鉴别别人给的食物是不是安全的。类比，小狗就是浏览器，你就是代理。</p>
-<h2 id="angular-中的解决办法">Angular 中的解决办法</h2>
-<p>上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用<code>angular-cli</code>构建你的项目，我们可以创建一个代理配置文件<code>proxy.conf.json</code>（假设你的后端服务的访问地址为<code>10.121.163.10:8080</code>），代理配置文件如下：</p>
+<h3 id="angular-中的解决办法">Angular 中的解决办法</h3><p>上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用<code>angular-cli</code>构建你的项目，我们可以创建一个代理配置文件<code>proxy.conf.json</code>（假设你的后端服务的访问地址为<code>10.121.163.10:8080</code>），代理配置文件如下：</p>
 <pre class="hljs"><code><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;/api&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">&quot;target&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;http://10.121.163.10:8080&quot;</span><span class="hljs-punctuation">,</span>
@@ -190,8 +187,7 @@ localhost 调用 <span class="hljs-number">127.0</span>.<span class="hljs-number
 </code></pre>
 <p>然后修改<code>package.json</code>文件中的启动命令为<code>&quot;start&quot;: &quot;ng serve --proxy-config proxy.conf.json&quot;</code>，启动项目时使用<code>npm start</code>即可解决跨域请求问题。</p>
 <p>上述解决方案仅在开发时使用，你当然可以使用 tomcat、nginx 配置代理，但是这很麻烦，需要打包代码部署，为了保证效率，我们想写完了立刻测试，同时也不想麻烦做后端的同学，在项目发布时，应该把代理配置到服务器中去；修改启动命令也不是必须的，你也可以选择每次使用 <code>ng serve  --proxy-config proxy.conf.json</code>命令启动项目；示例代理配置文件内容可以有更多的属性，可以通过网络查阅相关资料。</p>
-<h2 id="后端解决办法">后端解决办法</h2>
-<p>我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。</p>
+<h3 id="后端解决办法">后端解决办法</h3><p>我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。</p>
 <p>这时需要了解一下<strong>简单请求</strong>和<strong>非简单请求</strong>了，简单请求就是只发送一次请求的请求；非简单请求会发送数据之前先发一次请求做<strong>预检</strong>，通过预检后才能再发送一次请求用于数据传输。</p>
 <p>更清晰区别，满足下列两大条件的属于简单请求，而非简单请求就是请求方法为<code>PUT</code>或<code>DELETE</code>，或者 <code>Content-Type</code>字段是<code>application/json</code>的请求。</p>
 <blockquote>
@@ -247,11 +243,11 @@ localhost 调用 <span class="hljs-number">127.0</span>.<span class="hljs-number
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -306,10 +302,12 @@ localhost 调用 <span class="hljs-number">127.0</span>.<span class="hljs-number
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#什么是跨域请求">什么是跨域请求</a></li>
 <li><a href="#常用解决方案">常用解决方案</a></li>
 <li><a href="#angular-中的解决办法">Angular 中的解决办法</a></li>
 <li><a href="#后端解决办法">后端解决办法</a></li>
+</ul>
 </ul>
 </div>
 
@@ -348,92 +346,92 @@ localhost 调用 <span class="hljs-number">127.0</span>.<span class="hljs-number
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-primary" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-warning" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-other_1" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-other_4" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-other_3" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-other_1" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-success" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-warning" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-other_1" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-info" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-info" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-success" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-warning" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-other_4" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-error" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
@@ -443,47 +441,47 @@ localhost 调用 <span class="hljs-number">127.0</span>.<span class="hljs-number
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-other_3" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-other_3" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-warning" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-primary" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
@@ -493,82 +491,82 @@ localhost 调用 <span class="hljs-number">127.0</span>.<span class="hljs-number
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-banana" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-banana" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-warning" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-success" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-other_1" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-info" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-primary" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-other_2" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-banana" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-success" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-warning" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-warning" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-error" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-error" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

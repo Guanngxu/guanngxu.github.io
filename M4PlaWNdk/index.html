@@ -7,7 +7,7 @@
 <title>
     Oracle | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,13 +40,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -132,12 +132,12 @@
         </a>
                         
                         <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-banana">
             #Java
         </a>
                         
                         <a href="https://www.guanngxu.com/M4PlaWNdk/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-primary">
             #Oracle
         </a>
                         
@@ -158,8 +158,7 @@ Docker安装Oracle
 docker能安装oracle吗
 Batch script for add a auto-increased primary key for exist table with records
 
-Docker 安装 Oracle11g
-注意：下列安装方式仅适用于x86架构服务器，不适用于arm架构服务器。
+Docker 安装 Oracle11g注意：下列安装方式仅适用于x86架构服务器，不适用于arm架构服务器。
 # 拉取 oracle11，镜像有点大，需要花一些时间
 docker pull registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g
 
@@ -228,11 +227,9 @@ startup;
 # 退出软链接
 exit;
 
-客户端连接 Oracle
-以 Navicat 客户端为例，新建连接时按下图方式填写连接信息即可，密码即为system。需要注意的是，在 Windows 下选择 SID 或是服务名均可连接成功，但是在 Mac 下需要选择 SID 方式才能连接成功。
+客户端连接 Oracle以 Navicat 客户端为例，新建连接时按下图方式填写连接信息即可，密码即为system。需要注意的是，在 Windows 下选择 SID 或是服务名均可连接成功，但是在 Mac 下需要选择 SID 方式才能连接成功。
 
-Oracle 实现主键自增
-Oracle 在创建表的时候，不能像 MySQL 那样选择主键直接自增，但是我们可以通过给表创建序列和触发器去实现自增。下文以创建 USER 表为例。
+Oracle 实现主键自增Oracle 在创建表的时候，不能像 MySQL 那样选择主键直接自增，但是我们可以通过给表创建序列和触发器去实现自增。下文以创建 USER 表为例。
 -- 删除原有 USER 表
 DROP TABLE &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot;;
 -- 创建 USER 表
@@ -280,8 +277,7 @@ END;
 需要注意的是，上面的/符号不能少。执行插入语句时可以发现，id会自动增加。
 INSERT INTO &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; (&amp;quot;gmt_create&amp;quot;, &amp;quot;gmt_modified&amp;quot;, &amp;quot;is_deleted&amp;quot;, &amp;quot;login&amp;quot;, &amp;quot;passwd&amp;quot;, &amp;quot;nick&amp;quot;, &amp;quot;phone&amp;quot;, &amp;quot;head_img&amp;quot;, &amp;quot;status&amp;quot;, &amp;quot;remark&amp;quot;) VALUES (TO_DATE(&amp;#x27;2023-04-01 00:00:00&amp;#x27;, &amp;#x27;SYYYY-MM-DD HH24:MI:SS&amp;#x27;), TO_DATE(&amp;#x27;2023-04-01 17:04:30&amp;#x27;, &amp;#x27;SYYYY-MM-DD HH24:MI:SS&amp;#x27;), &amp;#x27;0&amp;#x27;, &amp;#x27;user&amp;#x27;, &amp;#x27;123&amp;#x27;, &amp;#x27;Jack&amp;#x27;, &amp;#x27;1111&amp;#x27;, &amp;#x27;head.jpg&amp;#x27;, &amp;#x27;激活&amp;#x27;, &amp;#x27;测试&amp;#x27;);
 
-Java Spring+Mybatis 使用 Oracle 及配置分页
-application.properties文件配置信息：
+Java Spring+Mybatis 使用 Oracle 及配置分页application.properties文件配置信息：
 # mybatis
 spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
 spring.datasource.url=jdbc:oracle:thin:@8127.0.0.1:1521:helowin
@@ -383,11 +379,11 @@ pom.xml配置文件关键信息。
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>

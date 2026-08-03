@@ -7,7 +7,7 @@
 <title>
     学习 Angulr 容易忽略的知识点 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785721732628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785738648531">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -41,13 +41,13 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785721732628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
-                    <h1>
+                    <div class="site-title-text">
                         Guanngxu
-                    </h1>
+                    </div>
                 </div>
             </a>
         </div>
@@ -113,30 +113,30 @@
                 <!-- left -->
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
-                        <h2 class="post-title">
+                        <h1 class="post-title">
                             学习 Angulr 容易忽略的知识点
-                        </h2>
+                        </h1>
                         <div class="post-info">
                             <time class="post-time">2018-09-25</time>
                             <span class="read-time">19 min read</span>
                             
                                 <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-error">
                             #前端
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-error">
                             #TypeScript
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_4">
                             #JavaScript
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-primary">
                             #Angular
                         </a>
                                 
@@ -149,8 +149,7 @@
 <p>参考内容：<br>
 《Angulr5 高级编程（第二版）》</p>
 </blockquote>
-<h2 id="函数声明式和表达式">函数声明式和表达式</h2>
-<pre class="hljs"><code><span class="hljs-comment">// 第一种：函数声明式</span>
+<h3 id="函数声明式和表达式">函数声明式和表达式</h3><pre class="hljs"><code><span class="hljs-comment">// 第一种：函数声明式</span>
 <span class="hljs-title function_">myFunc</span>();
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">myFunc</span>(<span class="hljs-params"></span>){
     ...
@@ -163,8 +162,7 @@
 }
 </code></pre>
 <p>虽然上面两种函数声明方式在大部分情况下是一样的，第一种可执行，第二种却不可以执行，这是因为浏览器在解析 js 时找到函数声明，并在执行剩余语句之前设置好函数，此过程称为<strong>函数提升</strong>，但是函数表达式却不会受到提升，因此无法正常工作。</p>
-<h2 id="js-不具备多态性">js 不具备多态性</h2>
-<p>js 重不能创建名称相同但参数不同的两个函数，它不具备这个多态性，比如你定义的函数中有两个形参，调用函数时只传一个参数，第二形参的值就是 undefined ，如果传的参数大于 3 个，那么会自动忽略多余的参数。可以使用下列方法来处理函数定义参数数量和用于调用函数实际参数数量之间不匹配的问题。</p>
+<h3 id="js-不具备多态性">js 不具备多态性</h3><p>js 重不能创建名称相同但参数不同的两个函数，它不具备这个多态性，比如你定义的函数中有两个形参，调用函数时只传一个参数，第二形参的值就是 undefined ，如果传的参数大于 3 个，那么会自动忽略多余的参数。可以使用下列方法来处理函数定义参数数量和用于调用函数实际参数数量之间不匹配的问题。</p>
 <pre class="hljs"><code><span class="hljs-comment">// 使用默认参数</span>
 <span class="hljs-keyword">let</span> func = <span class="hljs-keyword">function</span>(<span class="hljs-params">age, sex=<span class="hljs-string">&#x27;男&#x27;</span></span>){
     ...
@@ -178,8 +176,7 @@
 <span class="hljs-title function_">func</span>(<span class="hljs-number">23</span>, <span class="hljs-string">&#x27;女&#x27;</span>, <span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-string">&#x27;深圳&#x27;</span>);
 <span class="hljs-comment">// 最后一个参数是一个数组，任何额外的实参都会被赋给这个数组</span>
 </code></pre>
-<h2 id="let-和-war-的区别">let 和 war 的区别</h2>
-<p>使用 let 和 var 声明变量的区别，使用 let 声明变量会把变量的作用范围限定在它所在的代码区域内。而使用 var 所创建的变量的作用域是它所在的函数。</p>
+<h3 id="let-和-war-的区别">let 和 war 的区别</h3><p>使用 let 和 var 声明变量的区别，使用 let 声明变量会把变量的作用范围限定在它所在的代码区域内。而使用 var 所创建的变量的作用域是它所在的函数。</p>
 <pre class="hljs"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">func</span>(<span class="hljs-params"></span>){
     <span class="hljs-keyword">if</span>(<span class="hljs-literal">false</span>){
         <span class="hljs-keyword">var</span> age = <span class="hljs-number">23</span>;
@@ -195,14 +192,12 @@
     }
 }
 </code></pre>
-<h2 id="相等-和恒等-以及-连接操作符">相等 == 和恒等 === 以及 连接操作符 +</h2>
-<p>相等操作符尝试将操作数强制转换为相同的类型，再评估是否相等，实质上相等操作符<code>==</code>是测试二者的值是否相等，而与二者的类型无关；如果要测试值和类型是否都相等则应该用恒等操作符<code>===</code>。</p>
+<h3 id="相等-和恒等-以及-连接操作符">相等 == 和恒等 === 以及 连接操作符 +</h3><p>相等操作符尝试将操作数强制转换为相同的类型，再评估是否相等，实质上相等操作符<code>==</code>是测试二者的值是否相等，而与二者的类型无关；如果要测试值和类型是否都相等则应该用恒等操作符<code>===</code>。</p>
 <pre class="hljs"><code><span class="hljs-number">5</span> == <span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-comment">// 结果为 true</span>
 <span class="hljs-number">5</span> === <span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-comment">// 结果为 false</span>
 </code></pre>
 <p>在 js 中，连接操作符的优先级高于加法操作，也就是说<code>5 + '5'</code>的结果是<code>55</code>。</p>
-<h2 id="不同的模块指定方式">不同的模块指定方式</h2>
-<pre class="hljs"><code><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Name</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./modules/NameUtil&quot;</span>;<span class="hljs-comment">// 第一种</span>
+<h3 id="不同的模块指定方式">不同的模块指定方式</h3><pre class="hljs"><code><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Name</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./modules/NameUtil&quot;</span>;<span class="hljs-comment">// 第一种</span>
 <span class="hljs-keyword">import</span> { <span class="hljs-title class_">Compont</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@angular/core&quot;</span>;<span class="hljs-comment">// 第二种</span>
 </code></pre>
 <p>上面两种导入模块的方式有所不同，第一种是相对模块，第二种是非相对导入。第一种告诉的 TypeScript 编译器，该模块所在的位置是相对于包含 import 语句的文件而言；第二种非相对导入，编译器会用 node_modules 文件夹中的 npm 包来解析它。</p>
@@ -213,8 +208,7 @@
 <pre class="hljs"><code><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> otherName <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./modules/NameUtil&quot;</span>;
 <span class="hljs-keyword">let</span> name = <span class="hljs-keyword">new</span> otherName.<span class="hljs-title class_">Name</span>(<span class="hljs-string">&quot;Admin&quot;</span>, <span class="hljs-string">&quot;China&quot;</span>);<span class="hljs-comment">// Name 是 NameUtil 中的类</span>
 </code></pre>
-<h2 id="多类型和类型断言">多类型和类型断言</h2>
-<p>在 ts 中允许指定多个类型，使用字符<code>|</code>进行分隔。看下面的的方法，其功能是把华氏温度转换为摄氏温度。</p>
+<h3 id="多类型和类型断言">多类型和类型断言</h3><p>在 ts 中允许指定多个类型，使用字符<code>|</code>进行分隔。看下面的的方法，其功能是把华氏温度转换为摄氏温度。</p>
 <pre class="hljs"><code><span class="hljs-comment">// 使用多类型，该函数可以传入 number 和 string 类型的参数</span>
 <span class="hljs-keyword">static</span> <span class="hljs-title function_">convertFtoC</span>(<span class="hljs-attr">temp</span>: number | string): string {
     <span class="hljs-comment">/*
@@ -234,8 +228,7 @@ tuple = [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-strin
 <span class="hljs-keyword">let</span> <span class="hljs-attr">cities</span>: {[<span class="hljs-attr">index</span>: string] : [string, string]} = {};
 cities[<span class="hljs-string">&quot;Beijing&quot;</span>] = [<span class="hljs-string">&quot;raining&quot;</span>, <span class="hljs-string">&quot;2摄氏度&quot;</span>];
 </code></pre>
-<h2 id="数据绑定">数据绑定</h2>
-<pre class="hljs"><code>[target]=<span class="hljs-string">&quot;expr&quot;</span><span class="hljs-comment">// 方括号表示单向绑定，数据从表达式流向目标；</span>
+<h3 id="数据绑定">数据绑定</h3><pre class="hljs"><code>[target]=<span class="hljs-string">&quot;expr&quot;</span><span class="hljs-comment">// 方括号表示单向绑定，数据从表达式流向目标；</span>
 
 (target)=<span class="hljs-string">&quot;expr&quot;</span><span class="hljs-comment">// 圆括号表示单向绑定，数据从目标流向表达式，用于处理事件的绑定；</span>
 [(target)]=<span class="hljs-string">&quot;expr&quot;</span><span class="hljs-comment">// 圆方括号组合表示双向绑定，数据在表达式与目标之间双向流动；</span>
@@ -260,8 +253,7 @@ cities[<span class="hljs-string">&quot;Beijing&quot;</span>] = [<span class="hlj
 
 <span class="hljs-comment">&lt;!-- 还有其他的 ngClass，ngStyle 等绑定，理解大体上和上面差不多 --&gt;</span>
 </code></pre>
-<h2 id="内置指令">内置指令</h2>
-<pre class="hljs"><code><span class="hljs-comment">&lt;!-- 
+<h3 id="内置指令">内置指令</h3><pre class="hljs"><code><span class="hljs-comment">&lt;!-- 
     ngIf指令，如果表达式求值结果为 true ，那么 ngIf 将宿主元素机器内容包含在 html 文件中
     指令前面的星号表示这是一条微模板指令
     组要注意的是，ngIf 会向 html 中添加元素，也会从中删除元素，并非只是显示和隐藏
@@ -310,8 +302,7 @@ cities[<span class="hljs-string">&quot;Beijing&quot;</span>] = [<span class="hlj
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ngClass</span>=<span class="hljs-string">&quot;expr&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ngStyle</span>=<span class="hljs-string">&quot;expr&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
-<h2 id="事件绑定">事件绑定</h2>
-<p>事件绑定使用 <code>(target)=&quot;expr&quot;</code>，是单向绑定，数据从目标流向表达式，用于响应宿主元素发送的事件。</p>
+<h3 id="事件绑定">事件绑定</h3><p>事件绑定使用 <code>(target)=&quot;expr&quot;</code>，是单向绑定，数据从目标流向表达式，用于响应宿主元素发送的事件。</p>
 <p>当浏览器触发一个时间时，它将提供一个对象来描述该事件，对于不同类型的事件有不同类型的事件对象，事件对象被赋给一个名为<code>$event</code>的模板变量，但是所有事件对象都有下面三个属性:</p>
 <pre class="hljs"><code>type：返回一个 string 值，用于标识已触发事件类型；
 target：返回触发事件的对象，一般是 html元素对象。
@@ -328,8 +319,7 @@ timeStamp：返回事件触发事件的 number 值，用 1970.1.1 毫秒数表�
 <span class="hljs-comment">&lt;!-- 使用事件过滤，上面的写法按下任何一个键都会触发事件，而下面的写法只有回车事件才会触发事件 --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">input</span> (<span class="hljs-attr">keyup.enter</span>=<span class="hljs-string">&quot;selectedProduct=product.value&quot;</span>) /&gt;</span>
 </code></pre>
-<h2 id="表单验证">表单验证</h2>
-<p>Angular 提供了一套可扩展的系统来验证表单元素的内容，总共可以向 input表元素中添加 4 个属性，每个属性定义一条验证规则，如下所示：</p>
+<h3 id="表单验证">表单验证</h3><p>Angular 提供了一套可扩展的系统来验证表单元素的内容，总共可以向 input表元素中添加 4 个属性，每个属性定义一条验证规则，如下所示：</p>
 <pre class="hljs"><code>required：用于指定必须填写值；
 minlength：用于指定最小字符数；
 maxlength：用于指定最大字符数，（不能在表单元素直接使用，因为它与同名的 H5 属性冲突）；
@@ -433,8 +423,7 @@ ng-valid ng-invalid：如果满足验证规则定义的条件，就加入到 ng-
 </code></pre>
 <p>fromSubmited 属性用于指示表单是否已经提交，并将用于在用户提交整个表单之前阻止表单验证。当用户提交表单时，调用 submitForm 方法，并将 ngForm 对象作为实参传入，ngForm 提供了 reset 方法，该方法可以重置表单的验证状态，使其返回到最初的未访问状态。</p>
 <p><strong>更高级的还有使用基于模型的表单验证，可以自行查阅相关资料。</strong></p>
-<h2 id="使用-json-server-模拟-web-服务">使用 json-server 模拟 web 服务</h2>
-<p>因为<code>json-server</code>会经常用到，建议使用全局安装命令<code>npm install -g json-server</code>。因为开发后端的同学太慢了，而我们如果要等他们把接口都提供给我们的时候再开发程序的话，那效率就太低了，所以使用 json-server 来模拟后端服务。只需要建好一个 json 文件，比如下面的格式：</p>
+<h3 id="使用-json-server-模拟-web-服务">使用 json-server 模拟 web 服务</h3><p>因为<code>json-server</code>会经常用到，建议使用全局安装命令<code>npm install -g json-server</code>。因为开发后端的同学太慢了，而我们如果要等他们把接口都提供给我们的时候再开发程序的话，那效率就太低了，所以使用 json-server 来模拟后端服务。只需要建好一个 json 文件，比如下面的格式：</p>
 <pre class="hljs"><code><span class="hljs-punctuation">{</span>
     <span class="hljs-attr">&quot;user&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
         <span class="hljs-punctuation">{</span>
@@ -453,16 +442,14 @@ ng-valid ng-invalid：如果满足验证规则定义的条件，就加入到 ng-
 <span class="hljs-punctuation">}</span>
 </code></pre>
 <p>启动服务使用命令<code>json-server [你的 json 文件路径]</code>，然后就可以根据提示访问了，你甚至可以使用<code>http://localhost:3000/user?number=5678</code>去过滤数据。这样就能模拟 web 服务，而不必等后端同学的进度了。</p>
-<h2 id="解决跨域请求问题">解决跨域请求问题</h2>
-<p>Angular 跨域请求问题可以通过 Angular 自身的代理转发功能解决，在项目文件夹下新建一个 proxy.conf.json 并在其中添加如下内容。</p>
+<h3 id="解决跨域请求问题">解决跨域请求问题</h3><p>Angular 跨域请求问题可以通过 Angular 自身的代理转发功能解决，在项目文件夹下新建一个 proxy.conf.json 并在其中添加如下内容。</p>
 <pre class="hljs"><code><span class="hljs-comment">// 可以通过下列配置解决</span>
 <span class="hljs-attr">&quot;/api&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">&quot;target&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;http://10.9.176.120:8888&quot;</span><span class="hljs-punctuation">,</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
 <p>在启动时使用<code>npm start</code>，或者使用<code>ng serve  --proxy-config proxy.conf.json</code>，Anular 中的<code>/api</code>请求就会被转发到 <code>http://10.9.176.120:8888/api</code>，从而解决跨域请求问题。</p>
-<h2 id="使用第三方-js-插件">使用第三方 js 插件</h2>
-<p>共有三种方式引入第三方插件，第一种很简单，直接在 html 中引入插件就可以了；第二种在<code>angular.json</code>中进行配置；第三种在 ts 文件中使用 import 导入库即可。</p>
+<h3 id="使用第三方-js-插件">使用第三方 js 插件</h3><p>共有三种方式引入第三方插件，第一种很简单，直接在 html 中引入插件就可以了；第二种在<code>angular.json</code>中进行配置；第三种在 ts 文件中使用 import 导入库即可。</p>
 <pre class="hljs"><code><span class="hljs-comment">// 第一种(需要重启服务)</span>
 <span class="hljs-string">&quot;scripts&quot;</span>: [<span class="hljs-string">&quot;src/assets/jquery-3.2.1.js&quot;</span>,<span class="hljs-string">&quot;src/assets/jquery.nicescroll.js&quot;</span>,<span class="hljs-string">&quot;src/assets/ion.rangeSlider.js&quot;</span>]
 
@@ -475,8 +462,7 @@ ng-valid ng-invalid：如果满足验证规则定义的条件，就加入到 ng-
 <span class="hljs-keyword">import</span> <span class="hljs-string">&quot;assets/jquery.nicescroll.js&quot;</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">&quot;assets/ion.rangeSlider.js&quot;</span>;
 </code></pre>
-<h2 id="深拷贝与浅拷贝">深拷贝与浅拷贝</h2>
-<p>深拷贝与浅拷贝是围绕<strong>引用类型变量</strong>说的，其本质区别是不可变性，基本类型是不可变得，而引用类型是可变的。</p>
+<h3 id="深拷贝与浅拷贝">深拷贝与浅拷贝</h3><p>深拷贝与浅拷贝是围绕<strong>引用类型变量</strong>说的，其本质区别是不可变性，基本类型是不可变得，而引用类型是可变的。</p>
 <p>直接使用赋值操作符，就是浅拷贝，如果对拷贝源进行操作，会直接影响在拷贝目标上，因为这个赋值行为本质是内存地址的赋值，为了获得与拷贝源完全相同但又不会影响彼此的对象就要使用深拷贝。</p>
 <pre class="hljs"><code><span class="hljs-keyword">let</span> objA = {
     <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>,
@@ -561,11 +547,11 @@ objB.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>:<
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785721732628">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785738648531" alt="avatar">
         </div>
-        <h1 class="id_card-title">
+        <div class="id_card-title">
             Guanngxu
-        </h1>
+        </div>
         <h2 class="id_card-description">
             Keep trying
         </h2>
@@ -620,6 +606,7 @@ objB.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>:<
         <div class="toc-content">
             <div class="markdownIt-TOC">
 <ul>
+<ul>
 <li><a href="#函数声明式和表达式">函数声明式和表达式</a></li>
 <li><a href="#js-不具备多态性">js 不具备多态性</a></li>
 <li><a href="#let-和-war-的区别">let 和 war 的区别</a></li>
@@ -634,6 +621,7 @@ objB.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>:<
 <li><a href="#解决跨域请求问题">解决跨域请求问题</a></li>
 <li><a href="#使用第三方-js-插件">使用第三方 js 插件</a></li>
 <li><a href="#深拷贝与浅拷贝">深拷贝与浅拷贝</a></li>
+</ul>
 </ul>
 </div>
 
@@ -672,52 +660,52 @@ objB.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>:<
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-warning" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-info" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-error" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-other_4" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-other_4" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-info" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-other_4" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-success" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-success" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
@@ -727,42 +715,42 @@ objB.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>:<
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-other_4" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-info" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-info" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-other_4" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
@@ -772,42 +760,42 @@ objB.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>:<
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-warning" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-other_1" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-success" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-primary" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-banana" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-other_4" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
@@ -817,82 +805,82 @@ objB.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>:<
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-error" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-other_3" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            i-tag-primary" href="https://www.guanngxu.com/1qL6ZUU_c5/">
             领域驱动设计
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-other_4" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-info" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-info" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-info" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-success" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-primary" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-other_1" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-primary" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-other_2" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         
