@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     数据库 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
 </head>
 
 <body>
@@ -28,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -44,7 +56,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -52,19 +72,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -106,19 +118,19 @@
                 <div class="post-info">
                     <time class="post-time">2023-03-30</time>
                     
-                        <a href="https://www.guanngxu.com/M4PlaWNdk/" class="post-tag i-tag
-                            i-tag-primary">
-            #Oracle
-        </a>
-                        
                         <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-info">
             #数据库
         </a>
                         
                         <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_1">
             #Java
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/M4PlaWNdk/" class="post-tag i-tag
+                            i-tag-">
+            #Oracle
         </a>
                         
                 </div>
@@ -258,7 +270,7 @@ END;
 /
 
 需要注意的是，上面的/符号不能少。执行插入语句时可以发现，id会自动增加。
-INSERT INTO &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; (&amp;quot;gmt_create&amp;quot;, &amp;quot;gmt_modified&amp;quot;, &amp;quot;is_deleted&amp;quot;, &amp;quot;login&amp;quot;, &amp;quot;passwd&amp;quot;, &amp;quot;nick&amp;quot;, &amp;quot;phone&amp;quot;, &amp;quot;head_img&amp;quot;, &amp;quot;status&amp;quot;, &amp;quot;remark&amp;quot;) VALUES (TO_DATE(&#39;2023-04-01 00:00:00&#39;, &#39;SYYYY-MM-DD HH24:MI:SS&#39;), TO_DATE(&#39;2023-04-01 17:04:30&#39;, &#39;SYYYY-MM-DD HH24:MI:SS&#39;), &#39;0&#39;, &#39;user&#39;, &#39;123&#39;, &#39;Jack&#39;, &#39;1111&#39;, &#39;head.jpg&#39;, &#39;激活&#39;, &#39;测试&#39;);
+INSERT INTO &amp;quot;TEST&amp;quot;.&amp;quot;USER&amp;quot; (&amp;quot;gmt_create&amp;quot;, &amp;quot;gmt_modified&amp;quot;, &amp;quot;is_deleted&amp;quot;, &amp;quot;login&amp;quot;, &amp;quot;passwd&amp;quot;, &amp;quot;nick&amp;quot;, &amp;quot;phone&amp;quot;, &amp;quot;head_img&amp;quot;, &amp;quot;status&amp;quot;, &amp;quot;remark&amp;quot;) VALUES (TO_DATE(&amp;#x27;2023-04-01 00:00:00&amp;#x27;, &amp;#x27;SYYYY-MM-DD HH24:MI:SS&amp;#x27;), TO_DATE(&amp;#x27;2023-04-01 17:04:30&amp;#x27;, &amp;#x27;SYYYY-MM-DD HH24:MI:SS&amp;#x27;), &amp;#x27;0&amp;#x27;, &amp;#x27;user&amp;#x27;, &amp;#x27;123&amp;#x27;, &amp;#x27;Jack&amp;#x27;, &amp;#x27;1111&amp;#x27;, &amp;#x27;head.jpg&amp;#x27;, &amp;#x27;激活&amp;#x27;, &amp;#x27;测试&amp;#x27;);
 
 Java Spring+Mybatis 使用 Oracle 及配置分页
 application.properties文件配置信息：
@@ -344,14 +356,14 @@ pom.xml配置文件关键信息。
                 <div class="post-info">
                     <time class="post-time">2020-11-03</time>
                     
-                        <a href="https://www.guanngxu.com/wjM4wf9IE/" class="post-tag i-tag
-                            i-tag-error">
-            #MySQL
+                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-">
+            #数据库
         </a>
                         
-                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
-                            i-tag-other_4">
-            #数据库
+                        <a href="https://www.guanngxu.com/wjM4wf9IE/" class="post-tag i-tag
+                            i-tag-primary">
+            #MySQL
         </a>
                         
                 </div>
@@ -382,10 +394,10 @@ VERCHAR 类型在存储可变长字符串时，会比 CHAR 更节省空间，它
 使用枚举代替字符串
 有时候可以使用枚举列代替常用的字符串类型，枚举列可以把一些不重复的字符串存储成一个预定义的集合，而且 MySQL 在存储枚举时非常紧凑，会根据列的数量压缩到一个或两个字节。比如下面的例子：
 CREATE TABLE enum_test(
-    e ENUM(&#39;fish&#39;, &#39;apple&#39;, &#39;dog&#39;) NOT NULL
+    e ENUM(&amp;#x27;fish&amp;#x27;, &amp;#x27;apple&amp;#x27;, &amp;#x27;dog&amp;#x27;) NOT NULL
 );
 
-INSERT INTO enum_test(e) VALUES(&#39;fish&#39;), (&#39;dog&#39;), (&#39;apple&#39;);
+INSERT INTO enum_test(e) VALUES(&amp;#x27;fish&amp;#x27;), (&amp;#x27;dog&amp;#x27;), (&amp;#x27;apple&amp;#x27;);
 
 SELECT e+0 FROM enum_test;
 
@@ -430,14 +442,14 @@ MySQL 执行大部分修改表结构的方法都是用新的结构创建一个�
                 <div class="post-info">
                     <time class="post-time">2020-01-04</time>
                     
-                        <a href="https://www.guanngxu.com/iqW8DWbw7/" class="post-tag i-tag
-                            i-tag-">
-            #MongoDB
+                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-info">
+            #数据库
         </a>
                         
-                        <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
-                            i-tag-error">
-            #数据库
+                        <a href="https://www.guanngxu.com/iqW8DWbw7/" class="post-tag i-tag
+                            i-tag-warning">
+            #MongoDB
         </a>
                         
                 </div>
@@ -542,12 +554,12 @@ db.collection.aggregate([
                     <time class="post-time">2018-10-01</time>
                     
                         <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-info">
             #数据库
         </a>
                         
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-other_3">
             #操作系统
         </a>
                         
@@ -682,7 +694,7 @@ R10
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu

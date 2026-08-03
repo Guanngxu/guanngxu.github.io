@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     操作系统 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
 </head>
 
 <body>
@@ -28,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -44,7 +56,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -52,19 +72,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -99,174 +111,6 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://www.guanngxu.com/0-yES6ENP/">
-                        深入理解计算机系统——函数调用与空间分配
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-11-08</time>
-                    
-                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-banana">
-            #操作系统
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://www.guanngxu.com/0-yES6ENP/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/0-yES6ENP.jpeg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            我们在编程序的时候，都会把某一个特定功能封装在一个函数里面，对外暴露一个接口，而隐藏了函数行为的具体实现，一个大型的复杂系统里面包含了很多这样的小函数，我们称之为过程。
-过程是相对独立的小模块，系统的运行需要这些过程的紧密合作，这种合作就是函数调用。
-在一个函数执行时调用别的函数，比如 P 调用 Q，需要执行一些特定的动作。传递控制，在调用 Q 之前，控制权在 P 的手里，既然要调用 Q，那么就需要把控制权交给 Q；传递数据，就是函数传参；分配与释放内存，在开始时，Q 可能需要位局部变量分配空间，结束时又必须释放这些存储空间。
-大多数语言都使用栈提供的先进后出机制来管理内存，x86-64 可以通过通用寄存器传递最多 6 个整数值（整数或地址），如果超过 6 个，那就需要在栈中分配内存，并且通过栈传递参数时，所有数据的大小都要向 8 的倍数对齐。将控制权从 P 转交给 Q，只需要将 PC（程序计数器）的值置为 Q 代码的起始位置，并记录好 P 执行的位置，方便 Q 执行完了，继续执行 P 剩余的代码。
-在函数的传参、执行中，多多少少都需要空间来保存变量，局部数据能保存在寄存器中就会保存在寄存器中，如果寄存器不够，将会保存在内存中。除了寄存器不够用的情况，还有数组、结构体和地址等局部变量都必须保存在内存中。分配内存很简单，只需要减小栈指针的值就行了，同样释放也只需要增加栈指针。
-在函数执行过程中，处理栈指针%rsp，其它寄存器都被分类为被调用者保存寄存器，即当过程 P 调用过程 Q 时，Q 必须保存这些寄存器的值，保证它们的值在 Q 返回到 P 时与 Q 被调用时是一样的。
-所以递归也就不难理解了，初学算法总觉得递归有点奇妙，怎么自己调用自己，而实际上对于计算机来说，它和调用其它函数没什么区别，在计算机眼里，没有自身与其它函数的区别，所有被调用者都是其它人。
-数组是编程中不可或缺的一种结构，“数组是分配在连续的内存中”这句话已经烂熟于心了，历史上，C 语言只支持大小在编译时就能确定的多维数组，这个多多少少有一些不便利，所以在ISO C99标准中就引入了新的功能，允许数组的维度是表达式。
-int A[expr1][expr2]
-
-因为数组是连续的内存，所以很容易就能访问到指定位置的元素，它通过首地址加上偏移量即可计算出对应元素的地址，这个偏移量一定意义上就是由索引给出。
-比如现在有一个数组A，那么A[i]就等同于表达式* (A + i)，这是一个指针运算。C 语言的一大特性就是指针，既是优点也是难点，单操作符&amp;amp;和*可以产生指针和简介引用指针，也就是，对于一个表示某个对象的表达式expr，&amp;amp;expr给出该对象地址的一个指针，而对于一个表示地址的表达式Aexpr，*Aexpr给出该地址的值。
-即使我们创建嵌套（多维）数组，上面的一般原则也是成立的，比如下面的例子。
-int A[5][3];
-
-// 上面声明等价于下面
-typedef int row3_t[3];
-row3_t A[5];
-
-这个数组在内存的中就是下面那个样子的。
-
-还有一个重要的概念叫做数据对齐，即很多计算机系统要求某种类型的对象的地址必须是某个值 K（一般是2、4 或 8）的倍数，这种限制简化了处理器和内存接口之间的设计，甚至有的系统没有进行数据对齐，程序就无法正常运行。
-比如现在有一个如下的结构体。
-struct S1 {
-    int i;
-    char c;
-    int j;
-}
-
-如果编译器用最小的 9 字节分配，那么将是下面的这个样子。
-
-但是上面这种结构无法满足 i 和 j 的 4 字节对齐要求，所以编译器会在 c 和 j 之间插入 3 个字节的间隙。
-
-在极客时间专栏中有这样一段代码。
-int main(int argc, char *argv[]){
-    int i = 0;
-    int arr[3] = {0};
-    for(; i &amp;lt;= 3; i++){
-        arr[i] = 0;
-        printf(&amp;quot;Hello world!\n&amp;quot;);
-    }
-    return 0;
-}
-
-这段代码神奇的是在某种情况下会一直循环的输出Hello world，并不会结束，在计算机系统漫游（补充）中也提到过。
-造成上面这种结果是因为函数体内的局部变量存在栈中，并且是连续压栈，而 Linux 中栈又是从高向低增长。数组arr中是 3 个元素，加上 i 是 4 个元素，刚好满足 8 字节对齐（编译器 64 位系统下默认会 8 字节对齐），变量i在数组arr之前，即i的地址与arr相邻且比它大。
-代码中很明显访问数组时越界了，当i为 3 时，实际上正好访问到变量i的地址，而循环体中又有一句arr[i] = 0;，即又把i的值设置为了 0，由此就导致了死循环。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://www.guanngxu.com/0-yES6ENP/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://www.guanngxu.com/oNwbCz1HH/">
-                        深入理解计算机系统——信息的表示与处理
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-10-19</time>
-                    
-                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-error">
-            #操作系统
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://www.guanngxu.com/oNwbCz1HH/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/oNwbCz1HH.jpeg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-参考内容：
-《深入理解计算机系统》（第三版）
-
-字数据大小
-前面已经提到过信息=位+上下文，但是基本上的计算机都没有将位作为最小的可寻址单位，而是将字节作为了最小的可寻址单位，内存就是一个非常大的字节数组，它的的每个字节都由一个唯一的数字来标识（这个数字是不需要存的），所有可能的地址集合就是虚拟地址空间。
-我们常说的 32 位、64 位指的是一台计算机的字长，用于指明指针数据的的标称大小。有的面试官在面试的时候会问这样一个问题：在 C/C++ 中指针的大小是多少？如果你一下就回答出来时多少个字节了，那基本上不必再问了，因为一个指针的大小取决于计算机的字长，所以应该分 32 位机还是 64 位机的情况。
-字长还会决定一个极为重要的系统参数——虚拟地址空间。比如现在有一个 32 位机，每一位可以取值 1 或 总共 32 位，能组合的出局就有 232 个，所以它能访问 232 个地址，其大小也就是 4G，因此你如果给 32 位机装上 8G 的内存条，是起不了多大作用的。
-我们平时所说的 32 位程序和 64 位程序并不是指机器的字长，它们的区别在于程序时如何编译的，而不是其运行的机器类型，高版本都应该做到向后兼容，所以 32 位程序一般都能运行在 64 位机器上，而 64 位程序时不能运行在 32 位机上面的。下面两种伪指令就分别用于编译 32 位程序和 64 位程序。
-gcc -m32 prog.c
-gcc -m64 prog.c
-
-C 语言在 32 位机和 64 位机上所表现的差别在于long数据类型，一般在 32 位机上是 4 个字节，而在 64 位机上是 8 个字节，而作为程序员要力图程序能在不同的机器上进行编译执行，要做到这一点就需要保证程序对不同数据类型的确切大小不敏感。
-
-曾经某运营商的一个基站版本因为数据范围的不同而造成了巨大的损失，在编程环境中使用的是 32 位机，而基站所使用的处理器没有 32 位，最后表现的效果就是大概每隔 40 天，基站就自动复位了。定位到这个问题都花费了巨大的财力和人力资源。
-
-寻址及字节顺序
-上文已经提到，有很多的对象实际上不止占用一个字节，而是占用了多个字节，此时就涉及到如何排列这些字节了，以及如何存储这些字节。以11001100 11001100为例，它占用了两个字节，我们可以选择将这两个字节放在连续的内存中，也可以将两个字节分开放在不连续的内存中；另外我们可以将左边的字节当做起始位置，也可以将右边的字节当做起始位置（更专业的称为大端法和小端法）。
-对于字节的排列，到底是用大端法还是小端法，没有技术上的争论，只有社会政治论题的争论，而且机器它对程序员是完全不可见的。几乎所有的机器都将多字节对象存储为连续的字节序列，所使用字节中最小的地址作为对象的地址。
-那么什么时候需要注意字节的顺序规则呢，那就是编写网络应用程序的时候，试想你传输的数据是用大端法表示的，而用户的计算机采用的是小端法，那还会有用户使用你的产品吗。所以编写网络程序时需要遵循已经建立的关于字节顺序的规则。
-整数表示
-程序员对二进制不会不知道，比如 11111111表示的是 255（不考虑补码），很容易就能转换为我们所熟悉的 10 进制数据。这种方式我们默认它是无符号数，如果要加入有符号数就开始变得有趣了。
-几乎所有的计算机都是采用有补码来表示有符号整数的，它与无符号整数的区别在于最高位被解释为负权，举个例子：将1111看做补码的话，它的值就为：-23 + 22 + 21 + 20 = -1。
-在程序中不可避免的会使用强制类型转换，C 语言中强制类型转换并没有改变数据的位值，只是改变了解释这些位的方式。比如将无符号数（unsigned） 53191 转换为有符号数的结果为 -12345，它们的位值是完全没有相同的。
-最容易入坑的地方是，对两个不同类型的数据进行运算时，C 语言将会隐式的将有符号数转换为无符号数，所以就有下面这样一个神奇的结果。
-// u 代表无符号数
--1 &amp;lt; 0u
-// 结果为 0
-// 因为 -1 的补码表示为：11...11
-// 转换为无符号数后就是范围内最大的数
-
-如果需要扩展一个数的位表示，那么放心的扩展就好了，小的数据类型都能安全的向大的数据类型转换，补码表示的数会在前面补上符号位，原码表示的直接在前面补上 0 即可，而需要注意的是从大往小转，这会不可避免的截断位，造成信息的丢失，所以千万不要这么干。
-加法、乘法运算
-在编程入门的时候可能都知道两个正数相加的结果可能为负数，还有一个更奇怪的现象就是：x &amp;lt; y和 x - y &amp;lt; 0两个表达式可能会得出不一样的结果，这些神奇的结果都和计算机整数的底层表示和运算有着密切的关系。
-C 语言中有无符号数与有符号数之分，而在 Java 中只有有符号数，下面的内容还是基于 C 语言进行说明，毕竟更 C 比 Java 更接近底层嘛。
-无符号加法
-假设我们使用 w 位来表示无符号数，那么两个加数取值范围即为：0 ≤ x, y ＜2w，理论上它们的和的范围为：0 ≤ sum ＜ 2w+1，因为只有 w 位表示无符号数（要把和表示出来就需要 w+1 位），所以超过 zw的部分就会造成溢出，如下图所示。
-
-对于无符号数的溢出，计算机采用的处理方式是丢掉最高位，直观的结果就是，当发生溢出了，就将采用取模运算（或者说是减去 2w），举个例子。
-只用 4 为来表示无符号数，即 w = 4，现在有 x [1001] 和 y [1100] 相加，其结果应为：[10101] ，但是没有 5 位用来表示，所以丢掉最高位的1，剩下的值为 5 [0101]，也就是 21 mod 16 = 5。
-那么如何检测是否发生溢出呢？设求和结果为 s，对于加法有 x + y ≥ x 恒成立，即只要没有发生溢出，肯定有 s ≥ x。另一方面，如果确实发生溢出了，就有 s = x + y - 2w，又有 y - 2w ＜ 0，因此 s = x + y - 2w ＜ x。
-补码加法
-和前面一样，对于两个给定范围的加数 - 2w-1 ≤ x, y ≤ 2w-1 - 1，它们的和的范围就在 - 2w ≤ sum ≤ 2w - 2。要想把整个和的范围表示出来，依旧需要 w+1 位才行，而现在只有 w 位，因此还是需要采用将溢出部分截断。
-
-可以发现，当发生正溢出时，截断的结果是从和数中减去了 2w；而当发生负溢出时，截断结果是把和数加上 2w。
-那么对于补码加法如何检测溢出结果呢？通过分析可以发现，当且仅当 x ＞ 0, y ＞ 0，但和 s ≤ 0 时为正溢出；当且仅当 x ＜ 0, y ＜ 0，但 s ≥ 0 时发生负溢出。
-无符号乘法
-有了前面的基础，乘法就变得简单一些了，对于溢出情况，计算机仍然采用的是求模，比如 0 ≤ x, y ≤ 2w - 1，它们乘积的范围为 0 到 22w - 2w+1 + 1 之间，这可能需要 2w 位来表示，溢出部分直接截掉，如下所示。
-
-补码乘法
-对于补码，两个乘数的范围为：- 2w-1 ≤ x, y ≤ 2w-1 + 1，那么其乘积表示范围就为 - 22w-2 + 2w-1 到 22w-2 之间，补码乘法和无符号乘法基本是一样的，只是在无符号基础上多加了一步转换，即将无符号数转换为补码。
-
-乘以常数
-我们知道，计算机做加减法、位级运算的速度最快（1 个指令周期），而做乘除法很慢（10 个甚至更多指令周期），平时编写的程序中常常会乘以一个常数，为了使程序运行的更快，编译器可能会帮我们做一些处理。
-首先我们考虑常数是 2 的幂。x * 21 可以表示为 x &amp;lt;&amp;lt; 1，x * 22 可以表示为 x &amp;lt;&amp;lt; 2，依次类推即可。
-对于不是 2 的幂的常数，比如 x * 14 可以表示为：(x&amp;lt;&amp;lt;3) + (x&amp;lt;&amp;lt;2) + (x&amp;lt;&amp;lt;1)，因为 14 = 23 + 22 + 21；聪明的你可能发现 14 还有另一种表示方法，即 14 = 24 - 21，这种表示比前一种表示方法又少了运算量，所以 x * 14 还可以表示为：(x&amp;lt;&amp;lt;4) - (x&amp;lt;&amp;lt;1)。
-实际上，这里有一个通用的解决方案，对于任何一个常数 K，其二进制可以表示为一组 0 和 1 交替的序列：[(0...0)(1...1)(0...0)(1...1)]，14可以表示为：[(0...0)(111)(0)]，考虑一组从位位置 n 到位位置 m 的连续的 1 （n ≥ m），（对于 14 有 n = 3，m = 1）可以有两种形式来计算位对乘积的影响。
-
-这个优化不是一定的，大多数编译器只在需要少量移位、加减法就足够的时候才使用这种优化。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://www.guanngxu.com/oNwbCz1HH/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
                     <a href="https://www.guanngxu.com/_v3DmjUkj/">
                         磁盘到底是怎样工作的？一文理解硬盘结构
                     </a>
@@ -275,12 +119,12 @@ C 语言中有无符号数与有符号数之分，而在 Java 中只有有符号
                     <time class="post-time">2018-10-01</time>
                     
                         <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-error">
             #数据库
         </a>
                         
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_1">
             #操作系统
         </a>
                         
@@ -397,7 +241,7 @@ R10
                     <time class="post-time">2018-03-04</time>
                     
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-">
             #操作系统
         </a>
                         
@@ -570,7 +414,7 @@ FastDFS把简洁和高效做到了极致，非常节约资源，中小型网站�
                 
     <div class="pagination-container">
         
-            <a href="https://www.guanngxu.com/mZ_iBKmVWo" class="page-btn btn">上一页</a>
+            <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="page-btn btn">上一页</a>
             
                 
     </div>
@@ -601,7 +445,7 @@ FastDFS把简洁和高效做到了极致，非常节约资源，中小型网站�
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu

@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     如何抽取实体关系？——基于依存句法分析的事实三元组抽取 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -101,22 +113,22 @@
                             <span class="read-time">5 min read</span>
                             
                                 <a href="https://www.guanngxu.com/_9zQ4w6VQ/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-error">
                             #自然语言处理
                         </a>
                                 
-                                <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
-                            i-tag-success">
-                            #Java
-                        </a>
-                                
                                 <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-error">
                             #爬虫
                         </a>
                                 
+                                <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
+                            i-tag-error">
+                            #Java
+                        </a>
+                                
                                 <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_3">
                             #Python
                         </a>
                                 
@@ -133,74 +145,74 @@
 </blockquote>
 <p>这一段时间一直在做知识图谱，卡在实体关系抽取这里几个月了，在 Github 上面看到有人使用卷积神经网络训练模型进行抽取，自己也尝试了一下，但是一直苦于没有像样数据去训练，而标注训练集又太费时间了，我不太愿意干体力活。另外自己也不会什么机器学习、深度学习之类的技术，而且毕业设计都是有时间要求的，所以采用了一个低档次的方法，<strong>基于依存句法分析的实体关系抽取</strong>，记录一下心得，方便日后忘记可以再找回来。</p>
 <p>论文给出了 8 种中文关系的表达方式，并且最后给出了一个采用正则表达式语法指出表达，核心就是谓语动词表示关系，即关系表述中一定得有动词。</p>
-<pre><code>状语*动词+补语?宾语?
+<pre class="hljs"><code>状语*动词+补语<span class="hljs-string">?宾</span>语?
 </code></pre>
 <p>我不太赞同把宾语也当作关系表述的一部分，论文指出“p4生于山西”应该抽出（p4，山西，生于山西），我认为关系不应该表述为“生于山西”，所以我把关系表述改为下面的样子了。</p>
-<pre><code>状语*动词+补语?
+<pre class="hljs"><code>状语*动词+补语?
 </code></pre>
 <p>这篇文章只是作为一个方法介绍，我自己先看了一遍，能够保证我下次看到这篇文章，可以立马回忆起自己的实现方法，希望你看了也能了解方法，看不懂的话，我表示抱歉，浪费您的时间了，我已经尽可能写到简单了。</p>
 <p>先来看几个简单句子吧：</p>
-<pre><code>主谓宾关系：刘小绪 生于 四川
-// 这个三元组很明显：（刘小绪，生于，四川）
+<pre class="hljs"><code>主谓宾关系：刘小绪 生于 四川
+<span class="hljs-comment">// 这个三元组很明显：（刘小绪，生于，四川）</span>
 
 
 动补结构：刘小绪 洗 干净 了 衣服
-// 如果套用主谓宾关系就是：（刘小绪，洗，衣服）
-// 但是这里描述的是一个状态，是刘小绪把衣服洗干净了
-// “干净”是动词“洗”的补语，所以还应该提取出一个如下三元组
-// （刘小绪，洗干净了，衣服）
+<span class="hljs-comment">// 如果套用主谓宾关系就是：（刘小绪，洗，衣服）</span>
+<span class="hljs-comment">// 但是这里描述的是一个状态，是刘小绪把衣服洗干净了</span>
+<span class="hljs-comment">// “干净”是动词“洗”的补语，所以还应该提取出一个如下三元组</span>
+<span class="hljs-comment">// （刘小绪，洗干净了，衣服）</span>
 
 状动结构：父亲 非常 喜欢 跑步
-// 这句和上面很像，主谓宾关系是：父亲喜欢跑步
-// “非常”用于修饰“喜欢”
-// （父亲，非常喜欢，跑步）
+<span class="hljs-comment">// 这句和上面很像，主谓宾关系是：父亲喜欢跑步</span>
+<span class="hljs-comment">// “非常”用于修饰“喜欢”</span>
+<span class="hljs-comment">// （父亲，非常喜欢，跑步）</span>
 
 介宾关系：刘小绪 就职 于 学校
-// 如果直接把这个三元组抽取为（刘小绪，就职，学校），很别扭
-// “于”和“学校”是介宾关系，它们的关系应该是：就职于
-// （刘小绪，就职于，学校）
+<span class="hljs-comment">// 如果直接把这个三元组抽取为（刘小绪，就职，学校），很别扭</span>
+<span class="hljs-comment">// “于”和“学校”是介宾关系，它们的关系应该是：就职于</span>
+<span class="hljs-comment">// （刘小绪，就职于，学校）</span>
 
 宾语前置：海洋 由 水 组成
-// “海洋”是“组成”的前置宾语
-// “由”是“组成”的状语
-// “水”和“由”是介宾关系
-// 所以上面的句子没有明确的主谓关系，需要我们判断
-// 抽出的三元组应该为：（水，组成，海洋）
+<span class="hljs-comment">// “海洋”是“组成”的前置宾语</span>
+<span class="hljs-comment">// “由”是“组成”的状语</span>
+<span class="hljs-comment">// “水”和“由”是介宾关系</span>
+<span class="hljs-comment">// 所以上面的句子没有明确的主谓关系，需要我们判断</span>
+<span class="hljs-comment">// 抽出的三元组应该为：（水，组成，海洋）</span>
 </code></pre>
 <p>HanLP 提供了两种依存句法分析的器，默认采用的是基于神经网络的依存句法分析器。<strong>依存句法分析就是将句子分析成一棵依存句法树，描述各个词语之间的依存关系，即指出词语之间在句法上的搭配关系。</strong></p>
 <p>有了上面所说的依存句法树，其实我们只需要进行各种判断就可以了。先做出下面的一点说明，就拿第一个例子来说。</p>
-<pre><code>原文：刘小绪生于四川
+<pre class="hljs"><code>原文：刘小绪生于四川
 
-# 这是分词结果
+<span class="hljs-comment"># 这是分词结果</span>
 [刘小绪/nr, 生于/v, 四川/ns]
 
-#这是句法分析结果
-刘小绪 --(主谓关系)--&gt; 生于
-生于 --(核心关系)--&gt; ##核心##
-四川 --(动宾关系)--&gt; 生于
+<span class="hljs-comment">#这是句法分析结果</span>
+刘小绪 --<span class="hljs-function"><span class="hljs-params">(主谓关系)</span>--&gt;</span> 生于
+生于 --<span class="hljs-function"><span class="hljs-params">(核心关系)</span>--&gt;</span> <span class="hljs-comment">##核心##</span>
+四川 --<span class="hljs-function"><span class="hljs-params">(动宾关系)</span>--&gt;</span> 生于
 </code></pre>
 <p>为了方便理解，也为了方便程序的编写，我把他们组织成了下面的形式，为每一个词语都建一个依存句法字典。</p>
-<pre><code>刘小绪：{}
-生于：{主谓关系=[刘小绪], 动宾关系=[四川]}
-四川：{}
-</code></pre>
+<pre class="hljs"><code><span class="language-xml">刘小绪：</span><span class="hljs-template-variable">{}</span><span class="language-xml">
+生于：</span><span class="hljs-template-variable">{主谓关系=[刘小绪], 动宾关系=[四川]}</span><span class="language-xml">
+四川：</span><span class="hljs-template-variable">{}</span><span class="language-xml">
+</span></code></pre>
 <p>然后只需要写出类似于下面的程序段就可以抽出关系了。</p>
-<pre><code class="language-java">// 主谓宾关系：刘小绪生于四川
-// dic是这个词语的依存句法字典
-if (dic.containsKey(&quot;主谓关系&quot;) &amp;&amp; dic.containsKey(&quot;动宾关系&quot;)){
+<pre class="hljs"><code><span class="hljs-comment">// 主谓宾关系：刘小绪生于四川</span>
+<span class="hljs-comment">// dic是这个词语的依存句法字典</span>
+<span class="hljs-keyword">if</span> (dic.containsKey(<span class="hljs-string">&quot;主谓关系&quot;</span>) &amp;&amp; dic.containsKey(<span class="hljs-string">&quot;动宾关系&quot;</span>)){
     
-    // 当前的词语，用上面的例子来说，relation=“生于”
-    String relation = curWord.LEMMA;
+    <span class="hljs-comment">// 当前的词语，用上面的例子来说，relation=“生于”</span>
+    <span class="hljs-type">String</span> <span class="hljs-variable">relation</span> <span class="hljs-operator">=</span> curWord.LEMMA;
 
 
-    // 用循环遍历，是因为关系列表里面不一定只有一个词语
-    for (CoNLLWord entity1:
-            dic.get(&quot;主谓关系&quot;)) {
+    <span class="hljs-comment">// 用循环遍历，是因为关系列表里面不一定只有一个词语</span>
+    <span class="hljs-keyword">for</span> (CoNLLWord entity1:
+            dic.get(<span class="hljs-string">&quot;主谓关系&quot;</span>)) {
 
-        for (CoNLLWord entity2:
-                dic.get(&quot;动宾关系&quot;)) {
+        <span class="hljs-keyword">for</span> (CoNLLWord entity2:
+                dic.get(<span class="hljs-string">&quot;动宾关系&quot;</span>)) {
 
-            System.out.println(entity1.LEMMA + &quot;,&quot; + relation + &quot;,&quot; + entity2.LEMMA);
+            System.out.println(entity1.LEMMA + <span class="hljs-string">&quot;,&quot;</span> + relation + <span class="hljs-string">&quot;,&quot;</span> + entity2.LEMMA);
         }
 
     }
@@ -208,7 +220,7 @@ if (dic.containsKey(&quot;主谓关系&quot;) &amp;&amp; dic.containsKey(&quot;�
 </code></pre>
 <p>对于分词后的每个词语都进行上面程序段的操作。“刘小绪”和“四川”，关系字典都为空。而对于“生于”，关系列表里面既有主谓也有动宾，而自己本身就是动词，主谓宾就出来了。直接从主谓关系中拿出来词语作为 entity1，再拿上自己作为关系，最后拿出动宾关系中的词语作为 entity2。很明确的三元组（刘小绪，生于，四川）就出来了。</p>
 <p>最后给出一个程序运行结果图吧。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1662966711742.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="/post-images/1662966711742.png" alt="" loading="lazy"></figure>
 <p>我个人觉得效果还行，在简单句子上面表现的差强人意，在长句子上面表现的差劲。注意上文使用的第三方包随着时间的推移肯定会改一些接口，源码链接：<a href="https://github.com/mengxiaoxu/entity_relation_extraction">entity_relation_extraction</a></p>
 
                                 </div>
@@ -235,7 +247,7 @@ if (dic.containsKey(&quot;主谓关系&quot;) &amp;&amp; dic.containsKey(&quot;�
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -295,228 +307,228 @@ if (dic.containsKey(&quot;主谓关系&quot;) &amp;&amp; dic.containsKey(&quot;�
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/krqSF7tYC/">
-            算法
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
-            C
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/hF3_PWTirK/">
-            Java
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/vnEfA3xxL/">
-            嵌入式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-success" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
+            i-tag-info" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
+            i-tag-other_3" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/6ZjSGnvm9/">
-            年度总结
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/u3bra3rlo/">
-            健康生活
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
-            MySQL
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/dTizl9yei/">
-            SEO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/7QbLXmeen/">
-            Vue
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-error" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
-            TypeScript
+            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-primary" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/iqW8DWbw7/">
-            MongoDB
+            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
+            i-tag-other_3" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
+            i-tag-other_4" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/j7DVou3EA/">
-            Nginx
+            i-tag-primary" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-primary" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/9WeHlVlqK9/">
-            软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-warning" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-other_1" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
         </a>
         
     </div>

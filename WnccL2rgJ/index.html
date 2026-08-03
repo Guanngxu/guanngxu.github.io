@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     学习 Angulr 容易忽略的知识点 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -98,25 +110,25 @@
                         </h2>
                         <div class="post-info">
                             <time class="post-time">2018-09-25</time>
-                            <span class="read-time">18 min read</span>
+                            <span class="read-time">19 min read</span>
                             
                                 <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-warning">
                             #前端
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-warning">
                             #TypeScript
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-info">
                             #JavaScript
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-error">
                             #Angular
                         </a>
                                 
@@ -130,134 +142,134 @@
 《Angulr5 高级编程（第二版）》</p>
 </blockquote>
 <h2 id="函数声明式和表达式">函数声明式和表达式</h2>
-<pre><code class="language-javascript">// 第一种：函数声明式
-myFunc();
-function myFunc(){
+<pre class="hljs"><code><span class="hljs-comment">// 第一种：函数声明式</span>
+<span class="hljs-title function_">myFunc</span>();
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">myFunc</span>(<span class="hljs-params"></span>){
     ...
 }
 
-// 第二种：函数表达式
-myFunc();
-let myFunc = function(){
+<span class="hljs-comment">// 第二种：函数表达式</span>
+<span class="hljs-title function_">myFunc</span>();
+<span class="hljs-keyword">let</span> myFunc = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>){
     ...
 }
 </code></pre>
 <p>虽然上面两种函数声明方式在大部分情况下是一样的，第一种可执行，第二种却不可以执行，这是因为浏览器在解析 js 时找到函数声明，并在执行剩余语句之前设置好函数，此过程称为<strong>函数提升</strong>，但是函数表达式却不会受到提升，因此无法正常工作。</p>
 <h2 id="js-不具备多态性">js 不具备多态性</h2>
 <p>js 重不能创建名称相同但参数不同的两个函数，它不具备这个多态性，比如你定义的函数中有两个形参，调用函数时只传一个参数，第二形参的值就是 undefined ，如果传的参数大于 3 个，那么会自动忽略多余的参数。可以使用下列方法来处理函数定义参数数量和用于调用函数实际参数数量之间不匹配的问题。</p>
-<pre><code class="language-javascript">// 使用默认参数
-let func = function(age, sex='男'){
+<pre class="hljs"><code><span class="hljs-comment">// 使用默认参数</span>
+<span class="hljs-keyword">let</span> func = <span class="hljs-keyword">function</span>(<span class="hljs-params">age, sex=<span class="hljs-string">&#x27;男&#x27;</span></span>){
     ...
 }
-func(23);
+<span class="hljs-title function_">func</span>(<span class="hljs-number">23</span>);
 
-// 使用可变长参数
-let func = function(age, sex, ...extraArgs){
+<span class="hljs-comment">// 使用可变长参数</span>
+<span class="hljs-keyword">let</span> func = <span class="hljs-keyword">function</span>(<span class="hljs-params">age, sex, ...extraArgs</span>){
     ...
 }
-func(23, '女', '张三', '深圳');
-// 最后一个参数是一个数组，任何额外的实参都会被赋给这个数组
+<span class="hljs-title function_">func</span>(<span class="hljs-number">23</span>, <span class="hljs-string">&#x27;女&#x27;</span>, <span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-string">&#x27;深圳&#x27;</span>);
+<span class="hljs-comment">// 最后一个参数是一个数组，任何额外的实参都会被赋给这个数组</span>
 </code></pre>
 <h2 id="let-和-war-的区别">let 和 war 的区别</h2>
 <p>使用 let 和 var 声明变量的区别，使用 let 声明变量会把变量的作用范围限定在它所在的代码区域内。而使用 var 所创建的变量的作用域是它所在的函数。</p>
-<pre><code class="language-javascript">function func(){
-    if(false){
-        var age = 23;
+<pre class="hljs"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">func</span>(<span class="hljs-params"></span>){
+    <span class="hljs-keyword">if</span>(<span class="hljs-literal">false</span>){
+        <span class="hljs-keyword">var</span> age = <span class="hljs-number">23</span>;
     }
 }
 
-// 上面的代码会被解析成下面的形式，使用 let 则不会出现这样的结果
+<span class="hljs-comment">// 上面的代码会被解析成下面的形式，使用 let 则不会出现这样的结果</span>
 
-function func(){
-    var age;
-    if(false){
-        age = 23;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">func</span>(<span class="hljs-params"></span>){
+    <span class="hljs-keyword">var</span> age;
+    <span class="hljs-keyword">if</span>(<span class="hljs-literal">false</span>){
+        age = <span class="hljs-number">23</span>;
     }
 }
 </code></pre>
 <h2 id="相等-和恒等-以及-连接操作符">相等 == 和恒等 === 以及 连接操作符 +</h2>
 <p>相等操作符尝试将操作数强制转换为相同的类型，再评估是否相等，实质上相等操作符<code>==</code>是测试二者的值是否相等，而与二者的类型无关；如果要测试值和类型是否都相等则应该用恒等操作符<code>===</code>。</p>
-<pre><code class="language-javascript">5 == '5' // 结果为 true
-5 === '5' // 结果为 false
+<pre class="hljs"><code><span class="hljs-number">5</span> == <span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-comment">// 结果为 true</span>
+<span class="hljs-number">5</span> === <span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-comment">// 结果为 false</span>
 </code></pre>
 <p>在 js 中，连接操作符的优先级高于加法操作，也就是说<code>5 + '5'</code>的结果是<code>55</code>。</p>
 <h2 id="不同的模块指定方式">不同的模块指定方式</h2>
-<pre><code class="language-javascript">import { Name } from &quot;./modules/NameUtil&quot;;// 第一种
-import { Compont } from &quot;@angular/core&quot;;// 第二种
+<pre class="hljs"><code><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Name</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./modules/NameUtil&quot;</span>;<span class="hljs-comment">// 第一种</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Compont</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@angular/core&quot;</span>;<span class="hljs-comment">// 第二种</span>
 </code></pre>
 <p>上面两种导入模块的方式有所不同，第一种是相对模块，第二种是非相对导入。第一种告诉的 TypeScript 编译器，该模块所在的位置是相对于包含 import 语句的文件而言；第二种非相对导入，编译器会用 node_modules 文件夹中的 npm 包来解析它。</p>
 <p>如果在导入模块时，出现需要导入两个不同模块但是名字却相同的情况，可以使用<code>as</code>关键字给导入的模块取一个别名。</p>
-<pre><code class="language-javascript">import { Name as otherName } from &quot;./modules/Name&quot;;//取别名
+<pre class="hljs"><code><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Name</span> <span class="hljs-keyword">as</span> otherName } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./modules/Name&quot;</span>;<span class="hljs-comment">//取别名</span>
 </code></pre>
 <p>还有一种方法是将模块作为对象导入，如下 import 所示，导入 Name 模块的内容，并创建一个名为 otherName 的对象，然后就可以使用该对象的属性了。</p>
-<pre><code class="language-javascript">import * as otherName from &quot;./modules/NameUtil&quot;;
-let name = new otherName.Name(&quot;Admin&quot;, &quot;China&quot;);// Name 是 NameUtil 中的类
+<pre class="hljs"><code><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> otherName <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./modules/NameUtil&quot;</span>;
+<span class="hljs-keyword">let</span> name = <span class="hljs-keyword">new</span> otherName.<span class="hljs-title class_">Name</span>(<span class="hljs-string">&quot;Admin&quot;</span>, <span class="hljs-string">&quot;China&quot;</span>);<span class="hljs-comment">// Name 是 NameUtil 中的类</span>
 </code></pre>
 <h2 id="多类型和类型断言">多类型和类型断言</h2>
 <p>在 ts 中允许指定多个类型，使用字符<code>|</code>进行分隔。看下面的的方法，其功能是把华氏温度转换为摄氏温度。</p>
-<pre><code class="language-javascript">// 使用多类型，该函数可以传入 number 和 string 类型的参数
-static convertFtoC(temp: number | string): string {
-    /*
+<pre class="hljs"><code><span class="hljs-comment">// 使用多类型，该函数可以传入 number 和 string 类型的参数</span>
+<span class="hljs-keyword">static</span> <span class="hljs-title function_">convertFtoC</span>(<span class="hljs-attr">temp</span>: number | string): string {
+    <span class="hljs-comment">/*
     尝试使用 &lt;&gt; 声明一个类型断言，将一个对象转换为指定类型，也可以使用 as 关键字实现下列相同的效果
     let value: number = (temp as number).toPrecision ? temp as number : parseFloat(temp as string);
-    */
-    let value: number = (&lt;number&gt;temp).toPrecision ? &lt;number&gt;temp : parseFloat(&lt;string&gt;temp);
-    return ((parseFloat(value.toPrecision(2)) - 32) / 1.8).toFixed(1);
+    */</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-attr">value</span>: number = (&lt;number&gt;temp).<span class="hljs-property">toPrecision</span> ? &lt;number&gt;temp : <span class="hljs-built_in">parseFloat</span>(&lt;string&gt;temp);
+    <span class="hljs-keyword">return</span> ((<span class="hljs-built_in">parseFloat</span>(value.<span class="hljs-title function_">toPrecision</span>(<span class="hljs-number">2</span>)) - <span class="hljs-number">32</span>) / <span class="hljs-number">1.8</span>).<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">1</span>);
 }
 </code></pre>
 <p>元组是固定长度的数组，数组的每一项都是指定的类型；可索引类型可以将键与值关联起来，创建类似于 map 的集合。</p>
-<pre><code class="language-javascript">// 元组
-let tuple: [string, string, string];
-tuple = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
+<pre class="hljs"><code><span class="hljs-comment">// 元组</span>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">tuple</span>: [string, string, string];
+tuple = [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>];
 
-// 可索引类型
-let cities: {[index: string] : [string, string]} = {};
-cities[&quot;Beijing&quot;] = [&quot;raining&quot;, &quot;2摄氏度&quot;];
+<span class="hljs-comment">// 可索引类型</span>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">cities</span>: {[<span class="hljs-attr">index</span>: string] : [string, string]} = {};
+cities[<span class="hljs-string">&quot;Beijing&quot;</span>] = [<span class="hljs-string">&quot;raining&quot;</span>, <span class="hljs-string">&quot;2摄氏度&quot;</span>];
 </code></pre>
 <h2 id="数据绑定">数据绑定</h2>
-<pre><code class="language-javascript">[target]=&quot;expr&quot;// 方括号表示单向绑定，数据从表达式流向目标；
+<pre class="hljs"><code>[target]=<span class="hljs-string">&quot;expr&quot;</span><span class="hljs-comment">// 方括号表示单向绑定，数据从表达式流向目标；</span>
 
-(target)=&quot;expr&quot;// 圆括号表示单向绑定，数据从目标流向表达式，用于处理事件的绑定；
-[(target)]=&quot;expr&quot;// 圆方括号组合表示双向绑定，数据在表达式与目标之间双向流动；
-{{ expression }}// 字符串插入绑定。
+(target)=<span class="hljs-string">&quot;expr&quot;</span><span class="hljs-comment">// 圆括号表示单向绑定，数据从目标流向表达式，用于处理事件的绑定；</span>
+[(target)]=<span class="hljs-string">&quot;expr&quot;</span><span class="hljs-comment">// 圆方括号组合表示双向绑定，数据在表达式与目标之间双向流动；</span>
+{{ expression }}<span class="hljs-comment">// 字符串插入绑定。</span>
 </code></pre>
 <p>[] 绑定有很多不同的形式，下面介绍不同表现形式的效果。</p>
-<pre><code class="language-html">&lt;!-- 
+<pre class="hljs"><code><span class="hljs-comment">&lt;!-- 
     标准属性绑定（dom对象有的属性），将 input 的 value 属性绑定到一个表达式的结果
     因为 model.getProduct(1) 可能返回 null ，所以使用模板空条件操作符 ? 浏览返回结果
     如果返回不为空，那么将读取 name 属性，否则由 null 合并操作符 || 将结果设置为 None
     字符串插入绑定也可以使用这种表达式
- --&gt;
-&lt;input [value]=&quot;model.getProduct(1)?.name || 'None'&quot;&gt;
+ --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">&quot;model.getProduct(1)?.name || &#x27;None&#x27;&quot;</span>&gt;</span>
 
-&lt;!-- 
+<span class="hljs-comment">&lt;!-- 
     元素属性绑定，有时候我们需要绑定的属性在 DOMAPI 上面没有
     可以使用通过在属性名称前加上 attr 前缀的方式来定义目标
- --&gt;
-&lt;td [attr.colspan]=&quot;model.getProducts().length&quot;&gt;
-    {{ model.getProduct(1)?.name || 'None' }}
-&lt;/td&gt;
+ --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">td</span> [<span class="hljs-attr">attr.colspan</span>]=<span class="hljs-string">&quot;model.getProducts().length&quot;</span>&gt;</span>
+    {{ model.getProduct(1)?.name || &#x27;None&#x27; }}
+<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
 
-&lt;!-- 还有其他的 ngClass，ngStyle 等绑定，理解大体上和上面差不多 --&gt;
+<span class="hljs-comment">&lt;!-- 还有其他的 ngClass，ngStyle 等绑定，理解大体上和上面差不多 --&gt;</span>
 </code></pre>
 <h2 id="内置指令">内置指令</h2>
-<pre><code class="language-html">&lt;!-- 
+<pre class="hljs"><code><span class="hljs-comment">&lt;!-- 
     ngIf指令，如果表达式求值结果为 true ，那么 ngIf 将宿主元素机器内容包含在 html 文件中
     指令前面的星号表示这是一条微模板指令
     组要注意的是，ngIf 会向 html 中添加元素，也会从中删除元素，并非只是显示和隐藏
     如果只是控制可见性，可以使用属性绑定挥着样式绑定
- --&gt;
-&lt;div *ngIf=&quot;expr&quot;&gt;&lt;/div&gt;
+ --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">&quot;expr&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;!-- 
+<span class="hljs-comment">&lt;!-- 
     ngSwitch指令，
- --&gt;
-&lt;div [ngSwitch]=&quot;expr&quot;&gt;
-    &lt;span *ngSwitchCase=&quot;expr&quot;&gt;&lt;/span&gt;
-    &lt;span *ngSwitchDefault&gt;&lt;/span&gt;
-&lt;/div&gt;
+ --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> [<span class="hljs-attr">ngSwitch</span>]=<span class="hljs-string">&quot;expr&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> *<span class="hljs-attr">ngSwitchCase</span>=<span class="hljs-string">&quot;expr&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> *<span class="hljs-attr">ngSwitchDefault</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;!-- 
+<span class="hljs-comment">&lt;!-- 
     ngFor指令，见名知意，为数组中的每个对象生成同一组元素
     ngFor 指令还支持其他的一系列可赋给变量的值，有如下局部模板变量
     
@@ -266,12 +278,12 @@ cities[&quot;Beijing&quot;] = [&quot;raining&quot;, &quot;2摄氏度&quot;];
     even：同上相反
     first：如果为第一条记录，那么为 true
     last：同上相反
- --&gt;
-&lt;div *ngFor=&quot;let item of expr; let i = index&quot;&gt;
+ --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">&quot;let item of expr; let i = index&quot;</span>&gt;</span>
     {{ i }}
-&lt;/div&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;!-- 
+<span class="hljs-comment">&lt;!-- 
     ngTemplateOutlet指令，用于重复模板中的内容块
     其用法如下所示，需要给源元素指定一个 id 值
     
@@ -281,240 +293,240 @@ cities[&quot;Beijing&quot;] = [&quot;raining&quot;, &quot;2摄氏度&quot;];
     &lt;ng-template [ngTemplateOutlet]=&quot;titleTemplate&quot;&gt;&lt;/ng-template&gt;
     ...省略若万行 html 代码
     &lt;ng-template [ngTemplateOutlet]=&quot;titleTemplate&quot;&gt;&lt;/ng-template&gt;
- --&gt;
-&lt;ng-template [ngTemplateOutlet]=&quot;myTempl&quot;&gt;&lt;/ng-template&gt;
+ --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ng-template</span> [<span class="hljs-attr">ngTemplateOutlet</span>]=<span class="hljs-string">&quot;myTempl&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ng-template</span>&gt;</span>
 
-&lt;!-- 
+<span class="hljs-comment">&lt;!-- 
     下面两个指令就是见名知意了，不解释
- --&gt;
-&lt;div ngClass=&quot;expr&quot;&gt;&lt;/div&gt;
-&lt;div ngStyle=&quot;expr&quot;&gt;&lt;/div&gt;
+ --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ngClass</span>=<span class="hljs-string">&quot;expr&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ngStyle</span>=<span class="hljs-string">&quot;expr&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
 <h2 id="事件绑定">事件绑定</h2>
 <p>事件绑定使用 <code>(target)=&quot;expr&quot;</code>，是单向绑定，数据从目标流向表达式，用于响应宿主元素发送的事件。</p>
 <p>当浏览器触发一个时间时，它将提供一个对象来描述该事件，对于不同类型的事件有不同类型的事件对象，事件对象被赋给一个名为<code>$event</code>的模板变量，但是所有事件对象都有下面三个属性:</p>
-<pre><code class="language-html">type：返回一个 string 值，用于标识已触发事件类型；
+<pre class="hljs"><code>type：返回一个 string 值，用于标识已触发事件类型；
 target：返回触发事件的对象，一般是 html元素对象。
 timeStamp：返回事件触发事件的 number 值，用 1970.1.1 毫秒数表示。
 </code></pre>
 <p>下面举几个例子，作为理解帮助使用。</p>
-<pre><code class="language-html">&lt;!-- 当数鼠标在上面移动时，就会触发 mouseover 事件 --&gt;
-&lt;td *ngFor=&quot;let item of getProducts()&quot; (mouseover)=&quot;selectedProduct = item.name&quot;&gt;&lt;/td&gt;
+<pre class="hljs"><code><span class="hljs-comment">&lt;!-- 当数鼠标在上面移动时，就会触发 mouseover 事件 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">td</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">&quot;let item of getProducts()&quot;</span> (<span class="hljs-attr">mouseover</span>)=<span class="hljs-string">&quot;selectedProduct = item.name&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
 
-&lt;!-- 当用户编辑 input 元素的内容时就会触发 input 事件 --&gt;
-&lt;input (input)=&quot;selectedProduct=$event.target.value&quot; /&gt;
+<span class="hljs-comment">&lt;!-- 当用户编辑 input 元素的内容时就会触发 input 事件 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> (<span class="hljs-attr">input</span>)=<span class="hljs-string">&quot;selectedProduct=$event.target.value&quot;</span> /&gt;</span>
 
-&lt;input (keyup)=&quot;selectedProduct=product.value&quot; /&gt;
-&lt;!-- 使用事件过滤，上面的写法按下任何一个键都会触发事件，而下面的写法只有回车事件才会触发事件 --&gt;
-&lt;input (keyup.enter=&quot;selectedProduct=product.value&quot;) /&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> (<span class="hljs-attr">keyup</span>)=<span class="hljs-string">&quot;selectedProduct=product.value&quot;</span> /&gt;</span>
+<span class="hljs-comment">&lt;!-- 使用事件过滤，上面的写法按下任何一个键都会触发事件，而下面的写法只有回车事件才会触发事件 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> (<span class="hljs-attr">keyup.enter</span>=<span class="hljs-string">&quot;selectedProduct=product.value&quot;</span>) /&gt;</span>
 </code></pre>
 <h2 id="表单验证">表单验证</h2>
 <p>Angular 提供了一套可扩展的系统来验证表单元素的内容，总共可以向 input表元素中添加 4 个属性，每个属性定义一条验证规则，如下所示：</p>
-<pre><code class="language-html">required：用于指定必须填写值；
+<pre class="hljs"><code>required：用于指定必须填写值；
 minlength：用于指定最小字符数；
 maxlength：用于指定最大字符数，（不能在表单元素直接使用，因为它与同名的 H5 属性冲突）；
 pattern：该属性用于指定用户填写的值必须匹配正则表达式
 </code></pre>
-<pre><code class="language-html">&lt;!-- 
+<pre class="hljs"><code><span class="hljs-comment">&lt;!-- 
     Angular 要求验证的元素必须定义 name 属性
     由于 Angular 使用的验证属性和 H5 规范使用的验证属性相同，
     所以向表单元素中添加 novalidate 属性，告诉浏览器不要使用原生验证功能
     ngSubmit 绑定表单元素的 submit 事件
- --&gt;
-&lt;form novalidate (ngSubmit)=&quot;addProduct(newProduct)&quot;&gt;
-    &lt;input class=&quot;form-control&quot;
-        name=&quot;name&quot;
-        [(ngModel)]=&quot;newProduct.name&quot;
-        required
-        minlength=&quot;5&quot;
-        pattern=&quot;^[A-Za-z]+$&quot; /&gt;
-    &lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;
-&lt;/form&gt;
+ --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">novalidate</span> (<span class="hljs-attr">ngSubmit</span>)=<span class="hljs-string">&quot;addProduct(newProduct)&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-control&quot;</span>
+        <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span>
+        [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">&quot;newProduct.name&quot;</span>
+        <span class="hljs-attr">required</span>
+        <span class="hljs-attr">minlength</span>=<span class="hljs-string">&quot;5&quot;</span>
+        <span class="hljs-attr">pattern</span>=<span class="hljs-string">&quot;^[A-Za-z]+$&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 </code></pre>
 <p>Angular 提供了 3 对验证 CSS 类，这些类可以用于样式化表单元素，向用户提供验证反馈，具体说明如下所示。</p>
-<pre><code class="language-html">ng-untouched ng-touched：如果一个元素未被用户访问，就将其加入到 nguntouched 类中；一旦访问就加入到 ngtouched 类中。
+<pre class="hljs"><code>ng-untouched ng-touched：如果一个元素未被用户访问，就将其加入到 nguntouched 类中；一旦访问就加入到 ngtouched 类中。
 ng-prisstine ng-dirty：元素内容没有被改变被加入到 ng-prisstine 类中，否则将其加入到 ng-dirty 类中。
 ng-valid ng-invalid：如果满足验证规则定义的条件，就加入到 ng-valid 类中，否则加入到 ng-invalid 类中。
 </code></pre>
 <p>在实际使用过程中，直接定义对应的样式即可，如下所示：</p>
-<pre><code class="language-html">&lt;style&gt;
-input.ng-dirty.ng-invalid{
-    border: 2px solid red;
+<pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+<span class="hljs-selector-tag">input</span><span class="hljs-selector-class">.ng-dirty</span><span class="hljs-selector-class">.ng-invalid</span>{
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid red;
 }
-input.ng-dirty.ng-valid{
-    border: 2px solid green;
+<span class="hljs-selector-tag">input</span><span class="hljs-selector-class">.ng-dirty</span><span class="hljs-selector-class">.ng-valid</span>{
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid green;
 }
-&lt;/style&gt;
-&lt;form novalidate (ngSubmit)=&quot;addProduct(newProduct)&quot;&gt;
-    &lt;input class=&quot;form-control&quot;
-        name=&quot;name&quot;
-        [(ngModel)]=&quot;newProduct.name&quot;
-        required
-        minlength=&quot;5&quot;
-        pattern=&quot;^[A-Za-z]+$&quot; /&gt;
-    &lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;
-&lt;/form&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">novalidate</span> (<span class="hljs-attr">ngSubmit</span>)=<span class="hljs-string">&quot;addProduct(newProduct)&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-control&quot;</span>
+        <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span>
+        [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">&quot;newProduct.name&quot;</span>
+        <span class="hljs-attr">required</span>
+        <span class="hljs-attr">minlength</span>=<span class="hljs-string">&quot;5&quot;</span>
+        <span class="hljs-attr">pattern</span>=<span class="hljs-string">&quot;^[A-Za-z]+$&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 </code></pre>
 <p>上面的验证方式无法给用户提供更加具体的信息，用户不知道应该做什么，可以使用 ngModel 指令来访问宿主元素的验证状态，当存在验证错误的时候，使用该指令向用户提供指导性信息。</p>
-<pre><code class="language-html">&lt;form novalidate (ngSubmit)=&quot;addProduct(newProduct)&quot;&gt;
-    &lt;input class=&quot;form-control&quot;
-        #nameRef=&quot;ngModel&quot;
-        name=&quot;name&quot;
-        [(ngModel)]=&quot;newProduct.name&quot;
-        required
-        minlength=&quot;5&quot;
-        pattern=&quot;^[A-Za-z]+$&quot; /&gt;
-    &lt;ul class=&quot;text-danger list-unstyled&quot;
-        *ngIf=&quot;name.dirty &amp;&amp; name.invalid&quot;&gt;
-        &lt;li *ngIf=&quot;name.errors?required&quot;&gt;
+<pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">novalidate</span> (<span class="hljs-attr">ngSubmit</span>)=<span class="hljs-string">&quot;addProduct(newProduct)&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-control&quot;</span>
+        #<span class="hljs-attr">nameRef</span>=<span class="hljs-string">&quot;ngModel&quot;</span>
+        <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span>
+        [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">&quot;newProduct.name&quot;</span>
+        <span class="hljs-attr">required</span>
+        <span class="hljs-attr">minlength</span>=<span class="hljs-string">&quot;5&quot;</span>
+        <span class="hljs-attr">pattern</span>=<span class="hljs-string">&quot;^[A-Za-z]+$&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-danger list-unstyled&quot;</span>
+        *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">&quot;name.dirty &amp;&amp; name.invalid&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">&quot;name.errors?required&quot;</span>&gt;</span>
             you must enter a product name
-        &lt;/li&gt;
-        &lt;li *ngIf=&quot;name.errors?.pattern&quot;&gt;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">&quot;name.errors?.pattern&quot;</span>&gt;</span>
             product name can only contain letters and spases
-        &lt;/li&gt;
-        &lt;li *ngIf=&quot;name.errors?minlength&quot;&gt;
-            &lt;!-- 
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">&quot;name.errors?minlength&quot;</span>&gt;</span>
+            <span class="hljs-comment">&lt;!-- 
                 Angular 表单验证错误描述属性
                 required：如果属性已被应用于 input 元素，此属性返回 true
                 minlength.requiredLength：返回满足 minlength 属性所需的字符数
                 minlength.actualLength：返回用户输入的字符数
                 pattern.requiredPattern：返回使用 pattern 属性指定的正则表达式
                 pattern.actualValue：返回元素的内容
-             --&gt;
+             --&gt;</span>
             product name must be at least {{ name.errors.minlength.requiredLenth }} characters
-        &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;
-&lt;/form&gt;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 </code></pre>
 <p>如果在用户尝试提交表单时就显示大量的错误信息，给人的体验感就会很差，所以可以让用户提交表单时再验证整个表单，示例代码如下所示。</p>
-<pre><code class="language-javascript">export class ProductionCompont {
-    // ...省略若万行代码
-    formSubmited: boolean = false;
+<pre class="hljs"><code><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ProductionCompont</span> {
+    <span class="hljs-comment">// ...省略若万行代码</span>
+    <span class="hljs-attr">formSubmited</span>: boolean = <span class="hljs-literal">false</span>;
 
-    submitForm(form: ngForm) {
-        this.formSubmited = true;
-        if(form.valid) {
-            this.addProduct(this.newProduct);
-            this.newProduct = new Product();
-            form.reset();
-            this.formSubmited = true;
+    <span class="hljs-title function_">submitForm</span>(<span class="hljs-params">form: ngForm</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">formSubmited</span> = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">if</span>(form.<span class="hljs-property">valid</span>) {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">addProduct</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">newProduct</span>);
+            <span class="hljs-variable language_">this</span>.<span class="hljs-property">newProduct</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Product</span>();
+            form.<span class="hljs-title function_">reset</span>();
+            <span class="hljs-variable language_">this</span>.<span class="hljs-property">formSubmited</span> = <span class="hljs-literal">true</span>;
         }
     }
 }
 </code></pre>
-<pre><code class="language-html">&lt;form novalidate #formRef=&quot;ngForm&quot; (ngSubmit)=&quot;submitForm(formRef)&quot;&gt;
-    &lt;div *ngIf=&quot;formsubmited &amp;&amp; formRef.invalid&quot;&gt;
+<pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">novalidate</span> #<span class="hljs-attr">formRef</span>=<span class="hljs-string">&quot;ngForm&quot;</span> (<span class="hljs-attr">ngSubmit</span>)=<span class="hljs-string">&quot;submitForm(formRef)&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">&quot;formsubmited &amp;&amp; formRef.invalid&quot;</span>&gt;</span>
         there are problems with the form
-    &lt;/div&gt;
-    &lt;!-- 禁用提交按钮，验证成功提交按钮才可用 --&gt;
-    &lt;button [disabled]=&quot;formSubmited &amp;&amp; formRef.valid&quot;&gt;提交&lt;/button&gt;
-&lt;/form&gt;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 禁用提交按钮，验证成功提交按钮才可用 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> [<span class="hljs-attr">disabled</span>]=<span class="hljs-string">&quot;formSubmited &amp;&amp; formRef.valid&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 </code></pre>
 <p>fromSubmited 属性用于指示表单是否已经提交，并将用于在用户提交整个表单之前阻止表单验证。当用户提交表单时，调用 submitForm 方法，并将 ngForm 对象作为实参传入，ngForm 提供了 reset 方法，该方法可以重置表单的验证状态，使其返回到最初的未访问状态。</p>
 <p><strong>更高级的还有使用基于模型的表单验证，可以自行查阅相关资料。</strong></p>
 <h2 id="使用-json-server-模拟-web-服务">使用 json-server 模拟 web 服务</h2>
 <p>因为<code>json-server</code>会经常用到，建议使用全局安装命令<code>npm install -g json-server</code>。因为开发后端的同学太慢了，而我们如果要等他们把接口都提供给我们的时候再开发程序的话，那效率就太低了，所以使用 json-server 来模拟后端服务。只需要建好一个 json 文件，比如下面的格式：</p>
-<pre><code class="language-json">{
-    &quot;user&quot; : [
-        {
-            &quot;name&quot; : &quot;张三&quot;,
-            &quot;number&quot; : &quot;1234&quot;,
-        },
-        {
-            &quot;name&quot; : &quot;王二&quot;,
-            &quot;number&quot; : &quot;5678&quot;,
-        }
-    ],
-    &quot;praise&quot;: [
-        {&quot;info&quot;:&quot;我是一只小老虎呀！&quot;},
-        {&quot;info&quot;:&quot;我才是大老虎&quot;}
-    ]
-}
+<pre class="hljs"><code><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;user&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+        <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;name&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;张三&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;number&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1234&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;name&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;王二&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;number&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;5678&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;praise&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+        <span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;info&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;我是一只小老虎呀！&quot;</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;info&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;我才是大老虎&quot;</span><span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
 </code></pre>
 <p>启动服务使用命令<code>json-server [你的 json 文件路径]</code>，然后就可以根据提示访问了，你甚至可以使用<code>http://localhost:3000/user?number=5678</code>去过滤数据。这样就能模拟 web 服务，而不必等后端同学的进度了。</p>
 <h2 id="解决跨域请求问题">解决跨域请求问题</h2>
 <p>Angular 跨域请求问题可以通过 Angular 自身的代理转发功能解决，在项目文件夹下新建一个 proxy.conf.json 并在其中添加如下内容。</p>
-<pre><code class="language-json">// 可以通过下列配置解决
-&quot;/api&quot;: {
-    &quot;target&quot;: &quot;http://10.9.176.120:8888&quot;,
-}
+<pre class="hljs"><code><span class="hljs-comment">// 可以通过下列配置解决</span>
+<span class="hljs-attr">&quot;/api&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;target&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;http://10.9.176.120:8888&quot;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-punctuation">}</span>
 </code></pre>
 <p>在启动时使用<code>npm start</code>，或者使用<code>ng serve  --proxy-config proxy.conf.json</code>，Anular 中的<code>/api</code>请求就会被转发到 <code>http://10.9.176.120:8888/api</code>，从而解决跨域请求问题。</p>
 <h2 id="使用第三方-js-插件">使用第三方 js 插件</h2>
 <p>共有三种方式引入第三方插件，第一种很简单，直接在 html 中引入插件就可以了；第二种在<code>angular.json</code>中进行配置；第三种在 ts 文件中使用 import 导入库即可。</p>
-<pre><code class="language-javascript">// 第一种(需要重启服务)
-&quot;scripts&quot;: [&quot;src/assets/jquery-3.2.1.js&quot;,&quot;src/assets/jquery.nicescroll.js&quot;,&quot;src/assets/ion.rangeSlider.js&quot;]
+<pre class="hljs"><code><span class="hljs-comment">// 第一种(需要重启服务)</span>
+<span class="hljs-string">&quot;scripts&quot;</span>: [<span class="hljs-string">&quot;src/assets/jquery-3.2.1.js&quot;</span>,<span class="hljs-string">&quot;src/assets/jquery.nicescroll.js&quot;</span>,<span class="hljs-string">&quot;src/assets/ion.rangeSlider.js&quot;</span>]
 
-// 第二种
-&lt;script type=&quot;text/javascript&quot; src=&quot;assets/jquery-3.2.1.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;assets/jquery.nicescroll.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-comment">// 第二种</span>
+&lt;script type=<span class="hljs-string">&quot;text/javascript&quot;</span> src=<span class="hljs-string">&quot;assets/jquery-3.2.1.js&quot;</span>&gt;&lt;/script&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;assets/jquery.nicescroll.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 
-// 第三种
-import &quot;assets/jquery-3.2.1.js&quot;;
-import &quot;assets/jquery.nicescroll.js&quot;;
-import &quot;assets/ion.rangeSlider.js&quot;;
+<span class="hljs-comment">// 第三种</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;assets/jquery-3.2.1.js&quot;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;assets/jquery.nicescroll.js&quot;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;assets/ion.rangeSlider.js&quot;</span>;
 </code></pre>
 <h2 id="深拷贝与浅拷贝">深拷贝与浅拷贝</h2>
 <p>深拷贝与浅拷贝是围绕<strong>引用类型变量</strong>说的，其本质区别是不可变性，基本类型是不可变得，而引用类型是可变的。</p>
 <p>直接使用赋值操作符，就是浅拷贝，如果对拷贝源进行操作，会直接影响在拷贝目标上，因为这个赋值行为本质是内存地址的赋值，为了获得与拷贝源完全相同但又不会影响彼此的对象就要使用深拷贝。</p>
-<pre><code class="language-javascript">let objA = {
-    x: 1,
-    y: -1
+<pre class="hljs"><code><span class="hljs-keyword">let</span> objA = {
+    <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">y</span>: -<span class="hljs-number">1</span>
 }
-let objB = objA;
-objA.x++;
-console.log(&quot;objA.x:&quot;+objA.x, &quot;objB.x:&quot;+objB.x);
-//打印结果如下：
-objA.x : 2 
-objB.x : 2
+<span class="hljs-keyword">let</span> objB = objA;
+objA.<span class="hljs-property">x</span>++;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;objA.x:&quot;</span>+objA.<span class="hljs-property">x</span>, <span class="hljs-string">&quot;objB.x:&quot;</span>+objB.<span class="hljs-property">x</span>);
+<span class="hljs-comment">//打印结果如下：</span>
+objA.<span class="hljs-property">x</span> : <span class="hljs-number">2</span> 
+objB.<span class="hljs-property">x</span> : <span class="hljs-number">2</span>
 </code></pre>
 <p>Typescript 提供了一种方法来实现引用类型的深拷贝，即<code>Object.assign(target, ...source)</code>，此方法接受多个参数，第一个参数为拷贝目标，剩余参数为拷贝源，同名属性会进行覆盖。</p>
-<pre><code class="language-javascript">let objA = {
-    x: 1,
-    y: -1,
-    c: {
-        d: 1,
+<pre class="hljs"><code><span class="hljs-keyword">let</span> objA = {
+    <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">y</span>: -<span class="hljs-number">1</span>,
+    <span class="hljs-attr">c</span>: {
+        <span class="hljs-attr">d</span>: <span class="hljs-number">1</span>,
     }
 }
-let objB = {};
-Object.assign(objB, objA);
-objA.x++;
-console.log(&quot;objA.x:&quot;+objA[&quot;x&quot;], &quot;objB.x:&quot;+objB[&quot;x&quot;]);
-//打印结果如下：
-objA.x : 2 
-objB.x : 1
+<span class="hljs-keyword">let</span> objB = {};
+<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(objB, objA);
+objA.<span class="hljs-property">x</span>++;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;objA.x:&quot;</span>+objA[<span class="hljs-string">&quot;x&quot;</span>], <span class="hljs-string">&quot;objB.x:&quot;</span>+objB[<span class="hljs-string">&quot;x&quot;</span>]);
+<span class="hljs-comment">//打印结果如下：</span>
+objA.<span class="hljs-property">x</span> : <span class="hljs-number">2</span> 
+objB.<span class="hljs-property">x</span> : <span class="hljs-number">1</span>
 </code></pre>
 <p>需要注意的是，Typescript 提供的深拷贝方法不能实现嵌套对象的深拷贝，会出现下面的情况。</p>
-<pre><code class="language-javascript">let objA = {
-    x: 1,
-    y: -1,
-    c: {
-        d: 1,
+<pre class="hljs"><code><span class="hljs-keyword">let</span> objA = {
+    <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">y</span>: -<span class="hljs-number">1</span>,
+    <span class="hljs-attr">c</span>: {
+        <span class="hljs-attr">d</span>: <span class="hljs-number">1</span>,
     }
 }
-let objB = {};
-Object.assign(objB, objA);
-objA.c.d++;
-console.log(&quot;objA.c.d:&quot;+objA[&quot;c&quot;].d, &quot;objB.c.d:&quot;+objB[&quot;c&quot;].d);
-//打印结果如下：
-objA.c.d : 2 
-objB.c.d : 2
+<span class="hljs-keyword">let</span> objB = {};
+<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(objB, objA);
+objA.<span class="hljs-property">c</span>.<span class="hljs-property">d</span>++;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;objA.c.d:&quot;</span>+objA[<span class="hljs-string">&quot;c&quot;</span>].<span class="hljs-property">d</span>, <span class="hljs-string">&quot;objB.c.d:&quot;</span>+objB[<span class="hljs-string">&quot;c&quot;</span>].<span class="hljs-property">d</span>);
+<span class="hljs-comment">//打印结果如下：</span>
+objA.<span class="hljs-property">c</span>.<span class="hljs-property">d</span> : <span class="hljs-number">2</span> 
+objB.<span class="hljs-property">c</span>.<span class="hljs-property">d</span> : <span class="hljs-number">2</span>
 </code></pre>
 <p>要实现嵌套对象的深拷贝，可以使用 JSON 对象提供的方法，JSON 对象提供了两个方法，分别为：<code>stringify()</code>和<code>parse()</code>，前者将对象 JSON 化，后者将 JSON 对象化，使用这种方式可以实现嵌套深拷贝，但是也有缺点：破坏原型链，不能拷贝属性值为 function 的属性。</p>
-<pre><code class="language-javascript">let objA = {
-    a: 1,
-    b: {
-        c: 1
+<pre class="hljs"><code><span class="hljs-keyword">let</span> objA = {
+    <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">b</span>: {
+        <span class="hljs-attr">c</span>: <span class="hljs-number">1</span>
     }
 }
-let objB = JSON.parse(JSON.stringify(objA));
-objA.b.c++;
-console.log(&quot;objA.b.c:&quot;+objA.b.c, &quot;objB.b.c:&quot;+objB.b.c);
+<span class="hljs-keyword">let</span> objB = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(objA));
+objA.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>++;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;objA.b.c:&quot;</span>+objA.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>, <span class="hljs-string">&quot;objB.b.c:&quot;</span>+objB.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>);
 
-//打印结果如下：
-objA.b.c:2
-objB.b.c:1
+<span class="hljs-comment">//打印结果如下：</span>
+objA.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>:<span class="hljs-number">2</span>
+objB.<span class="hljs-property">b</span>.<span class="hljs-property">c</span>:<span class="hljs-number">1</span>
 </code></pre>
 
                                 </div>
@@ -541,7 +553,7 @@ objB.b.c:1
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -598,26 +610,24 @@ objB.b.c:1
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
+            <div class="markdownIt-TOC">
 <ul>
-<li><a href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E5%BC%8F%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F">函数声明式和表达式</a></li>
-<li><a href="#js-%E4%B8%8D%E5%85%B7%E5%A4%87%E5%A4%9A%E6%80%81%E6%80%A7">js 不具备多态性</a></li>
-<li><a href="#let-%E5%92%8C-war-%E7%9A%84%E5%8C%BA%E5%88%AB">let 和 war 的区别</a></li>
-<li><a href="#%E7%9B%B8%E7%AD%89-%E5%92%8C%E6%81%92%E7%AD%89-%E4%BB%A5%E5%8F%8A-%E8%BF%9E%E6%8E%A5%E6%93%8D%E4%BD%9C%E7%AC%A6">相等 == 和恒等 === 以及 连接操作符 +</a></li>
-<li><a href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A8%A1%E5%9D%97%E6%8C%87%E5%AE%9A%E6%96%B9%E5%BC%8F">不同的模块指定方式</a></li>
-<li><a href="#%E5%A4%9A%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80">多类型和类型断言</a></li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A">数据绑定</a></li>
-<li><a href="#%E5%86%85%E7%BD%AE%E6%8C%87%E4%BB%A4">内置指令</a></li>
-<li><a href="#%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A">事件绑定</a></li>
-<li><a href="#%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81">表单验证</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8-json-server-%E6%A8%A1%E6%8B%9F-web-%E6%9C%8D%E5%8A%A1">使用 json-server 模拟 web 服务</a></li>
-<li><a href="#%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E9%97%AE%E9%A2%98">解决跨域请求问题</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9-js-%E6%8F%92%E4%BB%B6">使用第三方 js 插件</a></li>
-<li><a href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D">深拷贝与浅拷贝</a></li>
+<li><a href="#函数声明式和表达式">函数声明式和表达式</a></li>
+<li><a href="#js-不具备多态性">js 不具备多态性</a></li>
+<li><a href="#let-和-war-的区别">let 和 war 的区别</a></li>
+<li><a href="#相等-和恒等-以及-连接操作符">相等 == 和恒等 === 以及 连接操作符 +</a></li>
+<li><a href="#不同的模块指定方式">不同的模块指定方式</a></li>
+<li><a href="#多类型和类型断言">多类型和类型断言</a></li>
+<li><a href="#数据绑定">数据绑定</a></li>
+<li><a href="#内置指令">内置指令</a></li>
+<li><a href="#事件绑定">事件绑定</a></li>
+<li><a href="#表单验证">表单验证</a></li>
+<li><a href="#使用-json-server-模拟-web-服务">使用 json-server 模拟 web 服务</a></li>
+<li><a href="#解决跨域请求问题">解决跨域请求问题</a></li>
+<li><a href="#使用第三方-js-插件">使用第三方 js 插件</a></li>
+<li><a href="#深拷贝与浅拷贝">深拷贝与浅拷贝</a></li>
 </ul>
-</li>
-</ul>
+</div>
 
         </div>
         <script>
@@ -654,128 +664,33 @@ objB.b.c:1
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/krqSF7tYC/">
-            算法
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/umBdDP7Ll/">
-            C
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/hF3_PWTirK/">
-            Java
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/vnEfA3xxL/">
-            嵌入式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-success" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
+            i-tag-warning" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
+            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
+            i-tag-other_2" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
+            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
         </a>
         
         <a class="tags-tag i-tag
@@ -784,8 +699,43 @@ objB.b.c:1
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
         </a>
         
         <a class="tags-tag i-tag
@@ -794,88 +744,148 @@ objB.b.c:1
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-success" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
-            MySQL
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
-            SEO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/7QbLXmeen/">
-            Vue
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-other_3" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/iqW8DWbw7/">
-            MongoDB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/j7DVou3EA/">
-            Nginx
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/9WeHlVlqK9/">
-            软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-warning" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
         </a>
         
     </div>

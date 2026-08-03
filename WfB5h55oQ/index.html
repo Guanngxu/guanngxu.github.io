@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     动态规划实例——换零钱的方法数（C++详解版） | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -101,7 +113,7 @@
                             <span class="read-time">11 min read</span>
                             
                                 <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
                             #算法
                         </a>
                                 
@@ -116,30 +128,30 @@
 <h3 id="基础题目">基础题目</h3>
 <p>假设你现在拥有不限量的 1 元、5 元、10 元面值纸币，路人甲希望找你换一些零钱，路人甲拿出的是一张 100 元面值的纸币，试求总共有多少种换零钱的方法？</p>
 <p><strong>分析</strong>：因为总共只有 3 种面值小额纸币，所以将所有可能进行枚举，直接暴力解决即可。</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-int slove() {
-	int ans = 0;
-	// 10 元张数
-	for(int i = 0; i &lt;= 10; i++) {
-		// 5 元张数
-		for(int j = 0; j &lt;= 20; j++) {
-			// 1 元张数
-			for(int k = 0; k &lt;= 100; k++) {
-				int cur = i*10 + j*5 + k*1;
-				if(cur == 100) {
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">slove</span><span class="hljs-params">()</span> </span>{
+	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;
+	<span class="hljs-comment">// 10 元张数</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">10</span>; i++) {
+		<span class="hljs-comment">// 5 元张数</span>
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt;= <span class="hljs-number">20</span>; j++) {
+			<span class="hljs-comment">// 1 元张数</span>
+			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt;= <span class="hljs-number">100</span>; k++) {
+				<span class="hljs-type">int</span> cur = i*<span class="hljs-number">10</span> + j*<span class="hljs-number">5</span> + k*<span class="hljs-number">1</span>;
+				<span class="hljs-keyword">if</span>(cur == <span class="hljs-number">100</span>) {
 					ans++;
 				}
 			}
 		}
 	}
-	return ans;
+	<span class="hljs-keyword">return</span> ans;
 }
 
-int main()
-{
-	cout&lt;&lt;slove();
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	cout&lt;&lt;<span class="hljs-built_in">slove</span>();
 }
 </code></pre>
 <h3 id="递归求解">递归求解</h3>
@@ -167,38 +179,38 @@ int main()
 <li>求用 5、10 元换 0 元的方法数</li>
 </ul>
 <p>如果我们对这 101 个小问题再进行同样思路的分析，即再固定 5 元零钱的数量，那么就能把问题划分成了规模更小，但问题类型一样的小小问题。即<strong>递归</strong>的思路，可以写出如下代码。</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-int money[1000]; // money 表示所有小额纸币的面值
-int len; // len 表示 money 数组的长度，即：小额纸币种类
+<span class="hljs-type">int</span> money[<span class="hljs-number">1000</span>]; <span class="hljs-comment">// money 表示所有小额纸币的面值</span>
+<span class="hljs-type">int</span> len; <span class="hljs-comment">// len 表示 money 数组的长度，即：小额纸币种类</span>
 
-// index 表示上文分析中的当前固定第几张
-// target 表示现在要兑换的钱的总额
-int slove(int index, int target) {
-    int ans = 0;
-    if(index == len) {
-        ans = target == 0 ? 1 : 0;
-    } else {
-        for(int i = 0; i*money[index] &lt;= target; i++) {
-            // 剩余待换零钱的总额
-            int cur_total = target-(i * money[index]);
-            ans = ans + slove(index+1, cur_total);
+<span class="hljs-comment">// index 表示上文分析中的当前固定第几张</span>
+<span class="hljs-comment">// target 表示现在要兑换的钱的总额</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">slove</span><span class="hljs-params">(<span class="hljs-type">int</span> index, <span class="hljs-type">int</span> target)</span> </span>{
+    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">if</span>(index == len) {
+        ans = target == <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i*money[index] &lt;= target; i++) {
+            <span class="hljs-comment">// 剩余待换零钱的总额</span>
+            <span class="hljs-type">int</span> cur_total = target-(i * money[index]);
+            ans = ans + <span class="hljs-built_in">slove</span>(index<span class="hljs-number">+1</span>, cur_total);
         }
     }
-    return ans;
+    <span class="hljs-keyword">return</span> ans;
 }
 
-int main()
-{
-    int target;
-    cin&gt;&gt;len; // 零钱种类
-    for(int i = 0; i &lt; len; i++){
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-type">int</span> target;
+    cin&gt;&gt;len; <span class="hljs-comment">// 零钱种类</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
         cin&gt;&gt;money[i];
     }
-    cin&gt;&gt;target; // 兑换总额
+    cin&gt;&gt;target; <span class="hljs-comment">// 兑换总额</span>
 
-    cout&lt;&lt;slove(0, target);
+    cout&lt;&lt;<span class="hljs-built_in">slove</span>(<span class="hljs-number">0</span>, target);
 }
 </code></pre>
 <h3 id="优化递归">优化递归</h3>
@@ -208,51 +220,51 @@ int main()
 <li>已经使用了 0 张 1 元、1 张 5 元，剩下的 95 元用 5 元 和 10 元兑换</li>
 </ul>
 <p>既然前面已经求解过相同的子问题了，那么我们是否可以在第一次求解的时候，将计算结果保存下来，这样下次遇到相同子问题的实际，直接查出来用就可以，省去再次求解的时间。</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-int money[1000]; // money 表示所有小额纸币的面值
-int len; // len 表示 money 数组的长度，即：小额纸币种类
+<span class="hljs-type">int</span> money[<span class="hljs-number">1000</span>]; <span class="hljs-comment">// money 表示所有小额纸币的面值</span>
+<span class="hljs-type">int</span> len; <span class="hljs-comment">// len 表示 money 数组的长度，即：小额纸币种类</span>
 
-// 用于存储子问题的解
-int val_map[1000][1000] = { 0 };
+<span class="hljs-comment">// 用于存储子问题的解</span>
+<span class="hljs-type">int</span> val_map[<span class="hljs-number">1000</span>][<span class="hljs-number">1000</span>] = { <span class="hljs-number">0</span> };
 
-// 0 表示该子问题没有算过
-// -1 表示算过，但该子问题无解
-// 其它值，即此子问题的方法数
+<span class="hljs-comment">// 0 表示该子问题没有算过</span>
+<span class="hljs-comment">// -1 表示算过，但该子问题无解</span>
+<span class="hljs-comment">// 其它值，即此子问题的方法数</span>
 
-int slove(int index, int target) {
-    int ans = 0;
-    if(index == len) {
-        ans = target == 0 ? 1 : 0;
-    } else {
-        for(int i = 0; i*money[index] &lt;= target; i++) {
-            // 剩余待换零钱的总额
-            int cur_total = target-(i * money[index]);
-            int pre_val = val_map[index+1][cur_total];
-            // 如果 val 为 0，说明该子问题没有被计算过
-            if(pre_val == 0) {
-                ans = ans + slove(index+1, cur_total);
-            } else {
-                ans += pre_val == -1 ? 0 : pre_val;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">slove</span><span class="hljs-params">(<span class="hljs-type">int</span> index, <span class="hljs-type">int</span> target)</span> </span>{
+    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">if</span>(index == len) {
+        ans = target == <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i*money[index] &lt;= target; i++) {
+            <span class="hljs-comment">// 剩余待换零钱的总额</span>
+            <span class="hljs-type">int</span> cur_total = target-(i * money[index]);
+            <span class="hljs-type">int</span> pre_val = val_map[index<span class="hljs-number">+1</span>][cur_total];
+            <span class="hljs-comment">// 如果 val 为 0，说明该子问题没有被计算过</span>
+            <span class="hljs-keyword">if</span>(pre_val == <span class="hljs-number">0</span>) {
+                ans = ans + <span class="hljs-built_in">slove</span>(index<span class="hljs-number">+1</span>, cur_total);
+            } <span class="hljs-keyword">else</span> {
+                ans += pre_val == <span class="hljs-number">-1</span> ? <span class="hljs-number">0</span> : pre_val;
             }
         }
     }
-    // 存储计算结果
-    val_map[index][target] = ans == 0 ? -1 : ans;
-    return ans;
+    <span class="hljs-comment">// 存储计算结果</span>
+    val_map[index][target] = ans == <span class="hljs-number">0</span> ? <span class="hljs-number">-1</span> : ans;
+    <span class="hljs-keyword">return</span> ans;
 }
 
-int main()
-{
-    int target; // 零钱种类
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-type">int</span> target; <span class="hljs-comment">// 零钱种类</span>
     cin&gt;&gt;len;
-    for(int i = 0; i &lt; len; i++){
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
         cin&gt;&gt;money[i];
     }
     cin&gt;&gt;target;
 
-    cout&lt;&lt;slove(0, target);
+    cout&lt;&lt;<span class="hljs-built_in">slove</span>(<span class="hljs-number">0</span>, target);
 }
 </code></pre>
 <h3 id="动态规划">动态规划</h3>
@@ -260,55 +272,55 @@ int main()
 <blockquote>
 <p>所有的递归都能改为循环实现</p>
 </blockquote>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-int money[1000]; // money 表示所有小额纸币的面值
-int len; // len 表示 money 数组的长度，即：小额纸币种类
+<span class="hljs-type">int</span> money[<span class="hljs-number">1000</span>]; <span class="hljs-comment">// money 表示所有小额纸币的面值</span>
+<span class="hljs-type">int</span> len; <span class="hljs-comment">// len 表示 money 数组的长度，即：小额纸币种类</span>
 
-// 用于存储子问题的解
-// val_map[i][j] 表示用 money[0...i] 的小面额零钱组成 j 元的方法数
-int val_map[1000][1000] = { 0 };
+<span class="hljs-comment">// 用于存储子问题的解</span>
+<span class="hljs-comment">// val_map[i][j] 表示用 money[0...i] 的小面额零钱组成 j 元的方法数</span>
+<span class="hljs-type">int</span> val_map[<span class="hljs-number">1000</span>][<span class="hljs-number">1000</span>] = { <span class="hljs-number">0</span> };
 
-int slove(int target) {
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">slove</span><span class="hljs-params">(<span class="hljs-type">int</span> target)</span> </span>{
     
-    // 第一列表示组成 0 元的方法数，所以为 1
-    for (int i = 0; i &lt; len; i++) {
-        val_map[i][0] = 1;
+    <span class="hljs-comment">// 第一列表示组成 0 元的方法数，所以为 1</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) {
+        val_map[i][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
     }
 
-    // 第一行表示只使用 money[0] 一种钱币兑换钱数为i的方法数
-    // 所以是 money[0] 的倍数的位置为 1，否则为 0
-    for (int i = 1; money[0]*i &lt;= target; i++) {
-        val_map[0][money[0]*i] = 1;
+    <span class="hljs-comment">// 第一行表示只使用 money[0] 一种钱币兑换钱数为i的方法数</span>
+    <span class="hljs-comment">// 所以是 money[0] 的倍数的位置为 1，否则为 0</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; money[<span class="hljs-number">0</span>]*i &lt;= target; i++) {
+        val_map[<span class="hljs-number">0</span>][money[<span class="hljs-number">0</span>]*i] = <span class="hljs-number">1</span>;
     }
 
-    for (int i = 1; i &lt; len; i++) {
-        for (int j = 1; j &lt;= target; j++) {
-            for (int k = 0; j &gt;= money[i]*k; k++) {
-                /* 
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= target; j++) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; j &gt;= money[i]*k; k++) {
+                <span class="hljs-comment">/* 
                 val_map[i][j] 的值为：
                 用 money[0...i-1] 的零钱组成 j 减去 money[i] 的倍数的方法数
                 因为相比 val_map[i-1][j]，只是多了一种零钱的可选项
-                */
-                val_map[i][j] += val_map[i-1][j-money[i]*k];
+                */</span>
+                val_map[i][j] += val_map[i<span class="hljs-number">-1</span>][j-money[i]*k];
             }
         }
     }
 
-    return val_map[len-1][target];
+    <span class="hljs-keyword">return</span> val_map[len<span class="hljs-number">-1</span>][target];
 }
 
-int main()
-{
-    int target;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-type">int</span> target;
     cin&gt;&gt;len;
-    for(int i = 0; i &lt; len; i++){
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
         cin&gt;&gt;money[i];
     }
     cin&gt;&gt;target;
 
-    cout&lt;&lt;slove(target);
+    cout&lt;&lt;<span class="hljs-built_in">slove</span>(target);
 }
 </code></pre>
 <h3 id="动归优化">动归优化</h3>
@@ -329,91 +341,91 @@ int main()
 <li>......</li>
 </ul>
 <p>所以第二部分的值即为<code>val_map[i][j-money[i]]</code>。依据此处的分析，我们可以在原有基础上去掉第三层循环，减少程序运行所花费的时间。</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-int money[1000];
-int len;
+<span class="hljs-type">int</span> money[<span class="hljs-number">1000</span>];
+<span class="hljs-type">int</span> len;
 
-int val_map[1000][1000] = { 0 };
+<span class="hljs-type">int</span> val_map[<span class="hljs-number">1000</span>][<span class="hljs-number">1000</span>] = { <span class="hljs-number">0</span> };
 
-int slove(int target) {
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">slove</span><span class="hljs-params">(<span class="hljs-type">int</span> target)</span> </span>{
     
-    for (int i = 0; i &lt; len; i++) {
-        val_map[i][0] = 1;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) {
+        val_map[i][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
     }
 
-    for (int i = 1; money[0]*i &lt;= target; i++) {
-        val_map[0][money[0]*i] = 1;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; money[<span class="hljs-number">0</span>]*i &lt;= target; i++) {
+        val_map[<span class="hljs-number">0</span>][money[<span class="hljs-number">0</span>]*i] = <span class="hljs-number">1</span>;
     }
 
-    for (int i = 1; i &lt; len; i++) {
-        for (int j = 1; j &lt;= target; j++) {
-            val_map[i][j] = val_map[i-1][j];
-            // 此处需要比较 j 的大小，防止数组越界
-            // 注意条件时 &gt;= ，否则少计算 j 刚好为 money[i] 的情况
-            if(j &gt;= money[i]) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= target; j++) {
+            val_map[i][j] = val_map[i<span class="hljs-number">-1</span>][j];
+            <span class="hljs-comment">// 此处需要比较 j 的大小，防止数组越界</span>
+            <span class="hljs-comment">// 注意条件时 &gt;= ，否则少计算 j 刚好为 money[i] 的情况</span>
+            <span class="hljs-keyword">if</span>(j &gt;= money[i]) {
                 val_map[i][j] += val_map[i][j-money[i]];
             }
         }
     }
 
-    return val_map[len-1][target];
+    <span class="hljs-keyword">return</span> val_map[len<span class="hljs-number">-1</span>][target];
 }
 
-int main()
-{
-    int target;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-type">int</span> target;
     cin&gt;&gt;len;
-    for(int i = 0; i &lt; len; i++){
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
         cin&gt;&gt;money[i];
     }
     cin&gt;&gt;target;
 
-    cout&lt;&lt;slove(target);
+    cout&lt;&lt;<span class="hljs-built_in">slove</span>(target);
 }
 </code></pre>
 <h3 id="空间压缩">空间压缩</h3>
 <p>仔细观察能发现，每一次更新<code>val_map[i][j]</code>的值时，它只依赖于上一行和当前这一行前面的元素。对于我们所求解的问题来说，它仅要求我们给出最终的答案即可，那么前面存储中间结果的那些元素实际上就会空间的浪费，因此我们可以思考一下如何在空间上进行压缩。</p>
 <p>实际上我们只需要定义一个一维的数组，采用一些技巧对该数组进行滚动更新，按照合适的方向去更新数组，同样可以达到上面使用二维数组的效果。</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-int money[1000];
-int len;
+<span class="hljs-type">int</span> money[<span class="hljs-number">1000</span>];
+<span class="hljs-type">int</span> len;
 
-int val_map[1000] = { 0 };
+<span class="hljs-type">int</span> val_map[<span class="hljs-number">1000</span>] = { <span class="hljs-number">0</span> };
 
-int slove(int target) {
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">slove</span><span class="hljs-params">(<span class="hljs-type">int</span> target)</span> </span>{
     
-    // 第一行，只用 money[0] 换零钱
-    // 所以只能换 money[0] 倍数的钱
-    for (int i = 0; money[0]*i &lt;= target; i++) {
-        val_map[money[0] * i] = 1;
+    <span class="hljs-comment">// 第一行，只用 money[0] 换零钱</span>
+    <span class="hljs-comment">// 所以只能换 money[0] 倍数的钱</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; money[<span class="hljs-number">0</span>]*i &lt;= target; i++) {
+        val_map[money[<span class="hljs-number">0</span>] * i] = <span class="hljs-number">1</span>;
     }
 
-    for (int i = 1; i &lt; len; i++) {
-        for (int j = 1; j &lt;= target; j++) {
-            if(j &gt;= money[i]) {
-                // 在进行下面一步前 val_map[j] 的值就已经是 val_map[i-1][j] 了
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= target; j++) {
+            <span class="hljs-keyword">if</span>(j &gt;= money[i]) {
+                <span class="hljs-comment">// 在进行下面一步前 val_map[j] 的值就已经是 val_map[i-1][j] 了</span>
                 val_map[j] += val_map[j-money[i]];
             }
         }
     }
 
-    return val_map[target];
+    <span class="hljs-keyword">return</span> val_map[target];
 }
 
-int main()
-{
-    int target;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-type">int</span> target;
     cin&gt;&gt;len;
-    for(int i = 0; i &lt; len; i++){
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
         cin&gt;&gt;money[i];
     }
     cin&gt;&gt;target;
 
-    cout&lt;&lt;slove(target);
+    cout&lt;&lt;<span class="hljs-built_in">slove</span>(target);
 }
 </code></pre>
 
@@ -441,7 +453,7 @@ int main()
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -498,22 +510,18 @@ int main()
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
+            <div class="markdownIt-TOC">
 <ul>
-<li>
 <ul>
-<li><a href="#%E5%9F%BA%E7%A1%80%E9%A2%98%E7%9B%AE">基础题目</a></li>
-<li><a href="#%E9%80%92%E5%BD%92%E6%B1%82%E8%A7%A3">递归求解</a></li>
-<li><a href="#%E4%BC%98%E5%8C%96%E9%80%92%E5%BD%92">优化递归</a></li>
-<li><a href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">动态规划</a></li>
-<li><a href="#%E5%8A%A8%E5%BD%92%E4%BC%98%E5%8C%96">动归优化</a></li>
-<li><a href="#%E7%A9%BA%E9%97%B4%E5%8E%8B%E7%BC%A9">空间压缩</a></li>
+<li><a href="#基础题目">基础题目</a></li>
+<li><a href="#递归求解">递归求解</a></li>
+<li><a href="#优化递归">优化递归</a></li>
+<li><a href="#动态规划">动态规划</a></li>
+<li><a href="#动归优化">动归优化</a></li>
+<li><a href="#空间压缩">空间压缩</a></li>
 </ul>
-</li>
 </ul>
-</li>
-</ul>
+</div>
 
         </div>
         <script>
@@ -550,62 +558,182 @@ int main()
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
+            i-tag-other_2" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
+            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-info" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
+            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
+            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-error" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-other_2" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
@@ -615,163 +743,43 @@ int main()
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-other_4" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/umBdDP7Ll/">
-            C
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-other_1" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/hF3_PWTirK/">
-            Java
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
-            嵌入式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/Ykw3uqJED/">
-            随笔思考
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
-            年度总结
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/u3bra3rlo/">
-            健康生活
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-warning" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/EWmAbJCJGF/">
-            TypeScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-success" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-other_2" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/KCICs8Iip/">
-            记录回忆
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/pkJGoZIqgD/">
-            Angular
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/_9zQ4w6VQ/">
-            自然语言处理
         </a>
         
     </div>

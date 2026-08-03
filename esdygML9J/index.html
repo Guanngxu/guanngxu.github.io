@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     为什么计算机处理排序数组比未排序数组快? | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -101,12 +113,12 @@
                             <span class="read-time">6 min read</span>
                             
                                 <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-success">
                             #操作系统
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-warning">
                             #算法
                         </a>
                                 
@@ -117,40 +129,40 @@
                                 <div class="post-content">
                                     <p>今天在群里看到一个有意思的问题——为什么处理排序数组比处理没有排序的数组要快，这个问题来源于 <a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array">StackoverFlow</a>，虽然我看到代码略微知道原因，但是模模糊糊不够清晰，搜了很多博客也讲的不够明白，所以就自己来总结了。</p>
 <p>首先来看一下问题，下面是很简单的一段代码，随机生成一些数字，对其中大于 128 的元素求和，记录并打印求和所用时间。</p>
-<pre><code class="language-java">import java.util.Arrays;
-import java.util.Random;
+<pre class="hljs"><code><span class="hljs-keyword">import</span> java.util.Arrays;
+<span class="hljs-keyword">import</span> java.util.Random;
 
-public class Main
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>
 {
-    public static void main(String[] args)
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>
     {
-        // Generate data
-        int arraySize = 32768;
-        int data[] = new int[arraySize];
+        <span class="hljs-comment">// Generate data</span>
+        <span class="hljs-type">int</span> <span class="hljs-variable">arraySize</span> <span class="hljs-operator">=</span> <span class="hljs-number">32768</span>;
+        <span class="hljs-type">int</span> data[] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[arraySize];
 
-        Random rnd = new Random(0);
-        for (int c = 0; c &lt; arraySize; ++c)
-            data[c] = rnd.nextInt() % 256;
+        <span class="hljs-type">Random</span> <span class="hljs-variable">rnd</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>(<span class="hljs-number">0</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; c &lt; arraySize; ++c)
+            data[c] = rnd.nextInt() % <span class="hljs-number">256</span>;
 
-        // !!! With this, the next loop runs faster
+        <span class="hljs-comment">// !!! With this, the next loop runs faster</span>
         Arrays.sort(data);
 
-        // Test
-        long start = System.nanoTime();
-        long sum = 0;
+        <span class="hljs-comment">// Test</span>
+        <span class="hljs-type">long</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> System.nanoTime();
+        <span class="hljs-type">long</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
 
-        for (int i = 0; i &lt; 100000; ++i)
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100000</span>; ++i)
         {
-            // Primary loop
-            for (int c = 0; c &lt; arraySize; ++c)
+            <span class="hljs-comment">// Primary loop</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; c &lt; arraySize; ++c)
             {
-                if (data[c] &gt;= 128)
+                <span class="hljs-keyword">if</span> (data[c] &gt;= <span class="hljs-number">128</span>)
                     sum += data[c];
             }
         }
 
-        System.out.println((System.nanoTime() - start) / 1000000000.0);
-        System.out.println(&quot;sum = &quot; + sum);
+        System.out.println((System.nanoTime() - start) / <span class="hljs-number">1000000000.0</span>);
+        System.out.println(<span class="hljs-string">&quot;sum = &quot;</span> + sum);
     }
 }
 </code></pre>
@@ -159,7 +171,7 @@ public class Main
 <p>为了把这个问题搞明白，需要先对<strong>流水线</strong>有一定的了解。计算机是指令流驱动的，执行的是一个一个的指令，而执行一条指令，又要经过<code>取指、译码、执行、访存、写回、更新</code>六个阶段（不同的划分方式所包含的阶段不一样）。</p>
 <p>六个阶段使用的硬件基本是不一样的，如果一条指令执行完再去执行另一条指令，那么在这段时间里会有很多硬件处于空闲状态，要使计算机的速度变快，那么就不能让硬件停下来，所以有了流水线技术。</p>
 <p>流水线技术通过将指令重叠来实现几条指令并行处理，下图表示的是三阶段指令时序，即把一个指令分为三个阶段。在第一条指令的 B 阶段，A 阶段相关的硬件是空闲的，于是可以将第二条指令的 A 阶段提前操作。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1663251213484.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="/post-images/1663251213484.png" alt="" loading="lazy"></figure>
 <p>很明显，这种设计大幅提高了指令运行的效率，聪明的你可能发现问题了，要是不知道下一条指令是什么怎么办，那提前的阶段也就白干了，那样流水线不就失效了？没错，这就是导致开篇问题的原因。</p>
 <p>让流水线出问题的情况有三种：</p>
 <ol>
@@ -171,7 +183,7 @@ public class Main
 <p>没有排序的数组，元素是随机排列的，每次<code>data[c] &gt;= 128</code>的结果也是随机的，前面的经验就不可参考，所以下一次执行到这里理论上还是会有 50% 的可能会猜错，猜错了肯定就需要花时间来修改犯下的错误，自然就会浪费更多的时间。</p>
 <p>对于排好序的数组，开始几次也需要靠猜，但是猜着猜着发现有规律啊，每次都是往同一个分支跳转，所以以后基本上每次都能猜中，当遍历到与 128 分界的地方，才会出现猜不中的情况，但是猜几次之后，发现这又有规律啊，每次都是朝着另外一个相同分支走的。</p>
 <p>虽然都会猜错，但是在排好序的情况下猜错的几率远远小于未排序时的几率，最终呈现的结果就是处理排序数组比未排序数组快，其原因就是流水线发生了大量的控制相关现象，下面通俗一点，加深一下理解。</p>
-<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1663251488955.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="/post-images/1663251488955.png" alt="" loading="lazy"></figure>
 <p>远在他方心仪多年的姑娘突然告诉你，其实她也喜欢你，激动的你三天三夜睡不着觉，决定开车前往她的城市，要和她待在一起，但是要去的路上有很多很多岔路，你只能使用的某某地图导航，作为老司机并且怀着立马要见到爱人心情的你，开车超快，什么样罚单都不在乎了。</p>
 <p>地图定位已经跟不上你的速度了，为了尽快到达，遇到岔路你都是随机选一条路前进，遗憾的是，自己的选择不一定对（我们假设高速可以回退），走错路了就要重新回到分岔点，这就对应着未排序的情况。</p>
 <p>现在岔路是有规律的，告诉你开始一直朝着一边走，到某个地点后会一直朝着另一边走，你只需要花点时间去探索一下开始朝左边还是右边，到了中间哪个地点会改变方向就可以了，相比之下就能节省不少时间了，尽快见到自己的爱人，这对应着排好序的情况。</p>
@@ -203,7 +215,7 @@ public class Main
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -263,48 +275,63 @@ public class Main
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
+            i-tag-primary" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
+            i-tag-info" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-other_4" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
+            i-tag-success" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
+            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-other_2" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
         </a>
         
         <a class="tags-tag i-tag
@@ -313,42 +340,27 @@ public class Main
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-warning" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
@@ -358,67 +370,112 @@ public class Main
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/Ykw3uqJED/">
-            随笔思考
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-other_1" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/6ZjSGnvm9/">
-            年度总结
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-primary" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-other_1" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-primary" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
@@ -428,63 +485,18 @@ public class Main
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/EWmAbJCJGF/">
-            TypeScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-error" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-other_2" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/KCICs8Iip/">
-            记录回忆
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/pkJGoZIqgD/">
-            Angular
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/_9zQ4w6VQ/">
-            自然语言处理
         </a>
         
     </div>

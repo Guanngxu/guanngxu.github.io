@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     Schema 与数据类型优化 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -98,16 +110,16 @@
                         </h2>
                         <div class="post-info">
                             <time class="post-time">2020-11-03</time>
-                            <span class="read-time">6 min read</span>
+                            <span class="read-time">7 min read</span>
                             
-                                <a href="https://www.guanngxu.com/wjM4wf9IE/" class="post-tag i-tag
-                            i-tag-success">
-                            #MySQL
+                                <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-primary">
+                            #数据库
                         </a>
                                 
-                                <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
-                            i-tag-error">
-                            #数据库
+                                <a href="https://www.guanngxu.com/wjM4wf9IE/" class="post-tag i-tag
+                            i-tag-warning">
+                            #MySQL
                         </a>
                                 
                         </div>
@@ -133,22 +145,22 @@
 <p>VERCHAR 类型在存储可变长字符串时，会比 CHAR 更节省空间，它需要使用 1 或者 2 个额外的字节记录字符串的长度。但由于行是变长的，当一个行占用的空间增长，并且在页内没有更多的可用空间可以存储，就容易产生碎片。</p>
 <h3 id="使用枚举代替字符串">使用枚举代替字符串</h3>
 <p>有时候可以使用枚举列代替常用的字符串类型，枚举列可以把一些不重复的字符串存储成一个预定义的集合，而且 MySQL 在存储枚举时非常紧凑，会根据列的数量压缩到一个或两个字节。比如下面的例子：</p>
-<pre><code class="language-sql">CREATE TABLE enum_test(
-    e ENUM('fish', 'apple', 'dog') NOT NULL
+<pre class="hljs"><code><span class="hljs-keyword">CREATE TABLE</span> enum_test(
+    e ENUM(<span class="hljs-string">&#x27;fish&#x27;</span>, <span class="hljs-string">&#x27;apple&#x27;</span>, <span class="hljs-string">&#x27;dog&#x27;</span>) <span class="hljs-keyword">NOT NULL</span>
 );
 
-INSERT INTO enum_test(e) VALUES('fish'), ('dog'), ('apple');
+<span class="hljs-keyword">INSERT INTO</span> enum_test(e) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;fish&#x27;</span>), (<span class="hljs-string">&#x27;dog&#x27;</span>), (<span class="hljs-string">&#x27;apple&#x27;</span>);
 
-SELECT e+0 FROM enum_test;
+<span class="hljs-keyword">SELECT</span> e<span class="hljs-operator">+</span><span class="hljs-number">0</span> <span class="hljs-keyword">FROM</span> enum_test;
 
-# result
-+-----+
-| e+0 |
-+-----+
-|   1 |
-|   2 |
-|   3 |
-+-----+
+# <span class="hljs-keyword">result</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-----+</span>
+<span class="hljs-operator">|</span> e<span class="hljs-operator">+</span><span class="hljs-number">0</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-----+</span>
+<span class="hljs-operator">|</span>   <span class="hljs-number">1</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">|</span>   <span class="hljs-number">2</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">|</span>   <span class="hljs-number">3</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-----+</span>
 </code></pre>
 <p>可以看到使用枚举类型后，上面三行数据实际上存储为了整数，而不是字符串，而且还有一个让人吃惊的地方：枚举字段是按照内部存储的整数而不是定义的字符串进行排序的，这一点需要特别注意，不然在写程序时容易中犯错。当然你也可以在查询时使用<code>FIELD()</code>函数显式地指定排序顺序。</p>
 <p>可以看到上面</p>
@@ -159,7 +171,7 @@ SELECT e+0 FROM enum_test;
 <p>这里的「缓存表」和「汇总表」并没有什么标准的含义。我们用「缓存表」来存储那些可以从其他表获取，但是获取的速度很慢的数据；而「汇总表」则用来保存那些使用 GROUP BY 语句聚合数据的表。毫无疑问，我们存这些冗余数据也是为了性能。</p>
 <p>比如近两年各种应用流行的年终报告，每次网易云音乐的年终报告都会把朋友圈撑满，其它类似于缓存一个用户的朋友数、一个文件的下载次数等等。这些数据实时计算的开销是很大的，而且多数情况下用户也等不起实时计算的时间，一般的解决方案都是通过增加计数器表（缓存表）来解决这个问题。</p>
 <p>计算机科学中总是伴随着双面性，上面的计数器表带来性能提升的同时也带来了并发问题。网站的每一次点击都会导致对计数器的更新，对于任何想要更新这一行的事务来说，这条记录都有一个全局的互斥锁，这会使得这些事务只能串行的进行。每一次点击都会触发下面的语句，但大量的点击伴随着该行数据的互斥锁，想想性能也不会提升到哪里去吧。</p>
-<pre><code class="language-sql">UPDATE hit_counter SET cnt = cnt + 1;
+<pre class="hljs"><code><span class="hljs-keyword">UPDATE</span> hit_counter <span class="hljs-keyword">SET</span> cnt <span class="hljs-operator">=</span> cnt <span class="hljs-operator">+</span> <span class="hljs-number">1</span>;
 </code></pre>
 <p>大多数应用都是读查询居多，为了提升读查询的速度，经常会需要增加一些额外的索引，增加冗余列、汇总表、缓存表等等。但是不要忘了这些技巧也会增加写查询的负担，还会增加开发难度，因此应该根据实际应用场景来做权衡。</p>
 <h2 id="加快-alter-table-表的速度">加快 ALTER TABLE 表的速度</h2>
@@ -190,7 +202,7 @@ SELECT e+0 FROM enum_test;
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -247,22 +259,19 @@ SELECT e+0 FROM enum_test;
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
+            <div class="markdownIt-TOC">
 <ul>
-<li><a href="#%E9%80%89%E6%8B%A9%E4%BC%98%E5%8C%96%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">选择优化的数据类型</a>
+<li><a href="#选择优化的数据类型">选择优化的数据类型</a></li>
 <ul>
-<li><a href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B">整数类型</a></li>
-<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B">字符串类型</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8%E6%9E%9A%E4%B8%BE%E4%BB%A3%E6%9B%BF%E5%AD%97%E7%AC%A6%E4%B8%B2">使用枚举代替字符串</a></li>
+<li><a href="#整数类型">整数类型</a></li>
+<li><a href="#字符串类型">字符串类型</a></li>
+<li><a href="#使用枚举代替字符串">使用枚举代替字符串</a></li>
 </ul>
-</li>
-<li><a href="#%E8%8C%83%E5%BC%8F%E5%92%8C%E5%8F%8D%E8%8C%83%E5%BC%8F">范式和反范式</a></li>
-<li><a href="#%E7%BC%93%E5%AD%98%E8%A1%A8%E5%92%8C%E6%B1%87%E6%80%BB%E8%A1%A8">缓存表和汇总表</a></li>
-<li><a href="#%E5%8A%A0%E5%BF%AB-alter-table-%E8%A1%A8%E7%9A%84%E9%80%9F%E5%BA%A6">加快 ALTER TABLE 表的速度</a></li>
+<li><a href="#范式和反范式">范式和反范式</a></li>
+<li><a href="#缓存表和汇总表">缓存表和汇总表</a></li>
+<li><a href="#加快-alter-table-表的速度">加快 ALTER TABLE 表的速度</a></li>
 </ul>
-</li>
-</ul>
+</div>
 
         </div>
         <script>
@@ -299,98 +308,8 @@ SELECT e+0 FROM enum_test;
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/krqSF7tYC/">
-            算法
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/umBdDP7Ll/">
-            C
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/hF3_PWTirK/">
-            Java
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/vnEfA3xxL/">
-            嵌入式
+            i-tag-primary" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
         </a>
         
         <a class="tags-tag i-tag
@@ -399,83 +318,203 @@ SELECT e+0 FROM enum_test;
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/Ykw3uqJED/">
-            随笔思考
+            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/6ZjSGnvm9/">
-            年度总结
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/u3bra3rlo/">
-            健康生活
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/wjM4wf9IE/">
-            MySQL
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
-            SEO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/7QbLXmeen/">
-            Vue
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-banana" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
+            i-tag-other_4" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
         </a>
         
         <a class="tags-tag i-tag
@@ -484,43 +523,13 @@ SELECT e+0 FROM enum_test;
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-info" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
-            记录回忆
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-other_2" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/pkJGoZIqgD/">
-            Angular
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/_9zQ4w6VQ/">
-            自然语言处理
         </a>
         
     </div>

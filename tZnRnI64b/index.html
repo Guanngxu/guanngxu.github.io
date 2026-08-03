@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     《算法竞赛进阶指南》165 小猫爬山题解 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -127,173 +139,173 @@
 <h2 id="分析解答">分析解答</h2>
 <h3 id="贪心">贪心</h3>
 <p>经过思考发现，我们只需要尽可能的在每辆车上都放更多的小猫，就能以最经济的方式把所有小猫都送下山。所以是一个非常明显的贪心题目，我们将所有小猫按重量排序，尽可能把肥猫先送下山即可。具体实现代码如下：</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-void cin_arr(int *num, int len)
-{
-	for(int i = 0; i &lt; len; i++){
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">cin_arr</span><span class="hljs-params">(<span class="hljs-type">int</span> *num, <span class="hljs-type">int</span> len)</span>
+</span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
 		cin&gt;&gt;num[i];
 	}
 }
 
-int slove(int *num, int n, int w)
-{
-	int ans = 0;
-	int remain = 0;
-	int load = 0;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">slove</span><span class="hljs-params">(<span class="hljs-type">int</span> *num, <span class="hljs-type">int</span> n, <span class="hljs-type">int</span> w)</span>
+</span>{
+	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;
+	<span class="hljs-type">int</span> remain = <span class="hljs-number">0</span>;
+	<span class="hljs-type">int</span> load = <span class="hljs-number">0</span>;
 	
-	sort(num, num+n);
+	<span class="hljs-built_in">sort</span>(num, num+n);
 	
-	while(true){
-		for(int i = 0; i &lt; n; i++){
-            // 连当前最小的猫都装不下，那么就新开一辆车
-			if(num[i] != -1 &amp;&amp; remain &lt; num[i]){
+	<span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>){
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++){
+            <span class="hljs-comment">// 连当前最小的猫都装不下，那么就新开一辆车</span>
+			<span class="hljs-keyword">if</span>(num[i] != <span class="hljs-number">-1</span> &amp;&amp; remain &lt; num[i]){
 				ans++;
 				remain = w;
-				break;
+				<span class="hljs-keyword">break</span>;
 			}
 		}
 		
-		for(int i = n-1; i &gt;= 0; i--){
-            // 从大到小查找，尽可能装肥猫
-			if(num[i] != -1 &amp;&amp; remain &gt;= num[i]){
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = n<span class="hljs-number">-1</span>; i &gt;= <span class="hljs-number">0</span>; i--){
+            <span class="hljs-comment">// 从大到小查找，尽可能装肥猫</span>
+			<span class="hljs-keyword">if</span>(num[i] != <span class="hljs-number">-1</span> &amp;&amp; remain &gt;= num[i]){
 				remain -= num[i];
-                // 运送走的小猫重量以 -1 表示
-				num[i] = -1;
+                <span class="hljs-comment">// 运送走的小猫重量以 -1 表示</span>
+				num[i] = <span class="hljs-number">-1</span>;
 				load++;
-				break;
+				<span class="hljs-keyword">break</span>;
 			}
 		}
 		
-		// 如果所有小猫都运走了，那么当前 ans 就是答案
-		if(load &gt;= n)
-			return ans;
+		<span class="hljs-comment">// 如果所有小猫都运走了，那么当前 ans 就是答案</span>
+		<span class="hljs-keyword">if</span>(load &gt;= n)
+			<span class="hljs-keyword">return</span> ans;
 	}
 }
 
-int main()
-{
-    int n, w;
-	int cat[1000000];
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-type">int</span> n, w;
+	<span class="hljs-type">int</span> cat[<span class="hljs-number">1000000</span>];
 	
 	cin&gt;&gt;n&gt;&gt;w;
-	cin_arr(cat, n);
+	<span class="hljs-built_in">cin_arr</span>(cat, n);
 
-	cout&lt;&lt;slove(cat, n, w)&lt;&lt;endl;
+	cout&lt;&lt;<span class="hljs-built_in">slove</span>(cat, n, w)&lt;&lt;endl;
 }
 </code></pre>
 <p>经过实际测试发现，盲目使用贪心思想的算法并不正确，例如如下测试用例。</p>
-<pre><code class="language-txt">6 16
+<pre class="hljs"><code>6 16
 9 5 5 5 4 3
 </code></pre>
 <p>贪心的结果是使用 <strong>3</strong> 辆车，分别为<code>9+5</code>、<code>5+5+4</code>、<code>3</code>；而正确的结果却是使用 <strong>2</strong> 辆车，分别为<code>9+4+3</code>和<code>5+5+5</code>。</p>
 <h3 id="深度优先搜索">深度优先搜索</h3>
 <p>既然贪心思想在这里行不通，那么我们就采用暴力搜索，即小猫可以放在现有任意一辆车上。具体实现代码如下：</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-#define N 2000
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> N 2000</span>
 
-int n, w;
-int cat[N];
-int sum[N] = {0}; // 第 i 辆车当前重量
-int ans = N;
+<span class="hljs-type">int</span> n, w;
+<span class="hljs-type">int</span> cat[N];
+<span class="hljs-type">int</span> sum[N] = {<span class="hljs-number">0</span>}; <span class="hljs-comment">// 第 i 辆车当前重量</span>
+<span class="hljs-type">int</span> ans = N;
 
-void cin_arr(int *num, int len)
-{
-	for(int i = 0; i &lt; len; i++){
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">cin_arr</span><span class="hljs-params">(<span class="hljs-type">int</span> *num, <span class="hljs-type">int</span> len)</span>
+</span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
 		cin&gt;&gt;num[i];
 	}
 }
 
-void dfs(int cur_cat, int cur_car)
-{
-	if(cur_car &gt; ans) // 求最小值，不符合直接返回
-        return ;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> cur_cat, <span class="hljs-type">int</span> cur_car)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(cur_car &gt; ans) <span class="hljs-comment">// 求最小值，不符合直接返回</span>
+        <span class="hljs-keyword">return</span> ;
 
-    if(cur_cat == n) { // 所有小猫都上车了
+    <span class="hljs-keyword">if</span>(cur_cat == n) { <span class="hljs-comment">// 所有小猫都上车了</span>
         ans = cur_car;
-        return ;
+        <span class="hljs-keyword">return</span> ;
     }
 
-    for(int i = 0; i &lt; cur_car; i++) {
-        if(sum[i] + cat[cur_cat] &lt;= w) { // 当前猫能放进去
-            sum[i] += cat[cur_cat]; // 当前猫占用重量
-            dfs(cur_cat+1, cur_car); // 继续放下一只猫
-            sum[i] -= cat[cur_cat]; // 把已经放进去的猫拿出来，因为是循环，所以放入下一辆车里面
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; cur_car; i++) {
+        <span class="hljs-keyword">if</span>(sum[i] + cat[cur_cat] &lt;= w) { <span class="hljs-comment">// 当前猫能放进去</span>
+            sum[i] += cat[cur_cat]; <span class="hljs-comment">// 当前猫占用重量</span>
+            <span class="hljs-built_in">dfs</span>(cur_cat<span class="hljs-number">+1</span>, cur_car); <span class="hljs-comment">// 继续放下一只猫</span>
+            sum[i] -= cat[cur_cat]; <span class="hljs-comment">// 把已经放进去的猫拿出来，因为是循环，所以放入下一辆车里面</span>
         }
     }
 
-    // 新开一辆车，把当前这只猫放到新的车里面
+    <span class="hljs-comment">// 新开一辆车，把当前这只猫放到新的车里面</span>
     sum[cur_car] = cat[cur_cat];
-    dfs(cur_cat+1, cur_car+1);
-    sum[cur_car] = 0; // 把猫拿出来
+    <span class="hljs-built_in">dfs</span>(cur_cat<span class="hljs-number">+1</span>, cur_car<span class="hljs-number">+1</span>);
+    sum[cur_car] = <span class="hljs-number">0</span>; <span class="hljs-comment">// 把猫拿出来</span>
 }
 
-int main()
-{
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
 	cin&gt;&gt;n&gt;&gt;w;
-	cin_arr(cat, n);
-    dfs(0, 0);
+	<span class="hljs-built_in">cin_arr</span>(cat, n);
+    <span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
 	cout&lt;&lt;ans&lt;&lt;endl;
 }
 </code></pre>
 <h3 id="搜索优化">搜索优化</h3>
 <p>考虑到每次都是在车数量固定的情况下进行搜索的，那么少满足一次<code>(sum[i] + cat[cur_cat] &lt;= w)</code>条件，就会少一次递归的调用，也即少一次搜索。那么如何能尽快使得程序尽快不满足该条件呢？</p>
 <p>让<code>sum[i]</code>减小的速度加快就会减少搜索分支，即每次放更重一点的猫进去，就能达到效果。所以我们可以在进行搜索前将小猫的重量进行降序排序，这样从肥猫开始搜索就会减少分支。</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-#define N 2000
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> N 2000</span>
 
-int n, w;
-int cat[N];
-int sum[N] = {0}; // 第 i 辆车当前重量
-int ans = N;
+<span class="hljs-type">int</span> n, w;
+<span class="hljs-type">int</span> cat[N];
+<span class="hljs-type">int</span> sum[N] = {<span class="hljs-number">0</span>}; <span class="hljs-comment">// 第 i 辆车当前重量</span>
+<span class="hljs-type">int</span> ans = N;
 
-void cin_arr(int *num, int len)
-{
-	for(int i = 0; i &lt; len; i++){
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">cin_arr</span><span class="hljs-params">(<span class="hljs-type">int</span> *num, <span class="hljs-type">int</span> len)</span>
+</span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
 		cin&gt;&gt;num[i];
 	}
 }
 
-bool cmp(int a, int b)
-{
-    return a &gt; b;
+<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>
+</span>{
+    <span class="hljs-keyword">return</span> a &gt; b;
 }
 
-void dfs(int cur_cat, int cur_car)
-{
-	if(cur_car &gt; ans) // 求最小值，不符合直接返回
-        return ;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> cur_cat, <span class="hljs-type">int</span> cur_car)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(cur_car &gt; ans) <span class="hljs-comment">// 求最小值，不符合直接返回</span>
+        <span class="hljs-keyword">return</span> ;
 
-    if(cur_cat == n) { // 所有小猫都上车了
+    <span class="hljs-keyword">if</span>(cur_cat == n) { <span class="hljs-comment">// 所有小猫都上车了</span>
         ans = cur_car;
-        return ;
+        <span class="hljs-keyword">return</span> ;
     }
 
-    for(int i = 0; i &lt; cur_car; i++) {
-        if(sum[i] + cat[cur_cat] &lt;= w) { // 当前猫能放进去
-            sum[i] += cat[cur_cat]; // 当前猫占用重量
-            dfs(cur_cat+1, cur_car); // 继续放下一只猫
-            sum[i] -= cat[cur_cat]; // 把已经放进去的猫拿出来，因为是循环，所以放入下一辆车里面
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; cur_car; i++) {
+        <span class="hljs-keyword">if</span>(sum[i] + cat[cur_cat] &lt;= w) { <span class="hljs-comment">// 当前猫能放进去</span>
+            sum[i] += cat[cur_cat]; <span class="hljs-comment">// 当前猫占用重量</span>
+            <span class="hljs-built_in">dfs</span>(cur_cat<span class="hljs-number">+1</span>, cur_car); <span class="hljs-comment">// 继续放下一只猫</span>
+            sum[i] -= cat[cur_cat]; <span class="hljs-comment">// 把已经放进去的猫拿出来，因为是循环，所以放入下一辆车里面</span>
         }
     }
 
-    // 新开一辆车，把当前这只猫放到新的车里面
+    <span class="hljs-comment">// 新开一辆车，把当前这只猫放到新的车里面</span>
     sum[cur_car] = cat[cur_cat];
-    dfs(cur_cat+1, cur_car+1);
-    sum[cur_car] = 0; // 把猫拿出来
+    <span class="hljs-built_in">dfs</span>(cur_cat<span class="hljs-number">+1</span>, cur_car<span class="hljs-number">+1</span>);
+    sum[cur_car] = <span class="hljs-number">0</span>; <span class="hljs-comment">// 把猫拿出来</span>
 }
 
-int main()
-{
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
 	cin&gt;&gt;n&gt;&gt;w;
-	cin_arr(cat, n);
-    sort(cat, cat+n, cmp); // 反排序优化搜索
-    dfs(0, 0);
+	<span class="hljs-built_in">cin_arr</span>(cat, n);
+    <span class="hljs-built_in">sort</span>(cat, cat+n, cmp); <span class="hljs-comment">// 反排序优化搜索</span>
+    <span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
 	cout&lt;&lt;ans&lt;&lt;endl;
 }
 </code></pre>
@@ -322,7 +334,7 @@ int main()
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -379,26 +391,22 @@ int main()
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
+            <div class="markdownIt-TOC">
 <ul>
-<li><a href="#%E5%B0%8F%E7%8C%AB%E7%88%AC%E5%B1%B1">小猫爬山</a>
+<li><a href="#小猫爬山">小猫爬山</a></li>
 <ul>
-<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述</a></li>
-<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F">输入格式</a></li>
-<li><a href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">输出格式</a></li>
+<li><a href="#题目描述">题目描述</a></li>
+<li><a href="#输入格式">输入格式</a></li>
+<li><a href="#输出格式">输出格式</a></li>
 </ul>
-</li>
-<li><a href="#%E5%88%86%E6%9E%90%E8%A7%A3%E7%AD%94">分析解答</a>
+<li><a href="#分析解答">分析解答</a></li>
 <ul>
-<li><a href="#%E8%B4%AA%E5%BF%83">贪心</a></li>
-<li><a href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2">深度优先搜索</a></li>
-<li><a href="#%E6%90%9C%E7%B4%A2%E4%BC%98%E5%8C%96">搜索优化</a></li>
+<li><a href="#贪心">贪心</a></li>
+<li><a href="#深度优先搜索">深度优先搜索</a></li>
+<li><a href="#搜索优化">搜索优化</a></li>
 </ul>
-</li>
 </ul>
-</li>
-</ul>
+</div>
 
         </div>
         <script>
@@ -435,112 +443,137 @@ int main()
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/krqSF7tYC/">
-            算法
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/umBdDP7Ll/">
-            C
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/hF3_PWTirK/">
-            Java
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/vnEfA3xxL/">
-            嵌入式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-success" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
@@ -550,42 +583,62 @@ int main()
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
-            年度总结
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/u3bra3rlo/">
-            健康生活
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-info" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-warning" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
@@ -595,68 +648,23 @@ int main()
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/EWmAbJCJGF/">
-            TypeScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-banana" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
-            记录回忆
         </a>
         
         <a class="tags-tag i-tag
             i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/pkJGoZIqgD/">
-            Angular
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
-            自然语言处理
         </a>
         
     </div>

@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     Vue 入门避坑——Vue + TypeScript 项目起手式 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -98,26 +110,26 @@
                         </h2>
                         <div class="post-info">
                             <time class="post-time">2020-01-09</time>
-                            <span class="read-time">8 min read</span>
+                            <span class="read-time">9 min read</span>
                             
-                                <a href="https://www.guanngxu.com/7QbLXmeen/" class="post-tag i-tag
-                            i-tag-other_3">
-                            #Vue
-                        </a>
-                                
                                 <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_4">
                             #前端
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-other_1">
                             #TypeScript
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-warning">
                             #JavaScript
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/7QbLXmeen/" class="post-tag i-tag
+                            i-tag-">
+                            #Vue
                         </a>
                                 
                         </div>
@@ -130,51 +142,51 @@
 <p><a href="https://cli.vuejs.org/zh/guide/">脚手架</a>是一个比较方便的工具，这里需要注意的是<code>@vue/cli</code>和<code>vue-cli</code>是不一样的，推荐使用<code>npm i -g @vue/cli</code>安装。</p>
 <p>安装完成后，可以直接使用<code>vue create your-app</code>创建项目，你可以选择使用默认配置亦或是自己手动选择配置，按提示一步一步向下走即可，它会根据你的选择自己创建比如<code>tsconfig.json</code>等等配置文件。这里推荐使用<code>less</code>开发样式，<code>sass</code>老是在安装的过程中出问题。</p>
 <p>当然你也可以使<code>vue ui</code>命令启动一个本地服务，它是一个 Vue 项目管理器，提供了一个可视化的页面供你管理自己的项目，它的样子如下图所示，还是比较清新的。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1663991930709.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="/post-images/1663991930709.png" alt="" loading="lazy"></figure>
 <h2 id="使用-vue-property-decorator">使用 vue-property-decorator</h2>
 <p>Vue 官方维护了 <a href="https://github.com/vuejs/vue-class-component">vue-class-component</a> 装饰器，<a href="https://github.com/kaorun343/vue-property-decorator">vue-property-decorator</a> 则是在<code>vue-class-component</code>基础上增强了更多结合<code>Vue</code>特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。</p>
 <p>截止本文时间，<code>vue-property-decorator</code>共提供了 11 个装饰器和 1 个<code>Mixins</code>方法，下面用<code>@Prop</code>举个例子，是不是看起来引起极度舒适。</p>
-<pre><code class="language-typescript">import { Vue, Component, Prop } from 'vue-property-decorator'
+<pre class="hljs"><code><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Vue</span>, <span class="hljs-title class_">Component</span>, <span class="hljs-title class_">Prop</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-property-decorator&#x27;</span>
 
-@Component
-export default class YourComponent extends Vue {
-    @Prop(Number) readonly propA: number | undefined
-    @Prop({ default: 'default value' }) readonly propB!: string
-    @Prop([String, Boolean]) readonly propC: string | boolean | undefined
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">YourComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Vue</span> {
+    <span class="hljs-meta">@Prop</span>(<span class="hljs-title class_">Number</span>) <span class="hljs-keyword">readonly</span> <span class="hljs-attr">propA</span>: <span class="hljs-built_in">number</span> | <span class="hljs-literal">undefined</span>
+    <span class="hljs-meta">@Prop</span>({ <span class="hljs-attr">default</span>: <span class="hljs-string">&#x27;default value&#x27;</span> }) <span class="hljs-keyword">readonly</span> propB!: <span class="hljs-built_in">string</span>
+    <span class="hljs-meta">@Prop</span>([<span class="hljs-title class_">String</span>, <span class="hljs-title class_">Boolean</span>]) <span class="hljs-keyword">readonly</span> <span class="hljs-attr">propC</span>: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">boolean</span> | <span class="hljs-literal">undefined</span>
 }
 
 
-// 上面的内容将会被解析成如下格式
+<span class="hljs-comment">// 上面的内容将会被解析成如下格式</span>
 
-export default {
-    props: {
-        propA: {
-            type: Number
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-attr">props</span>: {
+        <span class="hljs-attr">propA</span>: {
+            <span class="hljs-attr">type</span>: <span class="hljs-title class_">Number</span>
         },
-        propB: {
-            default: 'default value'
+        <span class="hljs-attr">propB</span>: {
+            <span class="hljs-attr">default</span>: <span class="hljs-string">&#x27;default value&#x27;</span>
         },
-        propC: {
-            type: [String, Boolean]
+        <span class="hljs-attr">propC</span>: {
+            <span class="hljs-attr">type</span>: [<span class="hljs-title class_">String</span>, <span class="hljs-title class_">Boolean</span>]
         }
     }
 }
 </code></pre>
 <h2 id="使用-vuex">使用 Vuex</h2>
 <p>关于怎么使用<a href="https://vuex.vuejs.org/">Vuex</a>此处就不再做过多说明了，需要注意的一点是，如果你需要访问<code>$store</code>属性的话，那么你必须得继承<code>Vue</code>类，坑的地方是在某些情况下即使你没有继承<code>Vue</code>，它也能通过编译，只有在程序运行起来的时候才报错。</p>
-<pre><code class="language-typescript">class ExampleApi extends Vue {
+<pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">ExampleApi</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Vue</span> {
 
-    public async getExampleData() {
-        if (!this.$store.state.exampleData) {
-            const res = await http.get('url/exampleData');
-            if (res.result) {
-                this.$store.commit('setExampleData', res.data);
-                return res.data;
-            } else {
-            promptUtil.showMessage('get exampleData failed', 'warning');
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> <span class="hljs-title function_">getExampleData</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">$store</span>.<span class="hljs-property">state</span>.<span class="hljs-property">exampleData</span>) {
+            <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> http.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;url/exampleData&#x27;</span>);
+            <span class="hljs-keyword">if</span> (res.<span class="hljs-property">result</span>) {
+                <span class="hljs-variable language_">this</span>.<span class="hljs-property">$store</span>.<span class="hljs-title function_">commit</span>(<span class="hljs-string">&#x27;setExampleData&#x27;</span>, res.<span class="hljs-property">data</span>);
+                <span class="hljs-keyword">return</span> res.<span class="hljs-property">data</span>;
+            } <span class="hljs-keyword">else</span> {
+            promptUtil.<span class="hljs-title function_">showMessage</span>(<span class="hljs-string">&#x27;get exampleData failed&#x27;</span>, <span class="hljs-string">&#x27;warning&#x27;</span>);
             }
-        } else {
-            return this.$store.state.exampleData;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">$store</span>.<span class="hljs-property">state</span>.<span class="hljs-property">exampleData</span>;
         }
     }
 }
@@ -182,32 +194,32 @@ export default {
 <h2 id="使用自己的配置含代理">使用自己的配置（含代理）</h2>
 <p><code>vue.config.js</code>是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被<code>@vue/cli-service</code>自动加载，它的配置项说明可以查看<a href="https://cli.vuejs.org/zh/config/">配置参考</a>。</p>
 <p>我们再开发过程中都会使用代理来转发请求，代理的配置也是在这个文件中，它的官方说明在<a href="https://cli.vuejs.org/zh/config/#devserver-proxy">devserver-proxy</a>中，下面是一个简单的<code>vue.config.js</code>文件例子。</p>
-<pre><code class="language-typescript">module.exports = {
-    filenameHashing: true,
-    outputDir: 'dist',
-    assetsDir: 'asserts',
-    indexPath: 'index.html',
-    productionSourceMap: false,
-    transpileDependencies: [
-        'vue-echarts',
-        'resize-detector'
+<pre class="hljs"><code><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+    <span class="hljs-attr">filenameHashing</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">outputDir</span>: <span class="hljs-string">&#x27;dist&#x27;</span>,
+    <span class="hljs-attr">assetsDir</span>: <span class="hljs-string">&#x27;asserts&#x27;</span>,
+    <span class="hljs-attr">indexPath</span>: <span class="hljs-string">&#x27;index.html&#x27;</span>,
+    <span class="hljs-attr">productionSourceMap</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">transpileDependencies</span>: [
+        <span class="hljs-string">&#x27;vue-echarts&#x27;</span>,
+        <span class="hljs-string">&#x27;resize-detector&#x27;</span>
     ],
-    devServer: {
-        hotOnly: true,
-        https: false,
-        proxy: {
-            &quot;/statistics&quot;: {
-                target: &quot;http://10.7.213.186:3889&quot;,
-                secure: false,
-                pathRewrite: {
-                    &quot;^/statistics&quot;: &quot;&quot;,
+    <span class="hljs-attr">devServer</span>: {
+        <span class="hljs-attr">hotOnly</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">https</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">proxy</span>: {
+            <span class="hljs-string">&quot;/statistics&quot;</span>: {
+                <span class="hljs-attr">target</span>: <span class="hljs-string">&quot;http://10.7.213.186:3889&quot;</span>,
+                <span class="hljs-attr">secure</span>: <span class="hljs-literal">false</span>,
+                <span class="hljs-attr">pathRewrite</span>: {
+                    <span class="hljs-string">&quot;^/statistics&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
                 },
-                changeOrigin: true
+                <span class="hljs-attr">changeOrigin</span>: <span class="hljs-literal">true</span>
             },
-            &quot;/mail&quot;: {
-                target: &quot;http://10.7.213.186:8888&quot;,
-                secure: false,
-                changeOrigin: true
+            <span class="hljs-string">&quot;/mail&quot;</span>: {
+                <span class="hljs-attr">target</span>: <span class="hljs-string">&quot;http://10.7.213.186:8888&quot;</span>,
+                <span class="hljs-attr">secure</span>: <span class="hljs-literal">false</span>,
+                <span class="hljs-attr">changeOrigin</span>: <span class="hljs-literal">true</span>
             }
         }
     }
@@ -219,79 +231,79 @@ export default {
 <blockquote>
 <p>看到网上也有一部分人说的是<code>src/vue-shim.d.ts</code>，反正不管是怎么命名这个文件的，它们的作用是一样的。</p>
 </blockquote>
-<pre><code class="language-typescript">declare module 'vue/types/vue' {
-    interface Vue {
-        $message: any,
-        $confirm: any,
-        $prompt: any,
-        $notify: any
+<pre class="hljs"><code><span class="hljs-keyword">declare</span> <span class="hljs-variable language_">module</span> <span class="hljs-string">&#x27;vue/types/vue&#x27;</span> {
+    <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Vue</span> {
+        <span class="hljs-attr">$message</span>: <span class="hljs-built_in">any</span>,
+        <span class="hljs-attr">$confirm</span>: <span class="hljs-built_in">any</span>,
+        <span class="hljs-attr">$prompt</span>: <span class="hljs-built_in">any</span>,
+        <span class="hljs-attr">$notify</span>: <span class="hljs-built_in">any</span>
     }
 }
 </code></pre>
 <p>这里顺道提一下，<code>src/shims-vue.d.ts</code>文件中的如下代码是为了让你的 IDE 明白以<code>.vue</code>结尾的文件是什么玩意儿。</p>
-<pre><code class="language-typescript">declare module '*.vue' {
-    import Vue from 'vue';
-    export default Vue;
+<pre class="hljs"><code><span class="hljs-keyword">declare</span> <span class="hljs-variable language_">module</span> <span class="hljs-string">&#x27;*.vue&#x27;</span> {
+    <span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">Vue</span>;
 }
 
 </code></pre>
 <h2 id="路由懒加载">路由懒加载</h2>
 <p>Vue Router 官方有关于<a href="https://router.vuejs.org/zh/guide/advanced/lazy-loading.html">路由懒加载</a>的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用<code>require.ensure()</code>按需加载组件可以生效。</p>
-<pre><code class="language-typescript">// base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中
-const Home = (r: any) =&gt; require.ensure([], () =&gt; r(require('@/views/home.vue')), layzImportError, 'base-view');
+<pre class="hljs"><code><span class="hljs-comment">// base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Home</span> = (<span class="hljs-params"><span class="hljs-attr">r</span>: <span class="hljs-built_in">any</span></span>) =&gt; <span class="hljs-built_in">require</span>.<span class="hljs-title function_">ensure</span>([], <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">r</span>(<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@/views/home.vue&#x27;</span>)), layzImportError, <span class="hljs-string">&#x27;base-view&#x27;</span>);
 
-// 路由加载错误时的提示函数
-function layzImportError() {
-    alert('路由懒加载错误');
+<span class="hljs-comment">// 路由加载错误时的提示函数</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">layzImportError</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;路由懒加载错误&#x27;</span>);
 }
 </code></pre>
 <p>上面的方式会在编译的时候把文件自动分成多个小文件，编译后的文件会以你自己命名的模块名来命名，如果代码之间有相互依赖，依赖部分代码编译后的文件会以两个模块名相连后进行命名。</p>
 <p>但是需要注意的是，这样拆分小文件之后引入了另外一个新的问题，因为客户端会缓存这些编译后的 js 文件，如果功能 A 同时依赖了<code>a.js</code>和<code>b.js</code>两个文件，但用户在使用其它功能时已经把<code>a.js</code>缓存到本地了，使用功能 A 时需要请求<code>b.js</code>文件，这时程序就很容易报错，因为此时在客户端这两个文件不是同一个版本，所以可能导致<code>a.js</code>调用<code>b.js</code>中的方法已经被删了，进而导致客户端页面异常。</p>
 <h2 id="关于引入第三方包">关于引入第三方包</h2>
 <p>项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。</p>
-<pre><code class="language-typescript">/*
+<pre class="hljs"><code><span class="hljs-comment">/*
  引入 jquery 等库可以尝试下面这种方式
  只需要把相应的 js 文件放到指定文件夹即可
-**/
-const $ = require('@/common/js/jquery.min.js');
-const md5 = require('@/common/js/md5.js');
+**/</span>
+<span class="hljs-keyword">const</span> $ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@/common/js/jquery.min.js&#x27;</span>);
+<span class="hljs-keyword">const</span> md5 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@/common/js/md5.js&#x27;</span>);
 </code></pre>
 <p>引入一些第三方样式文件、UI 组件等，如果引入不成功可以尝试建一个 js 文件，将导入语句都写在 js 文件中，然后再在<code>main.ts</code>文件中导入这个 js 文件，这个方法能解决大部分的问题。例如我先建了一个<code>lib.js</code>，然后在<code>main.ts</code>中引入<code>lib.js</code>就没有报错。</p>
-<pre><code class="language-typescript">// src/plugins/lib.js
-import Vue from 'vue';
+<pre class="hljs"><code><span class="hljs-comment">// src/plugins/lib.js</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;
 
-// 树形组件
-import 'vue-tree-halower/dist/halower-tree.min.css';
-import {VTree} from 'vue-tree-halower';
-// 饿了么组件
-import Element from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-// font-awesome 图标
-import '../../node_modules/font-awesome/css/font-awesome.css';
-import VueCookies from 'vue-cookies';
-import VueJWT from 'vuejs-jwt';
+<span class="hljs-comment">// 树形组件</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;vue-tree-halower/dist/halower-tree.min.css&#x27;</span>;
+<span class="hljs-keyword">import</span> {<span class="hljs-title class_">VTree</span>} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-tree-halower&#x27;</span>;
+<span class="hljs-comment">// 饿了么组件</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Element</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;element-ui&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span>;
+<span class="hljs-comment">// font-awesome 图标</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;../../node_modules/font-awesome/css/font-awesome.css&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">VueCookies</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-cookies&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">VueJWT</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuejs-jwt&#x27;</span>;
 
-Vue.use(VueJWT);
-Vue.use(VueCookies);
-Vue.use(VTree);
-Vue.use(Element);
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">VueJWT</span>);
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">VueCookies</span>);
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">VTree</span>);
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">Element</span>);
 
 
-// src/main.ts
-import App from '@/app.vue';
-import Vue from 'vue';
-import router from './router';
-import store from './store';
-import './registerServiceWorker';
-import './plugins/lib';
+<span class="hljs-comment">// src/main.ts</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/app.vue&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;
+<span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./router&#x27;</span>;
+<span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./registerServiceWorker&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./plugins/lib&#x27;</span>;
 
-Vue.config.productionTip = false;
+<span class="hljs-title class_">Vue</span>.<span class="hljs-property">config</span>.<span class="hljs-property">productionTip</span> = <span class="hljs-literal">false</span>;
 
-new Vue({
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>({
     router,
     store,
-    render: (h) =&gt; h(App),
-}).$mount('#app');
+    <span class="hljs-attr">render</span>: <span class="hljs-function">(<span class="hljs-params">h</span>) =&gt;</span> <span class="hljs-title function_">h</span>(<span class="hljs-title class_">App</span>),
+}).$mount(<span class="hljs-string">&#x27;#app&#x27;</span>);
 </code></pre>
 <p>因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个<code>index.d.ts</code>文件，实在不行的话，那个特殊的组件不使用 TypeScript 来写也能解决，我目前还没有找一个可以完全解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。</p>
 
@@ -319,7 +331,7 @@ new Vue({
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -376,19 +388,17 @@ new Vue({
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
+            <div class="markdownIt-TOC">
 <ul>
-<li><a href="#%E4%BD%BF%E7%94%A8-cli">使用 Cli</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8-vue-property-decorator">使用 vue-property-decorator</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8-vuex">使用 Vuex</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E9%85%8D%E7%BD%AE%E5%90%AB%E4%BB%A3%E7%90%86">使用自己的配置（含代理）</a></li>
-<li><a href="#%E8%AE%A9-vue-%E8%AF%86%E5%88%AB%E5%85%A8%E5%B1%80%E6%96%B9%E6%B3%95%E5%92%8C%E5%8F%98%E9%87%8F">让 Vue 识别全局方法和变量</a></li>
-<li><a href="#%E8%B7%AF%E7%94%B1%E6%87%92%E5%8A%A0%E8%BD%BD">路由懒加载</a></li>
-<li><a href="#%E5%85%B3%E4%BA%8E%E5%BC%95%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85">关于引入第三方包</a></li>
+<li><a href="#使用-cli">使用 Cli</a></li>
+<li><a href="#使用-vue-property-decorator">使用 vue-property-decorator</a></li>
+<li><a href="#使用-vuex">使用 Vuex</a></li>
+<li><a href="#使用自己的配置含代理">使用自己的配置（含代理）</a></li>
+<li><a href="#让-vue-识别全局方法和变量">让 Vue 识别全局方法和变量</a></li>
+<li><a href="#路由懒加载">路由懒加载</a></li>
+<li><a href="#关于引入第三方包">关于引入第三方包</a></li>
 </ul>
-</li>
-</ul>
+</div>
 
         </div>
         <script>
@@ -425,138 +435,78 @@ new Vue({
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/krqSF7tYC/">
-            算法
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/umBdDP7Ll/">
-            C
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/hF3_PWTirK/">
-            Java
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/vnEfA3xxL/">
-            嵌入式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-other_1" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
+            i-tag-" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
+            i-tag-warning" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
+            i-tag-warning" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
+            i-tag-primary" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-primary" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-other_4" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
         </a>
         
         <a class="tags-tag i-tag
@@ -565,33 +515,28 @@ new Vue({
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_1" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/wjM4wf9IE/">
-            MySQL
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/dTizl9yei/">
-            SEO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/7QbLXmeen/">
-            Vue
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
         </a>
         
         <a class="tags-tag i-tag
@@ -600,43 +545,48 @@ new Vue({
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/iqW8DWbw7/">
-            MongoDB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
-            Nginx
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
-            软件测试
+            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
+            i-tag-banana" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
         </a>
         
         <a class="tags-tag i-tag
@@ -645,8 +595,68 @@ new Vue({
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
         </a>
         
     </div>

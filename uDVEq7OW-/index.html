@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     Scrapy 爬虫框架入门——抓取豆瓣电影 Top250 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -98,15 +110,15 @@
                         </h2>
                         <div class="post-info">
                             <time class="post-time">2018-07-27</time>
-                            <span class="read-time">4 min read</span>
+                            <span class="read-time">5 min read</span>
                             
                                 <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-error">
                             #爬虫
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-banana">
                             #Python
                         </a>
                                 
@@ -120,99 +132,99 @@
 <h2 id="scrapy简介">Scrapy简介</h2>
 <p>Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。</p>
 <p>其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1662966242181.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="/post-images/1662966242181.png" alt="" loading="lazy"></figure>
 <p>如果此前对scrapy没有了解，请先查看下面的官方教程链接。</p>
 <p>架构概览：<code>https://docs.pythontab.com/scrapy/scrapy0.24/topics/architecture.html</code></p>
 <p>Scrapy入门教程：<code>https://docs.pythontab.com/scrapy/scrapy0.24/intro/tutorial.html</code></p>
 <h2 id="爬虫教程">爬虫教程</h2>
 <p>首先，我们看一下豆瓣TOP250页面，发现可以从中提取电影名称、排名、评分、评论人数、导演、年份、地区、类型、电影描述。</p>
-<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1662966257159.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="/post-images/1662966257159.png" alt="" loading="lazy"></figure>
 <p>Item对象是种简单的容器，保存了爬取到得数据。其提供了类似于词典的API以及用于声明可用字段的简单语法。所以可以声明Item为如下形式。</p>
-<pre><code class="language-python">class DoubanItem(scrapy.Item):
-    # 排名
+<pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">DoubanItem</span>(scrapy.Item):
+    <span class="hljs-comment"># 排名</span>
     ranking = scrapy.Field()
-    # 电影名称
+    <span class="hljs-comment"># 电影名称</span>
     title = scrapy.Field()
-    # 评分
+    <span class="hljs-comment"># 评分</span>
     score = scrapy.Field()
-    # 评论人数
+    <span class="hljs-comment"># 评论人数</span>
     pople_num = scrapy.Field()
-    # 导演
+    <span class="hljs-comment"># 导演</span>
     director = scrapy.Field()
-    # 年份
+    <span class="hljs-comment"># 年份</span>
     year = scrapy.Field()
-    # 地区
+    <span class="hljs-comment"># 地区</span>
     area = scrapy.Field()
-    # 类型
+    <span class="hljs-comment"># 类型</span>
     clazz = scrapy.Field()
-    # 电影描述
+    <span class="hljs-comment"># 电影描述</span>
     decsription = scrapy.Field()
 </code></pre>
 <p>我们抓取到相应的网页后，需要从网页中提取自己需要的信息，可以使用xpath语法，我使用的是BeautifulSoup网页解析器，经过BeautifulSoup解析的网页，可以直接使用选择器筛选需要的信息。有一些说明写到代码注释里面去了，就不再赘述。</p>
 <p>Chrome 也可以直接复制选择器或者XPath，如下图所示。</p>
-<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1662966274719.png" alt="" loading="lazy"></figure>
-<pre><code class="language-python">class douban_spider(Spider):
+<figure data-type="image" tabindex="3"><img src="/post-images/1662966274719.png" alt="" loading="lazy"></figure>
+<pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">douban_spider</span>(<span class="hljs-title class_ inherited__">Spider</span>):
 
-    count = 1
+    count = <span class="hljs-number">1</span>
 
-    # 爬虫启动命令
-    name = 'douban'
+    <span class="hljs-comment"># 爬虫启动命令</span>
+    name = <span class="hljs-string">&#x27;douban&#x27;</span>
 
-    # 头部信息，伪装自己不是爬虫程序
+    <span class="hljs-comment"># 头部信息，伪装自己不是爬虫程序</span>
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36',
+        <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#x27;</span>,
     }
 
-    # 爬虫启动链接
-    def start_requests(self):
-        url = 'https://movie.douban.com/top250'
-        yield Request(url, headers=self.headers)
+    <span class="hljs-comment"># 爬虫启动链接</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">start_requests</span>(<span class="hljs-params">self</span>):
+        url = <span class="hljs-string">&#x27;https://movie.douban.com/top250&#x27;</span>
+        <span class="hljs-keyword">yield</span> Request(url, headers=<span class="hljs-variable language_">self</span>.headers)
 
-    # 处理爬取的数据
-    def parse(self, response):
+    <span class="hljs-comment"># 处理爬取的数据</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">parse</span>(<span class="hljs-params">self, response</span>):
 
-        print('第', self.count, '页')
-        self.count += 1
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;第&#x27;</span>, <span class="hljs-variable language_">self</span>.count, <span class="hljs-string">&#x27;页&#x27;</span>)
+        <span class="hljs-variable language_">self</span>.count += <span class="hljs-number">1</span>
 
         item = DoubanItem()
-        soup = BeautifulSoup(response.text, 'html.parser')
+        soup = BeautifulSoup(response.text, <span class="hljs-string">&#x27;html.parser&#x27;</span>)
 
-        # 选出电影列表
-        movies = soup.select('#content div div.article ol li')
+        <span class="hljs-comment"># 选出电影列表</span>
+        movies = soup.select(<span class="hljs-string">&#x27;#content div div.article ol li&#x27;</span>)
 
-        for movie in movies:
-            item['title'] = movie.select('.title')[0].text
-            item['ranking'] = movie.select('em')[0].text
-            item['score'] = movie.select('.rating_num')[0].text
-            item['pople_num'] = movie.select('.star span')[3].text
+        <span class="hljs-keyword">for</span> movie <span class="hljs-keyword">in</span> movies:
+            item[<span class="hljs-string">&#x27;title&#x27;</span>] = movie.select(<span class="hljs-string">&#x27;.title&#x27;</span>)[<span class="hljs-number">0</span>].text
+            item[<span class="hljs-string">&#x27;ranking&#x27;</span>] = movie.select(<span class="hljs-string">&#x27;em&#x27;</span>)[<span class="hljs-number">0</span>].text
+            item[<span class="hljs-string">&#x27;score&#x27;</span>] = movie.select(<span class="hljs-string">&#x27;.rating_num&#x27;</span>)[<span class="hljs-number">0</span>].text
+            item[<span class="hljs-string">&#x27;pople_num&#x27;</span>] = movie.select(<span class="hljs-string">&#x27;.star span&#x27;</span>)[<span class="hljs-number">3</span>].text
 
-            # 包含导演、年份、地区、类别
-            info = movie.select('.bd p')[0].text
-            director = info.strip().split('\n')[0].split('   ')
-            yac = info.strip().split('\n')[1].strip().split(' / ')
+            <span class="hljs-comment"># 包含导演、年份、地区、类别</span>
+            info = movie.select(<span class="hljs-string">&#x27;.bd p&#x27;</span>)[<span class="hljs-number">0</span>].text
+            director = info.strip().split(<span class="hljs-string">&#x27;\n&#x27;</span>)[<span class="hljs-number">0</span>].split(<span class="hljs-string">&#x27;   &#x27;</span>)
+            yac = info.strip().split(<span class="hljs-string">&#x27;\n&#x27;</span>)[<span class="hljs-number">1</span>].strip().split(<span class="hljs-string">&#x27; / &#x27;</span>)
 
-            item['director'] = director[0].split(': ')[1]
-            item['year'] = yac[0]
-            item['area'] = yac[1]
-            item['clazz'] = yac[2]
+            item[<span class="hljs-string">&#x27;director&#x27;</span>] = director[<span class="hljs-number">0</span>].split(<span class="hljs-string">&#x27;: &#x27;</span>)[<span class="hljs-number">1</span>]
+            item[<span class="hljs-string">&#x27;year&#x27;</span>] = yac[<span class="hljs-number">0</span>]
+            item[<span class="hljs-string">&#x27;area&#x27;</span>] = yac[<span class="hljs-number">1</span>]
+            item[<span class="hljs-string">&#x27;clazz&#x27;</span>] = yac[<span class="hljs-number">2</span>]
 
-            # 电影描述有为空的，所以需要判断
-            if len(movie.select('.inq')) is not 0:
-                item['decsription'] = movie.select('.inq')[0].text
-            else:
-                item['decsription'] = 'None'
-            yield item
+            <span class="hljs-comment"># 电影描述有为空的，所以需要判断</span>
+            <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(movie.select(<span class="hljs-string">&#x27;.inq&#x27;</span>)) <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-number">0</span>:
+                item[<span class="hljs-string">&#x27;decsription&#x27;</span>] = movie.select(<span class="hljs-string">&#x27;.inq&#x27;</span>)[<span class="hljs-number">0</span>].text
+            <span class="hljs-keyword">else</span>:
+                item[<span class="hljs-string">&#x27;decsription&#x27;</span>] = <span class="hljs-string">&#x27;None&#x27;</span>
+            <span class="hljs-keyword">yield</span> item
 
-        # 下一页：
-        # 1，可以在页面中找到下一页的地址
-        # 2，自己根据url规律构造地址，这里使用的是第二种方法
-        next_url = soup.select('.paginator .next a')[0]['href']
-        if next_url:
-            next_url = 'https://movie.douban.com/top250' + next_url
-            yield Request(next_url, headers=self.headers)
+        <span class="hljs-comment"># 下一页：</span>
+        <span class="hljs-comment"># 1，可以在页面中找到下一页的地址</span>
+        <span class="hljs-comment"># 2，自己根据url规律构造地址，这里使用的是第二种方法</span>
+        next_url = soup.select(<span class="hljs-string">&#x27;.paginator .next a&#x27;</span>)[<span class="hljs-number">0</span>][<span class="hljs-string">&#x27;href&#x27;</span>]
+        <span class="hljs-keyword">if</span> next_url:
+            next_url = <span class="hljs-string">&#x27;https://movie.douban.com/top250&#x27;</span> + next_url
+            <span class="hljs-keyword">yield</span> Request(next_url, headers=<span class="hljs-variable language_">self</span>.headers)
 </code></pre>
 <p>然后在项目文件夹内打开cmd命令，运行<code>scrapy crawl douban -o movies.csv</code>就会发现提取的信息就写入指定文件了，下面是爬取的结果，效果很理想。</p>
-<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1662966290819.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="/post-images/1662966290819.png" alt="" loading="lazy"></figure>
 
                                 </div>
                     </article>
@@ -238,7 +250,7 @@
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -295,14 +307,12 @@
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
+            <div class="markdownIt-TOC">
 <ul>
-<li><a href="#scrapy%E7%AE%80%E4%BB%8B">Scrapy简介</a></li>
-<li><a href="#%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B">爬虫教程</a></li>
+<li><a href="#scrapy简介">Scrapy简介</a></li>
+<li><a href="#爬虫教程">爬虫教程</a></li>
 </ul>
-</li>
-</ul>
+</div>
 
         </div>
         <script>
@@ -339,118 +349,48 @@
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/krqSF7tYC/">
-            算法
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/umBdDP7Ll/">
-            C
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/hF3_PWTirK/">
-            Java
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/vnEfA3xxL/">
-            嵌入式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-info" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
+            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
+            i-tag-banana" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
         </a>
         
         <a class="tags-tag i-tag
@@ -459,42 +399,157 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-other_3" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_3" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-error" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-success" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
@@ -504,63 +559,18 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/EWmAbJCJGF/">
-            TypeScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-error" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/KCICs8Iip/">
-            记录回忆
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-success" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/pkJGoZIqgD/">
-            Angular
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/_9zQ4w6VQ/">
-            自然语言处理
         </a>
         
     </div>

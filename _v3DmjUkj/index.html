@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     磁盘到底是怎样工作的？一文理解硬盘结构 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -101,12 +113,12 @@
                             <span class="read-time">14 min read</span>
                             
                                 <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-">
                             #数据库
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-primary">
                             #操作系统
                         </a>
                                 
@@ -119,19 +131,19 @@
 <p>根据机械原理，存储器的容量越大其速度就越慢。但是速度越快的存储器，其单位字节的价格就越贵。现代计算机系统可以包含几个不同的可以存储数据的部件，就形成了存储器的层次结构，但是需要注意的是「虚拟内存」是操作系统与操作系统运用机器硬件的产物，它不是存储器的层次之一。</p>
 <h2 id="磁盘结构">磁盘结构</h2>
 <p>传统的硬盘盘结构是像下面这个样子的，它有一个或多个盘片，用于存储数据。盘片多采用铝合金材料；中间有一个主轴，所有的盘片都绕着这个主轴转动。一个组合臂上面有多个磁头臂，每个磁头臂上面都有一个磁头，负责读写数据。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1662968771756.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="/post-images/1662968771756.png" alt="" loading="lazy"></figure>
 <p>磁盘一般有一个或多个盘片。每个盘片可以有两面，即第一个盘片的正面为0面，反面为 1 面；第二个盘片的正面为 2 面......依次类推。磁头的编号也和盘面的编号是一样的，因此有多少个盘面就有多少个磁头。盘面正视图如下图，磁头的传动臂只能在盘片的内外磁道之间移动。因此不管开机还是关机，磁头总是在盘片上面。关机时，磁头停在盘片上面，抖动容易划伤盘面造成数据损失，为了避免这样的情况，所以磁头都是停留在起停区的，起停区是没有数据的。</p>
-<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1662968796618.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="/post-images/1662968796618.png" alt="" loading="lazy"></figure>
 <p>每个盘片的盘面被划分成多个狭窄的同心圆环，数据就存储在这样的同心圆环上面，我们将这样的圆环称为<strong>磁道 (Track)</strong>。每个盘面可以划分多个磁道，最外圈的磁道是0号磁道，向圆心增长依次为1磁道、2磁道......磁盘的数据存放就是从最外圈开始的。</p>
-<figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1662968821862.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="/post-images/1662968821862.png" alt="" loading="lazy"></figure>
 <p>根据硬盘的规格不同，磁道数可以从几百到成千上万不等。每个磁道可以存储数 Kb 的数据，但是计算机不必要每次都读写这么多数据。因此，再把每个磁道划分为若干个弧段，每个弧段就是一个<strong>扇区 (Sector)</strong>。扇区是硬盘上存储的物理单位，现在每个扇区可存储 512 字节数据已经成了业界的约定。也就是说，即使计算机只需要某一个字节的数据，但是也得把这个 512 个字节的数据全部读入内存，再选择所需要的那个字节。</p>
-<figure data-type="image" tabindex="4"><img src="https://www.guanngxu.com/post-images/1662968844950.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="/post-images/1662968844950.png" alt="" loading="lazy"></figure>
 <p><strong>柱面</strong>是我们抽象出来的一个逻辑概念，简单来说就是处于同一个垂直区域的磁道称为柱面 ，即各盘面上面相同位置磁道的集合。需要注意的是，磁盘读写数据是按柱面进行的，磁头读写数据时首先在同一柱面内从 0 磁头开始进行操作，依次向下在同一柱面的不同盘面(即磁头上)进行操作，只有在同一柱面所有的磁头全部读写完毕后磁头才转移到下一柱面。因为选取磁头只需通过电子切换即可，而选取柱面则必须通过机械切换。数据的读写是按柱面进行的，而不是按盘面进行，所以把数据存到同一个柱面是很有价值的。</p>
 <p>磁盘被<strong>磁盘控制器</strong>所控制（可控制一个或多个），它是一个小处理器，可以完成一些特定的工作。比如将磁头定位到一个特定的半径位置；从磁头所在的柱面选择一个扇区；读取数据等。</p>
-<figure data-type="image" tabindex="5"><img src="https://www.guanngxu.com/post-images/1662968870264.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="/post-images/1662968870264.png" alt="" loading="lazy"></figure>
 <p>现代硬盘寻道都是采用CHS(Cylinder Head Sector)的方式，硬盘读取数据时，读写磁头沿径向移动，移到要读取的扇区所在磁道的上方，这段时间称为寻道时间(seek time)。因读写磁头的起始位置与目标位置之间的距离不同，寻道时间也不同。磁头到达指定磁道后，然后通过盘片的旋转，使得要读取的扇区转到读写磁头的下方，这段时间称为旋转延迟时间(rotational latencytime)。然后再读写数据，读写数据也需要时间，这段时间称为传输时间（transfer time）。</p>
 <p>根据上文的信息，我们可以得出磁盘容量的计算公式为：</p>
-<pre><code>硬盘容量 = 盘面数 × 柱面数 × 扇区数 × 512字节
+<pre class="hljs"><code>硬盘容量 <span class="hljs-operator">=</span> 盘面数 × 柱面数 × 扇区数 × <span class="hljs-number">512</span>字节
 </code></pre>
 <h2 id="笔试题实战">笔试题实战</h2>
 <p>下面的题目是腾讯某一年校招笔试中的一个题目，题干信息描述为：数据存储在磁盘上的排列方式会影响I/O服务的性能，一个圆环磁道上有10个物理块，10个数据记录R1~R10存放在这个磁道上，记录的安排顺序如下表所示。</p>
@@ -192,10 +204,10 @@
 <p>应对磁盘故障最简单的方式就是镜像磁盘，即我们常说的备份。回忆一下写毕业论文时的做法，那时候大部分同学还不会用版本控制器，所以基本采用每天备份一次数据，并且在文件名称中标注日期，以此来达到备份的效果。</p>
 <p>第二种方式是使用奇偶块，比如一个系统中有 3 个磁盘，那么我们再加一个磁盘作为冗余盘。在冗余盘中，第 i 块由所有数据盘的第 i 块奇偶校验位组成。也就是说，所有第 I 块的第 j 位，包括数据盘和冗余盘，在它们中间必须有偶数个 1，冗余盘的作用就是让这个条件为真。</p>
 <p>我们举个简单例子，假设快仅由一个字节组成，我们有三个数据盘和一个冗余盘，对应的位序列如下。其中 盘4 为冗余盘，它的位序列是根据前面三个盘计算出来的。</p>
-<pre><code>盘 1：11110000
-盘 2：10101010
-盘 3：00111000
-盘 4：01100010
+<pre class="hljs"><code>盘 <span class="hljs-number">1：11110000</span>
+盘 <span class="hljs-number">2：10101010</span>
+盘 <span class="hljs-number">3：00111000</span>
+盘 <span class="hljs-number">4：01100010</span>
 </code></pre>
 <p>假设现在某个盘崩溃了，那么我们就能根据上面的序列来恢复数据，只需要让每一列 1 的个数为偶数就可以了，但是这种冗余方式也存在很大的不足。</p>
 <p>第一个缺陷是，如果是两个盘同时崩溃了，那数据也恢复不出来了。第二个问题在于，虽然读数据只需要一次 I/O 操作即可，但是写数据时就不一样了，因为需要根据其他数据盘来计算冗余盘中的位序列，假设共有 n 个盘，其中一个为冗余盘，所以每次写数据时，都需要进行 n+1 次 I/O 操作（读不被写入的 n-1 个盘，被重写数据盘的一次写，冗余盘的一次写），而 I/O操作又是非常耗时的操作，所以这种方法会大大拖慢系统性能。</p>
@@ -226,7 +238,7 @@
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -283,18 +295,16 @@
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
+            <div class="markdownIt-TOC">
 <ul>
-<li><a href="#%E7%A3%81%E7%9B%98%E7%BB%93%E6%9E%84">磁盘结构</a></li>
-<li><a href="#%E7%AC%94%E8%AF%95%E9%A2%98%E5%AE%9E%E6%88%98">笔试题实战</a></li>
-<li><a href="#%E5%A6%82%E4%BD%95%E5%8A%A0%E9%80%9F%E5%AF%B9%E7%A3%81%E7%9B%98%E7%9A%84%E8%AE%BF%E9%97%AE">如何加速对磁盘的访问</a></li>
-<li><a href="#%E7%A3%81%E7%9B%98%E6%95%85%E9%9A%9C">磁盘故障</a></li>
-<li><a href="#%E8%A7%84%E9%81%BF%E6%95%85%E9%9A%9C">规避故障</a></li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D">数据恢复</a></li>
+<li><a href="#磁盘结构">磁盘结构</a></li>
+<li><a href="#笔试题实战">笔试题实战</a></li>
+<li><a href="#如何加速对磁盘的访问">如何加速对磁盘的访问</a></li>
+<li><a href="#磁盘故障">磁盘故障</a></li>
+<li><a href="#规避故障">规避故障</a></li>
+<li><a href="#数据恢复">数据恢复</a></li>
 </ul>
-</li>
-</ul>
+</div>
 
         </div>
         <script>
@@ -331,88 +341,88 @@
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
+            i-tag-banana" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
+            i-tag-" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-success" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
+            i-tag-other_1" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
+            i-tag-other_4" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-warning" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
+            i-tag-info" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
+            i-tag-warning" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
+            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-other_3" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
+            i-tag-error" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
+            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
         </a>
         
         <a class="tags-tag i-tag
@@ -421,58 +431,53 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-info" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/Ykw3uqJED/">
-            随笔思考
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-error" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
-            年度总结
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
         </a>
         
         <a class="tags-tag i-tag
@@ -481,7 +486,57 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
@@ -491,68 +546,23 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-banana" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/EWmAbJCJGF/">
-            TypeScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-warning" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-primary" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/KCICs8Iip/">
-            记录回忆
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-other_3" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/pkJGoZIqgD/">
-            Angular
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/_9zQ4w6VQ/">
-            自然语言处理
         </a>
         
     </div>

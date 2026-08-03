@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Guanngxu
+    Guanngxu - Keep trying
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
 </head>
 
 <body>
@@ -28,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -44,7 +56,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -52,19 +72,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -101,14 +113,14 @@
                 <div class="post-info">
                     <time class="post-time">2019-10-11</time>
                     
-                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-banana">
-            #前端
-        </a>
-                        
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
                             i-tag-primary">
             #JavaScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-other_4">
+            #前端
         </a>
                         
                 </div>
@@ -182,7 +194,7 @@ function Person(name, age) {
 }
 
 现在的问题在于，要是我们不使用new操作符呢？会发生什么！
-let person = Person(&#39;name&#39;, 23);
+let person = Person(&amp;#x27;name&amp;#x27;, 23);
 console.info(window.name); // name
 console.info(window.age); // 23
 
@@ -214,23 +226,23 @@ JS引擎线程用来执行栈中的同步任务，当所有同步任务执行完
 来看个例子：执行下面这段代码，执行后，在 5s 内点击两下，过一段时间（&amp;gt; 5s）后，再点击两下，整个过程的输出结果是什么？
 setTimeout(function(){
     for(var i = 0; i &amp;lt; 100000000; i++){}
-    console.log(&#39;timer a&#39;);
+    console.log(&amp;#x27;timer a&amp;#x27;);
 }, 0)
 for(var j = 0; j &amp;lt; 5; j++){
     console.log(j);
 }
 setTimeout(function(){
-    console.log(&#39;timer b&#39;);
+    console.log(&amp;#x27;timer b&amp;#x27;);
 }, 0)
 function waitFiveSeconds(){
     var now = (new Date()).getTime();
     while(((new Date()).getTime() - now) &amp;lt; 5000){}
-    console.log(&#39;finished waiting&#39;);
+    console.log(&amp;#x27;finished waiting&amp;#x27;);
 }
-document.addEventListener(&#39;click&#39;, function(){
-    console.log(&#39;click&#39;);
+document.addEventListener(&amp;#x27;click&amp;#x27;, function(){
+    console.log(&amp;#x27;click&amp;#x27;);
 })
-console.log(&#39;click begin&#39;);
+console.log(&amp;#x27;click begin&amp;#x27;);
 waitFiveSeconds();
 
 首先，先执行同步任务。其中waitFiveSeconds是耗时操作，持续执行长达 5s。然后，在 Js 引擎线程执行的时候，&#39;timer a&#39;对应的定时器产生的回调、&#39;timer b&#39;对应的定时器产生的回调和两次 click 对应的回调被先后放入消息队列。由于 Js 引擎线程空闲后，会先查看是否有事件可执行，接着再处理其他异步任务，最后，5s 后的两次 click 事件被放入消息队列，由于此时 Js 引擎线程空闲，便被立即执行了。因此会产生下面的输出顺序。
@@ -266,7 +278,7 @@ click
                     <time class="post-time">2019-09-08</time>
                     
                         <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_2">
             #随笔思考
         </a>
                         
@@ -322,14 +334,14 @@ click
                 <div class="post-info">
                     <time class="post-time">2019-08-06</time>
                     
-                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-">
-            #前端
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-primary">
+            #JavaScript
         </a>
                         
-                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-other_2">
-            #JavaScript
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-error">
+            #前端
         </a>
                         
                 </div>
@@ -472,14 +484,14 @@ console.info(getColor()); // &amp;quot;red&amp;quot;
                 <div class="post-info">
                     <time class="post-time">2019-08-04</time>
                     
-                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_1">
-            #前端
+                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
+                            i-tag-warning">
+            #JavaScript
         </a>
                         
-                        <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-info">
-            #JavaScript
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-other_4">
+            #前端
         </a>
                         
                 </div>
@@ -499,11 +511,11 @@ JavaScript专题之惰性函数
 
 因为不同厂商的浏览器相互之间存在一些行为上的差异，很多 js 代码包含了大量的if语句，将执行引导到正确的分支代码中去，比如下面的例子。
 function createXHR() {
-    if (typeof XMLHttpRequest != &#39;undefined&#39;) {
+    if (typeof XMLHttpRequest != &amp;#x27;undefined&amp;#x27;) {
         return new XMLHttpRequest();
-    } else if (typeof ActiveXObject != &#39;undefined&#39;) {
-        if (typeof arguments.callee.activeXString != &#39;string&#39;) {
-            var versions = [&#39;MSXML2.XMLHttp.6.0&#39;, &#39;MSXML2.XMLHttp.3.0&#39;, &#39;MSXML2.XMLHttp&#39;];
+    } else if (typeof ActiveXObject != &amp;#x27;undefined&amp;#x27;) {
+        if (typeof arguments.callee.activeXString != &amp;#x27;string&amp;#x27;) {
+            var versions = [&amp;#x27;MSXML2.XMLHttp.6.0&amp;#x27;, &amp;#x27;MSXML2.XMLHttp.3.0&amp;#x27;, &amp;#x27;MSXML2.XMLHttp&amp;#x27;];
             var i, len;
             for (i = 0, len = versions.length; i &amp;lt; len; i++) {
                 try {
@@ -516,7 +528,7 @@ function createXHR() {
         }
         return new ActiveXObject(arguments.callee.activeXString);
     } else {
-        throw new Error(&#39;No XHR object available.&#39;);
+        throw new Error(&amp;#x27;No XHR object available.&amp;#x27;);
     }
 }
 
@@ -524,9 +536,9 @@ function createXHR() {
 函数重写
 要理解惰性载入函数的原理，我们有必要先理解一下函数重写技术，由于一个函数可以返回另一个函数，因此可以在函数内部用新的函数来覆盖旧的函数。
 function sayHi() {
-    console.info(&#39;Hi&#39;);
+    console.info(&amp;#x27;Hi&amp;#x27;);
     sayHi = function() {
-        console.info(&#39;Hello&#39;);
+        console.info(&amp;#x27;Hello&amp;#x27;);
     }
 }
 
@@ -580,14 +592,14 @@ var foo = function() {
 有了上面的基础，我们就可以将createXHR()改进为下列形式，这样就不用每次调用都进行判断了。
 // 第一种实现方式
 function createXHR() {
-    if (typeof XMLHttpRequest != &#39;undefined&#39;) {
+    if (typeof XMLHttpRequest != &amp;#x27;undefined&amp;#x27;) {
         createXHR = function() {
             return new XMLHttpRequest();
         }
-    } else if (typeof ActiveXObject != &#39;undefined&#39;) {
+    } else if (typeof ActiveXObject != &amp;#x27;undefined&amp;#x27;) {
         createXHR = function() {
-            if (typeof arguments.callee.activeXString != &#39;string&#39;) {
-                var versions = [&#39;MSXML2.XMLHttp.6.0&#39;, &#39;MSXML2.XMLHttp.3.0&#39;, &#39;MSXML2.XMLHttp&#39;];
+            if (typeof arguments.callee.activeXString != &amp;#x27;string&amp;#x27;) {
+                var versions = [&amp;#x27;MSXML2.XMLHttp.6.0&amp;#x27;, &amp;#x27;MSXML2.XMLHttp.3.0&amp;#x27;, &amp;#x27;MSXML2.XMLHttp&amp;#x27;];
                 var i, len;
                 for (i = 0, len = versions.length; i &amp;lt; len; i++) {
                     try {
@@ -602,21 +614,21 @@ function createXHR() {
         };
     } else {
         createXHR = function() {
-            throw new Error(&#39;No XHR object available.&#39;);
+            throw new Error(&amp;#x27;No XHR object available.&amp;#x27;);
         }
     }
 }
 
 // 第二种实现方式
 function createXHR() {
-    if (typeof XMLHttpRequest != &#39;undefined&#39;) {
+    if (typeof XMLHttpRequest != &amp;#x27;undefined&amp;#x27;) {
         return function() {
             return new XMLHttpRequest();
         }
-    } else if (typeof ActiveXObject != &#39;undefined&#39;) {
+    } else if (typeof ActiveXObject != &amp;#x27;undefined&amp;#x27;) {
         return function() {
-            if (typeof arguments.callee.activeXString != &#39;string&#39;) {
-                var versions = [&#39;MSXML2.XMLHttp.6.0&#39;, &#39;MSXML2.XMLHttp.3.0&#39;, &#39;MSXML2.XMLHttp&#39;];
+            if (typeof arguments.callee.activeXString != &amp;#x27;string&amp;#x27;) {
+                var versions = [&amp;#x27;MSXML2.XMLHttp.6.0&amp;#x27;, &amp;#x27;MSXML2.XMLHttp.3.0&amp;#x27;, &amp;#x27;MSXML2.XMLHttp&amp;#x27;];
                 var i, len;
                 for (i = 0, len = versions.length; i &amp;lt; len; i++) {
                     try {
@@ -631,7 +643,7 @@ function createXHR() {
         };
     } else {
         return function() {
-            throw new Error(&#39;No XHR object available.&#39;);
+            throw new Error(&amp;#x27;No XHR object available.&amp;#x27;);
         }
     }
 }
@@ -653,14 +665,14 @@ function createXHR() {
                 <div class="post-info">
                     <time class="post-time">2019-06-22</time>
                     
+                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
+                            i-tag-warning">
+            #前端
+        </a>
+                        
                         <a href="https://www.guanngxu.com/3pFNTYNB8/" class="post-tag i-tag
                             i-tag-error">
             #翻译摘录
-        </a>
-                        
-                        <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_3">
-            #前端
         </a>
                         
                 </div>
@@ -754,7 +766,7 @@ For everything else, there is always a designer.
                     <time class="post-time">2019-04-27</time>
                     
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-info">
             #操作系统
         </a>
                         
@@ -868,7 +880,7 @@ and
                     <time class="post-time">2019-04-23</time>
                     
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-warning">
             #前端
         </a>
                         
@@ -988,7 +1000,7 @@ disk cache 与 memory cache
                     <time class="post-time">2019-04-10</time>
                     
                         <a href="https://www.guanngxu.com/9WeHlVlqK9/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_1">
             #软件测试
         </a>
                         
@@ -1047,12 +1059,12 @@ API 调用者（消费者）对服务提供方（生产者）的更改是通过�
                     <time class="post-time">2019-02-07</time>
                     
                         <a href="https://www.guanngxu.com/u3bra3rlo/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-banana">
             #健康生活
         </a>
                         
                         <a href="https://www.guanngxu.com/Ykw3uqJED/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-info">
             #随笔思考
         </a>
                         
@@ -1102,24 +1114,24 @@ API 调用者（消费者）对服务提供方（生产者）的更改是通过�
                 <div class="post-info">
                     <time class="post-time">2019-01-26</time>
                     
+                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
+                            i-tag-info">
+            #算法
+        </a>
+                        
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_4">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-info">
             #TypeScript
         </a>
                         
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-banana">
-            #JavaScript
-        </a>
-                        
-                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
                             i-tag-primary">
-            #算法
+            #JavaScript
         </a>
                         
                 </div>
@@ -1177,15 +1189,15 @@ let getMergeMap = function (data, index: number) {
     let preMergeMap = {};
     // 第 0 项为表头，索引从 2 开始为了防止数组越界
     for (let i = 2; i &amp;lt; data.length; i++) {
-        let preText = $(data[i-1]).find(&#39;td&#39;)[index].innerText;
-        let curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+        let preText = $(data[i-1]).find(&amp;#x27;td&amp;#x27;)[index].innerText;
+        let curText = $(data[i]).find(&amp;#x27;td&amp;#x27;)[index].innerText;
         let key = i - 2;
         preMergeMap[key] = 1;
         while ((preText == curText) &amp;amp;&amp;amp; (i &amp;lt; data.length-1)) {
             preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
             i++;
-            preText = $(data[i - 1]).find(&#39;td&#39;)[index].innerText;
-            curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+            preText = $(data[i - 1]).find(&amp;#x27;td&amp;#x27;)[index].innerText;
+            curText = $(data[i]).find(&amp;#x27;td&amp;#x27;)[index].innerText;
         }
         // while循环跳出后，数组最后一项没有判断
         if (preText == curText) {
@@ -1199,7 +1211,7 @@ let getMergeMap = function (data, index: number) {
 let mergeCells = function (preMergeMap: Object, target, fieldName: string) {
     for (let prop in preMergeMap) {
         let count = preMergeMap[prop];
-        target.bootstrapTable(&#39;mergeCells&#39;, { index: parseInt(prop), field: fieldName, rowspan: count });
+        target.bootstrapTable(&amp;#x27;mergeCells&amp;#x27;, { index: parseInt(prop), field: fieldName, rowspan: count });
     }
 }
 
@@ -1218,7 +1230,7 @@ export let mergeCellsByFields = function (data: Object[], target, fields) {
 到现在已经能够合并所有的列了，查看 Bootstrap-table 的配置信息发现，它有个属性是 onPostBody 它会在 table body 加载完成是触发，所以把这个属性配置成我们的合并单元格方法即可。
 // groups 为要合并的哪些列
 onPostBody: function () {
-    mergeCellsByFields($(&#39;#table&#39; + &#39; tr&#39;), $(&#39;#table&#39;), groups);
+    mergeCellsByFields($(&amp;#x27;#table&amp;#x27; + &amp;#x27; tr&amp;#x27;), $(&amp;#x27;#table&amp;#x27;), groups);
 }
 
 再说一点不太相关的，我实现的是让用户可以自己选可以合并多少列，即用了一个可多选的下拉列表框供用户选择，根据用户选择的数量去合并，所以传入了一个groups参数。
@@ -1268,7 +1280,7 @@ onPostBody: function () {
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -1333,10 +1345,6 @@ onPostBody: function () {
         
         
         
-        
-        
-        
-        
             <h4>
                 <a href="https://www.guanngxu.com/bXKpR9unB5/">一文搞懂 TCP 协议核心机制</a>
             </h4>
@@ -1349,39 +1357,15 @@ onPostBody: function () {
         
         
         
-        
-        
             <h4>
                 <a href="https://www.guanngxu.com/LHd4yqncdM/">哈夫曼树实现文件压缩与解压缩</a>
             </h4>
         
         
         
-        
-        
             <h4>
                 <a href="https://www.guanngxu.com/yWl6bPr5jd/">动态电压调节</a>
             </h4>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -1576,48 +1560,63 @@ onPostBody: function () {
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
+            i-tag-" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
+            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-other_4" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
+            i-tag-success" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
+            i-tag-info" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-success" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
         </a>
         
         <a class="tags-tag i-tag
@@ -1626,123 +1625,43 @@ onPostBody: function () {
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-primary" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-other_2" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/hF3_PWTirK/">
-            Java
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/vnEfA3xxL/">
-            嵌入式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/Ykw3uqJED/">
-            随笔思考
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-other_4" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_1" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
-            MySQL
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
-            SEO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/7QbLXmeen/">
-            Vue
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
         </a>
         
         <a class="tags-tag i-tag
@@ -1751,8 +1670,103 @@ onPostBody: function () {
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
+            i-tag-other_4" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
         </a>
         
         <a class="tags-tag i-tag
@@ -1761,43 +1775,13 @@ onPostBody: function () {
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-other_2" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/KCICs8Iip/">
-            记录回忆
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/pkJGoZIqgD/">
-            Angular
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/_9zQ4w6VQ/">
-            自然语言处理
         </a>
         
     </div>

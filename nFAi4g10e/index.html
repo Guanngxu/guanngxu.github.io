@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     高精度算法 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -104,111 +116,111 @@
                         
                                 <div class="post-content">
                                     <figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1692989484136.png" alt="" loading="lazy"></figure>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-#define N 200
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> N 200</span>
 
-int main()
-{
-	char a[N], b[N];
-	int num1[N] = {}, num2[N] = {};
-	int len_a, len_b;
-	bool flag = false;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-type">char</span> a[N], b[N];
+	<span class="hljs-type">int</span> num1[N] = {}, num2[N] = {};
+	<span class="hljs-type">int</span> len_a, len_b;
+	<span class="hljs-type">bool</span> flag = <span class="hljs-literal">false</span>;
 	
 	cin&gt;&gt;a&gt;&gt;b;
-	len_a = strlen(a);
-	len_b = strlen(b);
+	len_a = <span class="hljs-built_in">strlen</span>(a);
+	len_b = <span class="hljs-built_in">strlen</span>(b);
 	
-	// 转换字符为数字，并将所有数位移至右对齐
-	for(int i = 0; i &lt; len_a; i++)
-		num1[N-i-1] = a[len_a-1-i] - '0';
-	for(int i = 0; i &lt; len_b; i++)
-		num2[N-i-1] = b[len_b-1-i] - '0';
+	<span class="hljs-comment">// 转换字符为数字，并将所有数位移至右对齐</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len_a; i++)
+		num1[N-i<span class="hljs-number">-1</span>] = a[len_a<span class="hljs-number">-1</span>-i] - <span class="hljs-string">&#x27;0&#x27;</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len_b; i++)
+		num2[N-i<span class="hljs-number">-1</span>] = b[len_b<span class="hljs-number">-1</span>-i] - <span class="hljs-string">&#x27;0&#x27;</span>;
 	
-	// 逐位相加
-	for(int i = 0; i &lt; N; i++)
+	<span class="hljs-comment">// 逐位相加</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++)
 		num1[i] += num2[i];
 	
-	// 从个位开始逐一进位
-	for(int i = N-1; i &gt; 0; i--) {
-		num1[i-1] += num1[i] / 10;
-		num1[i] = num1[i] % 10;
+	<span class="hljs-comment">// 从个位开始逐一进位</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = N<span class="hljs-number">-1</span>; i &gt; <span class="hljs-number">0</span>; i--) {
+		num1[i<span class="hljs-number">-1</span>] += num1[i] / <span class="hljs-number">10</span>;
+		num1[i] = num1[i] % <span class="hljs-number">10</span>;
 	}
 	
-	// 输出结果
-	for(int i = 0; i &lt; N; i++){
-		if(num1[i] != 0)
-			flag = true;
-		if(flag)
+	<span class="hljs-comment">// 输出结果</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++){
+		<span class="hljs-keyword">if</span>(num1[i] != <span class="hljs-number">0</span>)
+			flag = <span class="hljs-literal">true</span>;
+		<span class="hljs-keyword">if</span>(flag)
 			cout&lt;&lt;num1[i];
 	}
 }
 </code></pre>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-#define N 300
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> N 300</span>
 
-int main()
-{
-	char a[N], b[N], c[N];
-	int num1[N] = {}, num2[N] = {};
-	int len_a, len_b;
-	bool flag = false, symbol = false;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-type">char</span> a[N], b[N], c[N];
+	<span class="hljs-type">int</span> num1[N] = {}, num2[N] = {};
+	<span class="hljs-type">int</span> len_a, len_b;
+	<span class="hljs-type">bool</span> flag = <span class="hljs-literal">false</span>, symbol = <span class="hljs-literal">false</span>;
 	
 	cin&gt;&gt;a&gt;&gt;b;
 	
-	len_a = strlen(a);
-	len_b = strlen(b);
+	len_a = <span class="hljs-built_in">strlen</span>(a);
+	len_b = <span class="hljs-built_in">strlen</span>(b);
 	
-	// 如果相减结果为 0
-	if(len_a == len_b &amp;&amp; strcmp(a, b) == 0){
-		cout&lt;&lt;0&lt;&lt;endl;
-		return 0;
+	<span class="hljs-comment">// 如果相减结果为 0</span>
+	<span class="hljs-keyword">if</span>(len_a == len_b &amp;&amp; <span class="hljs-built_in">strcmp</span>(a, b) == <span class="hljs-number">0</span>){
+		cout&lt;&lt;<span class="hljs-number">0</span>&lt;&lt;endl;
+		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 	}
 	
-	// 判断最终结果的符号
-	if(len_a &lt; len_b || (len_a == len_b &amp;&amp; strcmp(a, b) &lt; 0))
-	   symbol = true;
+	<span class="hljs-comment">// 判断最终结果的符号</span>
+	<span class="hljs-keyword">if</span>(len_a &lt; len_b || (len_a == len_b &amp;&amp; <span class="hljs-built_in">strcmp</span>(a, b) &lt; <span class="hljs-number">0</span>))
+	   symbol = <span class="hljs-literal">true</span>;
 	
-	// 如果 a 比 b 小，那么调换顺序
-	if(symbol) {
-		memcpy(c, a, N);
-		memcpy(a, b, N);
-		memcpy(b, c, N);
-		// 重新更新长度信息
-		len_a = strlen(a);
-		len_b = strlen(b);
+	<span class="hljs-comment">// 如果 a 比 b 小，那么调换顺序</span>
+	<span class="hljs-keyword">if</span>(symbol) {
+		<span class="hljs-built_in">memcpy</span>(c, a, N);
+		<span class="hljs-built_in">memcpy</span>(a, b, N);
+		<span class="hljs-built_in">memcpy</span>(b, c, N);
+		<span class="hljs-comment">// 重新更新长度信息</span>
+		len_a = <span class="hljs-built_in">strlen</span>(a);
+		len_b = <span class="hljs-built_in">strlen</span>(b);
 	}
 	
 	
 	   
-	// 转换字符为数字，并将所有数位移至右对齐
-	for(int i = 0; i &lt; len_a; i++)
-		num1[N-i-1] = a[len_a-1-i] - '0';
-	for(int i = 0; i &lt; len_b; i++)
-		num2[N-i-1] = b[len_b-1-i] - '0';
+	<span class="hljs-comment">// 转换字符为数字，并将所有数位移至右对齐</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len_a; i++)
+		num1[N-i<span class="hljs-number">-1</span>] = a[len_a<span class="hljs-number">-1</span>-i] - <span class="hljs-string">&#x27;0&#x27;</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len_b; i++)
+		num2[N-i<span class="hljs-number">-1</span>] = b[len_b<span class="hljs-number">-1</span>-i] - <span class="hljs-string">&#x27;0&#x27;</span>;
 	
-	// 逐位相加
-	for(int i = 0; i &lt; N; i++)
+	<span class="hljs-comment">// 逐位相加</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++)
 		num1[i] -= num2[i];
 	
-	// 从个位开始逐一借位
-	for(int i = N-1; i &gt; 0; i--) {
-		if(num1[i] &lt; 0){
-			num1[i] += 10;
-			num1[i-1] -= 1;
+	<span class="hljs-comment">// 从个位开始逐一借位</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = N<span class="hljs-number">-1</span>; i &gt; <span class="hljs-number">0</span>; i--) {
+		<span class="hljs-keyword">if</span>(num1[i] &lt; <span class="hljs-number">0</span>){
+			num1[i] += <span class="hljs-number">10</span>;
+			num1[i<span class="hljs-number">-1</span>] -= <span class="hljs-number">1</span>;
 		}
 	}
 	
-	// 输出结果
-	if(symbol)
-		cout&lt;&lt;&quot;-&quot;;
-	for(int i = 0; i &lt; N; i++){
-		if(num1[i] != 0)
-			flag = true;
-		if(flag)
+	<span class="hljs-comment">// 输出结果</span>
+	<span class="hljs-keyword">if</span>(symbol)
+		cout&lt;&lt;<span class="hljs-string">&quot;-&quot;</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++){
+		<span class="hljs-keyword">if</span>(num1[i] != <span class="hljs-number">0</span>)
+			flag = <span class="hljs-literal">true</span>;
+		<span class="hljs-keyword">if</span>(flag)
 			cout&lt;&lt;num1[i];
 	}
 }
@@ -229,7 +241,7 @@ int main()
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -289,88 +301,88 @@ int main()
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
+            i-tag-info" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
+            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-warning" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
+            i-tag-other_4" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
+            i-tag-other_2" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-primary" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
+            i-tag-other_2" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
+            i-tag-banana" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
+            i-tag-success" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
+            i-tag-warning" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
+            i-tag-other_1" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
         </a>
         
         <a class="tags-tag i-tag
@@ -379,138 +391,138 @@ int main()
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/Ykw3uqJED/">
-            随笔思考
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-other_4" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
-            年度总结
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-warning" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/wjM4wf9IE/">
-            MySQL
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/dTizl9yei/">
-            SEO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/7QbLXmeen/">
-            Vue
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-info" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/iqW8DWbw7/">
-            MongoDB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
-            Nginx
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-error" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/9WeHlVlqK9/">
-            软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-error" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-primary" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-primary" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
         </a>
         
     </div>

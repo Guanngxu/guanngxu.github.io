@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     哈夫曼树实现文件压缩与解压缩 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -100,14 +112,14 @@
                             <time class="post-time">2025-11-09</time>
                             <span class="read-time">8 min read</span>
                             
-                                <a href="https://www.guanngxu.com/GndhdyXw87/" class="post-tag i-tag
-                            i-tag-banana">
-                            #哈夫曼树
-                        </a>
-                                
                                 <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
                             i-tag-other_2">
                             #算法
+                        </a>
+                                
+                                <a href="https://www.guanngxu.com/GndhdyXw87/" class="post-tag i-tag
+                            i-tag-banana">
+                            #哈夫曼树
                         </a>
                                 
                         </div>
@@ -120,308 +132,308 @@
 <p><a href="https://www.bilibili.com/video/BV1qu411F7Zs/">哈夫曼树和哈夫曼编码, 看完秒懂！</a></p>
 <p><a href="https://cloud.tencent.com/developer/article/2069891">哈夫曼实现文件压缩解压缩（c语言）</a></p>
 </blockquote>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-#define BUFFER_SIZE 1024
-#define CHAR_COUNT_LEN 256
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> BUFFER_SIZE 1024</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> CHAR_COUNT_LEN 256</span>
 
-// 哈夫曼树的结点结构 
-struct huffman_node {
-	size_t times; // 本字符出现的次数 
-	unsigned char val; // 字符的值 
-	huffman_node *left; // 左孩子 
-	huffman_node *right; // 右孩子 
+<span class="hljs-comment">// 哈夫曼树的结点结构 </span>
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">huffman_node</span> {
+	<span class="hljs-type">size_t</span> times; <span class="hljs-comment">// 本字符出现的次数 </span>
+	<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> val; <span class="hljs-comment">// 字符的值 </span>
+	huffman_node *left; <span class="hljs-comment">// 左孩子 </span>
+	huffman_node *right; <span class="hljs-comment">// 右孩子 </span>
 };
 
-size_t char_count_info[CHAR_COUNT_LEN] = {}; // 统计出现字符频率
-vector&lt;huffman_node *&gt; huffman_tree_nodes; // 动态数组用于存储哈夫曼树的结点
-huffman_node *huffman_tree_root = NULL; // 哈夫曼树的根结点 
-map&lt;unsigned char, string&gt; huffman_codes_table; // 用于存储哈夫曼编码
+<span class="hljs-type">size_t</span> char_count_info[CHAR_COUNT_LEN] = {}; <span class="hljs-comment">// 统计出现字符频率</span>
+vector&lt;huffman_node *&gt; huffman_tree_nodes; <span class="hljs-comment">// 动态数组用于存储哈夫曼树的结点</span>
+huffman_node *huffman_tree_root = <span class="hljs-literal">NULL</span>; <span class="hljs-comment">// 哈夫曼树的根结点 </span>
+map&lt;<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>, string&gt; huffman_codes_table; <span class="hljs-comment">// 用于存储哈夫曼编码</span>
 
-// 打印哈夫曼编码表
-void print_huffman_codes_table(map&lt;unsigned char, string&gt; huffman_codes_table) {
-    printf(&quot;the huffman codes is:\n&quot;);
-    for(map&lt;unsigned char, string&gt;::iterator it = huffman_codes_table.begin(); 
-		it != huffman_codes_table.end(); it++) {
-        printf(&quot;character '%c'(%d) : %s\n&quot;, 
-               (it-&gt;first &gt;= 32 &amp;&amp; it-&gt;first &lt;= 126) ? it-&gt;first : '?', 
-               it-&gt;first, it-&gt;second.c_str());
+<span class="hljs-comment">// 打印哈夫曼编码表</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print_huffman_codes_table</span><span class="hljs-params">(map&lt;<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>, string&gt; huffman_codes_table)</span> </span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;the huffman codes is:\n&quot;</span>);
+    <span class="hljs-keyword">for</span>(map&lt;<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>, string&gt;::iterator it = huffman_codes_table.<span class="hljs-built_in">begin</span>(); 
+		it != huffman_codes_table.<span class="hljs-built_in">end</span>(); it++) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;character &#x27;%c&#x27;(%d) : %s\n&quot;</span>, 
+               (it-&gt;first &gt;= <span class="hljs-number">32</span> &amp;&amp; it-&gt;first &lt;= <span class="hljs-number">126</span>) ? it-&gt;first : <span class="hljs-string">&#x27;?&#x27;</span>, 
+               it-&gt;first, it-&gt;second.<span class="hljs-built_in">c_str</span>());
     }
-    printf(&quot;\n&quot;);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
 }
 
-// 生成哈夫曼编码表（递归函数）
-void generate_huffman_codes_table(huffman_node* root, string code) {
-    if(root == NULL) return;
+<span class="hljs-comment">// 生成哈夫曼编码表（递归函数）</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">generate_huffman_codes_table</span><span class="hljs-params">(huffman_node* root, string code)</span> </span>{
+    <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span>;
     
-    // 如果是叶子节点，保存编码
-    if(root-&gt;left == NULL &amp;&amp; root-&gt;right == NULL) {
+    <span class="hljs-comment">// 如果是叶子节点，保存编码</span>
+    <span class="hljs-keyword">if</span>(root-&gt;left == <span class="hljs-literal">NULL</span> &amp;&amp; root-&gt;right == <span class="hljs-literal">NULL</span>) {
         huffman_codes_table[root-&gt;val] = code;
-    } else {
-    	// 递归处理左右子树
-	    generate_huffman_codes_table(root-&gt;left, code + &quot;0&quot;);
-	    generate_huffman_codes_table(root-&gt;right, code + &quot;1&quot;);
+    } <span class="hljs-keyword">else</span> {
+    	<span class="hljs-comment">// 递归处理左右子树</span>
+	    <span class="hljs-built_in">generate_huffman_codes_table</span>(root-&gt;left, code + <span class="hljs-string">&quot;0&quot;</span>);
+	    <span class="hljs-built_in">generate_huffman_codes_table</span>(root-&gt;right, code + <span class="hljs-string">&quot;1&quot;</span>);
 	}
 }
 
-// 排序辅助函数 
-bool cmp(huffman_node *a,huffman_node *b){
-	return a-&gt;times &gt; b-&gt;times;
+<span class="hljs-comment">// 排序辅助函数 </span>
+<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(huffman_node *a,huffman_node *b)</span></span>{
+	<span class="hljs-keyword">return</span> a-&gt;times &gt; b-&gt;times;
 }
 
-// 创建哈弗曼树 
-int generate_huffman_tree() {
-	printf(&quot;begin generate huffman tree......\n&quot;);
-	while(huffman_tree_nodes.size() &gt; 1) {
-		// 按照字符出现频率进行降序排序 
-		sort(huffman_tree_nodes.begin(), huffman_tree_nodes.end(), cmp);
+<span class="hljs-comment">// 创建哈弗曼树 </span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">generate_huffman_tree</span><span class="hljs-params">()</span> </span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;begin generate huffman tree......\n&quot;</span>);
+	<span class="hljs-keyword">while</span>(huffman_tree_nodes.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">1</span>) {
+		<span class="hljs-comment">// 按照字符出现频率进行降序排序 </span>
+		<span class="hljs-built_in">sort</span>(huffman_tree_nodes.<span class="hljs-built_in">begin</span>(), huffman_tree_nodes.<span class="hljs-built_in">end</span>(), cmp);
 		
-		// 取出字符出现频率最小的两个 
-		huffman_node *min1 = huffman_tree_nodes.back();
-		huffman_tree_nodes.pop_back();
-		huffman_node *min2 = huffman_tree_nodes.back();
-		huffman_tree_nodes.pop_back();
+		<span class="hljs-comment">// 取出字符出现频率最小的两个 </span>
+		huffman_node *min1 = huffman_tree_nodes.<span class="hljs-built_in">back</span>();
+		huffman_tree_nodes.<span class="hljs-built_in">pop_back</span>();
+		huffman_node *min2 = huffman_tree_nodes.<span class="hljs-built_in">back</span>();
+		huffman_tree_nodes.<span class="hljs-built_in">pop_back</span>();
 		
-		// 生成新的父亲结点，频率最小的结点作为左孩子 
-		huffman_node *cur = (huffman_node *) malloc(sizeof(huffman_node));
+		<span class="hljs-comment">// 生成新的父亲结点，频率最小的结点作为左孩子 </span>
+		huffman_node *cur = (huffman_node *) <span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(huffman_node));
 		cur-&gt;times = min1-&gt;times + min2-&gt;times;
 		cur-&gt;left = min1;
 		cur-&gt;right = min2;
 		
-		huffman_tree_nodes.push_back(cur); 
+		huffman_tree_nodes.<span class="hljs-built_in">push_back</span>(cur); 
 		huffman_tree_root = cur; 
 	}
-	printf(&quot;success generate huffman tree\n\n&quot;);
-	return 0;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;success generate huffman tree\n\n&quot;</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 
 
 
-// 逐一生成哈夫曼树结点，并存储于全局变量 tree_nodes 中 
-int generate_huffman_tree_nodes()
-{
-	printf(&quot;begin generate huffman tree nodes......\n&quot;);
+<span class="hljs-comment">// 逐一生成哈夫曼树结点，并存储于全局变量 tree_nodes 中 </span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">generate_huffman_tree_nodes</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;begin generate huffman tree nodes......\n&quot;</span>);
 	
-	int nodes_count = 0; // 统计生成了多少个结点 
-	for(int i = 0; i &lt; CHAR_COUNT_LEN; i++) {
-		// 出现次数为 0 的字符不需要生成结点 
-		if(char_count_info[i] &gt; 0) {
+	<span class="hljs-type">int</span> nodes_count = <span class="hljs-number">0</span>; <span class="hljs-comment">// 统计生成了多少个结点 </span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; CHAR_COUNT_LEN; i++) {
+		<span class="hljs-comment">// 出现次数为 0 的字符不需要生成结点 </span>
+		<span class="hljs-keyword">if</span>(char_count_info[i] &gt; <span class="hljs-number">0</span>) {
 			nodes_count++;
-			huffman_node *cur = (huffman_node *) malloc(sizeof(huffman_node));
+			huffman_node *cur = (huffman_node *) <span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(huffman_node));
 			cur-&gt;val = i;
 			cur-&gt;times = char_count_info[i];
-			cur-&gt;left = NULL;
-			cur-&gt;right = NULL;
+			cur-&gt;left = <span class="hljs-literal">NULL</span>;
+			cur-&gt;right = <span class="hljs-literal">NULL</span>;
 			
-			huffman_tree_nodes.push_back(cur);
+			huffman_tree_nodes.<span class="hljs-built_in">push_back</span>(cur);
 		} 
 	}
-	printf(&quot;success generate %d huffman tree nodes\n\n&quot;, nodes_count);
-	return 0; 
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;success generate %d huffman tree nodes\n\n&quot;</span>, nodes_count);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; 
 } 
 
-// 用于统计每个字符在文件出现的次数
-// 统计结果存储在全局变量 char_count_info 中 
-int count_char(unsigned char buffer[], size_t len)
-{
-	for(size_t i = 0; i &lt; len; i++) {
+<span class="hljs-comment">// 用于统计每个字符在文件出现的次数</span>
+<span class="hljs-comment">// 统计结果存储在全局变量 char_count_info 中 </span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">count_char</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> buffer[], <span class="hljs-type">size_t</span> len)</span>
+</span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) {
 		char_count_info[buffer[i]]++;
 	}
-	return 0;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 
-// 读取指定文件内容，并统计字符出现的次数 
-int count_file_char(char *file_name)
-{
-	FILE *file; // 打开文件句柄  
+<span class="hljs-comment">// 读取指定文件内容，并统计字符出现的次数 </span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">count_file_char</span><span class="hljs-params">(<span class="hljs-type">char</span> *file_name)</span>
+</span>{
+	FILE *file; <span class="hljs-comment">// 打开文件句柄  </span>
     
-    file = fopen(file_name, &quot;rb&quot;);
-    if (file == NULL) {
-        printf(&quot;can't open file [%s], please check file name!\n&quot;, file_name);
-        return -1;
+    file = <span class="hljs-built_in">fopen</span>(file_name, <span class="hljs-string">&quot;rb&quot;</span>);
+    <span class="hljs-keyword">if</span> (file == <span class="hljs-literal">NULL</span>) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;can&#x27;t open file [%s], please check file name!\n&quot;</span>, file_name);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
     }
     
-    unsigned char buffer[BUFFER_SIZE] = {}; // 读取文件时的缓冲区 
-    size_t bytes_read = 0; // 每次读了多少个字节 
-    size_t read_times_count = 1; // 总共读取了多少次了
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> buffer[BUFFER_SIZE] = {}; <span class="hljs-comment">// 读取文件时的缓冲区 </span>
+    <span class="hljs-type">size_t</span> bytes_read = <span class="hljs-number">0</span>; <span class="hljs-comment">// 每次读了多少个字节 </span>
+    <span class="hljs-type">size_t</span> read_times_count = <span class="hljs-number">1</span>; <span class="hljs-comment">// 总共读取了多少次了</span>
     
-    // 循环读取直到文件结束，1 表示每次读取的数据块大小，单位为字节 
-    while ((bytes_read = fread(buffer, 1, BUFFER_SIZE, file)) &gt; 0) {
-        printf(&quot;the %zu th read, read %zu byte! process......\n&quot;, 
+    <span class="hljs-comment">// 循环读取直到文件结束，1 表示每次读取的数据块大小，单位为字节 </span>
+    <span class="hljs-keyword">while</span> ((bytes_read = <span class="hljs-built_in">fread</span>(buffer, <span class="hljs-number">1</span>, BUFFER_SIZE, file)) &gt; <span class="hljs-number">0</span>) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;the %zu th read, read %zu byte! process......\n&quot;</span>, 
 				read_times_count, bytes_read);
-        count_char(buffer, bytes_read);
+        <span class="hljs-built_in">count_char</span>(buffer, bytes_read);
         read_times_count++;
     }
     
-    fclose(file);
-    printf(&quot;success read file: [%s] and count char\n\n&quot;, file_name);
-    return 0;
+    <span class="hljs-built_in">fclose</span>(file);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;success read file: [%s] and count char\n\n&quot;</span>, file_name);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 
-int compress_file(char *input_file_name, char *output_file_name) {
-	printf(&quot;begin cmpress [%s] -&gt; [%s]\n&quot;, input_file_name, output_file_name);
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">compress_file</span><span class="hljs-params">(<span class="hljs-type">char</span> *input_file_name, <span class="hljs-type">char</span> *output_file_name)</span> </span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;begin cmpress [%s] -&gt; [%s]\n&quot;</span>, input_file_name, output_file_name);
     
-    FILE *input = fopen(input_file_name, &quot;rb&quot;);
-    FILE *output = fopen(output_file_name, &quot;wb&quot;);
+    FILE *input = <span class="hljs-built_in">fopen</span>(input_file_name, <span class="hljs-string">&quot;rb&quot;</span>);
+    FILE *output = <span class="hljs-built_in">fopen</span>(output_file_name, <span class="hljs-string">&quot;wb&quot;</span>);
     
-    if(input == NULL || output == NULL) {
-    	printf(&quot;can't open file [%s] or [%s], please check file name!\n&quot;, 
+    <span class="hljs-keyword">if</span>(input == <span class="hljs-literal">NULL</span> || output == <span class="hljs-literal">NULL</span>) {
+    	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;can&#x27;t open file [%s] or [%s], please check file name!\n&quot;</span>, 
 				input_file_name, output_file_name);
-        return -1;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
     }
     
-    unsigned char buffer[BUFFER_SIZE]; // 文件读取缓冲区
-    size_t bytes_read; // 已经读取了多少字节 
-    unsigned char current_byte = 0; // 当前字节 
-    int bit_count = 0; // 已经处理了多少个二进制位 
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> buffer[BUFFER_SIZE]; <span class="hljs-comment">// 文件读取缓冲区</span>
+    <span class="hljs-type">size_t</span> bytes_read; <span class="hljs-comment">// 已经读取了多少字节 </span>
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> current_byte = <span class="hljs-number">0</span>; <span class="hljs-comment">// 当前字节 </span>
+    <span class="hljs-type">int</span> bit_count = <span class="hljs-number">0</span>; <span class="hljs-comment">// 已经处理了多少个二进制位 </span>
     
-    while((bytes_read = fread(buffer, 1, BUFFER_SIZE, input)) &gt; 0) {
-    	for(size_t i = 0; i &lt; bytes_read; i++) {
+    <span class="hljs-keyword">while</span>((bytes_read = <span class="hljs-built_in">fread</span>(buffer, <span class="hljs-number">1</span>, BUFFER_SIZE, input)) &gt; <span class="hljs-number">0</span>) {
+    	<span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; bytes_read; i++) {
             string code = huffman_codes_table[buffer[i]];
-            int code_length = code.length();
+            <span class="hljs-type">int</span> code_length = code.<span class="hljs-built_in">length</span>();
             
-            for(int j = 0; j &lt; code_length; j++) {
-            	char bit = code[j];
-            	current_byte &lt;&lt;= 1; // 左移 1 位
-				if(bit == '1') {
-					current_byte |= 1;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; code_length; j++) {
+            	<span class="hljs-type">char</span> bit = code[j];
+            	current_byte &lt;&lt;= <span class="hljs-number">1</span>; <span class="hljs-comment">// 左移 1 位</span>
+				<span class="hljs-keyword">if</span>(bit == <span class="hljs-string">&#x27;1&#x27;</span>) {
+					current_byte |= <span class="hljs-number">1</span>;
 				} 
             	
             	bit_count++;
 				
-				if(bit_count == 8) { // 凑齐了 8 位（1 个字节） 
-					fputc(current_byte, output);
-					current_byte = 0; // 清零，继续下一个字节 
-					bit_count  = 0;
+				<span class="hljs-keyword">if</span>(bit_count == <span class="hljs-number">8</span>) { <span class="hljs-comment">// 凑齐了 8 位（1 个字节） </span>
+					<span class="hljs-built_in">fputc</span>(current_byte, output);
+					current_byte = <span class="hljs-number">0</span>; <span class="hljs-comment">// 清零，继续下一个字节 </span>
+					bit_count  = <span class="hljs-number">0</span>;
 				}
 			}
 		}
 	}
 	
-	// 处理最后一个不完整的字节
-	if(bit_count &gt; 0) {
-		current_byte &lt;&lt;= (8 - bit_count); // 左移补齐 0
-		fputc(current_byte, output);
-        // 记录最后一个字节的有效位数
-        fputc(bit_count, output);
-	} else {
-		fputc(8, output); // 表示最后一个字节是完整的
+	<span class="hljs-comment">// 处理最后一个不完整的字节</span>
+	<span class="hljs-keyword">if</span>(bit_count &gt; <span class="hljs-number">0</span>) {
+		current_byte &lt;&lt;= (<span class="hljs-number">8</span> - bit_count); <span class="hljs-comment">// 左移补齐 0</span>
+		<span class="hljs-built_in">fputc</span>(current_byte, output);
+        <span class="hljs-comment">// 记录最后一个字节的有效位数</span>
+        <span class="hljs-built_in">fputc</span>(bit_count, output);
+	} <span class="hljs-keyword">else</span> {
+		<span class="hljs-built_in">fputc</span>(<span class="hljs-number">8</span>, output); <span class="hljs-comment">// 表示最后一个字节是完整的</span>
 	}
 	
-	fclose(input);
-    fclose(output);
-    printf(&quot;success compress file: [%s] to [%s]\n\n&quot;, input_file_name, output_file_name);
-    return 0;
+	<span class="hljs-built_in">fclose</span>(input);
+    <span class="hljs-built_in">fclose</span>(output);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;success compress file: [%s] to [%s]\n\n&quot;</span>, input_file_name, output_file_name);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 
-// 获取指定文件大小 
-size_t get_file_size(char *file_name) {
-	FILE *fp = fopen(file_name, &quot;rb&quot;);
-	if (fp == NULL) {
-		printf(&quot;can't open file [%s], please check file name!\n&quot;, file_name);
-		return -1;
+<span class="hljs-comment">// 获取指定文件大小 </span>
+<span class="hljs-function"><span class="hljs-type">size_t</span> <span class="hljs-title">get_file_size</span><span class="hljs-params">(<span class="hljs-type">char</span> *file_name)</span> </span>{
+	FILE *fp = <span class="hljs-built_in">fopen</span>(file_name, <span class="hljs-string">&quot;rb&quot;</span>);
+	<span class="hljs-keyword">if</span> (fp == <span class="hljs-literal">NULL</span>) {
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;can&#x27;t open file [%s], please check file name!\n&quot;</span>, file_name);
+		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
 	}
-	fseek(fp, 0, SEEK_END);
-	size_t file_size = ftell(fp);
-	fclose(fp);
-	return file_size;
+	<span class="hljs-built_in">fseek</span>(fp, <span class="hljs-number">0</span>, SEEK_END);
+	<span class="hljs-type">size_t</span> file_size = <span class="hljs-built_in">ftell</span>(fp);
+	<span class="hljs-built_in">fclose</span>(fp);
+	<span class="hljs-keyword">return</span> file_size;
 }
 
-int uncompress_file(char *input_file_name, char *output_file_name) {
-	printf(&quot;begin uncmpress [%s] -&gt; [%s]\n&quot;, input_file_name, output_file_name);
-    size_t input_file_size = get_file_size(input_file_name);
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">uncompress_file</span><span class="hljs-params">(<span class="hljs-type">char</span> *input_file_name, <span class="hljs-type">char</span> *output_file_name)</span> </span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;begin uncmpress [%s] -&gt; [%s]\n&quot;</span>, input_file_name, output_file_name);
+    <span class="hljs-type">size_t</span> input_file_size = <span class="hljs-built_in">get_file_size</span>(input_file_name);
     
-    FILE *input = fopen(input_file_name, &quot;rb&quot;);
-    FILE *output = fopen(output_file_name, &quot;wb&quot;);
+    FILE *input = <span class="hljs-built_in">fopen</span>(input_file_name, <span class="hljs-string">&quot;rb&quot;</span>);
+    FILE *output = <span class="hljs-built_in">fopen</span>(output_file_name, <span class="hljs-string">&quot;wb&quot;</span>);
     
-    if(input == NULL || output == NULL) {
-    	printf(&quot;can't open file [%s] or [%s], please check file name!\n&quot;, 
+    <span class="hljs-keyword">if</span>(input == <span class="hljs-literal">NULL</span> || output == <span class="hljs-literal">NULL</span>) {
+    	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;can&#x27;t open file [%s] or [%s], please check file name!\n&quot;</span>, 
 				input_file_name, output_file_name);
-        return -1;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
     }
     
-    // 3. 解压数据
-    huffman_node *current_node = huffman_tree_root; // 用于记录当前在哪个结点 
-    unsigned char cur_byte; // 当前读取的字节 
-    int byte_bits = 8; // 默认最后一个字节完整
-    long bytes_decoded = 0; // 已经解码的字节
+    <span class="hljs-comment">// 3. 解压数据</span>
+    huffman_node *current_node = huffman_tree_root; <span class="hljs-comment">// 用于记录当前在哪个结点 </span>
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> cur_byte; <span class="hljs-comment">// 当前读取的字节 </span>
+    <span class="hljs-type">int</span> byte_bits = <span class="hljs-number">8</span>; <span class="hljs-comment">// 默认最后一个字节完整</span>
+    <span class="hljs-type">long</span> bytes_decoded = <span class="hljs-number">0</span>; <span class="hljs-comment">// 已经解码的字节</span>
     
-	while(bytes_decoded &lt; input_file_size) {
-		cur_byte = fgetc(input);
+	<span class="hljs-keyword">while</span>(bytes_decoded &lt; input_file_size) {
+		cur_byte = <span class="hljs-built_in">fgetc</span>(input);
 		bytes_decoded++;
 		
-		// 需要对最后一个字节处理，因为最后一个字节可能不满
-		if(bytes_decoded == input_file_size-1) {
-			int bit_count = fgetc(input); // 最后一个字节有效位数 
-			byte_bits = 8 - bit_count;
+		<span class="hljs-comment">// 需要对最后一个字节处理，因为最后一个字节可能不满</span>
+		<span class="hljs-keyword">if</span>(bytes_decoded == input_file_size<span class="hljs-number">-1</span>) {
+			<span class="hljs-type">int</span> bit_count = <span class="hljs-built_in">fgetc</span>(input); <span class="hljs-comment">// 最后一个字节有效位数 </span>
+			byte_bits = <span class="hljs-number">8</span> - bit_count;
 		} 
 		
-		for(int i = 7; i &gt;= 8 - byte_bits; i--) {
-			int bit = (cur_byte &gt;&gt; i) &amp; 1;
-			if(bit) { // 1 往右走 
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">7</span>; i &gt;= <span class="hljs-number">8</span> - byte_bits; i--) {
+			<span class="hljs-type">int</span> bit = (cur_byte &gt;&gt; i) &amp; <span class="hljs-number">1</span>;
+			<span class="hljs-keyword">if</span>(bit) { <span class="hljs-comment">// 1 往右走 </span>
 				current_node = current_node-&gt;right;
-			} else { // 0 往左走 
+			} <span class="hljs-keyword">else</span> { <span class="hljs-comment">// 0 往左走 </span>
 				current_node = current_node-&gt;left;
 			}
 			
-			// 如果到达叶子节点
-            if(!current_node-&gt;left &amp;&amp; !current_node-&gt;right) {
-            	// 将当前结点的 val 写入文件 
-                fputc(current_node-&gt;val, output);  
-                current_node = huffman_tree_root; // 回到根节点 
+			<span class="hljs-comment">// 如果到达叶子节点</span>
+            <span class="hljs-keyword">if</span>(!current_node-&gt;left &amp;&amp; !current_node-&gt;right) {
+            	<span class="hljs-comment">// 将当前结点的 val 写入文件 </span>
+                <span class="hljs-built_in">fputc</span>(current_node-&gt;val, output);  
+                current_node = huffman_tree_root; <span class="hljs-comment">// 回到根节点 </span>
             }
 		}
 	}
-	printf(&quot;success uncompress file: [%s] to [%s]\n\n&quot;, input_file_name, output_file_name);
-    return 0;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;success uncompress file: [%s] to [%s]\n\n&quot;</span>, input_file_name, output_file_name);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 
-// 释放哈夫曼树 
-void destroy_huffman_tree(huffman_node* root) {
-    if (root == NULL) return;
-    destroy_huffman_tree(root-&gt;left);
-    destroy_huffman_tree(root-&gt;right);
-    free(root);
+<span class="hljs-comment">// 释放哈夫曼树 </span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">destroy_huffman_tree</span><span class="hljs-params">(huffman_node* root)</span> </span>{
+    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span>;
+    <span class="hljs-built_in">destroy_huffman_tree</span>(root-&gt;left);
+    <span class="hljs-built_in">destroy_huffman_tree</span>(root-&gt;right);
+    <span class="hljs-built_in">free</span>(root);
 }
 
-// 哈夫曼函数 
-int huffman(char *file_name)
-{
-	// 压缩后的文件名 
-	char compress_file_name[strlen(file_name) + 8];
-	// 解压缩后的文件名 
-	char uncompress_file_name[strlen(file_name) + 11];
-	strcpy(compress_file_name, file_name);
-	strcat(compress_file_name, &quot;.huffman&quot;);
+<span class="hljs-comment">// 哈夫曼函数 </span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">huffman</span><span class="hljs-params">(<span class="hljs-type">char</span> *file_name)</span>
+</span>{
+	<span class="hljs-comment">// 压缩后的文件名 </span>
+	<span class="hljs-type">char</span> compress_file_name[<span class="hljs-built_in">strlen</span>(file_name) + <span class="hljs-number">8</span>];
+	<span class="hljs-comment">// 解压缩后的文件名 </span>
+	<span class="hljs-type">char</span> uncompress_file_name[<span class="hljs-built_in">strlen</span>(file_name) + <span class="hljs-number">11</span>];
+	<span class="hljs-built_in">strcpy</span>(compress_file_name, file_name);
+	<span class="hljs-built_in">strcat</span>(compress_file_name, <span class="hljs-string">&quot;.huffman&quot;</span>);
 	
-	strcpy(uncompress_file_name, &quot;uncompress_&quot;);
-	strcat(uncompress_file_name, file_name);
+	<span class="hljs-built_in">strcpy</span>(uncompress_file_name, <span class="hljs-string">&quot;uncompress_&quot;</span>);
+	<span class="hljs-built_in">strcat</span>(uncompress_file_name, file_name);
 
-	count_file_char(file_name);
-	generate_huffman_tree_nodes();
-	generate_huffman_tree();
+	<span class="hljs-built_in">count_file_char</span>(file_name);
+	<span class="hljs-built_in">generate_huffman_tree_nodes</span>();
+	<span class="hljs-built_in">generate_huffman_tree</span>();
 	
-    // 根据哈夫曼树生成哈夫曼编码表
+    <span class="hljs-comment">// 根据哈夫曼树生成哈夫曼编码表</span>
 	huffman_node *root = huffman_tree_root; 
-	generate_huffman_codes_table(root, &quot;&quot;);
-	print_huffman_codes_table(huffman_codes_table);
+	<span class="hljs-built_in">generate_huffman_codes_table</span>(root, <span class="hljs-string">&quot;&quot;</span>);
+	<span class="hljs-built_in">print_huffman_codes_table</span>(huffman_codes_table);
 
-	compress_file(file_name, compress_file_name);
-	uncompress_file(compress_file_name, uncompress_file_name);
-	destroy_huffman_tree(huffman_tree_root);
+	<span class="hljs-built_in">compress_file</span>(file_name, compress_file_name);
+	<span class="hljs-built_in">uncompress_file</span>(compress_file_name, uncompress_file_name);
+	<span class="hljs-built_in">destroy_huffman_tree</span>(huffman_tree_root);
 }
 
-int main(int argc, char** argv)
-{
-	if(argc &lt; 2) {
-		printf(&quot;usage: %s &lt;filename&gt;\n&quot;, argv[0]);
-		return -1;
-	} else {
-		printf(&quot;the file is [%s]\n&quot;, argv[1]);
-		return huffman(argv[1]);
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span>** argv)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(argc &lt; <span class="hljs-number">2</span>) {
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;usage: %s &lt;filename&gt;\n&quot;</span>, argv[<span class="hljs-number">0</span>]);
+		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+	} <span class="hljs-keyword">else</span> {
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;the file is [%s]\n&quot;</span>, argv[<span class="hljs-number">1</span>]);
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">huffman</span>(argv[<span class="hljs-number">1</span>]);
 	}
-	return 0;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
 
@@ -449,7 +461,7 @@ int main(int argc, char** argv)
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -509,8 +521,23 @@ int main(int argc, char** argv)
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
+            i-tag-success" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
@@ -519,38 +546,38 @@ int main(int argc, char** argv)
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-banana" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
+            i-tag-other_3" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/krqSF7tYC/">
-            算法
+            i-tag-info" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-error" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
         </a>
         
         <a class="tags-tag i-tag
@@ -559,88 +586,13 @@ int main(int argc, char** argv)
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-other_1" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-primary" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/hF3_PWTirK/">
-            Java
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
-            嵌入式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/Ykw3uqJED/">
-            随笔思考
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
         </a>
         
         <a class="tags-tag i-tag
@@ -649,78 +601,78 @@ int main(int argc, char** argv)
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_4" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
-            MySQL
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/dTizl9yei/">
-            SEO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/7QbLXmeen/">
-            Vue
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-error" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/iqW8DWbw7/">
-            MongoDB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/j7DVou3EA/">
-            Nginx
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-error" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/9WeHlVlqK9/">
-            软件测试
+            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
+            i-tag-other_1" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
         </a>
         
         <a class="tags-tag i-tag
@@ -729,8 +681,68 @@ int main(int argc, char** argv)
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-error" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
         </a>
         
     </div>

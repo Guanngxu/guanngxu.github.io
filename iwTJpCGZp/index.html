@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     Git 基本原理及常用命令速查 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -101,7 +113,7 @@
                             <span class="read-time">16 min read</span>
                             
                                 <a href="https://www.guanngxu.com/wgJXq4UXE/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-info">
                             #Git
                         </a>
                                 
@@ -120,8 +132,8 @@
 <p>简单说就是 Linus 被逼的去开发了这一款叫做 Git 的版本控制器，因为 Linus 本身就是内核专家与文件专家，所以 Git 也就自然而然具备了非凡的存储能力与性能。</p>
 <h2 id="安装">安装</h2>
 <p>关于如何安装 git 可以查看 <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git">Pro Git book</a>，安装完成后需要进行一些必要的配置，比如用户信息、文本编辑器、差异分析工具等等，我们可以通过<code>git config --list</code>来查看配置信息。比如我们要配置用户和邮箱，就可以像下面这样输入命令。</p>
-<pre><code class="language-shell">$ git config --global user.name &quot;John Doe&quot;
-$ git config --global user.email johndoe@example.com
+<pre class="hljs"><code><span class="hljs-meta prompt_">$ </span><span class="language-bash">git config --global user.name <span class="hljs-string">&quot;John Doe&quot;</span></span>
+<span class="hljs-meta prompt_">$ </span><span class="language-bash">git config --global user.email johndoe@example.com</span>
 </code></pre>
 <h2 id="git-原理">Git 原理</h2>
 <p>Git 和大多数版本控制器有一个重要的区别，就是它<strong>直接记录快照，而非差异比较</strong>，其它大部分系统以文件变更列表的方式存储信息，而 Git 则存储每个文件与初始版本的差异。换句话说，只要你的文件有改动，那么 Git 就会将该文件复制一份，正因为 Git 的这个特性，所以 Git 仓库很容易就变得非常大；为了高效，如果文件没有修改，那么 Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件。Git 对待数据更像是一个<strong>快照流</strong>。</p>
@@ -132,7 +144,7 @@ $ git config --global user.email johndoe@example.com
 <figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1733842963254.png" alt="" loading="lazy"></figure>
 <h3 id="查看文件状态">查看文件状态</h3>
 <p>如果需要查看哪些文件处于什么状态，可以使用<code>git status</code>命令，这个命令显示的信息十分详细，如果你喜欢简洁一点的信息，那么可以在其后添加一个<code>-s</code>，其报告格式类似于下面这样。</p>
-<pre><code class="language-shell">$ git status -s
+<pre class="hljs"><code><span class="hljs-meta prompt_">$ </span><span class="language-bash">git status -s</span>
  M README
 MM Rakefile
 A  lib/git.rb
@@ -152,7 +164,7 @@ M  lib/simplegit.rb
 <p>在任何一个阶段我们都可能有想要撤销的操作，我们只需要掌握几个基本的撤销操作就能够应对日常的工作了。</p>
 <p>第一种情况：取消上一次提交。有时候当我们提交完之后才发现漏掉了几个文件没有添加，或者是提交信息写错了，此时可以使用带<code>--amend</code>选项的提交命令尝试重新提交，即<code>git commit --amend</code>。这个命令会将暂存区的文件全部提交，如果自上次提交以来你还没一做任何修改（比如，在上次提交后马上执行了此命令），那么快照将会保持不变，而所修改的只是提交信息。</p>
 <p>第二种情况：取消暂存的文件。假设你修改了两个文件并且想要将它们作为两次独立提交，但是却不小心输入了<code>git add *</code>暂存了它们两个，如何取消其中一个暂存呢？其实在运行<code>git status</code>时已经给出提示了。</p>
-<pre><code class="language-shell">$ git status
+<pre class="hljs"><code><span class="hljs-meta prompt_">$ </span><span class="language-bash">git status</span>
 On branch master
 Changes to be committed:
   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
@@ -180,12 +192,12 @@ Changes to be committed:
 <h3 id="分支的合并与删除">分支的合并与删除</h3>
 <p>当我们零时在一个新分支上解决了问题后，需要将其合并到<code>master</code>分支，只需要切换到<code>master</code>再运行<code>git merge</code>命令即可，Git 会自动找到这两个分支的共同祖先，然后做一个简单的三方合并。</p>
 <p>当然理想情况下是直接合并成功，但是不免会遇到合并冲突的情况，一旦遇到冲突了，Git 会像下面这样来标记冲突内容，你需要做的是选择由<code>=======</code>分割的令部分的其中一个或者自行合并，当<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>，<code>=======</code>，和<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>这些行被完全删除了，你需要对每个文件使用<code>git add</code>将其标记为冲突已解决。</p>
-<pre><code class="language-html">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html
-&lt;div id=&quot;footer&quot;&gt;contact : email.support@github.com&lt;/div&gt;
+<pre class="hljs"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;footer&quot;</span>&gt;</span>contact : email.support@github.com<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 =======
-&lt;div id=&quot;footer&quot;&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;footer&quot;</span>&gt;</span>
  please contact us at support@github.com
-&lt;/div&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; testing:index.html
 </code></pre>
 <p>当合并完分支后，之前的分支一般就不会再要了，这时你可以运行<code>git branch -d [branch-name]</code>来删除指定分支，比如使用<code>git branch -d testing</code>来删除<code>testing</code>分支。</p>
@@ -332,7 +344,7 @@ Changes to be committed:
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -389,32 +401,28 @@ Changes to be committed:
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
+            <div class="markdownIt-TOC">
 <ul>
-<li><a href="#git-%E5%8E%86%E5%8F%B2">Git 历史</a></li>
-<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
-<li><a href="#git-%E5%8E%9F%E7%90%86">Git 原理</a></li>
-<li><a href="#git-%E5%9F%BA%E7%A1%80">Git 基础</a>
+<li><a href="#git-历史">Git 历史</a></li>
+<li><a href="#安装">安装</a></li>
+<li><a href="#git-原理">Git 原理</a></li>
+<li><a href="#git-基础">Git 基础</a></li>
 <ul>
-<li><a href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81">查看文件状态</a></li>
-<li><a href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6">删除文件</a></li>
-<li><a href="#%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2">查看历史</a></li>
-<li><a href="#%E6%92%A4%E9%94%80%E6%93%8D%E4%BD%9C">撤销操作</a></li>
-<li><a href="#%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93">远程仓库</a></li>
+<li><a href="#查看文件状态">查看文件状态</a></li>
+<li><a href="#删除文件">删除文件</a></li>
+<li><a href="#查看历史">查看历史</a></li>
+<li><a href="#撤销操作">撤销操作</a></li>
+<li><a href="#远程仓库">远程仓库</a></li>
 </ul>
-</li>
-<li><a href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86">分支管理</a>
+<li><a href="#分支管理">分支管理</a></li>
 <ul>
-<li><a href="#%E5%88%86%E6%94%AF%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%88%87%E6%8D%A2">分支创建与切换</a></li>
-<li><a href="#%E5%88%86%E6%94%AF%E7%9A%84%E5%90%88%E5%B9%B6%E4%B8%8E%E5%88%A0%E9%99%A4">分支的合并与删除</a></li>
-<li><a href="#%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF">远程分支</a></li>
+<li><a href="#分支创建与切换">分支创建与切换</a></li>
+<li><a href="#分支的合并与删除">分支的合并与删除</a></li>
+<li><a href="#远程分支">远程分支</a></li>
 </ul>
-</li>
-<li><a href="#git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">Git 常用命令</a></li>
+<li><a href="#git-常用命令">Git 常用命令</a></li>
 </ul>
-</li>
-</ul>
+</div>
 
         </div>
         <script>
@@ -451,43 +459,83 @@ Changes to be committed:
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
+            i-tag-primary" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
+            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
+            i-tag-other_4" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
+            i-tag-other_1" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-other_4" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
         </a>
         
         <a class="tags-tag i-tag
@@ -496,168 +544,33 @@ Changes to be committed:
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/umBdDP7Ll/">
-            C
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-banana" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-other_2" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/Ykw3uqJED/">
-            随笔思考
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-other_1" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/6ZjSGnvm9/">
-            年度总结
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-success" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/wjM4wf9IE/">
-            MySQL
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
-            SEO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/7QbLXmeen/">
-            Vue
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-warning" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/iqW8DWbw7/">
-            MongoDB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
-            Nginx
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-primary" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/9WeHlVlqK9/">
-            软件测试
         </a>
         
         <a class="tags-tag i-tag
@@ -666,13 +579,108 @@ Changes to be committed:
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-warning" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
         </a>
         
     </div>

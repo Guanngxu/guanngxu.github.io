@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     电源 PCB 布局及其常见错误 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -100,33 +112,33 @@
                             <time class="post-time">2024-07-09</time>
                             <span class="read-time">12 min read</span>
                             
+                                <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
+                            i-tag-other_1">
+                            #电路基础
+                        </a>
+                                
                                 <a href="https://www.guanngxu.com/COeYlWWen/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-warning">
                             #PCB
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/ypjmBXLlm3/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-banana">
                             #Layout
                         </a>
                                 
-                                <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
-                            i-tag-other_2">
-                            #电路基础
-                        </a>
-                                
                                 <a href="https://www.guanngxu.com/QbHW4oh0b/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_1">
                             #开关电源
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/g-HWNOeTH/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
                             #BUCK
                         </a>
                                 
                                 <a href="https://www.guanngxu.com/f2t0BU6fkn/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
                             #DC-DC
                         </a>
                                 
@@ -148,7 +160,7 @@
 <p>多层板可以看作是由多个两层板，加上一个芯板组成，不同层之间的切换通过过孔来实现，即钻孔并在孔的内壁覆上铜。由于制造 3 层板和制造 4 层板的工艺、成本等均基本一致，所以需要注意一般是没有单数层板的，只有偶数层的 PCB。</p>
 <figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1721107206542.png" alt="" loading="lazy"></figure>
 <p>图中 1 属于盲孔，用于第一层和最后一层之间的切换；2 属于埋孔，用于内层之间的切换；3 属于通孔，用于第一层和除最后一层之间的切换。这些孔我们统一将其称之为过孔。</p>
-<h2 id="走线为什么要避免锐角-直角">走线为什么要避免锐角、直角</h2>
+<h2 id="走线为什么要避免锐角直角">走线为什么要避免锐角、直角</h2>
 <p>PCB 板上的铜线需要做到阻抗连续，那么什么情况下会导致其阻抗不连续呢？当线宽改变的时候阻抗就会变得不连续，同时寄生电容、电感的值也会发生变化，那么什么情况会导致线宽改变呢？自然是涉及到拐弯的时候。</p>
 <figure data-type="image" tabindex="3"><img src="https://www.guanngxu.com/post-images/1720962422341.png" alt="" loading="lazy"></figure>
 <p>除了线宽改变导致阻抗不连续外还有哪些影响呢？比如线宽改变会导致寄生容值变大，即相当于在传输导线上加了容性负载，当信号通过时即会涉及到充放电的过程，信号速度即会被减缓。</p>
@@ -218,7 +230,7 @@
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -275,22 +287,19 @@
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
+            <div class="markdownIt-TOC">
 <ul>
-<li><a href="#pcb-%E5%9F%BA%E7%A1%80">PCB 基础</a></li>
-<li><a href="#%E8%B5%B0%E7%BA%BF%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%81%BF%E5%85%8D%E9%94%90%E8%A7%92-%E7%9B%B4%E8%A7%92">走线为什么要避免锐角、直角</a></li>
-<li><a href="#%E5%85%B8%E5%9E%8B%E6%A1%88%E4%BE%8B">典型案例</a>
+<li><a href="#pcb-基础">PCB 基础</a></li>
+<li><a href="#走线为什么要避免锐角直角">走线为什么要避免锐角、直角</a></li>
+<li><a href="#典型案例">典型案例</a></li>
 <ul>
-<li><a href="#%E8%BE%93%E5%85%A5%E7%94%B5%E5%AE%B9%E5%A4%AA%E8%BF%9C%E5%AF%BC%E8%87%B4%E5%AF%84%E7%94%9F%E7%94%B5%E6%84%9F%E8%BF%87%E5%A4%A7">输入电容太远导致寄生电感过大</a></li>
-<li><a href="#%E7%94%B5%E6%84%9F%E7%A3%81%E5%9C%BA%E6%89%A9%E6%95%A3%E8%87%B3%E5%A4%96%E5%9B%B4">电感磁场扩散至外围</a></li>
-<li><a href="#%E9%AB%98%E9%98%BB%E6%8A%97%E5%8F%8D%E9%A6%88%E7%94%B5%E9%98%BB%E8%B5%B0%E7%BA%BF%E5%A4%AA%E9%95%BF%E5%BC%95%E5%85%A5%E5%99%AA%E5%A3%B0">高阻抗反馈电阻走线太长引入噪声</a></li>
-<li><a href="#%E5%A4%A7%E7%94%B5%E6%B5%81%E5%BC%95%E8%B5%B7%E5%8E%8B%E9%99%8D">大电流引起压降</a></li>
+<li><a href="#输入电容太远导致寄生电感过大">输入电容太远导致寄生电感过大</a></li>
+<li><a href="#电感磁场扩散至外围">电感磁场扩散至外围</a></li>
+<li><a href="#高阻抗反馈电阻走线太长引入噪声">高阻抗反馈电阻走线太长引入噪声</a></li>
+<li><a href="#大电流引起压降">大电流引起压降</a></li>
 </ul>
-</li>
 </ul>
-</li>
-</ul>
+</div>
 
         </div>
         <script>
@@ -327,23 +336,13 @@
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
+            i-tag-other_1" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
+            i-tag-warning" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
@@ -352,18 +351,68 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
+            i-tag-banana" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
+            i-tag-other_1" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-other_4" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
         </a>
         
         <a class="tags-tag i-tag
@@ -372,67 +421,52 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/umBdDP7Ll/">
-            C
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-success" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
+            i-tag-other_1" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/Ykw3uqJED/">
-            随笔思考
+            i-tag-success" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
+            i-tag-other_1" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/wgJXq4UXE/">
             Git
         </a>
         
@@ -442,113 +476,88 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/6ZjSGnvm9/">
-            年度总结
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/u3bra3rlo/">
-            健康生活
-        </a>
-        
-        <a class="tags-tag i-tag
             i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/wjM4wf9IE/">
-            MySQL
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/dTizl9yei/">
-            SEO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/7QbLXmeen/">
-            Vue
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/EWmAbJCJGF/">
-            TypeScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/iqW8DWbw7/">
-            MongoDB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-other_2" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
-            Nginx
+            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/KCICs8Iip/">
-            记录回忆
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/9WeHlVlqK9/">
-            软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-other_1" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-other_1" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
         </a>
         
     </div>

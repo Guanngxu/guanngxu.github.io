@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     LDO | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
 </head>
 
 <body>
@@ -28,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -44,7 +56,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -52,19 +72,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -107,27 +119,27 @@
                     <time class="post-time">2025-06-18</time>
                     
                         <a href="https://www.guanngxu.com/HoPoXlgLN/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-info">
             #线性稳压器
         </a>
                         
-                        <a href="https://www.guanngxu.com/jSM-A51qWd/" class="post-tag i-tag
-                            i-tag-info">
-            #LDO
-        </a>
-                        
                         <a href="https://www.guanngxu.com/QbHW4oh0b/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_2">
             #开关电源
         </a>
                         
+                        <a href="https://www.guanngxu.com/jSM-A51qWd/" class="post-tag i-tag
+                            i-tag-banana">
+            #LDO
+        </a>
+                        
                         <a href="https://www.guanngxu.com/g-HWNOeTH/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-">
             #BUCK
         </a>
                         
                         <a href="https://www.guanngxu.com/f2t0BU6fkn/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-warning">
             #DC-DC
         </a>
                         
@@ -157,37 +169,29 @@ How to Dynamically Adjust Power Module Output Voltage
 
 动态调节输出电压
 很容易能想到只需要将反馈网络的上分压电阻或下分压电阻替换为滑动电阻，通过改变不同的阻值即可达到动态调节电压的目的。
-当然在实际应用中不太可能使用滑动电阻那么笨拙的东西，我们可以通过向反馈网络中注入少量电流，以此来改变反馈网络的有效增益VFBVOUT\frac{V_{FB}}{V_{OUT}}VOUT​VFB​​。当在反馈节点注入正电流时，上分压电阻表现为变小，因此输出电压会降低；当电流被拉出时，下分压电阻表现为变小，因此输出电压表现为增加。
+当然在实际应用中不太可能使用滑动电阻那么笨拙的东西，我们可以通过向反馈网络中注入少量电流，以此来改变反馈网络的有效增益$\frac{V_{FB}}{V_{OUT}}$。当在反馈节点注入正电流时，上分压电阻表现为变小，因此输出电压会降低；当电流被拉出时，下分压电阻表现为变小，因此输出电压表现为增加。
 
 上文提到的电流源我们可以通过外部对一个电阻施加电压来实现，用下面图中简化模型来进行理论计算。芯片正常工作时，FB 引脚电压始终为芯片内部基准电压，利用这一特点我们可以推导出 Vout 与外部施加电压 Vs 之间的关系。
 
-I2=I1+I3I_{2} = I_{1} + I_{3}
-I2​=I1​+I3​
-VrefR2=Vout−VrefR1+Vs−VrefR3\frac{V_{ref}}{R_{2}} =  \frac{V_{out} - V_{ref}}{R_{1}} + \frac{V_{s} - V_{ref}}{R_{3}}
-R2​Vref​​=R1​Vout​−Vref​​+R3​Vs​−Vref​​
-Vout=R1∙(VrefR2+Vref−VsR3)+VrefV_{out} = R_{1} \bullet (\frac{V_{ref}}{R_{2}} + \frac{V_{ref} - V_{s}}{R_{3}} ) + V_{ref}
-Vout​=R1​∙(R2​Vref​​+R3​Vref​−Vs​​)+Vref​
-Vout=−VsR1R3+Vref∙(1+R1R3+R1R2)V_{out} = -V_{s}\frac{R_{1}}{R_{3}} + V_{ref}\bullet (1 + \frac{R_{1}}{R_{3}} + \frac{R_{1}}{R_{2}})
-Vout​=−Vs​R3​R1​​+Vref​∙(1+R3​R1​​+R2​R1​​)
-通过理论计算可以得出VoutV_{out}Vout​与VsV_{s}Vs​是负相关关系。R3 的值越大，曲线就越缓，意味着可调的精度越高。当 Vs 为 0 时，即 R3 与 R2 并联后的等效阻值为下分压电阻。
+$$I_{2} = I_{1} + I_{3}$$
+$$\frac{V_{ref}}{R_{2}} =  \frac{V_{out} - V_{ref}}{R_{1}} + \frac{V_{s} - V_{ref}}{R_{3}}$$
+$$V_{out} = R_{1} \bullet (\frac{V_{ref}}{R_{2}} + \frac{V_{ref} - V_{s}}{R_{3}} ) + V_{ref}$$
+$$V_{out} = -V_{s}\frac{R_{1}}{R_{3}} + V_{ref}\bullet (1 + \frac{R_{1}}{R_{3}} + \frac{R_{1}}{R_{2}})$$
+通过理论计算可以得出$V_{out}$与$V_{s}$是负相关关系。R3 的值越大，曲线就越缓，意味着可调的精度越高。当 Vs 为 0 时，即 R3 与 R2 并联后的等效阻值为下分压电阻。
 
 能否实现负压输出？
 上文中曲线看出可以通过调节 Vs 的值，实现输出负压的效果，那是否真的能输出负压呢？
-以前在BUCK 电路基础知识中提到过电感电流是个三角波，电感电流上升阶段的斜率为Vi−VoL\frac{V_{i}-V_{o}}{L}LVi​−Vo​​，电感电流下降阶段斜率为−VoL-\frac{V_{o}}{L}−LVo​​。若通过上述方式输出负压，则电感电流将一直处于上升阶段，系统是不稳定的，因此无法输出负压。
+以前在BUCK 电路基础知识中提到过电感电流是个三角波，电感电流上升阶段的斜率为$\frac{V_{i}-V_{o}}{L}$，电感电流下降阶段斜率为$-\frac{V_{o}}{L}$。若通过上述方式输出负压，则电感电流将一直处于上升阶段，系统是不稳定的，因此无法输出负压。
 
 BUCK 电路不能输出负压，那如果换成 LDO 芯片能否输出负压呢？答案也是不能输出负压，原因在于从 GND 至 VOUT 都放了 ESD 二极管，如果 VOUT 为负压，那么二极管就会被导通钳位。
 Buck-Boost 实现正转负
 虽然 Buck 不能实现正转负的功能，但是我们可以通过改变 Buck 芯片外围电路，使其工作在 Buck-Boost 模式下，以此来达到正转负的目的。而对外围电路的修改也很简单，只需要将原来的的 Vout 改为 GND，那么原来的 GND 即输出负压。
 与上文同理，我们可以通过外部施加一个电流源来实现对负压进行动态调节的目的。用下面图中简化模型来进行理论计算。芯片正常工作时，FB 引脚电压始终为芯片内部基准电压，利用这一特点我们可以推导出 Vout 与外部施加电压 Vs 之间的关系。
 
-I2=I1+I3I_{2} = I_{1} + I_{3}
-I2​=I1​+I3​
-GND−VrefR1+Vs−VrefR3=Vref−VoutR2\frac{ GND-V_{ref} }{ R_{1} } + \frac{ V_{s}-V_{ref} }{ R_{3} } = \frac{ V_{ref}-V_{out} }{ R_{2} }
-R1​GND−Vref​​+R3​Vs​−Vref​​=R2​Vref​−Vout​​
-Vout=Vref+R2R1Vref−R2R3(Vs−Vref)V_{out} = V_{ref} + \frac{R_{2}}{R_{1}}V_{ref} - \frac{R_{2}}{R_{3}}(V_{s} - V_{ref})
-Vout​=Vref​+R1​R2​​Vref​−R3​R2​​(Vs​−Vref​)
-Vout=Vref∙(1+R2R1+R2R3)−R2R3VsV_{out} = V_{ref} \bullet (1 + \frac{R_{2}}{R_{1}} + \frac{R_{2}}{R_{3}}) -  \frac{R_{2}}{R_{3}} V_{s}
-Vout​=Vref​∙(1+R1​R2​​+R3​R2​​)−R3​R2​​Vs​
+$$I_{2} = I_{1} + I_{3}$$
+$$\frac{ GND-V_{ref} }{ R_{1} } + \frac{ V_{s}-V_{ref} }{ R_{3} } = \frac{ V_{ref}-V_{out} }{ R_{2} }$$
+$$V_{out} = V_{ref} + \frac{R_{2}}{R_{1}}V_{ref} - \frac{R_{2}}{R_{3}}(V_{s} - V_{ref})$$
+$$V_{out} = V_{ref} \bullet (1 + \frac{R_{2}}{R_{1}} + \frac{R_{2}}{R_{3}}) -  \frac{R_{2}}{R_{3}} V_{s}$$
 考虑到此处的 Vout 是负压，Vout 与 Vs 为正相关关系，所以画出 Vout 与 Vs 的曲线关系如下图所示。
 
 输出最大值最小值由什么决定？
@@ -210,19 +214,19 @@ Vout​=Vref​∙(1+R1​R2​​+R3​R2​​)−R3​R2​​Vs​
                 <div class="post-info">
                     <time class="post-time">2024-05-09</time>
                     
-                        <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
-                            i-tag-primary">
-            #电路基础
-        </a>
-                        
                         <a href="https://www.guanngxu.com/HoPoXlgLN/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-info">
             #线性稳压器
         </a>
                         
                         <a href="https://www.guanngxu.com/jSM-A51qWd/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-banana">
             #LDO
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
+                            i-tag-primary">
+            #电路基础
         </a>
                         
                 </div>
@@ -304,7 +308,7 @@ PSRR（Power Supply Rejection Ratio）量化了 LDO 抑制任何电源变化传�
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu

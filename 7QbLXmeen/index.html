@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     Vue | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
 </head>
 
 <body>
@@ -28,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -44,7 +56,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -52,19 +72,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -106,24 +118,24 @@
                 <div class="post-info">
                     <time class="post-time">2020-01-09</time>
                     
-                        <a href="https://www.guanngxu.com/7QbLXmeen/" class="post-tag i-tag
-                            i-tag-primary">
-            #Vue
-        </a>
-                        
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_3">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-banana">
             #TypeScript
         </a>
                         
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_4">
             #JavaScript
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/7QbLXmeen/" class="post-tag i-tag
+                            i-tag-info">
+            #Vue
         </a>
                         
                 </div>
@@ -144,12 +156,12 @@
 使用 vue-property-decorator
 Vue 官方维护了 vue-class-component 装饰器，vue-property-decorator 则是在vue-class-component基础上增强了更多结合Vue特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。
 截止本文时间，vue-property-decorator共提供了 11 个装饰器和 1 个Mixins方法，下面用@Prop举个例子，是不是看起来引起极度舒适。
-import { Vue, Component, Prop } from &#39;vue-property-decorator&#39;
+import { Vue, Component, Prop } from &amp;#x27;vue-property-decorator&amp;#x27;
 
 @Component
 export default class YourComponent extends Vue {
     @Prop(Number) readonly propA: number | undefined
-    @Prop({ default: &#39;default value&#39; }) readonly propB!: string
+    @Prop({ default: &amp;#x27;default value&amp;#x27; }) readonly propB!: string
     @Prop([String, Boolean]) readonly propC: string | boolean | undefined
 }
 
@@ -162,7 +174,7 @@ export default {
             type: Number
         },
         propB: {
-            default: &#39;default value&#39;
+            default: &amp;#x27;default value&amp;#x27;
         },
         propC: {
             type: [String, Boolean]
@@ -176,12 +188,12 @@ class ExampleApi extends Vue {
 
     public async getExampleData() {
         if (!this.$store.state.exampleData) {
-            const res = await http.get(&#39;url/exampleData&#39;);
+            const res = await http.get(&amp;#x27;url/exampleData&amp;#x27;);
             if (res.result) {
-                this.$store.commit(&#39;setExampleData&#39;, res.data);
+                this.$store.commit(&amp;#x27;setExampleData&amp;#x27;, res.data);
                 return res.data;
             } else {
-            promptUtil.showMessage(&#39;get exampleData failed&#39;, &#39;warning&#39;);
+            promptUtil.showMessage(&amp;#x27;get exampleData failed&amp;#x27;, &amp;#x27;warning&amp;#x27;);
             }
         } else {
             return this.$store.state.exampleData;
@@ -194,13 +206,13 @@ vue.config.js是一个可选的配置文件，如果项目的根目录中存在�
 我们再开发过程中都会使用代理来转发请求，代理的配置也是在这个文件中，它的官方说明在devserver-proxy中，下面是一个简单的vue.config.js文件例子。
 module.exports = {
     filenameHashing: true,
-    outputDir: &#39;dist&#39;,
-    assetsDir: &#39;asserts&#39;,
-    indexPath: &#39;index.html&#39;,
+    outputDir: &amp;#x27;dist&amp;#x27;,
+    assetsDir: &amp;#x27;asserts&amp;#x27;,
+    indexPath: &amp;#x27;index.html&amp;#x27;,
     productionSourceMap: false,
     transpileDependencies: [
-        &#39;vue-echarts&#39;,
-        &#39;resize-detector&#39;
+        &amp;#x27;vue-echarts&amp;#x27;,
+        &amp;#x27;resize-detector&amp;#x27;
     ],
     devServer: {
         hotOnly: true,
@@ -229,7 +241,7 @@ module.exports = {
 
 看到网上也有一部分人说的是src/vue-shim.d.ts，反正不管是怎么命名这个文件的，它们的作用是一样的。
 
-declare module &#39;vue/types/vue&#39; {
+declare module &amp;#x27;vue/types/vue&amp;#x27; {
     interface Vue {
         $message: any,
         $confirm: any,
@@ -239,8 +251,8 @@ declare module &#39;vue/types/vue&#39; {
 }
 
 这里顺道提一下，src/shims-vue.d.ts文件中的如下代码是为了让你的 IDE 明白以.vue结尾的文件是什么玩意儿。
-declare module &#39;*.vue&#39; {
-    import Vue from &#39;vue&#39;;
+declare module &amp;#x27;*.vue&amp;#x27; {
+    import Vue from &amp;#x27;vue&amp;#x27;;
     export default Vue;
 }
 
@@ -248,11 +260,11 @@ declare module &#39;*.vue&#39; {
 路由懒加载
 Vue Router 官方有关于路由懒加载的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用require.ensure()按需加载组件可以生效。
 // base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中
-const Home = (r: any) =&amp;gt; require.ensure([], () =&amp;gt; r(require(&#39;@/views/home.vue&#39;)), layzImportError, &#39;base-view&#39;);
+const Home = (r: any) =&amp;gt; require.ensure([], () =&amp;gt; r(require(&amp;#x27;@/views/home.vue&amp;#x27;)), layzImportError, &amp;#x27;base-view&amp;#x27;);
 
 // 路由加载错误时的提示函数
 function layzImportError() {
-    alert(&#39;路由懒加载错误&#39;);
+    alert(&amp;#x27;路由懒加载错误&amp;#x27;);
 }
 
 上面的方式会在编译的时候把文件自动分成多个小文件，编译后的文件会以你自己命名的模块名来命名，如果代码之间有相互依赖，依赖部分代码编译后的文件会以两个模块名相连后进行命名。
@@ -263,23 +275,23 @@ function layzImportError() {
  引入 jquery 等库可以尝试下面这种方式
  只需要把相应的 js 文件放到指定文件夹即可
 **/
-const $ = require(&#39;@/common/js/jquery.min.js&#39;);
-const md5 = require(&#39;@/common/js/md5.js&#39;);
+const $ = require(&amp;#x27;@/common/js/jquery.min.js&amp;#x27;);
+const md5 = require(&amp;#x27;@/common/js/md5.js&amp;#x27;);
 
 引入一些第三方样式文件、UI 组件等，如果引入不成功可以尝试建一个 js 文件，将导入语句都写在 js 文件中，然后再在main.ts文件中导入这个 js 文件，这个方法能解决大部分的问题。例如我先建了一个lib.js，然后在main.ts中引入lib.js就没有报错。
 // src/plugins/lib.js
-import Vue from &#39;vue&#39;;
+import Vue from &amp;#x27;vue&amp;#x27;;
 
 // 树形组件
-import &#39;vue-tree-halower/dist/halower-tree.min.css&#39;;
-import {VTree} from &#39;vue-tree-halower&#39;;
+import &amp;#x27;vue-tree-halower/dist/halower-tree.min.css&amp;#x27;;
+import {VTree} from &amp;#x27;vue-tree-halower&amp;#x27;;
 // 饿了么组件
-import Element from &#39;element-ui&#39;;
-import &#39;element-ui/lib/theme-chalk/index.css&#39;;
+import Element from &amp;#x27;element-ui&amp;#x27;;
+import &amp;#x27;element-ui/lib/theme-chalk/index.css&amp;#x27;;
 // font-awesome 图标
-import &#39;../../node_modules/font-awesome/css/font-awesome.css&#39;;
-import VueCookies from &#39;vue-cookies&#39;;
-import VueJWT from &#39;vuejs-jwt&#39;;
+import &amp;#x27;../../node_modules/font-awesome/css/font-awesome.css&amp;#x27;;
+import VueCookies from &amp;#x27;vue-cookies&amp;#x27;;
+import VueJWT from &amp;#x27;vuejs-jwt&amp;#x27;;
 
 Vue.use(VueJWT);
 Vue.use(VueCookies);
@@ -288,12 +300,12 @@ Vue.use(Element);
 
 
 // src/main.ts
-import App from &#39;@/app.vue&#39;;
-import Vue from &#39;vue&#39;;
-import router from &#39;./router&#39;;
-import store from &#39;./store&#39;;
-import &#39;./registerServiceWorker&#39;;
-import &#39;./plugins/lib&#39;;
+import App from &amp;#x27;@/app.vue&amp;#x27;;
+import Vue from &amp;#x27;vue&amp;#x27;;
+import router from &amp;#x27;./router&amp;#x27;;
+import store from &amp;#x27;./store&amp;#x27;;
+import &amp;#x27;./registerServiceWorker&amp;#x27;;
+import &amp;#x27;./plugins/lib&amp;#x27;;
 
 Vue.config.productionTip = false;
 
@@ -301,7 +313,7 @@ new Vue({
     router,
     store,
     render: (h) =&amp;gt; h(App),
-}).$mount(&#39;#app&#39;);
+}).$mount(&amp;#x27;#app&amp;#x27;);
 
 因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个index.d.ts文件，实在不行的话，那个特殊的组件不使用 TypeScript 来写也能解决，我目前还没有找一个可以完全解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。
 
@@ -340,7 +352,7 @@ new Vue({
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu

@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     正则表达式是如何运行的？——浅析正则表达式原理 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -100,14 +112,14 @@
                             <time class="post-time">2020-01-03</time>
                             <span class="read-time">8 min read</span>
                             
-                                <a href="https://www.guanngxu.com/XcHzo7Nc6/" class="post-tag i-tag
-                            i-tag-other_4">
-                            #正则表达式
+                                <a href="https://www.guanngxu.com/UGoTtZqQ-y/" class="post-tag i-tag
+                            i-tag-primary">
+                            #编译原理
                         </a>
                                 
-                                <a href="https://www.guanngxu.com/UGoTtZqQ-y/" class="post-tag i-tag
-                            i-tag-other_2">
-                            #编译原理
+                                <a href="https://www.guanngxu.com/XcHzo7Nc6/" class="post-tag i-tag
+                            i-tag-info">
+                            #正则表达式
                         </a>
                                 
                         </div>
@@ -131,12 +143,12 @@
 <p>我们可以用带标记的有向图来表示有穷自动机，称之为<strong>转换图</strong>，其节点是状态，有标记的边表示转换函数。同一个字符可以标记始于同一个状态的两个或多个转换，边可以由输入字符符号标记，其中 NFA 的边还可以用<code>ε</code>标记。</p>
 <p>之所以一个叫有确定和非确定之分，是因为对于同一个状态与同一个输入符号，NFA 可以到达不同的状态。下面看两张图就能明白上面那一长串的文字了。</p>
 <p>图中两个圈圈的状态表示接受状态，也就是说到达这个状态就表示匹配成功。细心的你应该发现了两张图所表示的正则表达式是一样的，这就是有穷自动机神奇的地方，每一个 NFA 我们都能通过算法将其转换为 DFA，所以我们先根据正则表达式构建 NFA，然后再转换成相应的 DFA，最后再进行识别。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1664009813448.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="/post-images/1664009813448.jpg" alt="" loading="lazy"></figure>
 <p>上图的画法在正则表达式很简单的时候还可以，如果遇到很复杂的正则表达式画起来还是挺费力的，如果想对自动机有更加深入的认识可以自行查阅相关资料。下面的图片是使用正则可视化工具生成的，对应的正则表达式是<code>^-?\d+(,\d{3})*(\.\d{1,2})?$</code>，它所匹配的字符串是<code>数字/货币金额（支持负数、千分位分隔符）</code>。</p>
-<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1664009825716.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="/post-images/1664009825716.png" alt="" loading="lazy"></figure>
 <h2 id="回溯">回溯</h2>
 <p>NFA 引擎在遇到多个合法的状态时，它会选择其中一个并记住它，当匹配失败时引擎就会回溯到之前记录的位置继续尝试匹配。这种回溯机制正是造成正则表达式性能问题的主要原因。下面我们通过具体的例子来看看什么是回溯。</p>
-<pre><code class="language-javascript">/ab{1,3}c/
+<pre class="hljs"><code>/ab{<span class="hljs-number">1</span>,<span class="hljs-number">3</span>}c/
 </code></pre>
 <table>
 <thead>
@@ -222,40 +234,40 @@
 <p>会出现上面这种情况的原因在于正则匹配采用了<a href="https://zh.wikipedia.org/wiki/%E5%9B%9E%E6%BA%AF%E6%B3%95">回溯法</a>。回溯法采用试错的思想，它尝试分步的去解决一个问题。在分步解决问题的过程中，当它通过尝试发现现有的分步答案不能得到有效的正确的解答的时候，它将取消上一步甚至是上几步的计算，再通过其它的可能的分步解答再次尝试寻找问题的答案。它通常采用最简单的递归来实现，在反复重复上述的步骤后可能找到一个正确的答案，也可能尝试所有的步骤后发现该问题没有答案，回溯法在最坏的情况下会导致一次复杂度为指数时间的计算。</p>
 <p>上面一段的内容来源于<a href="https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5">维基百科</a>，精简一下就是深度优先搜索算法。贪婪量词、惰性量词、分支结构等等都是可能产生回溯的地方，在写正则表达式时要注意会引起回溯的地方，避免导致性能问题。</p>
 <p><a href="https://blog.cloudflare.com/author/john-graham-cumming/">John Graham-Cumming</a> 在他的博文 <a href="https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/">Details of the Cloudflare outage on July 2, 2019</a> 中详细记录了因为一个正则表达式而导致线上事故的例子。该事故就是因为一个有性能问题的正则表达式，引起了灾难性的回溯，进而导致了 CPU 满载。</p>
-<pre><code class="language-html">(?:(?:\&quot;|'|\]|\}|\\|\d|(?:nan|infinity|true|false|null|undefined|symbol|math)|\`|\-|\+)+[)]*;?((?:\s|-|~|!|{}|\|\||\+)*.*(?:.*=.*)))
+<pre class="hljs"><code>(?:(?:\&quot;|&#x27;|\]|\}|\\|\d|(?:nan|infinity|true|false|null|undefined|symbol|math)|\`|\-|\+)+[)]*;?((?:\s|-|~|!|{}|\|\||\+)*.*(?:.*=.*)))
 </code></pre>
 <p>上面是引起事故的正则表达式，出问题的关键部分在<code>.*(?:.*=.*)</code>中，就是它引起的灾难性回溯导致 CPU 满载。那么我们应该怎么减少或避免回溯呢？无非是提高警惕性，好好写正则表达式；或者使用 DFA 引擎的正则表达式。</p>
 <h2 id="0-9-与-d-的区别">[0-9] 与 \d 的区别</h2>
 <p>此问题来源于<a href="https://stackoverflow.com/questions/16621738/d-is-less-efficient-than-0-9?newsletter=1&amp;nlcode=55866%7cc739">Stackoverflow</a>，题主遇到的问题是<code>\d</code>比<code>[0-9]</code>的效率要低很多，并且给出了如下的测试结果，可以看到<code>\d</code>比<code>[0-9]</code>慢了差不多一倍。</p>
-<pre><code class="language-javascript">Regular expression \d           took 00:00:00.2141226 result: 5077/10000
-Regular expression [0-9]        took 00:00:00.1357972 result: 5077/10000  63.42 % of first
-Regular expression [0123456789] took 00:00:00.1388997 result: 5077/10000  64.87 % of first
+<pre class="hljs"><code><span class="hljs-title class_">Regular</span> expression \d           took <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span><span class="hljs-number">.2141226</span> <span class="hljs-attr">result</span>: <span class="hljs-number">5077</span>/<span class="hljs-number">10000</span>
+<span class="hljs-title class_">Regular</span> expression [<span class="hljs-number">0</span>-<span class="hljs-number">9</span>]        took <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span><span class="hljs-number">.1357972</span> <span class="hljs-attr">result</span>: <span class="hljs-number">5077</span>/<span class="hljs-number">10000</span>  <span class="hljs-number">63.42</span> % <span class="hljs-keyword">of</span> first
+<span class="hljs-title class_">Regular</span> expression [<span class="hljs-number">0123456789</span>] took <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span><span class="hljs-number">.1388997</span> <span class="hljs-attr">result</span>: <span class="hljs-number">5077</span>/<span class="hljs-number">10000</span>  <span class="hljs-number">64.87</span> % <span class="hljs-keyword">of</span> first
 </code></pre>
 <p>出现这个性能问题的原因在于<code>\d</code>匹配的不仅仅是<code>0123456789</code>，<code>\d</code>匹配的是所有的 Unicode 的数字，你可以从 <a href="http://www.fileformat.info/info/unicode/category/Nd/list.htm">Unicode Characters in the 'Number, Decimal Digit' Category</a> 中看到所有在 Unicode 中属于数字的字符。</p>
 <p>此处多提一嘴，<code>[ -~]</code>可以匹配 ASCII 码中所有的可打印字符，你可以查看 <a href="http://ascii.911cha.com/">ASCII 码中的可显示字符</a>，就是从<code>&quot; &quot;</code>（32）至<code>&quot;~&quot;</code>（126）的字符。</p>
 <h2 id="工具资源推荐">工具/资源推荐</h2>
 <p>正则表达式确实很强大，但是它那晦涩的语法也容易让人头疼抓狂，不论是自己还是别人写的正则表达式都挺头大，好的是已经有人整理了<a href="https://github.com/any86/any-rule">常用正则大全</a>，也大神写了个叫做 <a href="http://verbalexpressions.github.io/">VerbalExpressions</a> 的小工具，主流开发语言的版本它都提供了，可以让你用类似于自然语言的方式来写正则表达式，下面是它给出的一个 JS 版示例。</p>
-<pre><code class="language-javascript">// Create an example of how to test for correctly formed URLs
-const tester = VerEx()
-    .startOfLine()
-    .then('http')
-    .maybe('s')
-    .then('://')
-    .maybe('www.')
-    .anythingBut(' ')
-    .endOfLine();
+<pre class="hljs"><code><span class="hljs-comment">// Create an example of how to test for correctly formed URLs</span>
+<span class="hljs-keyword">const</span> tester = <span class="hljs-title class_">VerEx</span>()
+    .<span class="hljs-title function_">startOfLine</span>()
+    .<span class="hljs-title function_">then</span>(<span class="hljs-string">&#x27;http&#x27;</span>)
+    .<span class="hljs-title function_">maybe</span>(<span class="hljs-string">&#x27;s&#x27;</span>)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-string">&#x27;://&#x27;</span>)
+    .<span class="hljs-title function_">maybe</span>(<span class="hljs-string">&#x27;www.&#x27;</span>)
+    .<span class="hljs-title function_">anythingBut</span>(<span class="hljs-string">&#x27; &#x27;</span>)
+    .<span class="hljs-title function_">endOfLine</span>();
 
-// Create an example URL
-const testMe = 'https://www.google.com';
+<span class="hljs-comment">// Create an example URL</span>
+<span class="hljs-keyword">const</span> testMe = <span class="hljs-string">&#x27;https://www.google.com&#x27;</span>;
 
-// Use RegExp object's native test() function
-if (tester.test(testMe)) {
-    alert('We have a correct URL'); // This output will fire
-} else {
-    alert('The URL is incorrect');
+<span class="hljs-comment">// Use RegExp object&#x27;s native test() function</span>
+<span class="hljs-keyword">if</span> (tester.<span class="hljs-title function_">test</span>(testMe)) {
+    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;We have a correct URL&#x27;</span>); <span class="hljs-comment">// This output will fire</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;The URL is incorrect&#x27;</span>);
 }
 
-console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)(www\.)?([^\ ]*)$/
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(tester); <span class="hljs-comment">// Outputs the actual expression used: /^(http)(s)?(\:\/\/)(www\.)?([^\ ]*)$/</span>
 </code></pre>
 <p>文章大部分内容都是介绍的偏原理方面的知识，如果仅仅是想要学习如何使用正则表达式，可以看<a href="https://mengxiaoxu.github.io/post/CY4_BQLR4/">正则表达式语法</a>或者 <a href="https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md">Learn-regex</a>，更为详细的内容推荐看由<a href="https://www.zhihu.com/people/qdlaoyao/activities">老姚</a>写的<a href="https://raw.githubusercontent.com/qdlaoyao/js-regex-mini-book/master/JavaScript%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BF%B7%E4%BD%A0%E4%B9%A6%EF%BC%881.1%E7%89%88%EF%BC%89.pdf">JavaScript 正则表达式迷你书</a></p>
 
@@ -283,7 +295,7 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -340,16 +352,14 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
+            <div class="markdownIt-TOC">
 <ul>
-<li><a href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA">有穷自动机</a></li>
-<li><a href="#%E5%9B%9E%E6%BA%AF">回溯</a></li>
-<li><a href="#0-9-%E4%B8%8E-d-%E7%9A%84%E5%8C%BA%E5%88%AB">[0-9] 与 \d 的区别</a></li>
-<li><a href="#%E5%B7%A5%E5%85%B7%E8%B5%84%E6%BA%90%E6%8E%A8%E8%8D%90">工具/资源推荐</a></li>
+<li><a href="#有穷自动机">有穷自动机</a></li>
+<li><a href="#回溯">回溯</a></li>
+<li><a href="#0-9-与-d-的区别">[0-9] 与 \d 的区别</a></li>
+<li><a href="#工具资源推荐">工具/资源推荐</a></li>
 </ul>
-</li>
-</ul>
+</div>
 
         </div>
         <script>
@@ -386,13 +396,43 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
+            i-tag-other_4" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-error" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
         </a>
         
         <a class="tags-tag i-tag
@@ -401,183 +441,173 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
         </a>
         
         <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
+            健康生活
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            TypeScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
             i-tag-primary" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/krqSF7tYC/">
-            算法
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-other_3" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-error" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/umBdDP7Ll/">
-            C
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-warning" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/hF3_PWTirK/">
-            Java
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
-            嵌入式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/Ykw3uqJED/">
-            随笔思考
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/6ZjSGnvm9/">
-            年度总结
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/u3bra3rlo/">
-            健康生活
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-info" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/EWmAbJCJGF/">
-            TypeScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-info" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
         </a>
         
         <a class="tags-tag i-tag
@@ -586,28 +616,8 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/KCICs8Iip/">
-            记录回忆
-        </a>
-        
-        <a class="tags-tag i-tag
             i-tag-" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/pkJGoZIqgD/">
-            Angular
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/_9zQ4w6VQ/">
-            自然语言处理
         </a>
         
     </div>

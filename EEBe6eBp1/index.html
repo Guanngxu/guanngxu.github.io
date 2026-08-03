@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     爬虫 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
 </head>
 
 <body>
@@ -28,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -44,7 +56,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -52,19 +72,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -107,18 +119,18 @@
                     <time class="post-time">2018-10-03</time>
                     
                         <a href="https://www.guanngxu.com/mVmVUsbMe/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_4">
             #工具教程
         </a>
                         
-                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
-                            i-tag-info">
-            #爬虫
+                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                            i-tag-warning">
+            #Python
         </a>
                         
-                        <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
+                        <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
                             i-tag-primary">
-            #Python
+            #爬虫
         </a>
                         
                 </div>
@@ -153,7 +165,7 @@ def __open_gzh(self):
 
 def __open_write_page(self):
     management = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-menu_management&amp;quot;)
-    material_manage = management.find_element_by_css_selector(&amp;quot;a[title=&#39;素材管理&#39;]&amp;quot;)
+    material_manage = management.find_element_by_css_selector(&amp;quot;a[title=&amp;#x27;素材管理&amp;#x27;]&amp;quot;)
     material_manage.click()
     new_material = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-btn_main&amp;quot;)
     new_material.click()
@@ -232,12 +244,12 @@ def __get_article_list(self):
                     <time class="post-time">2018-07-27</time>
                     
                         <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-other_2">
             #爬虫
         </a>
                         
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_4">
             #Python
         </a>
                         
@@ -291,59 +303,59 @@ class douban_spider(Spider):
     count = 1
 
     # 爬虫启动命令
-    name = &#39;douban&#39;
+    name = &amp;#x27;douban&amp;#x27;
 
     # 头部信息，伪装自己不是爬虫程序
     headers = {
-        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#39;,
+        &amp;#x27;User-Agent&amp;#x27;: &amp;#x27;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&amp;#x27;,
     }
 
     # 爬虫启动链接
     def start_requests(self):
-        url = &#39;https://movie.douban.com/top250&#39;
+        url = &amp;#x27;https://movie.douban.com/top250&amp;#x27;
         yield Request(url, headers=self.headers)
 
     # 处理爬取的数据
     def parse(self, response):
 
-        print(&#39;第&#39;, self.count, &#39;页&#39;)
+        print(&amp;#x27;第&amp;#x27;, self.count, &amp;#x27;页&amp;#x27;)
         self.count += 1
 
         item = DoubanItem()
-        soup = BeautifulSoup(response.text, &#39;html.parser&#39;)
+        soup = BeautifulSoup(response.text, &amp;#x27;html.parser&amp;#x27;)
 
         # 选出电影列表
-        movies = soup.select(&#39;#content div div.article ol li&#39;)
+        movies = soup.select(&amp;#x27;#content div div.article ol li&amp;#x27;)
 
         for movie in movies:
-            item[&#39;title&#39;] = movie.select(&#39;.title&#39;)[0].text
-            item[&#39;ranking&#39;] = movie.select(&#39;em&#39;)[0].text
-            item[&#39;score&#39;] = movie.select(&#39;.rating_num&#39;)[0].text
-            item[&#39;pople_num&#39;] = movie.select(&#39;.star span&#39;)[3].text
+            item[&amp;#x27;title&amp;#x27;] = movie.select(&amp;#x27;.title&amp;#x27;)[0].text
+            item[&amp;#x27;ranking&amp;#x27;] = movie.select(&amp;#x27;em&amp;#x27;)[0].text
+            item[&amp;#x27;score&amp;#x27;] = movie.select(&amp;#x27;.rating_num&amp;#x27;)[0].text
+            item[&amp;#x27;pople_num&amp;#x27;] = movie.select(&amp;#x27;.star span&amp;#x27;)[3].text
 
             # 包含导演、年份、地区、类别
-            info = movie.select(&#39;.bd p&#39;)[0].text
-            director = info.strip().split(&#39;\n&#39;)[0].split(&#39;   &#39;)
-            yac = info.strip().split(&#39;\n&#39;)[1].strip().split(&#39; / &#39;)
+            info = movie.select(&amp;#x27;.bd p&amp;#x27;)[0].text
+            director = info.strip().split(&amp;#x27;\n&amp;#x27;)[0].split(&amp;#x27;   &amp;#x27;)
+            yac = info.strip().split(&amp;#x27;\n&amp;#x27;)[1].strip().split(&amp;#x27; / &amp;#x27;)
 
-            item[&#39;director&#39;] = director[0].split(&#39;: &#39;)[1]
-            item[&#39;year&#39;] = yac[0]
-            item[&#39;area&#39;] = yac[1]
-            item[&#39;clazz&#39;] = yac[2]
+            item[&amp;#x27;director&amp;#x27;] = director[0].split(&amp;#x27;: &amp;#x27;)[1]
+            item[&amp;#x27;year&amp;#x27;] = yac[0]
+            item[&amp;#x27;area&amp;#x27;] = yac[1]
+            item[&amp;#x27;clazz&amp;#x27;] = yac[2]
 
             # 电影描述有为空的，所以需要判断
-            if len(movie.select(&#39;.inq&#39;)) is not 0:
-                item[&#39;decsription&#39;] = movie.select(&#39;.inq&#39;)[0].text
+            if len(movie.select(&amp;#x27;.inq&amp;#x27;)) is not 0:
+                item[&amp;#x27;decsription&amp;#x27;] = movie.select(&amp;#x27;.inq&amp;#x27;)[0].text
             else:
-                item[&#39;decsription&#39;] = &#39;None&#39;
+                item[&amp;#x27;decsription&amp;#x27;] = &amp;#x27;None&amp;#x27;
             yield item
 
         # 下一页：
         # 1，可以在页面中找到下一页的地址
         # 2，自己根据url规律构造地址，这里使用的是第二种方法
-        next_url = soup.select(&#39;.paginator .next a&#39;)[0][&#39;href&#39;]
+        next_url = soup.select(&amp;#x27;.paginator .next a&amp;#x27;)[0][&amp;#x27;href&amp;#x27;]
         if next_url:
-            next_url = &#39;https://movie.douban.com/top250&#39; + next_url
+            next_url = &amp;#x27;https://movie.douban.com/top250&amp;#x27; + next_url
             yield Request(next_url, headers=self.headers)
 
 然后在项目文件夹内打开cmd命令，运行scrapy crawl douban -o movies.csv就会发现提取的信息就写入指定文件了，下面是爬取的结果，效果很理想。
@@ -366,13 +378,8 @@ class douban_spider(Spider):
                     <time class="post-time">2018-04-26</time>
                     
                         <a href="https://www.guanngxu.com/_9zQ4w6VQ/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-primary">
             #自然语言处理
-        </a>
-                        
-                        <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
-                            i-tag-other_1">
-            #Java
         </a>
                         
                         <a href="https://www.guanngxu.com/EEBe6eBp1/" class="post-tag i-tag
@@ -380,8 +387,13 @@ class douban_spider(Spider):
             #爬虫
         </a>
                         
+                        <a href="https://www.guanngxu.com/hF3_PWTirK/" class="post-tag i-tag
+                            i-tag-error">
+            #Java
+        </a>
+                        
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-primary">
             #Python
         </a>
                         
@@ -515,7 +527,7 @@ if (dic.containsKey(&amp;quot;主谓关系&amp;quot;) &amp;amp;&amp;amp; dic.con
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu

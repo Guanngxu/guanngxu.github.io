@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     计算机网络 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
 </head>
 
 <body>
@@ -28,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -44,7 +56,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -52,19 +72,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -99,91 +111,6 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://www.guanngxu.com/kR49avQHp1/">
-                        C 语言 TCP Socket（套接字） 编程
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2026-01-24</time>
-                    
-                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-warning">
-            #操作系统
-        </a>
-                        
-                        <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-error">
-            #计算机网络
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://www.guanngxu.com/kR49avQHp1/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/kR49avQHp1.webp) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-参考内容：
-What is Socket Programming in C?)
-Sockets and Network Programming in C
-Socket in Computer Network 
-socket(2)、bind(2)、listen(2) 、accept(2)、recv(2)、send(2)、sockaddr(3type)
-
-Socket 是现代网络编程的基石。不论是网页浏览（HTTP）、即时通讯（QQ/微信）还是在线游戏，底层都是通过 Socket 机制来实现跨网络的进程间通信。它将复杂的底层网络协议封装成简单易用的编程接口，让开发者能够专注于应用逻辑，而不必从零开始处理复杂的网络包传输细节。
-Socket 让运行在不同机器（或同一台机器）上的两个进程可以相互交换数据。我们可以把 Socket 想象成一个电话机，通话双方都必须各有一个电话（Socket），并通特定的号码（地址）建立连接。
-
-Socket 由 IP 地址和端口号组成，其中 IP 地址标识网络中的具体主机（确定去哪台电脑），端口号用于标识该主机上的具体进程或服务（确定去哪个程序），简单说就是socket = ip + port。
-通过下面的服务器客户端模型状态图，我们可以理解 Socket 在网络上两个节点之间建立连接的作用，下文将逐一讲解其中的每一个步骤和涉及到的函数原型。
-
-函数原型
-#include &amp;lt;sys/socket.h&amp;gt;
-
-int socket(int domain, int type, int protocol);
-
-socket() 用于创建一个用于通信的节点并返回一个指向该节点的文件描述符。需要注意的是 socket() 函数创建的是主动套接字（客户端用于主动发起连接），所以服务端后续需要使用 listen() 将其变为被动套接字。
-
-domain 用于指定通信域，说人话就是使用哪个用于通信的协议族，比如 AF_INET 表示 IPv4 互联网协议，AF_INET6 表示 IPv6 互联网协议，AF_UNIX 表示本地通信协议，AF_BLUETOOTH 表示蓝牙底层套接字协议；
-type 用于指定套接字中使用的通信类型，常用的比如 SOCK_STREAM 提供按顺序、可靠的双向连接字节流传输机制，即 TCP，SOCK_DGRAM 支持数据报（无连接、不可靠的消息），即 UDP；
-protocol 表示套接字中使用的协议，用一个数字表示。如果协议族中只有一个协议，则协议编号为 0；否则，必须指定协议的具体编号。
-
-#include &amp;lt;sys/socket.h&amp;gt;
-#include &amp;lt;netinet/in.h&amp;gt;
-
-// IPv4 only
-struct sockaddr_in {
-    sa_family_t    sin_family;
-    in_port_t      sin_port;
-    struct in_addr sin_addr;
-};
-struct in_addr {
-    uint32_t       s_addr;
-};
-
-int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
-
-前面使用 socket() 创建的套接字并没有为其分配地址，bind() 函数则用于给创建的套接字分配地址，它允许我们将套接字连接到本地地址和端口。
-
-sockfd 即我们通过调用  socket() 获取的套接字文件描述符；
-addr 的实际结构取决于所使用的协议，对于 IPv4 它是 sockaddr_in，对于 IPv6 它是 sockaddr_in6；
-addrlen 表示前一个结构体 addr 的大小（以字节为单位）。
-
-#include &amp;lt;sys/socket.h&amp;gt;
-
-int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://www.guanngxu.com/kR49avQHp1/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
                     <a href="https://www.guanngxu.com/bXKpR9unB5/">
                         一文搞懂 TCP 协议核心机制
                     </a>
@@ -192,7 +119,7 @@ int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
                     <time class="post-time">2026-01-12</time>
                     
                         <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-info">
             #计算机网络
         </a>
                         
@@ -347,19 +274,19 @@ TCP 有两种关闭连接的方式，一种是通过 FIN 来优雅的关闭连�
                 <div class="post-info">
                     <time class="post-time">2019-10-18</time>
                     
-                        <a href="https://www.guanngxu.com/j7DVou3EA/" class="post-tag i-tag
-                            i-tag-success">
-            #Nginx
-        </a>
-                        
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-info">
             #操作系统
         </a>
                         
                         <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-success">
             #计算机网络
+        </a>
+                        
+                        <a href="https://www.guanngxu.com/j7DVou3EA/" class="post-tag i-tag
+                            i-tag-other_4">
+            #Nginx
         </a>
                         
                 </div>
@@ -469,7 +396,7 @@ splice()不局限于sendfile()的功能，也就是说sendfile()是splice()的�
         </a>
                         
                         <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_4">
             #计算机网络
         </a>
                         
@@ -584,22 +511,22 @@ disk cache 与 memory cache
                     <time class="post-time">2018-09-18</time>
                     
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-warning">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/pkJGoZIqgD/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-error">
             #Angular
         </a>
                         
                         <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_2">
             #计算机网络
         </a>
                         
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-error">
             #Python
         </a>
                         
@@ -668,26 +595,26 @@ Angular 中的解决办法
 对于简单请求，只需要设置一下响应头就可以了。
 class TestHandler(tornado.web.RequestHandler):
     def get(self):
-        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        self.set_header(&amp;#x27;Access-Control-Allow-Origin&amp;#x27;, &amp;quot;*&amp;quot;)
         # 可以把 * 写成具体的域名
-        self.write(&#39;cors get success&#39;)
+        self.write(&amp;#x27;cors get success&amp;#x27;)
 
 对于复杂请求，需要设置预检方法，如下所示：
 class CORSHandler(tornado.web.RequestHandler):
     # 复杂请求方法put
     def put(self):
-        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
-        self.write(&#39;put success&#39;)
+        self.set_header(&amp;#x27;Access-Control-Allow-Origin&amp;#x27;, &amp;quot;*&amp;quot;)
+        self.write(&amp;#x27;put success&amp;#x27;)
     # 预检方法设置
     def options(self, *args, **kwargs):
         #设置预检方法接收源
-        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        self.set_header(&amp;#x27;Access-Control-Allow-Origin&amp;#x27;, &amp;quot;*&amp;quot;)
         #设置预复杂方法自定义请求头h1和h2
-        self.set_header(&#39;Access-Control-Allow-Headers&#39;, &amp;quot;h1,h2&amp;quot;)
+        self.set_header(&amp;#x27;Access-Control-Allow-Headers&amp;#x27;, &amp;quot;h1,h2&amp;quot;)
         #设置允许哪些复杂请求方法
-        self.set_header(&#39;Access-Control-Allow-Methods&#39;, &amp;quot;PUT,DELETE&amp;quot;)
+        self.set_header(&amp;#x27;Access-Control-Allow-Methods&amp;#x27;, &amp;quot;PUT,DELETE&amp;quot;)
         #设置预检缓存时间秒,缓存时间内发送请求无需再预检
-        self.set_header(&#39;Access-Control-Max-Age&#39;, 10)
+        self.set_header(&amp;#x27;Access-Control-Max-Age&amp;#x27;, 10)
 
 
                                         </div>
@@ -707,7 +634,7 @@ class CORSHandler(tornado.web.RequestHandler):
                     <time class="post-time">2018-08-26</time>
                     
                         <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_2">
             #计算机网络
         </a>
                         
@@ -807,7 +734,7 @@ HTTP 就是这样的工作方式。
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu

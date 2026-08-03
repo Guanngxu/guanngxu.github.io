@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     算法 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
 </head>
 
 <body>
@@ -28,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -44,7 +56,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -52,19 +72,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -99,105 +111,6 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://www.guanngxu.com/esdygML9J/">
-                        为什么计算机处理排序数组比未排序数组快?
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-11-28</time>
-                    
-                        <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-">
-            #操作系统
-        </a>
-                        
-                        <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-error">
-            #算法
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://www.guanngxu.com/esdygML9J/" class="post-feature-image" style="background-image:url(https://www.guanngxu.com/post-images/esdygML9J.jpeg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            今天在群里看到一个有意思的问题——为什么处理排序数组比处理没有排序的数组要快，这个问题来源于 StackoverFlow，虽然我看到代码略微知道原因，但是模模糊糊不够清晰，搜了很多博客也讲的不够明白，所以就自己来总结了。
-首先来看一下问题，下面是很简单的一段代码，随机生成一些数字，对其中大于 128 的元素求和，记录并打印求和所用时间。
-import java.util.Arrays;
-import java.util.Random;
-
-public class Main
-{
-    public static void main(String[] args)
-    {
-        // Generate data
-        int arraySize = 32768;
-        int data[] = new int[arraySize];
-
-        Random rnd = new Random(0);
-        for (int c = 0; c &amp;lt; arraySize; ++c)
-            data[c] = rnd.nextInt() % 256;
-
-        // !!! With this, the next loop runs faster
-        Arrays.sort(data);
-
-        // Test
-        long start = System.nanoTime();
-        long sum = 0;
-
-        for (int i = 0; i &amp;lt; 100000; ++i)
-        {
-            // Primary loop
-            for (int c = 0; c &amp;lt; arraySize; ++c)
-            {
-                if (data[c] &amp;gt;= 128)
-                    sum += data[c];
-            }
-        }
-
-        System.out.println((System.nanoTime() - start) / 1000000000.0);
-        System.out.println(&amp;quot;sum = &amp;quot; + sum);
-    }
-}
-
-我的运行结果：分别在对数组排序和不排序的前提下测试，在不排序时所用的时间比先排好序所用时间平均要多 10 ms。这不是巧合，而是必然的结果。
-问题就出在那个if判断上面，在旧文顺序、条件、循环语句的底层解释中其实已经提到了造成这种结果的原因，只是旧文中没有拿出具体的例子来说明。
-为了把这个问题搞明白，需要先对流水线有一定的了解。计算机是指令流驱动的，执行的是一个一个的指令，而执行一条指令，又要经过取指、译码、执行、访存、写回、更新六个阶段（不同的划分方式所包含的阶段不一样）。
-六个阶段使用的硬件基本是不一样的，如果一条指令执行完再去执行另一条指令，那么在这段时间里会有很多硬件处于空闲状态，要使计算机的速度变快，那么就不能让硬件停下来，所以有了流水线技术。
-流水线技术通过将指令重叠来实现几条指令并行处理，下图表示的是三阶段指令时序，即把一个指令分为三个阶段。在第一条指令的 B 阶段，A 阶段相关的硬件是空闲的，于是可以将第二条指令的 A 阶段提前操作。
-
-很明显，这种设计大幅提高了指令运行的效率，聪明的你可能发现问题了，要是不知道下一条指令是什么怎么办，那提前的阶段也就白干了，那样流水线不就失效了？没错，这就是导致开篇问题的原因。
-让流水线出问题的情况有三种：
-
-数据相关，后一条指令需要用到前一条指令的运算结果；
-控制相关，比如无条件跳转，跳转的地址需要在译码阶段才能知道，所以跳转之后已经被取出的指令流水就需要清空；
-结构相关，由于一些指令需要的时钟周期长（比如浮点运算等），长时间占用硬件，导致之后的指令无法进入译码等阶段，即它们在争用同一套硬件。
-
-代码中的if (data[c] &amp;gt;= 128)翻译成机器语言就是跳转指令，处理器事先并不知道要跳转到哪个分支，那难道就等知道了才开始下一条指令的取指工作吗？处理器选择了假装知道会跳转到哪个分支（不是谦虚，是真的假装知道），如果猜中了是运气好，而没有猜中那就浪费一点时间重新来干。
-没有排序的数组，元素是随机排列的，每次data[c] &amp;gt;= 128的结果也是随机的，前面的经验就不可参考，所以下一次执行到这里理论上还是会有 50% 的可能会猜错，猜错了肯定就需要花时间来修改犯下的错误，自然就会浪费更多的时间。
-对于排好序的数组，开始几次也需要靠猜，但是猜着猜着发现有规律啊，每次都是往同一个分支跳转，所以以后基本上每次都能猜中，当遍历到与 128 分界的地方，才会出现猜不中的情况，但是猜几次之后，发现这又有规律啊，每次都是朝着另外一个相同分支走的。
-虽然都会猜错，但是在排好序的情况下猜错的几率远远小于未排序时的几率，最终呈现的结果就是处理排序数组比未排序数组快，其原因就是流水线发生了大量的控制相关现象，下面通俗一点，加深一下理解。
-
-远在他方心仪多年的姑娘突然告诉你，其实她也喜欢你，激动的你三天三夜睡不着觉，决定开车前往她的城市，要和她待在一起，但是要去的路上有很多很多岔路，你只能使用的某某地图导航，作为老司机并且怀着立马要见到爱人心情的你，开车超快，什么样罚单都不在乎了。
-地图定位已经跟不上你的速度了，为了尽快到达，遇到岔路你都是随机选一条路前进，遗憾的是，自己的选择不一定对（我们假设高速可以回退），走错路了就要重新回到分岔点，这就对应着未排序的情况。
-现在岔路是有规律的，告诉你开始一直朝着一边走，到某个地点后会一直朝着另一边走，你只需要花点时间去探索一下开始朝左边还是右边，到了中间哪个地点会改变方向就可以了，相比之下就能节省不少时间了，尽快见到自己的爱人，这对应着排好序的情况。
-
-最后的故事改编自两个人的现实生活，一位是自己最好的朋友之一，谈恋爱开心的睡不着觉；另一位是微信上的一位好友，为了对方从北京裸辞飞到了深圳。
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://www.guanngxu.com/esdygML9J/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
                     <a href="https://www.guanngxu.com/NrUpfcbXq/">
                         动态规划算法优化实例——如何求解换钱的方法数
                     </a>
@@ -206,7 +119,7 @@ public class Main
                     <time class="post-time">2018-07-13</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_4">
             #算法
         </a>
                         
@@ -424,7 +337,7 @@ public static int coin(int money[], int target){
                 
     <div class="pagination-container">
         
-            <a href="https://www.guanngxu.com/krqSF7tYC" class="page-btn btn">上一页</a>
+            <a href="https://www.guanngxu.com/krqSF7tYC/" class="page-btn btn">上一页</a>
             
                 
     </div>
@@ -455,7 +368,7 @@ public static int coin(int money[], int target){
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu

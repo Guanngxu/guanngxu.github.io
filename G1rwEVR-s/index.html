@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     MongoDB 聚合(aggregate)入门 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -100,14 +112,14 @@
                             <time class="post-time">2020-01-04</time>
                             <span class="read-time">3 min read</span>
                             
-                                <a href="https://www.guanngxu.com/iqW8DWbw7/" class="post-tag i-tag
-                            i-tag-other_3">
-                            #MongoDB
+                                <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                            i-tag-success">
+                            #数据库
                         </a>
                                 
-                                <a href="https://www.guanngxu.com/ecG5hxBcr/" class="post-tag i-tag
+                                <a href="https://www.guanngxu.com/iqW8DWbw7/" class="post-tag i-tag
                             i-tag-banana">
-                            #数据库
+                            #MongoDB
                         </a>
                                 
                         </div>
@@ -118,60 +130,60 @@
                                     <p><a href="https://docs.mongodb.com/manual/core/aggregation-pipeline">MongoDB 聚合官方文档</a></p>
 <p>聚合管道是一个基于数据处理管道概念建模的数据聚合框架，文档进入一个多阶段的处理管道，该管道最终将其转换为聚合后的结果。</p>
 <p>下面的例子来源于官方文档。第一阶段，<code>$match</code>按<code>status</code>字段来过滤文档，并把<code>status</code>字段值为<code>A</code>的文档传递到下一阶段；第二阶段，<code>$group</code>将文档按<code>cust_id</code>进行分组，并针对每一组数据对<code>amount</code>进行求和。</p>
-<pre><code class="language-js">db.orders.aggregate([
-   { $match: { status: &quot;A&quot; } },
-   { $group: { _id: &quot;$cust_id&quot;, total: { $sum: &quot;$amount&quot; } } }
+<pre class="hljs"><code>db.<span class="hljs-property">orders</span>.<span class="hljs-title function_">aggregate</span>([
+   { <span class="hljs-attr">$match</span>: { <span class="hljs-attr">status</span>: <span class="hljs-string">&quot;A&quot;</span> } },
+   { <span class="hljs-attr">$group</span>: { <span class="hljs-attr">_id</span>: <span class="hljs-string">&quot;$cust_id&quot;</span>, <span class="hljs-attr">total</span>: { <span class="hljs-attr">$sum</span>: <span class="hljs-string">&quot;$amount&quot;</span> } } }
 ])
 </code></pre>
 <h2 id="管道">管道</h2>
-<figure data-type="image" tabindex="1"><img src="https://www.guanngxu.com/post-images/1663502835621.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="/post-images/1663502835621.png" alt="" loading="lazy"></figure>
 <p>聚合管道包含很多步骤，每一步都会将输入的文档进行转换，但并不是每个阶段都一定需要对每个输入文档生成一个输出文档，比如某些阶段可能生成新的文档或者过滤掉文档。</p>
 <p>除了<code>$out</code>、<code>$merge</code>、<code>$geoNear</code>外，其它的阶段都可以在管道中多次出现，更加详细的内容可以查看 <a href="https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/#aggregation-pipeline-operator-reference">Aggregation Pipeline Stages</a>。</p>
-<figure data-type="image" tabindex="2"><img src="https://www.guanngxu.com/post-images/1663502870224.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="/post-images/1663502870224.png" alt="" loading="lazy"></figure>
 <h2 id="管道表达式">管道表达式</h2>
 <p>一些管道阶段采用表达式作为操作元，管道表达式指定了要应用到输入文档的转换，表达式自己是一个文档结构（JSON），表达式也可以包含其它的表达式。</p>
 <p>表达式仅提供文档在内存中的转换，即管道表达式只能对管道中的当前文档进行操作，不能引用来自其他文档的数据。</p>
 <p>写聚合表达式式建议直接参考<a href="https://docs.mongodb.com/manual/core/aggregation-pipeline">官方文档</a>，下面列出一些我收集的案例，供深入理解使用。</p>
 <h2 id="案例一将对象数组转换为单个文档">案例一：将对象数组转换为单个文档</h2>
-<pre><code class="language-json">// 转换前
-{
-    &quot;_id&quot;: &quot;10217941&quot;,
-    &quot;data&quot;: [
-        {
-            &quot;count&quot;: 2,
-            &quot;score&quot;: &quot;0.5&quot;
-        },
-        {
-            &quot;count&quot;: 6,
-            &quot;score&quot;: &quot;0.3&quot;
-        },
-        {
-            &quot;count&quot;: 5,
-            &quot;score&quot;: &quot;0.8&quot;
-        }
-    ]
-}
+<pre class="hljs"><code><span class="hljs-comment">// 转换前</span>
+<span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;10217941&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+        <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;count&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;score&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.5&quot;</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;count&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">6</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;score&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.3&quot;</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;count&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;score&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.8&quot;</span>
+        <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
 
-// 转换后
-{
-    &quot;_id&quot;: &quot;10217941&quot;,
-    &quot;0.3&quot;: 6,
-    &quot;0.5&quot;: 2,
-    &quot;0.8&quot;: 5
-}
+<span class="hljs-comment">// 转换后</span>
+<span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;10217941&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;0.3&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">6</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;0.5&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;0.8&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span>
+<span class="hljs-punctuation">}</span>
 </code></pre>
 <p>需要说明的是，如果上面<code>data</code>属性中的数据格式为<code>{&quot;k&quot;: &quot;0.6&quot;, &quot;v&quot;: 5}</code>，那么下面的聚合表达式就不需要<code>$map</code>，这一点可以查看 <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/arrayToObject">$arrayToObject</a>。这个案例的难点在于<code>score</code>中有小数点，这个小数点会让聚合表达式懵逼的。</p>
-<pre><code class="language-js">db.collection.aggregate([
+<pre class="hljs"><code>db.<span class="hljs-property">collection</span>.<span class="hljs-title function_">aggregate</span>([
     {
-        &quot;$addFields&quot;: {
-            &quot;data&quot;: {
-                &quot;$arrayToObject&quot;: {
-                    &quot;$map&quot;: {
-                        &quot;input&quot;: &quot;$data&quot;,
-                        &quot;as&quot;: &quot;item&quot;,
-                        &quot;in&quot;: {
-                            &quot;k&quot;: &quot;$$item.score&quot;,
-                            &quot;v&quot;: &quot;$$item.count&quot;
+        <span class="hljs-string">&quot;$addFields&quot;</span>: {
+            <span class="hljs-string">&quot;data&quot;</span>: {
+                <span class="hljs-string">&quot;$arrayToObject&quot;</span>: {
+                    <span class="hljs-string">&quot;$map&quot;</span>: {
+                        <span class="hljs-string">&quot;input&quot;</span>: <span class="hljs-string">&quot;$data&quot;</span>,
+                        <span class="hljs-string">&quot;as&quot;</span>: <span class="hljs-string">&quot;item&quot;</span>,
+                        <span class="hljs-string">&quot;in&quot;</span>: {
+                            <span class="hljs-string">&quot;k&quot;</span>: <span class="hljs-string">&quot;$$item.score&quot;</span>,
+                            <span class="hljs-string">&quot;v&quot;</span>: <span class="hljs-string">&quot;$$item.count&quot;</span>
                         }
                     }
                 }
@@ -179,13 +191,13 @@
         }
     },
     {
-        &quot;$addFields&quot;: {
-            &quot;data._id&quot;: &quot;$_id&quot;
+        <span class="hljs-string">&quot;$addFields&quot;</span>: {
+            <span class="hljs-string">&quot;data._id&quot;</span>: <span class="hljs-string">&quot;$_id&quot;</span>
         }
     },
     {
-        &quot;$replaceRoot&quot;: {
-            &quot;newRoot&quot;: &quot;$data&quot;
+        <span class="hljs-string">&quot;$replaceRoot&quot;</span>: {
+            <span class="hljs-string">&quot;newRoot&quot;</span>: <span class="hljs-string">&quot;$data&quot;</span>
         }
     }
 ]);
@@ -215,7 +227,7 @@
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -272,15 +284,13 @@
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
+            <div class="markdownIt-TOC">
 <ul>
-<li><a href="#%E7%AE%A1%E9%81%93">管道</a></li>
-<li><a href="#%E7%AE%A1%E9%81%93%E8%A1%A8%E8%BE%BE%E5%BC%8F">管道表达式</a></li>
-<li><a href="#%E6%A1%88%E4%BE%8B%E4%B8%80%E5%B0%86%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%95%E4%B8%AA%E6%96%87%E6%A1%A3">案例一：将对象数组转换为单个文档</a></li>
+<li><a href="#管道">管道</a></li>
+<li><a href="#管道表达式">管道表达式</a></li>
+<li><a href="#案例一将对象数组转换为单个文档">案例一：将对象数组转换为单个文档</a></li>
 </ul>
-</li>
-</ul>
+</div>
 
         </div>
         <script>
@@ -317,23 +327,13 @@
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
+            i-tag-warning" href="https://www.guanngxu.com/Ykw3uqJED/">
+            随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
+            i-tag-other_2" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
@@ -342,63 +342,73 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
+            i-tag-other_4" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
+            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-other_3" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
+            i-tag-banana" href="https://www.guanngxu.com/ndHrBQqET/">
+            社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
+            i-tag-other_2" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
+            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-other_4" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/mVmVUsbMe/">
+            工具教程
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
+            i-tag-other_1" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
+            i-tag-other_4" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
         </a>
         
         <a class="tags-tag i-tag
@@ -407,33 +417,8 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-warning" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/Ykw3uqJED/">
-            随笔思考
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
         </a>
         
         <a class="tags-tag i-tag
@@ -442,58 +427,113 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ndHrBQqET/">
-            社会经验
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/mVmVUsbMe/">
-            工具教程
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/6ZjSGnvm9/">
-            年度总结
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-other_1" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/wjM4wf9IE/">
-            MySQL
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/dTizl9yei/">
-            SEO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/7QbLXmeen/">
-            Vue
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-banana" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
+            i-tag-other_2" href="https://www.guanngxu.com/KCICs8Iip/">
+            记录回忆
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/EEBe6eBp1/">
+            爬虫
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            Angular
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-warning" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
         </a>
         
         <a class="tags-tag i-tag
@@ -502,43 +542,13 @@
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-success" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/KCICs8Iip/">
-            记录回忆
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-other_4" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/EEBe6eBp1/">
-            爬虫
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/pkJGoZIqgD/">
-            Angular
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/_9zQ4w6VQ/">
-            自然语言处理
         </a>
         
     </div>

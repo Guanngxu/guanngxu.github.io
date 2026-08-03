@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
+<meta name="description" content="Keep trying" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     为什么宏定义要使用 do {...} while (0) ? | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1774864574486">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785679393037">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -20,6 +20,18 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393078395398753" crossorigin="anonymous"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKZHDHRYM6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MKZHDHRYM6');
+    </script>
+    
         
 </head>
 
@@ -29,7 +41,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1774864574486" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785679393037" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -45,7 +57,15 @@
                 
                     
                             <li>
-                                <a href="/archives" class="menu">
+                                <a href="https://www.guanngxu.com/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://www.guanngxu.com/archives/" class="menu">
                                     归档
                                 </a>
                             </li>
@@ -53,19 +73,11 @@
                                 
                     
                             <li>
-                                <a href="/tags" class="menu">
+                                <a href="https://www.guanngxu.com/tags/" class="menu">
                                     标签
                                 </a>
                             </li>
                             
-                                
-                    
-                        <li>
-                            <a href="/about" class="menu" target="_blank">
-                                关于
-                            </a>
-                        </li>
-                        
                                 
             </ul>
         </div>
@@ -100,14 +112,14 @@
                             <time class="post-time">2022-09-15</time>
                             <span class="read-time">4 min read</span>
                             
-                                <a href="https://www.guanngxu.com/vnEfA3xxL/" class="post-tag i-tag
-                            i-tag-other_4">
-                            #嵌入式
+                                <a href="https://www.guanngxu.com/umBdDP7Ll/" class="post-tag i-tag
+                            i-tag-">
+                            #C
                         </a>
                                 
-                                <a href="https://www.guanngxu.com/umBdDP7Ll/" class="post-tag i-tag
-                            i-tag-other_1">
-                            #C
+                                <a href="https://www.guanngxu.com/vnEfA3xxL/" class="post-tag i-tag
+                            i-tag-warning">
+                            #嵌入式
                         </a>
                                 
                         </div>
@@ -127,101 +139,101 @@
 <p>do {...} while(0) 在 C 中是唯一的构造程序，让你定义的宏总是以相同的方式工作，这样不管怎么使用宏（尤其在没有用大括号包围调用宏的语句），宏后面的分号也是相同的效果。</p>
 </blockquote>
 <p>这句话读起来有些拗口，只觉得大佬的表述曲高和寡，翻译翻译就是：使用<code>do {...} while(0)</code>构造后的宏定义不会受到大括号、分号等影响，总能按照我们期望的方式调用运行。下面我们举几个实际的例子来加深理解。</p>
-<pre><code class="language-c">// 现有如下宏定义
-#define foo(x) bar(x); baz(x)
+<pre class="hljs"><code><span class="hljs-comment">// 现有如下宏定义</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> foo(x) bar(x); baz(x)</span>
 
-// 1. 可以这样调用
+<span class="hljs-comment">// 1. 可以这样调用</span>
 foo(wolf);
 
-// 上述调用将会被展开为下列代码，完美没有问题
+<span class="hljs-comment">// 上述调用将会被展开为下列代码，完美没有问题</span>
 bar(wolf); baz(wolf);
 
 
-// 2. 如果我们像下面这样调用呢？
-if (!feral)
+<span class="hljs-comment">// 2. 如果我们像下面这样调用呢？</span>
+<span class="hljs-keyword">if</span> (!feral)
     foo(wolf);
 
-// 上述调用将会被展开为下列代码，很明显这是错误的，并且是很容易犯的错误
-if (!feral)
+<span class="hljs-comment">// 上述调用将会被展开为下列代码，很明显这是错误的，并且是很容易犯的错误</span>
+<span class="hljs-keyword">if</span> (!feral)
     bar(wolf);
 baz(wolf);
 </code></pre>
 <p>为了避免上面例子所出现的问题，我们可以考虑使用<code>{ }</code>直接把整个宏包裹起来，如下所示：</p>
-<pre><code class="language-c">// 修改宏定义为
-#define foo(x) { bar(x); baz(x) }
+<pre class="hljs"><code><span class="hljs-comment">// 修改宏定义为</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> foo(x) { bar(x); baz(x) }</span>
 
-// 3. 例 1 调用
-if (!feral)
+<span class="hljs-comment">// 3. 例 1 调用</span>
+<span class="hljs-keyword">if</span> (!feral)
     foo(wolf);
 
-// 现在上述调用将展开为下列代码
-if (!feral) {
+<span class="hljs-comment">// 现在上述调用将展开为下列代码</span>
+<span class="hljs-keyword">if</span> (!feral) {
     bar(wolf);
     baz(wolf);
 };
 
 
-// 4. 我们再考虑一下如下调用呢
-if (!feral)
+<span class="hljs-comment">// 4. 我们再考虑一下如下调用呢</span>
+<span class="hljs-keyword">if</span> (!feral)
     foo(wolf);
-else
+<span class="hljs-keyword">else</span>
     bin(wolf);
 
-// 上述调用将会被展开为下列代码，很明显又出现了语法错误
-if (!feral) {
+<span class="hljs-comment">// 上述调用将会被展开为下列代码，很明显又出现了语法错误</span>
+<span class="hljs-keyword">if</span> (!feral) {
     bar(wolf);
     baz(wolf);
 };
-else
+<span class="hljs-keyword">else</span>
     bin(wolf);
 </code></pre>
 <p>我们继续考虑比使用<code>{ }</code>直接把整个宏包裹起来更好的方法，即本文标题所说的使用<code>do {...} while (0)</code>，即上述宏将定义为如下形式。</p>
-<pre><code class="language-c">// 终极版宏定义
-#define foo(x) do { bar(x); baz(x) } while (0)
+<pre class="hljs"><code><span class="hljs-comment">// 终极版宏定义</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> foo(x) do { bar(x); baz(x) } while (0)</span>
 
-// 5. 例 4 调用
-if (!feral)
+<span class="hljs-comment">// 5. 例 4 调用</span>
+<span class="hljs-keyword">if</span> (!feral)
     foo(wolf);
-else
+<span class="hljs-keyword">else</span>
     bin(wolf);
 
-// 现在上述调用将展开为下列形式，很完美
-if (!feral)
-    do { bar(wolf); baz(wolf) } while (0);
-else
+<span class="hljs-comment">// 现在上述调用将展开为下列形式，很完美</span>
+<span class="hljs-keyword">if</span> (!feral)
+    <span class="hljs-keyword">do</span> { bar(wolf); baz(wolf) } <span class="hljs-keyword">while</span> (<span class="hljs-number">0</span>);
+<span class="hljs-keyword">else</span>
     bin(wolf);
 </code></pre>
 <p><code>do {...} while (0)</code>除了在宏定义中可以发挥完美的作用外，在某些情况下还可以当作<code>goto</code>使用。因为<code>goto</code>不符合软件工程的结构化，并且容易使得代码晦涩难懂，所以很多公司都不倡导使用甚至禁止使用。那么我们可以使用<code>do {...} while (0)</code>来做同样的事情。</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-int main()
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
 {
-   char *str;
-   /* 最初的内存分配 */
-   str = (char *) malloc(15);
-   if(str != NULL)
-     goto loop;
-   printf(&quot;hello world\n&quot;);
+   <span class="hljs-type">char</span> *str;
+   <span class="hljs-comment">/* 最初的内存分配 */</span>
+   str = (<span class="hljs-type">char</span> *) <span class="hljs-built_in">malloc</span>(<span class="hljs-number">15</span>);
+   <span class="hljs-keyword">if</span>(str != <span class="hljs-literal">NULL</span>)
+     <span class="hljs-keyword">goto</span> loop;
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;hello world\n&quot;</span>);
 loop:
-   printf(&quot;malloc success\n&quot;);
-   return 0;
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;malloc success\n&quot;</span>);
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
 <p>上述代码我们可以修改为下列形式，使用<code>do {...} while (0)</code>将函数主体包裹起来，而<code>break</code>语句则替代了<code>goto</code>语句的作用，并且代码的可读性与可维护性都比上述<code>goto</code>方式更好。</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-int main()
+<pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
 {
-  do{
-      char *str;
-      /* 最初的内存分配 */
-      str = (char *) malloc(15);
-      if(str != NULL)
-       break;
-      printf(&quot;hello world\n&quot;);
-  }while(0);
-   printf(&quot;malloc success\n&quot;);
-   return 0;
+  <span class="hljs-keyword">do</span>{
+      <span class="hljs-type">char</span> *str;
+      <span class="hljs-comment">/* 最初的内存分配 */</span>
+      str = (<span class="hljs-type">char</span> *) <span class="hljs-built_in">malloc</span>(<span class="hljs-number">15</span>);
+      <span class="hljs-keyword">if</span>(str != <span class="hljs-literal">NULL</span>)
+       <span class="hljs-keyword">break</span>;
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;hello world\n&quot;</span>);
+  }<span class="hljs-keyword">while</span>(<span class="hljs-number">0</span>);
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;malloc success\n&quot;</span>);
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
 
@@ -249,7 +261,7 @@ int main()
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1774864574486">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1785679393037">
         </div>
         <h1 class="id_card-title">
             Guanngxu
@@ -309,143 +321,103 @@ int main()
     <div class="tags-card-container">
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/1qL6ZUU_c5/">
-            领域驱动设计
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/_7KBEW1cq7/">
-            Python
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/sQhfLtj4g/">
-            计算机网络
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
-            哈夫曼树
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/krqSF7tYC/">
-            算法
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/HoPoXlgLN/">
-            线性稳压器
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/jSM-A51qWd/">
-            LDO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/QbHW4oh0b/">
-            开关电源
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/g-HWNOeTH/">
-            BUCK
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/f2t0BU6fkn/">
-            DC-DC
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/pCdNazHt7/">
-            电路基础
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/COeYlWWen/">
-            PCB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ypjmBXLlm3/">
-            Layout
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ONdBQtmOe/">
-            电平转换
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/umBdDP7Ll/">
-            C
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/M4PlaWNdk/">
-            Oracle
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/ecG5hxBcr/">
-            数据库
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/hF3_PWTirK/">
-            Java
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/vnEfA3xxL/">
-            嵌入式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
-            操作系统
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/Ykw3uqJED/">
+            i-tag-primary" href="https://www.guanngxu.com/Ykw3uqJED/">
             随笔思考
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/wgJXq4UXE/">
-            Git
+            i-tag-success" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/BDX4-XwWJ/">
-            信用卡
+            i-tag-banana" href="https://www.guanngxu.com/krqSF7tYC/">
+            算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ML7-KNp5c/">
-            赚钱套利
+            i-tag-" href="https://www.guanngxu.com/6ys69eBdL/">
+            前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/3pFNTYNB8/">
-            翻译摘录
+            i-tag-other_1" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-error" href="https://www.guanngxu.com/pCdNazHt7/">
+            电路基础
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-error" href="https://www.guanngxu.com/ovndYzDa7N/">
+            JavaScript
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/sQhfLtj4g/">
+            计算机网络
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/ML7-KNp5c/">
+            赚钱套利
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-other_4" href="https://www.guanngxu.com/QbHW4oh0b/">
+            开关电源
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            DC-DC
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_2" href="https://www.guanngxu.com/umBdDP7Ll/">
+            C
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/ecG5hxBcr/">
+            数据库
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-info" href="https://www.guanngxu.com/g-HWNOeTH/">
+            BUCK
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/hF3_PWTirK/">
+            Java
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-error" href="https://www.guanngxu.com/vnEfA3xxL/">
+            嵌入式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/3pFNTYNB8/">
+            翻译摘录
         </a>
         
         <a class="tags-tag i-tag
@@ -454,83 +426,123 @@ int main()
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/QNwNfWJcwj/">
-            灰产骗局
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/wjM4wf9IE/">
-            MySQL
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/dTizl9yei/">
-            SEO
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/7QbLXmeen/">
-            Vue
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/6ys69eBdL/">
-            前端
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-info" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ovndYzDa7N/">
-            JavaScript
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/iqW8DWbw7/">
-            MongoDB
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/XcHzo7Nc6/">
-            正则表达式
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/UGoTtZqQ-y/">
-            编译原理
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/j7DVou3EA/">
-            Nginx
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-other_2" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/9WeHlVlqK9/">
-            软件测试
-        </a>
-        
-        <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-other_4" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-error" href="https://www.guanngxu.com/HoPoXlgLN/">
+            线性稳压器
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/jSM-A51qWd/">
+            LDO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/wgJXq4UXE/">
+            Git
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            信用卡
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            灰产骗局
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            编译原理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            正则表达式
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-primary" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/1qL6ZUU_c5/">
+            领域驱动设计
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/GndhdyXw87/">
+            哈夫曼树
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/COeYlWWen/">
+            PCB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-success" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            Layout
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-primary" href="https://www.guanngxu.com/ONdBQtmOe/">
+            电平转换
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_1" href="https://www.guanngxu.com/M4PlaWNdk/">
+            Oracle
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/wjM4wf9IE/">
+            MySQL
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/dTizl9yei/">
+            SEO
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-" href="https://www.guanngxu.com/7QbLXmeen/">
+            Vue
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-banana" href="https://www.guanngxu.com/iqW8DWbw7/">
+            MongoDB
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_4" href="https://www.guanngxu.com/j7DVou3EA/">
+            Nginx
+        </a>
+        
+        <a class="tags-tag i-tag
+            i-tag-other_3" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            软件测试
         </a>
         
     </div>
