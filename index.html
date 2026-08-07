@@ -7,10 +7,10 @@
 <title>
     Guanngxu - Keep trying
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785833734628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1786072789175">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/katex.min.css">
 <link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
 <!-- js -->
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785833734628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1786072789175" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -130,12 +130,12 @@
                     <time class="post-time">2026-03-24</time>
                     
                         <a href="https://www.guanngxu.com/1qL6ZUU_c5/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-primary">
             #领域驱动设计
         </a>
                         
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-warning">
             #Python
         </a>
                         
@@ -1627,7 +1627,7 @@ if __name__ == &amp;quot;__main__&amp;quot;:
                     <time class="post-time">2026-01-12</time>
                     
                         <a href="https://www.guanngxu.com/sQhfLtj4g/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-banana">
             #计算机网络
         </a>
                         
@@ -1776,7 +1776,7 @@ Sequence Number 用于跟踪已经发送的数据，Acknowledgment Number 则用
                     <time class="post-time">2026-01-04</time>
                     
                         <a href="https://www.guanngxu.com/_7KBEW1cq7/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-info">
             #Python
         </a>
                         
@@ -2908,12 +2908,12 @@ if __name__ == &amp;quot;__main__&amp;quot;:
                     <time class="post-time">2025-11-09</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_4">
             #算法
         </a>
                         
                         <a href="https://www.guanngxu.com/GndhdyXw87/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_1">
             #哈夫曼树
         </a>
                         
@@ -3253,12 +3253,12 @@ int main(int argc, char** argv)
                     <time class="post-time">2025-06-18</time>
                     
                         <a href="https://www.guanngxu.com/HoPoXlgLN/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_2">
             #线性稳压器
         </a>
                         
                         <a href="https://www.guanngxu.com/QbHW4oh0b/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_1">
             #开关电源
         </a>
                         
@@ -3268,12 +3268,12 @@ int main(int argc, char** argv)
         </a>
                         
                         <a href="https://www.guanngxu.com/g-HWNOeTH/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_1">
             #BUCK
         </a>
                         
                         <a href="https://www.guanngxu.com/f2t0BU6fkn/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_1">
             #DC-DC
         </a>
                         
@@ -3301,27 +3301,35 @@ How to Dynamically Adjust Power Module Output Voltage
 可以发现不论是 LDO，还是降压型开关电源，它们都可以用下面的模型简化。即通过分压电阻网络对输出进行采样，将采样结果反馈至内部误差放大器，与内部基准源进行比较，从而调节输出电压使之稳定在设定值。
 
 动态调节输出电压很容易能想到只需要将反馈网络的上分压电阻或下分压电阻替换为滑动电阻，通过改变不同的阻值即可达到动态调节电压的目的。
-当然在实际应用中不太可能使用滑动电阻那么笨拙的东西，我们可以通过向反馈网络中注入少量电流，以此来改变反馈网络的有效增益$\frac{V_{FB}}{V_{OUT}}$。当在反馈节点注入正电流时，上分压电阻表现为变小，因此输出电压会降低；当电流被拉出时，下分压电阻表现为变小，因此输出电压表现为增加。
+当然在实际应用中不太可能使用滑动电阻那么笨拙的东西，我们可以通过向反馈网络中注入少量电流，以此来改变反馈网络的有效增益VFBVOUT\frac{V_{FB}}{V_{OUT}}VOUT​VFB​​。当在反馈节点注入正电流时，上分压电阻表现为变小，因此输出电压会降低；当电流被拉出时，下分压电阻表现为变小，因此输出电压表现为增加。
 
 上文提到的电流源我们可以通过外部对一个电阻施加电压来实现，用下面图中简化模型来进行理论计算。芯片正常工作时，FB 引脚电压始终为芯片内部基准电压，利用这一特点我们可以推导出 Vout 与外部施加电压 Vs 之间的关系。
 
-$$I_{2} = I_{1} + I_{3}$$
-$$\frac{V_{ref}}{R_{2}} =  \frac{V_{out} - V_{ref}}{R_{1}} + \frac{V_{s} - V_{ref}}{R_{3}}$$
-$$V_{out} = R_{1} \bullet (\frac{V_{ref}}{R_{2}} + \frac{V_{ref} - V_{s}}{R_{3}} ) + V_{ref}$$
-$$V_{out} = -V_{s}\frac{R_{1}}{R_{3}} + V_{ref}\bullet (1 + \frac{R_{1}}{R_{3}} + \frac{R_{1}}{R_{2}})$$
-通过理论计算可以得出$V_{out}$与$V_{s}$是负相关关系。R3 的值越大，曲线就越缓，意味着可调的精度越高。当 Vs 为 0 时，即 R3 与 R2 并联后的等效阻值为下分压电阻。
+I2=I1+I3I_{2} = I_{1} + I_{3}
+I2​=I1​+I3​
+VrefR2=Vout−VrefR1+Vs−VrefR3\frac{V_{ref}}{R_{2}} =  \frac{V_{out} - V_{ref}}{R_{1}} + \frac{V_{s} - V_{ref}}{R_{3}}
+R2​Vref​​=R1​Vout​−Vref​​+R3​Vs​−Vref​​
+Vout=R1∙(VrefR2+Vref−VsR3)+VrefV_{out} = R_{1} \bullet (\frac{V_{ref}}{R_{2}} + \frac{V_{ref} - V_{s}}{R_{3}} ) + V_{ref}
+Vout​=R1​∙(R2​Vref​​+R3​Vref​−Vs​​)+Vref​
+Vout=−VsR1R3+Vref∙(1+R1R3+R1R2)V_{out} = -V_{s}\frac{R_{1}}{R_{3}} + V_{ref}\bullet (1 + \frac{R_{1}}{R_{3}} + \frac{R_{1}}{R_{2}})
+Vout​=−Vs​R3​R1​​+Vref​∙(1+R3​R1​​+R2​R1​​)
+通过理论计算可以得出VoutV_{out}Vout​与VsV_{s}Vs​是负相关关系。R3 的值越大，曲线就越缓，意味着可调的精度越高。当 Vs 为 0 时，即 R3 与 R2 并联后的等效阻值为下分压电阻。
 
 能否实现负压输出？上文中曲线看出可以通过调节 Vs 的值，实现输出负压的效果，那是否真的能输出负压呢？
-以前在BUCK 电路基础知识中提到过电感电流是个三角波，电感电流上升阶段的斜率为$\frac{V_{i}-V_{o}}{L}$，电感电流下降阶段斜率为$-\frac{V_{o}}{L}$。若通过上述方式输出负压，则电感电流将一直处于上升阶段，系统是不稳定的，因此无法输出负压。
+以前在BUCK 电路基础知识中提到过电感电流是个三角波，电感电流上升阶段的斜率为Vi−VoL\frac{V_{i}-V_{o}}{L}LVi​−Vo​​，电感电流下降阶段斜率为−VoL-\frac{V_{o}}{L}−LVo​​。若通过上述方式输出负压，则电感电流将一直处于上升阶段，系统是不稳定的，因此无法输出负压。
 
 BUCK 电路不能输出负压，那如果换成 LDO 芯片能否输出负压呢？答案也是不能输出负压，原因在于从 GND 至 VOUT 都放了 ESD 二极管，如果 VOUT 为负压，那么二极管就会被导通钳位。
 Buck-Boost 实现正转负虽然 Buck 不能实现正转负的功能，但是我们可以通过改变 Buck 芯片外围电路，使其工作在 Buck-Boost 模式下，以此来达到正转负的目的。而对外围电路的修改也很简单，只需要将原来的的 Vout 改为 GND，那么原来的 GND 即输出负压。
 与上文同理，我们可以通过外部施加一个电流源来实现对负压进行动态调节的目的。用下面图中简化模型来进行理论计算。芯片正常工作时，FB 引脚电压始终为芯片内部基准电压，利用这一特点我们可以推导出 Vout 与外部施加电压 Vs 之间的关系。
 
-$$I_{2} = I_{1} + I_{3}$$
-$$\frac{ GND-V_{ref} }{ R_{1} } + \frac{ V_{s}-V_{ref} }{ R_{3} } = \frac{ V_{ref}-V_{out} }{ R_{2} }$$
-$$V_{out} = V_{ref} + \frac{R_{2}}{R_{1}}V_{ref} - \frac{R_{2}}{R_{3}}(V_{s} - V_{ref})$$
-$$V_{out} = V_{ref} \bullet (1 + \frac{R_{2}}{R_{1}} + \frac{R_{2}}{R_{3}}) -  \frac{R_{2}}{R_{3}} V_{s}$$
+I2=I1+I3I_{2} = I_{1} + I_{3}
+I2​=I1​+I3​
+GND−VrefR1+Vs−VrefR3=Vref−VoutR2\frac{ GND-V_{ref} }{ R_{1} } + \frac{ V_{s}-V_{ref} }{ R_{3} } = \frac{ V_{ref}-V_{out} }{ R_{2} }
+R1​GND−Vref​​+R3​Vs​−Vref​​=R2​Vref​−Vout​​
+Vout=Vref+R2R1Vref−R2R3(Vs−Vref)V_{out} = V_{ref} + \frac{R_{2}}{R_{1}}V_{ref} - \frac{R_{2}}{R_{3}}(V_{s} - V_{ref})
+Vout​=Vref​+R1​R2​​Vref​−R3​R2​​(Vs​−Vref​)
+Vout=Vref∙(1+R2R1+R2R3)−R2R3VsV_{out} = V_{ref} \bullet (1 + \frac{R_{2}}{R_{1}} + \frac{R_{2}}{R_{3}}) -  \frac{R_{2}}{R_{3}} V_{s}
+Vout​=Vref​∙(1+R1​R2​​+R3​R2​​)−R3​R2​​Vs​
 考虑到此处的 Vout 是负压，Vout 与 Vs 为正相关关系，所以画出 Vout 与 Vs 的曲线关系如下图所示。
 
 输出最大值最小值由什么决定？由于 BUCK 上下管打开关断始终需要一定时间，因此最小值由最小占空比决定，即由 min-on time 决定。
@@ -3344,17 +3352,17 @@ $$V_{out} = V_{ref} \bullet (1 + \frac{R_{2}}{R_{1}} + \frac{R_{2}}{R_{3}}) -  \
                     <time class="post-time">2024-12-10</time>
                     
                         <a href="https://www.guanngxu.com/f2t0BU6fkn/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_3">
             #DC-DC
         </a>
                         
                         <a href="https://www.guanngxu.com/QbHW4oh0b/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-banana">
             #开关电源
         </a>
                         
                         <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_1">
             #电路基础
         </a>
                         
@@ -3377,7 +3385,7 @@ Boost 电路构建我们先复习一下 BUCK 电路的基础知识。BUCK 电路
 在不考虑使用变压器的情况下，如何构造一个升压结构呢？其实换个角度想构造升压电路，其实就是构造一个降流电路出来。那么如何构造降流电路呢？
 参考 BUCK 降压的原理，我们使用同样的方式对电流进行处理，即将 BUCK 电路进行改造来完成这个降流工作。下面是一个电流源、开关和负载构成的电路，当开关 S 闭合时，电流不流向负载；当开关 S 打开时，电流即流向负载。
 
-此时负载所获得的电流是一个方波，大致是下面这个样子的。可以发现与 BUCK 电路很像，我们只需要控制开关 S 的闭合时间，就可以控制流向负载的总电流。根据波形图可以确定，流向负载的电流一定小于输入电流，当开关打开时电流才流向负载。设置占空比为 D，则 $I_{o}=(1-D)I_{i}$，根据 $V_{o}I_{o}=V_{i}I_{i}$，那么即有 $V_{o}=\frac{1}{1-D}V _{i}$
+此时负载所获得的电流是一个方波，大致是下面这个样子的。可以发现与 BUCK 电路很像，我们只需要控制开关 S 的闭合时间，就可以控制流向负载的总电流。根据波形图可以确定，流向负载的电流一定小于输入电流，当开关打开时电流才流向负载。设置占空比为 D，则 Io=(1−D)IiI_{o}=(1-D)I_{i}Io​=(1−D)Ii​，根据 VoIo=ViIiV_{o}I_{o}=V_{i}I_{i}Vo​Io​=Vi​Ii​，那么即有 Vo=11−DViV_{o}=\frac{1}{1-D}V _{i}Vo​=1−D1​Vi​
 
 我们目前的电路还是过于理想化了，我们平时见到的都是电压源，基本没有见过电流源的场景。那么如何利用电压源做出来电流源呢？考虑到电感可以阻碍电路的变化，一个电压源串联一个电感我们可以将之近似认为是一个电流源。
 
@@ -3394,87 +3402,87 @@ Boost 电路构建我们先复习一下 BUCK 电路的基础知识。BUCK 电路
 
 至此我们即构建了一个标准的同步 Boost 电路。回过头再来看看，我们利用储能元件从输入电源获得能量得到一个电压，并将这个电压与输入电压进行串联，以此来实现了升压的效果。电容和电感是两种常见的储能元件，使用电感或电容均可以达到升压目的。
 比如 BUCK 电路中若上管为 NMOS，则需要添加 boot 电容实现升压才能打开 NMOS 管。原因在于 NMOS 导通条件为 VGS 大于 Vth，而 BUCK 电路中的 NMOS 上管 S 电压最低为 Vin，因此需要 boot 电容进行升压。
-我们在 Boost 电路中使用电感来实现升压升压的功能。当电感与负载断开并接地时，电感激磁并将能量存储在电感中。当电感和输入电压断开后，由于电感电流不能突变：$V_{in} =L\frac{di}{dt}$，电感中变化的电流产生感应电压，感应电压与输入电压串联达到了升压目的。
+我们在 Boost 电路中使用电感来实现升压升压的功能。当电感与负载断开并接地时，电感激磁并将能量存储在电感中。当电感和输入电压断开后，由于电感电流不能突变：Vin=LdidtV_{in} =L\frac{di}{dt}Vin​=Ldtdi​，电感中变化的电流产生感应电压，感应电压与输入电压串联达到了升压目的。
 
 稳态分析我们所说的稳态分析，是指输入输出电压都是稳定不变的前提下进行的分析。我们将一些已知条件列出来：
 
-输入电压：$V_{i}$
-输出电压：$V_{o}$
-负载电阻：$R$
-开关频率：$f$
+输入电压：ViV_{i}Vi​
+输出电压：VoV_{o}Vo​
+负载电阻：RRR
+开关频率：fff
 
-伏秒平衡计算的基本原理就是电容和电感的充放电，根据前文所说的 $V_{o}=\frac{1}{1-D}V _{i}$，可以知道输出电压肯定大于输入电压。
-在下管导通上管截止时，电感两端电压是 $V_{i}$；在下管截止上管导通时，电感右侧的电压为 $V_{o}$，左侧为电源输入 $V_{i}$，所以电感两端电压为 $V_{o}-V_{i}$。
+伏秒平衡计算的基本原理就是电容和电感的充放电，根据前文所说的 Vo=11−DViV_{o}=\frac{1}{1-D}V _{i}Vo​=1−D1​Vi​，可以知道输出电压肯定大于输入电压。
+在下管导通上管截止时，电感两端电压是 ViV_{i}Vi​；在下管截止上管导通时，电感右侧的电压为 VoV_{o}Vo​，左侧为电源输入 ViV_{i}Vi​，所以电感两端电压为 Vo−ViV_{o}-V_{i}Vo​−Vi​。
 整个电路处于稳定状态，负载电流恒定，那么在一个周期内，电感电流增加的量肯定等于电感电流减小的量，即充了多少电就要放多少电，不然负载的电流或电压将会发生变化。
-前文已有$\frac{\mathrm{d} i}{\mathrm{d} t} =\frac{{U}}{L}$，而 $L$ 恒定，那么电感电流的变化速度即与电压成正比关系，即电感电流上升（下降）的斜率与电压成正比关系。而电感电流上升和下降的高度相同，那么上升时间和下降时间就自然构成反比关系。
-$\frac{T_{on} }{T_{off} } = \frac{V_{o}-V_{i}}{V_{i}}$，将其进行简单变换即可得到闻名江湖的伏秒平衡法则。
-$T_{on}V_{i} = T_{off}(V_{o}-V_{i})$
-占空比已知 $T=T_{on}+T_{off}=\frac{1}{f}$，结合伏秒平衡法则可以计算出：
-开通时间：$T_{on} = \frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{1}{f}$
-关断时间：$T_{off} = \frac{V_{i}}{V_{o}} \bullet \frac{1}{f}$
-占空比：$D = \frac{T_{on}}{T}=\frac{V_{o}-V_{i}}{V_{o}}$
+前文已有didt=UL\frac{\mathrm{d} i}{\mathrm{d} t} =\frac{{U}}{L}dtdi​=LU​，而 LLL 恒定，那么电感电流的变化速度即与电压成正比关系，即电感电流上升（下降）的斜率与电压成正比关系。而电感电流上升和下降的高度相同，那么上升时间和下降时间就自然构成反比关系。
+TonToff=Vo−ViVi\frac{T_{on} }{T_{off} } = \frac{V_{o}-V_{i}}{V_{i}}Toff​Ton​​=Vi​Vo​−Vi​​，将其进行简单变换即可得到闻名江湖的伏秒平衡法则。
+TonVi=Toff(Vo−Vi)T_{on}V_{i} = T_{off}(V_{o}-V_{i})Ton​Vi​=Toff​(Vo​−Vi​)
+占空比已知 T=Ton+Toff=1fT=T_{on}+T_{off}=\frac{1}{f}T=Ton​+Toff​=f1​，结合伏秒平衡法则可以计算出：
+开通时间：Ton=Vo−ViVo∙1fT_{on} = \frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{1}{f}Ton​=Vo​Vo​−Vi​​∙f1​
+关断时间：Toff=ViVo∙1fT_{off} = \frac{V_{i}}{V_{o}} \bullet \frac{1}{f}Toff​=Vo​Vi​​∙f1​
+占空比：D=TonT=Vo−ViVoD = \frac{T_{on}}{T}=\frac{V_{o}-V_{i}}{V_{o}}D=TTon​​=Vo​Vo​−Vi​​
 通过计算可以发现，占空比与电感没有关系，与负载电流大小也没有关系，只和输入输出电压有联系。
 纹波电流上文计算电感电流斜率时已经能确定电流波形是个三角波，纹波电流等于在下管导通时电感电流的增大值，也等于在下管截止时电感电流减小的值，计算任意一个即可得到纹波电流。我们以下管导通时增大的电感电流计算。
 
-下管导通时电感两端电压为 $V_{i}$，导通时间为 $T_{on} = \frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{1}{f}$，根据 $U=L\frac{di}{dt}$ 有：
-$\triangle I_{L} =di$
-$=T_{on}\bullet \frac{U}{L}$
-$=\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}$
-$=\frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf}$
+下管导通时电感两端电压为 ViV_{i}Vi​，导通时间为 Ton=Vo−ViVo∙1fT_{on} = \frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{1}{f}Ton​=Vo​Vo​−Vi​​∙f1​，根据 U=LdidtU=L\frac{di}{dt}U=Ldtdi​ 有：
+△IL=di\triangle I_{L} =di△IL​=di
+=Ton∙UL=T_{on}\bullet \frac{U}{L}=Ton​∙LU​
+=Vo−ViVo∙ViL∙1f=\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}=Vo​Vo​−Vi​​∙LVi​​∙f1​
+=(Vo−Vi)ViVoLf=\frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf}=Vo​Lf(Vo​−Vi​)Vi​​
 根据理论计算可以发现，电感电流的纹波和负载电流的大小没有关系。同时电感的感值会影响纹波电流的大小，因此电感的选择是系统一个很重要的参数。
-功率电感选择在系统稳态时，输出端电容是不耗电的，电压也不会有变化，所以输出电容上面流过的平均电流为 0。负载的所有电流都从上管而来，因此流过上管的平均电流也是 $I_{o}$。输入功率等于输出功率，输入电流等于流过电感的电流，即有：
-$V_{i}I_{L}=V_{o}I_{o}$
-$I_{L}=\frac{V_{o}I_{o}}{V_{i}}$
+功率电感选择在系统稳态时，输出端电容是不耗电的，电压也不会有变化，所以输出电容上面流过的平均电流为 0。负载的所有电流都从上管而来，因此流过上管的平均电流也是 IoI_{o}Io​。输入功率等于输出功率，输入电流等于流过电感的电流，即有：
+ViIL=VoIoV_{i}I_{L}=V_{o}I_{o}Vi​IL​=Vo​Io​
+IL=VoIoViI_{L}=\frac{V_{o}I_{o}}{V_{i}}IL​=Vi​Vo​Io​​
 计算电感峰值电流可以得到：
-$I_{LP} =I_{o}+\frac{\triangle I_{L}}{2}$
-$=I_{L}+\frac{V_{o}-V_{i}}{2V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}$
-$=\frac{V_{o}I_{o}}{V_{i}}+\frac{V_{o}-V_{i}}{2V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}$
-在选择功率电感时，电感的饱和电流就必须要大于这个$I_{LP}$，并且需要留有一定的裕量。实际应用时电感的纹波电流应是平均电流的 $30%$ 至 $50%$ 为宜，我们将这个参数称之为电流纹波率 r，关于电流纹波率为什么选择 0.3 至 0.5，可以查看为何 r 为 0.3～0.5。根据电流纹波率范围就可以计算出电感值的范围：
-$\triangle I_{L} =\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}$
-$L =\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{\triangle I_{L}} \bullet \frac{1}{f}$
-$=\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{(0.3至0.5) I_{i}} \bullet \frac{1}{f}$
-$=\frac{(V_{o}-V_{i})V_{i}}{(0.3至0.5) I_{i}V_{o}f}$
-输入纹波输入电压纹波就是输入电容上面电压的变化，这个变化可以分为两部分。一部分为电容充放电所导致的电压变化 $U_{q}$，另一部分为电流流过电容 $ESR$ 导致的压降 $U_{esr}$。即 $\triangle V_{i} = U_{q} + U_{ser}$。
+ILP=Io+△IL2I_{LP} =I_{o}+\frac{\triangle I_{L}}{2}ILP​=Io​+2△IL​​
+=IL+Vo−Vi2Vo∙ViL∙1f=I_{L}+\frac{V_{o}-V_{i}}{2V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}=IL​+2Vo​Vo​−Vi​​∙LVi​​∙f1​
+=VoIoVi+Vo−Vi2Vo∙ViL∙1f=\frac{V_{o}I_{o}}{V_{i}}+\frac{V_{o}-V_{i}}{2V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}=Vi​Vo​Io​​+2Vo​Vo​−Vi​​∙LVi​​∙f1​
+在选择功率电感时，电感的饱和电流就必须要大于这个ILPI_{LP}ILP​，并且需要留有一定的裕量。实际应用时电感的纹波电流应是平均电流的 30%30\%30% 至 50%50\%50% 为宜，我们将这个参数称之为电流纹波率 r，关于电流纹波率为什么选择 0.3 至 0.5，可以查看为何 r 为 0.3～0.5。根据电流纹波率范围就可以计算出电感值的范围：
+△IL=Vo−ViVo∙ViL∙1f\triangle I_{L} =\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{L} \bullet \frac{1}{f}△IL​=Vo​Vo​−Vi​​∙LVi​​∙f1​
+L=Vo−ViVo∙Vi△IL∙1fL =\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{\triangle I_{L}} \bullet \frac{1}{f}L=Vo​Vo​−Vi​​∙△IL​Vi​​∙f1​
+=Vo−ViVo∙Vi(0.3至0.5)Ii∙1f=\frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{V_{i}}{(0.3至0.5) I_{i}} \bullet \frac{1}{f}=Vo​Vo​−Vi​​∙(0.3至0.5)Ii​Vi​​∙f1​
+=(Vo−Vi)Vi(0.3至0.5)IiVof=\frac{(V_{o}-V_{i})V_{i}}{(0.3至0.5) I_{i}V_{o}f}=(0.3至0.5)Ii​Vo​f(Vo​−Vi​)Vi​​
+输入纹波输入电压纹波就是输入电容上面电压的变化，这个变化可以分为两部分。一部分为电容充放电所导致的电压变化 UqU_{q}Uq​，另一部分为电流流过电容 ESRESRESR 导致的压降 UesrU_{esr}Uesr​。即 △Vi=Uq+User\triangle V_{i} = U_{q} + U_{ser}△Vi​=Uq​+User​。
 我们来看输入节点，这个节点的电流有三个，一个是来自电源输入的，在一个周期内我们看作是恒定的。另外两个节点是电容和电感。根据基尔霍夫电流定律，节点电流和为 0，并且电源输入的电流恒定，那么电感电流的变化量必然等于电容电流的变化量，因为最终三者的和为 0。
 
 节点电流和为 0，那么输入电容的电流变化就是功率电感的电流变化。我们画出三者的电流波形。电容电流大于 0 时，电容在充电，电容电流小于 0 时，电容在放电。并且电容充电和放电时间长度是一样的，都是周期的一半。
 
 需要注意的是充电与放电的切换的时刻并不是开关导通与断开的时候，而是在中间时刻。电容充放电的总电荷量即等于电流乘以时间，其实就是图中阴影三角形的面积。
-三角形底部是时间，充电/放电时间为$\frac{T}{2}$；三角形的高为电感纹波电流的一半 $\frac{\triangle I_{L}}{2}$；根据三角形面积计算公式即有：
-$Q=C_{i}U_{q}$
-$=\frac{1}{2}\bullet \frac{T}{2}\bullet \frac{\triangle I_{L}}{2}$
-$=\frac{1}{2}\bullet \frac{1}{2f}\bullet \frac{\frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf}}{2}$
-$=\frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}L}$
-$U_{q}=\frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}LC_{i}}$
-前面波形图已经知道，电容的充电电流最大是 $\frac{\triangle I_{L}}{2}$，放电电流最大是 $-\frac{\triangle I_{L}}{2}$。那么 $ESR$ 引起的总压降即为：
-$U_{esr} = \frac{\triangle I_{L}}{2} \bullet ESR - (-\frac{\triangle I_{L}}{2} \bullet ESR)$
-$= \triangle I_{L}\bullet ESR$
-$= \frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf} \bullet ESR$
+三角形底部是时间，充电/放电时间为T2\frac{T}{2}2T​；三角形的高为电感纹波电流的一半 △IL2\frac{\triangle I_{L}}{2}2△IL​​；根据三角形面积计算公式即有：
+Q=CiUqQ=C_{i}U_{q}Q=Ci​Uq​
+=12∙T2∙△IL2=\frac{1}{2}\bullet \frac{T}{2}\bullet \frac{\triangle I_{L}}{2}=21​∙2T​∙2△IL​​
+=12∙12f∙(Vo−Vi)ViVoLf2=\frac{1}{2}\bullet \frac{1}{2f}\bullet \frac{\frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf}}{2}=21​∙2f1​∙2Vo​Lf(Vo​−Vi​)Vi​​​
+=(Vo−Vi)Vi8f2VoL=\frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}L}=8f2Vo​L(Vo​−Vi​)Vi​​
+Uq=(Vo−Vi)Vi8f2VoLCiU_{q}=\frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}LC_{i}}Uq​=8f2Vo​LCi​(Vo​−Vi​)Vi​​
+前面波形图已经知道，电容的充电电流最大是 △IL2\frac{\triangle I_{L}}{2}2△IL​​，放电电流最大是 −△IL2-\frac{\triangle I_{L}}{2}−2△IL​​。那么 ESRESRESR 引起的总压降即为：
+Uesr=△IL2∙ESR−(−△IL2∙ESR)U_{esr} = \frac{\triangle I_{L}}{2} \bullet ESR - (-\frac{\triangle I_{L}}{2} \bullet ESR)Uesr​=2△IL​​∙ESR−(−2△IL​​∙ESR)
+=△IL∙ESR= \triangle I_{L}\bullet ESR=△IL​∙ESR
+=(Vo−Vi)ViVoLf∙ESR= \frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf} \bullet ESR=Vo​Lf(Vo​−Vi​)Vi​​∙ESR
 最终可得：
-$\triangle V_{i} = U_{q} + U_{esr}$
-$=\frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}LC_{i}} + \frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf} \bullet ESR$
-输入电容选择考虑到电容的实际使用情况，陶瓷电容的 $ESR$ 小，容量小，所以 $U_{q}$ 对纹波起决定性作用，输入纹波可近似为 $U_{q}$。若选择铝电解电容，则 $ESR$ 大，容量大，$U_{esr}$ 对纹波起到决定性作用，输入纹波可以近似为 $U_{esr}$，假设电路设计要求输入纹波不能大于 $\triangle V_{i}$，则有：
-陶瓷电容：$C_{i} \ge \frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}L \triangle V_{i}}$
-铝电解电容：$ESR \le \frac{\triangle V_{i}V_{o}Lf}{(V_{o}-V_{i})V_{i}}$
-输出纹波输出纹波与输入纹波同理，亦是 $\triangle V_{o} = U_{q} + U_{esr}$。一个周期内电容的充电电荷必然与放电电荷量相等，我们只需要计算出其中任意一个即可。很显然计算放电电荷量更为容易，因为放电电流就是负载电流，负载电流为恒定的 $I_{o} = \frac{V_{o}}{R_{L}}$。
-$Q = C_{o}U_{q}=I_{o}T_{on}$
-$T_{on} = \frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{1}{f}$
-$U_{q} = \frac{I_{o}T_{on}}{C_{o}}$
-$= \frac{I_{o}(V_{o}-V_{i})}{C_{o}V_{o}f}$
-在下管导通的时候，负载的电流为 $I_{o}$，完全由输出滤波电容提供，即滤波电容的放电电流也为 $I_{o}$，而且还是在导通时间里面恒定不变的。
-在下管从导通切换到截止时，电感的电流已经是充到最大的，因为先前下管导通时电感一直在充电，所以切换时电感电流最大，且等于电感平均电流加上纹波电流的一半，即 $I_{L}+\frac{\triangle I_{L}}{2}$。已经充好的电感电流会给负载供电，负载电流为 $I_{o}$。同时电感还要给输出电容进行充电，根据基尔霍夫电流定律，电容的充电电流就是电感充到最大的电流减去负载的电流，即 $I_{L}+\frac{\triangle I_{L}}{2} - I_{o}$。
+△Vi=Uq+Uesr\triangle V_{i} = U_{q} + U_{esr}△Vi​=Uq​+Uesr​
+=(Vo−Vi)Vi8f2VoLCi+(Vo−Vi)ViVoLf∙ESR=\frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}LC_{i}} + \frac{(V_{o}-V_{i})V_{i}}{V_{o}Lf} \bullet ESR=8f2Vo​LCi​(Vo​−Vi​)Vi​​+Vo​Lf(Vo​−Vi​)Vi​​∙ESR
+输入电容选择考虑到电容的实际使用情况，陶瓷电容的 ESRESRESR 小，容量小，所以 UqU_{q}Uq​ 对纹波起决定性作用，输入纹波可近似为 UqU_{q}Uq​。若选择铝电解电容，则 ESRESRESR 大，容量大，UesrU_{esr}Uesr​ 对纹波起到决定性作用，输入纹波可以近似为 UesrU_{esr}Uesr​，假设电路设计要求输入纹波不能大于 △Vi\triangle V_{i}△Vi​，则有：
+陶瓷电容：Ci≥(Vo−Vi)Vi8f2VoL△ViC_{i} \ge \frac{(V_{o}-V_{i})V_{i}}{8f^{2} V_{o}L \triangle V_{i}}Ci​≥8f2Vo​L△Vi​(Vo​−Vi​)Vi​​
+铝电解电容：ESR≤△ViVoLf(Vo−Vi)ViESR \le \frac{\triangle V_{i}V_{o}Lf}{(V_{o}-V_{i})V_{i}}ESR≤(Vo​−Vi​)Vi​△Vi​Vo​Lf​
+输出纹波输出纹波与输入纹波同理，亦是 △Vo=Uq+Uesr\triangle V_{o} = U_{q} + U_{esr}△Vo​=Uq​+Uesr​。一个周期内电容的充电电荷必然与放电电荷量相等，我们只需要计算出其中任意一个即可。很显然计算放电电荷量更为容易，因为放电电流就是负载电流，负载电流为恒定的 Io=VoRLI_{o} = \frac{V_{o}}{R_{L}}Io​=RL​Vo​​。
+Q=CoUq=IoTonQ = C_{o}U_{q}=I_{o}T_{on}Q=Co​Uq​=Io​Ton​
+Ton=Vo−ViVo∙1fT_{on} = \frac{V_{o}-V_{i}}{V_{o}} \bullet \frac{1}{f}Ton​=Vo​Vo​−Vi​​∙f1​
+Uq=IoTonCoU_{q} = \frac{I_{o}T_{on}}{C_{o}}Uq​=Co​Io​Ton​​
+=Io(Vo−Vi)CoVof= \frac{I_{o}(V_{o}-V_{i})}{C_{o}V_{o}f}=Co​Vo​fIo​(Vo​−Vi​)​
+在下管导通的时候，负载的电流为 IoI_{o}Io​，完全由输出滤波电容提供，即滤波电容的放电电流也为 IoI_{o}Io​，而且还是在导通时间里面恒定不变的。
+在下管从导通切换到截止时，电感的电流已经是充到最大的，因为先前下管导通时电感一直在充电，所以切换时电感电流最大，且等于电感平均电流加上纹波电流的一半，即 IL+△IL2I_{L}+\frac{\triangle I_{L}}{2}IL​+2△IL​​。已经充好的电感电流会给负载供电，负载电流为 IoI_{o}Io​。同时电感还要给输出电容进行充电，根据基尔霍夫电流定律，电容的充电电流就是电感充到最大的电流减去负载的电流，即 IL+△IL2−IoI_{L}+\frac{\triangle I_{L}}{2} - I_{o}IL​+2△IL​​−Io​。
 在下管关断之后，电感电压反向，电感电流持续减小，负载电流恒定不变，所以输出滤波电容的电流持续减小。画出输出电容的电流波形就非常明显了。
 
-在下管导通时，$ESR$ 两端的电流为 $-I_{o}$。在下管截止时，$ESR$ 两端的电流为 $I_{L}+\frac{\triangle I_{L}}{2} - I_{o}$。由此即可计算出 $ESR$ 上的电压变化量。
-$U_{esr} = (I_{L}+\frac{\triangle I_{L}}{2} - I_{o})\bullet ESR - (-I_{o} \bullet ESR)$
-$= (I_{L}+\frac{\triangle I_{L}}{2})\bullet ESR$
-$= (\frac{V_{o}I_{o}}{V_{i}} + \frac{(V_{o}-V_{i})V_{i}}{2V_{o}Lf}) \bullet ESR$
+在下管导通时，ESRESRESR 两端的电流为 −Io-I_{o}−Io​。在下管截止时，ESRESRESR 两端的电流为 IL+△IL2−IoI_{L}+\frac{\triangle I_{L}}{2} - I_{o}IL​+2△IL​​−Io​。由此即可计算出 ESRESRESR 上的电压变化量。
+Uesr=(IL+△IL2−Io)∙ESR−(−Io∙ESR)U_{esr} = (I_{L}+\frac{\triangle I_{L}}{2} - I_{o})\bullet ESR - (-I_{o} \bullet ESR)Uesr​=(IL​+2△IL​​−Io​)∙ESR−(−Io​∙ESR)
+=(IL+△IL2)∙ESR= (I_{L}+\frac{\triangle I_{L}}{2})\bullet ESR=(IL​+2△IL​​)∙ESR
+=(VoIoVi+(Vo−Vi)Vi2VoLf)∙ESR= (\frac{V_{o}I_{o}}{V_{i}} + \frac{(V_{o}-V_{i})V_{i}}{2V_{o}Lf}) \bullet ESR=(Vi​Vo​Io​​+2Vo​Lf(Vo​−Vi​)Vi​​)∙ESR
 最终可得：
-$\bigtriangleup U_{o} = U_{q} + U_{esr}$
-$=\frac{I_{o}(V_{o}-V_{i})}{C_{o}V_{o}f} +  (\frac{V_{o}I_{o}}{V_{i}} + \frac{(V_{o}-V_{i})V_{i}}{2V_{o}Lf}) \bullet ESR$
-输出电容选择与输入电容选择的方式一致，考虑是容值还是 $ESR$ 占主导地位，假设要求输出纹波要小于 $\triangle V_{o}$，则有：
-陶瓷电容：$C_{o} \ge \frac{I_{o}(V_{o}-V_{i})}{\triangle V_{o}V_{o}f}$
-铝电解电容：$ESR \le \frac{\triangle V_{o}}{\frac{V_{o}I_{o}}{V_{i}} + \frac{(V_{o}-V_{i})V_{i}}{2V_{o}Lf}}$
+△Uo=Uq+Uesr\bigtriangleup U_{o} = U_{q} + U_{esr}△Uo​=Uq​+Uesr​
+=Io(Vo−Vi)CoVof+(VoIoVi+(Vo−Vi)Vi2VoLf)∙ESR=\frac{I_{o}(V_{o}-V_{i})}{C_{o}V_{o}f} +  (\frac{V_{o}I_{o}}{V_{i}} + \frac{(V_{o}-V_{i})V_{i}}{2V_{o}Lf}) \bullet ESR=Co​Vo​fIo​(Vo​−Vi​)​+(Vi​Vo​Io​​+2Vo​Lf(Vo​−Vi​)Vi​​)∙ESR
+输出电容选择与输入电容选择的方式一致，考虑是容值还是 ESRESRESR 占主导地位，假设要求输出纹波要小于 △Vo\triangle V_{o}△Vo​，则有：
+陶瓷电容：Co≥Io(Vo−Vi)△VoVofC_{o} \ge \frac{I_{o}(V_{o}-V_{i})}{\triangle V_{o}V_{o}f}Co​≥△Vo​Vo​fIo​(Vo​−Vi​)​
+铝电解电容：ESR≤△VoVoIoVi+(Vo−Vi)Vi2VoLfESR \le \frac{\triangle V_{o}}{\frac{V_{o}I_{o}}{V_{i}} + \frac{(V_{o}-V_{i})V_{i}}{2V_{o}Lf}}ESR≤Vi​Vo​Io​​+2Vo​Lf(Vo​−Vi​)Vi​​△Vo​​
 
                                         </div>
                                         
@@ -3493,32 +3501,32 @@ $=\frac{I_{o}(V_{o}-V_{i})}{C_{o}V_{o}f} +  (\frac{V_{o}I_{o}}{V_{i}} + \frac{(V
                     <time class="post-time">2024-07-09</time>
                     
                         <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_4">
             #电路基础
         </a>
                         
                         <a href="https://www.guanngxu.com/COeYlWWen/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-success">
             #PCB
         </a>
                         
                         <a href="https://www.guanngxu.com/ypjmBXLlm3/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-error">
             #Layout
         </a>
                         
                         <a href="https://www.guanngxu.com/QbHW4oh0b/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_4">
             #开关电源
         </a>
                         
                         <a href="https://www.guanngxu.com/g-HWNOeTH/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-info">
             #BUCK
         </a>
                         
                         <a href="https://www.guanngxu.com/f2t0BU6fkn/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-primary">
             #DC-DC
         </a>
                         
@@ -3605,7 +3613,7 @@ PCB（Printed Circuit Board）即印制电路板，由保罗.爱斯勒发明。P
         </a>
                         
                         <a href="https://www.guanngxu.com/ONdBQtmOe/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-error">
             #电平转换
         </a>
                         
@@ -3776,12 +3784,12 @@ L
                     <time class="post-time">2024-05-09</time>
                     
                         <a href="https://www.guanngxu.com/HoPoXlgLN/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-">
             #线性稳压器
         </a>
                         
                         <a href="https://www.guanngxu.com/jSM-A51qWd/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-info">
             #LDO
         </a>
                         
@@ -3846,7 +3854,7 @@ PSRRPSRR（Power Supply Rejection Ratio）量化了 LDO 抑制任何电源变化
                     <time class="post-time">2024-05-05</time>
                     
                         <a href="https://www.guanngxu.com/pCdNazHt7/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-primary">
             #电路基础
         </a>
                         
@@ -3955,7 +3963,7 @@ IGBT三极管工作时涉及载流子的注入和抽离所以会很慢，由于�
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785833734628" alt="avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1786072789175" alt="avatar">
         </div>
         <div class="id_card-title">
             Guanngxu
@@ -4240,127 +4248,127 @@ IGBT三极管工作时涉及载流子的注入和抽离所以会很慢，由于�
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/mZ_iBKmVWo/">
+            i-tag-banana" href="https://www.guanngxu.com/mZ_iBKmVWo/">
             操作系统
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/krqSF7tYC/">
+            i-tag-success" href="https://www.guanngxu.com/krqSF7tYC/">
             算法
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/6ys69eBdL/">
+            i-tag-banana" href="https://www.guanngxu.com/6ys69eBdL/">
             前端
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/_7KBEW1cq7/">
+            i-tag-error" href="https://www.guanngxu.com/_7KBEW1cq7/">
             Python
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/pCdNazHt7/">
+            i-tag-other_1" href="https://www.guanngxu.com/pCdNazHt7/">
             电路基础
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/ndHrBQqET/">
+            i-tag-banana" href="https://www.guanngxu.com/ndHrBQqET/">
             社会经验
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/ovndYzDa7N/">
+            i-tag-other_2" href="https://www.guanngxu.com/ovndYzDa7N/">
             JavaScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/sQhfLtj4g/">
+            i-tag-" href="https://www.guanngxu.com/sQhfLtj4g/">
             计算机网络
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/ML7-KNp5c/">
+            i-tag-other_3" href="https://www.guanngxu.com/ML7-KNp5c/">
             赚钱套利
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_1" href="https://www.guanngxu.com/mVmVUsbMe/">
+            i-tag-other_2" href="https://www.guanngxu.com/mVmVUsbMe/">
             工具教程
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/QbHW4oh0b/">
+            i-tag-primary" href="https://www.guanngxu.com/QbHW4oh0b/">
             开关电源
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/f2t0BU6fkn/">
+            i-tag-other_3" href="https://www.guanngxu.com/f2t0BU6fkn/">
             DC-DC
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/umBdDP7Ll/">
+            i-tag-info" href="https://www.guanngxu.com/umBdDP7Ll/">
             C
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/ecG5hxBcr/">
+            i-tag-" href="https://www.guanngxu.com/ecG5hxBcr/">
             数据库
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/6ZjSGnvm9/">
+            i-tag-" href="https://www.guanngxu.com/6ZjSGnvm9/">
             年度总结
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/g-HWNOeTH/">
+            i-tag-success" href="https://www.guanngxu.com/g-HWNOeTH/">
             BUCK
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/hF3_PWTirK/">
+            i-tag-banana" href="https://www.guanngxu.com/hF3_PWTirK/">
             Java
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/vnEfA3xxL/">
+            i-tag-other_1" href="https://www.guanngxu.com/vnEfA3xxL/">
             嵌入式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/3pFNTYNB8/">
+            i-tag-" href="https://www.guanngxu.com/3pFNTYNB8/">
             翻译摘录
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/u3bra3rlo/">
+            i-tag-banana" href="https://www.guanngxu.com/u3bra3rlo/">
             健康生活
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/EWmAbJCJGF/">
+            i-tag-" href="https://www.guanngxu.com/EWmAbJCJGF/">
             TypeScript
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/KCICs8Iip/">
+            i-tag-info" href="https://www.guanngxu.com/KCICs8Iip/">
             记录回忆
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-error" href="https://www.guanngxu.com/EEBe6eBp1/">
+            i-tag-other_4" href="https://www.guanngxu.com/EEBe6eBp1/">
             爬虫
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/HoPoXlgLN/">
+            i-tag-success" href="https://www.guanngxu.com/HoPoXlgLN/">
             线性稳压器
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/jSM-A51qWd/">
+            i-tag-other_3" href="https://www.guanngxu.com/jSM-A51qWd/">
             LDO
         </a>
         
@@ -4370,32 +4378,32 @@ IGBT三极管工作时涉及载流子的注入和抽离所以会很慢，由于�
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/BDX4-XwWJ/">
+            i-tag-other_3" href="https://www.guanngxu.com/BDX4-XwWJ/">
             信用卡
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/QNwNfWJcwj/">
+            i-tag-warning" href="https://www.guanngxu.com/QNwNfWJcwj/">
             灰产骗局
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/UGoTtZqQ-y/">
+            i-tag-other_2" href="https://www.guanngxu.com/UGoTtZqQ-y/">
             编译原理
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/XcHzo7Nc6/">
+            i-tag-other_2" href="https://www.guanngxu.com/XcHzo7Nc6/">
             正则表达式
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/pkJGoZIqgD/">
+            i-tag-other_1" href="https://www.guanngxu.com/pkJGoZIqgD/">
             Angular
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/_9zQ4w6VQ/">
+            i-tag-" href="https://www.guanngxu.com/_9zQ4w6VQ/">
             自然语言处理
         </a>
         
@@ -4405,57 +4413,57 @@ IGBT三极管工作时涉及载流子的注入和抽离所以会很慢，由于�
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_3" href="https://www.guanngxu.com/GndhdyXw87/">
+            i-tag-primary" href="https://www.guanngxu.com/GndhdyXw87/">
             哈夫曼树
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-banana" href="https://www.guanngxu.com/COeYlWWen/">
+            i-tag-other_2" href="https://www.guanngxu.com/COeYlWWen/">
             PCB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/ypjmBXLlm3/">
+            i-tag-banana" href="https://www.guanngxu.com/ypjmBXLlm3/">
             Layout
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/ONdBQtmOe/">
+            i-tag-warning" href="https://www.guanngxu.com/ONdBQtmOe/">
             电平转换
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-info" href="https://www.guanngxu.com/M4PlaWNdk/">
+            i-tag-warning" href="https://www.guanngxu.com/M4PlaWNdk/">
             Oracle
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-success" href="https://www.guanngxu.com/wjM4wf9IE/">
+            i-tag-other_1" href="https://www.guanngxu.com/wjM4wf9IE/">
             MySQL
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_2" href="https://www.guanngxu.com/dTizl9yei/">
+            i-tag-" href="https://www.guanngxu.com/dTizl9yei/">
             SEO
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-primary" href="https://www.guanngxu.com/7QbLXmeen/">
+            i-tag-success" href="https://www.guanngxu.com/7QbLXmeen/">
             Vue
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-other_4" href="https://www.guanngxu.com/iqW8DWbw7/">
+            i-tag-banana" href="https://www.guanngxu.com/iqW8DWbw7/">
             MongoDB
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-warning" href="https://www.guanngxu.com/j7DVou3EA/">
+            i-tag-other_3" href="https://www.guanngxu.com/j7DVou3EA/">
             Nginx
         </a>
         
         <a class="tags-tag i-tag
-            i-tag-" href="https://www.guanngxu.com/9WeHlVlqK9/">
+            i-tag-other_2" href="https://www.guanngxu.com/9WeHlVlqK9/">
             软件测试
         </a>
         

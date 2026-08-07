@@ -7,10 +7,10 @@
 <title>
     算法 | Guanngxu
 </title>
-<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1785833734628">
+<link rel="shortcut icon" href="https://www.guanngxu.com/favicon.ico?v=1786072789175">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.guanngxu.com/styles/katex.min.css">
 <link rel="stylesheet" href="https://www.guanngxu.com/styles/main.css">
 <!-- js -->
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://www.guanngxu.com">
-                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1785833734628" alt="">
+                <img class="avatar" src="https://www.guanngxu.com/images/avatar.png?v=1786072789175" alt="">
             </a>
             <a href="https://www.guanngxu.com">
                 <div class="site-title">
@@ -135,12 +135,12 @@
                     <time class="post-time">2025-11-09</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_3">
             #算法
         </a>
                         
                         <a href="https://www.guanngxu.com/GndhdyXw87/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-warning">
             #哈夫曼树
         </a>
                         
@@ -480,7 +480,7 @@ int main(int argc, char** argv)
                     <time class="post-time">2023-11-06</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_1">
             #算法
         </a>
                         
@@ -543,11 +543,11 @@ void union(int i, int j)
 
 相关练习题目洛谷 P1551 亲戚题目连接：https://www.luogu.com.cn/problem/P1551
 题目描述若某个家族人员过于庞大，要判断两个是否是亲戚，确实还很不容易，现在给出某个亲戚关系图，求任意给出的两个人是否具有亲戚关系。
-规定：$x$ 和 $y$ 是亲戚，$y$ 和 $z$ 是亲戚，那么 $x$ 和 $z$ 也是亲戚。如果 $x，y$ 是亲戚，那么 $x$ 的亲戚都是 $y$ 的亲戚，$y$ 的亲戚也都是 $x$ 的亲戚。
-输入格式第一行：三个整数 $n,m,p，(n,m,p≤5000)$ 分别表示有 $n$ 个人，$m$ 个亲戚关系，询问 $p$ 对亲戚关系。
-以下 $m$ 行：每行两个数 $M_i，M_j，1≤M_i，M_j≤n$，表示 $M_i$ 和 $M_j$ 具有亲戚关系。
-接下来 $p$ 行：每行两个数 $P_i，P_j$，询问 $P_i$ 和 $P_j$ 是否具有亲戚关系。
-输出格式$p$ 行，每行一个Yes或No。表示第 $i$ 个询问的答案为“具有”或“不具有”亲戚关系。
+规定：xxx 和 yyy 是亲戚，yyy 和 zzz 是亲戚，那么 xxx 和 zzz 也是亲戚。如果 x，yx，yx，y 是亲戚，那么 xxx 的亲戚都是 yyy 的亲戚，yyy 的亲戚也都是 xxx 的亲戚。
+输入格式第一行：三个整数 n,m,p，(n,m,p≤5000)n,m,p，(n,m,p≤5000)n,m,p，(n,m,p≤5000) 分别表示有 nnn 个人，mmm 个亲戚关系，询问 ppp 对亲戚关系。
+以下 mmm 行：每行两个数 Mi，Mj，1≤Mi，Mj≤nM_i，M_j，1≤M_i，M_j≤nMi​，Mj​，1≤Mi​，Mj​≤n，表示 MiM_iMi​ 和 MjM_jMj​ 具有亲戚关系。
+接下来 ppp 行：每行两个数 Pi，PjP_i，P_jPi​，Pj​，询问 PiP_iPi​ 和 PjP_jPj​ 是否具有亲戚关系。
+输出格式ppp 行，每行一个Yes或No。表示第 iii 个询问的答案为“具有”或“不具有”亲戚关系。
 输入输出样例# 输入
 6 5 3
 1 2
@@ -626,7 +626,7 @@ int main()
 题目描述Today is Ignatius&#39; birthday. He invites a lot of friends. Now it&#39;s dinner time. Ignatius wants to know how many tables he needs at least. You have to notice that not all the friends know each other, and all the friends do not want to stay with strangers.
 One important rule for this problem is that if I tell you A knows B, and B knows C, that means A, B, C know each other, so they can stay in one table.
 For example: If I tell you A knows B, B knows C, and D knows E, so A, B, C can stay in one table, and D, E have to stay in the other one. So Ignatius needs 2 tables at least.
-输入格式The input starts with an integer $T(1&amp;lt;=T&amp;lt;=25)$ which indicate the number of test cases. Then $T$ test cases follow. Each test case starts with two integers $N$ and $M(1&amp;lt;=N,M&amp;lt;=1000)$. $N$ indicates the number of friends, the friends are marked from $1$ to $N$. Then $M$ lines follow. Each line consists of two integers $A$ and $B(A!=B)$, that means friend $A$ and friend $B$ know each other. There will be a blank line between two cases.
+输入格式The input starts with an integer T(1&amp;lt;=T&amp;lt;=25)T(1&amp;lt;=T&amp;lt;=25)T(1&amp;lt;=T&amp;lt;=25) which indicate the number of test cases. Then TTT test cases follow. Each test case starts with two integers NNN and M(1&amp;lt;=N,M&amp;lt;=1000)M(1&amp;lt;=N,M&amp;lt;=1000)M(1&amp;lt;=N,M&amp;lt;=1000). NNN indicates the number of friends, the friends are marked from 111 to NNN. Then MMM lines follow. Each line consists of two integers AAA and B(A!=B)B(A!=B)B(A!=B), that means friend AAA and friend BBB know each other. There will be a blank line between two cases.
 输出格式For each test case, just output how many tables Ignatius needs at least. Do NOT print any blanks.
 输入输出样例# 输入
 2
@@ -836,7 +836,7 @@ int main()
                     <time class="post-time">2023-08-20</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-info">
             #算法
         </a>
                         
@@ -1051,7 +1051,7 @@ int main()
         </a>
                         
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-other_1">
             #算法
         </a>
                         
@@ -1329,7 +1329,7 @@ void breadth_first_order_traversal(node *root)
                     <time class="post-time">2023-04-01</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-other_1">
             #算法
         </a>
                         
@@ -1510,7 +1510,7 @@ int main()
                     <time class="post-time">2023-02-26</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_1">
             #算法
         </a>
                         
@@ -1841,7 +1841,7 @@ int main()
                     <time class="post-time">2021-09-20</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-info">
             #算法
         </a>
                         
@@ -1861,8 +1861,8 @@ poj1037（dP+排列计数）
 
 本文首发于牛客网：题解 | #牛牛摆木棒#
 题目牛客网 NC632 牛牛摆木棒、POJ1037-A decorative fence（美丽的栅栏）
-描述有n个木棒，长度为1到n，给定了一个摆放规则。规则是这样的：对于第 i $(2 \leq i \leq n-1)$ 个木棒 $a_i$，$(a_i &amp;gt; a_{i-1}$ &amp;amp;&amp;amp; $a_i &amp;gt; a_{i+1})$ 或 $(a_i &amp;lt; a_{i-1}$ &amp;amp;&amp;amp; $a_i &amp;lt; a_{i+1})$。求满足规则的从小到大的第k个排列是什么呢。
-对于两个排列 s 和 t：如果存在 j 有任意 $i&amp;lt;j$ 使得 $s_i == t_i$ 且 $s_j &amp;lt; t_j$，视为排列 s 小于排列 t。
+描述有n个木棒，长度为1到n，给定了一个摆放规则。规则是这样的：对于第 i (2≤i≤n−1)(2 \leq i \leq n-1)(2≤i≤n−1) 个木棒 aia_iai​，(ai&amp;gt;ai−1(a_i &amp;gt; a_{i-1}(ai​&amp;gt;ai−1​ &amp;amp;&amp;amp; ai&amp;gt;ai+1)a_i &amp;gt; a_{i+1})ai​&amp;gt;ai+1​) 或 (ai&amp;lt;ai−1(a_i &amp;lt; a_{i-1}(ai​&amp;lt;ai−1​ &amp;amp;&amp;amp; ai&amp;lt;ai+1)a_i &amp;lt; a_{i+1})ai​&amp;lt;ai+1​)。求满足规则的从小到大的第k个排列是什么呢。
+对于两个排列 s 和 t：如果存在 j 有任意 i&amp;lt;ji&amp;lt;ji&amp;lt;j 使得 si==tis_i == t_isi​==ti​ 且 sj&amp;lt;tjs_j &amp;lt; t_jsj​&amp;lt;tj​，视为排列 s 小于排列 t。
 示例输入：3,3
 返回值：[2,3,1]
 说明：第一小的排列为：[ 1 , 3 , 2 ]
@@ -1871,8 +1871,8 @@ poj1037（dP+排列计数）
      第四小的排列为：[ 3 , 1 , 2 ]
      所以答案为：[ 2 , 3 , 1 ]
 
-备注$(1 \leq n \leq 20, 1 \leq k \leq (n-1)!)$
-题意该问题让我们求：n 的字典序排列中第 k 个波浪形的排列。什么是波浪形排列呢？即对排列中任意一个数字（除开第一个和最后一个）$a_i$，只能 $a_i$ 比 $a_{i-1}$ 和 $a_{i+1}$ 都小或者都大。比如 2 1 3和1 3 2是波浪形排列，但1 2 3就不是波浪形排列。
+备注(1≤n≤20,1≤k≤(n−1)!)(1 \leq n \leq 20, 1 \leq k \leq (n-1)!)(1≤n≤20,1≤k≤(n−1)!)
+题意该问题让我们求：n 的字典序排列中第 k 个波浪形的排列。什么是波浪形排列呢？即对排列中任意一个数字（除开第一个和最后一个）aia_iai​，只能 aia_iai​ 比 ai−1a_{i-1}ai−1​ 和 ai+1a_{i+1}ai+1​ 都小或者都大。比如 2 1 3和1 3 2是波浪形排列，但1 2 3就不是波浪形排列。
 DFS 枚举最容易想到的解决方案是把 n 的所有排列按字典序列出来，然后再逐一检查是否是波浪形排列，直接取出第 k 个波浪形排列即可。
 我们以 3 的全排列为例画出如下树形图，非常容易的就能发现只要对这棵树进行深度优先遍历，就能够按字典序得到所有排列。但并不是所有排列都满足波浪形这个条件，所以我们每得到一个排列都需要检查该排列是否为波浪形，直到检查到第 k 个排列为止，返回该排列即可。
 
@@ -1996,19 +1996,19 @@ public:
 复杂度分析
 我们来看一下这个深度优先遍历的时间复杂度分析，该算法的时间复杂度主要由递归树的结点个数决定。因为程序在叶子结点和非叶子结点的行为时不一样的，所以我们先计算非叶子结点的个数，我们一层一层的去计算它。
 第 1 层因为只有一个空列表，所以我们不考虑它；
-第 2 层表示的意思是从 n 个数中找出 1 个数，即 $A_n^1$；
-第 3 层表示的意思是从 n 个数中找出 2 个数，即 $A_n^2$；
+第 2 层表示的意思是从 n 个数中找出 1 个数，即 An1A_n^1An1​；
+第 3 层表示的意思是从 n 个数中找出 2 个数，即 An2A_n^2An2​；
 以此类推，全部非叶子结点的总数为：
-$A_n^1 + A_n^2 + \cdots A_n^n$
-$= \frac{n!}{(n-1)!} + \frac{n!}{(n-2)!} + \cdots + n!$
-$= n!\left(\frac{1}{(n-1)!} + \frac{1}{(n-2)!} + \cdots + 1\right)$
-$\leq n!\left(1 + \frac{1}{2} + \frac{1}{4} + \cdots + \frac{1}{2^{n-1}}\right)$
-$= n! \times 2（1-\frac{1}{2^{n}})$
-$&amp;lt; 2n!$
-每个非叶子结点都在内部循环了 n 次，所以非叶子结点的时间复杂度为 $O(2n \times n!)$，去除系数后得到 $O(n \times n!)$ 。
-最后一层叶子结点的个数就是 $n!$ 个，但是我们对每个叶子结点都做了一次判断，因此叶子结点的时间复杂度依然是 $O(n \times n!)$ 。
-该问题的 k 控制了遍历的次数，最好情况即 $O(n!)$，最差即 $O(n \times n!)$，平均一下也不过只加了个系数，因此总的时间复杂度为 $O(n \times n!)$。
-递归树的深度为 n，需要 $O(n)$ 的空间；程序运行过程中保存了问题的最终答案，需要 $O(n)$ 的空间，总共需要 $O(2n)$ 的空间，因此该算法的空间复杂度为 $O(n)$。
+An1+An2+⋯AnnA_n^1 + A_n^2 + \cdots A_n^nAn1​+An2​+⋯Ann​
+=n!(n−1)!+n!(n−2)!+⋯+n!= \frac{n!}{(n-1)!} + \frac{n!}{(n-2)!} + \cdots + n!=(n−1)!n!​+(n−2)!n!​+⋯+n!
+=n!(1(n−1)!+1(n−2)!+⋯+1)= n!\left(\frac{1}{(n-1)!} + \frac{1}{(n-2)!} + \cdots + 1\right)=n!((n−1)!1​+(n−2)!1​+⋯+1)
+≤n!(1+12+14+⋯+12n−1)\leq n!\left(1 + \frac{1}{2} + \frac{1}{4} + \cdots + \frac{1}{2^{n-1}}\right)≤n!(1+21​+41​+⋯+2n−11​)
+=n!×2（1−12n)= n! \times 2（1-\frac{1}{2^{n}})=n!×2（1−2n1​)
+&amp;lt;2n!&amp;lt; 2n!&amp;lt;2n!
+每个非叶子结点都在内部循环了 n 次，所以非叶子结点的时间复杂度为 O(2n×n!)O(2n \times n!)O(2n×n!)，去除系数后得到 O(n×n!)O(n \times n!)O(n×n!) 。
+最后一层叶子结点的个数就是 n!n!n! 个，但是我们对每个叶子结点都做了一次判断，因此叶子结点的时间复杂度依然是 O(n×n!)O(n \times n!)O(n×n!) 。
+该问题的 k 控制了遍历的次数，最好情况即 O(n!)O(n!)O(n!)，最差即 O(n×n!)O(n \times n!)O(n×n!)，平均一下也不过只加了个系数，因此总的时间复杂度为 O(n×n!)O(n \times n!)O(n×n!)。
+递归树的深度为 n，需要 O(n)O(n)O(n) 的空间；程序运行过程中保存了问题的最终答案，需要 O(n)O(n)O(n) 的空间，总共需要 O(2n)O(2n)O(2n) 的空间，因此该算法的空间复杂度为 O(n)O(n)O(n)。
 动态规划上述算法在运行过程中会超时，究其原因就是不论测试数据要求我们求第几个波浪形排列，我们都老老实实的从第一个开始数，当数据比较大时就会出现超时的情况。那么有没有办法能够减少一些不必要的过程呢？比如测试数据要求第 100 个波浪形排列，很明显前面 80 个排列肯定不满足情况，我们能否舍弃一部分搜索直接从第 80 个甚至第 90 个开始呢？
 我们先不考虑波浪形排列这个条件，如果是求第 k 个全排列的话是非常容易就能算出来的。还是以1 2 3的全排列为例，假设现在要求第 5 个全排列，可以发现只要第一个数确定了，排列数就由剩下数的排列方案决定，以1打头的排列有两个，以2打头的排列也有两个，而现在要求的是第 5 个排列，所以肯定不是以1或2打头的，这样我们就能直接跳过大部分不合法的排列，节省了时间。
 仔细想想发现理想是比较丰满，上述方法的问题在于无法确定前面跳过的那部分里面究竟有多少个波浪形排列，因此这种直接计算的方法行不通。但是这个思想我们是可以借用一下的，那我们把一部分数据计算出来，尝试一下能不能找到规律。
@@ -2022,12 +2022,12 @@ $&amp;lt; 2n!$
 我们把第 1 根木棒比第 2 根木棒长的方案称为 W 方案，第 1 根木棒比第 2 根木棒短的方案称为 M 方案。A[i-1] 中方案中只有第 1 根木棒比 x 要长的 W 方案，以及第 1 根木棒比 x 要短的 M 方案，才能进行组合构成 A[i] 中的合法方案。
 因此我们可以设A[i] = 0，先枚举 x，然后针对每一个 x 枚举它后面那根木棒 y，如果y &amp;gt; x（y &amp;lt; x同理）则有：A[i] = A[i] + 以 y 打头的 W 方案数，但是以 y 打头的 W 方案数，又和 y 的长短有关，因此只能继续将描述方式继续细化了。
 设 B[i][k] 是 A[i] 中以第 k 短的木棒打头的方案数，则有：
-$A[i] = \sum_{k=1}^i B[i][k]$
-$B[i][k] = \sum_{j=k}^{i-1} B[i-1]j+ \sum_{n=1}^{k-1} B[i-1]n$
+A[i]=∑k=1iB[i][k]A[i] = \sum_{k=1}^i B[i][k]A[i]=∑k=1i​B[i][k]
+B[i][k]=∑j=ki−1B[i−1][j](W)+∑n=1k−1B[i−1][n](M)B[i][k] = \sum_{j=k}^{i-1} B[i-1][j](W)+ \sum_{n=1}^{k-1} B[i-1][n](M)B[i][k]=∑j=ki−1​B[i−1][j](W)+∑n=1k−1​B[i−1][n](M)
 公式中（W) 和 (M) 分别表示 W 方案和 M 方案，发现还是无法找出推导关系。设 C[i][k][0] 为 B[i][k] 中的 W 方案数，C[i][k][1] 为 B[i][k] 中的 M 方案数那么则有：
-$B[i][k] = C[i][k][0] + C[i][k][1]$
-$C[i][k][1] = \sum_{j=k}^{i-1} C[i-1][j][0]$
-$C[i][k][0] = \sum_{n=1}^{k-1} C[i-1][n][1]$
+B[i][k]=C[i][k][0]+C[i][k][1]B[i][k] = C[i][k][0] + C[i][k][1]B[i][k]=C[i][k][0]+C[i][k][1]
+C[i][k][1]=∑j=ki−1C[i−1][j][0]C[i][k][1] = \sum_{j=k}^{i-1} C[i-1][j][0]C[i][k][1]=∑j=ki−1​C[i−1][j][0]
+C[i][k][0]=∑n=1k−1C[i−1][n][1]C[i][k][0] = \sum_{n=1}^{k-1} C[i-1][n][1]C[i][k][0]=∑n=1k−1​C[i−1][n][1]
 至此状态转移方程就出来了，初始条件为：C[1][1][0]=C[1][1][1] = 1，下面就可以开始写代码了。
 class Solution {
 public:
@@ -2096,8 +2096,8 @@ public:
     }
 };
 
-复杂度分析最开始初始化dp数组时用了 $O(2n^2)$ 的时间，随后填写dp数组花的时间为 $O(n^3)$，计算最终答案的时间为 $O(n^2)$，将结果转为指定格式的时间为 $O(n)$，所以该算法的时间复杂度为 $O(n^3)$。
-dp数组占用了 $O(2n^2)$ 的空间，标记数组visited、保存结果的数组a，以及最终转换为指定格式的path向量，各占用了 $O(n)$ 的空间，取最大值即该算法的空间复杂度为 $O(2n^2)$，去掉系数得到最终空间复杂度 $O(n^2)$。
+复杂度分析最开始初始化dp数组时用了 O(2n2)O(2n^2)O(2n2) 的时间，随后填写dp数组花的时间为 O(n3)O(n^3)O(n3)，计算最终答案的时间为 O(n2)O(n^2)O(n2)，将结果转为指定格式的时间为 O(n)O(n)O(n)，所以该算法的时间复杂度为 O(n3)O(n^3)O(n3)。
+dp数组占用了 O(2n2)O(2n^2)O(2n2) 的空间，标记数组visited、保存结果的数组a，以及最终转换为指定格式的path向量，各占用了 O(n)O(n)O(n) 的空间，取最大值即该算法的空间复杂度为 O(2n2)O(2n^2)O(2n2)，去掉系数得到最终空间复杂度 O(n2)O(n^2)O(n2)。
 
                                         </div>
                                         
@@ -2116,7 +2116,7 @@ dp数组占用了 $O(2n^2)$ 的空间，标记数组visited、保存结果的数
                     <time class="post-time">2021-01-04</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_2">
             #算法
         </a>
                         
@@ -2234,22 +2234,22 @@ int gcd(int a, int b){
                     <time class="post-time">2019-01-26</time>
                     
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-">
             #算法
         </a>
                         
                         <a href="https://www.guanngxu.com/6ys69eBdL/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_4">
             #前端
         </a>
                         
                         <a href="https://www.guanngxu.com/EWmAbJCJGF/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-">
             #TypeScript
         </a>
                         
                         <a href="https://www.guanngxu.com/ovndYzDa7N/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-primary">
             #JavaScript
         </a>
                         
@@ -2372,12 +2372,12 @@ onPostBody: function () {
                     <time class="post-time">2018-11-28</time>
                     
                         <a href="https://www.guanngxu.com/mZ_iBKmVWo/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-">
             #操作系统
         </a>
                         
                         <a href="https://www.guanngxu.com/krqSF7tYC/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-error">
             #算法
         </a>
                         
@@ -2496,7 +2496,7 @@ public class Main
                     
     <div class="id_card i-card">
         <div class="id_card-avatar">
-            <img src="https://www.guanngxu.com/images/avatar.png?v=1785833734628" alt="avatar">
+            <img src="https://www.guanngxu.com/images/avatar.png?v=1786072789175" alt="avatar">
         </div>
         <div class="id_card-title">
             Guanngxu
